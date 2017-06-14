@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
+<html lang="en">
   <head>
-    <title>FoodtalkOrg</title>
+    <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= render :partial => "layouts/top-nav" %>
+    </div>
+    <div class="container-fluid">
+      <%= render :partial => 'layouts/header' %>
+    </div>
+    <div class="container-fluid">
+      <%= render :partial => "layouts/nav" %>
+    </div>
+    <div class="container-fluid">
+      <%= render :partial => 'layouts/content' %>
+    </div>
+    <div class="container-fluid">
+      <%= render :partial => 'layouts/footer' %>
+    </div>
   </body>
 </html>

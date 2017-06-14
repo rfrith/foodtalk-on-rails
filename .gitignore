@@ -21,3 +21,10 @@
 /yarn-error.log
 
 .byebug_history
+
+
+# redis local db
+dump.rdb
+
+#IDE-specific files
+.idea/

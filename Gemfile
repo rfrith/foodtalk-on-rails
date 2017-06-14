@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#ruby=2.4.1
+#ruby-gemset=foodtalk_rails511
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -29,6 +32,39 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+
+
+# custom gems
+
+#gem 'devise'
+#gem 'simple_form'
+#gem 'resque'
+#gem 'resque-scheduler'
+
+#omniauth for authentication
+#gem 'omniauth'
+
+#add omniauth for instagram support
+#'omniauth-instagram'
+
+#add omniauth for twitter support
+#gem 'omniauth-twitter'
+
+#add font awesome support
+#gem 'font-awesome-sass'
+
+#gem 'foreman'
+
+#gem 'administrate'
+
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.9.9'
+gem 'font-awesome-rails'
+
+gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
