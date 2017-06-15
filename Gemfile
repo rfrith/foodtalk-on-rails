@@ -62,9 +62,8 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.9.9'
 gem 'font-awesome-rails'
-
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
-
+gem 'paperclip', '~> 5.0.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
