@@ -33,6 +33,19 @@
 
 }
 
+.content-section-title {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: 'Tangerine', serif;
+  color: rgba(155, 116, 49, 1);
+  //color: black;
+  font-size: 4.5rem;
+  font-weight: 600;
+}
+
+
+
+
 .content-section, .footer {
   padding-top: 1rem;
 
@@ -96,18 +109,12 @@
 
 
 
-.card-deck {
+.card-deck, .card-group {
   width: 50rem;
 }
 
 
-.featured-recipes-title {
-  font-family: 'Tangerine', serif;
-  color: rgba(155, 116, 49, 1);
-  //color: black;
-  font-size: 4.5rem;
-  font-weight: 600;
-}
+
 
 
 .uga-extension-image {
