@@ -1,20 +1,37 @@
-<div class="row">
-  <div class="col">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle top navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="http://www.uga.edu" target="_blank">
-        <%=image_tag "uga-hat.png" %> University of Georgia
-      </a>
-      <div class="collapse navbar-collapse" id="topNav">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-item nav-link" href="http://www.fcs.uga.edu/" target="_blank">COLLEGE OF FAMILY AND CONSUMER SCIENCES</a>
-          </li>
-        </ul>
-        <span class="navbar-text"><a href="#"><%=fa_icon("user")%> Log In</a></span>
-      </div>
-    </nav>
+<nav class="navbar navbar-toggleable-md sticky-top navbar-inverse">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarToggler1">
+
+    <ul class="navbar-nav mx-auto">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Recipes</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Food Glossary</a></li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Learn Online
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Lesson 1</a>
+          <a class="dropdown-item" href="#">Lesson 2</a>
+          <a class="dropdown-item" href="#">Lesson 3</a>
+          <a class="dropdown-item" href="#">Lesson 4</a>
+          <a class="dropdown-item" href="#">Lesson 5</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#"><%=fa_icon("user")%> Log In</a>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

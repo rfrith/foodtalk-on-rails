@@ -1,3 +1,121 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  //display: block;
+  background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+  //background-image:asset-url('usda-food-and-nutrition-landing');
+
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+  height:calc(100% - 0px);
+
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
+
+.content {
+  //position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 0;
+
+}
+
+.content-section, .footer {
+  padding-top: 1rem;
+
+  padding-bottom: 4rem;
+
+  padding-left: 10rem;
+
+  padding-right: 10rem;
+}
+
+.content-section {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.footer {
+  background: rgba(76, 175, 80, 0.2);
+}
+
+.navbar {
+  background: rgba(155, 116, 49, 0.8);
+
+}
+
+.navbar-nav {
+  width: 34rem;
+  font-weight: 800;
+  //border: solid 1px black;
+}
+
+.hero {
+  //padding-left: 10rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  background: rgba(76, 175, 80, 0.2);
+
+  //background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+
+}
+
+.slogan-title {
+  color: white;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.slogan-copy {
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  width: 50%;
+}
+
+.footer-slogan-copy {
+  color: white;
+}
+
+.foodtalk-logo {
+  padding-right: 2rem;
+}
+
+
+
+.card-deck {
+  width: 50rem;
+}
+
+
+.featured-recipes-title {
+  font-family: 'Tangerine', serif;
+  color: rgba(155, 116, 49, 1);
+  //color: black;
+  font-size: 4.5rem;
+  font-weight: 600;
+}
+
+
+.uga-extension-image {
+  height: 50%;
+  width: 50%;
+}
+
+.uga-extension-slogan {
+  text-align: left;
+  font-size: .75rem;
+}
