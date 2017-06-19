@@ -1,5 +1,17 @@
 .btn-primary {
-  background-color: saddlebrown;
+  background-color: #835C3B;
   color: white;
   border: none;
+}
+
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
+  background-color: saddlebrown; /*set the color you want here*/
+}
+
+
+.btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:active:focus {
+  color: saddlebrown;
+  border-color: saddlebrown;
+  background-color: white;
 }

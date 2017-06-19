@@ -1,10 +1,16 @@
 <div class="content-section">
 
-  <div class="d-flex flex-row justify-content-center mx-auto">
-    <span class="content-section-title">Featured Recipes</span>
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-block">
+    <div class="media content-section-header">
+      <%= image_tag 'logo.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
+      <div class="media-body">
+        <span class="content-section-title">Featured Recipes</span>
+        <p class="lead">Check out this month's Featured Recipes!</p>
+      </div>
+    </div>
   </div>
 
-  <div class="d-flex flex-row mx-auto justify-content-center">
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-block">
 
     <div class="card-deck">
       <div class="recipe-card card text-center">
@@ -13,37 +19,50 @@
           <h4 class="card-title">Summer Corn Salad</h4>
           <p class="card-text">Farmers Market Recipe: Summer Corn Salad</p>
           <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
-          <a href="#" class="btn btn-primary">Details</a>
+        </div>
+        <div class="align-items-center mb-3">
+          <a href="#" class="btn btn-outline-primary">Details</a>
         </div>
       </div>
       <div class="recipe-card card text-center">
-        <%= image_tag 'summer_corn_salad-thumbnail.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
+        <%= image_tag 'fruit_smoothie-thumbnail.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
         <div class="card-block">
-          <h4 class="card-title">Summer Corn Salad</h4>
-          <p class="card-text">Farmers Market Recipe: Summer Corn Salad</p>
+          <h4 class="card-title">Fruit Smoothie</h4>
+          <p class="card-text">Farmers Market Recipe: Fruit Smoothie</p>
           <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
-          <a href="#" class="btn btn-primary">Details</a>
+        </div>
+        <div class="align-items-center mb-3">
+          <a href="#" class="btn btn-outline-primary">Details</a>
         </div>
       </div>
       <div class="recipe-card card text-center">
-        <%= image_tag 'summer_corn_salad-thumbnail.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
+        <%= image_tag 'eggplant_slider-thumbnail.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
         <div class="card-block">
-          <h4 class="card-title">Summer Corn Salad</h4>
-          <p class="card-text">Farmers Market Recipe: Summer Corn Salad</p>
+          <h4 class="card-title">Italian Eggplant Slider</h4>
+          <p class="card-text">Farmers Market Recipe: Italian Eggplant Slider</p>
           <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
-          <a href="#" class="btn btn-primary">Details</a>
+        </div>
+        <div class="align-items-center mb-3">
+          <a href="#" class="btn btn-outline-primary">Details</a>
         </div>
       </div>
     </div>
   </div>
+</div>
 
+<div class="content-section">
 
-  <div class="d-flex flex-row justify-content-center mx-auto">
-    <span class="content-section-title">Learn Online</span>
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-block">
+    <div class="media content-section-header">
+      <%= image_tag 'food-etalk-logo.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
+      <div class="media-body">
+        <span class="content-section-title">Learn Online</span>
+        <p class="lead">Make Healthy food & activity choices!</p>
+      </div>
+    </div>
   </div>
 
-
-  <div class="d-flex flex-row mx-auto justify-content-center">
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-block">
     <div class="card-group">
       <div class="card text-center">
         <%= image_tag 'lesson-1-thumbnail.jpg', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
@@ -79,24 +98,93 @@
     </div>
   </div>
 
-  <p class="d-flex flex-row justify-content-center mx-auto mt-5">
-    Blah blah blah.  Blah Blah.  Blah blah blah blah. Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.
-    Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.
-    Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.
-    Blah blah blah.  Blah Blah.  Blah blah blah blah.
+</div>
 
-    Blah blah blah.  Blah Blah.  Blah blah blah blah. Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.
-    Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.
-    Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.Blah blah blah.  Blah Blah.  Blah blah blah blah.
-    Blah blah blah.  Blah Blah.  Blah blah blah blah.
-  </p>
+<div class="content-section2">
+  <div class="d-flex flex-row justify-content-center content-section-block">
 
+    <div class="dflex flex-column mx-auto">
+      <div class="media content-section-header">
+
+        <div class="media-body">
+          <span class="content-section-title">From Our Current Newsletter</span>
+          <p class="lead">Sign up Today!</p>
+          <p>
+            <a href="https://foodtalk.org/content/11-tips-planning-smart-grocery-trip">11 Tips for Planning a Smart Grocery Trip</a>
+          </p>
+          <p>
+            <a href="https://foodtalk.org/content/5-ways-get-your-kids-eat-healthful-foods">5 Ways to Get Your Kids to Eat Healthful Foods</a>
+          </p>
+          <p>
+            <a href="https://foodtalk.org/content/6-smart-snacks-go">6 Smart Snacks on the Go</a>
+          </p>
+          <p>
+            <a href="https://foodtalk.org/content/put-your-best-fork-forward-during-national-nutrition-month®">Put your best fork forward during National Nutrition Month®!</a>
+          </p>
+          <p>
+            <a href="https://foodtalk.org/content/salty-truth-about-sodium">The Salty Truth about Sodium</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="dflex flex-column mx-auto">
+      <div class="media">
+
+        <div class="media-body facebook-feed">
+          <span class="content-section-title">From Facebook</span>
+          <p class="lead">Follow us on Facebook!</p>
+          <p>
+            Have you ever wanted tips on how to shop for more healthful
+            foods while sticking to a budget? Look no further! Here are
+            11 ways to have a smarter shopping trip.
+            <em>2 weeks 3 days ago.</em>
+          </p>
+          <hr>
+          <p>
+            Eggplant - now in season! Just in time for June's recipe of
+            the month, "Italian Eggplant Sliders." Cooking with eggplant
+            is a great way to follow the MyPlate tip to vary your veggie
+            choices to keep meals interesting. These sliders taste just
+            like mini pizzas but are packed with nutrients and help you get
+            more servings of healthy vegetables in your diet. If you try them,
+            let us know what you think in the comments.
+            <a href="https://www.foodtalk.org/content/italian-eggplant-slider">https://www.foodtalk.org/content/italian-eggplant-slider</a>
+            <em>2 weeks 4 days ago.</em>
+          </p>
+          <hr>
+          <p>
+            Tip #4 - Experts say that it can take offering your child a vegetable
+            8-15 times before they finally eat it.That’s a lot! The good news is,
+            experience with a new food can help your kids like it and eat more of it.
+            <em>1 month 1 day ago.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 
 
+<div class="content-section">
 
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-block">
+    <div class="media content-section-header">
+      <div class="media-body">
+        <span class="content-section-title">Additional Resources</span>
+        <p class="lead">Find out even more about Health and Well-being!</p>
+      </div>
+    </div>
+  </div>
 
-
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-block">
+    <a href="https://www.supertracker.usda.gov"><%= image_tag 'supertracker-logo.png'%></a>
+    <a href="http://www.choosemyplate.gov"><%= image_tag 'choosemyplate-logo.png'%></a>
+    <a href="http://www.fns.usda.gov"><%= image_tag 'usda-logo.png'%></a>
+    <a href="http://www.walkgeorgia.org/"><%= image_tag 'walk-georgia-logo.png'%></a>
+  </div>
 
 </div>

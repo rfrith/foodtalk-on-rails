@@ -1,17 +1,15 @@
-<nav class="navbar navbar-toggleable-md sticky-top navbar-inverse">
+<nav class="navbar navbar-toggleable-md sticky-top navbar-inverse" role="navigation">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <a class="navbar-brand" href="#"><%=image_tag 'foodtalk-icon-white.png', class: '', alt: "FoodTalk.org Logo" %><span class="sr-only">(current)</span></a>
+
   <div class="collapse navbar-collapse" id="navbarToggler1">
 
-    <ul class="navbar-nav mx-auto">
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="#">Newsletter</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Recipes</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Food Glossary</a></li>
@@ -29,9 +27,36 @@
         </div>
       </li>
 
+
+  <% if true %>
       <li class="nav-item">
-        <a class="nav-link" href="#"><%=fa_icon("user")%> Log In</a>
+        <a class="nav-link" href="#">Sign Up</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+
+  <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><%=fa_icon("user")%> My Account</a>
+      </li>
+  <% end %>
     </ul>
+
+    <form class="form-inline my-2 my-lg-0 mx-auto">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search FoodTalk">
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item"><a class="nav-link" href="http://www.facebook.com/FoodeTalk"><%= fa_icon('facebook-square') %></a></li>
+      <li class="nav-item"><a class="nav-link" href="http://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk"><%= fa_icon('twitter-square') %></a></li>
+      <li class="nav-item"><a class="nav-link" href="https://plus.google.com/116761006042596808728"><%= fa_icon('google-plus-square') %></a></li>
+      <li class="nav-item"><a class="nav-link" href="http://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1"><%= fa_icon('youtube-square') %></a></li>
+      <li class="nav-item"><a class="nav-link" href="http://www.pinterest.com/foodetalk"><%= fa_icon('pinterest-square') %></a></li>
+      <li class="nav-item"><a class="nav-link" href="http://instagram.com/foodetalk"><%= fa_icon('instagram') %></a></li>
+    </ul>
+
   </div>
 </nav>
