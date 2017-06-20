@@ -1,13 +1,15 @@
-<div class="d-flex flex-row justify-content-center hero">
-  <div class="hero-content rounded">
-    <div class="media">
-      <%=image_tag 'illustration-peach-and-peanut-smile.png', class: 'd-flex align-self-center mr-3', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
-      <div class="media-body">
-        <p class="slogan-title">Helping Georgians Eat Healthy & Get Moving!</p>
-        <p class="slogan-copy">
-          FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
-        </p>
-      </div>
+<div class="d-flex align-items-center hero">
+  <div class="media">
+    <%=image_tag 'illustration-peach-and-peanut-smile.png', class: 'd-flex align-self-center mr-3', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+    <div class="media-body hero-content">
+      <p class="slogan-title">Helping Georgians Eat Healthy & Get Moving!</p>
+      <p class="slogan-copy">
+        FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
+      </p>
+      <p class="scroll-down-for-more">
+        <%= fa_icon "arrow-down" %> Scroll down for more <%= fa_icon "arrow-down" %>
+      </p>
     </div>
   </div>
 </div>
+<%= render :partial => 'layouts/top-nav' %>

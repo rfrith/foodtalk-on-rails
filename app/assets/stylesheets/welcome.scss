@@ -9,7 +9,6 @@
   right: 0;
   z-index: -1;
 
-  //display: block;
   background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
   //background-image:asset-url('usda-food-and-nutrition-landing');
 
@@ -26,11 +25,11 @@
 }
 
 .content {
-  //position: fixed;
   left: 0;
   right: 0;
   z-index: 0;
 }
+
 .content-section {
   padding-top: .5rem;
   padding-bottom: 6rem;
@@ -44,13 +43,11 @@
 }
 
 .content-section-block {
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
-
 
 .content-section-header {
 }
-
 
 .content-section-title {
   font-family: 'Tangerine', serif;
@@ -84,38 +81,38 @@
 }
 
 .hero {
-  //padding-left: 10rem;
+  padding-left: 30rem;
   padding-top: 2rem;
   padding-bottom: 2em;
-  background: rgba(0,0,0, 0.3);
 
   //background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+
+  background-image: url(http://makingthingseasy.com/wp-content/uploads/2015/08/Chopping-Board.jpg);
+
+  background-size:cover;
+  width: 100%;
+  //height: 100%;
+  height:100vh;
 }
 
 .hero-content {
-  width: 74rem;
-//  background: rgba(255, 255, 255, 0.3);
-//  padding: 4rem;
+  background: rgba(255,1,255, .6);
+  padding: 4rem;
+  border-radius: 50px 0px 0px 10px;
 }
 
 .slogan-title {
-  color: white;
+  color: lightgreen;
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 900;
   width: auto;
 }
 
 .slogan-copy {
-  color: black;
-  font-size: 1rem;
+  color: ghostwhite;
+  font-size: 2rem;
   font-weight: 900;
-  font-style: italic;
   width: auto;
-}
-
-
-.foodtalk-logo {
-  margin-right: 3rem;
 }
 
 .footer-slogan-title {
@@ -128,8 +125,20 @@
 .footer-slogan-copy {
   color: white;
   font-weight: 400;
-
 }
+
+
+
+.scroll-down-for-more {
+  margin-top: 4em;
+  font-family: 'Indie Flower', cursive;
+  color: #2E2F30;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+
+
 
 .card-deck, .card-group {
   width: 50rem;

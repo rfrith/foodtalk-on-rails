@@ -1,18 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
 <html lang="en">
-  <head>
-    <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<head>
+  <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
-
-  </head>
-  <body class="content">
+</head>
+<body class="content">
     <%= render :partial => 'layouts/header' %>
-    <%= render :partial => 'layouts/top-nav' %>
     <%= render :partial => 'layouts/content' %>
     <%= render :partial => 'layouts/footer' %>
-  </body>
+  </div>
+</body>
 </html>
