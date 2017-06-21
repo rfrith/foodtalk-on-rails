@@ -1,15 +1,15 @@
 <div class="content-section">
-  <div class="d-flex flex-row justify-content-center mx-auto content-section-block">
-    <div class="media content-section-header">
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
+    <div class="media content-section-header ">
       <%= image_tag 'logo.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
       <div class="media-body">
         <span class="content-section-title">Featured Recipes</span>
-        <p class="lead">Check out this month's Featured Recipes!</p>
+        <p class="content-section-copy">Check out this month's Featured Recipes!</p>
       </div>
     </div>
   </div>
 
-  <div class="d-flex flex-row mx-auto justify-content-center content-section-block">
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-item">
     <div class="card-deck">
       <div class="recipe-card card text-center">
         <%= image_tag 'summer_corn_salad-thumbnail.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
@@ -46,22 +46,26 @@
       </div>
     </div>
   </div>
+
+  <%= render partial: "welcome/scroll-down-for-more" %>
+
 </div>
 
 
 
 <div class="content-section">
-  <div class="d-flex flex-row justify-content-center mx-auto content-section-block">
+
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
     <div class="media content-section-header">
       <%= image_tag 'food-etalk-logo.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
       <div class="media-body">
         <span class="content-section-title">Learn Online</span>
-        <p class="lead">Make Healthy food & activity choices!</p>
+        <p class="content-section-copy">Make Healthy food & activity choices!</p>
       </div>
     </div>
   </div>
 
-  <div class="d-flex flex-row mx-auto justify-content-center content-section-block">
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-item">
     <div class="card-group">
       <div class="card text-center">
         <%= image_tag 'lesson-1-thumbnail.jpg', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
@@ -96,12 +100,14 @@
       </div>
     </div>
   </div>
+  <%= render partial: "welcome/scroll-down-for-more" %>
+
 </div>
 
 
 
 <div class="content-section2">
-  <div class="d-flex flex-row justify-content-center content-section-block">
+  <div class="d-flex flex-row justify-content-center content-section-item">
 
     <div class="dflex flex-column mx-auto">
       <div class="media content-section-header">
@@ -162,25 +168,33 @@
       </div>
     </div>
   </div>
+
+  <p class="scroll-down-for-more d-flex flex-row mx-auto justify-content-center content-section-item">
+    <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
+  </p>
+
 </div>
 
 
 
 <div class="content-section">
-  <div class="d-flex flex-row justify-content-center mx-auto content-section-block">
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
     <div class="media content-section-header">
       <div class="media-body">
         <span class="content-section-title">Additional Resources</span>
-        <p class="lead">Find out even more about Health and Well-being!</p>
+        <p class="content-section-title">Find out even more about Health and Well-being!</p>
       </div>
     </div>
   </div>
-  <div class="d-flex flex-row mx-auto justify-content-center content-section-block">
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-item">
     <a href="https://www.supertracker.usda.gov"><%= image_tag 'supertracker-logo.png'%></a>
     <a href="http://www.choosemyplate.gov"><%= image_tag 'choosemyplate-logo.png'%></a>
     <a href="http://www.fns.usda.gov"><%= image_tag 'usda-logo.png'%></a>
     <a href="http://www.walkgeorgia.org/"><%= image_tag 'walk-georgia-logo.png'%></a>
   </div>
+
+  <%= render partial: "welcome/scroll-down-for-more" %>
+
 </div>
 
 

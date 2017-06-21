@@ -1,11 +1,11 @@
-<nav class="sticky-top navbar navbar-toggleable-md navbar-inverse" role="navigation">
+<nav class="sticky-top navbar navbar-toggleable-md navbar-inverse nav-top" role="navigation">
 
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <a class="navbar-brand" href="#">
-    <%= link_to image_tag('foodtalk-icon-white.png', class: '', alt: "FoodTalk.org Logo"), welcome_index_url %>
+    <%= link_to image_tag('food-talk-logo-erin-new-small.png', class: '', alt: "FoodTalk.org Logo"), welcome_index_url %>
     <span class="sr-only">(current)</span></a>
 
   <div class="collapse navbar-collapse" id="navbarToggler1">
@@ -17,7 +17,7 @@
       <li class="nav-item"><a class="nav-link" href="#">Food Glossary</a></li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Learn Online
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -30,26 +30,75 @@
       </li>
 
 
-  <% if true %>
+  <%
+    user_signed_in = false;
+
+    if user_signed_in %>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#"><%=fa_icon("user")%> My Account</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Sign Up</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
-      </li>
 
   <% else %>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><%=fa_icon("user")%> My Account</a>
-      </li>
-  <% end %>
-    </ul>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search FoodTalk">
-      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+          <li>
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Remember me
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+            <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+          </li>
+        </ul>
+      </li>
+
+  <% end %>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= fa_icon 'search' %>
+        </a>
+        <div class="dropdown-menu search-box" aria-labelledby="navbarDropdownMenuLink">
+
+          <form class="form-inline">
+
+            <label class="sr-only" for="searchInput">Name</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="searchInput" placeholder="Search...">
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+          </form>
+        </div>
+      </li>
+
+    </ul>
 
   </div>
 </nav>

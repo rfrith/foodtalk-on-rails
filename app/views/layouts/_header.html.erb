@@ -1,14 +1,26 @@
 <div class="d-flex align-items-center hero">
   <div class="media">
-    <%=image_tag 'illustration-peach-and-peanut-smile.png', class: 'd-flex align-self-center mr-3', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+    <%= image_tag 'food-talk-logo-erin-new.png', class: 'd-flex align-self-center logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
     <div class="media-body hero-content">
       <p class="slogan-title">Helping Georgians Eat Healthy & Get Moving!</p>
+
+
       <p class="slogan-copy">
         FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
       </p>
+
+      <div>
+        <span class="newsletter-signup-copy">Sign Up For Our Monthly Newsletter!</span>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Email Address">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Go!</button>
+        </form>
+      </div>
+
       <p class="scroll-down-for-more">
-        <%= fa_icon "arrow-down" %> Scroll down for more <%= fa_icon "arrow-down" %>
+        <%= fa_icon "arrow-down" %> Scroll down for more content <%= fa_icon "arrow-down" %>
       </p>
+
     </div>
   </div>
 </div>

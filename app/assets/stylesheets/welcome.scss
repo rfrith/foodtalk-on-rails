@@ -2,69 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.content:before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
 
-  background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
-  //background-image:asset-url('usda-food-and-nutrition-landing');
-
-  background-size:cover;
-  width: 100%;
-  height: 100%;
-  height:calc(100% - 0px);
-
-  -webkit-filter: blur(3px);
-  -moz-filter: blur(3px);
-  -o-filter: blur(3px);
-  -ms-filter: blur(3px);
-  filter: blur(3px);
-}
-
-.content {
-  left: 0;
-  right: 0;
-  z-index: 0;
-}
-
-.content-section {
-  padding-top: .5rem;
-  padding-bottom: 6rem;
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.content-section2 {
-  background: rgba(255, 255, 255, 0.9);
-  padding-bottom: 4rem;
-  padding-top: 2rem;
-}
-
-.content-section-block {
-  padding-top: 2rem;
-}
-
-.content-section-header {
-}
-
-.content-section-title {
+.fonts {
+  font-family: 'Indie Flower', cursive;
+  font-family: 'Abril Fatface', cursive;
+  font-family: 'Lobster Two', cursive;
+  font-family: 'Bahiana', cursive;
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Cookie', cursive;
+  font-family: 'Kaushan Script', cursive;
+  font-family: 'Mogra', cursive;
+  font-family: 'Ultra', serif;
   font-family: 'Tangerine', serif;
-  color: rgba(155, 116, 49, 1);
-  //color: black;
-  font-size: 4.5rem;
-  font-weight: bolder;
 }
 
-.footer {
-  padding-bottom: 5rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
-  padding-top: 1rem;
-  background: rgba(76, 175, 80, 0.5);
-}
 
+
+//header styles  /////////////////////////////////////////////////
 
 .navbar {
   background: rgba(155, 116, 49, 0.9);
@@ -80,14 +34,104 @@
   margin: 0;
 }
 
-.hero {
-  padding-left: 30rem;
+
+.nav-top {
+  background: rgba(155, 116, 49, 1);
+  z-index: +100;
+}
+
+
+//body styles  /////////////////////////////////////////////////
+
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+  //background-image:asset-url('usda-food-and-nutrition-landing');
+
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+  height:calc(100% - 0px);
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.content {
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.content-section, .content-section2 {
+  height:100vh;
+}
+
+.content-section {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.content-section2 {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.content-section-item {
   padding-top: 2rem;
-  padding-bottom: 2em;
+}
 
-  //background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+.content-section-header {
+}
 
-  background-image: url(http://makingthingseasy.com/wp-content/uploads/2015/08/Chopping-Board.jpg);
+.content-section-block {
+  max-width: 90%;
+}
+
+.content-section-title {
+  font-family: 'Cookie', cursive;
+  //color: rgba(155, 116, 49, 1);
+  color: burlywood;
+  font-size: 5rem;
+  font-weight: bolder;
+}
+@supports ((-webkit-text-stroke-color: #000000)) or ((-moz-text-stroke-color: #000000)) {
+  .content-section-title {
+    -moz-text-stroke-color: #000000;
+    -webkit-text-stroke-color: #000000;
+    -moz-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1px;
+  }
+}
+
+.content-section-copy {
+  font-family: 'Abril Fatface', cursive;
+  color: floralwhite;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+
+.glow {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+
+
+
+.hero {
+  padding-left: 0rem;
+  padding-top: 2rem;
+  //padding-bottom: 2em;
+
+  //background-image: url(http://makingthingseasy.com/wp-content/uploads/2015/08/Chopping-Board.jpg);
+  background-image:asset-url('chopping-board-with-veggies.jpg');
 
   background-size:cover;
   width: 100%;
@@ -101,6 +145,15 @@
   border-radius: 50px 0px 0px 10px;
 }
 
+
+
+.logo {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+
+
 .slogan-title {
   color: lightgreen;
   font-size: 3rem;
@@ -110,32 +163,45 @@
 
 .slogan-copy {
   color: ghostwhite;
+  font-family: 'Abril Fatface', cursive;
   font-size: 2rem;
   font-weight: 900;
   width: auto;
 }
 
-.footer-slogan-title {
-  color: beige;
+.newsletter-signup-copy {
+  color: peachpuff;
+  font-family: 'Cookie', cursive;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 900;
   width: auto;
 }
 
-.footer-slogan-copy {
-  color: white;
-  font-weight: 400;
+
+
+.search-box {
+  padding: 1rem;
+  height: auto;
+  width: 20.2rem;
 }
 
 
 
 .scroll-down-for-more {
-  margin-top: 4em;
+  margin-top: 1rem;
   font-family: 'Indie Flower', cursive;
-  color: #2E2F30;
+  color: black;
   font-size: 2rem;
-  font-weight: 500;
 }
+
+
+.scroll-down-for-more-light {
+  margin-top: 1rem;
+  font-family: 'Indie Flower', cursive;
+  color: floralwhite;
+  font-size: 2rem;
+}
+
 
 
 
@@ -154,15 +220,21 @@
 }
 
 
+
+
 .facebook-feed {
   max-width: 50rem;
 }
+
+
 
 
 .uga-snap-ed-address {
   width: 20rem;
   text-align: center;
 }
+
+
 
 
 //TODO: delete me?
@@ -175,4 +247,27 @@
 .uga-extension-slogan {
   text-align: left;
   font-size: .75rem;
+}
+
+
+//footer styles /////////////////////////////////////////////////
+
+.footer {
+  padding-bottom: 5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-top: 1rem;
+  background: rgba(76, 175, 80, 0.5);
+}
+
+.footer-slogan-title {
+  color: beige;
+  font-size: 2rem;
+  font-weight: 500;
+  width: auto;
+}
+
+.footer-slogan-copy {
+  color: white;
+  font-weight: 400;
 }
