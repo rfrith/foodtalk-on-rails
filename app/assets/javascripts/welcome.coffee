@@ -15,7 +15,6 @@
 # set distance user needs to scroll before we fadeIn navbar
         if $(this).scrollTop() > 1
           $('#footer-nav').show()
-          nav-top
         else
           $('#footer-nav').hide()
         return

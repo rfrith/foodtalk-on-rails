@@ -4,45 +4,35 @@
 
 
 .fonts {
-  font-family: 'Indie Flower', cursive;
-  font-family: 'Abril Fatface', cursive;
-  font-family: 'Lobster Two', cursive;
-  font-family: 'Bahiana', cursive;
-  font-family: 'Dancing Script', cursive;
-  font-family: 'Cookie', cursive;
-  font-family: 'Kaushan Script', cursive;
-  font-family: 'Mogra', cursive;
-  font-family: 'Ultra', serif;
-  font-family: 'Tangerine', serif;
+  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Caveat Brush', cursive;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto Slab', serif;
 }
 
-
-
+/////////////////////////////////////////////////
 //header styles  /////////////////////////////////////////////////
+/////////////////////////////////////////////////
 
 .navbar {
-  background: rgba(155, 116, 49, 0.9);
+  background-color: rgba(226,79,44, 1);
 }
+.nav-link {
+  color: floralwhite;
 
-.navbar-nav {
-  font-weight: 900;
-  //border: solid 1px black;
+  @include hover-focus {
+    color: floralwhite;
+  }
 }
-
-.navbar-brand, .navbar-brand img {
-  padding: 0;
-  margin: 0;
-}
-
-
 .nav-top {
-  background: rgba(155, 116, 49, 1);
-  z-index: +100;
+
 }
 
 
+/////////////////////////////////////////////////
 //body styles  /////////////////////////////////////////////////
-
+/////////////////////////////////////////////////
 
 .content:before {
   content: "";
@@ -51,8 +41,8 @@
   right: 0;
   z-index: -1;
 
-  background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
-  //background-image:asset-url('usda-food-and-nutrition-landing');
+  //background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+  background-image:asset-url('veggie-spread-bg');
 
   background-size:cover;
   width: 100%;
@@ -64,12 +54,6 @@
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(5px);
-}
-
-.content {
-  left: 0;
-  right: 0;
-  z-index: 0;
 }
 
 .content-section, .content-section2 {
@@ -96,12 +80,13 @@
 }
 
 .content-section-title {
-  font-family: 'Cookie', cursive;
+  font-family: 'Roboto Slab', serif;
   //color: rgba(155, 116, 49, 1);
   color: burlywood;
-  font-size: 5rem;
-  font-weight: bolder;
+  font-size: 3.5rem;
+  font-weight: 400;
 }
+/**
 @supports ((-webkit-text-stroke-color: #000000)) or ((-moz-text-stroke-color: #000000)) {
   .content-section-title {
     -moz-text-stroke-color: #000000;
@@ -110,17 +95,21 @@
     -webkit-text-stroke-width: 1px;
   }
 }
+*/
 
 .content-section-copy {
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   color: floralwhite;
-  font-size: 2rem;
-  font-weight: bolder;
+  font-size: 1.85rem;
+
 }
 
 
-.glow {
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+
+.logo {
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 
@@ -134,46 +123,40 @@
   background-image:asset-url('chopping-board-with-veggies.jpg');
 
   background-size:cover;
-  width: 100%;
+  width: auto;
   //height: 100%;
   height:100vh;
 }
 
 .hero-content {
-  background: rgba(255,1,255, .6);
+  background: rgba(226,79,44, .6);
   padding: 4rem;
   border-radius: 50px 0px 0px 10px;
 }
 
-
-
-.logo {
-  margin-left: 8rem;
-  margin-right: 8rem;
-}
-
-
-
-.slogan-title {
-  color: lightgreen;
+.hero-title {
+  color: rgba(254,232,74,1);
+  font-family: 'Lato', sans-serif;
   font-size: 3rem;
   font-weight: 900;
   width: auto;
 }
 
-.slogan-copy {
+.hero-copy {
   color: ghostwhite;
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Lato', sans-serif;
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 300;
   width: auto;
 }
 
+
+
 .newsletter-signup-copy {
   color: peachpuff;
-  font-family: 'Cookie', cursive;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 600;
   width: auto;
 }
 
@@ -187,19 +170,19 @@
 
 
 
-.scroll-down-for-more {
-  margin-top: 1rem;
-  font-family: 'Indie Flower', cursive;
-  color: black;
+.scroll-down-for-more, .scroll-down-for-more-light {
+  font-family: 'Caveat Brush', cursive;
+  font-weight: 400;
   font-size: 2rem;
 }
 
+.scroll-down-for-more {
+  color: black;
+  padding-top: 3rem;
+}
 
 .scroll-down-for-more-light {
-  margin-top: 1rem;
-  font-family: 'Indie Flower', cursive;
   color: floralwhite;
-  font-size: 2rem;
 }
 
 
@@ -237,20 +220,15 @@
 
 
 
-//TODO: delete me?
-.uga-extension-image {
-
-  height: 50%;
-  width: 50%;
-}
-
-.uga-extension-slogan {
+.uga-logo-copy {
   text-align: left;
-  font-size: .75rem;
+  font-size: .7rem;
 }
 
 
+/////////////////////////////////////////////////
 //footer styles /////////////////////////////////////////////////
+/////////////////////////////////////////////////
 
 .footer {
   padding-bottom: 5rem;
@@ -271,3 +249,8 @@
   color: white;
   font-weight: 400;
 }
+
+.sm-icon-group {
+  font-size: 2rem;
+}
+

@@ -1,19 +1,18 @@
-<nav id="footer-nav" class="navbar navbar-toggleable-md fixed-bottom navbar-light" role="navigation">
+<nav id="footer-nav" class="navbar navbar-toggleable-md fixed-bottom" role="navigation">
 
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler2" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
-  <div class="media mx-auto">
-    <%=image_tag 'uga-arches-smallest.png', class: 'align-self-center mr-3', alt: 'UGA Extension Office' %>
+  <div class="media align-items-center">
+    <%=image_tag 'uga-logo-med.png', class: 'd-flex mr-3', alt: 'UGA Extension Office' %>
     <div class="media-body">
-      <p class="slogan-copy uga-extension-slogan small">This website and learning environment is produced by The University of Georgia</p>
+      <p class="uga-logo-copy">This website and learning environment is produced by The University of Georgia</p>
     </div>
   </div>
 
 
-  <div class="collapse navbar-collapse" id="navbarToggler2">
+  <div class="collapse navbar-collapse align-items-center" id="navbarToggler2">
 
     <ul class="navbar-nav mx-auto">
       <li class="nav-item"><a class="nav-link" href="#">About</a></li>
@@ -25,7 +24,7 @@
       <li class="nav-item"><a class="nav-link" href="https://foodtalk.org/content/uga-snap-ed-nondiscrimination-funding-and-required-statements" target="_blank">UGA SNAP-Ed Nondiscrimination and Funding Statement</a></li>
     </ul>
 
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav mx-auto sm-icon-group">
       <li class="nav-item">
         <a class="nav-link" href="http://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
       </li>
