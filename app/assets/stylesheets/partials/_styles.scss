@@ -1,15 +1,20 @@
+a, a:hover, a:active {
+  color: rgba(226,79,44, 1);
+  text-decoration:  none;
+}
+
 .btn-primary {
-  background-color: #835C3B;
+  background-color: rgba(226,79,44, 1);
   color: white;
   border: none;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
-  background-color: saddlebrown; /*set the color you want here*/
+  background-color: rgba(226,79,44, 1);
 }
 
 .btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:active:focus {
-  color: saddlebrown;
-  border-color: saddlebrown;
+  color: rgba(226,79,44, 1);
+  border-color: rgba(226,79,44, 1);
   background-color: white;
 }

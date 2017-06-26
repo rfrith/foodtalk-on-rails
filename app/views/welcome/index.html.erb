@@ -1,16 +1,120 @@
-<div class="content-section">
+<div id="lessons" class="content-section2">
+
   <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
-    <div class="media content-section-header ">
+    <div class="media content-section-header">
+      <%= image_tag 'food-etalk-logo-med.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
+      <div class="media-body">
+        <span class="content-section-title">Learn Online</span>
+        <p class="content-section-copy-dark">Start Making Healthier food & activity choices!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
+    <div class="lessons-copy text-center">
+      Our FoodTalk eTalk Lessons will teach you foundational food & nutrition concepts which will help improve the health of You and your family.
+    </div>
+  </div>
+
+  <div class="d-flex flex-row mx-auto justify-content-center content-section-item">
+    <div class="card-group lessons-card-group">
+
+      <div class="card text-center">
+        <div class="card-header">
+          Your Food, Your Choice
+        </div>
+        <%= image_tag 'shopping-woman.jpg', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
+        <div class="card-block">
+          <p class="card-text">Did you know that you probably make over 200 decisions about food every day? You might choose between oatmeal or a sausage biscuit for breakfast, eating out instead of cooking at home, or even little choices like using 1 vs 2 packets of sugar in your coffee....</p>
+        </div>
+        <div class="card-footer">
+          <a data-fancybox data-type="iframe" data-src="/foodtalk_lessons/lesson1/story.html" href="javascript:;" class="btn btn-primary">
+            Learn More
+          </a>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-header">
+          Keep Your Pressure In Check
+        </div>
+        <%= image_tag 'ekg-heart.png', class: 'card-img-top', alt: 'Lesson 2 Cap' %>
+        <div class="card-block">
+          <p class="card-text">The last thing anyone wants to do after a long day at work is come home to struggle with what to have for dinner. We’ve all been there, and often this time of day – when you’re tired and hungry – can be a really hard...</p>
+        </div>
+        <div class="card-footer">
+          <a data-fancybox data-type="iframe" data-src="/foodtalk_lessons/lesson2/story.html" href="javascript:;" class="btn btn-primary">
+            Learn More
+          </a>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-header">
+          Color Me Healthy
+        </div>
+        <%= image_tag 'fruits-and-veggies-art.png', class: 'card-img-top', alt: 'Lesson 3 Cap' %>
+        <div class="card-block">
+          <p class="card-text">The USDA recommends filling half your plate with fruits and vegetables at every meal... but do you know why? And how can you afford to eat healthy fruits and veggies?...</p>
+        </div>
+        <div class="card-footer">
+          <a data-fancybox data-type="iframe" data-src="/foodtalk_lessons/lesson3/story.html" href="javascript:;" class="btn btn-primary">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+      <div class="card text-center">
+        <div class="card-header">
+          Eat Well on the Go
+        </div>
+        <%= image_tag 'apple-in-hand.jpg', class: 'card-img-top', alt: 'Lesson 4 Cap' %>
+        <div class="card-block">
+          <p class="card-text">Your busy schedule won't always wait for you to make a healthy home-cooked meal.  What do you do when you have to eat on the run, but your choices are limited and everyone knows fast food isn't the healthiest option...</p>
+        </div>
+        <div class="card-footer">
+          <a data-fancybox data-type="iframe" data-src="/foodtalk_lessons/lesson4/story.html" href="javascript:;" class="btn btn-primary">
+            Learn More
+          </a>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-header">
+          Keep Your Health Out of Jeopardy
+        </div>
+        <%= image_tag 'diabetes.jpg', class: 'card-img-top', alt: 'Lesson 5 Cap' %>
+        <div class="card-block">
+          <p class="card-text">More than two-thirds (68.8 percent) of adults are considered to be overweight or obese. More than one-third (35.7 percent) of adults are considered to be obese. More than 1 in 20 (6.3 percent) have extreme obesity. Almost 3 in 4 men (74 percent) are considered to be overweight or obese...</p>
+        </div>
+        <div class="card-footer">
+          <a data-fancybox data-type="iframe" data-src="/foodtalk_lessons/lesson5/story.html" href="javascript:;" class="btn btn-primary">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <% if(false) %>
+  <p class="scroll-down-for-more d-flex flex-row mx-auto justify-content-center content-section-item align-items-center">
+    <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
+  </p>
+  <% end %>
+</div>
+
+
+<div id="recipes" class="content-section">
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
+    <div class="media content-section-header">
       <%= image_tag 'logo-med.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
       <div class="media-body">
         <span class="content-section-title">Featured Recipes</span>
-        <p class="content-section-copy">Healthy, Delicious, Affordable!</p>
+        <p class="content-section-copy-light">Healthy, Delicious, Affordable!</p>
       </div>
     </div>
   </div>
 
   <div class="d-flex flex-row mx-auto justify-content-center content-section-item">
-    <div class="card-deck">
+    <div class="card-deck recipes-deck">
       <div class="recipe-card card text-center">
         <%= image_tag 'corn-salad.png', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
         <div class="card-block">
@@ -23,7 +127,7 @@
         </div>
       </div>
       <div class="recipe-card card text-center">
-        <%= image_tag 'fruit-smoothies.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
+        <%= image_tag 'fruit-smoothies.jpg', class: 'card-img-top', alt: 'Fruit Smoothie' %>
         <div class="card-block">
           <h4 class="card-title">Fruit Smoothie</h4>
           <p class="card-text">Farmers Market Recipe: Fruit Smoothie</p>
@@ -34,7 +138,7 @@
         </div>
       </div>
       <div class="recipe-card card text-center">
-        <%= image_tag 'eggplant-sliders.jpg', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
+        <%= image_tag 'eggplant-sliders.jpg', class: 'card-img-top', alt: 'Italian Eggplant Sliders' %>
         <div class="card-block">
           <h4 class="card-title">Italian Eggplant Slider</h4>
           <p class="card-text">Farmers Market Recipe: Italian Eggplant Slider</p>
@@ -47,106 +151,80 @@
     </div>
   </div>
 
-  <%= render partial: "welcome/scroll-down-for-more" %>
+  <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
+    <div class="content-section-copy-light recipe-copy text-center">
+      Our FoodTalk recipes contain delicious, healthy, and inexpensive meal ideas for your whole family to enjoy!<br><a href="#">Click here</a> to browse our entire catalog.
+    </div>
+  </div>
 
+  <% render partial: "welcome/scroll-down-for-more" %>
 </div>
 
 
 
-<div class="content-section">
+<div id="newsletter" class="content-section2">
 
   <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
     <div class="media content-section-header">
-      <%= image_tag 'food-etalk-logo-med.png', class: 'd-flex align-self-center mr-3', alt: 'FoodTalk.org Logo' %>
+      <p class="content-section-copy-dark text-center"><%= image_tag 'newsletter.png', class: 'd-flex align-self-center mr-5 pt-5', alt: 'FoodTalk.org Logo' %><span class="mr-5">Sign up Today!</span></p>
       <div class="media-body">
-        <span class="content-section-title">Learn Online</span>
-        <p class="content-section-copy">Make Healthy food & activity choices!</p>
+        <span class="content-section-title">From Our Current Newsletter</span>
+        <p class="content-section-copy-dark">Stay Informed!</p>
+        <p>
+          <a href="https://foodtalk.org/content/11-tips-planning-smart-grocery-trip">11 Tips for Planning a Smart Grocery Trip</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/5-ways-get-your-kids-eat-healthful-foods">5 Ways to Get Your Kids to Eat Healthful Foods</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/6-smart-snacks-go">6 Smart Snacks on the Go</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/put-your-best-fork-forward-during-national-nutrition-month®">Put your best fork forward during National Nutrition Month®!</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/salty-truth-about-sodium">The Salty Truth about Sodium</a>
+        </p>
+
+
+        <p>
+          <a href="https://foodtalk.org/content/5-ways-have-sweet-and-smart-valentine’s-day">5 ways to have a sweet AND smart Valentine’s Day</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/9-ways-keep-moving-winter">59 Ways to Keep Moving in Winter</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/new-year-healthier-you">New Year, Healthier You</a>
+        </p>
+        <p>
+          <a href="https://foodtalk.org/content/11-ways-eat-well-when-eating-fast-food">11 Ways to Eat Well When Eating Fast Food</a>
+        </p>
+
+
+
+        <br>
+        <p>
+          <a href="#">More...</a>
+        </p>
       </div>
     </div>
   </div>
 
-  <div class="d-flex flex-row mx-auto justify-content-center content-section-item">
-    <div class="card-group">
-      <div class="card text-center">
-        <%= image_tag 'shopping-woman.jpg', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
 
-        <div class="card-block">
-          <h4 class="card-title">Lesson 1 - Your Food, Your Choice</h4>
-          <p class="card-text">Did you know that you probably make over 200 decisions about food every day? You might choose between oatmeal or a sausage biscuit for breakfast, eating out instead of cooking at home, or even little choices like using 1 vs 2 packets of sugar in your coffee....</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Start Now</a>
-        </div>
-      </div>
-      <div class="card text-center">
-        <%= image_tag 'ekg-heart.png', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
-        <div class="card-block">
-          <h4 class="card-title">Lesson 2 - Keep Your Pressure In Check</h4>
-          <p class="card-text">The last thing anyone wants to do after a long day at work is come home to struggle with what to have for dinner. We’ve all been there, and often this time of day – when you’re tired and hungry – can be a really har...</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Start Now</a>
-        </div>
-      </div>
-      <div class="card text-center">
-        <%= image_tag 'fruits-and-veggies-art.png', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
-        <div class="card-block">
-          <h4 class="card-title">Lesson 3 - Color Me Healthy</h4>
-          <p class="card-text">The USDA recommends filling half your plate with fruits and vegetables at every meal... but do you know why? And how can you afford to eat healthy fruits and veggies?...</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Start Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <%= render partial: "welcome/scroll-down-for-more" %>
-
-</div>
-
-
-
-<div class="content-section2">
-  <div class="d-flex flex-row justify-content-center content-section-item">
-
-    <div class="dflex flex-column mx-auto">
-      <div class="media content-section-header">
-
-        <div class="media-body">
-          <span class="content-section-title">From Our Current Newsletter</span>
-          <p class="lead">Sign up Today!</p>
-          <p>
-            <a href="https://foodtalk.org/content/11-tips-planning-smart-grocery-trip">11 Tips for Planning a Smart Grocery Trip</a>
-          </p>
-          <p>
-            <a href="https://foodtalk.org/content/5-ways-get-your-kids-eat-healthful-foods">5 Ways to Get Your Kids to Eat Healthful Foods</a>
-          </p>
-          <p>
-            <a href="https://foodtalk.org/content/6-smart-snacks-go">6 Smart Snacks on the Go</a>
-          </p>
-          <p>
-            <a href="https://foodtalk.org/content/put-your-best-fork-forward-during-national-nutrition-month®">Put your best fork forward during National Nutrition Month®!</a>
-          </p>
-          <p>
-            <a href="https://foodtalk.org/content/salty-truth-about-sodium">The Salty Truth about Sodium</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="dflex flex-column mx-auto">
-      <div class="media">
-        <div class="media-body facebook-feed">
-          <span class="content-section-title">From Facebook</span>
-          <p class="lead">Follow us on Facebook!</p>
-          <p>
+  <div class="d-flex flex-row d-flex justify-content-center content-section-item fb-feed">
+    <div class="jumbotron jumbotron-fluid fb-feed-jumbotron">
+      <div class="container-fluid">
+        <div class="fb-feed-content">
+          <span class="hero-title"><%=fa_icon 'facebook-square' %> From Our Facebook Page</span>
+          <p class="newsletter-signup-copy">Follow us on Facebook!</p>
+          <p class="hero-copy-sm">
             Have you ever wanted tips on how to shop for more healthful
             foods while sticking to a budget? Look no further! Here are
             11 ways to have a smarter shopping trip.
-            <em>2 weeks 3 days ago.</em>
+            <em class="small">2 weeks 3 days ago.</em>
           </p>
           <hr>
-          <p>
+          <p class="hero-copy-sm">
             Eggplant - now in season! Just in time for June's recipe of
             the month, "Italian Eggplant Sliders." Cooking with eggplant
             is a great way to follow the MyPlate tip to vary your veggie
@@ -155,27 +233,31 @@
             more servings of healthy vegetables in your diet. If you try them,
             let us know what you think in the comments.
             <a href="https://www.foodtalk.org/content/italian-eggplant-slider">https://www.foodtalk.org/content/italian-eggplant-slider</a>
-            <em>2 weeks 4 days ago.</em>
+            <em class="small">2 weeks 4 days ago.</em>
           </p>
           <hr>
-          <p>
+          <p class="hero-copy-sm">
             Tip #4 - Experts say that it can take offering your child a vegetable
             8-15 times before they finally eat it.That’s a lot! The good news is,
             experience with a new food can help your kids like it and eat more of it.
-            <em>1 month 1 day ago.</em>
+            <em class="small">1 month 1 day ago.</em>
           </p>
         </div>
       </div>
+
     </div>
   </div>
-
-  <p class="scroll-down-for-more d-flex flex-row mx-auto justify-content-center content-section-item">
-    <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
-  </p>
 
 </div>
 
 
+
+
+
+<% if(false) %>
+    <p class="scroll-down-for-more d-flex flex-row mx-auto justify-content-center content-section-item align-items-center">
+      <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
+    </p>
 
 <div class="content-section">
   <div class="d-flex flex-row justify-content-center mx-auto content-section-item">
@@ -192,12 +274,8 @@
     <a href="http://www.fns.usda.gov"><%= image_tag 'usda-logo.png'%></a>
     <a href="http://www.walkgeorgia.org/"><%= image_tag 'walk-georgia-logo.png'%></a>
   </div>
-
   <%= render partial: "welcome/scroll-down-for-more" %>
-
 </div>
-
-
 
 <div class="content-section">
   <div class="d-flex flex-row">
@@ -224,5 +302,4 @@
     </div>
   </div>
 </div>
-
-
+<% end %>

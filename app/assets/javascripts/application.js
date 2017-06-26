@@ -18,4 +18,5 @@
 //= require popper
 //= require tether
 //= require bootstrap
+//= require jquery.fancybox
 //= require_tree .

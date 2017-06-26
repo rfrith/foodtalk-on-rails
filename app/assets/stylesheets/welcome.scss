@@ -69,14 +69,10 @@
 }
 
 .content-section-item {
-  padding-top: 2rem;
 }
 
 .content-section-header {
-}
-
-.content-section-block {
-  max-width: 90%;
+  padding-top: 2.8rem;
 }
 
 .content-section-title {
@@ -86,25 +82,58 @@
   font-size: 3.5rem;
   font-weight: 400;
 }
-/**
-@supports ((-webkit-text-stroke-color: #000000)) or ((-moz-text-stroke-color: #000000)) {
-  .content-section-title {
-    -moz-text-stroke-color: #000000;
-    -webkit-text-stroke-color: #000000;
-    -moz-text-stroke-width: 1px;
-    -webkit-text-stroke-width: 1px;
-  }
-}
-*/
 
-.content-section-copy {
+.content-section-copy-dark, .content-section-copy-light {
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  color: floralwhite;
+  font-weight: 500;
   font-size: 1.85rem;
-
 }
 
+.content-section-copy-dark {
+  color: #000000;
+}
+
+.content-section-copy-light {
+  color: floralwhite;
+}
+
+
+
+
+.recipe-copy, .lessons-copy {
+  max-width: 50%;
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.recipe-copy {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.lessons-copy {
+  padding-bottom: 1rem;
+}
+
+
+.fb-feed {
+  background-image:asset-url('fb-background.png');
+  background-size:cover;
+}
+
+.fb-feed-jumbotron {
+  background: rgba(226,79,44, .6);
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
+
+.fb-feed-content {
+  max-width: 70%;
+  margin-left: 15rem;
+  margin-top: 2rem;
+}
 
 
 .logo {
@@ -150,15 +179,17 @@
   width: auto;
 }
 
-
-
-.newsletter-signup-copy {
-  color: peachpuff;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
+.hero-copy-sm {
+  color: ghostwhite;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
   width: auto;
 }
+
+
+
+
 
 
 
@@ -178,7 +209,7 @@
 
 .scroll-down-for-more {
   color: black;
-  padding-top: 3rem;
+
 }
 
 .scroll-down-for-more-light {
@@ -188,26 +219,64 @@
 
 
 
-
-.card-deck, .card-group {
-  width: 50rem;
+.card-deck {
+  width: 70rem;
 }
+
+.card-group {
+
+}
+
+
+.card-header {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+.card-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
 
 .card-img-top {
   max-width: 100%;
   height: auto;
 }
 
-.recipe-card {
 
+.recipes-deck {
+  padding-top: 2rem;
+}
+
+.lessons-card-group {
+  padding-bottom: 1rem;
 }
 
 
 
 
-.facebook-feed {
-  max-width: 50rem;
+
+
+#newsletter {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
+
+
+.newsletter-signup-copy {
+  color: peachpuff;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  width: auto;
+}
+
+
+
+
+
+
 
 
 
@@ -226,15 +295,26 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /////////////////////////////////////////////////
 //footer styles /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
 .footer {
-  padding-bottom: 5rem;
   padding-left: 10rem;
   padding-right: 10rem;
-  padding-top: 1rem;
   background: rgba(76, 175, 80, 0.5);
 }
 
@@ -251,6 +331,6 @@
 }
 
 .sm-icon-group {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
