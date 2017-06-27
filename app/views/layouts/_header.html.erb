@@ -1,4 +1,64 @@
-<div id="header" class="d-flex align-items-center hero">
+<div id="header" class="row d-flex align-items-center hero">
+  <div class="col hidden-sm-down">
+    <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+  </div>
+  <div class="col hero-content">
+      <p class="hero-title">Helping Georgians Eat Healthy & Get Moving!</p>
+      <p class="hero-copy">
+        FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
+      </p>
+      <div>
+        <span class="newsletter-signup-copy">Sign Up For Our Monthly Newsletter!</span>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Email Address">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Go!</button>
+        </form>
+      </div>
+      <p class="scroll-down-for-more pt-5">
+        <%= fa_icon "arrow-down" %> Scroll down for more content <%= fa_icon "arrow-down" %>
+      </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+
+<div class="d-flex align-items-center hero">
   <div class="media">
     <%= image_tag 'logo-xl.png', class: 'd-flex align-self-center logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
     <div class="media-body hero-content">
@@ -24,4 +84,5 @@
     </div>
   </div>
 </div>
-<%= render :partial => 'layouts/top-nav' %>
+
+<% end %>

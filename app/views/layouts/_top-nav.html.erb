@@ -1,9 +1,12 @@
-<nav id="nav-top" class="sticky-top navbar navbar-toggleable-md nav-top" role="navigation">
+<nav id="nav-top" class="navbar navbar-toggleable-sm navbar-light sticky-top top-nav" role="navigation">
 
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <a href="#" class="navbar-brand hidden-md-up">
+    <%= image_tag 'logo-sm.png', class: '', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+  </a>
 
   <div class="collapse navbar-collapse" id="navbarToggler1">
 
@@ -30,7 +33,7 @@
 
   <% else %>
 
-      <li class="dropdown">
+      <li class="dropdown nav-item">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Sign in <b class="caret"></b></a>
         <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
           <li>

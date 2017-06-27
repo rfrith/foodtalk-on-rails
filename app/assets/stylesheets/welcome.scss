@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+/////////////////////////////////////////////////
+// global styles  /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+
 .fonts {
   font-family: 'Lato', sans-serif;
   font-family: 'Roboto', sans-serif;
@@ -11,28 +16,268 @@
   font-family: 'Roboto Slab', serif;
 }
 
-/////////////////////////////////////////////////
-//header styles  /////////////////////////////////////////////////
-/////////////////////////////////////////////////
 
-.navbar {
+/**
+ * Navigation Elements
+ */
+
+.top-nav {
+  min-height: 4rem;
+}
+
+
+/* change navbar background */
+nav.navbar {
   background-color: rgba(226,79,44, 1);
 }
-.nav-link {
+/* change navbar-brand color */
+.navbar a.navbar-brand {
+  //color: floralwhite;
+}
+/* change navbar-brand color on hover */
+.navbar a.navbar-brand:hover {
+  //color: green;
+}
+/*  change navbar li colors, also active one but not disabled one */
+.navbar ul.navbar-nav li.nav-item a.nav-link {
   color: floralwhite;
-
-  @include hover-focus {
-    color: floralwhite;
+}
+/* change navbar-toggler inside lines color (stroke) */
+.navbar-light span.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='floralwhite' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  color: floralwhite;
+}
+/* change hamburger button border color */
+button.navbar-toggler.navbar-toggler-right {
+  border-color: floralwhite;
+}
+/* change navbar background on collapse */
+@media (max-width: 768px) {
+  nav.navbar {
+    //background: lightgray;
   }
 }
-.nav-top {
 
+
+
+.search-box {
+  padding: 1rem;
+  height: auto;
+  width: 20.2rem;
 }
 
 
+
+/**
+ * Logo
+ */
+.logo {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+
+/**
+ * Scroll Down Prompt
+ */
+
+.scroll-down-for-more, .scroll-down-for-more-light {
+  font-family: 'Caveat Brush', cursive;
+}
+
+.scroll-down-for-more {
+  color: black;
+
+}
+
+.scroll-down-for-more-light {
+  color: floralwhite;
+}
+
+@include media-breakpoint-up(xl) {
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 400;
+    font-size: 2rem;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+}
+
+
+@include media-breakpoint-down(md) {
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 300;
+    font-size: 1.3rem;
+  }
+}
+
+
+
+
+
 /////////////////////////////////////////////////
-//body styles  /////////////////////////////////////////////////
+// header styles  /////////////////////////////////////////////////
 /////////////////////////////////////////////////
+
+
+/**
+ * Hero
+ */
+
+.hero {
+  //background-image: url(http://makingthingseasy.com/wp-content/uploads/2015/08/Chopping-Board.jpg);
+  background-image:asset-url('chopping-board-with-veggies.jpg');
+  background-size:cover;
+  height:100vh;
+}
+
+@include media-breakpoint-up(md) {
+  .hero {
+    padding-left: 0rem;
+    padding-top: 2rem;
+  }
+}
+
+
+.hero img.logo {
+  padding-right: 6rem;
+}
+
+
+.hero-content {
+  background: rgba(226,79,44, .6);
+}
+
+@include media-breakpoint-up(md) {
+  .hero-content {
+    padding: 4rem;
+    border-radius: 50px 0px 0px 10px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .hero-content {
+    width: 100vh;
+    height: 100vh;
+  }
+}
+
+
+
+
+
+
+.hero-title, .hero-copy {
+  font-family: 'Lato', sans-serif;
+}
+
+.hero-title {
+  color: rgba(254,232,74,1);
+}
+
+.hero-copy {
+  color: ghostwhite;
+}
+
+@include media-breakpoint-up(xl) {
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+  }
+  .hero-copy {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .hero-copy {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  .hero-copy {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
+
+
+/**
+ * Newsletter
+ */
+
+.newsletter-signup-copy {
+  color: peachpuff;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@include media-breakpoint-up(xl) {
+  .newsletter {
+    margin-bottom: 2rem;
+  }
+
+  .newsletter-signup-copy {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+}
+@include media-breakpoint-down(lg) {
+  .newsletter {
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-signup-copy {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .newsletter {
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-signup-copy {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////
+// body styles  /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+
+/**
+ * Content
+ */
 
 .content:before {
   content: "";
@@ -100,21 +345,13 @@
 
 
 
-.recipe-copy, .lessons-copy {
-  max-width: 50%;
-  font-family: 'Roboto Slab', serif;
-  font-size: 1.5rem;
-  font-weight: 300;
-}
 
-.recipe-copy {
-  padding-top: 4rem;
-  padding-bottom: 2rem;
-}
 
-.lessons-copy {
-  padding-bottom: 1rem;
-}
+
+
+/**
+ * Facebook Feed
+ */
 
 
 .fb-feed {
@@ -136,97 +373,51 @@
 }
 
 
-.logo {
-  margin-left: 4rem;
-  margin-right: 4rem;
-}
-
-
-
-.hero {
-  padding-left: 0rem;
-  padding-top: 2rem;
-  //padding-bottom: 2em;
-
-  //background-image: url(http://makingthingseasy.com/wp-content/uploads/2015/08/Chopping-Board.jpg);
-  background-image:asset-url('chopping-board-with-veggies.jpg');
-
-  background-size:cover;
-  width: auto;
-  //height: 100%;
-  height:100vh;
-}
-
-.hero-content {
-  background: rgba(226,79,44, .6);
-  padding: 4rem;
-  border-radius: 50px 0px 0px 10px;
-}
-
-.hero-title {
-  color: rgba(254,232,74,1);
-  font-family: 'Lato', sans-serif;
-  font-size: 3rem;
-  font-weight: 900;
-  width: auto;
-}
-
-.hero-copy {
-  color: ghostwhite;
-  font-family: 'Lato', sans-serif;
-  font-size: 2rem;
-  font-weight: 300;
-  width: auto;
-}
-
-.hero-copy-sm {
-  color: ghostwhite;
-  font-family: 'Lato', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 300;
-  width: auto;
-}
-
-
-
-
-
-
-
-.search-box {
-  padding: 1rem;
-  height: auto;
-  width: 20.2rem;
-}
-
-
-
-.scroll-down-for-more, .scroll-down-for-more-light {
-  font-family: 'Caveat Brush', cursive;
-  font-weight: 400;
-  font-size: 2rem;
-}
-
-.scroll-down-for-more {
-  color: black;
-
-}
-
-.scroll-down-for-more-light {
+.fb-feed-copy {
   color: floralwhite;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  width: auto;
 }
 
+.fb-feed-copy a, .fb-feed-copy a:hover, .fb-feed-copy a:visited {
+  color: floralwhite;
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+/**
+ * Recipes & Online Lessons
+ */
+
+.recipe-copy, .lessons-copy {
+  max-width: 50%;
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.recipe-copy {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.lessons-copy {
+  padding-bottom: 1rem;
+}
 
 
 
 .card-deck {
   width: 70rem;
 }
-
-.card-group {
-
-}
-
 
 .card-header {
   font-family: 'Lato', sans-serif;
@@ -258,58 +449,9 @@
 
 
 
-#newsletter {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-
-.newsletter-signup-copy {
-  color: peachpuff;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
-  width: auto;
-}
-
-
-
-
-
-
-
-
-
-
-.uga-snap-ed-address {
-  width: 20rem;
-  text-align: center;
-}
-
-
-
-
-.uga-logo-copy {
-  text-align: left;
-  font-size: .7rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /////////////////////////////////////////////////
-//footer styles /////////////////////////////////////////////////
+// footer styles /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
 .footer {
@@ -334,3 +476,20 @@
   font-size: 1.5rem;
 }
 
+.uga-logo-copy {
+  text-align: left;
+  font-size: .7rem;
+}
+
+
+
+
+//////////////////////////////////////////
+// UNUSED
+//////////////////////////////////////////
+
+
+.uga-snap-ed-address {
+  width: 20rem;
+  text-align: center;
+}
