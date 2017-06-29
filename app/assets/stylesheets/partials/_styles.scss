@@ -1,20 +1,40 @@
 a, a:hover, a:active {
-  color: rgba(226,79,44, 1);
+  color: rgba(229, 103, 23, 1);
   text-decoration:  none;
 }
 
 .btn-primary {
-  background-color: rgba(226,79,44, 1);
+  background-color: #9a3f31;
   color: white;
   border: none;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
-  background-color: rgba(226,79,44, 1);
+  background-color: #9a3f31;
 }
 
 .btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:active:focus {
-  color: rgba(226,79,44, 1);
-  border-color: rgba(226,79,44, 1);
+  color: #9a3f31;
+  border-color: #9a3f31;
   background-color: white;
+}
+
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+  border-color: yellow;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(226, 81, 54);
+  outline: 0 none;
+}
+
+textarea, input, input[type], .uneditable-input {
+  border-color: rgba(226,79,44, .6);
+  outline: 0 none;
+}
+
+
+
+
+.remove-all-margin-padding{
+  margin:0 ! important;
+  padding:0 ! important;
 }

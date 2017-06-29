@@ -28,7 +28,7 @@
 
 /* change navbar background */
 nav.navbar {
-  background-color: rgba(226,79,44, 1);
+  background-color: #9a3f31;
 }
 /* change navbar-brand color */
 .navbar a.navbar-brand {
@@ -58,6 +58,19 @@ button.navbar-toggler.navbar-toggler-right {
   }
 }
 
+
+@include media-breakpoint-up(md) {
+  .top-nav {
+    position: sticky;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .top-nav {
+    position: fixed;
+    width: 100%;
+  }
+}
 
 
 .search-box {
@@ -116,6 +129,12 @@ button.navbar-toggler.navbar-toggler-right {
   }
 }
 
+@include media-breakpoint-down(sm) {
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    color: floralwhite;
+  }
+}
+
 
 
 
@@ -136,41 +155,32 @@ button.navbar-toggler.navbar-toggler-right {
   height:100vh;
 }
 
-@include media-breakpoint-up(md) {
-  .hero {
-    padding-left: 0rem;
-    padding-top: 2rem;
-  }
-}
-
-
 .hero img.logo {
   padding-right: 6rem;
 }
 
-
-.hero-content {
-  background: rgba(226,79,44, .6);
-}
-
 @include media-breakpoint-up(md) {
+  .hero {
+    padding-left: 0rem;
+    padding-top: 0rem;
+    align-items: center;
+  }
+
   .hero-content {
     padding: 4rem;
     border-radius: 50px 0px 0px 10px;
+    background: rgba(226,79,44, .6);
+
   }
 }
 
 @include media-breakpoint-down(sm) {
   .hero-content {
+    margin-top: 4rem;
     width: 100vh;
-    height: 100vh;
+    background: rgba(0, 0, 0, .6);
   }
 }
-
-
-
-
-
 
 .hero-title, .hero-copy {
   font-family: 'Lato', sans-serif;
@@ -208,14 +218,38 @@ button.navbar-toggler.navbar-toggler-right {
 
 @include media-breakpoint-down(md) {
   .hero-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 300;
   }
   .hero-copy {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 300;
   }
 }
+
+@include media-breakpoint-down(sm) {
+   .hero-title {
+     font-size: 2rem;
+     font-weight: 300;
+   }
+   .hero-copy {
+     font-size: 1.25rem;
+     font-weight: 300;
+   }
+ }
+
+@include media-breakpoint-down(xs) {
+  .hero-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+  .hero-copy {
+    font-size: .75rem;
+    font-weight: 300;
+  }
+}
+
+
 
 
 /**
@@ -302,7 +336,7 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .content-section, .content-section2 {
-  height:100vh;
+  min-height:100vh;
 }
 
 .content-section {
@@ -398,7 +432,10 @@ button.navbar-toggler.navbar-toggler-right {
  */
 
 .recipe-copy, .lessons-copy {
-  max-width: 50%;
+  //max-width: 50%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: justify;
   font-family: 'Roboto Slab', serif;
   font-size: 1.5rem;
   font-weight: 300;
@@ -413,11 +450,28 @@ button.navbar-toggler.navbar-toggler-right {
   padding-bottom: 1rem;
 }
 
+@include media-breakpoint-up(md) {
+  .recipe-copy, .lessons-copy {
+    maxwidth: 70%;
+  }
+}
+
+
+
 
 
 .card-deck {
-  width: 70rem;
+  max-width: 100vw;
 }
+
+@include media-breakpoint-up(lg) {
+  .card-deck {
+    max-width: 70vw;
+  }
+}
+
+
+
 
 .card-header {
   font-family: 'Lato', sans-serif;
