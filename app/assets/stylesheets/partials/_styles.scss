@@ -1,13 +1,26 @@
-a, a:hover, a:active {
+a, a:link a:visited, a:hover, a:active {
   color: rgba(229, 103, 23, 1);
   text-decoration:  none;
 }
 
-.btn-primary {
+.btn, .btn-primary, .btn-secondary {
   background-color: #9a3f31;
   color: white;
   border: none;
+  text-decoration:  none;
 }
+
+
+//bootstrap puts blue outline around clicked buttons and makes the link color blue w/ underline
+.btn:focus, .btn:active, .btn-primary:focus, .btn-primary:active, .btn-secondary:focus, .btn-secondary:active  {
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+  border: none;
+  text-decoration:  none;
+}
+
+
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
   background-color: #9a3f31;
@@ -32,9 +45,10 @@ textarea, input, input[type], .uneditable-input {
 }
 
 
-
-
 .remove-all-margin-padding{
   margin:0 ! important;
   padding:0 ! important;
 }
+
+
+

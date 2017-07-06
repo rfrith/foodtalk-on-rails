@@ -18,5 +18,12 @@
 //= require popper
 //= require tether
 //= require bootstrap
-//= require jquery.fancybox
+//= require venobox.js
+
 //= require_tree .
+
+$(function() {
+    $('.venobox').venobox();
+});
+
+

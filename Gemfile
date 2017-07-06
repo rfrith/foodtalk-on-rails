@@ -30,9 +30,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
 
-gem 'jquery-turbolinks'
-
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -69,8 +66,8 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'popper_js', '~> 1.9.9'
+gem 'tether-rails'
 gem 'font-awesome-rails'
-gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 gem 'paperclip', '~> 5.0.0'
 
 # Use Capistrano for deployment
