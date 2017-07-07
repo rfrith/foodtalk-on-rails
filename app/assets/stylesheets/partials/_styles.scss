@@ -1,11 +1,12 @@
 a, a:link a:visited, a:hover, a:active {
-  color: rgba(229, 103, 23, 1);
+  color: $primary-fill-color;
   text-decoration:  none;
 }
 
+
 .btn, .btn-primary, .btn-secondary {
-  background-color: #9a3f31;
-  color: white;
+  background-color: $primary-fill-color;
+  color: $primary-font-inverse-color;
   border: none;
   text-decoration:  none;
 }
@@ -15,33 +16,34 @@ a, a:link a:visited, a:hover, a:active {
 .btn:focus, .btn:active, .btn-primary:focus, .btn-primary:active, .btn-secondary:focus, .btn-secondary:active  {
   outline: none !important;
   box-shadow: none !important;
-  color: white;
-  border: none;
+  color: $primary-font-inverse-color;
+  //border: none;
   text-decoration:  none;
 }
 
 
-
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
-  background-color: #9a3f31;
+  background-color: $primary-fill-color;
 }
 
+
 .btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:active:focus {
-  color: #9a3f31;
-  border-color: #9a3f31;
-  background-color: white;
+  color: $primary-fill-color;
+  border-color: $primary-fill-color;
+  background-color: $primary-font-inverse-color;
 }
 
 
 textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
-  border-color: yellow;
-  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(226, 81, 54);
+  border-color: $input-focus-border-color;
+  box-shadow: $input-focus-shadow-color;
   outline: 0 none;
 }
 
+
 textarea, input, input[type], .uneditable-input {
   border-color: rgba(226,79,44, .6);
-  outline: 0 none;
+  //outline: 0 none;
 }
 
 

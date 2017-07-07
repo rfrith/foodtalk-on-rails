@@ -7,28 +7,18 @@
 // global styles  /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
-
-.fonts {
-  font-family: 'Lato', sans-serif;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Caveat Brush', cursive;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-family: 'Roboto Slab', serif;
-}
-
-
 /**
  * Navigation Elements
  */
 
 .top-nav {
-  min-height: 4rem;
+  min-height: 4rem; //don't set absolute height or collapsible nav won't work right
 }
 
 
 /* change navbar background */
-nav.navbar {
-  background-color: #9a3f31;
+nav.navbar, .navbar-collapse {
+  background-color: $primary-fill-color;
 }
 /* change navbar-brand color */
 .navbar a.navbar-brand {
@@ -40,23 +30,24 @@ nav.navbar {
 }
 /*  change navbar li colors, also active one but not disabled one */
 .navbar ul.navbar-nav li.nav-item a.nav-link {
-  color: floralwhite;
+  color: $primary-font-inverse-color;
 }
 /* change navbar-toggler inside lines color (stroke) */
 .navbar-light span.navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='floralwhite' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-  color: floralwhite;
+  color: $primary-font-inverse-color;
 }
 /* change hamburger button border color */
 button.navbar-toggler.navbar-toggler-right {
-  border-color: floralwhite;
+  border-color: $primary-font-inverse-color;
 }
+
 /* change navbar background on collapse */
-@media (max-width: 768px) {
-  nav.navbar {
+//@media (max-width: 768px) {
+//  nav.navbar {
     //background: lightgray;
-  }
-}
+//  }
+//}
 
 
 @include media-breakpoint-up(md) {
@@ -95,7 +86,7 @@ button.navbar-toggler.navbar-toggler-right {
  */
 
 .scroll-down-for-more, .scroll-down-for-more-light {
-  font-family: 'Caveat Brush', cursive;
+  font-family: $caveat-brush;
 }
 
 .scroll-down-for-more {
@@ -104,7 +95,7 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .scroll-down-for-more-light {
-  color: floralwhite;
+  color: $primary-font-inverse-color;
 }
 
 @include media-breakpoint-up(xl) {
@@ -131,7 +122,7 @@ button.navbar-toggler.navbar-toggler-right {
 
 @include media-breakpoint-down(sm) {
   .scroll-down-for-more, .scroll-down-for-more-light {
-    color: floralwhite;
+    color: $primary-font-inverse-color;
   }
 }
 
@@ -169,7 +160,7 @@ button.navbar-toggler.navbar-toggler-right {
   .hero-content {
     padding: 4rem;
     border-radius: 50px 0px 0px 10px;
-    background: rgba(226,79,44, .6);
+    background: rgba($primary-fill-color, .6);
 
   }
 }
@@ -183,15 +174,15 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .hero-title, .hero-copy {
-  font-family: 'Lato', sans-serif;
+  font-family: $lato;
 }
 
 .hero-title {
-  color: rgba(254,232,74,1);
+  color: $hero-title;
 }
 
 .hero-copy {
-  color: ghostwhite;
+  color: $primary-font-inverse-color;
 }
 
 @include media-breakpoint-up(xl) {
@@ -256,9 +247,9 @@ button.navbar-toggler.navbar-toggler-right {
  * Newsletter
  */
 
-.newsletter-signup-copy {
-  color: peachpuff;
-  font-family: 'Source Sans Pro', sans-serif;
+.hero-subtitle {
+  color: $hero-subtitle;
+  font-family: $source-sans-pro
 }
 
 @include media-breakpoint-up(xl) {
@@ -266,7 +257,7 @@ button.navbar-toggler.navbar-toggler-right {
     margin-bottom: 2rem;
   }
 
-  .newsletter-signup-copy {
+  .hero-subtitle {
     font-size: 2rem;
     font-weight: 600;
   }
@@ -277,7 +268,7 @@ button.navbar-toggler.navbar-toggler-right {
     margin-bottom: 1rem;
   }
 
-  .newsletter-signup-copy {
+  .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 600;
   }
@@ -288,7 +279,7 @@ button.navbar-toggler.navbar-toggler-right {
     margin-bottom: 1rem;
   }
 
-  .newsletter-signup-copy {
+  .hero-subtitle {
     font-size: 1rem;
     font-weight: 300;
   }
@@ -337,37 +328,41 @@ button.navbar-toggler.navbar-toggler-right {
 
 .content-section, .content-section2, .content-section3 {
   min-height:100vh;
+  @include media-breakpoint-up(med) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 }
 
 .content-section {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($content-section-bg-color, 0.5);
 }
 
 .content-section2 {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba($content-section2-bg-color, 0.9);
 }
 
 .content-section3 {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba($content-section3-bg-color, 0.8);
 }
 
 .content-section-item {
 }
 
 .content-section-header {
-  padding-top: 2.8rem;
+  //padding-top: 2.8rem;
 }
 
 .content-section-title {
-  font-family: 'Roboto Slab', serif;
+  font-family: $roboto-slab;
   //color: rgba(155, 116, 49, 1);
-  color: burlywood;
+  color: $content-section-title;
   font-size: 3.5rem;
   font-weight: 400;
 }
 
 .content-section-copy-dark, .content-section-copy-light, .content-section-copy-dark-med, .content-section-copy-light-med {
-  font-family: 'Roboto', sans-serif;
+  font-family: $roboto;
 }
 
 .content-section-copy-dark, .content-section-copy-light {
@@ -385,7 +380,7 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .content-section-copy-light, .content-section-copy-light-med {
-  color: floralwhite;
+  color: $primary-font-inverse-color;
 }
 
 
@@ -406,7 +401,7 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .fb-feed-jumbotron {
-  background: rgba(226,79,44, .6);
+  background: rgba($primary-fill-color, .6);
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 4rem;
@@ -420,16 +415,16 @@ button.navbar-toggler.navbar-toggler-right {
 
 
 .fb-feed-copy {
-  color: floralwhite;
+  color: $primary-font-inverse-color;
 
-  font-family: 'Lato', sans-serif;
+  font-family: $lato;
   font-size: 1.5rem;
   font-weight: 400;
   width: auto;
 }
 
 .fb-feed-copy a, .fb-feed-copy a:hover, .fb-feed-copy a:visited {
-  color: floralwhite;
+  color: $primary-font-inverse-color;
   text-decoration: underline;
 }
 
@@ -447,7 +442,7 @@ button.navbar-toggler.navbar-toggler-right {
   //max-width: 50%;
 
   text-align: justify;
-  font-family: 'Roboto Slab', serif;
+  font-family: $roboto-slab;
   font-size: 1.5rem;
   font-weight: 300;
 }
@@ -487,12 +482,12 @@ button.navbar-toggler.navbar-toggler-right {
 
 
 .card-header {
-  font-family: 'Lato', sans-serif;
+  font-family: $lato;
   font-weight: 700;
 }
 
 .card-text {
-  font-family: 'Lato', sans-serif;
+  font-family: $lato;
   font-weight: 300;
 }
 
@@ -532,8 +527,19 @@ button.navbar-toggler.navbar-toggler-right {
   }
 }
 
-.lessons-card-columns .card {
+.lessons-card-columns .card-header {
+  background-color: $primary-fill-color;
+  color: $primary-font-inverse-color;
+}
+
+.lessons-card-columns .card-footer {
+  background-color: $primary-fill-color;
+}
+
+
+.lessons-card-columns .card, .recipes-deck .card {
   //min-height: 30rem;
+  margin-bottom: 1rem;
 }
 
 .card-deckzzz > .cardzzz {
@@ -556,10 +562,7 @@ button.navbar-toggler.navbar-toggler-right {
   }
   @include media-breakpoint-only(xl) {
     width: 20rem;
-
   }
-
-
 }
 
 
@@ -570,18 +573,18 @@ button.navbar-toggler.navbar-toggler-right {
 .footer {
   padding-left: 10rem;
   padding-right: 10rem;
-  background: rgba(76, 175, 80, 0.5);
+  background: rgba($footer-bg-color, 0.5);
 }
 
 .footer-slogan-title {
-  color: beige;
+  color: $primary-font-inverse-color;
   font-size: 2rem;
   font-weight: 500;
   width: auto;
 }
 
 .footer-slogan-copy {
-  color: white;
+  color: $primary-font-inverse-color;
   font-weight: 400;
 }
 
