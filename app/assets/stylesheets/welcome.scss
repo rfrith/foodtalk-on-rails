@@ -31,6 +31,30 @@ nav.navbar, .navbar-collapse {
 /*  change navbar li colors, also active one but not disabled one */
 .navbar ul.navbar-nav li.nav-item a.nav-link {
   color: $primary-font-inverse-color;
+
+  font-family: $roboto-slab;
+
+
+
+  @include media-breakpoint-only(xs) {
+    font-size: .75rem;
+  }
+  @include media-breakpoint-only(sm) {
+    font-size: .85rem;
+  }
+  @include media-breakpoint-only(md) {
+    font-size: 1rem;
+  }
+  @include media-breakpoint-only(lg) {
+    font-size: 1.1rem;
+  }
+  @include media-breakpoint-only(xl) {
+    font-size: 1.15rem;
+  }
+
+
+
+
 }
 /* change navbar-toggler inside lines color (stroke) */
 .navbar-light span.navbar-toggler-icon {
@@ -160,7 +184,7 @@ button.navbar-toggler.navbar-toggler-right {
   .hero-content {
     padding: 4rem;
     border-radius: 50px 0px 0px 10px;
-    background: rgba($primary-fill-color, .6);
+    background: rgba($primary-fill-color, .8);
 
   }
 }
@@ -510,6 +534,8 @@ button.navbar-toggler.navbar-toggler-right {
 
 .lessons-card-columns {
 
+  max-width: 90%;
+
   @include media-breakpoint-only(xs) {
     column-count: 1;
   }
@@ -523,7 +549,7 @@ button.navbar-toggler.navbar-toggler-right {
     column-count: 4;
   }
   @include media-breakpoint-only(xl) {
-    column-count: 5;
+    column-count: 6;
   }
 }
 
@@ -532,7 +558,7 @@ button.navbar-toggler.navbar-toggler-right {
   color: $primary-font-inverse-color;
 }
 
-.lessons-card-columns .card-footer {
+.card-footer {
   background-color: $primary-fill-color;
 }
 
@@ -565,6 +591,14 @@ button.navbar-toggler.navbar-toggler-right {
   }
 }
 
+.videos-card-group {
+  max-width: 80%;
+}
+
+
+.faYoutubePlayIcon {
+  font-size: 5rem;
+}
 
 /////////////////////////////////////////////////
 // footer styles /////////////////////////////////////////////////
@@ -593,8 +627,10 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .uga-logo-copy {
+  font-family: $roboto;
   text-align: left;
-  font-size: .7rem;
+  font-size: .8rem;
+  font-weight: bold;
 }
 
 

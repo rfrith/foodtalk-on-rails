@@ -1,59 +1,40 @@
-<nav id="footer-nav" class="navbar navbar-toggleable-sm navbar-light fixed-bottom" role="navigation">
+<nav id="footer-nav" class="navbar navbar-toggleable-sm navbar-light fixed-bottom " role="navigation">
 
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler2" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <%=image_tag 'uga-logo-med.png', class: 'ml-auto mr-3', alt: 'UGA Extension Office' %>
+  <span class="uga-logo-copy">This website & learning environment<br>is produced by The University of Georgia</span>
 
-  <div class="media align-items-center">
-    <%=image_tag 'uga-logo-med.png', class: 'd-flex mr-3', alt: 'UGA Extension Office' %>
-    <div class="media-body">
-      <p class="uga-logo-copy">This website and learning environment is produced by The University of Georgia</p>
-    </div>
-  </div>
+  <ul class="navbar-nav mx-auto">
+    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact</a>
+    </li>
+    <li class="nav-item"><a class="nav-link" href="https://foodtalk.org/content/comment-policy" target="_blank">Comment Policy</a></li>
+    <li class="nav-item"><a class="nav-link" href="https://foodtalk.org/content/uga-snap-ed-nondiscrimination-funding-and-required-statements" target="_blank">Nondiscrimination & Funding Statement</a></li>
+  </ul>
 
-  <div class="collapse navbar-collapse align-items-center" id="navbarToggler2">
+  <ul class="navbar-nav sm-icon-group mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="http://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="http://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://plus.google.com/116761006042596808728" target="_blank"><%= fa_icon('google-plus-square') %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="http://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="http://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="http://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
+    </li>
+  </ul>
 
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="https://foodtalk.org/content/comment-policy" target="_blank">Comment Policy</a></li>
-      <li class="nav-item"><a class="nav-link" href="https://foodtalk.org/content/uga-snap-ed-nondiscrimination-funding-and-required-statements" target="_blank">UGA SNAP-Ed Nondiscrimination and Funding Statement</a></li>
-    </ul>
-
-    <ul class="navbar-nav mx-auto sm-icon-group">
-      <li class="nav-item">
-        <a class="nav-link" href="http://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://plus.google.com/116761006042596808728" target="_blank"><%= fa_icon('google-plus-square') %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
-      </li>
-    </ul>
-
-    <%
-    #<form class="form-inline my-2 my-lg-0">
-    #  <input class="form-control mr-sm-2" type="text" placeholder="Enter Your Email">
-    #  <button class="btn btn-primary my-2 my-sm-0" type="submit">Get our Newsletter!</button>
-    #</form>
-    %>
-
-  </div>
 </nav>
