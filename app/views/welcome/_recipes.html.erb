@@ -20,36 +20,44 @@
           <div class="d-flex mx-auto justify-content-center content-section-item">
             <div class="card-deck recipes-deck">
               <div class="recipe-card card text-center">
-                <%= image_tag 'corn-salad.png', class: 'card-img-top', alt: 'Summer Corn Salad Cap' %>
+
+                <%= link_to image_tag('corn-salad.png', class: 'card-img-top', alt: 'Summer Corn Salad Cap'), '/recipes/index', {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+
                 <div class="card-block">
                   <h4 class="card-title align-items-center">Summer Corn Salad <small class="text-muted"><a href="#"><%= fa_icon "star" %></a> <a href="#"><%= fa_icon "share-alt" %></a></small></h4>
                   <p class="card-text">Farmers Market Recipe:<br>Summer Corn Salad</p>
                   <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
                 </div>
                 <div class="align-items-center mb-3">
-                  <a href="/recipe/index" data-vbtype="iframe" data-autoplay="true" class="venobox btn btn-primary">Details</a>
+                  <%= link_to("Details", { controller: "recipes", action: "index"}, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
                 </div>
               </div>
+
               <div class="recipe-card card text-center">
-                <%= image_tag 'fruit-smoothies.png', class: 'card-img-top', alt: 'Fruit Smoothie' %>
+
+                <%= link_to image_tag('fruit-smoothies.png', class: 'card-img-top', alt: 'Fruit Smoothie Cap'), '/recipes/index', {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+
                 <div class="card-block">
                   <h4 class="card-title align-items-center">Fruit Smoothie <small class="text-muted"><a href="#"><%= fa_icon "star-o" %></a> <a href="#"><%= fa_icon "share-alt" %></a></small></h4>
                   <p class="card-text">Farmers Market Recipe:<br>Fruit Smoothie</p>
                   <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
                 </div>
                 <div class="align-items-center mb-3">
-                  <a href="/recipe/index" data-vbtype="iframe" data-autoplay="true" class="venobox btn btn-primary">Details</a>
+                  <%= link_to("Details", { controller: "recipes", action: "index"}, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
                 </div>
               </div>
+
               <div class="recipe-card card text-center">
-                <%= image_tag 'eggplant-sliders.png', class: 'card-img-top', alt: 'Italian Eggplant Sliders' %>
+
+                <%= link_to image_tag('eggplant-sliders.png', class: 'card-img-top', alt: 'Italian Eggplant Sliders Cap'), '/recipes/index', {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+
                 <div class="card-block">
                   <h4 class="card-title align-items-center">Italian Eggplant Slider <small class="text-muted"><a href="#"><%= fa_icon "star" %></a> <a href="#"><%= fa_icon "share-alt" %></a></small></h4>
                   <p class="card-text">Farmers Market Recipe:<br>Italian Eggplant Slider</p>
                   <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
                 </div>
                 <div class="align-items-center mb-3">
-                  <a href="/recipe/index" data-vbtype="iframe" data-autoplay="true" class="venobox btn btn-primary">Details</a>
+                  <%= link_to("Details", { controller: "recipes", action: "index"}, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
                 </div>
               </div>
             </div>
@@ -60,37 +68,48 @@
         <div class="carousel-item">
           <div class="d-flex mx-auto justify-content-center content-section-item">
             <div class="card-deck recipes-deck">
+
               <div class="recipe-card card text-center">
-                <%= image_tag 'apples-grapes.png', class: 'card-img-top', alt: 'Apple & Grape Salad Cap' %>
+
+                <%= link_to image_tag('apples-grapes.png', class: 'card-img-top', alt: 'Apple & Grape Salad Cap'), '/recipes/index', {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+
+
                 <div class="card-block">
                   <h4 class="card-title align-items-center">Apple & Grape Salad <small class="text-muted"><a href="#"><%= fa_icon "star" %></a> <a href="#"><%= fa_icon "share-alt" %></a></small></h4>
                   <p class="card-text">Farmers Market Recipe:<br>Apple & Grape Salad</p>
                   <p class="card-text">Category <small class="text-muted">Less than $5 meals, Fast & Easy</small></p>
                 </div>
                 <div class="align-items-center mb-3">
-                  <a href="/recipe/index" data-vbtype="iframe" data-autoplay="true" class="venobox btn btn-primary">Details</a>
+                  <%= link_to("Details", { controller: "recipes", action: "index"}, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
                 </div>
               </div>
+
               <div class="recipe-card card text-center">
-                <%= image_tag 'classic-banana-bread.jpg', class: 'card-img-top', alt: 'Classic Banana Bread' %>
+
+                <%= link_to image_tag('classic-banana-bread.jpg', class: 'card-img-top', alt: 'Classic Banana Bread Cap'), '/recipes/index', {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+
+
                 <div class="card-block">
                   <h4 class="card-title align-items-center">Classic Banana Bread <small class="text-muted"><a href="#"><%= fa_icon "star-o" %></a> <a href="#"><%= fa_icon "share-alt" %></a></small></h4>
                   <p class="card-text">Farmers Market Recipe:<br>Classic Banana Bread</p>
                   <p class="card-text">Category <small class="text-muted">Breakfast, Healthy Desserts</small></p>
                 </div>
                 <div class="align-items-center mb-3">
-                  <a href="/recipe/index" data-vbtype="iframe" data-autoplay="true" class="venobox btn btn-primary">Details</a>
+                  <%= link_to("Details", { controller: "recipes", action: "index"}, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
                 </div>
               </div>
+
               <div class="recipe-card card text-center">
-                <%= image_tag 'fried-rice.jpg', class: 'card-img-top', alt: 'Famous Fried Rice' %>
+
+                <%= link_to image_tag('fried-rice.jpg', class: 'card-img-top', alt: 'Famous Fried Rice Cap'), '/recipes/index', {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+
                 <div class="card-block">
                   <h4 class="card-title align-items-center">Famous Fried Rice <small class="text-muted"><a href="#"><%= fa_icon "star-o" %></a> <a href="#"><%= fa_icon "share-alt" %></a></small></h4>
                   <p class="card-text">Farmers Market Recipe:<br>Famous Fried Rice</p>
                   <p class="card-text">Category <small class="text-muted">Less than $5 meals</small></p>
                 </div>
                 <div class="align-items-center mb-3">
-                  <a href="/recipe/index" data-vbtype="iframe" data-autoplay="true" class="venobox btn btn-primary">Details</a>
+                  <%= link_to("Details", { controller: "recipes", action: "index"}, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
                 </div>
               </div>
             </div>

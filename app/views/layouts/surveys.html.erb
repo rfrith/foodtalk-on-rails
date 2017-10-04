@@ -1,0 +1,5 @@
+<% content_for :content do %>
+  <%= content_for?(:surveys_content) ? yield(:surveys_content) : yield %>
+<% end %>
+
+<%= render template: "layouts/application" %>

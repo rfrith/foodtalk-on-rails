@@ -522,33 +522,52 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 
-.recipes-deck {
-  padding-top: 2rem;
+.card-columns {
+  display: inline-block;
 }
 
-//.lessons-card-group {
-//  padding-bottom: 1rem;
-//  max-width: 100vw;
-//}
 
-
-.lessons-card-columns {
-
-  max-width: 90%;
-
-  @include media-breakpoint-only(xs) {
-    column-count: 1;
-  }
-  @include media-breakpoint-only(sm) {
-    column-count: 2;
-  }
-  @include media-breakpoint-only(md) {
-    column-count: 3;
+.card-columns {
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
   }
   @include media-breakpoint-only(lg) {
     column-count: 4;
   }
-  @include media-breakpoint-only(xl) {
+  @include media-breakpoint-only(md) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+}
+
+
+
+
+.lessons-card-columns .card, .recipes-deck .card {
+  //min-height: 30rem;
+  margin-bottom: 1rem;
+}
+
+.recipes-deck {
+  padding-top: 2rem;
+}
+
+.lessons-card-columnss {
+  @include media-breakpoint-up(xs) {
+    column-count: 1;
+  }
+  @include media-breakpoint-up(sm) {
+    column-count: 2;
+  }
+  @include media-breakpoint-up(md) {
+    column-count: 3;
+  }
+  @include media-breakpoint-up(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-up(xl) {
     column-count: 6;
   }
 }
@@ -558,18 +577,33 @@ button.navbar-toggler.navbar-toggler-right {
   color: $primary-font-inverse-color;
 }
 
+
+.lessons-card-columnsZZZZZ .card {
+
+  @include media-breakpoint-up(xs) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(sm) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(md) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(lg) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(xl) {
+    max-width: 20rem;
+  }
+}
+
 .card-footer {
   background-color: $primary-fill-color;
 }
 
 
-.lessons-card-columns .card, .recipes-deck .card {
-  //min-height: 30rem;
-  margin-bottom: 1rem;
-}
+.card-deckZZZ > .card {
 
-.card-deckzzz > .cardzzz {
-  width: 20rem;
   flex-wrap: wrap;
   flex: initial;
   display: block;
@@ -578,7 +612,7 @@ button.navbar-toggler.navbar-toggler-right {
     width: 20rem;
   }
   @include media-breakpoint-only(sm) {
-    cwidth: 20rem;
+    width: 20rem;
   }
   @include media-breakpoint-only(md) {
     width: 20rem;

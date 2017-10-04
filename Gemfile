@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-#ruby=2.4.1
-#ruby-gemset=foodtalk_rails511
+#ruby=2.4.2
+#ruby-gemset=foodtalk_rails514
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -10,7 +10,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -62,10 +62,11 @@ gem 'jbuilder', '~> 2.5'
 
 #gem 'administrate'
 
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.0.0.beta'
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'popper_js', '~> 1.9.9'
+gem 'popper_js', '~> 1.11.1'
 gem 'tether-rails'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 5.0.0'
