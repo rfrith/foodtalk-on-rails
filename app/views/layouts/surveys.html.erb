@@ -1,5 +1,7 @@
+<%= render :partial => 'layouts/top-nav' %>
 <% content_for :content do %>
   <%= content_for?(:surveys_content) ? yield(:surveys_content) : yield %>
 <% end %>
+<%= render :partial => 'layouts/footer' %>
 
 <%= render template: "layouts/application" %>

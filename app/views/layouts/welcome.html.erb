@@ -1,6 +1,8 @@
 <% content_for :content do %>
     <%= render :partial => 'layouts/header' %>
-    <%= content_for?(:welcome_content) ? yield(:welcome_content) : yield %>
+    <%= render :partial => 'layouts/top-nav' %>
+    <div class="content"><%= content_for?(:welcome_content) ? yield(:welcome_content) : yield %></div>
+    <%= render :partial => 'layouts/footer' %>
 <% end %>
 
 <%= render template: "layouts/application" %>

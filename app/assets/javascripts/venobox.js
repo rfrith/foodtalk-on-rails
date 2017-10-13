@@ -232,6 +232,9 @@
                             loadAjax();
                         } else if (obj.data('vbtype') == 'video' || obj.data('vbtype') == 'vimeo' || obj.data('vbtype') == 'youtube') {
                             loadVid(autoplay);
+
+                        } else if(obj.data('vbtype') == 'video-iframe') {
+                            loadVideoIframeVid(autoplay);
                         } else {
                             content.html('<img src="'+dest+'">');
                             preloadFirst();
@@ -350,15 +353,15 @@
                     }
                     content.animate({
                         opacity : 0,
-                    }, 500, function(){
+                    }, 500, function() {
 
-                        overlay.css('background',overlayColor);
+                        overlay.css('background', overlayColor);
 
                         content
                             .removeClass('animated')
                             .removeClass('swipe-left')
                             .removeClass('swipe-right')
-                            .css({'margin-left': 0,'margin-right': 0});
+                            .css({'margin-left': 0, 'margin-right': 0});
 
                         if (destination.data('vbtype') == 'iframe') {
                             loadIframe();
@@ -371,6 +374,8 @@
                             || destination.data('vbtype') == 'youtube'
                         ) {
                             loadVid(autoplay);
+                        } else if(destination.data('vbtype') == 'video-iframe') {
+                            loadVideoIframeVid(autoplay);
                         } else {
                             content.html('<img src="'+dest+'">');
                             preloadFirst();
@@ -592,9 +597,16 @@
                     } else if (videoObj.type == 'youtube') {
                         player = 'https://www.youtube.com/embed/';
                     }
-                    content.html('<iframe class="venoframe vbvid" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" src="'+player+videoObj.id+queryvars+'"></iframe>');
+                    content.html('<iframe id="venobox-video-player-iframe" class="venoframe vbvid venobox-video-player-iframe" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" src="'+player+videoObj.id+queryvars+'"></iframe>');
                     updateoverlay();
                 }
+
+                function loadVideoIframeVid(autoplay) {
+                    content.html('<iframe id="venobox-video-player-iframe" class="venoframe vbvid venobox-video-player-iframe" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" src="'+dest+'"></iframe>');
+                    updateoverlay();
+                }
+
+
 
                 /**
                  * parse Youtube or Vimeo videos and get host & ID

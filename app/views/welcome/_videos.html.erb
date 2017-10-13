@@ -3,7 +3,7 @@
 
     <div class="d-flex justify-content-center mx-auto content-section-item">
       <div class="media content-section-header align-items-center">
-        <%= image_tag 'food-etalk-logo-med.png', class: 'hidden-sm-down', alt: 'Food eTalk Logo' %>
+        <%= image_tag 'food-etalk-logo-med.png', class: 'd-sm-none d-md-block', alt: 'Food eTalk Logo' %>
         <div class="media-body ml-3">
           <span class="content-section-title">Featured Videos</span>
         </div>
@@ -37,24 +37,26 @@
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/VVez_v8-LPs?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox ">
-                    <%= image_tag 'http://img.youtube.com/vi/VVez_v8-LPs/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+
+                  <a class="venobox" data-vbtype="video-iframe" href="/videos/VVez_v8-LPs">
+                    <%= image_tag 'http://img.youtube.com/vi/VVez_v8-LPs/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
+
                 </figure>
 
                 <div class="card-block mt-0 pt-0">
                   <h5 class="text-center">Tips for Planning Menus</h5>
-                  <p class="card-text text-justify p-2">Watch and learn simple ways to keep save money, time, and stress by planning meals.<span class="hidden-md-down"></span></p>
+                  <p class="card-text text-justify p-2">Watch and learn simple ways to keep save money, time, and stress by planning meals.<span class="d-sm-none d-lg-block"></span></p>
                 </div>
               </div>
 
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/G1OUmTRXDIg?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox">
-                    <%= image_tag 'http://img.youtube.com/vi/G1OUmTRXDIg/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/G1OUmTRXDIg?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                    <%= image_tag 'http://img.youtube.com/vi/G1OUmTRXDIg/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
@@ -62,15 +64,15 @@
 
                 <div class="card-block mt-0 pt-0">
                   <h5 class="text-center">Tips for Food Safety</h5>
-                  <p class="card-text text-justify p-2">Watch and learn simple ways to keep yourself and your family safe from food borne illness.<span class="hidden-md-down"></span></p>
+                  <p class="card-text text-justify p-2">Watch and learn simple ways to keep yourself and your family safe from food borne illness.<span class="d-sm-none d-lg-block"></span></p>
                 </div>
               </div>
 
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/wEIIkAspsqU?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox">
-                    <%= image_tag 'http://img.youtube.com/vi/wEIIkAspsqU/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/wEIIkAspsqU?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                    <%= image_tag 'http://img.youtube.com/vi/wEIIkAspsqU/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
@@ -78,15 +80,15 @@
 
                 <div class="card-block mt-0 pt-0">
                   <h5 class="text-center">Tips for Buying Dairy</h5>
-                  <p class="card-text text-justify p-2">Watch and learn simple ways to make smart choices in the dairy aisle.<span class="hidden-md-down"></span></p>
+                  <p class="card-text text-justify p-2">Watch and learn simple ways to make smart choices in the dairy aisle.<span class="d-sm-none d-lg-block"></span></p>
                 </div>
               </div>
 
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/dDFNktNoN8Y?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox">
-                    <%= image_tag 'http://img.youtube.com/vi/dDFNktNoN8Y/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/dDFNktNoN8Y?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                    <%= image_tag 'http://img.youtube.com/vi/dDFNktNoN8Y/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
@@ -94,7 +96,7 @@
 
                 <div class="card-block mt-0 pt-0">
                   <h5 class="text-center">Tips for Buying Bread</h5>
-                  <p class="card-text text-justify p-2">Watch and learn simple ways to make smart choices in the bread aisle.<span class="hidden-md-down"></span></p>
+                  <p class="card-text text-justify p-2">Watch and learn simple ways to make smart choices in the bread aisle.<span class="d-sm-none d-lg-block"></span></p>
                 </div>
               </div>
 
@@ -117,8 +119,8 @@
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/BNU6Nu0h4Is?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox ">
-                    <%= image_tag 'http://img.youtube.com/vi/BNU6Nu0h4Is/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/BNU6Nu0h4Is?controls=0" data-vbtype="video" data-autoplay="true" class="venobox ">
+                    <%= image_tag 'http://img.youtube.com/vi/BNU6Nu0h4Is/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
@@ -133,8 +135,8 @@
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/tcRsRNlvGwo?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox">
-                    <%= image_tag 'http://img.youtube.com/vi/tcRsRNlvGwo/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/tcRsRNlvGwo?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                    <%= image_tag 'http://img.youtube.com/vi/tcRsRNlvGwo/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
@@ -151,8 +153,8 @@
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/LtiLFu04fSE?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox">
-                    <%= image_tag 'http://img.youtube.com/vi/LtiLFu04fSE/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/LtiLFu04fSE?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                    <%= image_tag 'http://img.youtube.com/vi/LtiLFu04fSE/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>
@@ -167,8 +169,8 @@
               <div class="card">
 
                 <figure class="figure">
-                  <a href="https://www.youtube.com/embed/S7ajdg4Slx8?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox">
-                    <%= image_tag 'http://img.youtube.com/vi/S7ajdg4Slx8/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
+                  <a href="https://www.youtube.com/embed/S7ajdg4Slx8?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                    <%= image_tag 'http://img.youtube.com/vi/S7ajdg4Slx8/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
                     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
                     <figcaption class="figure-caption"></figcaption>
                   </a>

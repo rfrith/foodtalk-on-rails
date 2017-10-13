@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div id="header" class="row d-flex hero">
-    <div class="col hidden-sm-down">
+    <div class="col d-none d-md-block">
       <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
     </div>
 
     <div class="col hero-content">
 
-      <div class="hidden-md-up">
+      <div class="d-md-none">
         <%= image_tag 'logo-lg.png', class: 'img-fluid mt-3', alt: "FooTalk.org Logo", style: 'padding: 0; margin: 0;' %>
       </div>
 
@@ -18,14 +18,29 @@
       <div>
         <span class="hero-subtitle">Sign Up For Our Monthly Newsletter!</span>
 
-        <form class="form-inline ">
+
+
+
+
+        <% form_with(url: '/search') do |f| %>
+            <%= f.label(:q, "Search for:") %>
+            <%= f.text_field(:q, id: :q) %>
+            <%= f.submit("Search") %>
+        <% end %>
+
+
+
+        <%= form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Email Address...">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-primary">Go!</button>
+            <%= f.text_field(:email, class: "form-control", placeholder: "Email Address...") %>
+              <%= f.submit("Go!", class: "btn btn-primary") %>
             </span>
           </div>
-        </form>
+        <% end %>
+
+
+
       </div>
       <p class="scroll-down-for-more pt-5">
         <%= fa_icon "arrow-down" %> Scroll down for more content <%= fa_icon "arrow-down" %>

@@ -9,7 +9,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body class="content <%= controller_name %> <%= action_name %>">
-  <%= render :partial => 'layouts/content' %>
+<body style="background-color: black;" class="<%= controller_name %> <%= action_name %>">
+
+<% content_for :content do %>
+    <%= content_for?(:videos_content) ? yield(:videos_content) : yield %>
+<% end %>
+
+<%= render :partial => 'layouts/content' %>
 </body>
 </html>
