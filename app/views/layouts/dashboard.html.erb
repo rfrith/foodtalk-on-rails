@@ -1,0 +1,10 @@
+<% content_for :content do %>
+  <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
+
+
+
+  <%= content_for?(:dashboard_content) ? yield(:dashboard_content) : yield %>
+  <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
+<% end %>
+
+<%= render template: 'layouts/application' %>

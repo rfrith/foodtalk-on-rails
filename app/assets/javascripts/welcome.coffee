@@ -4,7 +4,6 @@
 
 # Hide Header on on scroll down
 
-
 $(document).on "turbolinks:load", ->
   return unless $(".welcome.index").length > 0
   $(document).ready ->

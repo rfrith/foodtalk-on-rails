@@ -53,4 +53,94 @@ textarea, input, input[type], .uneditable-input {
 }
 
 
+/////////////////////////////////////////////////
+// body styles  /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+
+/**
+ * Content
+ */
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  //background-image: url('https://images.unsplash.com/photo-1470549813517-2fa741d25c92');
+  background-image:asset-url('veggie-spread-bg');
+
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+  height:calc(100% - 0px);
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.content-section, .content-section2, .content-section3 {
+  min-height:100vh;
+  @include media-breakpoint-up(med) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.content-section {
+  background: rgba($content-section-bg-color, 0.5);
+}
+
+.content-section2 {
+  background: rgba($content-section2-bg-color, 0.9);
+}
+
+.content-section3 {
+  background: rgba($content-section3-bg-color, 0.8);
+}
+
+.content-section-item {
+  padding-top: 2.8rem;
+}
+
+.content-section-header {
+  //padding-top: 2.8rem;
+}
+
+.content-section-title {
+  font-family: $roboto-slab;
+  //color: rgba(155, 116, 49, 1);
+  color: $content-section-title;
+  font-size: 3.5rem;
+  font-weight: 400;
+}
+
+.content-section-copy-dark, .content-section-copy-light, .content-section-copy-dark-med, .content-section-copy-light-med {
+  font-family: $roboto;
+}
+
+.content-section-copy-dark, .content-section-copy-light {
+  font-weight: 500;
+  font-size: 1.85rem;
+}
+
+.content-section-copy-dark-med, .content-section-copy-light-med {
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+.content-section-copy-dark, .content-section-copy-dark-med {
+  color: #000000;
+}
+
+.content-section-copy-light, .content-section-copy-light-med {
+  color: $primary-font-inverse-color;
+}
+
+
 

@@ -1,13 +1,14 @@
+<% if user_signed_in? %>
 <div class="container-fluid">
 <%= render :partial => "learn-online" %>
 </div>
+<% end %>
 <div class="container-fluid">
 <%= render :partial => "recipes" %>
 </div>
 <div class="container-fluid">
   <%= render :partial => "videos" %>
 </div>
-
 
 <div class="container-fluid">
 <% render :partial => "fb-feed" %>

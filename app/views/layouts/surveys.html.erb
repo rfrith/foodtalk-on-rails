@@ -1,7 +1,7 @@
-<%= render :partial => 'layouts/top-nav' %>
+<%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => false } %>
 <% content_for :content do %>
   <%= content_for?(:surveys_content) ? yield(:surveys_content) : yield %>
 <% end %>
-<%= render :partial => 'layouts/footer' %>
+<%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => false } %>
 
 <%= render template: "layouts/application" %>

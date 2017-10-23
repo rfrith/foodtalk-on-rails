@@ -25,10 +25,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
-
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -36,7 +35,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
 
 
 # custom gems
@@ -47,7 +45,12 @@ gem 'jbuilder', '~> 2.5'
 #gem 'resque-scheduler'
 
 #omniauth for authentication
-#gem 'omniauth'
+gem 'omniauth'
+gem 'omniauth-auth0'
+
+#gem 'omniauth', '~> 1.3.1'
+#gem 'omniauth-auth0', '~> 1.4.1'
+
 
 #add omniauth for instagram support
 #'omniauth-instagram'
@@ -62,17 +65,20 @@ gem 'jbuilder', '~> 2.5'
 
 #gem 'administrate'
 
-gem 'bootstrap', '~> 4.0.0.beta'
-
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'popper_js', '~> 1.11.1'
+gem 'bootstrap', '~> 4.0.0.beta2'
+#gem 'jquery-rails'
+#gem 'jquery-ui-rails'
+#gem 'popper_js', '~> 1.12.3'
 gem 'font-awesome-rails'
-gem 'paperclip', '~> 5.0.0'
-gem 'gibbon', '~> 3.1.1'
+
+#gem 'paperclip', '~> 5.0.0'
+#gem 'gibbon'
+#gem 'best_in_place', '~> 3.0.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

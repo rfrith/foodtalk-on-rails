@@ -28,3 +28,5 @@ dump.rdb
 
 #IDE-specific files
 .idea/
+
+.env

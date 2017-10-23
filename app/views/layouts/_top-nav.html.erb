@@ -1,4 +1,4 @@
-<nav id="nav-top" class="navbar navbar-expand-md navbar-light fixed-top top-nav" role="navigation">
+<nav id="nav-top" class="navbar navbar-expand-md navbar-light top-nav <%= (local_assigns[:fixed_top].nil? || local_assigns[:fixed_top]) ? 'fixed-top' : 'navbar-static-top' %>" role="navigation">
 
   <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,10 +23,23 @@
       <li class="nav-item">
         <%= link_to("Food Glossary", { controller: "welcome", action: "index", anchor: "food-glossary" }, class: "nav-link") %>
       </li>
-  <%
-    user_signed_in = false;
 
-    if user_signed_in %>
+      <% if user_signed_in? %>
+          <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
+            <%= link_to(fa_icon("user") + " " +current_user.name, { controller: "dashboard", action: "show" }, class: "nav-link") %>
+          </li>
+          <li class="nav-item <%= 'active' if params[:controller] == 'logout' %>"><a href="/logout">Logout</a></li>
+      <% else %>
+          <li class="nav-item">
+            <% link_to "Login", "javascript:void(0)", { class: "nav-link", onclick:"signin()" } %>
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+      <% end %>
+
+      <%
+      user_signed_in = false;
+      if user_signed_in
+      %>
 
       <li class="nav-item">
         <a class="nav-link" href="#"><%=fa_icon("user")%> My Account</a>
@@ -35,8 +48,7 @@
         <a class="nav-link" href="#">Sign Up</a>
       </li>
 
-
-  <% else %>
+      <% elsif user_signed_in %>
 
       <li class="dropdown nav-item">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Sign in <b class="caret"></b></a>
@@ -73,7 +85,13 @@
         </ul>
       </li>
 
-  <% end %>
+      <% end %>
+
+
+      <%
+      site_search_enabled = false;
+      if site_search_enabled
+      %>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,6 +108,9 @@
           </form>
         </div>
       </li>
+
+      <% end %>
+
 
     </ul>
 

@@ -1,8 +1,8 @@
 <% content_for :content do %>
     <%= render :partial => 'layouts/header' %>
-    <%= render :partial => 'layouts/top-nav' %>
+    <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
     <div class="content"><%= content_for?(:welcome_content) ? yield(:welcome_content) : yield %></div>
-    <%= render :partial => 'layouts/footer' %>
+    <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
 <% end %>
 
 <%= render template: "layouts/application" %>

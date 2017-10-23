@@ -1,0 +1,10 @@
+$("#user-form-alert").removeClass("visible invisible alert-success alert-danger");
+$("#user-form-alert").html("");
+<% if @user.valid? %>
+$("#user-form-alert").addClass("alert-success");
+$("#user-form-alert").html("Profile successfully updated.");
+<% else %>
+$("#user-form-alert").addClass("alert-danger ");
+$("#user-form-alert").html("There was an error updating your profile.");
+<% end %>
+$("#user-form-alert").addClass("visible");

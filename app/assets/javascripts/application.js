@@ -12,17 +12,21 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require jquery3
-//= require jquery_ujs
-//= require jquery-ui
 //= require popper
 //= require bootstrap
 //= require venobox.js
+
+//= //require best_in_place
 
 //= require_tree .
 
 $(function() {
     $('.venobox').venobox();
+});
+
+$(document).ready(function() {
+    /* Activating Best In Place */
+    //jQuery(".best_in_place").best_in_place();
 });
 
 
