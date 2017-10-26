@@ -11,9 +11,11 @@
       <li class="nav-item">
         <%= link_to("Newsletter", { controller: "welcome", action: "index", anchor: "newsletter" }, class: "nav-link") %>
       </li>
+      <% if user_signed_in? & current_user.is_eligible? %>
       <li class="nav-item">
         <%= link_to("Learn Online", { controller: "welcome", action: "index", anchor: "lessons" }, class: "nav-link") %>
       </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to("Recipes", { controller: "welcome", action: "index", anchor: "recipes" }, class: "nav-link") %>
       </li>

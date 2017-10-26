@@ -71,6 +71,7 @@ gem 'bootstrap', '~> 4.0.0.beta2'
 #gem 'popper_js', '~> 1.12.3'
 gem 'font-awesome-rails'
 
+
 #gem 'paperclip', '~> 5.0.0'
 #gem 'gibbon'
 #gem 'best_in_place', '~> 3.0.1'

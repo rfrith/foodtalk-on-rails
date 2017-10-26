@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018163857) do
+ActiveRecord::Schema.define(version: 20171026171432) do
+
+  create_table "federal_assistances", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "federal_assistances_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "federal_assistance_id", null: false
+  end
+
+  create_table "racial_identities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "racial_identities_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "racial_identity_id", null: false
+  end
 
   create_table "spina_accounts", force: :cascade do |t|
     t.string "name"
@@ -181,6 +203,8 @@ ActiveRecord::Schema.define(version: 20171018163857) do
     t.string "email"
     t.integer "gender"
     t.integer "age"
+    t.integer "zip_code"
+    t.boolean "is_hispanic_or_latino"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

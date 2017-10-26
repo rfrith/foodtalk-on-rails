@@ -2,7 +2,6 @@
     <% if @user.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
           <ul>
             <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -11,28 +10,82 @@
         </div>
     <% end %>
 
-    <div class="form-group">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name, id: :user_first_name, class: "form-control" %>
+    <div class="form-group row">
+      <%= form.label :first_name, class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+        <%= form.text_field :first_name, id: :user_first_name, class: "form-control form-control-sm" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name, id: :user_last_name, class: "form-control" %>
+
+    <div class="form-group row">
+      <%= form.label :last_name, class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.text_field :last_name, id: :user_last_name, class: "form-control form-control-sm" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= form.label :email %>
-      <%= form.text_field :email, id: :user_email, class: "form-control" %>
+
+    <div class="form-group row">
+      <%= form.label :email, class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.text_field :email, id: :user_email, class: "form-control form-control-sm" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= form.label :gender %>
-      <%= form.select :gender, User.genders.map {|k, v| [k.humanize.capitalize, k]}, { include_blank: false}, {id: :user_gender, autofocus: 'true', class: 'form-control'}  %>
+
+    <div class="form-group row">
+      <%= form.label :gender, class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.select :gender, User.genders.map {|k, v| [k.humanize.capitalize, k]}, { include_blank: false}, {id: :user_gender, autofocus: 'true', class: 'form-control form-control-sm'}  %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= form.label :age %>
-      <%= form.text_field :age, id: :user_age, class: "form-control" %>
+
+    <div class="form-group row">
+      <%= form.label :age, class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.text_field :age, id: :user_age, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :zip_code, class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.text_field :zip_code, id: :user_zip_code, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "Do you consider yourself Hispanic/Latino?", class: "col-sm-4 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.select :is_hispanic_or_latino, [['No', false], ['Yes', true]], { include_blank: false}, {id: :user_is_hispanic_or_latino, class: "form-control form-control-sm"} %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "Which race do you identify with? Check all that apply.", class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.collection_check_boxes :racial_identity_ids, RacialIdentity.all, :id, :name do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label class: "col-sm-6 col-form-label col-form-label-sm" %>
+          </div>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "Have you or your children ever received:", class: "col-sm-2 col-form-label col-form-label-sm" %>
+      <div class="col-auto">
+      <%= form.collection_check_boxes :federal_assistance_ids, FederalAssistance.all, :id, :name do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label class: "col-sm-6 col-form-label col-form-label-sm" %>
+          </div>
+      <% end %>
+      </div>
     </div>
 
     <div class="actions">
       <%= form.submit "Update", class: "btn btn-primary" %>
+      <%= link_to 'Cancel', dashboard_show_path, class: "btn btn-primary" %>
     </div>
 <% end %>
+

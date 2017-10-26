@@ -2,9 +2,22 @@ $("#user-form-alert").removeClass("visible invisible alert-success alert-danger"
 $("#user-form-alert").html("");
 <% if @user.valid? %>
 $("#user-form-alert").addClass("alert-success");
-$("#user-form-alert").html("Profile successfully updated.");
+$("#user-form-alert").html("Changes Saved.");
 <% else %>
-$("#user-form-alert").addClass("alert-danger ");
-$("#user-form-alert").html("There was an error updating your profile.");
+$("#user-form-alert").addClass("alert-danger");
+  errMsg = ""
+  <%
+  if @user.errors.any?
+    errMsg = "<ul>"
+    @user.errors.each do |attr, msg|
+      if @user.errors[attr].first == msg
+        errMsg += "<li>#{attr.to_s.humanize} #{msg}</li>"
+      end
+    end
+    errMsg += "<ul>"
+  end
+  %>
+  <% puts "ERROR HERE" %>
+  $("#user-form-alert").html("Please fix the following errors:<%=errMsg.html_safe%>");
 <% end %>
 $("#user-form-alert").addClass("visible");

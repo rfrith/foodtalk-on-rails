@@ -3,25 +3,20 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # Hide Header on on scroll down
-
 $(document).on "turbolinks:load", ->
-  return unless $(".welcome.index").length > 0
-  $(document).ready ->
-# hide .navbar first
+  #hide footer on index page, otherwise show it
+  if ($(".welcome.index").length > 0)
     $('#footer-nav').hide()
-
-    # fade in .navbar
-    $ ->
-      $(window).scroll ->
-# set distance user needs to scroll before we fadeIn navbar
-        if $(this).scrollTop() > 5
-          $('#footer-nav').show()
-#else if $(this).scrollTop() > 1
-#$('#nav-top').show()
-        else
-          $('#footer-nav').hide()
-        #$('#nav-top').hide()
-        return
-      return
-    return
-  return
+  else
+    $('#footer-nav').show()
+  #show/hide footer based on scroll distance
+  $(window).scroll ->
+    if ($(".welcome.index").length > 0)
+    # set distance user needs to scroll before we fadeIn navbar
+      if $(this).scrollTop() > 5
+        $('#footer-nav').show()
+      else
+        $('#footer-nav').hide()
+    else
+      $('#footer-nav').show()
+return

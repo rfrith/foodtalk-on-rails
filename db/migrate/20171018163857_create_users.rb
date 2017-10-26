@@ -7,6 +7,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :email
       t.integer :gender
       t.integer :age
+      t.integer :zip_code
+      t.boolean :is_hispanic_or_latino
 
       t.timestamps
     end
