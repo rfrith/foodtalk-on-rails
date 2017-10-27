@@ -1,27 +1,41 @@
 <div class="container-fluid">
+
   <div id="user-info" class="user-info row d-flex justify-content-center">
+    <div class="d-flex flex-column">
 
 
-      <div class="d-flex flex-column">
-        <div>
-          <h1 class="text-uppercase">PROFILE FOR <%= current_user.name %></h1>
-          <caption>Please Verify Your Profile Information Is Current</caption>
+
+
+      <nav class="nav nav-tabs mt-2" id="dashboard-nav" role="tablist">
+        <a class="nav-item nav-link active" id="personal-info-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personal Information</a>
+        <a class="nav-item nav-link" id="subscriptions-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Newsletter Subscriptions</a>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="personal-info-tab">
+          <div class="pt-2">
+            <h2>Please ensure your personal information is correct and up-to-date.</h2>
+          </div>
+          <div>
+            <div id="user-form-alert" class="alert visible" role="alert"></div>
+            <%= render :partial => "users/form" %>
+          </div>
         </div>
-        <div>
-          <div id="user-form-alert" class="alert visible" role="alert"></div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="subscriptions-tab">
+          <div class="pt-2">
+            <h2>Please choose which of these lists you'd like to receive emails from.</h2>
+          </div>
+          <%= render :partial => "mailchimp/group_signup_form" %>
         </div>
-
-        <%= render :partial => "users/form" %>
-
       </div>
-
-
+    </div>
 
 
 
 
 
   </div>
+</div>
 </div>
 
 <% if (false) %>
@@ -46,12 +60,10 @@
         <th scope="row">Email</th>
         <td><%= @current_user.email %></td>
       </tr>
-
       <tr>
         <th scope="row">Gender</th>
         <td><%= @current_user.gender %></td>
       </tr>
-
       </tbody>
     </table>
 <% end %>

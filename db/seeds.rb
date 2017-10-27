@@ -9,19 +9,24 @@
 #TODO: Add default Admin User
 
 # Create Racial Identities
-RacialIdentity.create(name: 'American Indian or Alaska Native')
-RacialIdentity.create(name: 'Asian')
-RacialIdentity.create(name: 'Black or African American')
-RacialIdentity.create(name: 'Hispanic')
-RacialIdentity.create(name: 'Native Hawaiian or Other Pacific Islander')
-RacialIdentity.create(name: 'White')
-RacialIdentity.create(name: 'None of these')
+RacialIdentity.find_or_create_by(name: 'American Indian or Alaska Native')
+RacialIdentity.find_or_create_by(name: 'Asian')
+RacialIdentity.find_or_create_by(name: 'Black or African American')
+RacialIdentity.find_or_create_by(name: 'Hispanic')
+RacialIdentity.find_or_create_by(name: 'Native Hawaiian or Other Pacific Islander')
+RacialIdentity.find_or_create_by(name: 'White')
+RacialIdentity.find_or_create_by(name: 'Other')
 
 # Create FederalAssistances
-FederalAssistance.create(name: 'Food Stamps / SNAP')
-FederalAssistance.create(name: 'Free or Reduced Price Lunch')
-FederalAssistance.create(name: 'Head Start')
-FederalAssistance.create(name: 'TANF')
-FederalAssistance.create(name: 'Temporary Emergency Foods or Commodity Foods')
-FederalAssistance.create(name: 'WIC')
-FederalAssistance.create(name: 'None of the above')
+FederalAssistance.find_or_create_by(name: 'Food Stamps / SNAP')
+FederalAssistance.find_or_create_by(name: 'Free or Reduced Price Lunch')
+FederalAssistance.find_or_create_by(name: 'Head Start')
+FederalAssistance.find_or_create_by(name: 'TANF')
+FederalAssistance.find_or_create_by(name: 'Temporary Emergency Foods or Commodity Foods')
+FederalAssistance.find_or_create_by(name: 'WIC')
+
+#TODO: add default Blogs
+
+#TODO: add default Recipes
+
+#TODO: add default Videos
