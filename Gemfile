@@ -66,6 +66,7 @@ gem 'omniauth-auth0'
 #gem 'administrate'
 
 gem 'bootstrap', '~> 4.0.0.beta2'
+gem 'gibbon', '~> 3.1', '>= 3.1.1'
 #gem 'jquery-rails'
 #gem 'jquery-ui-rails'
 #gem 'popper_js', '~> 1.12.3'

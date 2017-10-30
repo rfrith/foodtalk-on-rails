@@ -3,9 +3,6 @@
   <div id="user-info" class="user-info row d-flex justify-content-center">
     <div class="d-flex flex-column">
 
-
-
-
       <nav class="nav nav-tabs mt-2" id="dashboard-nav" role="tablist">
         <a class="nav-item nav-link active" id="personal-info-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personal Information</a>
         <a class="nav-item nav-link" id="subscriptions-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Newsletter Subscriptions</a>
@@ -25,14 +22,10 @@
           <div class="pt-2">
             <h2>Please choose which of these lists you'd like to receive emails from.</h2>
           </div>
-          <%= render :partial => "mailchimp/group_signup_form" %>
+          <%= render :partial => "subscriptions/form" %>
         </div>
       </div>
     </div>
-
-
-
-
 
   </div>
 </div>

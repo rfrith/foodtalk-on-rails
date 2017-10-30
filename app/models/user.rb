@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  require 'digest/md5'
+
   has_and_belongs_to_many :racial_identities
   has_and_belongs_to_many :federal_assistances
 
@@ -46,6 +48,10 @@ class User < ApplicationRecord
 
     return user
 
+  end
+
+  def email_as_md5_hash
+    Digest::MD5.hexdigest(self.email.downcase)
   end
 
   private

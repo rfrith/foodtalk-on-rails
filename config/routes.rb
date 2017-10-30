@@ -42,6 +42,10 @@ Rails.application.routes.draw do
     post 'newsletter_sign_up' => :create
   end
 
+  controller :users do
+    post 'update_subscriptions' => :update_subscriptions
+  end
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

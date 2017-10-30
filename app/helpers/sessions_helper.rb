@@ -12,7 +12,6 @@ module SessionsHelper
     # Redirect to page that has the login here
     if user_signed_in?
       current_user
-      puts "@current_user == " + @current_user.pretty_print_inspect
     else
       redirect_to login_path
     end

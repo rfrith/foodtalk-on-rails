@@ -1,0 +1,12 @@
+<%= form_with url: update_subscriptions_url,format: :js do |f| %>
+    <div class="mt-2">
+      <div>
+        <% @subscriptions.each do |key, value| %>
+            <%= check_box_tag "user[subscription_ids][]", key, email_is_subscribed_to_list(@user.email_as_md5_hash, key), id: key %>
+            <%= label_tag key, value.camelcase %>
+            <br>
+        <% end %>
+        <input type="submit" value="Update" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+      </div>
+    </div>
+<% end %>
