@@ -15,12 +15,17 @@
       <p class="hero-copy">
         FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
       </p>
+
       <div>
-        <span class="hero-subtitle">Sign Up For Our Monthly Newsletter!</span>
+        <span class="hero-subtitle">
+          <%= link_to "Click here to login for access to extra content!", login_url, :style=>"color: black; text-decoration: underline;" %>
+        </span>
+      </div>
 
+      <br>
 
-
-
+      <div>
+        <span class="hero-subtitle">Or Sign Up To Receive Our FoodTalk Newsletters!</span>
 
         <% form_with(url: '/search') do |f| %>
             <%= f.label(:q, "Search for:") %>
@@ -33,7 +38,7 @@
         <%= form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
           <div class="input-group">
             <span class="input-group-btn">
-            <%= f.text_field(:email, class: "form-control", placeholder: "Email Address...") %>
+            <%= f.text_field(:email, class: "form-control", placeholder: "Enter Your Email Address...") %>
               <%= f.submit("Go!", class: "btn btn-primary") %>
             </span>
           </div>
@@ -43,7 +48,7 @@
 
       </div>
       <p class="scroll-down-for-more pt-5">
-        <%= fa_icon "arrow-down" %> Scroll down for more content <%= fa_icon "arrow-down" %>
+        <%= fa_icon "arrow-circle-o-down" %> You can also scroll down for more content <%= fa_icon "arrow-circle-o-down" %>
       </p>
     </div>
   </div>

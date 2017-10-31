@@ -8,9 +8,7 @@
 
   <div class="collapse navbar-collapse" id="navbarToggler1">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to("Newsletter", { controller: "welcome", action: "index", anchor: "newsletter" }, class: "nav-link") %>
-      </li>
+
       <% if user_signed_in? && current_user.is_eligible? %>
       <li class="nav-item">
         <%= link_to("Learn Online", { controller: "welcome", action: "index", anchor: "lessons" }, class: "nav-link") %>
@@ -26,69 +24,22 @@
         <%= link_to("Food Glossary", { controller: "welcome", action: "index", anchor: "food-glossary" }, class: "nav-link") %>
       </li>
 
+    </ul>
+    <ul class="navbar-nav">
+
       <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
-            <%= link_to(fa_icon("user") + " " +current_user.name, { controller: "dashboard", action: "show" }, class: "nav-link") %>
+            <%= link_to( fa_icon('user') + " My Profile" , { controller: "dashboard", action: "show" }, class: "nav-link") %>
           </li>
-          <li class="nav-item <%= 'active' if params[:controller] == 'logout' %>"><a href="/logout">Logout</a></li>
-      <% else %>
           <li class="nav-item">
+            <%= link_to("Logout", "/logout", class: "nav-link mr-auto") %>
+          </li>
+      <% else %>
+          <li class="nav-item ">
             <% link_to "Login", "javascript:void(0)", { class: "nav-link", onclick:"signin()" } %>
             <a class="nav-link" href="/login">Login</a>
           </li>
       <% end %>
-
-      <%
-      user_signed_in = false;
-      if user_signed_in
-      %>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#"><%=fa_icon("user")%> My Account</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sign Up</a>
-      </li>
-
-      <% elsif user_signed_in %>
-
-      <li class="dropdown nav-item">
-        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-          <li>
-            <div class="row">
-              <div class="col-md-12">
-                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                  <div class="form-group">
-                    <label class="sr-only" for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email address" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only" for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Remember me
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block">Sign in</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
-            <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
-          </li>
-        </ul>
-      </li>
-
-      <% end %>
-
 
       <%
       site_search_enabled = false;

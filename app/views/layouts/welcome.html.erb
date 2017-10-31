@@ -1,5 +1,7 @@
 <% content_for :content do %>
+    <% if !user_signed_in? %>
     <%= render :partial => 'layouts/header' %>
+    <% end %>
     <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
     <div class="content"><%= content_for?(:welcome_content) ? yield(:welcome_content) : yield %></div>
     <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
