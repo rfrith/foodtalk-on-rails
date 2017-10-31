@@ -39,43 +39,26 @@ gem 'jbuilder', '~> 2.5'
 
 # custom gems
 
+#TODO: decide on
 #gem 'devise'
-#gem 'simple_form'
+gem 'omniauth'
+gem 'omniauth-auth0'
+gem 'bootstrap', '~> 4.0.0.beta2'
+gem 'font-awesome-rails'
+gem 'gibbon', '~> 3.1', '>= 3.1.1'
+gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+
+#gem 'foreman'
 #gem 'resque'
 #gem 'resque-scheduler'
 
-#omniauth for authentication
-gem 'omniauth'
-gem 'omniauth-auth0'
 
-#gem 'omniauth', '~> 1.3.1'
-#gem 'omniauth-auth0', '~> 1.4.1'
-
-
-#add omniauth for instagram support
-#'omniauth-instagram'
-
-#add omniauth for twitter support
-#gem 'omniauth-twitter'
-
-#add font awesome support
-#gem 'font-awesome-sass'
-
-#gem 'foreman'
-
-#gem 'administrate'
-
-gem 'bootstrap', '~> 4.0.0.beta2'
-gem 'gibbon', '~> 3.1', '>= 3.1.1'
+#TODO: do we really need any of these
 #gem 'jquery-rails'
 #gem 'jquery-ui-rails'
 #gem 'popper_js', '~> 1.12.3'
-gem 'font-awesome-rails'
 
 
-#gem 'paperclip', '~> 5.0.0'
-#gem 'gibbon'
-#gem 'best_in_place', '~> 3.0.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

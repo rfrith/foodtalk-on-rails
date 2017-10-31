@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div id="user-info" class="user-info row d-flex justify-content-center">
+    <div class="d-flex flex-column">
+
+      <div class="d-flex justify-content-center mx-auto content-section-item">
+        <div class="media content-section-header">
+          <div class="media-body ml-3">
+            <span class="content-section-title">Food Glossary</span>
+            <p class="content-section-copy-dark">Enhance your food preparation knowledge with our glossary of terms!</p>
+          </div>
+        </div>
+      </div>
+
+      <% @glossary_terms.each do |term| %>
+          <div class="card mb-3">
+
+            <% if !term.image_remote_origin.blank? %>
+            <div class="nailthumb-container glossary-image">
+              <%= image_tag term.image_remote_origin, class: 'card-img-top', alt: term.name %>
+            </div>
+            <% end %>
+
+            <div class="card-body">
+              <h4 class="card-title"><%= term.name %></h4>
+              <p class="card-text"><%= term.description %></p>
+              <p class="card-text">
+                <small class="text-muted"><%= term.source %>
+                  <% if !term.image_remote_origin.blank? %>
+                      <%= link_to 'Original Image', term.image_remote_origin, target: '_blank' %>
+                  <% end %>
+                </small>
+              </p>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

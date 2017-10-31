@@ -18,10 +18,13 @@
         <%= link_to("Recipes", { controller: "welcome", action: "index", anchor: "recipes" }, class: "nav-link") %>
       </li>
       <li class="nav-item">
+        <%= link_to("Videos", { controller: "welcome", action: "index", anchor: "videos" }, class: "nav-link") %>
+      </li>
+      <li class="nav-item">
         <%= link_to("Blog", { controller: "welcome", action: "index", anchor: "blog" }, class: "nav-link") %>
       </li>
       <li class="nav-item">
-        <%= link_to("Food Glossary", { controller: "welcome", action: "index", anchor: "food-glossary" }, class: "nav-link") %>
+        <%= link_to("Food Glossary", { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
       </li>
 
     </ul>

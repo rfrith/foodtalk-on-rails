@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026171432) do
+ActiveRecord::Schema.define(version: 20171031150522) do
 
   create_table "federal_assistances", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20171026171432) do
   create_table "federal_assistances_users", id: false, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "federal_assistance_id", null: false
+  end
+
+  create_table "glossary_terms", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "source"
+    t.string "image_remote_origin"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "racial_identities", force: :cascade do |t|

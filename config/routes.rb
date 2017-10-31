@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get 'dashboard/show'
 
+  get '/food-glossary' => 'glossary_terms#index'
+
   get '/' => 'home#show'
 
   get '/dashboard' => 'dashboard#show'
