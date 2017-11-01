@@ -10,23 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
+//= require jquery
 //= require turbolinks
 //= require popper
 //= require bootstrap
-//= require venobox.js
-
-//= //require best_in_place
+//= require venobox
 
 //= require_tree .
 
-$(function() {
+$(document).on("turbolinks:load", function() {
     $('.venobox').venobox();
 });
-
-$(document).ready(function() {
-    /* Activating Best In Place */
-    //jQuery(".best_in_place").best_in_place();
-});
-
-

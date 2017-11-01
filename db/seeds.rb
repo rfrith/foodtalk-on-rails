@@ -55,8 +55,28 @@ GlossaryTerm.find_or_create_by!(name: 'steam', description: 'http://www.dictiona
 GlossaryTerm.find_or_create_by!(name: 'stir-fry', description: 'To fry small pieces of food quickly using only a small amount of oil and stirring with a tossing motion.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4022/4349516009_546efc8142_b.jpg')
 GlossaryTerm.find_or_create_by!(name: 'whip', description: 'To beat food such as cream, eggs or gelatin rapidly to incorporate air and increase volume.', source: 'https://www.macmillandictionary.com/dictionary/american/whip_2', image_remote_origin: 'https://cdn.pixabay.com/photo/2013/12/22/18/48/egg-white-snow-232655_960_720.jpg')
 
-#TODO: add default Blogs
+#Create Videos
+Video.find_or_create_by!(title: "Sweet Deceit", description: "Drinking sugar-sweetened beverages is associated with unwanted weight gain and obesity. Choosing better beverages, like water, is a smart choice for the whole family and for your wallet. Choose Health: Drink Water.", video_id: "nx5L4Tulv7Q", redirect_url: "/surveys/SV_2shasM4V0EexFQ1/")
+Video.find_or_create_by!(title: "Food eTalk Introduction Tutorial", description: "This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.", video_id: "WuUFJ2dqmq0", redirect_url: "")
+Video.find_or_create_by!(title: "Just in Time - Tips for Planning Menus", description: "Watch and learn simple ways to keep save money, time, and stress by planning meals.", video_id: "VVez_v8-LPs", redirect_url: "")
+Video.find_or_create_by!(title: "Just in Time - Tips for Food Safety", description: "Watch and learn simple ways to keep yourself and your family safe from food borne illness.", video_id: "G1OUmTRXDIg", redirect_url: "")
+Video.find_or_create_by!(title: "Just in Time - Tips for Buying Dairy", description: "Watch and learn simple ways to make smart choices in the dairy aisle.", video_id: "wEIIkAspsqU", redirect_url: "")
+Video.find_or_create_by!(title: "Just in Time - Tips for Buying Bread", description: "Watch and learn simple ways to make smart choices in the bread aisle.", video_id: "dDFNktNoN8Y", redirect_url: "")
+
+#TODO: FINISH ADDING VIDEOS
+#Video.find_or_create_by!(title: "TITLE", description: "DESC", url: "URL", redirect_url: "REDIRECT")
+
+
+
+
+
+
+
 
 #TODO: add default Recipes
 
-#TODO: add default Videos
+#TODO: add default Blogs
+
+
+
+

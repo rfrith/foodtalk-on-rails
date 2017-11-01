@@ -54,9 +54,9 @@ gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 
 
 #TODO: do we really need any of these
-#gem 'jquery-rails'
+gem 'jquery-rails'
 #gem 'jquery-ui-rails'
-#gem 'popper_js', '~> 1.12.3'
+gem 'popper_js', '~> 1.12.3'
 
 
 

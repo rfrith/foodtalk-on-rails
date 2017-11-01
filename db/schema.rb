@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031150522) do
+ActiveRecord::Schema.define(version: 20171101191032) do
 
   create_table "federal_assistances", force: :cascade do |t|
     t.string "name"
@@ -215,6 +215,15 @@ ActiveRecord::Schema.define(version: 20171031150522) do
     t.integer "age"
     t.integer "zip_code"
     t.boolean "is_hispanic_or_latino"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "video_id"
+    t.string "redirect_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

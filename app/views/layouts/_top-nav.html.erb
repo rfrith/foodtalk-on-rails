@@ -20,9 +20,12 @@
       <li class="nav-item">
         <%= link_to("Videos", { controller: "welcome", action: "index", anchor: "videos" }, class: "nav-link") %>
       </li>
+      <% if false %>
       <li class="nav-item">
         <%= link_to("Blog", { controller: "welcome", action: "index", anchor: "blog" }, class: "nav-link") %>
       </li>
+      <% end %>
+
       <li class="nav-item">
         <%= link_to("Food Glossary", { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
       </li>

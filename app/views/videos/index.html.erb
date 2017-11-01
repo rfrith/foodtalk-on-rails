@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div id="user-info" class="user-info row d-flex justify-content-center">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center mx-auto content-section-item">
+        <div class="media content-section-header">
+          <div class="media-body">
+            <span class="content-section-title">Videos</span>
+            <p class="content-section-copy-dark">Our FoodTalk videos are informative and will help you increase your knowledge of food & nutrition!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mx-auto content-section-item">
+        <div class="content-section-header">
+          <div class="card-columns lessons-card-columns">
+
+            <% @videos.each do |video| %>
+                <div class="video-card card">
+                  <figure class="figure">
+                    <a href="https://www.youtube.com/embed/<%=video.video_id%>?controls=0?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+                      <%= image_tag "http://img.youtube.com/vi/#{video.video_id}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
+                      <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
+                      <figcaption class="figure-caption"></figcaption>
+                    </a>
+                  </figure>
+                  <div class="card-block mt-0 pt-0">
+                    <h5 class="text-center"><%=video.title%></h5>
+                    <p class="card-text text-justify p-2"><%=video.description%><span class="d-sm-none d-lg-block"></span></p>
+                  </div>
+                </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

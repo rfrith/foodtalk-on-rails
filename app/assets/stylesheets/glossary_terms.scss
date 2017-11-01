@@ -1,5 +1,40 @@
 .glossary-image img {
   object-fit: cover;
-  width:10rem;
   height:10rem;
+  width:10rem;
+}
+
+.glossary-card {
+
+  @include media-breakpoint-only(xs) {
+    width: auto;
+  }
+  @include media-breakpoint-only(sm) {
+    width: auto;
+  }
+  @include media-breakpoint-only(md) {
+    width: auto;
+    margin-bottom: .5rem;
+  }
+  @include media-breakpoint-only(lg) {
+    width: 60rem;
+    margin-bottom: 1rem;
+  }
+  @include media-breakpoint-only(xl) {
+    width: 60rem;
+    margin-bottom: 1.5rem;
+  }
+
+}
+
+.glossary-card .card-footer {
+  background-color: white;
+}
+
+.glossary-card .card-title {
+  margin-left: 1rem;
+}
+
+.glossary-description {
+  width: 80%;
 }

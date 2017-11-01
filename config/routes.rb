@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
 
-
   resources :users
-
 
   get '/auth/auth0/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#failure'
-
 
   get 'welcome/index'
   get 'recipes/index'
@@ -16,10 +13,11 @@ Rails.application.routes.draw do
   get 'surveys/:id', to: 'surveys#show'
   get 'videos/:id', to: 'videos#show'
 
-
   get 'dashboard/show'
 
   get '/food-glossary' => 'glossary_terms#index'
+
+  get '/videos' => 'videos#index'
 
   get '/' => 'home#show'
 
@@ -27,10 +25,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/login', to: redirect('/auth/auth0')
-
-
-
-
 
 
   #post 'newsletter/:id' => 'newsletter_signup#sign_up', as: 'newsletter_sign_up'
