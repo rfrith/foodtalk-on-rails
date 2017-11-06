@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+#TODO: add .destroy_all to all Models
+
+
 #TODO: Add default Admin User
 
 # Create Racial Identities
@@ -27,56 +31,140 @@ FederalAssistance.find_or_create_by!(name: 'WIC')
 
 #Create GlossaryTerms
 #GlossaryTerm.find_or_create_by!(name: '', description: '', source: '', image_remote_origin: '')
-GlossaryTerm.find_or_create_by!(name: 'bake', description: 'To cook in an oven.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm3.staticflickr.com/2154/2166440316_09000b4f9c_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'beat', description: 'To apply fast, constant motions using a wire whisk or fork.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4138/4927692876_67a2d7d307_b.jpg')
+gt1  = GlossaryTerm.find_or_create_by!(name: 'bake', description: 'To cook in an oven.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm3.staticflickr.com/2154/2166440316_09000b4f9c_b.jpg')
+gt2  = GlossaryTerm.find_or_create_by!(name: 'beat', description: 'To apply fast, constant motions using a wire whisk or fork.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4138/4927692876_67a2d7d307_b.jpg')
 #TODO: GET THIS TERM IMG?
-GlossaryTerm.find_or_create_by!(name: 'blend', description: 'To mix two or more ingredients thoroughly.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: '')
-GlossaryTerm.find_or_create_by!(name: 'boil', description: 'To cook in water that is boiling; bubbles will continually rise and break on the surface.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm4.staticflickr.com/3093/2835194472_40e2ab981a_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'chop', description: 'To cut into pieces with a knife or food processor.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm3.staticflickr.com/2827/10772730493_44b7205086_z.jpg')
-GlossaryTerm.find_or_create_by!(name: 'core', description: 'To remove the core and seeds of a fruit.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4047/4319953731_fa8659d820_z.jpg')
-GlossaryTerm.find_or_create_by!(name: 'dice', description: 'To cut into small cubes.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://static.pexels.com/photos/128391/pexels-photo-128391.jpeg')
-GlossaryTerm.find_or_create_by!(name: 'drain', description: 'To pour off liquid.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4110/5194349527_0e67d83364_z.jpg')
-GlossaryTerm.find_or_create_by!(name: 'fork-tender', description: 'Describes the doneness of a food when a fork can easily pierce the food.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm1.staticflickr.com/35/73616638_bffa182718_z.jpg?zz&#x3D;1')
-GlossaryTerm.find_or_create_by!(name: 'knead', description: 'To mix dough by pushing and folding.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4098/4886771329_fef31b6582_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'mince', description: 'To chop or cut into very small pieces.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4113/4967858727_98897310bb_b.jpg')
-#TODO: REMOVE? OR GET THIS TERM DESCRIPTION, SOURCE, & IMG?
-#GlossaryTerm.find_or_create_by!(name: 'minced', description: '', source: '', image_remote_origin: '')
-GlossaryTerm.find_or_create_by!(name: 'mix', description: 'To combine two or more ingredients.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm3.staticflickr.com/2106/2072500915_0ce874dc84_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'peel', description: 'To remove the outer covering of foods such as oranges or bananas.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://cdn.pixabay.com/photo/2016/11/06/14/27/apples-1803049_960_720.jpg')
-GlossaryTerm.find_or_create_by!(name: 'rinse', description: 'To douse or drench in clean water as a final stage of washing.', source: 'http://www.dictionary.com/browse/rinse', image_remote_origin: 'https://cdn.pixabay.com/photo/2014/02/23/14/42/washing-vegetables-272963_960_720.jpg')
-GlossaryTerm.find_or_create_by!(name: 'saute', description: 'To brown or cook in a small amount of fat.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm9.staticflickr.com/8035/7933059720_cc8a529a29_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'sift', description: 'To put one or more dry ingredients through a sieve or sifter.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://images.pexels.com/photos/271082/pexels-photo-271082.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb')
-GlossaryTerm.find_or_create_by!(name: 'simmer', description: 'To cook food over low heat in a liquid just below the boiling point; bubbles will form slowly but never reach the surface.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm8.staticflickr.com/7217/7096587775_6a7de14ae4_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'slice', description: 'Cut (something, especially food) into slices.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://cdn.pixabay.com/photo/2017/01/10/19/05/watermelon-1969949_960_720.jpg')
-GlossaryTerm.find_or_create_by!(name: 'spatula', description: 'An implement with a broad, flat, blunt blade, used for mixing and spreading things, especially in cooking and painting.', source: 'https://en.oxforddictionaries.com/definition/spatula', image_remote_origin: 'https://cdn.pixabay.com/photo/2017/04/04/17/18/spatula-2202239_960_720.jpg')
-GlossaryTerm.find_or_create_by!(name: 'steam', description: 'http://www.dictionary.com', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm2.staticflickr.com/1056/3172153607_7b1601cd46_b.jpg')
+gt3  = GlossaryTerm.find_or_create_by!(name: 'blend', description: 'To mix two or more ingredients thoroughly.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: '')
+gt4  = GlossaryTerm.find_or_create_by!(name: 'boil', description: 'To cook in water that is boiling; bubbles will continually rise and break on the surface.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm4.staticflickr.com/3093/2835194472_40e2ab981a_b.jpg')
+gt5  = GlossaryTerm.find_or_create_by!(name: 'chop', description: 'To cut into pieces with a knife or food processor.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm3.staticflickr.com/2827/10772730493_44b7205086_z.jpg')
+gt6  = GlossaryTerm.find_or_create_by!(name: 'core', description: 'To remove the core and seeds of a fruit.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4047/4319953731_fa8659d820_z.jpg')
+gt7  = GlossaryTerm.find_or_create_by!(name: 'dice', description: 'To cut into small cubes.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://static.pexels.com/photos/128391/pexels-photo-128391.jpeg')
+gt8  = GlossaryTerm.find_or_create_by!(name: 'drain', description: 'To pour off liquid.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4110/5194349527_0e67d83364_z.jpg')
+gt9  = GlossaryTerm.find_or_create_by!(name: 'fork-tender', description: 'Describes the doneness of a food when a fork can easily pierce the food.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm1.staticflickr.com/35/73616638_bffa182718_z.jpg?zz&#x3D;1')
+gt10 = GlossaryTerm.find_or_create_by!(name: 'knead', description: 'To mix dough by pushing and folding.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4098/4886771329_fef31b6582_b.jpg')
+gt11 = GlossaryTerm.find_or_create_by!(name: 'mince', description: 'To chop or cut into very small pieces.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4113/4967858727_98897310bb_b.jpg')
+gt12 = GlossaryTerm.find_or_create_by!(name: 'mix', description: 'To combine two or more ingredients.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm3.staticflickr.com/2106/2072500915_0ce874dc84_b.jpg')
+gt13 = GlossaryTerm.find_or_create_by!(name: 'peel', description: 'To remove the outer covering of foods such as oranges or bananas.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://cdn.pixabay.com/photo/2016/11/06/14/27/apples-1803049_960_720.jpg')
+gt14 = GlossaryTerm.find_or_create_by!(name: 'rinse', description: 'To douse or drench in clean water as a final stage of washing.', source: 'http://www.dictionary.com/browse/rinse', image_remote_origin: 'https://cdn.pixabay.com/photo/2014/02/23/14/42/washing-vegetables-272963_960_720.jpg')
+gt15 = GlossaryTerm.find_or_create_by!(name: 'saute', description: 'To brown or cook in a small amount of fat.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm9.staticflickr.com/8035/7933059720_cc8a529a29_b.jpg')
+gt16 = GlossaryTerm.find_or_create_by!(name: 'sift', description: 'To put one or more dry ingredients through a sieve or sifter.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://images.pexels.com/photos/271082/pexels-photo-271082.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb')
+gt17 = GlossaryTerm.find_or_create_by!(name: 'simmer', description: 'To cook food over low heat in a liquid just below the boiling point; bubbles will form slowly but never reach the surface.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm8.staticflickr.com/7217/7096587775_6a7de14ae4_b.jpg')
+gt18 = GlossaryTerm.find_or_create_by!(name: 'slice', description: 'Cut (something, especially food) into slices.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://cdn.pixabay.com/photo/2017/01/10/19/05/watermelon-1969949_960_720.jpg')
+gt19 = GlossaryTerm.find_or_create_by!(name: 'spatula', description: 'An implement with a broad, flat, blunt blade, used for mixing and spreading things, especially in cooking and painting.', source: 'https://en.oxforddictionaries.com/definition/spatula', image_remote_origin: 'https://cdn.pixabay.com/photo/2017/04/04/17/18/spatula-2202239_960_720.jpg')
+gt20 = GlossaryTerm.find_or_create_by!(name: 'steam', description: 'http://www.dictionary.com', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm2.staticflickr.com/1056/3172153607_7b1601cd46_b.jpg')
 #TODO: GET THIS TERM IMG?
-#GlossaryTerm.find_or_create_by!(name: 'stir', description: 'To mix ingredients with a circular motion until well blended or of uniform consistency.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4022/4349516009_546efc8142_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'stir-fry', description: 'To fry small pieces of food quickly using only a small amount of oil and stirring with a tossing motion.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4022/4349516009_546efc8142_b.jpg')
-GlossaryTerm.find_or_create_by!(name: 'whip', description: 'To beat food such as cream, eggs or gelatin rapidly to incorporate air and increase volume.', source: 'https://www.macmillandictionary.com/dictionary/american/whip_2', image_remote_origin: 'https://cdn.pixabay.com/photo/2013/12/22/18/48/egg-white-snow-232655_960_720.jpg')
+gt21 = GlossaryTerm.find_or_create_by!(name: 'stir', description: 'To mix ingredients with a circular motion until well blended or of uniform consistency.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: '')
+gt22 = GlossaryTerm.find_or_create_by!(name: 'stir-fry', description: 'To fry small pieces of food quickly using only a small amount of oil and stirring with a tossing motion.', source: 'Food: A Handbook of Terminology, Purchasing & Preparation. 10th Ed. Alexandria, VA: American Association of Family and Consumer Sciences, 2001', image_remote_origin: 'https://farm5.staticflickr.com/4022/4349516009_546efc8142_b.jpg')
+gt23 = GlossaryTerm.find_or_create_by!(name: 'whip/whisk', description: 'To beat food such as cream, eggs or gelatin rapidly to incorporate air and increase volume.', source: 'https://www.macmillandictionary.com/dictionary/american/whip_2', image_remote_origin: 'https://cdn.pixabay.com/photo/2013/12/22/18/48/egg-white-snow-232655_960_720.jpg')
 
 #Create Videos
-Video.find_or_create_by!(title: "Sweet Deceit", description: "Drinking sugar-sweetened beverages is associated with unwanted weight gain and obesity. Choosing better beverages, like water, is a smart choice for the whole family and for your wallet. Choose Health: Drink Water.", video_id: "nx5L4Tulv7Q", redirect_url: "/surveys/SV_2shasM4V0EexFQ1/")
-Video.find_or_create_by!(title: "Food eTalk Introduction Tutorial", description: "This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.", video_id: "WuUFJ2dqmq0", redirect_url: "")
-Video.find_or_create_by!(title: "Just in Time - Tips for Planning Menus", description: "Watch and learn simple ways to keep save money, time, and stress by planning meals.", video_id: "VVez_v8-LPs", redirect_url: "")
-Video.find_or_create_by!(title: "Just in Time - Tips for Food Safety", description: "Watch and learn simple ways to keep yourself and your family safe from food borne illness.", video_id: "G1OUmTRXDIg", redirect_url: "")
-Video.find_or_create_by!(title: "Just in Time - Tips for Buying Dairy", description: "Watch and learn simple ways to make smart choices in the dairy aisle.", video_id: "wEIIkAspsqU", redirect_url: "")
-Video.find_or_create_by!(title: "Just in Time - Tips for Buying Bread", description: "Watch and learn simple ways to make smart choices in the bread aisle.", video_id: "dDFNktNoN8Y", redirect_url: "")
-
+Video.find_or_create_by!(title: 'Sweet Deceit', description: 'Drinking sugar-sweetened beverages is associated with unwanted weight gain and obesity. Choosing better beverages, like water, is a smart choice for the whole family and for your wallet. Choose Health: Drink Water.', video_id: 'nx5L4Tulv7Q', redirect_url: '/surveys/SV_2shasM4V0EexFQ1/')
+Video.find_or_create_by!(title: 'Food eTalk Introduction Tutorial', description: 'This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.', video_id: 'WuUFJ2dqmq0', redirect_url: '')
+Video.find_or_create_by!(title: 'Just in Time - Tips for Planning Menus', description: 'Watch and learn simple ways to keep save money, time, and stress by planning meals.', video_id: 'VVez_v8-LPs', redirect_url: '')
+Video.find_or_create_by!(title: 'Just in Time - Tips for Food Safety', description: 'Watch and learn simple ways to keep yourself and your family safe from food borne illness.', video_id: 'G1OUmTRXDIg', redirect_url: '')
+Video.find_or_create_by!(title: 'Just in Time - Tips for Buying Dairy', description: 'Watch and learn simple ways to make smart choices in the dairy aisle.', video_id: 'wEIIkAspsqU', redirect_url: '')
+Video.find_or_create_by!(title: 'Just in Time - Tips for Buying Bread', description: 'Watch and learn simple ways to make smart choices in the bread aisle.', video_id: 'dDFNktNoN8Y', redirect_url: '')
 #TODO: FINISH ADDING VIDEOS
 #Video.find_or_create_by!(title: "TITLE", description: "DESC", url: "URL", redirect_url: "REDIRECT")
 
 
+#Create Categories
+#Create RecipeCategories
+cat1 = RecipeCategory.find_or_create_by!(name: 'Breakfast')
+cat2 = RecipeCategory.find_or_create_by!(name: 'Gluten free')
+cat3 = RecipeCategory.find_or_create_by!(name: 'Healthy Desserts')
+cat4 = RecipeCategory.find_or_create_by!(name: 'Kid friendly')
+cat5 = RecipeCategory.find_or_create_by!(name: 'Less than $5 meals')
+cat6 = RecipeCategory.find_or_create_by!(name: 'Fast and Easy')
+cat7 = RecipeCategory.find_or_create_by!(name: '5 ingredients or less')
+
+#Create UnitOfMeasures
+=begin
+UnitOfMeasure.find_or_create_by!(name: 'bunch', name_abbrev: 'bn')
+UnitOfMeasure.find_or_create_by!(name: 'can', name_abbrev: 'cn')
+UnitOfMeasure.find_or_create_by!(name: 'carton', name_abbrev: 'ct')
+UnitOfMeasure.find_or_create_by!(name: 'centigram', name_abbrev: 'cg')
+UnitOfMeasure.find_or_create_by!(name: 'centiliter', name_abbrev: 'cl')
+UnitOfMeasure.find_or_create_by!(name: 'clove', name_abbrev: 'clv')
+UnitOfMeasure.find_or_create_by!(name: 'cup', name_abbrev: 'c')
+UnitOfMeasure.find_or_create_by!(name: 'dash', name_abbrev: 'ds')
+UnitOfMeasure.find_or_create_by!(name: 'deciliter', name_abbrev: 'dl')
+UnitOfMeasure.find_or_create_by!(name: 'drop', name_abbrev: 'dr')
+UnitOfMeasure.find_or_create_by!(name: 'fluid ounce', name_abbrev: 'fl oz')
+UnitOfMeasure.find_or_create_by!(name: 'gallon', name_abbrev: 'gal')
+UnitOfMeasure.find_or_create_by!(name: 'gram', name_abbrev: 'g')
+UnitOfMeasure.find_or_create_by!(name: 'kilogram', name_abbrev: 'kg')
+UnitOfMeasure.find_or_create_by!(name: 'liter', name_abbrev: 'l')
+UnitOfMeasure.find_or_create_by!(name: 'loaf', name_abbrev: 'lf')
+UnitOfMeasure.find_or_create_by!(name: 'milligram', name_abbrev: 'mg')
+UnitOfMeasure.find_or_create_by!(name: 'milliliter', name_abbrev: 'ml')
+UnitOfMeasure.find_or_create_by!(name: 'ounce', name_abbrev: 'oz')
+UnitOfMeasure.find_or_create_by!(name: 'package', name_abbrev: 'pk')
+UnitOfMeasure.find_or_create_by!(name: 'pinch', name_abbrev: 'pn')
+UnitOfMeasure.find_or_create_by!(name: 'pint', name_abbrev: 'pt')
+UnitOfMeasure.find_or_create_by!(name: 'pound', name_abbrev: 'lb')
+UnitOfMeasure.find_or_create_by!(name: 'quart', name_abbrev: 'q')
+UnitOfMeasure.find_or_create_by!(name: 'slice', name_abbrev: 'sli')
+UnitOfMeasure.find_or_create_by!(name: 'tablespoon', name_abbrev: 'T')
+UnitOfMeasure.find_or_create_by!(name: 'teaspoon', name_abbrev: 't')
+UnitOfMeasure.find_or_create_by!(name: 'unit', name_abbrev: '')
+UnitOfMeasure.find_or_create_by!(name: 'unknown', name_abbrev: '')
+=end
+
+
+##################################################################################################
+#Add Recipes
+##################################################################################################
+
+Ingredient.destroy_all
+Recipe.destroy_all
+
+##################################################################################################
+
+#TODO: add remaining Recipes
+recipe1 = Recipe.create!(title: 'Zucchini Walnut Bread',
+                         remote_image_url: 'https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/zucchini_walnut_bread.jpg',
+                         description: 'Farmers Market Recipe: Zucchini Walnut Bread',
+                         instructions: 'Wash hands and assemble clean equipment. Pre-heat oven to 350°F. Spray the two 9x5” loaf pans with non-stick vegetable spray. Whisk together the whole wheat and white flour, baking soda, salt, cinnamon, and baking powder. In a large bowl, beat the eggs. Gradually beat in sugar, then oil. Add flour mixture, alternately with zucchini, into the egg mixture. Stir in the raisins,
+walnuts, and vanilla. Pour batter into the two prepared loaf pans. Bake on lowest oven rack for 55 minutes. Let cool for 10 minutes in the pan, then turn out onto cooling racks to cool completely. Freezes well. Makes 2 loaves.',
+                         notes: '',
+                         source: '',
+                         source_url: 'https://foodtalk.org/content/food-talk-farmers-market-authors',
+                         yield: 24,
+                         yield_unit: 'Servings',
+                         prep_time: 0,
+                         cooking_time: 55)
+
+#TODO: add recipe ingredients
+Ingredient.destroy_all
+
+ingredients = []
+
+ingredients << Ingredient.new(quantity: 2, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:c], name: 'whole wheat flour', note: '')
+ingredients << Ingredient.new(quantity: 1.5, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:c], name: 'all purpose flour', note: '')
+ingredients << Ingredient.new(quantity: 1.5, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:t], name: 'baking soda', note: '')
+ingredients << Ingredient.new(quantity: 1.5, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:t], name: 'Salt', note: 'optional')
+ingredients << Ingredient.new(quantity: 1, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:t], name: 'ground cinnamon', note: '')
+
+recipe1.ingredients << ingredients
+
+
+#add recipe_categories
+recipe1.recipe_categories << cat7
+
+
+#add recipe glossary_terms
+recipe1.glossary_terms << [gt1, gt2, gt21, gt23]
+
+
+##################################################################################################
 
 
 
 
-
-
-#TODO: add default Recipes
-
+##################################################################################################
 #TODO: add default Blogs
-
+##################################################################################################
 
 
 

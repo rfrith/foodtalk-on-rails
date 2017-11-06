@@ -58,7 +58,9 @@ gem 'jquery-rails'
 #gem 'jquery-ui-rails'
 gem 'popper_js', '~> 1.12.3'
 
-
+#possibly for later:
+#gem 'unitwise'
+#gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

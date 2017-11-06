@@ -1,0 +1,105 @@
+<div id="recipe" class="content content-section3 row pl-4 pr-4">
+  <div class="row pt-4">
+
+    <div class="col">
+      <div class="recipe-card card text-center align-items-center float-right clearfix" style="max-width: 480px;">
+        <div class="card-header">
+          <h3 class="card-title align-items-center"><%= @recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h3>
+          <p class="card-text"><%= @recipe.description %></p>
+        </div>
+        <%= image_tag 'corn-salad.png', class: 'img-fluid', style: 'max-width: 480px;', alt: 'Summer Corn Salad Cap' %>
+        <div class="card-block">
+          <p class="card-text pt-4">
+            Categories:
+            <small class="text-muted">
+              <% @recipe.recipe_categories.each do |rc| %>
+                  <%= rc.name %> &nbsp;
+              <% end %>
+            </small>
+          </p>
+          <p class="card-text pb-4">
+            Glossary Terms:
+            <small class="text-muted">
+              <% @recipe.glossary_terms.each do |gt| %>
+                  <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
+                    <%= gt.name %>
+                  </a>
+              <% end %>
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col align-items-center ml-5 mr-5">
+      <span class="content-section-title">Summary</span>
+      <table class="table table-sm table-bordered content-section-copy-light-med">
+        <tbody>
+        <tr>
+          <th scope="row">Yield</th>
+          <td><%= @recipe.yield %> <%= @recipe.yield_unit %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Source</th>
+          <td>
+            <%= link_to "Click Here", @recipe.source_url %>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">Prep Time</th>
+          <td><%= @recipe.prep_time %> Minutes</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Cooking Time</th>
+          <td><%= @recipe.cooking_time %> Minutes</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Total Time</th>
+          <td><%= @recipe.total_time %> Minutes</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+      <span class="content-section-title">Instructions</span>
+      <p class="text-justify content-section-copy-light-med">
+        <%= @recipe.instructions %>
+      </p>
+
+
+    </div>
+  </div>
+
+  <div class="row pl-4 pr-4 pt-4" style="width: 100%;">
+
+    <div class="col">
+      <span class="content-section-title">Ingredients</span>
+      <table class="table table-sm content-section-copy-light-med">
+
+        <tbody class="justify-content-center">
+        <% @recipe.ingredients.each do |i| %>
+          <tr>
+            <th scope="row"><%= i.quantity.to_r %></th>
+            <th><%= i.unit_of_measure.pluralize(i.quantity) %></th>
+            <td><%= i.name %></td>
+            <td><%= i.note %></td>
+          </tr>
+
+        <% end %>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-center mt-3">
+        <p><a href="#"><%= fa_icon "arrow-left" %> PREV </a>| <a href="#">NEXT <%= fa_icon "arrow-right" %></a></p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

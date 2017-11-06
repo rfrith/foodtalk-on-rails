@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
 
+  #TODO: fix all get routes to use resource/resources w/ only: criteria
   resources :users
+  resources :recipes, only: [:index, :show]
 
   get '/auth/auth0/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#failure'

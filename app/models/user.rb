@@ -51,7 +51,9 @@ class User < ApplicationRecord
   end
 
   def email_as_md5_hash
-    Digest::MD5.hexdigest(self.email.downcase)
+    if(self.email)
+      Digest::MD5.hexdigest(self.email.downcase)
+    end
   end
 
   private

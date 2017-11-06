@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101191032) do
+ActiveRecord::Schema.define(version: 20171106174410) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_recipes", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "recipe_id", null: false
+  end
 
   create_table "federal_assistances", force: :cascade do |t|
     t.string "name"
@@ -33,6 +45,22 @@ ActiveRecord::Schema.define(version: 20171101191032) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "glossary_terms_recipes", id: false, force: :cascade do |t|
+    t.integer "glossary_term_id", null: false
+    t.integer "recipe_id", null: false
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.float "quantity"
+    t.string "unit_of_measure"
+    t.string "name"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
   create_table "racial_identities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,6 +70,22 @@ ActiveRecord::Schema.define(version: 20171101191032) do
   create_table "racial_identities_users", id: false, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "racial_identity_id", null: false
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "instructions"
+    t.text "notes"
+    t.string "source"
+    t.string "source_url"
+    t.string "image"
+    t.integer "yield"
+    t.string "yield_unit"
+    t.integer "prep_time"
+    t.integer "cooking_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spina_accounts", force: :cascade do |t|
@@ -204,6 +248,13 @@ ActiveRecord::Schema.define(version: 20171101191032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_logged_in"
+  end
+
+  create_table "unit_of_measures", force: :cascade do |t|
+    t.string "name"
+    t.string "name_abbrev"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

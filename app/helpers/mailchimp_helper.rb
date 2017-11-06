@@ -48,7 +48,7 @@ module MailchimpHelper
       elsif(result.body['status'] == "unsubscribed")
         return false
       else
-        logger.info("Unknown subscription status: " + result.body['status'])
+        logger.info("Unknown subscription status.")
         return false
       end
     rescue Gibbon::MailChimpError => e
