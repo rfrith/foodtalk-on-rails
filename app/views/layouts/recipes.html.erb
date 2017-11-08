@@ -1,5 +1,18 @@
+<%
+  #TODO: move into different layout files & choose which to use in controller
+  #
+  # https://stackoverflow.com/questions/3025784/rails-layouts-per-action/21203783#21203783
+  #
+  if action_name == :index.to_s
+%>
+  <% content_for :content do %>
+      <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
+      <%= content_for?(:recipes_content) ? yield(:recipes_content) : yield %>
+      <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
+  <% end %>
+  <%= render template: 'layouts/application' %>
+<% else %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
-
 <html lang="en">
 <head>
   <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
@@ -12,3 +25,4 @@
 <%= render :partial => 'layouts/content' %>
 </body>
 </html>
+<% end %>

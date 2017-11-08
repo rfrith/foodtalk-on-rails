@@ -1,0 +1,40 @@
+{
+  "recipe": {
+    "title":"Pueblo Chili",
+    "description":"Featuring flavors of the southwest, this yummy chili is a complete meal in a bowl! Try topping it your way with salsa verde, hot sauce, lime slices, cilantro, avocado or plain non-fat yogurt.",
+    "instructions":"Heat oil in large pan. Cook onions until soft. Add minced garlic, oregano (if using), chili powder and cumin. Cook 1 more minute. Stir in broth, water, salsa, tomatoes, green chilies and corn. Bring to a boil, then simmer for 10 minutes. Add beans and spinach. Simmer 5 minutes. Add pepper to taste. Enjoy!",
+    "notes":"<p><strong>Cook's Tips:</strong></p>\r\n\r\n<p>-Make a meaty version of this chili- add1-2 cups of any cooked chicken or ground turkey.</p>\r\n\r\n<p>-Want it a little soupier? Add more water, milk, a second can of diced tomatoes with juice or another can of low sodium broth.</p>\r\n\r\n<p>-Top it your way! Try: salsa verde, hot sauce, lime slices, cilantro, avocado, or plain non-fat yogurt.</p>\r\n",
+    "source":"",
+    "source_url":"",
+    "remote_image_url":"https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/pueblo_vegetable_chili.jpg",
+    "yield":8,
+    "yield_unit":"Servings",
+    "prep_time":10,
+    "cooking_time":20,
+    "ingredients_attributes": [
+      {"quantity":2,"unit_of_measure":"teaspoon","name":"vegetable oil","note":""},
+      {"quantity":1,"unit_of_measure":null,"name":"large onion","note":"chopped"},
+      {"quantity":1,"unit_of_measure":"teaspoon","name":"garlic","note":"minced"},
+      {"quantity":0.5,"unit_of_measure":"teaspoon","name":"dried oregano","note":"optional"},
+      {"quantity":0.5,"unit_of_measure":"teaspoon","name":"ground cumin","note":""},
+      {"quantity":1,"unit_of_measure":"can","name":"fat-free, reduced sodium broth, vegetable or chicken","note":"14.5 oz"},
+      {"quantity":0.5,"unit_of_measure":"cup","name":"water","note":null},
+      {"quantity":0.5,"unit_of_measure":"cup","name":"salsa, mild","note":null},
+      {"quantity":1,"unit_of_measure":"can","name":"diced tomatoes with juice, reduced sodium","note":"14.5 oz"},
+      {"quantity":1,"unit_of_measure":"can","name":"diced green chilies, mild","note":"4 oz"},
+      {"quantity":2,"unit_of_measure":"cup","name":"frozen corn","note":"thawed"},
+      {"quantity":1,"unit_of_measure":"can","name":"white beans, drained and rinsed","note":"15 oz"},
+      {"quantity":1,"unit_of_measure":"can","name":"fresh baby spinach","note":"5-6 oz"},
+      {"quantity":null,"unit_of_measure":null,"name":"black pepper","note":"to taste"}
+    ],
+    "categories_attributes": [
+      {"name": "Vegetarian Friendly"}
+    ],
+    "glossary_terms_attributes": [
+      {"name": "boil"},
+      {"name": "mince"},
+      {"name": "simmer"},
+      {"name": "stir"}
+    ]
+  }
+}

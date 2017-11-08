@@ -11,19 +11,17 @@
 // about supported directives.
 //
 //= require jquery
+//= require rails-ujs
 //= require turbolinks
 //= require popper
 //= require bootstrap
 //= require venobox
-
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
     $('.venobox').venobox();
     $('[data-toggle="popover"]').popover();
-
     $('.popover-dismiss').popover({
         trigger: 'focus'
     })
-
 });

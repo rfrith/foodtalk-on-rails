@@ -29,7 +29,8 @@ class Ingredient < ApplicationRecord
       :T  => :tablespoon,
       :t  => :teaspoon,
       :u  => :unit,
-      :unknown  =>:unknown
+      :unknown  => :unknown,
+      :w => :whole
   }
 
   belongs_to :recipe

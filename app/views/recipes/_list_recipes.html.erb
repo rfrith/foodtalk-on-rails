@@ -16,8 +16,8 @@
             <p class="card-text">
               Categories:
               <small class="text-muted">
-                <% recipe.recipe_categories.each do |rc| %>
-                    <%= rc.name %> &nbsp;
+                <% recipe.categories.each do |c| %>
+                    <%= link_to c.name, recipes_path(category_id: c.id) %>
                 <% end %>
               </small>
             </p>

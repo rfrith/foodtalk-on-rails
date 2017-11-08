@@ -1,29 +1,22 @@
 <div id="recipes" class="content-section row">
   <div class="col">
-
     <div class="d-flex justify-content-center mx-auto content-section-item">
       <div class="media content-section-header">
         <%= image_tag 'logo-med.png', class: 'd-flex d-sm-none d-md-block', alt: 'FoodTalk.org Logo' %>
         <div class="media-body ml-3">
-          <span class="content-section-title">Featured Recipes</span>
-          <p class="content-section-copy-light">Healthy, Delicious, Affordable!</p>
+          <span class="content-section-title">FoodTalk Recipes</span>
+          <p class="content-section-copy-light">Healthy. Delicious. Affordable.  Our FoodTalk recipes contain delicious, healthy, and inexpensive meal ideas for your whole family to enjoy!</p>
+          <p class="text-muted">
+            Browse By Category:
+            <%= link_to "All", recipes_path %>&nbsp;
+            <% Category.all.each do |c| %>
+              <%= link_to c.name, recipes_path(category_id: c.id) %>&nbsp;
+            <% end %>
+            </ul>
+          </p>
         </div>
       </div>
     </div>
-
-
-
-    <% #TODO: create partial from this code and use here and in welcome/_recipes.html.erb partial %>
-
     <%= render :partial => "recipes/list_recipes" %>
-
-    <div class="justify-content-center mx-auto content-section-item">
-      <div class="content-section-copy-light recipe-copy text-center">
-        Our FoodTalk recipes contain delicious, healthy, and inexpensive meal ideas for your whole family to enjoy!<br><a href="#">Click here</a> to browse our entire catalog.
-      </div>
-    </div>
-
-
   </div>
-
 </div>

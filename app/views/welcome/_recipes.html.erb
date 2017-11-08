@@ -11,23 +11,29 @@
       </div>
     </div>
 
+
+
     <div id="recipesCarousel" class="carousel slide" data-ride="carousel"  data-interval="false">
 
       <div class="carousel-inner" role="listbox">
-
-
-        <div class="carousel-item active">
-
-
-          <%
+        <%
           #TODO: FIX ME!  We want Featured Recipes Here
-          @recipes = Recipe.all
-          %>
-
-          <%= render :partial => "recipes/list_recipes" %>
-
-        </div>
-
+          #TODO: AJAXIFY ME!
+          #TODO: put me in a helper
+          per_page = 3
+          total_pgs = Recipe.page(1).per(per_page).total_pages
+          total_pgs_to_show = 2
+          i = 1
+          while i <= total_pgs_to_show && i <= total_pgs
+            @recipes = Recipe.page(i).per(per_page)
+        %>
+            <div class="carousel-item <%= 'active' if i == 1%>">
+              <%= render :partial => "recipes/list_recipes" %>
+            </div>
+        <%
+          i += 1
+          end
+        %>
 
         <div class="carousel-item">
           <div class="d-flex mx-auto justify-content-center content-section-item">
@@ -96,7 +102,7 @@
 
     <div class="justify-content-center mx-auto content-section-item">
       <div class="content-section-copy-light recipe-copy text-center">
-        Our FoodTalk recipes contain delicious, healthy, and inexpensive meal ideas for your whole family to enjoy!<br><a href="#">Click here</a> to browse our entire catalog.
+        Our FoodTalk recipes contain delicious, healthy, and inexpensive meal ideas for your whole family to enjoy!<br><%= link_to "Click Here", recipes_path %> to browse our entire catalog.
       </div>
     </div>
 

@@ -68,97 +68,55 @@ Video.find_or_create_by!(title: 'Just in Time - Tips for Buying Bread', descript
 #Video.find_or_create_by!(title: "TITLE", description: "DESC", url: "URL", redirect_url: "REDIRECT")
 
 
-#Create Categories
-#Create RecipeCategories
-cat1 = RecipeCategory.find_or_create_by!(name: 'Breakfast')
-cat2 = RecipeCategory.find_or_create_by!(name: 'Gluten free')
-cat3 = RecipeCategory.find_or_create_by!(name: 'Healthy Desserts')
-cat4 = RecipeCategory.find_or_create_by!(name: 'Kid friendly')
-cat5 = RecipeCategory.find_or_create_by!(name: 'Less than $5 meals')
-cat6 = RecipeCategory.find_or_create_by!(name: 'Fast and Easy')
-cat7 = RecipeCategory.find_or_create_by!(name: '5 ingredients or less')
-
-#Create UnitOfMeasures
-=begin
-UnitOfMeasure.find_or_create_by!(name: 'bunch', name_abbrev: 'bn')
-UnitOfMeasure.find_or_create_by!(name: 'can', name_abbrev: 'cn')
-UnitOfMeasure.find_or_create_by!(name: 'carton', name_abbrev: 'ct')
-UnitOfMeasure.find_or_create_by!(name: 'centigram', name_abbrev: 'cg')
-UnitOfMeasure.find_or_create_by!(name: 'centiliter', name_abbrev: 'cl')
-UnitOfMeasure.find_or_create_by!(name: 'clove', name_abbrev: 'clv')
-UnitOfMeasure.find_or_create_by!(name: 'cup', name_abbrev: 'c')
-UnitOfMeasure.find_or_create_by!(name: 'dash', name_abbrev: 'ds')
-UnitOfMeasure.find_or_create_by!(name: 'deciliter', name_abbrev: 'dl')
-UnitOfMeasure.find_or_create_by!(name: 'drop', name_abbrev: 'dr')
-UnitOfMeasure.find_or_create_by!(name: 'fluid ounce', name_abbrev: 'fl oz')
-UnitOfMeasure.find_or_create_by!(name: 'gallon', name_abbrev: 'gal')
-UnitOfMeasure.find_or_create_by!(name: 'gram', name_abbrev: 'g')
-UnitOfMeasure.find_or_create_by!(name: 'kilogram', name_abbrev: 'kg')
-UnitOfMeasure.find_or_create_by!(name: 'liter', name_abbrev: 'l')
-UnitOfMeasure.find_or_create_by!(name: 'loaf', name_abbrev: 'lf')
-UnitOfMeasure.find_or_create_by!(name: 'milligram', name_abbrev: 'mg')
-UnitOfMeasure.find_or_create_by!(name: 'milliliter', name_abbrev: 'ml')
-UnitOfMeasure.find_or_create_by!(name: 'ounce', name_abbrev: 'oz')
-UnitOfMeasure.find_or_create_by!(name: 'package', name_abbrev: 'pk')
-UnitOfMeasure.find_or_create_by!(name: 'pinch', name_abbrev: 'pn')
-UnitOfMeasure.find_or_create_by!(name: 'pint', name_abbrev: 'pt')
-UnitOfMeasure.find_or_create_by!(name: 'pound', name_abbrev: 'lb')
-UnitOfMeasure.find_or_create_by!(name: 'quart', name_abbrev: 'q')
-UnitOfMeasure.find_or_create_by!(name: 'slice', name_abbrev: 'sli')
-UnitOfMeasure.find_or_create_by!(name: 'tablespoon', name_abbrev: 'T')
-UnitOfMeasure.find_or_create_by!(name: 'teaspoon', name_abbrev: 't')
-UnitOfMeasure.find_or_create_by!(name: 'unit', name_abbrev: '')
-UnitOfMeasure.find_or_create_by!(name: 'unknown', name_abbrev: '')
-=end
-
-
 ##################################################################################################
 #Add Recipes
 ##################################################################################################
-
 Ingredient.destroy_all
 Recipe.destroy_all
+Category.destroy_all
+RecipeCategorization.destroy_all
 
-##################################################################################################
-
-#TODO: add remaining Recipes
-recipe1 = Recipe.create!(title: 'Zucchini Walnut Bread',
-                         remote_image_url: 'https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/zucchini_walnut_bread.jpg',
-                         description: 'Farmers Market Recipe: Zucchini Walnut Bread',
-                         instructions: 'Wash hands and assemble clean equipment. Pre-heat oven to 350°F. Spray the two 9x5” loaf pans with non-stick vegetable spray. Whisk together the whole wheat and white flour, baking soda, salt, cinnamon, and baking powder. In a large bowl, beat the eggs. Gradually beat in sugar, then oil. Add flour mixture, alternately with zucchini, into the egg mixture. Stir in the raisins,
-walnuts, and vanilla. Pour batter into the two prepared loaf pans. Bake on lowest oven rack for 55 minutes. Let cool for 10 minutes in the pan, then turn out onto cooling racks to cool completely. Freezes well. Makes 2 loaves.',
-                         notes: '',
-                         source: '',
-                         source_url: 'https://foodtalk.org/content/food-talk-farmers-market-authors',
-                         yield: 24,
-                         yield_unit: 'Servings',
-                         prep_time: 0,
-                         cooking_time: 55)
-
-#TODO: add recipe ingredients
-Ingredient.destroy_all
-
-ingredients = []
-
-ingredients << Ingredient.new(quantity: 2, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:c], name: 'whole wheat flour', note: '')
-ingredients << Ingredient.new(quantity: 1.5, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:c], name: 'all purpose flour', note: '')
-ingredients << Ingredient.new(quantity: 1.5, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:t], name: 'baking soda', note: '')
-ingredients << Ingredient.new(quantity: 1.5, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:t], name: 'Salt', note: 'optional')
-ingredients << Ingredient.new(quantity: 1, unit_of_measure: Ingredient::UNITS_OF_MEASURE[:t], name: 'ground cinnamon', note: '')
-
-recipe1.ingredients << ingredients
-
-
-#add recipe_categories
-recipe1.recipe_categories << cat7
-
-
-#add recipe glossary_terms
-recipe1.glossary_terms << [gt1, gt2, gt21, gt23]
+#TODO: delete all uploded images or change CarrierWave to overwrite image
 
 
 ##################################################################################################
 
+# import recipes
+Dir.glob(Rails.root + "app/assets/javascripts/json/recipes/*.json") do |file|
+  recipe = Recipe.new.from_json(File.read(file), true)
+  recipe.save!
+end
+
+#TODO: add remaining Recipes as JSON files
+
+##################################################################################################
+
+=begin
+
+#Create Categories & Ingredients - these will be created individually in recipe.json files as
+
+"ingredients_attributes": [
+  {"quantity":2,"unit_of_measure":"teaspoon","name":"vegetable oil","note":""},
+  {"quantity":1,"unit_of_measure":"whole","name":"large onion","note":"chopped"},
+  {"quantity":1,"unit_of_measure":"teaspoon","name":"garlic","note":"minced"}
+]
+
+etc...
+
+"categories_attributes": [
+  {"name": "Vegetarian Friendly"},
+  {"name": "Breakfast"},
+  {"name": "Gluten Free"},
+  {"name": "Healthy Desserts"},
+  {"name": "Kid Friendly"},
+  {"name": "Less Than $5 meals"},
+  {"name": "Fast and Easy"},
+  {"name": "5 ingredients or less"}
+],
+
+etc...
+
+=end
 
 
 

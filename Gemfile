@@ -47,6 +47,7 @@ gem 'bootstrap', '~> 4.0.0.beta2'
 gem 'font-awesome-rails'
 gem 'gibbon', '~> 3.1', '>= 3.1.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem 'fractional', '~> 1.2'
 
 #gem 'foreman'
 #gem 'resque'
@@ -60,7 +61,7 @@ gem 'popper_js', '~> 1.12.3'
 
 #possibly for later:
 #gem 'unitwise'
-#gem 'kaminari'
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
