@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def is_eligible?
-    return is_zip_code_eligible? || has_received_federal_assistance?
+    return (is_zip_code_eligible? || has_received_federal_assistance?) #TODO: should age factor into eligibility status?
   end
 
   def self.find_or_create_from_auth_hash(auth_hash)

@@ -1,34 +1,21 @@
 {
   "recipe": {
     "title": "4-Fruit Smoothie (Non-Dairy)",
-    "description":"Try this smoothie for a breakfast on the run or as a tasty dessert.",
-    "instructions":"1. In a blender container, combine all ingredients.<br>2. Cover and make sure cover is on tight. Blend until pureed. Serve.",
-    "notes":"MyPlate Exchanges: 1 cup fruit",
-    "source":"UGA Extension EFNEP",
-    "source_url":null,
-    "remote_image_url":"https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/4-fruit_smoothie_non-dairy.jpg",
-    "yield":4,
-    "yield_unit":"Servings, 1 Cup Each",
-    "prep_time":5,
-    "cooking_time":0,
+    "source": "UGA Extension EFNEP",
+    "yield": "4",
+    "yield_unit": "Servings, 1 cup each",
+    "description": "Try this smoothie for a breakfast on the run or as a tasty dessert.\r\n",
+    "instructions": "<ol>\r\n\t<li>In a blender container, combine all ingredients.</li>\r\n\t<li>Cover and make sure cover is on tight. Blend until pureed. Serve.</li>\r\n</ol>\r\n",
+    "notes": "<h2><strong>MyPlate Exchanges:</strong></h2>\r\n\r\n<p>1 cup fruit</p>\r\n",
+    "prep_time": "0",
+    "cooking_time": "0",
+    "remote_image_url": "https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/4-fruit_smoothie_non-dairy.jpg",
     "ingredients_attributes": [
-      {"quantity":1,"unit_of_measure":"cup","name":"calcium-fortified orange juice","note":null},
-      {"quantity":0.5,"unit_of_measure":"cup","name":"canned peaches","note":"in juice"},
-      {"quantity":0.5,"unit_of_measure":"cup","name":"frozen strawberries","note":"no sugar added"},
-      {"quantity":2,"unit_of_measure":null,"name":"bananas","note":null},
-      {"quantity":4,"unit_of_measure":null,"name":"ice cubes","note":null}
-    ],
-    "categories_attributes": [
-      {"name": "Breakfast"},
-      {"name": "Gluten Free"},
-      {"name": "Kid Friendly"},
-      {"name": "Less Than $5 meals"},
-      {"name": "Fast and Easy"},
-      {"name": "5 Ingredients or Less"}
-    ],
-    "glossary_terms_attributes": [
-      {"name": "blend"},
-      {"name": "puree"}
+      {"quantity": "1","unit_of_measure": "cup","name": "calcium-fortified orange juice","note": null},
+      {"quantity": "0.5","unit_of_measure": "cup","name": "canned peaches","note": "in juice"},
+      {"quantity": "0.5","unit_of_measure": "cup","name": "frozen strawberries","note": "no sugar added"},
+      {"quantity": "2","unit_of_measure": "unit","name": "bananas","note": null},
+      {"quantity": "4","unit_of_measure": "unit","name": "ice cubes","note": null}
     ]
   }
 }

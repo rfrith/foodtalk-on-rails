@@ -2,15 +2,15 @@ namespace :utils do
   desc "Converts a drupal node export .txt file into a valid JSON file"
   task convert_drupal_recipe_node_to_json: :environment do
 
+    include ActionView::Helpers
+
     input_dir = "/Users/rfrith/Downloads/recipe-node-exports/*"
     output_dir = Rails.root + "app/assets/javascripts/json/recipes/"
-
-    puts "processing: " + input_dir
 
     Dir.glob(input_dir) do |file|
 
       new_file = ""
-      file_header = '{' + "\n" + '"  recipe": {' + "\n"
+      file_header = '{' + "\n" + '  "recipe": {' + "\n"
       file_top_level_attributes = ""
       title = nil
       description = nil
@@ -26,109 +26,77 @@ namespace :utils do
       ingredients_header = "    \"ingredients_attributes\": ["
       ingredients_footer = "    ]"
       file_footer = "  }\n}"
-
       file = File.readlines(file)
-
-
       ingredients = []
-
       ingredient, name, note, quantity, unit_of_measure = nil
       name_set, note_set, quantity_set, unit_of_measure_set = false
-
 
       file.each do |line|
         #top level attributes
 
         if title.nil? && /'title'/.match(line)
-          title = line.gsub("'", "\"")
-          title.gsub!(/\s=>\s/, ": ")
-          file_top_level_attributes << "    " + title.lstrip.rstrip + "\n"
-        end
-
-        if description.nil? && /'recipe_description'/.match(line)
-          description = line.gsub("'", "\"")
-          description.gsub!(/\s=>\s/, ": ")
-          description.gsub!("recipe_description", "description")
-          file_top_level_attributes << "    " + description.lstrip.rstrip + "\n"
-        end
-
-        if instructions.nil? && /'recipe_instructions'/.match(line)
-          instructions = line.gsub("'", "\"")
-          instructions.gsub!(/\s=>\s/, ": ")
-          instructions.gsub!("recipe_instructions", "instructions")
-          file_top_level_attributes << "    " + instructions.lstrip.rstrip + "\n"
-        end
-
-        if notes.nil? && /'recipe_notes'/.match(line)
-          notes = line.gsub("'", "\"")
-          notes.gsub!(/\s=>\s/, ": ")
-          notes.gsub!("recipe_notes", "notes")
-          file_top_level_attributes << "    " + notes.lstrip.rstrip + "\n"
+          title = strip_chars("'title'", "title", line)
+          file_top_level_attributes << title + "\n"
         end
 
         if source.nil? && /'recipe_source'/.match(line)
-          #puts "------------------\n found source ------------------- \n"
-          source = line.gsub("'", "\"")
-          source.gsub!(/\s=>\s/, ": ")
-          source.gsub!("recipe_source", "source")
-          file_top_level_attributes << "    " + source.lstrip.rstrip + "\n"
+          source = strip_chars("'recipe_source'", "source", line)
+          file_top_level_attributes << source + "\n"
         end
 
         if source_url.nil? && /'url'/.match(line)
-          source_url = line.gsub("'", "\"")
-          source_url.gsub!(/\s=>\s/, ": ")
-          source_url.gsub!("url", "source_url")
-          file_top_level_attributes << "    " + source_url.lstrip.rstrip + "\n"
-        end
-
-        if remote_image_url.nil? && /'uri'/.match(line)
-          remote_image_url = line.gsub("'", "\"")
-          remote_image_url.gsub!(/\s=>\s/, ": ")
-          remote_image_url.gsub!(/\s*uri/, "remote_image_url")
-          remote_image_url.gsub!("public://recipe-photos/", "https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/")
-          file_top_level_attributes << "    " + remote_image_url.lstrip.rstrip + "\n"
+          source_url = strip_chars("'url'", "source_url", line)
+          file_top_level_attributes << source_url + "\n"
         end
 
         if str_yield.nil? && /'recipe_yield'/.match(line)
-          str_yield = line.gsub("'", "\"")
-          str_yield.gsub!(/\s=>\s/, ": ")
-          str_yield.gsub!("recipe_yield", "yield")
-          file_top_level_attributes << "    " + str_yield.lstrip.rstrip + "\n"
+          str_yield = strip_chars("'recipe_yield'", "yield", line)
+          file_top_level_attributes << str_yield + "\n"
         end
 
         if yield_unit.nil? && /'recipe_yield_unit'/.match(line)
-          yield_unit = line.gsub("'", "\"")
-          yield_unit.gsub!(/\s=>\s/, ": ")
-          yield_unit.gsub!("recipe_yield_unit", "yield_unit")
-          file_top_level_attributes << "    " + yield_unit.lstrip.rstrip + "\n"
+          yield_unit = strip_chars("'recipe_yield_unit'", "yield_unit", line)
+          file_top_level_attributes << yield_unit + "\n"
+        end
+
+        if description.nil? && /'recipe_description'/.match(line)
+          description = strip_chars("'recipe_description'", "description", line)
+          file_top_level_attributes << strip_tags(description) + "\n"
+        end
+
+        if instructions.nil? && /'recipe_instructions'/.match(line)
+          instructions = strip_chars("'recipe_instructions'", "instructions", line)
+          file_top_level_attributes << instructions + "\n"
+        end
+
+        if notes.nil? && /'recipe_notes'/.match(line)
+          notes = strip_chars("'recipe_notes'", "notes", line)
+          file_top_level_attributes << notes + "\n"
         end
 
         if preptime.nil? && /'recipe_preptime'/.match(line)
-          preptime = line.gsub("'", "\"")
-          preptime.gsub!(/\s=>\s/, ": ")
-          preptime.gsub!("recipe_preptime", "preptime")
-          file_top_level_attributes << "    " + preptime.lstrip.rstrip + "\n"
+          preptime = strip_chars("'recipe_preptime'", "prep_time", line)
+          file_top_level_attributes << preptime + "\n"
         end
 
         if cooktime.nil? && /'recipe_cooktime'/.match(line)
-          cooktime = line.gsub("'", "\"")
-          cooktime.gsub!(/\s=>\s/, ": ")
-          cooktime.gsub!("recipe_cooktime", "cooktime")
-          file_top_level_attributes << "    " + cooktime.lstrip.rstrip + "\n"
+          cooktime = strip_chars("'recipe_cooktime'", "cooking_time", line)
+          file_top_level_attributes << cooktime + "\n"
+        end
+
+        if remote_image_url.nil? && /'uri'/.match(line)
+          remote_image_url = strip_chars("'uri'", "remote_image_url", line)
+          remote_image_url.gsub!("public://recipe-photos/", "https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/")
+          file_top_level_attributes << remote_image_url + "\n"
         end
 
         #ingredients attributes
-
-
-
-        # {"quantity":1,"unit_of_measure":"cup","name":"calcium-fortified orange juice","note":null},
 
         if /            'name'/.match(line)
           name = line.gsub("'", "\"")
           name.gsub!(/\"\"/, "null")
           name.gsub!(/\s=>\s/, ": ")
           name.lstrip!.rstrip!
-          name_set = true
         end
 
         if /            'note'/.match(line)
@@ -136,7 +104,6 @@ namespace :utils do
           note.gsub!(/\"\"/, "null")
           note.gsub!(/\s=>\s/, ": ")
           note.lstrip!.rstrip!
-          note_set = true
         end
 
         if /            'quantity'/.match(line)
@@ -144,7 +111,6 @@ namespace :utils do
           quantity.gsub!(/\"\"/, "null")
           quantity.gsub!(/\s=>\s/, ": ")
           quantity.lstrip!.rstrip!
-          quantity_set = true
         end
 
         if /            'unit_key'/.match(line)
@@ -153,7 +119,6 @@ namespace :utils do
           unit_of_measure.gsub!(/\s=>\s/, ": ")
           unit_of_measure.gsub!("unit_key", "unit_of_measure")
           unit_of_measure.lstrip!.rstrip!
-          unit_of_measure_set = true
         end
 
         if(name && note && quantity && unit_of_measure)
@@ -168,8 +133,6 @@ namespace :utils do
 
         #TODO: add Food Talk Tips section
 
-
-        #glossary terms attributes
       end
 
       #generate new file contents
@@ -185,9 +148,45 @@ namespace :utils do
       new_file <<  "\n"
       new_file << file_footer
 
-      #TODO: create output file(s)
-      puts "new_file: \n" + new_file
+      file_name = title.gsub /\"title\":/, ''
+
+      file_name.lstrip!.rstrip!
+      file_name.gsub! "\"", ''
+      file_name.gsub! "(", ''
+      file_name.gsub! ")", ''
+      file_name.gsub! ",", ''
+      file_name.gsub! /\s/, '-'
+      file_name.gsub! "-", "_"
+      file_name.gsub!(/[\x00\/\\:\*\?\"<>\|]/, '_')
+      file_name << ".json"
+      file_name = file_name.tableize.singularize
+
+      #puts "title: #{title}"
+      #puts "file_name: #{file_name}"
+      #puts new_file
+
+      open(output_dir+file_name, 'w') do |f|
+        f.puts new_file
+      end
+
     end
+  end
+
+  def strip_chars(key, replacement, line)
+    #puts "key: #{key}"
+    #puts "replacement: #{replacement}"
+    #puts "line: #{line}"
+
+    value = line.gsub(key, "\"#{replacement.gsub("'", "")}\"")
+    value.gsub!(" => '", ": \"")
+    value.gsub!(" => \"", ": \"")
+    value.gsub!("',", "\",")
+    value = "    " + value.lstrip!.rstrip!
+
+    #puts "value: #{value}"
+
+    return value
+
   end
 
 end
