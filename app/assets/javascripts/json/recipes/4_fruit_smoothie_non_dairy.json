@@ -5,7 +5,7 @@
     "yield": "4",
     "yield_unit": "Servings, 1 cup each",
     "description": "Try this smoothie for a breakfast on the run or as a tasty dessert.\r\n",
-    "instructions": "<ol>\r\n\t<li>In a blender container, combine all ingredients.</li>\r\n\t<li>Cover and make sure cover is on tight. Blend until pureed. Serve.</li>\r\n</ol>\r\n",
+    "instructions": "\r\n\tIn a blender container, combine all ingredients.\r\n\tCover and make sure cover is on tight. Blend until pureed. Serve.\r\n\r\n",
     "notes": "<h2><strong>MyPlate Exchanges:</strong></h2>\r\n\r\n<p>1 cup fruit</p>\r\n",
     "prep_time": "0",
     "cooking_time": "0",
@@ -16,6 +16,17 @@
       {"quantity": "0.5","unit_of_measure": "cup","name": "frozen strawberries","note": "no sugar added"},
       {"quantity": "2","unit_of_measure": "unit","name": "bananas","note": null},
       {"quantity": "4","unit_of_measure": "unit","name": "ice cubes","note": null}
+    ],
+    "categories_attributes": [
+      {"name": "Breakfast"},
+      {"name": "Gluten free"},
+      {"name": "Kid Friendly"},
+      {"name": "Less Than $5 meals"},
+      {"name": "Fast and Easy"},
+      {"name": "5 Ingredients or Less"}
+    ],
+    "glossary_terms_attributes": [
+      {"name": "blend"}
     ]
   }
 }

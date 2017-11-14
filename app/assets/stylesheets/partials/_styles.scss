@@ -8,7 +8,7 @@ a, a:link a:visited, a:hover, a:active {
   background-color: $primary-fill-color;
   color: $primary-font-inverse-color;
   border: none;
-  text-decoration:  none;
+  text-decoration: none;
 }
 
 
@@ -18,12 +18,12 @@ a, a:link a:visited, a:hover, a:active {
   box-shadow: none !important;
   color: $primary-font-inverse-color;
   //border: none;
-  text-decoration:  none;
+  text-decoration: none;
 }
 
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
-  background-color: $primary-fill-color;
+  background-color: $primary-fill-color !important;
 }
 
 

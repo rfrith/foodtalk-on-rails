@@ -1,26 +1,28 @@
-<div id="recipes" class="content-section row">
+<div id="recipes" class="row">
   <div class="col">
     <div class="d-flex justify-content-center mx-auto content-section-item">
-      <div class="media content-section-header">
-        <%= image_tag 'logo-med.png', class: 'd-flex d-sm-none d-md-block', alt: 'FoodTalk.org Logo' %>
-        <div class="media-body ml-3">
+      <div class="media">
+        <%= image_tag 'recipe-graphic.png', class: 'd-flex d-sm-none d-md-block mt-4 ml-5', alt: 'Recipe Card Icon', style: 'width: 10rem; height: auto;' %>
+        <div class="media-body ml-4">
           <span class="content-section-title">FoodTalk Recipes</span>
-          <p class="content-section-copy-light">Healthy. Delicious. Affordable.  Our FoodTalk recipes contain delicious, healthy, and inexpensive meal ideas for your whole family to enjoy!</p>
-          <p class="text-muted">
-            Browse By Category:
-            <%= link_to "All", recipes_path %>&nbsp;
-            <% Category.all.each do |c| %>
-              <%= link_to c.name, recipes_path(category_id: c.id) %>&nbsp;
-            <% end %>
-            </ul>
-          </p>
+          <p class="content-section-copy-light mr-5">Healthy. Delicious. Affordable.  Our FoodTalk recipes contain healthy & inexpensive meal ideas!</p>
         </div>
       </div>
     </div>
-    <div class="d-flex mx-auto justify-content-center content-section-item">
+
+    <div class="text-center">
+      <%= link_to "All Recipes", recipes_path, class: 'btn btn-sm btn-primary mb-1', role: 'button' %>
+      <% Category.all.each do |c| %>
+          <%= link_to c.name, recipes_path(category_id: c.id), class: 'btn btn-sm btn-primary mb-1 ml-1', role: 'button' %>
+      <% end %>
+    </div>
+
+    <div class="d-flex mx-auto justify-content-center content-section-item p-5">
+
       <div class="card-columns">
-      <%= render :partial => "recipes/list_recipes" %>
+        <%= render :partial => "recipes/list_recipes" %>
       </div>
+
     </div>
   </div>
 </div>

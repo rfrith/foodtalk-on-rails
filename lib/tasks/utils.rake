@@ -5,7 +5,8 @@ namespace :utils do
     include ActionView::Helpers
 
     input_dir = "/Users/rfrith/Downloads/recipe-node-exports/*"
-    output_dir = Rails.root + "app/assets/javascripts/json/recipes/"
+    output_dir = "/Users/rfrith/Downloads/recipe-node-exports/converted"
+    #output_dir = Rails.root + "app/assets/javascripts/json/recipes/"
 
     Dir.glob(input_dir) do |file|
 
@@ -66,7 +67,7 @@ namespace :utils do
 
         if instructions.nil? && /'recipe_instructions'/.match(line)
           instructions = strip_chars("'recipe_instructions'", "instructions", line)
-          file_top_level_attributes << instructions + "\n"
+          file_top_level_attributes << strip_tags(instructions) + "\n"
         end
 
         if notes.nil? && /'recipe_notes'/.match(line)
@@ -148,8 +149,10 @@ namespace :utils do
       new_file <<  "\n"
       new_file << file_footer
 
-      file_name = title.gsub /\"title\":/, ''
 
+      puts "title: #{title}"
+
+      file_name = title.gsub /\"title\":/, ''
       file_name.lstrip!.rstrip!
       file_name.gsub! "\"", ''
       file_name.gsub! "(", ''
@@ -158,16 +161,17 @@ namespace :utils do
       file_name.gsub! /\s/, '-'
       file_name.gsub! "-", "_"
       file_name.gsub!(/[\x00\/\\:\*\?\"<>\|]/, '_')
+      file_name.chomp!('_')
       file_name << ".json"
       file_name = file_name.tableize.singularize
 
       #puts "title: #{title}"
-      #puts "file_name: #{file_name}"
+      puts "file_name: #{file_name}"
       #puts new_file
 
-      open(output_dir+file_name, 'w') do |f|
-        f.puts new_file
-      end
+      #open(output_dir+file_name, 'w') do |f|
+      #  f.puts new_file
+      #end
 
     end
   end

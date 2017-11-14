@@ -2,12 +2,12 @@
   <div class="row pt-4">
 
     <div class="col">
-      <div class="recipe-card card text-center align-items-center float-right clearfix" style="max-width: 480px;">
+      <div class="recipe-card card text-center mx-auto" style="max-width: 480px;">
         <div class="card-header">
           <h3 class="card-title align-items-center"><%= @recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h3>
-          <p class="card-text"><%= @recipe.description %></p>
+          <p class="card-text text-justify"><%= @recipe.description %></p>
         </div>
-        <%= image_tag @recipe.image, class: 'img-fluid', style: 'max-width: 480px;', alt: @recipe.title %>
+        <%= image_tag @recipe.image, class: 'card-img-top', style: '', alt: @recipe.title %>
         <div class="card-block">
           <p class="card-text pt-4">
             Categories:
@@ -21,7 +21,7 @@
             Glossary Terms:
             <small class="text-muted">
               <% @recipe.glossary_terms.each do |gt| %>
-                  <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
+                  <a tabindex="0" class="btn btn-sm btn-primary" style="cursor:pointer" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
                     <%= gt.name %>
                   </a>
               <% end %>
@@ -31,15 +31,14 @@
       </div>
     </div>
 
-    <div class="col align-items-center ml-5 mr-5">
-      <span class="content-section-title mt-0">Summary</span>
+    <div class="col">
+      <span class="content-section-title">Summary</span>
       <table class="table table-sm table-bordered content-section-copy-light-med">
         <tbody>
         <tr>
           <th scope="row">Yield</th>
           <td><%= @recipe.yield %> <%= @recipe.yield_unit %></td>
         </tr>
-
         <tr>
           <th scope="row">Source</th>
           <td>
@@ -47,31 +46,43 @@
             <%= link_to "Click Here", @recipe.source_url, target: '_blank' if @recipe.source_url %>
           </td>
         </tr>
-
+        <% if @recipe.prep_time > 0 %>
         <tr>
           <th scope="row">Prep Time</th>
           <td><%= @recipe.prep_time %> Minutes</td>
         </tr>
-
+        <% end %>
+        <% if @recipe.cooking_time > 0 %>
         <tr>
           <th scope="row">Cooking Time</th>
           <td><%= @recipe.cooking_time %> Minutes</td>
         </tr>
-
+        <% end %>
+        <% if @recipe.total_time > 0 %>
         <tr>
           <th scope="row">Total Time</th>
           <td><%= @recipe.total_time %> Minutes</td>
         </tr>
-
+        <% end %>
         </tbody>
       </table>
 
       <span class="content-section-title">Instructions</span>
-      <p class="text-justify content-section-copy-light-med">
+      <div class="text-justify content-section-copy-light-med">
         <%= @recipe.instructions.html_safe %>
-      </p>
+      </div>
+
+      <% if !@recipe.notes.blank? %>
+      <span class="content-section-title">Notes</span>
+      <div class="text-justify content-section-copy-light-med">
+        <%= @recipe.notes.html_safe %>
+      </div>
+      <% end %>
+
+
 
     </div>
+
   </div>
 
   <div class="row pl-4 pr-4 pt-4" style="width: 100%;">
@@ -89,9 +100,12 @@
         <% end %>
         </tbody>
       </table>
+
+      <% if false %>
       <div class="d-flex justify-content-center mt-3">
         <p><a href="#"><%= fa_icon "arrow-left" %> PREV </a>| <a href="#">NEXT <%= fa_icon "arrow-right" %></a></p>
       </div>
+      <% end %>
     </div>
   </div>
 

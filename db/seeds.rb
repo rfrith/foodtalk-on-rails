@@ -111,7 +111,7 @@ etc...
   {"name": "Kid Friendly"},
   {"name": "Less Than $5 meals"},
   {"name": "Fast and Easy"},
-  {"name": "5 ingredients or less"}
+  {"name": "5 Ingredients or Less"}
 ],
 
 etc...

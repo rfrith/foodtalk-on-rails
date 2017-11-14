@@ -521,27 +521,8 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 
-.card-deckZZZ > .card {
-
-  flex-wrap: wrap;
-  flex: initial;
-  display: block;
-
-  @include media-breakpoint-only(xs) {
-    width: 20rem;
-  }
-  @include media-breakpoint-only(sm) {
-    width: 20rem;
-  }
-  @include media-breakpoint-only(md) {
-    width: 20rem;
-  }
-  @include media-breakpoint-only(lg) {
-    width: 20rem;
-  }
-  @include media-breakpoint-only(xl) {
-    width: 20rem;
-  }
+.card-deck > .card {
+  width: auto;
 }
 
 .videos-card-group {
