@@ -1,0 +1,30 @@
+{
+  "recipe": {
+    "title": "Cauliflower Mash",
+    "source": "American Heart Association (www.heart.org)",
+    "yield": "6",
+    "yield_unit": "Servings",
+    "description": "Try this creamy dish instead of mashed potatoes to cut back on calories without cutting back on flavor!\r\n",
+    "instructions": "\r\n\tFill a large pot with about 2 inches of water. Place over medium heat to boil.\r\n\tRinse cauliflower. Remove stem and cut into small florets.\r\n\tAdd cauliflower to pot with boiling water. Cook for about 15 minutes or until very tender. Drain well.\r\n\tIn a blender or food processor, puree cauliflower, yogurt, Parmesan cheese, and garlic until creamy. Don't over-mix. Add pepper to taste.\r\n\r\n\r\n\r\n",
+    "notes": "<p>Instead of boiling cauliflower on the stove, try steaming it in the microwave in a microwave-safe dish to save time.</p>\r\n",
+    "prep_time": "0",
+    "cooking_time": "0",
+    "remote_image_url": "https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/cauliflower_mash.jpg",
+    "ingredients_attributes": [
+      {"quantity": "1","unit_of_measure": "unit","name": "medium head cauliflower","note": null},
+      {"quantity": "3","unit_of_measure": "tablespoon","name": "Parmesan cheese","note": null},
+      {"quantity": "0.25","unit_of_measure": "cup","name": "plain, fat-free Greek yogurt","note": null},
+      {"quantity": "0.5","unit_of_measure": "teaspoon","name": "minced garlic","note": null},
+      {"quantity": "0","unit_of_measure": "unit","name": "pepper, to taste","note": null}
+    ],
+    "categories_attributes": [
+      {"name": "Gluten free"},
+      {"name": "5 Ingredients or Less"}
+    ],
+    "glossary_terms_attributes": [
+      {"name": "boil"},
+      {"name": "steam"},
+      {"name": "drain"}
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 <div id="recipes" class="row">
   <div class="col">
-    <div class="d-flex justify-content-center mx-auto content-section-item">
+    <div class="d-flex justify-content-center mx-auto content-section-itemssss">
       <div class="media">
         <%= image_tag 'recipe-graphic.png', class: 'd-flex d-sm-none d-md-block mt-4 ml-5', alt: 'Recipe Card Icon', style: 'width: 10rem; height: auto;' %>
         <div class="media-body ml-4">
@@ -17,12 +17,11 @@
       <% end %>
     </div>
 
-    <div class="d-flex mx-auto justify-content-center content-section-item p-5">
-
-      <div class="card-columns">
-        <%= render :partial => "recipes/list_recipes" %>
-      </div>
-
-    </div>
   </div>
 </div>
+
+<div class="card-columns p-5">
+  <%= render :partial => "recipes/list_recipes" %>
+</div>
+
+<div class="mb-5">&nbsp;</div>

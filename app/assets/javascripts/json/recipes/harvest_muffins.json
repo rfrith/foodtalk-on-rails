@@ -1,0 +1,34 @@
+{
+  "recipe": {
+    "title": "Harvest Muffins",
+    "source": "UGA Extension EFNEP",
+    "yield": "12",
+    "yield_unit": "Muffins",
+    "description": "These flavorful muffins are a great way to get your kids (and yourself!) to eat more vegetables without even noticing it! \r\n",
+    "instructions": "\r\n\tPreheat oven to 350 degrees.\r\n\tDrain carrots of salty liquid and pour onto dinner-sized plate.\r\n\tSprinkle cinnamon over carrots.\r\n\tMash with fork until all pieces of carrot are about the size of peas.\r\n\tPut mashed carrots in medium size mixing bowl.\r\n\tBreak egg into separate small bowl and mix well with fork.\r\n\tAdd oil to egg and mix well.\r\n\tAdd oil/egg mixture to carrots.\r\n\tAdd sugar and stir well.\r\n\tIn separate bowl, stir together flour, baking soda, and salt.\r\n\tAdd flour mixture to carrot mixture and stir until moist.\r\n\tPour batter into muffin tins sprayed with nonstick spray or lined - about half full.\r\n\tBake 25-30 minutes. (To make 24 mini muffins, bake for about 20 minutes.) Test center of one muffin with a toothpick. If it comes out clean, the muffins are done.\r\n\tCool 5 minutes. Best served warm.\r\n\r\n",
+    "notes": "<h2><strong>MyPlate Exchanges:</strong></h2>\r\n\r\n<p>1 oz. grains</p>\r\n",
+    "prep_time": "0",
+    "cooking_time": "0",
+    "remote_image_url": "https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/harvest_muffins3.jpg",
+    "ingredients_attributes": [
+      {"quantity": "1","unit_of_measure": "can","name": "sliced carrots, drained","note": "14 1/2 oz."},
+      {"quantity": "1","unit_of_measure": "teaspoon","name": "ground cinnamon","note": null},
+      {"quantity": "1","unit_of_measure": "unit","name": "egg","note": null},
+      {"quantity": "0.333333","unit_of_measure": "cup","name": "vegetable oil","note": null},
+      {"quantity": "1","unit_of_measure": "cup","name": "sugar","note": null},
+      {"quantity": "1.75","unit_of_measure": "cup","name": "all-purpose flour ","note": null},
+      {"quantity": "1.25","unit_of_measure": "teaspoon","name": "baking soda","note": null},
+      {"quantity": "0.5","unit_of_measure": "teaspoon","name": "salt","note": null},
+      {"quantity": "0","unit_of_measure": "unit","name": "Non-stick spray or muffin liners (12)","note": null}
+    ],
+    "categories_attributes": [
+      {"name": "Breakfast"},
+      {"name": "Kid Friendly"},
+      {"name": "Less Than $5 meals"}
+    ],
+    "glossary_terms_attributes": [
+      {"name": "bake"},
+      {"name": "drain"}
+    ]
+  }
+}

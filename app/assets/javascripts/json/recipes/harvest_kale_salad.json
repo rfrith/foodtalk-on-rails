@@ -1,0 +1,34 @@
+{
+  "recipe": {
+    "title": "Harvest Kale Salad",
+    "source": "Food Talk Farmer's Market ",
+    "yield": "7",
+    "yield_unit": "2 cups",
+    "description": "Add some color to your meal with this delicious, bright, and flavorful salad! \r\n",
+    "instructions": "\r\n\tRemove kale from stems. Rinse and dry kale leaves, cabbage, and apples before cutting.\r\n\tPut chopped kale, cabbage and apples in a large mixing bowl.\r\n\tWhisk together olive oil, apple cider vinegar, honey, and mustard. Pour over salad and toss to coat all ingredients.\r\n\tCook turkey bacon and roughly chop. Sprinkle bacon over top of salad and serve. \r\n\r\n",
+    "notes": "<ul>\r\n\t<li>Prep ahead! Rinse, dry, and chop cabbage and kale up to 3-5 days ahead.&nbsp;Store in fridge.&nbsp;</li>\r\n\t<li>Store any cleaned leftover kale and cabbage in freezer to use in soups, stews or stir-frys.&nbsp;</li>\r\n</ul>\r\n\r\n<p>Nutritional Information</p>\r\n\r\n<p>160 calories, 11g fat, 7g protein, 3g fiber, 230mg sodium, 90% vitamin C, 40% vitamin A, 4% calcium, 6% iron</p>\r\n\r\n<p>&nbsp;</p>\r\n",
+    "prep_time": "15",
+    "cooking_time": "10",
+    "remote_image_url": "https://foodtalk.org/sites/default/files/styles/large/public/recipe-photos/kale_salad.jpg",
+    "source_url": "https://foodtalk.org/content/food-talk-farmers-market-authors",
+    "ingredients_attributes": [
+      {"quantity": "6","unit_of_measure": "cup","name": "kale, chopped without stems","note": "about 1 bunch"},
+      {"quantity": "4","unit_of_measure": "cup","name": "red cabbage, chopped","note": "1/2 head"},
+      {"quantity": "2","unit_of_measure": "unit","name": "green apples, chopped","note": null},
+      {"quantity": "8","unit_of_measure": "slice","name": "turkey bacon ","note": null},
+      {"quantity": "0.25","unit_of_measure": "cup","name": "olive oil","note": null},
+      {"quantity": "1","unit_of_measure": "tablespoon","name": "apple cider vinegar","note": null},
+      {"quantity": "1","unit_of_measure": "teaspoon","name": "honey","note": null},
+      {"quantity": "1","unit_of_measure": "tablespoon","name": "mustard","note": null}
+    ],
+    "categories_attributes": [
+      {"name": "Less Than $5 meals"},
+      {"name": "Fast and Easy"}
+    ],
+    "glossary_terms_attributes": [
+      {"name": "chop"},
+      {"name": "dice"},
+      {"name": "whip"}
+    ]
+  }
+}

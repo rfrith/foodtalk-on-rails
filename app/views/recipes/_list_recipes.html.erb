@@ -1,6 +1,6 @@
 <% @recipes.each do |recipe| %>
 
-    <div class="card text-center">
+    <div class="card">
 
       <div class="card-header">
         <h4 class="card-title text-center mt-0"><%= recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h4>
@@ -12,29 +12,28 @@
         <p class="card-title text-justify"><%= recipe.description %></p>
 
         <% if !recipe.categories.empty? %>
-        <div class="text-left font-weight-bold">Categories</div>
-        <p class="small card-text text-left">
+        <div class="small text-left font-weight-bold">Categories</div>
+        <div class="small card-text text-left">
           <% recipe.categories.each do |c| %>
-              <%= link_to c.name, recipes_path(category_id: c.id), class: 'btn btn-sm btn-primary ml-0 mb-1', role: 'button', 'data-toggle': 'popover', 'data-placement': 'top', 'data-trigger': 'focus', title: c.name %>
+              <%= link_to c.name, recipes_path(category_id: c.id), class: 'badge badge-light', role: 'button', 'data-toggle': 'popover', 'data-placement': 'top', 'data-trigger': 'focus', title: c.name %>
           <% end %>
-        </p>
+        </div>
         <% end %>
 
         <% if !recipe.glossary_terms.empty? %>
-        <div class="text-left font-weight-bold">Glossary Terms</div>
-        <p class="small card-text text-left">
-
+        <div class="small text-left font-weight-bold">Glossary Terms</div>
+        <div class="small card-text text-left">
           <% recipe.glossary_terms.each do |gt| %>
-            <a tabindex="0" class="btn btn-sm btn-primary ml-0 mb-1" style="cursor:pointer" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
+            <a tabindex="0" class="badge badge-light" style="cursor:pointer;" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
               <%= gt.name %>
             </a>
           <% end %>
-        </p>
+        </div>
         <% end %>
       </div>
 
-      <div class="card-footer">
-        <%= link_to("Details", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-primary") %>
+      <div class="card-footer text-center">
+        <%= link_to("Details", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
       </div>
     </div>
 

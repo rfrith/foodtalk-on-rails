@@ -2,9 +2,9 @@
   <div id="user-info" class="user-info row d-flex justify-content-center">
     <div class="d-flex flex-column">
 
-      <div class="d-flex justify-content-center mx-auto content-section-item">
+      <div class="d-flex justify-content-center mx-auto content-section-itemsssssss">
         <div class="media content-section-header align-items-center">
-          <%= image_tag 'glossary-icon.png', class: 'd-sm-none d-md-block mt-3 mr-3', alt: 'Videos Icon', style: 'width: 10rem; height: auto;' %>
+          <%= image_tag 'glossary-icon.png', class: 'd-sm-none d-md-block mt-3 mr-3', alt: 'Videos Icon', style: 'width: 6rem; height: auto;' %>
           <div class="media-body ml-2">
             <span class="content-section-title">Food Glossary</span>
             <div class="content-section-copy-dark">Enhance your food preparation knowledge!</div>
@@ -14,7 +14,7 @@
 
       <div class="d-flex justify-content-center mx-auto content-section-item">
         <div class="content-section-header">
-          <div class="">
+          <div class="mb-5">
             <% @glossary_terms.each do |term| %>
             <div class="card glossary-card">
               <div class="card-header">
@@ -48,6 +48,9 @@
               </div>
             </div>
             <% end %>
+
+
+            <div class="mb-5">&nbsp;</div>
 
           </div>
         </div>

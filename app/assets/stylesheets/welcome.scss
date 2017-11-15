@@ -404,6 +404,10 @@ button.navbar-toggler.navbar-toggler-right {
   .recipes-deck {
     max-width: 70vw;
   }
+  .recipes-deck .card {
+    #max-height: 70vw;
+  }
+
 }
 
 @include media-breakpoint-down(md) {
@@ -520,6 +524,9 @@ button.navbar-toggler.navbar-toggler-right {
   background-color: $primary-fill-color;
 }
 
+.better-u-card-deck {
+  width: 70%;
+}
 
 .card-deck > .card {
   width: auto;

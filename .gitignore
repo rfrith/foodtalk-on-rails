@@ -33,4 +33,5 @@ dump.rdb
 
 /public/uploads/*
 
-/app/assets/javascripts/json/recipes/*
+#OSX File System Crud
+.DS_Store
