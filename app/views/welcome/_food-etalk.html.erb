@@ -1,17 +1,21 @@
-
-
-<div class="d-flex justify-content-center mx-auto content-section-item">
-  <p class="lessons-copy text-justify">Our FoodTalk eTalk Lessons will teach you foundational food & nutrition concepts which will help improve the health of You and your family.</p>
+<div class="d-flex justify-content-center">
+  <div class="media content-section-header align-items-center">
+    <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
+    <div class="media-body ml-3">
+      <span class="content-section-title">Food eTalk</span>
+      <p class="content-section-copy-dark">Start Making Healthier food & activity choices!</p>
+    </div>
+  </div>
 </div>
 
-<div class="card-columns lessons-card-columns">
 
-  <div class="card">
+<div class="grid" style="margin: 0 auto;">
+
+  <div class="card grid-item mb-4" style="width: 20rem;">
 
     <figure class="figure">
       <a href="https://www.youtube.com/embed/WuUFJ2dqmq0?autoplay=1&controls=0" data-vbtype="iframe" data-autoplay="true" class="venobox ">
         <%= image_tag 'http://img.youtube.com/vi/WuUFJ2dqmq0/maxresdefault.jpg', class: 'card-img-top figure-img img-fluid', alt: 'Lesson 1 Cap' %>
-        <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
         <figcaption class="figure-caption"></figcaption>
       </a>
     </figure>
@@ -27,7 +31,7 @@
 
   </div>
 
-  <div class="card ">
+  <div class="card grid-item mb-4" style="width: 20rem;">
     <%= image_tag 'shopping-woman.jpg', class: 'card-img-top', alt: 'Lesson 1 Cap' %>
     <div class="card-block">
       <div class="h5 text-center mt-2">
@@ -42,7 +46,7 @@
   </div>
 
 
-  <div class="card ">
+  <div class="card grid-item mb-4" style="width: 20rem;">
     <%= image_tag 'ekg-heart.png', class: 'card-img-top', alt: 'Lesson 2 Cap' %>
     <div class="card-block">
       <div class="h5 text-center mt-2">
@@ -58,7 +62,7 @@
   </div>
 
 
-  <div class="card ">
+  <div class="card grid-item mb-4" style="width: 20rem;">
     <%= image_tag 'fruits-and-veggies-art.png', class: 'card-img-top', alt: 'Lesson 3 Cap' %>
     <div class="card-block">
       <div class="h5 text-center mt-2">
@@ -72,7 +76,7 @@
   </div>
 
 
-  <div class="card ">
+  <div class="card grid-item mb-4" style="width: 20rem;">
     <%= image_tag 'apple-in-hand.jpg', class: 'card-img-top', alt: 'Lesson 4 Cap' %>
     <div class="card-block">
       <div class="h5 text-center mt-2">
@@ -86,7 +90,7 @@
   </div>
 
 
-  <div class="card ">
+  <div class="card grid-item mb-4" style="width: 20rem;">
     <%= image_tag 'moldy-food-sick-woman.jpeg', class: 'card-img-top', alt: 'Lesson 5 Cap' %>
     <div class="card-block">
       <div class="h5 text-center mt-2">
@@ -99,7 +103,7 @@
     </div>
   </div>
 
-  <div class="card ">
+  <div class="card grid-item mb-4" style="width: 20rem;">
     <%= image_tag 'head-critical-thinking.png', class: 'card-img-top', alt: 'Lesson 5 Cap' %>
     <div class="card-block">
       <div class="h5 text-center mt-2">

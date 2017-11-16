@@ -1,23 +1,17 @@
 <div id="lessons" class="content-section2 row">
   <div class="col">
 
-    <div class="d-flex justify-content-center">
-      <div class="media content-section-header">
-        <%= image_tag 'food-etalk-logo-med.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo' %>
-        <div class="media-body ml-3">
-          <span class="content-section-title">Learn Online</span>
-          <p class="content-section-copy-dark">Start Making Healthier food & activity choices!</p>
-        </div>
-      </div>
-    </div>
-
     <% if user_signed_in? && current_user.is_eligible? %>
+
         <%= render :partial => "better-u" %>
+
         <p class="scroll-down-for-more d-flex mx-auto justify-content-center content-section-item align-items-center">
           <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
         </p>
         <br>
+
         <%= render :partial => "food-etalk" %>
+
     <% end %>
   </div>
 </div>

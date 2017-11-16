@@ -1,40 +1,41 @@
 <% @recipes.each do |recipe| %>
 
-    <div class="card">
 
-      <div class="card-header">
-        <h4 class="card-title text-center mt-0"><%= recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h4>
-      </div>
+      <div class="grid-item mb-4 card" style="width: 20rem;">
 
-      <%= link_to image_tag(recipe.image, class: 'card-img-top', alt: recipe.title), recipe_path(recipe), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
-      <div class="card-body">
+        <div class="card-header">
+          <h4 class="card-title text-center mt-0"><%= recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h4>
+        </div>
 
-        <p class="card-title text-justify"><%= recipe.description %></p>
+        <%= link_to image_tag(recipe.image, class: 'card-img-top', alt: recipe.title), recipe_path(recipe), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+        <div class="card-body">
 
-        <% if !recipe.categories.empty? %>
-        <div class="small text-left font-weight-bold">Categories</div>
-        <div class="small card-text text-left">
-          <% recipe.categories.each do |c| %>
-              <%= link_to c.name, recipes_path(category_id: c.id), class: 'badge badge-light', role: 'button', 'data-toggle': 'popover', 'data-placement': 'top', 'data-trigger': 'focus', title: c.name %>
+          <p class="card-title text-justify"><%= recipe.description %></p>
+
+          <% if !recipe.categories.empty? %>
+              <div class="small text-left font-weight-bold">Categories</div>
+              <div class="small card-text text-left">
+                <% recipe.categories.each do |c| %>
+                    <%= link_to c.name, recipes_path(category_id: c.id), class: 'badge badge-light', role: 'button' %>
+                <% end %>
+              </div>
+          <% end %>
+
+          <% if !recipe.glossary_terms.empty? %>
+              <div class="small text-left font-weight-bold">Glossary Terms</div>
+              <div class="small card-text text-left">
+                <% recipe.glossary_terms.each do |gt| %>
+                    <a tabindex="0" class="badge badge-light" style="cursor:pointer;" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
+                      <%= gt.name %>
+                    </a>
+                <% end %>
+              </div>
           <% end %>
         </div>
-        <% end %>
 
-        <% if !recipe.glossary_terms.empty? %>
-        <div class="small text-left font-weight-bold">Glossary Terms</div>
-        <div class="small card-text text-left">
-          <% recipe.glossary_terms.each do |gt| %>
-            <a tabindex="0" class="badge badge-light" style="cursor:pointer;" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
-              <%= gt.name %>
-            </a>
-          <% end %>
+        <div class="card-footer text-center">
+          <%= link_to("Details", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
         </div>
-        <% end %>
       </div>
-
-      <div class="card-footer text-center">
-        <%= link_to("Details", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
-      </div>
-    </div>
 
 <% end %>

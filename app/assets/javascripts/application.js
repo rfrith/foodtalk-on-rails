@@ -24,4 +24,10 @@ $(document).on("turbolinks:load", function() {
     $('.popover-dismiss').popover({
         trigger: 'focus'
     })
+    $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        fitWidth: true,
+        columnWidth: 340
+    });
 });
