@@ -13,7 +13,6 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require jquery.turbolinks
 //= require popper
 //= require bootstrap
 //= require venobox
