@@ -1,17 +1,11 @@
-<% if user_signed_in? && current_user.is_eligible? %>
 <div class="container-fluid">
-<%= render :partial => "learn-online" %>
-</div>
-<% end %>
-<div class="container-fluid">
-<%= render :partial => "recipes" %>
+  <%= render :partial => "recipes" %>
 </div>
 <div class="container-fluid">
   <%= render :partial => "videos" %>
 </div>
-
 <div class="container-fluid">
-<% render :partial => "fb-feed" %>
+  <% render :partial => "fb-feed" %>
 </div>
 
 

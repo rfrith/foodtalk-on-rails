@@ -1,0 +1,29 @@
+<div class="d-flex flex-column pl-5 pr-5">
+  <div class="content-section-header">
+    <div class="media align-items-center">
+      <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
+      <div class="media-body ml-3">
+        <div class="content-section-title">Food eTalk</div>
+        <div class="content-section-copy-dark">Start Making Healthier food choices!</div>
+      </div>
+    </div>
+    <p class="lead mt-4">
+      Food eTalk is a series of interactive online classes that focus on planning healthy meals
+      on a budget. Free educational and cooking items included at each session!
+    </p>
+  </div>
+  <div class="content-section-copy-dark"></div>
+  <div class="pt-2">
+    <div class="card-group better-u-card-deck">
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'http://img.youtube.com/vi/WuUFJ2dqmq0/maxresdefault.jpg', target_url: 'https://www.youtube.com/embed/WuUFJ2dqmq0?autoplay=1&controls=0', title: 'Food eTalk Tutorial', description: 'This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.' } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'shopping-woman.jpg', target_url: '/foodtalk_lessons/lesson1/story.html', title: 'Your Food, Your Choice', description: 'Do you want fries with that burger? Choices, choices, choices! Eating healthy is up to you! <span class="hidden-md-down">That’s right, you have the power to choose to make healthy decisions for you and your whole family. Check out this lesson to get started!</span>' } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'ekg-heart.png', target_url: '/foodtalk_lessons/lesson2/story.html', title: 'Keep Your Pressure In Check', description: 'We’ve all heard it - too much salt or sodium is not good for us. But how the heck do we reduce it and still have tasty food? <span class="hidden-md-down">Check out this lesson for ideas on how to decrease your sodium and increase your family’s health.</span>' } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'fruits-and-veggies-art.png', target_url: '/foodtalk_lessons/lesson3/story.html', title: 'Color Me Healthy', description: '“Yeah, yeah, yeah. My family is supposed to eat more fruits and veggies - but it’s not as easy as it sounds”. <span class="hidden-md-down">We get it, eating fruits and veggies can be challenging - which is why we’ve dedicated this lesson to helping you! Check it out and see for yourself.</span>' } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'apple-in-hand.jpg', target_url: '/foodtalk_lessons/lesson4/story.html', title: 'Eat Well on the Go', description: 'Let’s face it - fast food happens. But you don’t have to pull up to a drive through to get a fast meal <span class="hidden-md-down"> -- in this lesson you’ll learn tips to make healthy, budget-friendly “fast” meals at home.</span>' } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'moldy-food-sick-woman.jpeg', target_url: '/foodtalk_lessons/lesson5/story.html', title: 'Keep Yourself Well', description: 'No one wants a belly-ache after they’ve eaten unsafe food. In this lesson we’re talking about food safety and how you can keep your family food free of food-borne illness.' } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'head-critical-thinking.png', target_url: '/foodtalk_lessons/lesson6/story.html', title: 'Play Food eTalk', description: 'Let’s see what you’ve learned! Try this interactive game to see how much you learned, or take it as a ‘pre-test’ to see what you may want to learn.' } %>
+    </div>
+  </div>
+</div>
+
+

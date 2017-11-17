@@ -11,25 +11,23 @@
 
       <% if user_signed_in? && current_user.is_eligible? %>
       <li class="nav-item">
-        <%= link_to("Learn Online", { controller: "welcome", action: "index", anchor: "lessons" }, class: "nav-link") %>
+        <%= link_to("Learn Online", { controller: "learn_online", action: "index" }, class: "nav-link") %>
       </li>
       <% end %>
       <li class="nav-item">
-        <%= link_to("Recipes", { controller: "welcome", action: "index", anchor: "recipes" }, class: "nav-link") %>
+        <%= link_to("Recipes", { controller: "recipes", action: "index" }, class: "nav-link") %>
       </li>
       <li class="nav-item">
-        <%= link_to("Videos", { controller: "welcome", action: "index", anchor: "videos" }, class: "nav-link") %>
+        <%= link_to("Videos", { controller: "videos", action: "index" }, class: "nav-link") %>
       </li>
       <% if false %>
       <li class="nav-item">
         <%= link_to("Blog", { controller: "welcome", action: "index", anchor: "blog" }, class: "nav-link") %>
       </li>
       <% end %>
-
       <li class="nav-item">
         <%= link_to("Food Glossary", { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
       </li>
-
     </ul>
     <ul class="navbar-nav">
 

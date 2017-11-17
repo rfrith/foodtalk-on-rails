@@ -441,8 +441,9 @@ button.navbar-toggler.navbar-toggler-right {
   // "Heads up! Your mileage with card columns may vary. To prevent cards breaking across columns, we must set them to display: inline-block as column-break-inside: avoid isn’t a bulletproof solution yet."
   //
   //However, this adds huge margins to top and bottom and jacks up the display!
-  //display: inline-block;
+  display: inline-block;
 }
+
 
 
 .card-columns {
@@ -454,10 +455,10 @@ button.navbar-toggler.navbar-toggler-right {
     column-count: 2;
   }
   @include media-breakpoint-up(md) {
-    column-count: 3;
+    column-count: 4;
   }
   @include media-breakpoint-up(lg) {
-    column-count: 4;
+    column-count: 5;
   }
   @include media-breakpoint-up(xl) {
     column-count: 6;
@@ -485,7 +486,7 @@ button.navbar-toggler.navbar-toggler-right {
     column-count: 2;
   }
   @include media-breakpoint-up(md) {
-    column-count: 3;
+    column-count: 4;
   }
   @include media-breakpoint-up(lg) {
     column-count: 4;
@@ -501,7 +502,7 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 
-.lessons-card-columnsZZZZZ .card {
+.lessons-card-columnssssss .card {
 
   @include media-breakpoint-up(xs) {
     max-width: 20rem;
@@ -525,8 +526,9 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .better-u-card-deck {
-  width: 70%;
+  width: auto;
 }
+
 
 .card-deck > .card {
   width: auto;

@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
+//= require jquery.turbolinks
 //= require popper
 //= require bootstrap
 //= require venobox
@@ -24,10 +25,14 @@ $(document).on("turbolinks:load", function() {
     $('.popover-dismiss').popover({
         trigger: 'focus'
     })
-    $('.grid').masonry({
-        // options
-        itemSelector: '.grid-item',
-        fitWidth: true,
-        columnWidth: 340
+
+    $('#grid').imagesLoaded( function() {
+        $('.grid').masonry({
+            // options
+            itemSelector: '.grid-item',
+            fitWidth: true,
+            columnWidth: 340
+        });
     });
+
 });
