@@ -10,8 +10,9 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center pt-3">
         <%= link_to "All Recipes", recipes_path, class: 'btn btn-sm btn-primary mb-1', role: 'button' %>
+        <%= link_to "My Favorites", recipes_path(favorites: true), class: 'btn btn-sm btn-primary mb-1', role: 'button' %>
         <% Category.all.each do |c| %>
             <%= link_to c.name, recipes_path(category_id: c.id), class: 'btn btn-sm btn-primary mb-1 ml-1', role: 'button' %>
         <% end %>

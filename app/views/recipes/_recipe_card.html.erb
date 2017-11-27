@@ -1,6 +1,15 @@
 <div class= "mb-4 card" style="width: <%= card_width %>">
   <div class="card-header">
-    <h4 class="card-title text-center mt-0"><%= recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h4>
+    <h4 class="card-title text-center mt-0">
+      <%= recipe.title %>
+
+      <small class="text-muted">
+        <% fav = current_user.recipes.exists?(recipe.id) %>
+        <% #TODO: AJAXIFY ME!!!!! %>
+        <%= link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(recipe.id), method: :update %>
+        <a href="#"><% fa_icon "share-alt" %></a>
+      </small>
+    </h4>
   </div>
   <%= link_to image_tag(recipe.image, class: 'card-img-top', alt: recipe.title), recipe_path(recipe), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
   <div class="card-body">

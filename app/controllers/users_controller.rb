@@ -59,6 +59,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_recipe_favorites
+    respond_to do |format|
+      #TODO: why is this coming in as ":format" and not ":id" ????
+      id = params[:id]
+      recipe = Recipe.find(id)
+      if(recipe)
+        if(current_user.recipes.exists?(recipe.id))
+          current_user.recipes.destroy(id)
+        else
+          current_user.recipes << recipe
+        end
+      end
+
+      #TODO: IMPLEMENT RESPONSE!!!!!
+      format.js
+      format.html { redirect_to recipes_path, notice: 'User was successfully updated.' }
+      format.json { render :shows, status: :ok, location: @user }
+    end
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

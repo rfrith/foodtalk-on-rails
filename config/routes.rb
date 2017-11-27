@@ -45,8 +45,8 @@ Rails.application.routes.draw do
 
   controller :users do
     post 'update_subscriptions' => :update_subscriptions
+    post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
   end
-
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

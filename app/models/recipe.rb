@@ -6,6 +6,8 @@ class Recipe < ApplicationRecord
   has_many :glossary_terms, through: :recipe_glossary_terms, autosave: true
   has_many :ingredients
 
+  has_and_belongs_to_many :users
+
   accepts_nested_attributes_for :ingredients, :categories, :glossary_terms
 
   mount_uploader :image, RecipeImageUploader
