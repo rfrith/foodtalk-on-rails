@@ -4,9 +4,11 @@
       <%= recipe.title %>
 
       <small class="text-muted">
+        <% if current_user %>
         <% fav = current_user.recipes.exists?(recipe.id) %>
         <% #TODO: AJAXIFY ME!!!!! %>
         <%= link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(recipe.id), method: :update %>
+        <% end %>
         <a href="#"><% fa_icon "share-alt" %></a>
       </small>
     </h4>
