@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/food-glossary' => 'glossary_terms#index'
 
   get '/learn_online' => 'learn_online#index'
+  get '/lessons' => 'learn_online#index'
 
   get '/videos' => 'videos#index'
 

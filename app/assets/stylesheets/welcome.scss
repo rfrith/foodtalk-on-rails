@@ -2,106 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-/////////////////////////////////////////////////
-// global styles  /////////////////////////////////////////////////
-/////////////////////////////////////////////////
-
-/**
- * Navigation Elements
- */
-
-.top-nav {
-  min-height: 4rem; //don't set absolute height or collapsible nav won't work right
-}
-
-
-/* change navbar background */
-nav.navbar, .navbar-collapse {
-  background-color: $primary-fill-color;
-}
-/* change navbar-brand color */
-.navbar a.navbar-brand {
-  //color: floralwhite;
-}
-/* change navbar-brand color on hover */
-.navbar a.navbar-brand:hover {
-  //color: green;
-}
-/*  change navbar li colors, also active one but not disabled one */
-.navbar ul.navbar-nav li.nav-item a.nav-link {
-  color: $primary-font-inverse-color;
-
-  font-family: $roboto-slab;
-
-  @include media-breakpoint-only(xs) {
-    font-size: .75rem;
-  }
-  @include media-breakpoint-only(sm) {
-    font-size: .85rem;
-  }
-  @include media-breakpoint-only(md) {
-    font-size: 1rem;
-  }
-  @include media-breakpoint-only(lg) {
-    font-size: 1.1rem;
-  }
-  @include media-breakpoint-only(xl) {
-    font-size: 1.15rem;
-  }
-
-}
-
-/* change navbar-toggler inside lines color (stroke) */
-.navbar-light span.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='floralwhite' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-  color: $primary-font-inverse-color;
-}
-
-/* change hamburger button border color */
-button.navbar-toggler.navbar-toggler-right {
-  border-color: $primary-font-inverse-color;
-}
-
-/* change navbar background on collapse */
-//@media (max-width: 768px) {
-//  nav.navbar {
-    //background: lightgray;
-//  }
-//}
-
-
-@include media-breakpoint-up(md) {
-  .top-nav {
-    position: sticky;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .top-nav {
-    position: fixed;
-    width: 100%;
-  }
-}
-
-
-.search-box {
-  padding: 1rem;
-  height: auto;
-  width: 20.2rem;
-}
-
-
-
-/**
- * Logo
- */
-.logo {
-  margin-left: 4rem;
-  margin-right: 4rem;
-}
-
-
 /**
  * Scroll Down Prompt
  */
@@ -547,34 +447,7 @@ button.navbar-toggler.navbar-toggler-right {
 // footer styles /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
-.footer {
-  padding-left: 10rem;
-  padding-right: 10rem;
-  background: rgba($footer-bg-color, 0.5);
-}
 
-.footer-slogan-title {
-  color: $primary-font-inverse-color;
-  font-size: 2rem;
-  font-weight: 500;
-  width: auto;
-}
-
-.footer-slogan-copy {
-  color: $primary-font-inverse-color;
-  font-weight: 400;
-}
-
-.sm-icon-group {
-  font-size: 1.5rem;
-}
-
-.uga-logo-copy {
-  font-family: $roboto;
-  text-align: left;
-  font-size: .8rem;
-  font-weight: bold;
-}
 
 
 
