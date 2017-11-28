@@ -53,6 +53,20 @@ textarea, input, input[type], .uneditable-input {
 }
 
 
+/**
+ * Bootstrap Overrides
+ */
+.card-title {
+  color: $secondary-font-color;
+  font-family: $roboto-slab;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+
+
 /////////////////////////////////////////////////
 // body styles  /////////////////////////////////////////////////
 /////////////////////////////////////////////////

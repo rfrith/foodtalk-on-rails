@@ -17,7 +17,7 @@
             <%= link_to c.name, recipes_path(category_id: c.id), class: 'btn btn-sm btn-primary mb-1 ml-1', role: 'button' %>
         <% end %>
       </div>
-      <div class="grid pt-5" style="margin: 0 auto;">
+      <div class="grid pt-4" style="margin: 0 auto;">
         <%= render :partial => "recipes/list_recipes" %>
       </div>
     </div>

@@ -4,7 +4,7 @@
 
 # Hide Header on on scroll down
 $(document).on "turbolinks:load", ->
-  #hide footer on index page, otherwise show it
+#hide footer on index page, otherwise show it
   if ($(".welcome.index").length > 0)
     $('#footer-nav').hide()
   else
@@ -12,11 +12,12 @@ $(document).on "turbolinks:load", ->
   #show/hide footer based on scroll distance
   $(window).scroll ->
     if ($(".welcome.index").length > 0)
-    # set distance user needs to scroll before we fadeIn navbar
+# set distance user needs to scroll before we fadeIn navbar
       if $(this).scrollTop() > 5
         $('#footer-nav').show()
       else
         $('#footer-nav').hide()
     else
       $('#footer-nav').show()
+
 return

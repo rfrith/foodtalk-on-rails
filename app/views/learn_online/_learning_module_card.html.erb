@@ -2,7 +2,7 @@
   <%= link_to image_tag(img_path, class: 'card-img-top', alt: 'Lesson 1 Cap'), target_url, {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
   <div class="card-body">
     <div class="card-title text-center"><%=title%></div>
-    <div class="card-text text-justify mb-2"><%=description.html_safe%></div>
+    <div class="card-text text-left mb-2"><%=description.html_safe%></div>
   </div>
   <div class="card-footer text-center">
     <%= link_to("Click to Begin", target_url, data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>

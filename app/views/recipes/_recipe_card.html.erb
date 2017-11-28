@@ -1,41 +1,49 @@
-<div class= "mb-4 card" style="width: <%= card_width %>">
+<div class= "mt-0 <%= 'mb-4' if(!detail_view) %> card" style="width: <%= card_width %>">
   <div class="card-header">
     <h4 class="card-title text-center mt-0">
       <%= recipe.title %>
 
-      <small class="text-muted">
+      <% if(!detail_view) %>
+      <span>
         <% if current_user %>
         <% fav = current_user.recipes.exists?(recipe.id) %>
         <% #TODO: AJAXIFY ME!!!!! %>
         <%= link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(recipe.id), method: :update %>
         <% end %>
-        <a href="#"><% fa_icon "share-alt" %></a>
-      </small>
+        <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
+      </span>
+      <% end %>
     </h4>
   </div>
   <%= link_to image_tag(recipe.image, class: 'card-img-top', alt: recipe.title), recipe_path(recipe), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
-  <div class="card-body">
-    <div class="card-text text-justify mb-2"><%= truncate(recipe.description, separator: ' ', omission: '... ', length: 80) { link_to("click for more", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox small") } %></div>
+  <div class="card-body p-2 m-0">
+    <div class="card-text text-justify mb-1">
+      <% if(!detail_view) %>
+      <%= truncate(recipe.description, separator: ' ', omission: '... ', length: 80) { link_to("click for more", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox small") } %>
+      <% else %>
+      <%= recipe.description %>
+      <% end %>
+    </div>
     <% if !recipe.categories.empty? %>
-        <div class="small text-left font-weight-bold">Categories</div>
-        <div class="small card-text text-left">
+        <div class="card-title">Categories</div>
+        <div class="card-text">
           <% recipe.categories.each do |c| %>
-              <%= link_to c.name, recipes_path(category_id: c.id), class: 'badge badge-light', role: 'button' %>
+              <%= link_to c.name, recipes_path(category_id: c.id), class: 'badge badge-light ml-1', role: 'button', target: '_parent' %>
           <% end %>
         </div>
     <% end %>
     <% if !recipe.glossary_terms.empty? %>
-        <div class="small text-left font-weight-bold">Glossary Terms</div>
-        <div class="small card-text text-left">
+        <div class="card-title mt-1">Glossary Terms</div>
+        <div class="card-text">
           <% recipe.glossary_terms.each do |gt| %>
-              <a tabindex="0" class="badge badge-light" style="cursor:pointer;" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
-                <%= gt.name %>
-              </a>
+              <%= link_to gt.name, 'javascript:;', class: 'badge badge-light m-0 p-0 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus", title: gt.name, "data-content": gt.description %>
           <% end %>
         </div>
     <% end %>
   </div>
+  <% if(!detail_view) %>
   <div class="card-footer text-center">
     <%= link_to("Details", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
   </div>
+  <% end %>
 </div>

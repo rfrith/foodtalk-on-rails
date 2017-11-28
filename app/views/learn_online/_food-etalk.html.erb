@@ -1,18 +1,18 @@
-<div class="d-flex flex-column pl-5 pr-5">
-  <div class="content-section-header">
-    <div class="media align-items-center">
+<div id="food-etalk" class="d-flex flex-column pl-5 pr-5 pt-5">
+  <div class="d-flex flex-row">
+    <div class="col-5 media align-items-top">
       <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
       <div class="media-body ml-3">
         <div class="content-section-title">Food eTalk</div>
         <div class="content-section-copy-dark">Start Making Healthier food choices!</div>
       </div>
     </div>
-    <p class="lead mt-4">
+    <div class="col-7 content-section-copy-dark-med align-items-top">
       Food eTalk is a series of interactive online classes that focus on planning healthy meals
       on a budget. Free educational and cooking items included at each session!
-    </p>
+    </div>
   </div>
-  <div class="content-section-copy-dark"></div>
+
   <div class="pt-2">
     <div class="card-group better-u-card-deck">
       <%= render :partial => 'learning_module_card', locals: {img_path: 'http://img.youtube.com/vi/WuUFJ2dqmq0/maxresdefault.jpg', target_url: 'https://www.youtube.com/embed/WuUFJ2dqmq0?autoplay=1&controls=0', title: 'Food eTalk Tutorial', description: 'This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.' } %>

@@ -1,5 +1,5 @@
 <% @recipes.each do |recipe| %>
   <div class="grid-item">
-    <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, card_width: '20rem;'} %>
+    <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, card_width: '20rem;', detail_view: false} %>
   </div>
 <% end %>

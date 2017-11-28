@@ -1,38 +1,12 @@
 <div id="recipe" class="content content-section3 row pl-4 pr-4">
-  <div class="row pt-4">
+  <div class="row justify-content-start pt-4">
 
-    <div class="col">
-      <div class="recipe-card card text-center mx-auto" style="max-width: 480px;">
-        <div class="card-header">
-          <h3 class="card-title align-items-center"><%= @recipe.title %> <small class="text-muted"><a href="#"><% fa_icon "star" %></a> <a href="#"><% fa_icon "share-alt" %></a></small></h3>
-          <p class="card-text text-justify"><%= @recipe.description %></p>
-        </div>
-        <%= image_tag @recipe.image, class: 'card-img-top', style: '', alt: @recipe.title %>
-        <div class="card-block">
-          <p class="card-text pt-4">
-            Categories:
-            <small class="text-muted">
-              <% @recipe.categories.each do |c| %>
-                  <%= c.name %> &nbsp;
-              <% end %>
-            </small>
-          </p>
-          <p class="card-text pb-4">
-            Glossary Terms:
-            <small class="text-muted">
-              <% @recipe.glossary_terms.each do |gt| %>
-                  <a tabindex="0" class="btn btn-sm btn-primary" style="cursor:pointer" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="<%= gt.name %>" data-content="<%= gt.description %>">
-                    <%= gt.name %>
-                  </a>
-              <% end %>
-            </small>
-          </p>
-        </div>
-      </div>
+    <div class="col-4">
+      <%= render :partial => "recipes/recipe_card", locals: {recipe: @recipe, card_width: '30rem;', detail_view: true} %>
     </div>
 
-    <div class="col">
-      <span class="content-section-title">Summary</span>
+    <div class="col-8">
+      <span class="recipe-section-header">Summary</span>
       <table class="table table-sm table-bordered content-section-copy-light-med">
         <tbody>
         <tr>
@@ -67,13 +41,13 @@
         </tbody>
       </table>
 
-      <span class="content-section-title">Instructions</span>
+      <span class="recipe-section-header">Instructions</span>
       <div class="text-justify content-section-copy-light-med">
         <%= @recipe.instructions.html_safe %>
       </div>
 
       <% if !@recipe.notes.blank? %>
-      <span class="content-section-title">Notes</span>
+      <span class="recipe-section-header">Notes</span>
       <div class="text-justify content-section-copy-light-med">
         <%= @recipe.notes.html_safe %>
       </div>
@@ -87,7 +61,7 @@
 
   <div class="row pl-4 pr-4 pt-4" style="width: 100%;">
     <div class="col">
-      <span class="content-section-title">Ingredients</span>
+      <span class="recipe-section-header">Ingredients</span>
       <table class="table table-sm content-section-copy-light-med">
         <tbody class="justify-content-center">
         <% @recipe.ingredients.each do |i| %>

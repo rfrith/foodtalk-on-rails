@@ -19,8 +19,12 @@
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
+
+    //initialize plugins
     $('.venobox').venobox();
+
     $('[data-toggle="popover"]').popover();
+
     $('.popover-dismiss').popover({
         trigger: 'focus'
     })

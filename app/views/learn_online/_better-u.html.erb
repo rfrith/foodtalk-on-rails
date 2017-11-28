@@ -1,25 +1,25 @@
-<div class="d-flex flex-column pl-5 pr-5">
-  <div class="">
-    <div class="media align-items-center">
-      <%= image_tag 'better-u-logo.png', class: 'd-flex d-sm-none d-md-block', alt: 'Better U Logo', style: 'width: auto; height: 6rem;' %>
+<div id="better-u" class="d-flex flex-column pl-5 pr-5">
+  <div class="d-flex flex-row">
+    <div class="col-5 media align-items-center">
+      <%= image_tag 'better-u-logo.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
       <div class="media-body ml-3">
-        <div class="content-section-title">FoodTalk Better U</div>
+        <div class="content-section-title">Better U</div>
         <div class="content-section-copy-dark">Taking your food knowledge to the next level.</div>
       </div>
     </div>
-    <p class="lead mt-4">
-      Food eTalk: Better U is a series of 4 interactive sessions aimed at helping
+    <div class="col-7 content-section-copy-dark-med align-items-top">
+      Food eTalk: Better U is a series of interactive sessions aimed at helping
       you identify ways to make small lifestyle choices that lead to a better u!
       Participants receive free incentives that promote healthy eating and an
-      active lifestyle. Come ready to have fun and learn with others!
-      Become a Better "U" now by choosing from one of the following sessions.
-    </p>
+      active lifestyle. Come ready to have fun and learn!
+    </div>
   </div>
   <div class="pt-2">
     <div class="card-group better-u-card-deck">
       <%= render :partial => 'learning_module_card', locals: {img_path: 'keeping-track-cap.jpg', target_url: '/foodtalk_lessons/keeping-track/story.html', title: "Keeping Track", description: "One of the best ways to manage your weight and nutrition health is to watch the portion size of your foods. Learn how to correctly measure different foods and some helpful tips to Keeping Track of how much you’re eating and drinking." } %>
       <%= render :partial => 'learning_module_card', locals: {img_path: 'no-thanks-im-sweet-enough-cap.jpg', target_url: '/foodtalk_lessons/no-thanks-im-sweet-enough/story.html', title: "No Thanks I'm Sweet Enough", description: "Did you know decreasing the amount of sugar you eat and drink could help prevent unwanted weight gain? Check out this short lesson to learn how you can decrease the sugar in your whole family’s meals and snacks." } %>
       <%= render :partial => 'learning_module_card', locals: {img_path: 'small-changes-equal-big-results-cap.jpeg', target_url: '/foodtalk_lessons/small-changes-equal-big-results/story.html', title: 'Small Changes = Big Results', description: "Changing your entire diet sounds overwhelming right? Never fear -- following some of the tips in this lesson, you can make small shifts in what your family is already eating and see big results in their health and nutrition." } %>
+      <%= render :partial => 'learning_module_card', locals: {img_path: 'scale-and-measuring-tape.jpg', target_url: 'https://ugeorgia.qualtrics.com/jfe/form/SV_4158YZmgkwvDgYB/?email='+current_user.email+'&uid='+current_user.uid+'&redirect=/learn_online', title: 'What Gets in the Weigh', description: "A little planning goes a long way towards keeping yourself healthy and your weight under control.  Learn how to make a back-up plan for eating healthy when time is short, transportation is challenging, or you are tight on finances." } %>
     </div>
   </div>
 </div>
