@@ -33,7 +33,7 @@
 
       <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
-            <%= link_to( fa_icon('user') + " My Profile" , { controller: "dashboard", action: "show" }, class: "nav-link") %>
+            <%= link_to( fa_icon('user') + " My Dashboard" , { controller: "dashboard", action: "show" }, class: "nav-link") %>
           </li>
           <li class="nav-item">
             <%= link_to("Logout", "/logout", class: "nav-link mr-auto") %>

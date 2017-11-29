@@ -22,14 +22,14 @@
 @include media-breakpoint-up(xl) {
   .scroll-down-for-more, .scroll-down-for-more-light {
     font-weight: 400;
-    font-size: 2rem;
+    font-size: 4rem;
   }
 }
 
 @include media-breakpoint-down(lg) {
   .scroll-down-for-more, .scroll-down-for-more-light {
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
@@ -37,7 +37,7 @@
 @include media-breakpoint-down(md) {
   .scroll-down-for-more, .scroll-down-for-more-light {
     font-weight: 300;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -170,7 +170,7 @@
 
 .hero-subtitle {
   color: $hero-subtitle;
-  font-family: $source-sans-pro
+  font-family: $source-sans-pro;
 }
 
 @include media-breakpoint-up(xl) {
@@ -179,7 +179,7 @@
   }
 
   .hero-subtitle {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
   }
 
@@ -272,30 +272,16 @@
  * Recipes & Online Lessons
  */
 
-.recipe-copy, .lessons-copy {
-  //max-width: 50%;
-
+.recipe-copy {
   text-align: justify;
   font-family: $roboto-slab;
   font-size: 1.5rem;
   font-weight: 300;
 }
 
-.recipe-copy {
-  padding-top: 4rem;
-  padding-bottom: 2rem;
-}
-
-.lessons-copy {
-  padding-bottom: 1rem;
-}
-
-
-
 //TODO: need to fix media-breakpoint-* for bootstrap4
-
 @include media-breakpoint-up(md) {
-  .recipe-copy, .lessons-copy {
+  .recipe-copy {
     maxwidth: 70%;
   }
 }

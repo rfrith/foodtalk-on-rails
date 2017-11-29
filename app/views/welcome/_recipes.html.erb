@@ -16,7 +16,7 @@
 
       <div class="carousel-inner" role="listbox">
         <%
-          #TODO: FIX ME!  We want Featured Recipes Here
+          #TODO: FIX ME!  We want Featured Recipes Here (i.e., either selected by site admin or the newest X recipes)
           #TODO: AJAXIFY ME!
           #TODO: put me in a helper
           per_page = 3
@@ -53,9 +53,9 @@
 
     </div>
 
-    <p class="justify-content-center mx-auto content-section-copy-light recipe-copy text-center pt-2"><%= link_to "Click Here", recipes_path %> to browse our entire catalog.</p>
-
-    <% render partial: "welcome/scroll-down-for-more" %>
+    <p class="content-section-copy-light recipe-copy text-center mt-4">
+      <%= link_to "View All Recipes", recipes_path %>
+    </p>
 
   </div>
 

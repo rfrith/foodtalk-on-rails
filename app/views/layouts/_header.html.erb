@@ -2,52 +2,50 @@
   <div id="header" class="row d-flex hero">
     <div class="col d-none d-md-block">
       <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+      <span class="d-flex justify-content-center pt-4">
+      <% if (!current_user) %>
+          <% link_to fa_icon("user") + " Login", login_url, class: "badge badge-success hero-subtitle" %>
+      <% else %>
+          <% link_to( fa_icon('user') + " My Dashboard" , { controller: "dashboard", action: "show" }, class: "badge badge-success hero-subtitle") %>
+      <% end %>
+      </span>
     </div>
-
     <div class="col hero-content">
-
       <div class="d-md-none">
         <%= image_tag 'logo-lg.png', class: 'img-fluid mt-3', alt: "FooTalk.org Logo", style: 'padding: 0; margin: 0;' %>
       </div>
-
-      <p class="hero-title">Helping Georgians Eat Healthy & Get Moving!</p>
-
-      <p class="hero-copy">
+      <p class="hero-title text-justify">Helping Georgians Eat Healthy &<br>Get Moving!</p>
+      <p class="hero-copy text-justify">
         FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
       </p>
 
-      <div>
-        <span class="hero-subtitle">
-          <% #TODO: clean me up %>
-          <%= link_to "Click here to login for access to extra content!", login_url, :style=>"color: black; text-decoration: underline;" %>
-        </span>
-      </div>
-
-      <br>
 
       <div>
-        <span class="hero-subtitle">Or Sign Up To Receive Our FoodTalk Newsletter!</span>
 
         <% form_with(url: '/search') do |f| %>
-            <%= f.label(:q, "Search for:") %>
-            <%= f.text_field(:q, id: :q) %>
-            <%= f.submit("Search") %>
+            <% f.label(:q, "Search for:") %>
+            <% f.text_field(:q, id: :q) %>
+            <% f.submit("Search") %>
         <% end %>
 
+
+
         <%= form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
-          <div class="input-group">
-            <span class="input-group-btn">
-            <%= f.text_field(:email, class: "form-control", placeholder: "Enter Your Email Here") %>
-              <%= f.submit("Go!", class: "btn btn-primary") %>
+            <span class="hero-subtitle mr-2">Subscribe to our Newsletter for Nutrition Tips!</span>
+            <span class="input-group">
+              <span class="input-group-btn">
+              <%= f.text_field(:email, class: "form-control form-control-sm", placeholder: "Enter Your Email Here") %>
+                <%= f.submit("Sign Up!", class: "btn btn-primary button-sm form-control-sm") %>
+              </span>
             </span>
-          </div>
         <% end %>
 
       </div>
-      <p class="scroll-down-for-more pt-5">
-        <%= fa_icon "arrow-circle-o-down" %> Please scroll down for additional content <%= fa_icon "arrow-circle-o-down" %>
+
+
+      <p class="scroll-down-for-more pt-3 d-flex align-items-center">
+        <%= fa_icon "arrow-circle-o-down" %> <span class="pl-3 pr-3">Scroll down for more</span> <%= fa_icon "arrow-circle-o-down" %>
       </p>
     </div>
   </div>
-
 </div>
