@@ -18,31 +18,22 @@
       <p class="hero-copy text-justify">
         FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
       </p>
-
-
       <div>
-
         <% form_with(url: '/search') do |f| %>
-            <% f.label(:q, "Search for:") %>
-            <% f.text_field(:q, id: :q) %>
-            <% f.submit("Search") %>
+          <% f.label(:q, "Search for:") %>
+          <% f.text_field(:q, id: :q) %>
+          <% f.submit("Search") %>
         <% end %>
-
-
-
         <%= form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
-            <span class="hero-subtitle mr-2">Subscribe to our Newsletter for Nutrition Tips!</span>
-            <span class="input-group">
-              <span class="input-group-btn">
-              <%= f.text_field(:email, class: "form-control form-control-sm", placeholder: "Enter Your Email Here") %>
-                <%= f.submit("Sign Up!", class: "btn btn-primary button-sm form-control-sm") %>
-              </span>
+          <span class="hero-subtitle mr-2">Subscribe to our Newsletter for Pro Nutrition Tips!</span>
+          <span class="input-group">
+            <span class="input-group-btn">
+            <%= f.text_field(:email, class: "form-control form-control-sm", placeholder: "Enter Your Email Here") %>
+              <%= f.submit("Sign Up!", class: "btn btn-primary button-sm form-control-sm") %>
             </span>
+          </span>
         <% end %>
-
       </div>
-
-
       <p class="scroll-down-for-more pt-3 d-flex align-items-center">
         <%= fa_icon "arrow-circle-o-down" %> <span class="pl-3 pr-3">Scroll down for more</span> <%= fa_icon "arrow-circle-o-down" %>
       </p>

@@ -16,6 +16,7 @@
 //= require popper
 //= require bootstrap
 //= require venobox
+
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
