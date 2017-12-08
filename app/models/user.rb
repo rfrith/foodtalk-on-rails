@@ -32,14 +32,12 @@ class User < ApplicationRecord
   def self.find_or_create_from_auth_hash(auth_hash)
     #TODO: GET CORRECT AUTH0 HASH KEYS!
     uid = auth_hash["uid"]
-    first_name = auth_hash['extra']['raw_info']['given_name']
-    last_name = auth_hash['extra']['raw_info']['family_name']
-    email = auth_hash['email']
+    #first_name = auth_hash['extra']['raw_info']['given_name']
+    #last_name = auth_hash['extra']['raw_info']['family_name']
 
-    puts "uid: " + uid if uid
-    puts "first_name: " + first_name if first_name
-    puts "last_name: " + last_name if last_name
-    puts "email: " + email if email
+    first_name = auth_hash['info']['name'].split(" ")[0..-2].join(" ")
+    last_name = auth_hash['info']['name'].split(" ").last
+    email = auth_hash['info']['email']
 
     user = self.find_or_create_by(uid: uid) do |user|
       user.first_name = first_name
