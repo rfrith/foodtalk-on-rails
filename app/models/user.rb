@@ -11,14 +11,15 @@ class User < ApplicationRecord
 
   enum gender: [:male, :female]
 
+
   validates_presence_of :uid
   #TODO: this is a workaround until we can get email from Auth0
   validates_presence_of :first_name, :last_name, :age, :email, :gender, :zip_code, on: :update
   validates_inclusion_of :is_hispanic_or_latino, :in => [true, false], :message => "Please answer the question 'Do you consider yourself Hispanic/Latino?'", on: :update
   validates_numericality_of :age, on: :update
   validates_length_of :zip_code, :is => 5, :message => "Please enter your 5-digit zip code.", on: :update
+  validates_uniqueness_of :email
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, on: :update
-
   validates :racial_identities, presence: true, on: :update
 
   def name

@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127201822) do
+ActiveRecord::Schema.define(version: 20171212194743) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 20171127201822) do
   end
 
   create_table "federal_assistances_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "federal_assistance_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "federal_assistance_id", null: false
   end
 
   create_table "glossary_terms", force: :cascade do |t|
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 20171127201822) do
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.integer "recipe_id"
+    t.bigint "recipe_id"
     t.float "quantity"
     t.string "unit_of_measure"
     t.string "name"
@@ -58,8 +61,8 @@ ActiveRecord::Schema.define(version: 20171127201822) do
   end
 
   create_table "racial_identities_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "racial_identity_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "racial_identity_id", null: false
   end
 
   create_table "recipe_categorizations", force: :cascade do |t|
@@ -93,10 +96,10 @@ ActiveRecord::Schema.define(version: 20171127201822) do
   end
 
   create_table "recipes_users", id: false, force: :cascade do |t|
-    t.integer "recipe_id", null: false
-    t.integer "user_id", null: false
-    t.integer "recipes_id"
-    t.integer "users_id"
+    t.bigint "recipe_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "recipes_id"
+    t.bigint "users_id"
     t.index ["recipes_id"], name: "index_recipes_users_on_recipes_id"
     t.index ["users_id"], name: "index_recipes_users_on_users_id"
   end
@@ -112,6 +115,7 @@ ActiveRecord::Schema.define(version: 20171127201822) do
     t.boolean "is_hispanic_or_latino"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "videos", force: :cascade do |t|
@@ -123,4 +127,7 @@ ActiveRecord::Schema.define(version: 20171127201822) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "ingredients", "recipes"
+  add_foreign_key "recipes_users", "recipes", column: "recipes_id"
+  add_foreign_key "recipes_users", "users", column: "users_id"
 end
