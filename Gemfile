@@ -49,6 +49,7 @@ gem 'font-awesome-rails'
 gem 'gibbon', '~> 3.1', '>= 3.1.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'fractional', '~> 1.2'
+gem 'aasm'
 
 #gem 'foreman'
 #gem 'resque'

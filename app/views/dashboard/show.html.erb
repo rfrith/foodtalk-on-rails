@@ -1,34 +1,55 @@
-<div class="container-fluid">
+<div id="lessons" class="container-fluid">
+  <div class="row content-section2">
+    <div class="col">
 
-  <div id="user-info" class="user-info row d-flex justify-content-center">
-    <div class="d-flex flex-column">
-
-      <nav class="nav nav-tabs mt-2" id="dashboard-nav" role="tablist">
-        <a class="nav-item nav-link active" id="personal-info-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personal Information</a>
-        <a class="nav-item nav-link" id="subscriptions-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Newsletter Subscriptions</a>
-      </nav>
-
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="personal-info-tab">
-          <div class="pt-2">
-            <h2>Please ensure your personal information is correct and up-to-date.</h2>
+      <div id="user-info" class="user-info">
+        <div class="mt-1">
+          <nav class="nav nav-tabs ml-5 justify-content-end" id="dashboard-nav" role="tablist">
+            <a class="nav-item nav-link" data-toggle="tab" href="#continue-learning-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">My eLearning Courses</a>
+            <a class="nav-item nav-link active" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="subscriptions-tab" aria-selected="false">Newsletter Subscriptions</a>
+          </nav>
+          <div class="tab-content d-flex justify-content-center">
+            <div class="tab-pane fade show" id="continue-learning-tab" role="tabpanel" aria-labelledby="continue-learning-tab">
+              <div id="food-etalk" class="d-flex flex-column pl-5 pr-5 pt-5">
+                <div class="d-flex flex-row">
+                  <div class="media align-items-top">
+                    <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
+                    <div class="media-body ml-3">
+                      <div class="content-section-title">Pick Up Where You Left Off</div>
+                      <div class="content-section-copy-dark">You're Doing Great!  Keep Up The Good Work!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-2">
+                  <div class="card-group better-u-card-deck">
+                    <% @course_enrollments.each do |s| %>
+                      <%= render :partial => 'learn_online/learning_module_card', locals: {lesson_id: s.name} %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade show active personal-info-tab" id="personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
+              <div class="pt-2">
+                <h2>Please ensure your personal information is correct and up-to-date.</h2>
+              </div>
+              <div>
+                <div id="user-form-alert" class="alert visible" role="alert"></div>
+                <%= render :partial => "users/form" %>
+                <div class="mb-5">&nbsp;</div>
+                <div class="mb-5">&nbsp;</div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="mail-subscriptions-tab" role="tabpanel" aria-labelledby="mail-subscriptions-tab">
+              <div class="pt-2">
+                <h2>Please choose which of these lists you'd like to receive emails from.</h2>
+              </div>
+              <%= render :partial => "subscriptions/form" %>
+            </div>
           </div>
-          <div>
-            <div id="user-form-alert" class="alert visible" role="alert"></div>
-            <%= render :partial => "users/form" %>
-            <div class="mb-5">&nbsp;</div>
-            <div class="mb-5">&nbsp;</div>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="subscriptions-tab">
-          <div class="pt-2">
-            <h2>Please choose which of these lists you'd like to receive emails from.</h2>
-          </div>
-          <%= render :partial => "subscriptions/form" %>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>

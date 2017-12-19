@@ -48,6 +48,9 @@ Rails.application.routes.draw do
     post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
   end
 
+  controller :learn_online do
+    get 'launch_module/:module_name' => :launch_module, as: 'launch_module'
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

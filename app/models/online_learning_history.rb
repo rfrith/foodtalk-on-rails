@@ -1,0 +1,2 @@
+class OnlineLearningHistory < ActivityHistory
+end

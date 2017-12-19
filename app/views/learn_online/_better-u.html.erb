@@ -16,10 +16,10 @@
   </div>
   <div class="pt-2">
     <div class="card-group better-u-card-deck">
-      <%= render :partial => 'learning_module_card', locals: {img_path: 'keeping-track-cap.jpg', target_url: '/foodtalk_lessons/keeping-track/story.html', title: "Keeping Track", description: "One of the best ways to manage your weight and nutrition health is to watch the portion size of your foods. Learn how to correctly measure different foods and some helpful tips to Keeping Track of how much you’re eating and drinking." } %>
-      <%= render :partial => 'learning_module_card', locals: {img_path: 'no-thanks-im-sweet-enough-cap.jpg', target_url: '/foodtalk_lessons/no-thanks-im-sweet-enough/story.html', title: "No Thanks I'm Sweet Enough", description: "Did you know decreasing the amount of sugar you eat and drink could help prevent unwanted weight gain? Check out this short lesson to learn how you can decrease the sugar in your whole family’s meals and snacks." } %>
-      <%= render :partial => 'learning_module_card', locals: {img_path: 'small-changes-equal-big-results-cap.jpeg', target_url: '/foodtalk_lessons/small-changes-equal-big-results/story.html', title: 'Small Changes = Big Results', description: "Changing your entire diet sounds overwhelming right? Never fear -- following some of the tips in this lesson, you can make small shifts in what your family is already eating and see big results in their health and nutrition." } %>
-      <%= render :partial => 'learning_module_card', locals: {img_path: 'handwriting-in-journal.jpeg', target_url: 'https://ugeorgia.qualtrics.com/jfe/form/SV_4158YZmgkwvDgYB/?email='+current_user.email+'&uid='+current_user.uid+'&redirect=/learn_online', title: 'What Gets in the Weigh', description: "A little planning goes a long way towards keeping yourself healthy and meeting your weight goals. Plans can go right out the window when unexpected challenges arise.  The ideas in this lesson can help make your healthy Better U plans & goals easier to reach." } %>
+      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:keeping_track]"} %>
+      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:no_thanks_im_sweet_enough]"} %>
+      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:small_changes_equal_big_results]"} %>
+      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:what_gets_in_the_weigh]"} %>
     </div>
   </div>
 </div>
