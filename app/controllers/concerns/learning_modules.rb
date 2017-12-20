@@ -1,4 +1,17 @@
 module LearningModules
+
+  FOOD_ETALK_IDS = %w(
+  LearningModules::FOOD_ETALK[:food_etalk_tutorial]
+  LearningModules::FOOD_ETALK[:your_food_your_choice]
+  LearningModules::FOOD_ETALK[:keep_your_pressure_in_check]
+  LearningModules::FOOD_ETALK[:color_me_healthy]
+  LearningModules::FOOD_ETALK[:eat_well_on_the_go]
+  LearningModules::FOOD_ETALK[:keep_yourself_well]
+  LearningModules::FOOD_ETALK[:play_food_etalk]
+  )
+
+  BETTER_U_IDS = %w(LearningModules::BETTER_U[:keeping_track] LearningModules::BETTER_U[:no_thanks_im_sweet_enough] LearningModules::BETTER_U[:small_changes_equal_big_results] LearningModules::BETTER_U[:what_gets_in_the_weigh])
+
   BETTER_U = {
       :keeping_track => {img_path: 'keeping-track-cap.jpg', target_url: '/foodtalk_lessons/keeping-track/story.html', title: "Keeping Track", description: "One of the best ways to manage your weight and nutrition health is to watch the portion size of your foods. Learn how to correctly measure different foods and some helpful tips to Keeping Track of how much you’re eating and drinking." },
       :no_thanks_im_sweet_enough => {img_path: 'no-thanks-im-sweet-enough-cap.jpg', target_url: '/foodtalk_lessons/no-thanks-im-sweet-enough/story.html', title: "No Thanks I'm Sweet Enough", description: "Did you know decreasing the amount of sugar you eat and drink could help prevent unwanted weight gain? Check out this short lesson to learn how you can decrease the sugar in your whole family’s meals and snacks." },

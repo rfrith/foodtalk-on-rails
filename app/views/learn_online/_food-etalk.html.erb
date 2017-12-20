@@ -4,7 +4,7 @@
       <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
       <div class="media-body ml-3">
         <div class="content-section-title">Food eTalk</div>
-        <div class="content-section-copy-dark">Start Making Healthier food choices!</div>
+        <div class="content-section-copy-dark">Make healthier food choices!</div>
       </div>
     </div>
     <div class="col-7 content-section-copy-dark-med align-items-top">
@@ -15,13 +15,13 @@
 
   <div class="pt-2">
     <div class="card-group better-u-card-deck">
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:food_etalk_tutorial]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:your_food_your_choice]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:keep_your_pressure_in_check]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:color_me_healthy]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:eat_well_on_the_go]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:keep_yourself_well]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::FOOD_ETALK[:play_food_etalk]"} %>
+      <%
+        LearningModules::FOOD_ETALK_IDS.each do |id|
+      %>
+        <%= render :partial => 'learning_module_card', locals: {lesson_id: id} %>
+      <%
+        end
+      %>
     </div>
   </div>
 </div>

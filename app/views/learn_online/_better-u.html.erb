@@ -4,7 +4,7 @@
       <%= image_tag 'better-u-logo.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
       <div class="media-body ml-3">
         <div class="content-section-title">Better U</div>
-        <div class="content-section-copy-dark">Taking your food knowledge to the next level.</div>
+        <div class="content-section-copy-dark">Increase your food knowledge!</div>
       </div>
     </div>
     <div class="col-7 content-section-copy-dark-med align-items-top">
@@ -16,10 +16,13 @@
   </div>
   <div class="pt-2">
     <div class="card-group better-u-card-deck">
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:keeping_track]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:no_thanks_im_sweet_enough]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:small_changes_equal_big_results]"} %>
-      <%= render :partial => 'learning_module_card', locals: {lesson_id: "LearningModules::BETTER_U[:what_gets_in_the_weigh]"} %>
+      <%
+      LearningModules::BETTER_U_IDS.each do |id|
+      %>
+        <%= render :partial => 'learning_module_card', locals: {lesson_id: id} %>
+      <%
+      end
+      %>
     </div>
   </div>
 </div>
