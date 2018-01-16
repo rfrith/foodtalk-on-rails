@@ -39,6 +39,11 @@ Rails.application.routes.draw do
 
   #resources :newsletter_sign_up
 
+  controller :surveys do
+    get 'show_survey/:id' => :show, as: 'show_survey'
+    get 'process_consent_form/:uid' => :process_consent_form, as: 'process_consent_form'
+  end
+
   controller :newsletter_sign_up do
     post 'newsletter_sign_up' => :create
   end
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
 
   controller :learn_online do
     get 'launch_module/:module_name' => :launch_module, as: 'launch_module'
+    get 'complete_module/:module_name' => :complete_module, as: 'complete_module'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

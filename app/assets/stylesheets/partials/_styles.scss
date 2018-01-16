@@ -42,8 +42,25 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
 
 
 textarea, input, input[type], .uneditable-input {
-  border-color: rgba(226,79,44, .6);
-  //outline: 0 none;
+  border-color: $primary-fill-color;
+  outline: 0 none;
+}
+
+.form-control {
+  border-color: $primary-fill-color;
+}
+
+.form-control:focus {
+  border-color: $input-focus-border-color;
+  outline: 0 none;
+  -webkit-box-shadow: $input-focus-shadow-color;
+  box-shadow: $input-focus-shadow-color;
+}
+
+
+.dropdown-menu .dropdown-item:active
+{
+  background-color: $primary-fill-color;
 }
 
 

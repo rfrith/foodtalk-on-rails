@@ -44,7 +44,12 @@ gem 'jbuilder', '~> 2.5'
 #gem 'devise'
 gem 'omniauth'
 gem 'omniauth-auth0'
-gem 'bootstrap', '~> 4.0.0.beta2'
+
+
+
+gem 'bootstrap', '~> 4.0.0.beta3'
+
+
 gem 'font-awesome-rails'
 gem 'gibbon', '~> 3.1', '>= 3.1.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'

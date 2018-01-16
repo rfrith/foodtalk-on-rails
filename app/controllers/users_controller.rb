@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
-  include Secured
-  include MailchimpHelper
+  include Secured, MailchimpHelper
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 

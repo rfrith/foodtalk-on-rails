@@ -15,7 +15,7 @@ class LearnOnlineController < ApplicationController
       end
       format.html {
         if(lesson && target_url)
-          current_user.activity_histories << OnlineLearningHistory.new(name: lesson_id)
+          current_user.activity_histories << OnlineLearningHistory.new(name: lesson_id+"_start")
           if(!current_user.course_enrollments.exists?(name: lesson_id))
             current_user.course_enrollments << CourseEnrollment.new(name: lesson_id)
           end
@@ -23,6 +23,25 @@ class LearnOnlineController < ApplicationController
         else
           raise ActionController::RoutingError.new('Lesson Not Found')
         end
+      }
+    end
+  end
+
+  def complete_module
+    respond_to do |format|
+      lesson_id = params[:module_name]
+      lesson = current_user.course_enrollments.where(name: lesson_id, state: :started).take
+
+      #make sure user has CourseEnrollment record for this lesson
+      if(lesson)
+        #remove user from course & log history
+        lesson.complete!
+      else
+        raise ActionController::RoutingError.new('Lesson Not Found')
+      end
+
+      format.html {
+        redirect_to dashboard_show_path
       }
     end
   end

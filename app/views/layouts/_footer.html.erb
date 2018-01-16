@@ -1,11 +1,15 @@
 <nav id="footer-nav" class="navbar navbar-expand-sm navbar-light <%= (local_assigns[:fixed_bottom].nil? || local_assigns[:fixed_bottom]) ? 'fixed-bottom' : 'navbar-static-bottom' %>" role="navigation">
 
   <div class="d-flex mx-auto">
-      <div>
-        <span class="uga-logo-copy mr-2">Website & Learning Environment Produced by </span>
-        <span><%= image_tag 'uga-logo-sm.png', class: 'm-0 p-0', alt: 'UGA Logo', style: 'height: 50px; width: auto;' %></span>
-      </div>
+    <div class="align-middle">
+      <span class="uga-logo-copy mr-3 text-right">Created by</span>
+      <span><%= image_tag 'uga-extension-logo-sm.png', class: 'm-0 p-0 mr-3', alt: 'UGA Extension Logo', style: 'height: 50px; width: auto;' %></span>
+      <span><%= image_tag 'ga-snap-ed-sm.png', class: 'm-0 p-0', alt: 'GA SNAP-Ed Logo', style: 'height: 50px; width: auto;' %></span>
+    </div>
   </div>
+
+
+
 
   <ul class="navbar-nav footer-nav mx-auto">
     <li class="nav-item"><a class="nav-link" href="#">About</a></li>

@@ -16,7 +16,7 @@ module MailchimpHelper
     end
   end
 
-  def get_all_enabled_lists
+  def all_enabled_lists
     lists = {}
     Rails.application.secrets.mailchimp_list_ids.split(',').each do |id|
       gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)

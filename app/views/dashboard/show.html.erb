@@ -5,10 +5,13 @@
       <div id="user-info" class="user-info">
         <div class="mt-1">
           <nav class="nav nav-tabs ml-5 justify-content-end" id="dashboard-nav" role="tablist">
-
-
-
-            <a class="nav-item nav-link" data-toggle="tab" href="#continue-learning-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">My Courses</a>
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Courses</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" data-toggle="tab" href="#continue-learning-tab">In Progress Courses</a>
+                <a class="dropdown-item" data-toggle="tab" href="#completed-learning-tab">Completed Courses</a>
+              </div>
+            </div>
             <a class="nav-item nav-link active" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
             <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="subscriptions-tab" aria-selected="false">Newsletter Subscriptions</a>
           </nav>
@@ -16,25 +19,23 @@
           <div class="tab-content d-flex justify-content-center">
 
             <div class="tab-pane fade show" id="continue-learning-tab" role="tabpanel" aria-labelledby="continue-learning-tab">
-
               <div id="food-etalk" class="d-flex flex-column pl-5 pr-5">
                 <div class="d-flex flex-row">
                   <div class="media align-items-top">
                     <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
                     <div class="media-body ml-3">
                       <div class="content-section-title">Food eTalk</div>
-                      <div class="content-section-copy-dark">You're Doing Great!  Keep Up The Good Work!</div>
+                      <div class="content-section-copy-dark">Keep Up The Good Work, You're Doing Great!</div>
                     </div>
                   </div>
                 </div>
                 <div class="lead pb-2">Why not finish the Food eTalk lessons you've started to increase your nutritional knowledge?  Your health will thank you!</div>
                 <div class="pt-2">
-                  <% @food_etalk_enrollments.each do |s| %>
+                  <% @open_food_etalk_enrollments.each do |s| %>
                     <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson_id: s.name} %>
                   <% end %>
                 </div>
               </div>
-
               <div id="food-etalk" class="d-flex flex-column pl-5 pr-5 pt-4">
                 <div class="d-flex flex-row">
                   <div class="media align-items-top">
@@ -47,17 +48,49 @@
                 </div>
                 <div class="lead pb-2">Keep learning to become a Better U!</div>
                 <div class="pt-2">
-                  <% @better_u_enrollments.each do |s| %>
+                  <% @open_better_u_enrollments.each do |s| %>
                     <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson_id: s.name} %>
                   <% end %>
                 </div>
               </div>
-
-
             </div>
 
-
-
+            <div class="tab-pane fade show" id="completed-learning-tab" role="tabpanel" aria-labelledby="completed-learning-tab">
+              <div id="food-etalk" class="d-flex flex-column pl-5 pr-5 pt-2">
+                <div class="d-flex flex-row">
+                  <div class="media align-items-top">
+                    <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
+                    <div class="media-body ml-3">
+                      <div class="content-section-title">Food eTalk</div>
+                      <div class="content-section-copy-dark">Great Job!  You've learned so much!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lead pb-2">You should be proud of all you've learned!</div>
+                <div class="pt-2">
+                  <% @closed_food_etalk_enrollments.each do |s| %>
+                    <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson_id: s.name} %>
+                  <% end %>
+                </div>
+              </div>
+              <div id="food-etalk" class="d-flex flex-column pl-5 pr-5 pt-4">
+                <div class="d-flex flex-row">
+                  <div class="media align-items-top">
+                    <%= image_tag 'better-u-logo.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
+                    <div class="media-body ml-3">
+                      <div class="content-section-title">Better U</div>
+                      <div class="content-section-copy-dark">Wow!  You've come so far!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lead pb-2">You are well on your way to becoming a Better U!</div>
+                <div class="pt-2">
+                  <% @closed_better_u_enrollments.each do |s| %>
+                    <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson_id: s.name} %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
 
 
             <div class="tab-pane fade show active personal-info-tab" id="personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
@@ -78,6 +111,7 @@
               </div>
               <%= render :partial => "subscriptions/form" %>
             </div>
+
           </div>
         </div>
       </div>

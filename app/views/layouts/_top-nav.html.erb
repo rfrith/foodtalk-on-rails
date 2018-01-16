@@ -12,6 +12,11 @@
       <% if user_signed_in? && current_user.is_eligible? %>
       <li class="nav-item">
         <%= link_to("Learn Online", { controller: "learn_online", action: "index" }, class: "nav-link") %>
+
+        <!-- TODO: REMOVE ME!!!!
+        <a class="nav-link" href="http://localhost:3000/complete_module/LearningModules::FOOD_ETALK[:keep_yourself_well]" onclick="window.top.location.href='http://localhost:3000/complete_module/LearningModules::FOOD_ETALK%5B:keep_yourself_well%5D';">keep yourself well</a>
+        -->
+
       </li>
       <% end %>
       <li class="nav-item">
