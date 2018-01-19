@@ -17,9 +17,9 @@
   <div class="pt-2">
     <div class="card-group better-u-card-deck">
       <%
-      LearningModules::BETTER_U_IDS.each do |id|
+      LearningModules::BETTER_U.each do |lesson|
       %>
-        <%= render :partial => 'learning_module_card', locals: {lesson_id: id} %>
+        <%= render :partial => 'learning_module_card', locals: {lesson: lesson} %>
       <%
       end
       %>

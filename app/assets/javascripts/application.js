@@ -46,5 +46,4 @@ $(document).on("turbolinks:load", function() {
         $(".dropdown-item.active").removeClass('active');
     });
 
-
 });

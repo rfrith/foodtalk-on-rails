@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :federal_assistances
   has_and_belongs_to_many :recipes
   has_many :activity_histories
+  has_many :online_learning_histories
+  has_many :survey_histories
   has_many :course_enrollments
 
   #TODO: improve this

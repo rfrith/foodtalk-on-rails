@@ -1,13 +1,8 @@
-<%
-  if(correct_syntax?(lesson_id))
-    lesson = eval lesson_id
-  end
-%>
 <div class="media">
-  <%= link_to image_tag(lesson[:img_path], class: 'align-self-end mr-3', alt: 'Lesson 1 Cap', style: 'height: auto; width: 4rem;'), launch_module_path(lesson_id), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+  <%= link_to image_tag(lesson[:img_path], class: 'align-self-end mr-3', alt: 'Lesson 1 Cap', style: 'height: auto; width: 4rem;'), launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
   <div class="media-body">
     <div class="card-title text-left">
-      <%= link_to lesson[:title], launch_module_path(lesson_id), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+      <%= link_to lesson[:title], launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
     </div>
     <div class="card-text text-justify mb-2"><%=lesson[:description].html_safe%></div>
   </div>

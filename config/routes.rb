@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   controller :surveys do
     get 'show_survey/:id' => :show, as: 'show_survey'
     get 'process_consent_form/:uid' => :process_consent_form, as: 'process_consent_form'
+    get 'process_survey/:id/uid/:uid' => :process_survey, as: 'process_survey'
   end
 
   controller :newsletter_sign_up do
@@ -55,7 +56,7 @@ Rails.application.routes.draw do
 
   controller :learn_online do
     get 'launch_module/:module_name' => :launch_module, as: 'launch_module'
-    get 'complete_module/:module_name' => :complete_module, as: 'complete_module'
+    get 'complete_module/:module_name/uid/:uid' => :complete_module, as: 'complete_module'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
