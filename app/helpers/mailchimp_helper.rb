@@ -25,9 +25,7 @@ module MailchimpHelper
     end
     return lists
   end
-
-  private
-
+  
   def email_has_been_added_to_list(email_as_md5_hash, list_id)
     gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
     begin

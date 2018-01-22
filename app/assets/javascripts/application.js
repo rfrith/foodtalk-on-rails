@@ -39,11 +39,6 @@ $(document).on("turbolinks:load", function() {
         });
     });
 
-    //TODO: REMOVE WHEN BOOTSTRAP IS FIXED!
-    //https://github.com/twbs/bootstrap/issues/19374
-    $(".nav-pills .nav-item .nav-link:not(.nav-pills .nav-item.dropdown .nav-link), .dropdown-item").click(function()
-    {
-        $(".dropdown-item.active").removeClass('active');
-    });
+
 
 });
