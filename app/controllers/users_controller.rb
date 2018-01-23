@@ -2,35 +2,20 @@ class UsersController < ApplicationController
 
   include Secured, MailchimpHelper
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
+  before_action :set_user, only: [:update, :update_subscriptions]
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params.except(:subscription_ids))
-        format.js
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.js #{ redirect_to dashboard_show_path, notice: 'Changes saved.' }
+        #format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @user }
       else
         format.js
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        #format.html { render :edit }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,15 +29,15 @@ class UsersController < ApplicationController
       mailchimp_ids.split(',').each do |mid|
         if(!ids.include?(mid))
           #unsubscribe user from list
-          un_subscribe_email_from_list(current_user.email_as_md5_hash, mid)
+          un_subscribe_email_from_list(@user.email_as_md5_hash, mid)
         else
-          subscribe_email_to_list(current_user.email, mid, current_user.first_name, current_user.last_name)
+          subscribe_email_to_list(@user.email, mid, @user.first_name, @user.last_name)
         end
       end
 
       #TODO: IMPLEMENT RESPONSE!!!!!
       format.js
-      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      format.html { redirect_to @user, notice: 'Subscriptions successfully updated.' }
       format.json { render :show, status: :ok, location: @user }
 
     end
@@ -60,7 +45,6 @@ class UsersController < ApplicationController
 
   def update_recipe_favorites
     respond_to do |format|
-      #TODO: why is this coming in as ":format" and not ":id" ????
       id = params[:id]
       recipe = Recipe.find(id)
       if(recipe)
@@ -72,9 +56,9 @@ class UsersController < ApplicationController
       end
 
       #TODO: IMPLEMENT RESPONSE!!!!!
-      format.js
-      format.html { redirect_to recipes_path, notice: 'User was successfully updated.' }
-      format.json { render :shows, status: :ok, location: @user }
+      #format.js
+      format.html { redirect_to recipes_path, notice: '' }
+      #format.json { render :show, status: :ok, location: @user }
     end
   end
 

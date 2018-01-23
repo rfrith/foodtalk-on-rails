@@ -21,3 +21,11 @@ $("#user-form-alert").addClass("alert-danger");
   $("#user-form-alert").html("Please fix the following errors:<%=errMsg.html_safe%>");
 <% end %>
 $("#user-form-alert").addClass("visible");
+
+<% if(@user.is_eligible?) %>
+$("#learn-online-link").removeClass("d-none");
+$("#learn-online-link").addClass("d-block");
+<% else %>
+$("#learn-online-link").removeClass("d-block");
+$("#learn-online-link").addClass("d-none");
+<% end %>

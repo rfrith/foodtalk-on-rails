@@ -12,21 +12,18 @@ class SurveysController < ApplicationController
 
       #Better U
       when "keeping-track"
-        survey_id = LearningModules::find_survey_id('BETTER_U[:keeping_track]')
-        @survey_url = get_survey_url survey_id, process_survey_path(LearningModules::find_lesson_id_by_survey_id(survey_id), current_user.uid)
+        @survey_url = prep_module_survey 'BETTER_U[:keeping_track]'
       when "no-thanks-im-sweet-enough"
-        survey_id = LearningModules::find_survey_id('BETTER_U[:no_thanks_im_sweet_enough]')
-        @survey_url = get_survey_url survey_id, process_survey_path(LearningModules::find_lesson_id_by_survey_id(survey_id), current_user.uid)
+        @survey_url = prep_module_survey 'BETTER_U[:no_thanks_im_sweet_enough]'
       when "small-changes-equals-big-results"
-        survey_id = LearningModules::find_survey_id('BETTER_U[:small_changes_equal_big_results]')
-        @survey_url = get_survey_url survey_id, process_survey_path(LearningModules::find_lesson_id_by_survey_id(survey_id), current_user.uid)
+        @survey_url = prep_module_survey 'BETTER_U[:small_changes_equal_big_results]'
       when "what-gets-in-the-weigh"
-        survey_id = LearningModules::find_survey_id('BETTER_U[:what_gets_in_the_weigh]')
-        @survey_url = get_survey_url survey_id, process_survey_path(LearningModules::find_lesson_id_by_survey_id(survey_id), current_user.uid)
+        @survey_url = prep_module_survey 'BETTER_U[:what_gets_in_the_weigh]'
 
       #Food eTalk
-      # TODO: IMPLEMENT ME!!!!!!  Need Yukon to enable the .js redirects in the modules first
-
+      #TODO: IMPLEMENT ME!!!!!!  Need Yukon to enable the .js redirects in the modules first
+      when "your-food-your-choice"
+        @survey_url = prep_module_survey 'FOOD_ETALK[:your_food_your_choice]'
 
       #TODO: COMPLETE/FIX ME!!!!!!
       when "youtube-test"
@@ -35,13 +32,11 @@ class SurveysController < ApplicationController
         raise "Invalid Survey URL provided."
     end
 
-    current_user.survey_histories << SurveyHistory.new(name: LearningModules::find_lesson_id_by_survey_id(survey_id)+"#started")
-
   end
 
   def process_consent_form
-    if(current_user.uid == params[:uid] && current_user.activity_histories.completed_consent_form.empty?)
-      current_user.activity_histories << SurveyHistory.new(name: ActivityHistory::COMPLETED_CONSENT_FORM)
+    if(current_user.uid == params[:uid] && current_user.survey_histories.completed_consent_form.empty?)
+      current_user.activity_histories << SurveyHistory.new(name: SurveyHistory::COMPLETED_CONSENT_FORM)
     end
     redirect_to dashboard_show_path
   end
@@ -58,6 +53,15 @@ class SurveysController < ApplicationController
 
 
   private
+
+  def prep_module_survey(module_id)
+    survey_id = LearningModules::find_survey_id(module_id)
+    lesson_id = LearningModules::find_lesson_id_by_survey_id(survey_id)
+    survey_url = get_survey_url survey_id, process_survey_path(lesson_id, current_user.uid)
+    current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#started")
+    return survey_url
+  end
+
 
   def get_survey_url(survey_id, redirect)
 

@@ -36,7 +36,7 @@
         <div class="card-title mt-1">Glossary Terms</div>
         <div class="card-text">
           <% recipe.glossary_terms.each do |gt| %>
-              <%= link_to gt.name, 'javascript:;', class: 'badge badge-light m-0 p-0 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus", title: gt.name, "data-content": gt.description %>
+              <%= link_to gt.name, 'javascript:;', class: 'badge badge-light m-0 p-0 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus",  tabindex: "0", title: gt.name, "data-content": gt.description %>
           <% end %>
         </div>
     <% end %>

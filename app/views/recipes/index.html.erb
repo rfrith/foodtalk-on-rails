@@ -11,12 +11,17 @@
         </div>
       </div>
       <div class="text-center pt-3">
-        <%= link_to "All Recipes", recipes_path, class: 'btn btn-sm btn-primary mb-1', role: 'button' %>
+        <%
+          base_css = 'btn btn-sm mb-1 ml-1'
+        %>
+        <%= link_to "All Recipes", recipes_path, class: base_css + (@all_recipes ? ' btn-light' : ' btn-primary'), role: 'button' %>
+
         <% if (current_user && !current_user.recipes.empty?) %>
-            <%= link_to "My Favorites", recipes_path(favorites: true), class: 'btn btn-sm btn-primary mb-1', role: 'button' %>
+          <%= link_to "My Favorites", recipes_path(favorites: true), class: base_css + (@favorites ? ' btn-light' : ' btn-primary'), role: 'button' %>
         <% end %>
+
         <% Category.all.each do |c| %>
-            <%= link_to c.name, recipes_path(category_id: c.id), class: 'btn btn-sm btn-primary mb-1 ml-1', role: 'button' %>
+            <%= link_to c.name, recipes_path(category_id: c.id), class: base_css + ((@category_id && Integer(c.id) == Integer(@category_id)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
         <% end %>
       </div>
       <div class="grid pt-4" style="margin: 0 auto;">

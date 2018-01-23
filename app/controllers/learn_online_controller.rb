@@ -1,5 +1,5 @@
 class LearnOnlineController < ApplicationController
-  include Secured, LearningModules, ApplicationHelper
+  include Secured, Eligible, LearningModules, ApplicationHelper
 
   def index
   end
