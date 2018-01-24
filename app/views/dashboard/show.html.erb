@@ -120,8 +120,8 @@
 
           <% # Personal Info %>
           <div class="tab-pane fade show <%= "active" if(!@current_user.valid?)%> personal-info-tab" id="personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
-            <div class="pt-2">
-              <h2>Please ensure your personal information is correct and up-to-date.</h2>
+            <div class="pt-2 content-section-title pb-2">
+              Please ensure your personal information is correct and up-to-date.
             </div>
             <div>
               <div id="user-form-alert" class="alert visible" role="alert"></div>
@@ -134,7 +134,7 @@
 
           <% # Mailchimp Subscriptions %>
           <div class="tab-pane fade" id="mail-subscriptions-tab" role="tabpanel" aria-labelledby="mail-subscriptions-tab">
-            <div class="pt-2">
+            <div class="pt-1">
               <h2>Please choose which of these lists you'd like to receive emails from.</h2>
             </div>
             <%= render :partial => "subscriptions/form" %>
