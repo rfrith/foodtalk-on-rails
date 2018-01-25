@@ -31,15 +31,67 @@ $(document).on("turbolinks:load", function() {
     })
 
     $('.grid').imagesLoaded( function() {
-
         $('.grid').masonry({
             // options
             itemSelector: '.grid-item',
             fitWidth: true,
             columnWidth: 340
         })
-
-
     });
 
+    if($("#dashboard-content").length > 0) {
+        init_isotope_started_courses();
+
+        $('a[data-toggle=tab]').on('shown.bs.tab', function (e) {
+            switch(e.target.id ) {
+                case 'started-courses-tab-link':
+                    //alert('started-courses-tab-link');
+                    init_isotope_started_courses();
+                    break;
+                case 'completed-courses-tab-link':
+                    //alert('completed-courses-tab-link');
+                    init_isotope_completed_courses();
+                    break;
+            }
+        })
+    }
+
 });
+
+//TODO: DRY - can this be simplified??
+
+function init_isotope_started_courses() {
+
+    $('.food-etalk-started-grid').imagesLoaded( function() {
+        $('.food-etalk-started-grid').isotope({
+            // options
+            itemSelector: '.module-grid-item',
+            layoutMode: 'fitRows'
+        });
+    });
+
+    $('.better-u-started-grid').imagesLoaded( function() {
+        $('.better-u-started-grid').isotope({
+            // options
+            itemSelector: '.module-grid-item',
+            layoutMode: 'fitRows'
+        });
+    });
+}
+
+function init_isotope_completed_courses() {
+    $('.food-etalk-completed-grid').imagesLoaded( function() {
+        $('.food-etalk-completed-grid').isotope({
+            // options
+            itemSelector: '.module-grid-item',
+            layoutMode: 'fitRows'
+        });
+    });
+    $('.better-u-completed-grid').imagesLoaded( function() {
+        $('.better-u-completed-grid').isotope({
+            // options
+            itemSelector: '.module-grid-item',
+            layoutMode: 'fitRows'
+        });
+    });
+}

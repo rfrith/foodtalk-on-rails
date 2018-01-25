@@ -1,0 +1,19 @@
+<% if(!current_user.course_enrollments.better_u.completed.empty?) %>
+  <div id="better-u-lessons-completed" class="d-flex flex-column">
+    <div class="media">
+      <div class="media-body">
+        <span><%= image_tag 'better-u-logo.png', class: 'align-self-top', alt: 'Better U Logo', style: 'width: 6rem; height: auto;' %></span>
+        <span class="pb-2 lead">
+          You're well on your way to becoming a Better U!
+        </span>
+      </div>
+    </div>
+
+    <div class="pt-2 better-u-completed-grid">
+    <% current_user.course_enrollments.better_u.completed.each do |c| %>
+      <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
+    <% end %>
+    </div>
+
+  </div>
+<% end %>

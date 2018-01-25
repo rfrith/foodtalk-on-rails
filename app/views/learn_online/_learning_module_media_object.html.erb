@@ -1,9 +1,13 @@
-<div class="card-title">
-  <%= link_to lesson[:title], launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
-</div>
-<div class="media pb-2">
-  <%= link_to image_tag(lesson[:img_path], class: '', alt: 'Lesson 1 Cap', style: 'height: auto; width: 4rem;'), launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox align-self-center mr-3 border border-secondary rounded'} %>
-  <div class="media-body">
-    <div class="card-text text-justify mb-2"><%=lesson[:description].html_safe%></div>
+<div class="card m-1 module-grid-item">
+  <div class="card-title ml-2 mb-1">
+    <%= link_to lesson[:title], launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+  </div>
+  <div class="media">
+    <%= link_to image_tag(lesson[:img_path], class: 'rounded', alt: 'Lesson 1 Cap', style: 'height: auto; width: 4rem;'), launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox ml-3 mr-3'} %>
+    <div class="media-body mr-4">
+      <div class="small card-text text-justify mb-2">
+        <%= truncate(lesson[:description], escape: true, separator: ' ', omission: '... ', length: 150) %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,153 +1,22 @@
-<div id="lessons" class="container-fluid">
-  <div class="row content-section2 pb-5">
-    <div class="col">
+<div id="dashboard-content">
 
-      <div id="user-info" class="user-info mt-1">
+  <nav id="dashboard-nav" class="nav nav-tabs justify-content-end" role="tablist">
+    <a class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#my-activity-tab">My Activity</a>
+    <a class="nav-item nav-link <%= "active" if(!@current_user.valid?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
+    <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false">Newsletter Subscriptions</a>
+  </nav>
 
-        <nav class="nav nav-tabs ml-5 justify-content-end" id="dashboard-nav" role="tablist">
-          <a class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#continue-learning-tab">My Activity</a>
-          <a class="nav-item nav-link <%= "active" if(!@current_user.valid?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
-          <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="subscriptions-tab" aria-selected="false">Newsletter Subscriptions</a>
-        </nav>
+  <div id="dashboard-tab-content" class="tab-content d-flex justify-content-center">
 
-        <div class="tab-content d-flex justify-content-center">
+    <% #My Activity %>
+    <%= render :partial => "dashboard/my_activity" %>
 
-          <% #My Courses %>
-          <div id="continue-learning-tab" class="pt-2 tab-pane fade show <%= "active" if(@current_user.valid?)%>" role="tabpanel" aria-labelledby="continue-learning-tab">
+    <% # Personal Info %>
+    <%= render :partial => "dashboard/personal_info" %>
 
-            <nav class="nav nav-tabs ml-5 justify-content-start" id="dashboard-nav" role="tablist">
-              <a class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#continue-learning-tab-started">Started Courses</a>
-              <a class="nav-item nav-link" data-toggle="tab" href="#continue-learning-tab-completed">Completed Courses</a>
-            </nav>
+    <% # Mailchimp Subscriptions %>
+    <%= render :partial => "dashboard/mailchimp_subscriptions" %>
 
-            <div class="tab-content d-flex justify-content-start">
-
-              <% # Started Lessons %>
-              <div id="continue-learning-tab-started" class="pt-3 tab-pane fade show active" role="tabpanel" aria-labelledby="continue-learning-tab-started">
-
-                <% # Food eTalk Started Lessons %>
-                <div id="food-etalk-lessons-started" class="d-flex flex-column pb-5">
-                  <div class="media">
-                    <%= image_tag 'food-etalk-logo-med.png', class: 'd-flex d-sm-none d-md-block align-self-top', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %>
-                    <div class="media-body ml-3">
-                      <div class="content-section-title">Food eTalk</div>
-                      <div class="pb-2">
-                        <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
-                          Continue learning by clicking on the lesson's title or image to pick up where you left off.
-                        <% else %>
-                          You are not currently enrolled in any Food eTalk lessons.  Why not <%= link_to("start a lesson now", { controller: "learn_online", action: "index", anchor: 'food-etalk'  }) %>?
-                        <% end %>
-                      </div>
-                      <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
-                        <% current_user.course_enrollments.food_etalk.started.each do |c| %>
-                          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name)} %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-
-                <% # Better U Started Lessons %>
-                <div id="better-u-lessons-started" class="d-flex flex-column">
-                  <div class="media">
-                    <%= image_tag 'better-u-logo.png', class: 'd-flex d-sm-none d-md-block align-self-top', alt: 'Better U Logo', style: 'width: 6rem; height: auto;' %>
-                    <div class="media-body ml-3">
-                      <div class="content-section-title">Better U</div>
-                      <div class="pb-2">
-                        <% if(!current_user.course_enrollments.better_u.started.empty?) %>
-                          Continue learning by clicking on the lesson's title or image to pick up where you left off.
-                        <% else %>
-                          You are not currently enrolled in any Better U lessons.  Why not <%= link_to("start a lesson now", { controller: "learn_online", action: "index", anchor: 'better-u'  }) %>?
-                        <% end %>
-                      </div>
-                      <% if(!current_user.course_enrollments.better_u.started.empty?) %>
-                        <% current_user.course_enrollments.better_u.started.each do |c| %>
-                          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name)} %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <% # Completed Lessons %>
-              <div id="continue-learning-tab-completed" class="pt-3 tab-pane fade show" role="tabpanel" aria-labelledby="continue-learning-tab-completed">
-
-
-                <% if(current_user.course_enrollments.food_etalk.completed.empty? && current_user.course_enrollments.better_u.completed.empty?) %>
-                  You have not completed any Food eTalk or Better U lessons.  Why not <%= link_to("start a lesson now", { controller: "learn_online", action: "index", anchor: 'better-u'  }) %>?
-                <% end %>
-
-                <% # Food eTalk Completed Lessons %>
-                <% if(!current_user.course_enrollments.food_etalk.completed.empty?) %>
-                <div id="food-etalk-lessons-completed" class="d-flex flex-column pb-5">
-                  <div class="media">
-                    <%= image_tag 'food-etalk-logo-med.png', class: 'align-self-top', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %>
-                    <div class="media-body ml-3">
-                      <div class="content-section-title">Food eTalk</div>
-                      <div class="pb-2">
-                      </div>
-                      <% current_user.course_enrollments.food_etalk.completed.each do |c| %>
-                        <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name)} %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-                <% end %>
-
-                <% # Better U Completed Lessons %>
-                <% if(!current_user.course_enrollments.better_u.completed.empty?) %>
-                <div id="better-u-lessons-completed" class="d-flex flex-column">
-                  <div class="media">
-                    <%= image_tag 'better-u-logo.png', class: 'd-flex d-sm-none d-md-block align-self-top', alt: 'Better U Logo', style: 'width: 6rem; height: auto;' %>
-                    <div class="media-body ml-3">
-                      <div class="content-section-title">Better U</div>
-                      <div class="lead pb-2">You're well on your way to becoming a Better U!</div>
-                      <% current_user.course_enrollments.better_u.completed.each do |c| %>
-                        <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name)} %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-                <% end %>
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <% # Personal Info %>
-          <div class="tab-pane fade show <%= "active" if(!@current_user.valid?)%> personal-info-tab" id="personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
-            <div class="pt-2 content-section-title pb-2">
-              Please ensure your personal information is correct and up-to-date.
-            </div>
-            <div>
-              <div id="user-form-alert" class="alert visible" role="alert"></div>
-              <%= render :partial => "users/form" %>
-              <div class="mb-5">&nbsp;</div>
-              <div class="mb-5">&nbsp;</div>
-            </div>
-          </div>
-
-
-          <% # Mailchimp Subscriptions %>
-          <div class="tab-pane fade" id="mail-subscriptions-tab" role="tabpanel" aria-labelledby="mail-subscriptions-tab">
-            <div class="pt-1">
-              <h2>Please choose which of these lists you'd like to receive emails from.</h2>
-            </div>
-            <%= render :partial => "subscriptions/form" %>
-          </div>
-
-
-        </div>
-
-
-
-
-
-      </div>
-    </div>
   </div>
+
 </div>

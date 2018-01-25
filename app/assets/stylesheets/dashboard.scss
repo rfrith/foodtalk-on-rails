@@ -1,18 +1,79 @@
-.user-info {
-  //account for header/footer
-  min-height: calc(100vh - 136px); //TODO: convert to using 'rem' sizes instead of px
+//vars
+$dashboard-nav-height: 3rem;
+$header-height: 4.1rem;
+$footer-height: 4.1rem;
+$content-height: calc(100% - #{$header-height} - #{$footer-height});
+$dashboard-content-height: calc(100% - #{$content-height});
+$dashboard-content-height: calc(100% - #{$header-height} - #{$footer-height});
+
+#dashboard {
+  position: relative;
+  //border: solid 2px black;
+  background: rgba($content-section2-bg-color, 0.9);
+  height: 100vh;
 }
 
-.dashboard-nav {
-  margin-top: 2rem;
+#dashboard-content {
+  height: $dashboard-content-height;
+  position: relative;
+  //border: solid 5px limegreen;
+}
+
+#dashboard-nav {
+  //border: solid 5px deeppink;
+  height: $dashboard-nav-height;
+  width: 100%;
+  padding-top: .25rem;
+}
+
+#dashboard-tab-content {
+  //border: solid 5px #5eb0e2;
+  background: rgba($content-section2-bg-color, 0.9);
+  height: calc(100% - #{$dashboard-nav-height});
+}
+
+#my-activity-tab {
+  padding-top: .25rem;
+  //border: solid 5px red;
+  height: 100%;
   width: 100%;
 }
 
-.personal-info-tab {
-
+#my-activity-nav {
+  //border: solid 5px #43ffb8;
+  height: $dashboard-nav-height;
 }
 
-.dashboard-course-figure .figure .img {
-  width: 20px;
-  height: auto;
+#my-activity-content {
+  //border: solid 5px peachpuff;
+  height: calc(100% - #{$dashboard-nav-height});
+  overflow: auto;
+  background-color: #ebebeb;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#my-activity-nav > a.nav-item.nav-link.active {
+  background-color: #ebebeb !important;
+  border-bottom: none;
+}
+
+#started-courses, #completed-courses{
+  //border: solid 5px peru;
+  min-width: 100%;
+}
+
+#food-etalk-lessons-started, #better-u-lessons-started, #food-etalk-lessons-completed, #better-u-lessons-completed {
+  //border: solid 2px blue;
+  min-width: 100%;
+}
+
+//for isotope.js initialization (see application.js)
+.learning-module-grid {
+  width: 100%;
+}
+
+.module-grid-item {
+  width: 25rem;
+  height: 7rem;
 }

@@ -1,0 +1,23 @@
+<div id="food-etalk-lessons-started">
+  <div class="media">
+    <div class="media-body">
+      <span><%= image_tag 'food-etalk-logo-med.png', class: 'align-middle', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %></span>
+      <span class="pb-2 lead">
+        <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
+          Continue learning by clicking on the lesson's title or image.
+        <% else %>
+          You are not currently enrolled in any Food eTalk lessons.  Why not <%= link_to("start a lesson now", launch_module_path(find_next_lesson(LearningModules::FOOD_ETALK)) , data: { vbtype: "iframe", autoplay: true }, class: "venobox") %>?
+        <% end %>
+      </span>
+    </div>
+  </div>
+
+  <div class="pt-3 food-etalk-started-grid">
+    <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
+      <% current_user.course_enrollments.food_etalk.started.each do |c| %>
+        <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

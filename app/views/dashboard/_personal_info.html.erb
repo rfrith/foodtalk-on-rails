@@ -1,0 +1,11 @@
+<div id="personal-info-tab" class="tab-pane fade show <%= "active" if(!@current_user.valid?)%> personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
+  <div class="pt-2 content-section-title pb-2">
+    <h2>Please ensure your personal information is correct and up-to-date.</h2>
+  </div>
+  <div>
+    <div id="user-form-alert" class="alert visible" role="alert"></div>
+    <%= render :partial => "users/form" %>
+    <div class="mb-5">&nbsp;</div>
+    <div class="mb-5">&nbsp;</div>
+  </div>
+</div>

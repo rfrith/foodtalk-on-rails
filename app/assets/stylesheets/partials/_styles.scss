@@ -194,9 +194,9 @@ button.navbar-toggler.navbar-toggler-right {
   background-image:asset-url('veggie-spread-bg');
 
   background-size:cover;
-  width: 100%;
-  height: 100%;
-  height:calc(100% - 0px);
+  min-width: 100vw;
+  min-height: 100vh;
+
 
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -206,7 +206,8 @@ button.navbar-toggler.navbar-toggler-right {
 }
 
 .content-section, .content-section2, .content-section3 {
-  min-height:100vh;
+  min-height: 100vh;
+  //calc(100vh - 130px);
 
   @include media-breakpoint-up(med) {
 
@@ -269,6 +270,8 @@ button.navbar-toggler.navbar-toggler-right {
  */
 
 .footer {
+  //TODO: move footer height into global vars file
+  min-height: 4rem;
   padding-left: 10rem;
   padding-right: 10rem;
   background: rgba($footer-bg-color, 0.5);

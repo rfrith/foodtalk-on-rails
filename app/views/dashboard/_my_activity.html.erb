@@ -1,0 +1,37 @@
+<div id="my-activity-tab" class="tab-pane fade show <%= "active" if(@current_user.valid?)%>" role="tabpanel" aria-labelledby="my-activity-tab">
+
+  <nav id="my-activity-nav" class="nav nav-tabs ml-5 justify-content-start" role="tablist">
+    <a id="started-courses-tab-link" class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#started-courses">Started Courses</a>
+    <a id="completed-courses-tab-link" class="nav-item nav-link" data-toggle="tab" href="#completed-courses">Completed Courses</a>
+  </nav>
+
+  <div id="my-activity-content" class="tab-content d-flex justify-content-start">
+
+    <% # Started Lessons %>
+    <div id="started-courses" class="pt-3 tab-pane fade show active" role="tabpanel" aria-labelledby="started-courses">
+
+      <% # Food eTalk Started Lessons %>
+      <%= render :partial => "dashboard/food_etalk_in_progress" %>
+
+      <% # Better U Started Lessons %>
+      <%= render :partial => "dashboard/better_u_in_progress" %>
+    </div>
+
+    <% # Completed Lessons %>
+    <div id="completed-courses" class="pt-3 tab-pane fade show" role="tabpanel" aria-labelledby="completed-courses">
+
+      <% if(current_user.course_enrollments.food_etalk.completed.empty? && current_user.course_enrollments.better_u.completed.empty?) %>
+        You have not completed any Food eTalk or Better U lessons.  Why not <%= link_to("start a lesson now", { controller: "learn_online", action: "index", anchor: 'better-u'  }) %>?
+      <% end %>
+
+      <% # Food eTalk Completed Lessons %>
+      <%= render :partial => "dashboard/food_etalk_completed" %>
+
+      <% # Better U Completed Lessons %>
+      <%= render :partial => "better_u_completed" %>
+
+    </div>
+
+  </div>
+
+</div>
