@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
   #resources :newsletter_sign_up
 
+  controller :certificates do
+    get 'show/:id' => :show, as: 'show_certificate'
+  end
+
   controller :surveys do
     get 'show_survey/:id' => :show, as: 'show_survey'
     get 'process_consent_form/:uid' => :process_consent_form, as: 'process_consent_form'

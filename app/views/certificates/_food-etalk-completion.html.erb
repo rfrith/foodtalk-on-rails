@@ -1,0 +1,15 @@
+<style>
+  .imageAndText {position: relative;}
+  .imageAndText .name {position: absolute; z-index: 1; top: 240; left: 330;}
+  .imageAndText .date {position: absolute; z-index: 1; top: 330; left: 330;}
+</style>
+
+<div class="imageAndText d-flex">
+  <%= image_tag "FoodEtalkCompletionCertificate.png", class: "align-center img-responsive" %>
+  <div class="col">
+    <div class="col-sm-4">
+      <p class="name"><%= current_user.name %></p>
+      <p class="date"><%= Time.now.strftime("%B %d, %Y")%></p>
+    </div>
+  </div>
+</div>
