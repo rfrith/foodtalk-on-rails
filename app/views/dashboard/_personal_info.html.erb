@@ -1,4 +1,4 @@
-<div id="personal-info-tab" class="tab-pane fade show <%= "active" if(!@current_user.valid?)%> personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
+<div id="personal-info-tab" class="tab-pane fade show <%= "active" if(!current_user.valid? || !current_user.is_eligible?)%> personal-info-tab" role="tabpanel" aria-labelledby="personal-info-tab">
   <div class="pt-2 content-section-title pb-2">
     <h2>Please ensure your personal information is correct and up-to-date.</h2>
   </div>

@@ -42,9 +42,6 @@ gem 'jbuilder', '~> 2.5'
 
 
 # custom gems
-
-#TODO: decide on
-#gem 'devise'
 gem 'omniauth'
 gem 'omniauth-auth0'
 gem 'bootstrap', '~> 4.0.0'
@@ -53,7 +50,10 @@ gem 'gibbon', '~> 3.1', '>= 3.1.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'fractional', '~> 1.2'
 gem 'aasm'
+gem 'rmagick'
 
+#TODO: decide on
+#gem 'devise'
 #gem 'foreman'
 #gem 'resque'
 #gem 'resque-scheduler'

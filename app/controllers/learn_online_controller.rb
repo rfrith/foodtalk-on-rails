@@ -27,7 +27,6 @@ class LearnOnlineController < ApplicationController
     respond_to do |format|
       lesson_id = params[:module_name]
       lesson = current_user.course_enrollments.where(name: lesson_id, state: :started).take
-
       #make sure user has CourseEnrollment record for this lesson
       if(lesson)
         #remove user from course & log history
@@ -35,7 +34,6 @@ class LearnOnlineController < ApplicationController
       else
         raise ActionController::RoutingError.new('Lesson Not Found')
       end
-
       format.html {
         redirect_to dashboard_show_path
       }

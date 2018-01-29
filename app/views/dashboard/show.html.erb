@@ -1,15 +1,19 @@
 <div id="dashboard-content">
 
   <nav id="dashboard-nav" class="nav nav-tabs justify-content-end" role="tablist">
-    <a class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#my-activity-tab">My Activity</a>
-    <a class="nav-item nav-link <%= "active" if(!@current_user.valid?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
+    <% if current_user.is_eligible? %>
+    <a class="nav-item nav-link <%= "active" if(@current_user.valid? && @current_user.is_eligible?)%>" data-toggle="tab" href="#my-activity-tab">My Activity</a>
+    <% end %>
+    <a class="nav-item nav-link <%= "active" if(!@current_user.valid? || !@current_user.is_eligible?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
     <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false">Newsletter Subscriptions</a>
   </nav>
 
   <div id="dashboard-tab-content" class="tab-content d-flex justify-content-center">
 
+    <% if current_user.is_eligible? %>
     <% #My Activity %>
     <%= render :partial => "dashboard/my_activity" %>
+    <% end %>
 
     <% # Personal Info %>
     <%= render :partial => "dashboard/personal_info" %>

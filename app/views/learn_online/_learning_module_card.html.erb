@@ -1,6 +1,5 @@
 <div class= "mb-4 card">
   <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson 1 Cap'), launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
-
   <div class="card-body">
     <div class="card-title text-center"><%=lesson[:title]%></div>
     <div class="card-text text-justify mb-2"><%=lesson[:description].html_safe%></div>

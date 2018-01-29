@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   #resources :newsletter_sign_up
 
   controller :certificates do
-    get 'show/:id' => :show, as: 'show_certificate'
+    get 'certificate/:id/show' => :show, as: 'show_certificate'
   end
 
   controller :surveys do
