@@ -3,12 +3,10 @@ class SurveysController < ApplicationController
   def show
     case params[:id]
 
-      #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
-
       when "consent-form"
         @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(current_user.uid)
 
-      #TODO: move survey_id to learning_modules.rb???
+      #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
 
       #Better U
       when "keeping-track"
@@ -21,10 +19,19 @@ class SurveysController < ApplicationController
         @survey_url = prep_module_survey 'BETTER_U[:what_gets_in_the_weigh]'
 
       #Food eTalk
-      #TODO: IMPLEMENT ME!!!!!!  Need Yukon to enable the .js redirects in the modules first
       when "your-food-your-choice"
         @survey_url = prep_module_survey 'FOOD_ETALK[:your_food_your_choice]'
-
+      when "keep-your-pressure-in-check"
+        @survey_url = prep_module_survey 'FOOD_ETALK[:keep_your_pressure_in_check]'
+      when "color-me-healthy"
+        @survey_url = prep_module_survey 'FOOD_ETALK[:color_me_healthy]'
+      when "eat-well-on-the-go"
+        @survey_url = prep_module_survey 'FOOD_ETALK[:eat_well_on_the_go]'
+      when "keep-yourself-well"
+        @survey_url = prep_module_survey 'FOOD_ETALK[:keep_yourself_well]'
+      when "play-food-etalk"
+        @survey_url = prep_module_survey 'FOOD_ETALK[:play_food_etalk]'
+      
       #TODO: COMPLETE/FIX ME!!!!!!
       when "youtube-test"
         @survey_url = get_survey_url"SV_2shasM4V0EexFQ1", dashboard_show_path

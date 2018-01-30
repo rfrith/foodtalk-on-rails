@@ -77,3 +77,22 @@ $dashboard-content-height: calc(100% - #{$header-height} - #{$footer-height});
   width: 25rem;
   height: 7rem;
 }
+
+//Personal Info Tab
+#personal-info-tab {
+   //border: solid 5px green;
+   height: 100%;
+   width: 100%;
+ }
+
+#personal-info-content {
+  //border: solid 5px red;
+  height: 100%;
+  overflow: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#user-form-alert {
+  //width: 80%;
+}
