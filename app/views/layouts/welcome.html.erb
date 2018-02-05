@@ -1,10 +1,14 @@
-<% content_for :content do %>
-    <% if true #!user_signed_in? %>
-    <%= render :partial => 'layouts/header' %>
-    <% end %>
-    <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
-    <div class="content"><%= content_for?(:welcome_content) ? yield(:welcome_content) : yield %></div>
-    <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
+<% content_for :header do %>
+  <%= render 'layouts/header' %>
+  <%= render partial: 'layouts/top-nav', :locals => { css: 'sticky-top' } %>
 <% end %>
 
-<%= render template: "layouts/application" %>
+<% content_for :content do %>
+  <%= yield %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render 'layouts/footer' %>
+<% end %>
+
+<%= render template: 'layouts/application' %>

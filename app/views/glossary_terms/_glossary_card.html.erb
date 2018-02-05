@@ -1,0 +1,31 @@
+<div class="card glossary-card" style="width: <%= local_assigns[:term] %>">
+  <div class="card-header">
+    <span class="h4">
+    <%= term.name %>
+    </span>
+  </div>
+
+  <div class="card-body d-flex flex-row align-items-center">
+    <% if !term.image_remote_origin.blank? %>
+      <div class="glossary-image float-left">
+        <%= image_tag term.image_remote_origin, class: 'card-img-top', alt: term.name %>
+      </div>
+    <% end %>
+    <div class="card-title glossary-description-copy glossary-description">
+      <%= term.description %>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    <blockquote>
+      <footer class="blockquote-footer">
+        <cite title="Source Title"><%= term.source %></cite>
+        <small class="text-muted">
+          <% if !term.image_remote_origin.blank? %>
+            <%= link_to 'Original Image', term.image_remote_origin, target: '_blank' %>
+          <% end %>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+</div>

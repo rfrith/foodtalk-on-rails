@@ -1,0 +1,71 @@
+#content {
+  min-height: calc(100vh - #{$top-nav-height} - #{$footer-height});
+
+  //width: 100vw;
+  //border: solid 1px yellow;
+  //height: 100vh;
+  width: 100%;
+  //background: rgba($content-section2-bg-color, 0.9);
+  padding: 0;
+  margin: 0;
+}
+
+.content-section, .content-section2, .content-section3 {
+  //min-height: 100vh;
+  //calc(100vh - 130px);
+
+  @include media-breakpoint-up(med) {
+
+  }
+}
+
+.content-section {
+  background: rgba($content-section-bg-color, 0.5);
+}
+
+.content-section2 {
+  background: rgba($content-section2-bg-color, 0.9);
+}
+
+.content-section3 {
+  background: rgba($content-section3-bg-color, 0.8);
+}
+
+.content-section-item {
+  //padding-top: 2.8rem;
+}
+
+.content-section-header {
+  padding-top: 5rem;
+}
+
+.content-section-title {
+  font-family: $roboto-slab;
+  //color: rgba(155, 116, 49, 1);
+  color: $content-section-title;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+}
+
+.content-section-copy-dark, .content-section-copy-light, .content-section-copy-dark-med, .content-section-copy-light-med {
+  font-family: $roboto;
+}
+
+.content-section-copy-dark, .content-section-copy-light {
+  font-weight: 500;
+  font-size: 1.75rem;
+}
+
+.content-section-copy-dark-med, .content-section-copy-light-med {
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+.content-section-copy-dark, .content-section-copy-dark-med {
+  color: #000000;
+}
+
+.content-section-copy-light, .content-section-copy-light-med {
+  color: $primary-font-inverse-color;
+}

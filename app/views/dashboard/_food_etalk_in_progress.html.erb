@@ -8,7 +8,7 @@
           for completing Food eTalk!
 
           When you're ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { vbtype: :iframe}, class: :venobox) %>
-          and visit your nearest << UGA Extension Office >> to receive your certificate and bag of Food Talk goodies.
+          and visit your nearest << UGA Extension Office >> to receive your complimentary bag of Food Talk goodies (add image???).
         <% else %>
           <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
             Continue learning by clicking on the lesson's title or image.

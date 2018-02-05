@@ -1,20 +1,27 @@
-<div id="food-etalk" class="d-flex flex-column pl-5 pr-5 pt-5">
-  <div class="d-flex flex-row">
-    <div class="col-5 media align-items-top">
-      <%= image_tag 'food-etalk-logo-lg.png', class: 'd-flex d-sm-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
-      <div class="media-body ml-3">
-        <div class="content-section-title">Food eTalk</div>
-        <div class="content-section-copy-dark">Make healthier food choices!</div>
+<div id="food-etalk">
+  <div class="row no-gutters p-4">
+    <div class="col">
+      <div class="media align-items-center">
+        <%= image_tag 'food-etalk-logo-lg.png', class: '', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
+        <div class="media-body ml-4 mr-4">
+          <span class="content-section-title">Food eTalk</span>
+          <p class="content-section-copy-dark">Make healthier food choices!</p>
+        </div>
       </div>
     </div>
-    <div class="col-7 content-section-copy-dark-med align-items-top">
-      Food eTalk is a series of interactive online classes that focus on planning healthy meals
-      on a budget. Free educational and cooking items included at each session!
+
+    <div class="w-100 d-md-none d-lg-none mt-2"></div>
+
+    <div class="col">
+      <div class="content-section-copy-dark-med align-items-top text-justify">
+        Food eTalk is a series of interactive online classes that focus on planning healthy meals
+        on a budget. Free educational and cooking items included at each session!
+      </div>
     </div>
   </div>
 
   <div class="pt-2">
-    <div class="card-group better-u-card-deck">
+    <div class="card-columns food-etalk-card-deck">
       <%
         LearningModules::FOOD_ETALK.each do |lesson|
       %>
@@ -25,6 +32,3 @@
     </div>
   </div>
 </div>
-
-<div class="pb-5"><br>&nbsp;<br></div>
-

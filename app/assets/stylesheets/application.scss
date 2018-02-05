@@ -14,6 +14,7 @@
 
 @import "bootstrap";
 @import "font-awesome";
+@import "globals/*";
 @import "partials/*";
 @import "welcome";
 @import 'videos';
@@ -21,3 +22,4 @@
 @import 'dashboard';
 @import 'glossary_terms';
 @import 'recipes';
+@import 'users';

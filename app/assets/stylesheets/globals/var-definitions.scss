@@ -1,0 +1,4 @@
+$top-nav-height: 4.1rem;
+$header-height: $top-nav-height;
+$footer-height: 4.1rem;
+$content-height: calc(100vh - #{$header-height} - #{$footer-height});

@@ -1,71 +1,109 @@
-//vars
-$dashboard-nav-height: 3rem;
-$header-height: 4.1rem;
-$footer-height: 4.1rem;
-$content-height: calc(100% - #{$header-height} - #{$footer-height});
-$dashboard-content-height: calc(100% - #{$content-height});
-$dashboard-content-height: calc(100% - #{$header-height} - #{$footer-height});
+$dashboard-tab-height: 3rem;
+$dashboard-tab-content-height: calc(100% - #{$dashboard-tab-height});
+
+@include media-breakpoint-up(xs) {
+
+}
+@include media-breakpoint-up(sm) {
+
+}
+@include media-breakpoint-up(md) {
+
+}
+@include media-breakpoint-up(lg) {
+
+}
+@include media-breakpoint-up(xl) {
+
+}
+
 
 #dashboard {
-  position: relative;
-  //border: solid 2px black;
+  //padding-top: $top-nav-height;
+  //border: solid 4px purple;
   background: rgba($content-section2-bg-color, 0.9);
-  height: 100vh;
+  height: $content-height;
+  //min-height: 100%;
+  //min-width: 100%;
+  //height: $content-height;
+  //width: 100%;
+  overflow: auto;
 }
 
 #dashboard-content {
-  height: $dashboard-content-height;
-  position: relative;
-  //border: solid 5px limegreen;
+  //border: solid 4px olivedrab;
+  min-height: 100%;
 }
 
 #dashboard-nav {
   //border: solid 5px deeppink;
-  height: $dashboard-nav-height;
-  width: 100%;
-  padding-top: .25rem;
+  height: $dashboard-tab-height;
 }
 
 #dashboard-tab-content {
   //border: solid 5px #5eb0e2;
   background: rgba($content-section2-bg-color, 0.9);
-  height: calc(100% - #{$dashboard-nav-height});
+  height: $dashboard-tab-content-height;
+  width: 100%;
+  min-height: $dashboard-tab-content-height;
+  min-width: 100%;
 }
 
-#my-activity-tab {
-  padding-top: .25rem;
-  //border: solid 5px red;
+
+#my-activity-content, #personal-info-content, #mail-subscriptions-content {
   height: 100%;
   width: 100%;
 }
 
+
+#my-activity-tab, #my-activity-nav  {
+  //border: solid 1px rebeccapurple;
+}
+
+#my-activity-tab {
+  padding-top: .25rem;
+  //border: solid 2px red;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+}
+
 #my-activity-nav {
-  //border: solid 5px #43ffb8;
-  height: $dashboard-nav-height;
+  //border: solid 2px #43ffb8;
+  height: $dashboard-tab-height;
+}
+
+#my-activity-nav > a.nav-item.nav-link {
+  //color: black;
+}
+
+#my-activity-content, #my-activity-nav > a.nav-item.nav-link.active {
+  background-color: #ebebeb !important;
 }
 
 #my-activity-content {
   //border: solid 5px peachpuff;
-  height: calc(100% - #{$dashboard-nav-height});
-  overflow: auto;
-  background-color: #ebebeb;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  height: calc(100% - #{$dashboard-tab-height});
+  width: 100%;
+  min-height: calc(100% - #{$dashboard-tab-height});
+  min-width: 100%;
 }
 
 #my-activity-nav > a.nav-item.nav-link.active {
-  background-color: #ebebeb !important;
   border-bottom: none;
+  height: $dashboard-tab-height;
 }
 
 #started-courses, #completed-courses{
-  //border: solid 5px peru;
-  min-width: 100%;
+  //height: 100%;
+  //width: 100%;
 }
 
 #food-etalk-lessons-started, #better-u-lessons-started, #food-etalk-lessons-completed, #better-u-lessons-completed {
   //border: solid 2px blue;
-  min-width: 100%;
+  //min-width: 100%;
+  //height: 100%;
 }
 
 //for isotope.js initialization (see application.js)
@@ -80,19 +118,17 @@ $dashboard-content-height: calc(100% - #{$header-height} - #{$footer-height});
 
 //Personal Info Tab
 #personal-info-tab {
-   //border: solid 5px green;
-   height: 100%;
-   width: 100%;
+  //border: solid 1px green;
+  //height: 100%;
  }
 
 #personal-info-content {
-  //border: solid 5px red;
-  height: 100%;
-  overflow: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  //border: solid 1px red;
+  //height: 100%;
+  //width: 100%;
 }
 
 #user-form-alert {
   //width: 80%;
+  //border: solid 1px black;
 }

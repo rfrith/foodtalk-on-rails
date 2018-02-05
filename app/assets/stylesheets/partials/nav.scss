@@ -1,0 +1,75 @@
+#top-nav {
+  min-height: $top-nav-height; //don't set absolute height or collapsible nav won't work right
+  width: 100%;
+}
+
+#footer-nav {
+  min-height: $footer-height;
+  width: 100%;
+}
+
+/* change navbar background */
+nav.navbar, .navbar-collapse {
+  background-color: $primary-fill-color;
+}
+
+/* change navbar-brand color */
+.navbar a.navbar-brand {
+  //color: floralwhite;
+}
+
+/* change navbar-brand color on hover */
+.navbar a.navbar-brand:hover {
+  //color: green;
+}
+
+.navbar ul.navbar-nav li.nav-item a.nav-link, #footer #footer-nav a.nav-item.nav-link {
+  color: $primary-font-inverse-color;
+  font-family: $roboto-slab;
+  @include media-breakpoint-only(xs) {
+    font-size: .75rem;
+  }
+  @include media-breakpoint-only(sm) {
+    font-size: .85rem;
+  }
+  @include media-breakpoint-only(md) {
+    font-size: 1rem;
+  }
+  @include media-breakpoint-only(lg) {
+    font-size: 1.1rem;
+  }
+  @include media-breakpoint-only(xl) {
+    font-size: 1.15rem;
+  }
+}
+
+/* change navbar-toggler inside lines color (stroke) */
+.navbar-light span.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='floralwhite' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  color: $primary-font-inverse-color;
+}
+
+/* change hamburger button border color */
+button.navbar-toggler.navbar-toggler-right {
+  border-color: $primary-font-inverse-color;
+}
+
+/* change navbar background on collapse */
+//@media (max-width: 768px) {
+//  nav.navbar {
+//background: lightgray;
+//  }
+//}
+
+@include media-breakpoint-up(md) {
+  .top-nav {
+    position: sticky;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .top-nav {
+    position: fixed;
+    width: 100%;
+  }
+}

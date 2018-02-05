@@ -1,7 +1,13 @@
+<% content_for :header do %>
+  <%= render 'layouts/top-nav' %>
+<% end %>
+
 <% content_for :content do %>
-    <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
-    <%= content_for?(:videos_content) ? yield(:videos_content) : yield %>
-    <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
+  <%= yield %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render 'layouts/footer' %>
 <% end %>
 
 <%= render template: 'layouts/application' %>

@@ -5,11 +5,20 @@
   #
   if action_name == :index.to_s
 %>
-  <% content_for :content do %>
-      <%= render :partial => 'layouts/top-nav', :locals => { :fixed_top => true } %>
-      <%= content_for?(:recipes_content) ? yield(:recipes_content) : yield %>
-      <%= render :partial => 'layouts/footer', :locals => { :fixed_bottom => true } %>
+
+  <% content_for :header do %>
+    <%= render 'layouts/top-nav' %>
   <% end %>
+
+  <% content_for :content do %>
+    <%= yield %>
+  <% end %>
+
+  <% content_for :footer do %>
+    <%= render 'layouts/footer' %>
+  <% end %>
+
+
   <%= render template: 'layouts/application' %>
 <% else %>
   <%= render template: 'layouts/simple_layout' %>

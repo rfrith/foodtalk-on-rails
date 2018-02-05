@@ -31,12 +31,15 @@ $(document).on("turbolinks:load", function() {
     })
 
     $('.grid').imagesLoaded( function() {
+
+
         $('.grid').masonry({
             // options
             itemSelector: '.grid-item',
             fitWidth: true,
             columnWidth: 340
-        })
+        });
+
     });
 
     if($("#dashboard-content").length > 0) {
