@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   require 'omniauth'
   include LogoutHelper
 
+  skip_before_action :check_consent
+  skip_before_action :check_personal_info
+
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
     session[:uid] = @user.uid
