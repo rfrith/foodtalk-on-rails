@@ -1,5 +1,8 @@
 class SurveysController < ApplicationController
   include Secured
+
+  skip_before_action :check_consent
+
   def show
     case params[:id]
 

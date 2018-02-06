@@ -1,9 +1,7 @@
 <div id="dashboard-content">
 
   <nav id="dashboard-nav" class="pt-1 nav nav-tabs justify-content-end" role="tablist">
-    <% if current_user.is_eligible? %>
-    <a class="nav-item nav-link <%= "active" if(@current_user.valid? && @current_user.is_eligible?)%>" data-toggle="tab" href="#my-activity-tab">My Activity</a>
-    <% end %>
+    <a id="my-activity-tab-link" class="nav-item nav-link <%= (@current_user.valid? && @current_user.is_eligible?) ? "active" : "d-none" %>" data-toggle="tab" href="#my-activity-tab">My Activity</a>
     <a class="nav-item nav-link <%= "active" if(!@current_user.valid? || !@current_user.is_eligible?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">Personal Information</a>
     <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false">Subscriptions</a>
   </nav>

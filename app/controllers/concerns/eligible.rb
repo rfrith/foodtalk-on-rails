@@ -6,9 +6,14 @@ module Eligible
     before_action :check_eligibility!
   end
 
+
+  private
+
   def check_eligibility!
-    if !current_user || !current_user.is_eligible?
+    if !user_signed_in?
       redirect_to root_path
+    else !current_user.is_eligible?
+      redirect_to dashboard_show_path
     end
   end
 
