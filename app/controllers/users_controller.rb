@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   include Secured, MailchimpHelper
 
   before_action :set_user, only: [:update, :update_subscriptions]
+  skip_before_action :check_personal_info, only: [:update]
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
