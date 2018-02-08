@@ -17,7 +17,6 @@ $("#user-form-alert").addClass("alert-danger");
     errMsg += "<ul>"
   end
   %>
-  <% puts "ERROR HERE" %>
   $("#user-form-alert").html("Please fix the following errors:<%=errMsg.html_safe%>");
 <% end %>
 $("#user-form-alert").addClass("visible");

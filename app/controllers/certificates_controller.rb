@@ -2,7 +2,7 @@ class CertificatesController < ApplicationController
 
   include Secured, CurriculumHelper
 
-  require 'RMagick'
+  require 'rmagick'
   include Magick
   require 'base64'
 
