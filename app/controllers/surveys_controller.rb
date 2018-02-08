@@ -75,9 +75,8 @@ class SurveysController < ApplicationController
 
 
   def get_survey_url(survey_id, redirect)
-
-    #TODO: REMOVE ME!!!!!!!!!
-    if(!Rails.env.production?)
+    
+    if(Rails.application.secrets.use_test_survey)
       survey_id = "SV_2shasM4V0EexFQ1" #this is our test web survey
     end
 

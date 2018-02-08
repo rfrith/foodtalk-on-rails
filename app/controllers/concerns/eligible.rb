@@ -12,7 +12,7 @@ module Eligible
   def check_eligibility!
     if !user_signed_in?
       redirect_to root_path
-    else !current_user.is_eligible?
+    elsif !current_user.is_eligible?
       redirect_to dashboard_show_path
     end
   end

@@ -1,8 +1,6 @@
 class LearnOnlineController < ApplicationController
   include Secured, Eligible, LearningModules, ApplicationHelper
 
-  before_action :check_eligibility
-
   def index
   end
 
