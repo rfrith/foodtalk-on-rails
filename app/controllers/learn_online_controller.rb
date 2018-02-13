@@ -15,6 +15,16 @@ class LearnOnlineController < ApplicationController
           if(!current_user.course_enrollments.exists?(name: lesson_id))
             current_user.course_enrollments << CourseEnrollment.new(name: lesson_id)
           end
+
+          #Ignore introduction video
+          #TODO: is there a better way?
+          if lesson_id == "FOOD_ETALK[:food_etalk_tutorial]"
+            l = current_user.course_enrollments.where(name: lesson_id, state: :started).take
+            if(l)
+              l.complete!
+            end
+          end
+
           redirect_to target_url
         else
           raise ActionController::RoutingError.new('Lesson Not Found')
