@@ -1,0 +1,28 @@
+<div class="content-section2" style="height: 100%;">
+  <div class="content-section-title p-1 ml-2">
+    Georgia SNAP-Ed GIS Resources
+  </div>
+
+  <div class="grid pt-4" style="margin: 0 auto;">
+  <%
+    Maps::GA_SNAP_ED_MAPS.each do |map|
+  %>
+    <div class="grid-item mb-4">
+      <div class="card m-1 module-grid-item" style="width: 18rem; height: 16rem;">
+        <div class="card-title ml-2 mb-1">
+          <%= link_to map[:title], show_map_path(map[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+        </div>
+        <div class="card-body p-0 m-0">
+          <iframe style="width: 100%;height: 100%;position: relative;" src="<%=map[:target_url]%>" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Expand Map", show_map_path(map[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox', "style"=>"color: white;"} %>
+        </div>
+      </div>
+    </div>
+  <%
+    end
+  %>
+  </div>
+
+</div>

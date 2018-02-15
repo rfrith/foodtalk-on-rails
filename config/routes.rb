@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'recipes/index'
   get 'surveys/index'
+  get 'maps', to: 'maps#index', as: 'maps_index'
 
   get 'surveys/:id', to: 'surveys#show'
   get 'videos/:id', to: 'videos#show'
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
 
   get '/learn_online' => 'learn_online#index'
   get '/lessons' => 'learn_online#index'
+
+  get 'maps/:id', to: 'maps#show'
 
   get '/videos' => 'videos#index'
 
@@ -48,6 +51,11 @@ Rails.application.routes.draw do
     get 'process_consent_form/:uid' => :process_consent_form, as: 'process_consent_form'
     get 'process_survey/:id/uid/:uid' => :process_survey, as: 'process_survey'
   end
+
+  controller :maps do
+    get 'show_map/:id' => :show, as: 'show_map'
+  end
+
 
   controller :newsletter_sign_up do
     post 'newsletter_sign_up' => :create
