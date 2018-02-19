@@ -4,11 +4,10 @@
       <span><%= image_tag 'food-etalk-logo-med.png', class: 'align-middle', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %></span>
       <span class="pb-2 lead">
         <% if user_has_completed_curriculum?(current_user, LearningModules::FOOD_ETALK) %>
-          Way to go! You have earned <%= link_to('your certificate', show_certificate_path('FOOD_ETALK'), data: { vbtype: :iframe}, class: :venobox) %>
-          for completing Food eTalk!
+          Way to go! You have completed Food eTalk.
 
-          When you're ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { vbtype: :iframe}, class: :venobox) %>
-          and visit your nearest << UGA Extension Office >> to receive your complimentary bag of Food Talk goodies (add image???).
+          When you are ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { vbtype: :iframe}, class: :venobox) %>
+          and visit your nearest <%= link_to "UGA Extension Office", "http://extension.uga.edu/county-offices.html", target: "_blank" %> to receive your complimentary bag of Food Talk goodies.
         <% else %>
           <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
             Continue learning by clicking on the lesson's title or image.
@@ -19,7 +18,6 @@
       </span>
     </div>
   </div>
-
   <div class="pt-3 food-etalk-started-grid">
     <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
       <% current_user.course_enrollments.food_etalk.started.each do |c| %>
@@ -27,5 +25,4 @@
       <% end %>
     <% end %>
   </div>
-
 </div>
