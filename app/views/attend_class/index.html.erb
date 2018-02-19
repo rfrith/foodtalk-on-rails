@@ -1,0 +1,73 @@
+<div class="content-section2 pb-5 pt-3" style="height: 100%;">
+  <div class="row no-gutters align-items-center">
+    <div class="col-auto d-flex justify-content-center">
+      <div class="ml-5">
+        <div class="content-section-title pl-5 pb-2">Attend a Class</div>
+        <div>
+          <%= image_tag("foodtalk-class-1.jpg", class: 'd-flex rounded', alt: "Foodtalk Live Classroom", style: 'height: auto; width: 24.5rem;') %>
+        </div>
+      </div>
+    </div>
+    <div class="col content-section-copy-dark-med pl-5 pr-5 pt-5" style="min-width: 50%;">
+      <p class="text-justify">By attending a Food Talk class, you’ll learn from a nutrition educator how to eat more healthfully, feed your family on a budget, keep your food safe, and the best part -- you’ll learn how to make a delicious new recipe and get to taste it! Call or email today to find a class near you!</p>
+      <p class="text-justify">Food Talk classes are currently being held in the following counties. Contact one of the staff members listed below to find out how you can join a class.</p>
+    </div>
+  </div>
+
+  <div class="grid pt-4" style="margin: 0 auto;">
+    <%
+      CountyAgents::COUNTIES.each do |key, values|
+    %>
+      <div class="grid-item mb-4">
+
+        <div class="card m-1 module-grid-item" style="width: 18rem; height: auto;">
+          <div class="card-title ml-3 mt-2">
+            <%= values[:name] %>
+          </div>
+          <div class="card-body">
+
+            <address>
+              <%= values[:address1] %><br>
+              <% if(!values[:address2].empty?) %>
+                <%= values[:address2] %><br>
+              <% end %>
+              <%= values[:city] %> <%= values[:state] %> <%= values[:zip] %><br>
+              <%= link_to values[:phone], "tel:#{values[:phone]}" %>
+            </address>
+
+            <p class="lead">Supervising Agent</p>
+            <div class="media">
+              <%= image_tag(values[:supervising_agent][:photo_url], class: 'rounded mr-2', alt: "#{key} County Supervising Agent", style: 'height: auto; width: 4rem;') %>
+              <div class="media-body mr-4 ">
+                <div class="small card-text text-justify mb-2">
+                  <%= values[:supervising_agent][:name]%><br>
+                  <%= mail_to values[:supervising_agent][:email] %>
+                </div>
+              </div>
+            </div>
+
+            <% if(!values[:program_assistants].empty?) %>
+              <p class="lead pt-2">Program Assistants</p>
+              <% values[:program_assistants].each do |pas| %>
+                <div class="media mb-2">
+                  <%= image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key} County Program Assistant", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].empty?)%>
+                  <div class="media-body mr-4 ">
+                    <div class="small card-text text-justify mb-2">
+                      <%= pas[:name]%><br>
+                      <%= mail_to pas[:email] %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
+    <%
+      end
+    %>
+  </div>
+
+</div>

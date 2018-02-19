@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'recipes/index'
   get 'surveys/index'
   get 'maps', to: 'maps#index', as: 'maps_index'
+  get 'attend_class', to: 'attend_class#index', as: 'attend_class_index'
 
   get 'surveys/:id', to: 'surveys#show'
   get 'videos/:id', to: 'videos#show'
