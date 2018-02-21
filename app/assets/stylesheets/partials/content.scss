@@ -24,7 +24,7 @@
 }
 
 .content-section2 {
-  background: rgba($content-section2-bg-color, 0.85);
+  background: rgba($content-section2-bg-color, 0.84);
 }
 
 .content-section3 {
@@ -68,4 +68,14 @@
 
 .content-section-copy-light, .content-section-copy-light-med {
   color: $primary-font-inverse-color;
+}
+
+
+
+.grid {
+  margin: 0 auto;
+}
+
+.grid-item {
+  margin: 1rem;
 }

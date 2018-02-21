@@ -1,4 +1,4 @@
-<div class= "mt-0 <%= 'mb-4' if(!detail_view) %> card" style="width: <%= card_width %>">
+<div class= "card mt-0 <%= !detail_view ? 'recipe-card' : 'recipe-card-detail' %>">
   <div class="card-header">
     <h4 class="card-title text-center mt-0">
       <%= recipe.title %>

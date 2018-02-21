@@ -1,18 +1,20 @@
 <div id="video-list" class="content-section2">
-  <div class="jumbotron jumbotron-fluid m-0 p-0 pb-5" style="background-color: white;">
-    <div class="d-flex justify-content-center">
+
+  <div class="row no-gutters pb-4" style="background-color: white;">
+    <div class="col d-flex justify-content-center">
       <div class="media align-items-center mt-5">
         <%= image_tag 'videos-icon-sm.png', class: 'd-sm-none d-md-block mr-4', alt: 'Videos Icon', style: 'width: auto; height: 6rem;' %>
         <div class="media-body ml-4">
-          <span class="content-section-title mb-0">Featured FoodTalk Videos</span>
-          <p class="content-section-copy-dark mt-0 mb-0 mr-5">Watch to increase your knowledge of food & nutrition!</p>
+          <span class="content-section-title mb-0">Featured Food Talk Videos</span>
+          <p class="content-section-copy-dark">Watch to increase your knowledge of food & nutrition!</p>
         </div>
       </div>
     </div>
   </div>
+
   <div class="grid pt-4" style="margin: 0 auto;">
     <% @videos.each do |video| %>
-      <%= render :partial => "videos/video_card", locals: {video: video, card_width: '20rem;'} %>
+      <%= render :partial => "videos/video_card", locals: {video: video} %>
     <% end %>
   </div>
 </div>

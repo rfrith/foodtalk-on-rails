@@ -36,8 +36,7 @@ $(document).on("turbolinks:load", function() {
         $('.grid').masonry({
             // options
             itemSelector: '.grid-item',
-            fitWidth: true,
-            columnWidth: 340
+            fitWidth: true
         });
 
     });
