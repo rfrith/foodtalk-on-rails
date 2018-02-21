@@ -1,8 +1,20 @@
-<div class="content-section2" style="height: 100%;">
-  <div class="content-section-title pt-3 pl-5">
-    Georgia SNAP-Ed GIS Resources
+<div class="content-section2 h-100">
+
+  <div class="flex-row p-4" style="background-color: white;">
+    <div class="flex-col d-flex justify-content-center">
+      <div class="media align-items-center">
+        <span>
+          <%= image_tag 'state-of-ga-orange-lg.png', class: 'd-none d-md-block', alt: 'Recipe Card Icon', style: 'width: auto; height: 6rem;' %>
+        </span>
+        <div class="media-body ml-4">
+          <p class="content-section-title mb-0">GIS Resources</p>
+          <p class="content-section-copy-dark mt-0 mb-0 w-100">Provided by UGA SNAP-Ed</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="grid pt-4" style="margin: 0 auto;">
+
+  <div class="grid pt-4">
   <%
     Maps::GA_SNAP_ED_MAPS.each do |map|
   %>

@@ -1,7 +1,7 @@
 <div id="featured-videos" class="content-section2">
   <div class="d-flex justify-content-center">
     <div class="media content-section-header align-items-center">
-      <%= image_tag 'videos-icon-sm.png', class: 'd-sm-none d-md-block mr-4', alt: 'Videos Icon', style: 'width: auto; height: 6rem;' %>
+      <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-4', alt: 'Videos Icon', style: 'width: auto; height: 6rem;' %>
       <div class="media-body">
         <span class="content-section-title">Featured Food Talk Videos</span>
         <div class="content-section-copy-dark">Watch to increase your knowledge of food & nutrition!</div>
@@ -21,7 +21,7 @@
           </figure>
           <div class="card-block mt-0 pt-0">
             <h5 class="text-center"><%=video.title%></h5>
-            <p class="card-text text-justify p-2"><%=video.description%><span class="d-sm-none d-lg-block"></span></p>
+            <p class="card-text text-justify p-2"><%=video.description%><span class="d-none d-lg-block"></span></p>
           </div>
         </div>
       <% end %>
