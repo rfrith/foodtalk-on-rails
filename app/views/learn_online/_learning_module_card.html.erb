@@ -5,6 +5,6 @@
     <div class="card-text text-justify mb-2"><%=lesson[:description].html_safe%></div>
   </div>
   <div class="card-footer text-center">
-    <%= link_to("Click to Launch", launch_module_path(lesson[:id]) , data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
+    <%= link_to("Click to Launch", launch_module_path(lesson[:id]), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
   </div>
 </div>

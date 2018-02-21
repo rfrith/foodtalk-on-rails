@@ -30,19 +30,23 @@
         <% f.submit("Search") %>
       <% end %>
 
-      <div class="hero-subtitle mr-2">Subscribe to our Newsletter for Free Nutrition Tips!</div>
-      <%= form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
+      <div class="hero-subtitle mr-2">Sign up now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning.</div>
+      <% form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
         <div class="input-group">
           <%= f.text_field(:email, class: "form-control", placeholder: "Enter Your Email Here") %>
           <div class="input-group-append">
-            <%= f.submit("Sign Up!", class: "btn btn-primary") %>
+            <%= f.submit("Sign Up Now!", class: "btn btn-primary") %>
           </div>
         </div>
       <% end %>
 
+
+
     </div>
-    <p class="scroll-down-for-more pt-3 d-flex align-items-center">
-      <%= fa_icon "arrow-circle-o-down" %> <span class="pl-3 pr-3">Scroll down for more</span> <%= fa_icon "arrow-circle-o-down" %>
-    </p>
+    <span class="scroll-down-for-more pt-3 d-flex align-items-center">
+      <%= link_to fa_icon("user") + " Sign Up", login_url, class: "badge badge-dark hero-subtitle" %>
+      <span class="ml-3 mr-3">or</span>
+      Scroll down for more <%= fa_icon "arrow-circle-down",  class: "pl-3" %>
+    </span>
   </div>
 </div>
