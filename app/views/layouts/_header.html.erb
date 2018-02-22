@@ -25,7 +25,7 @@
         <% f.submit("Search") %>
       <% end %>
 
-      <div class="hero-subtitle mr-2">Sign up now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning.</div>
+      <div class="hero-subtitle mr-2"><%= link_to fa_icon("user") + " Sign Up Now", login_url, class: "badge badge-dark hero-subtitle" %> to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning.</div>
 
       <% form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
         <div class="input-group">
@@ -37,8 +37,8 @@
       <% end %>
 
     </div>
-    <div class="scroll-down-for-more pt-4">
-      <%= link_to fa_icon("user") + " Sign Up", login_url, class: "badge badge-dark hero-subtitle" %> or Scroll for more <% fa_icon "arrow-circle-down",  class: "pl-3" %>
+    <div class="scroll-down-for-more pt-2">
+      Read more <%= fa_icon "arrow-circle-down",  class: "pl-3" %>
     </div>
   </div>
 </div>

@@ -72,10 +72,8 @@
   .hero {
     height: 100%;
     width: 100%;
-    //align-items: center;
   }
   .hero-content {
-    padding: 4rem;
     background: rgba(0, 0, 0, .6);
   }
 }
@@ -146,19 +144,24 @@
 }
 
 @include media-breakpoint-only(sm) {
-   .hero-title {
-     font-size: 2rem;
-     font-weight: 600;
-   }
-   .hero-copy {
-     font-size: 1.75rem;
-     font-weight: 300;
-   }
+  .hero-content {
+    padding: 22rem;
+    margin-top: 3rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .hero-copy {
+    padding: 4rem;
+    font-size: 1.75rem;
+    font-weight: 300;
+  }
   .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 300;
   }
- }
+}
 
 @include media-breakpoint-down(sm) {
   .scroll-down-for-more, .scroll-down-for-more-light {
@@ -169,16 +172,20 @@
 }
 
 @include media-breakpoint-only(xs) {
+  .hero-content {
+    padding: 1rem;
+    margin-top: 3rem;
+  }
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
   }
   .hero-copy {
-    font-size: 1.75em;
+    font-size: 1rem;
     font-weight: 300;
   }
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 300;
   }
 }
