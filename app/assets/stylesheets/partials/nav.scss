@@ -1,4 +1,4 @@
-#top-nav {
+.top-nav {
   min-height: $top-nav-height; //don't set absolute height or collapsible nav won't work right
   width: 100%;
 }
@@ -60,16 +60,3 @@ button.navbar-toggler.navbar-toggler-right {
 //background: lightgray;
 //  }
 //}
-
-@include media-breakpoint-up(md) {
-  .top-nav {
-    position: sticky;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .top-nav {
-    position: fixed;
-    width: 100%;
-  }
-}

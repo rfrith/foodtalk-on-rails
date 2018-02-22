@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <div class="justify-content-center mb-4">
+  <div class="d-flex justify-content-center mb-4">
     <div class="card-group better-u-card-deck d-flex mx-auto">
       <% Video.limit(4).each do |video| %>
         <div class="video-card card">
@@ -32,5 +32,4 @@
   <div class="content-section-copy-dark recipe-copy text-center pt-4 pb-4">
     <%= link_to "View All Videos", videos_path %>
   </div>
-
 </div>
