@@ -1,9 +1,14 @@
 <% content_for :header do %>
+  <div class="d-inline d-md-none fixed-top">
+    <%= render partial: 'layouts/top-nav'%>
+  </div>
   <%= render 'layouts/header' %>
 <% end %>
 
 <% content_for :content do %>
-  <%= render partial: 'layouts/top-nav', :locals => { css: 'sticky-top' } %>
+  <div class="d-none d-md-inline sticky-top">
+    <%= render partial: 'layouts/top-nav', :locals => { css: 'sticky-top' } %>
+  </div>
   <%= yield %>
 <% end %>
 

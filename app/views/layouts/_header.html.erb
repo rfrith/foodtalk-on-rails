@@ -1,23 +1,13 @@
 <div id="header" class="d-flex hero">
-
-  <div class="d-none d-md-block">
-
-    <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
-
-    <span class="d-flex justify-content-center pt-4">
-    <% if (!current_user) %>
-        <% link_to fa_icon("user") + " Login", login_url, class: "badge badge-success hero-subtitle" %>
-    <% else %>
-        <% link_to( fa_icon('user') + " My Dashboard", { controller: "dashboard", action: "show" }, class: "badge badge-success hero-subtitle") %>
-        &nbsp;
-        <% link_to "Logout", "/logout", class: "badge badge-success hero-subtitle" %>
-    <% end %>
-    </span>
+  <div class="d-none d-md-block d-lg-none ml-4 mr-4">
+    <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
   </div>
-
+  <div class="d-none d-lg-block">
+    <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+  </div>
   <div class="hero-content">
-    <div class="d-md-none">
-      <%= image_tag 'logo-lg.png', class: 'img-fluid mt-3', alt: "FoodTalk.org Logo", style: 'padding: 0; margin: 0;' %>
+    <div class="d-md-none mt-4 mb-4 d-flex justify-content-center">
+      <%= image_tag 'logo-md.png', alt: "FoodTalk.org Logo" %>
     </div>
     <p class="hero-title text-justify">Helping Georgians Eat Healthy & Get Moving!</p>
     <p class="hero-copy text-justify">
@@ -31,6 +21,7 @@
       <% end %>
 
       <div class="hero-subtitle mr-2">Sign up now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning.</div>
+
       <% form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
         <div class="input-group">
           <%= f.text_field(:email, class: "form-control", placeholder: "Enter Your Email Here") %>
@@ -40,13 +31,9 @@
         </div>
       <% end %>
 
-
-
     </div>
-    <span class="scroll-down-for-more pt-3 d-flex align-items-center">
-      <%= link_to fa_icon("user") + " Sign Up", login_url, class: "badge badge-dark hero-subtitle" %>
-      <span class="ml-3 mr-3">or</span>
-      Scroll down for more <% fa_icon "arrow-circle-down",  class: "pl-3" %>
-    </span>
+    <div class="scroll-down-for-more pt-4">
+      <%= link_to fa_icon("user") + " Sign Up", login_url, class: "badge badge-dark hero-subtitle" %> or Scroll for more <% fa_icon "arrow-circle-down",  class: "pl-3" %>
+    </div>
   </div>
 </div>

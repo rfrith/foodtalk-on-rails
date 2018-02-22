@@ -1,3 +1,17 @@
+/////////////////////////////////////////////////
+// header styles  ///////////////////////////////
+/////////////////////////////////////////////////
+
+
+/**
+ * Hero
+ */
+
+.hero {
+  background-image:asset-url('chopping-board-with-veggies.jpg');
+  background-size:cover;
+}
+
 /**
  * Scroll Down Prompt
  */
@@ -7,87 +21,11 @@
 }
 
 .scroll-down-for-more {
-  color: black;
-
+  color: $primary-font-color;
 }
 
 .scroll-down-for-more-light {
   color: $primary-font-inverse-color;
-}
-
-@include media-breakpoint-up(xl) {
-  .scroll-down-for-more, .scroll-down-for-more-light {
-    font-weight: 400;
-    font-size: 4rem;
-  }
-}
-
-@include media-breakpoint-down(lg) {
-  .scroll-down-for-more, .scroll-down-for-more-light {
-    font-weight: 300;
-    font-size: 2rem;
-  }
-}
-
-
-@include media-breakpoint-down(md) {
-  .scroll-down-for-more, .scroll-down-for-more-light {
-    font-weight: 300;
-    font-size: 1.5rem;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .scroll-down-for-more, .scroll-down-for-more-light {
-    color: $primary-font-inverse-color;
-  }
-}
-
-
-
-
-
-/////////////////////////////////////////////////
-// header styles  /////////////////////////////////////////////////
-/////////////////////////////////////////////////
-
-
-/**
- * Hero
- */
-
-.hero {
-  //background-image: url(http://makingthingseasy.com/wp-content/uploads/2015/08/Chopping-Board.jpg);
-  background-image:asset-url('chopping-board-with-veggies.jpg');
-  background-size:cover;
-  height:100vh;
-}
-
-.hero img.logo {
-  padding-right: 6rem;
-}
-
-@include media-breakpoint-up(md) {
-  .hero {
-    padding-left: 0rem;
-    padding-top: 0rem;
-    align-items: center;
-  }
-
-  .hero-content {
-    padding: 4rem;
-    border-radius: 50px 0px 0px 10px;
-    background: rgba($primary-fill-color, .8);
-
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .hero-content {
-    margin-top: 4rem;
-    width: 100vh;
-    background: rgba(0, 0, 0, .6);
-  }
 }
 
 .hero-title, .hero-copy {
@@ -98,9 +36,53 @@
   color: $hero-title;
 }
 
+.hero-subtitle {
+  color: $hero-subtitle;
+  font-family: $source-sans-pro;
+}
+
 .hero-copy {
   color: $primary-font-inverse-color;
 }
+
+.hero img.logo {
+  margin: 0;
+  padding: 0;
+}
+
+
+/**
+ * Responsive Styles
+ */
+
+@include media-breakpoint-up(md) {
+  .hero {
+    height:100vh;
+    padding-left: 0rem;
+    padding-top: 0rem;
+    align-items: center;
+  }
+  .hero-content {
+    border-radius: 50px 0px 0px 10px;
+    background: rgba($primary-fill-color, .8);
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .hero {
+    height:auto;
+    align-items: center;
+  }
+  .hero-content {
+    height:100vh;
+    width: 100vh;
+    margin-top: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: rgba(0, 0, 0, .6);
+  }
+}
+
 
 @include media-breakpoint-up(xl) {
   .hero-title {
@@ -111,111 +93,104 @@
     font-size: 2rem;
     font-weight: 300;
   }
+  .hero-subtitle {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 400;
+    font-size: 4rem;
+  }
 }
 
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-only(lg) {
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
     font-weight: 700;
   }
   .hero-copy {
     font-size: 1.5rem;
     font-weight: 300;
   }
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 300;
+    font-size: 2rem;
+  }
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-up(md) {
+  .hero-content {
+    padding: 2rem;
+    border-radius: 50px 0px 0px 10px;
+    background: rgba($primary-fill-color, .8);
+  }
+}
+
+
+
+
+
+
+@include media-breakpoint-only(md) {
   .hero-title {
-    font-size: 2.25rem;
-    font-weight: 300;
+    font-size: 2.5rem;
+    font-weight: 600;
   }
   .hero-copy {
     font-size: 1.25rem;
     font-weight: 300;
   }
+  .hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-only(sm) {
    .hero-title {
      font-size: 2rem;
-     font-weight: 300;
+     font-weight: 600;
    }
    .hero-copy {
-     font-size: 1.25rem;
+     font-size: 1.75rem;
      font-weight: 300;
    }
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
  }
 
-@include media-breakpoint-down(xs) {
-  .hero-title {
-    font-size: 1.5rem;
+@include media-breakpoint-down(sm) {
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    color: $primary-font-inverse-color;
     font-weight: 300;
+    font-size: 1.75rem;
+  }
+}
+
+@include media-breakpoint-only(xs) {
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 600;
   }
   .hero-copy {
-    font-size: .75rem;
+    font-size: 1.75em;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
     font-weight: 300;
   }
 }
-
-
-
-
-/**
- * Newsletter
- */
-
-.hero-subtitle {
-  color: $hero-subtitle;
-  font-family: $source-sans-pro;
-}
-
-@include media-breakpoint-up(xl) {
-  .newsletter {
-    margin-bottom: 2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 2.5rem;
-    font-weight: 600;
-  }
-
-}
-@include media-breakpoint-down(lg) {
-  .newsletter {
-    margin-bottom: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-}
-
-@include media-breakpoint-down(md) {
-  .newsletter {
-    margin-bottom: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-    font-weight: 300;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
