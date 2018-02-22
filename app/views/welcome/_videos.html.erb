@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="justify-content-center mt-4 mb-4">
-    <div class="card-group videos-card-group d-flex mx-auto">
+    <div class="card-group better-u-card-deck d-flex mx-auto">
       <% Video.limit(4).each do |video| %>
         <div class="video-card card">
           <figure class="figure">
@@ -21,7 +21,9 @@
           </figure>
           <div class="card-block mt-0 pt-0">
             <h5 class="text-center"><%=video.title%></h5>
-            <p class="card-text text-justify p-2"><%=video.description%><span class="d-none d-lg-block"></span></p>
+            <p class="card-text text-left p-2">
+              <%= truncate(video.description, separator: '.', omission: '', length: 120) %>
+            </p>
           </div>
         </div>
       <% end %>

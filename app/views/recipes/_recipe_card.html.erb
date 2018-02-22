@@ -19,11 +19,21 @@
   <div class="card-body p-2 m-0">
     <div class="card-text text-justify mb-1">
       <% if(!detail_view) %>
-      <%= truncate(recipe.description, separator: ' ', omission: '... ', length: 80) { link_to("click for more", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox small") } %>
+
+        <span class="d-inline d-md-none">
+          <%= recipe.description %>
+        </span>
+
+        <span class="d-none d-md-inline">
+          <%= truncate(recipe.description, separator: ' ', omission: '... ', length: 80) { link_to("click for more", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox small") } %>
+        </span>
+
+
       <% else %>
       <%= recipe.description %>
       <% end %>
     </div>
+    <div class="d-none d-lg-block">
     <% if !recipe.categories.empty? %>
         <div class="card-title">Categories</div>
         <div class="card-text">
@@ -40,6 +50,7 @@
           <% end %>
         </div>
     <% end %>
+    </div>
   </div>
   <% if(!detail_view) %>
   <div class="card-footer text-center">
