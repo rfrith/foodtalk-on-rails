@@ -70,19 +70,15 @@
 
 @include media-breakpoint-down(sm) {
   .hero {
-    height:auto;
-    align-items: center;
+    height: 100%;
+    width: 100%;
+    //align-items: center;
   }
   .hero-content {
-    height:100vh;
-    width: 100vh;
-    margin-top: 4rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 4rem;
     background: rgba(0, 0, 0, .6);
   }
 }
-
 
 @include media-breakpoint-up(xl) {
   .hero-title {
@@ -129,11 +125,6 @@
     background: rgba($primary-fill-color, .8);
   }
 }
-
-
-
-
-
 
 @include media-breakpoint-only(md) {
   .hero-title {
