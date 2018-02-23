@@ -1,17 +1,18 @@
 <% content_for :header do %>
-  <div class="mb-0 mt-4 pb-4 fixed-top" style="background-color: white;">
+  <div class="p-4 fixed-top" style="background-color: white;">
     <div class="d-flex justify-content-center">
-      <div class="media align-items-center mt-5 ml-5 mr-5">
-        <%= image_tag 'glossary-icon.png', class: 'd-none d-md-block', alt: 'Glossary Icon', style: 'width: auto; height: 6rem;' %>
-        <div class="media-body ml-4">
-          <span class="content-section-title mb-0">Food Talk Glossary</span>
-          <p class="content-section-copy-dark mt-0 mb-0">Enhance your food preparation knowledge!</p>
-          <span class="text-center">
+      <div class="media align-items-center mt-5">
+        <%= image_tag 'glossary-icon.png', class: 'd-none d-md-block mr-4', alt: 'Glossary Icon', style: 'width: auto; height: 6rem;' %>
+        <div class="media-body">
+          <span class="content-section-title mb-0 d-flex justify-content-center d-block d-lg-none">Food Talk Glossary</span>
+          <span class="content-section-title mb-0 d-none d-lg-block">Food Talk Glossary</span>
+          <p class="content-section-copy-dark d-none d-md-block">Enhance your food preparation knowledge!</p>
+          <div>
             <% ("a".."z").each { |letter|
             %>
               <%= link_to letter.upcase, "##{letter.upcase}", class: 'btn btn-sm btn-primary mb-1 border border-secondary', role: 'button' %>
             <% } %>
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -20,48 +21,8 @@
 
 <% content_for :content do %>
 <div class="content-section2" style="padding-top: 15rem;">
-
-  <div class="d-flex flex-row">
-
-    <div class="mx-auto">
-
-      <%
-        current_letter = "a"
-        current_letter_index = 0
-      %>
-
-      <% @glossary_terms.each do |term| %>
-
-        <%
-          current_letter_index = ("a".."z").to_a.join.index(current_letter)
-          current_term_index = ("a".."z").to_a.join.index(term.name.first)
-
-          while (current_letter_index <= current_term_index)
-        %>
-          <a id="<%= current_letter.upcase %>"/>
-        <%
-          current_letter = ("a".."z").to_a[current_letter_index+1]
-          current_letter_index = ("a".."z").to_a.join.index(current_letter)
-          end
-        %>
-
-        <%= render partial: "glossary_terms/glossary_card", locals: {term: term, card_width: '10rem;'} %>
-
-        <br>
-
-      <% end %>
-
-      <%
-        while (current_letter_index < ("a".."z").to_a.size)
-          current_letter = ("a".."z").to_a[current_letter_index]
-          if(current_letter)
-      %><a id="<%= current_letter.upcase %>"/><%
-      end
-      current_letter_index += 1
-      end
-    %>
-
-    </div>
+  <div class="col-auto">
+    <%= render :partial => "list_glossary_cards" %>
   </div>
 </div>
 <% end %>

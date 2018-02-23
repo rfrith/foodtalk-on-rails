@@ -1,4 +1,4 @@
-<div class="card glossary-card" style="width: <%= local_assigns[:term] %>">
+<div class="card glossary-card <%= local_assigns[:css] %>">
   <div class="card-header">
     <span class="h4">
     <%= term.name %>
@@ -11,7 +11,7 @@
         <%= image_tag term.image_remote_origin, class: 'card-img-top', alt: term.name %>
       </div>
     <% end %>
-    <div class="card-title glossary-description-copy glossary-description">
+    <div class="card-title glossary-description-copy glossary-description text-left">
       <%= term.description %>
     </div>
   </div>
