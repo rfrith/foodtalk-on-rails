@@ -26,9 +26,9 @@
       %>
           <div class="carousel-item <%= 'active' if i == 1%>">
             <div class="d-flex justify-content-center">
-              <div class="card-deck recipes-deck" >
+              <div class="card-deck recipes-deck">
                 <% recipes.each do |recipe| %>
-                    <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, card_width: '22rem;', detail_view: false} %>
+                    <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, card_width: '10rem;', detail_view: false} %>
                 <% end %>
               </div>
             </div>

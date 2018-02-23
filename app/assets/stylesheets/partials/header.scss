@@ -1,11 +1,170 @@
+.hero {
+  background-image:asset-url('chopping-board-with-veggies.jpg');
+  background-size:cover;
+}
+
+.hero-title, .hero-copy {
+  font-family: $lato;
+}
+
+.hero-title {
+  color: $hero-title;
+}
+
+.hero-subtitle {
+  color: $hero-subtitle;
+  font-family: $source-sans-pro;
+}
+
+.hero-copy {
+  color: $primary-font-inverse-color;
+}
+
+
+.scroll-down-for-more, .scroll-down-for-more-light {
+  font-family: $caveat-brush;
+}
+
+.scroll-down-for-more {
+  color: $primary-font-color;
+}
+
+.scroll-down-for-more-light {
+  color: $primary-font-inverse-color;
+}
+
 /**
- * Header Elements
+ * Responsive Styles
  */
 
-.logo {
-  margin-left: 4rem;
-  margin-right: 4rem;
+@include media-breakpoint-up(xl) {
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+  }
+  .hero-copy {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 400;
+    font-size: 4rem;
+  }
 }
+
+@include media-breakpoint-only(lg) {
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: 700;
+  }
+  .hero-copy {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .hero {
+    height:100vh;
+    padding-left: 0rem;
+    padding-top: 0rem;
+    align-items: center;
+  }
+  .hero-content {
+    padding: 2rem;
+    border-radius: 50px 0px 0px 10px;
+    background: rgba($primary-fill-color, .8);
+  }
+}
+
+@include media-breakpoint-only(md) {
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .hero-copy {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  .scroll-down-for-more, .scroll-down-for-more-light {
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+}
+
+@include media-breakpoint-only(sm) {
+  .hero-content {
+    margin-top: 3rem;
+    padding: 4rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .hero-copy {
+    font-size: 1.75rem;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .hero {
+    height: 100%;
+    width: 100%;
+  }
+  .hero-content {
+    background: rgba(0, 0, 0, .6);
+  }
+  .scroll-down-for-more {
+    color: $primary-font-inverse-color;
+    font-weight: 300;
+    font-size: 1.75rem;
+  }
+}
+
+@include media-breakpoint-only(xs) {
+  .hero-content {
+    padding: 1rem;
+    margin-top: 3rem;
+  }
+  .hero-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .hero-copy {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
+
+
+/**
+ * Misc
+ */
 
 .search-box {
   padding: 1rem;

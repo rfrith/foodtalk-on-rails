@@ -1,11 +1,14 @@
 <%= render partial: "recipes" %>
 <%= render partial: "videos" %>
-<% render partial: "fb-feed" %>
+
 
 <% if(false) %>
-    <p class="scroll-down-for-more d-flex mx-auto justify-content-center content-section-item align-items-center">
-      <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
-    </p>
+
+<% render partial: "fb-feed" %>
+
+<p class="scroll-down-for-more d-flex mx-auto justify-content-center content-section-item align-items-center">
+  <%= fa_icon "arrow-down", class: 'pr-2' %>  Scroll down for more content  <%= fa_icon "arrow-down", class: 'pl-2' %>
+</p>
 
 <div class="content-section">
   <div class="d-flex justify-content-center mx-auto content-section-item">

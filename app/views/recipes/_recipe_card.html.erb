@@ -1,8 +1,7 @@
-<div class= "card mt-0 <%= !detail_view ? 'recipe-card' : 'recipe-card-detail' %>" style="min-width: 20rem;">
+<div class= "card mt-0 <%= !detail_view ? 'recipe-card' : 'recipe-card-detail' %>">
   <div class="card-header">
     <h4 class="card-title text-center mt-0">
       <%= recipe.title %>
-
       <% if(!detail_view) %>
       <span>
         <% if current_user %>

@@ -1,26 +1,25 @@
 <% content_for :header do %>
-  <div class="p-4 fixed-top" style="background-color: white;">
-    <div class="d-flex justify-content-center">
-      <div class="media align-items-center mt-5">
+  <div class="row no-gutters p-4 fixed-top" style="background-color: white;">
+    <div class="mx-auto">
+      <div class="media align-items-center mt-5" style="margin-bottom: .2rem;">
         <%= image_tag 'glossary-icon.png', class: 'd-none d-md-block mr-4', alt: 'Glossary Icon', style: 'width: auto; height: 6rem;' %>
         <div class="media-body">
-          <span class="content-section-title mb-0 d-flex justify-content-center d-block d-lg-none">Food Talk Glossary</span>
-          <span class="content-section-title mb-0 d-none d-lg-block">Food Talk Glossary</span>
+          <span class="content-section-title mb-0 d-flex justify-content-center d-block d-md-none">Food Talk Glossary</span>
+          <span class="content-section-title mb-0 d-none d-md-block">Food Talk Glossary</span>
           <p class="content-section-copy-dark d-none d-md-block">Enhance your food preparation knowledge!</p>
-          <div>
-            <% ("a".."z").each { |letter|
-            %>
-              <%= link_to letter.upcase, "##{letter.upcase}", class: 'btn btn-sm btn-primary mb-1 border border-secondary', role: 'button' %>
-            <% } %>
-          </div>
         </div>
+      </div>
+      <div>
+        <% ("a".."z").each { |letter| %>
+          <%= link_to letter.upcase, "##{letter.upcase}", class: 'btn btn-sm btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button' %>
+        <% } %>
       </div>
     </div>
   </div>
 <% end %>
 
 <% content_for :content do %>
-<div class="content-section2" style="padding-top: 15rem;">
+<div class="content-section2" style="padding-top: 16.5rem;">
   <div class="col-auto">
     <%= render :partial => "list_glossary_cards" %>
   </div>

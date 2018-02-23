@@ -12,14 +12,15 @@
  *
  */
 
-@import "bootstrap";
-@import "font-awesome";
-@import "globals/*";
-@import "partials/*";
-@import "welcome";
-@import 'videos';
-@import 'venobox';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'globals/*';
+@import 'partials/*';
 @import 'dashboard';
+@import 'learn_online';
 @import 'glossary_terms';
 @import 'recipes';
 @import 'users';
+@import 'venobox';
+@import 'videos';
+@import 'welcome';

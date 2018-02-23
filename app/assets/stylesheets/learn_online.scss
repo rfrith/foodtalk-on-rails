@@ -1,0 +1,50 @@
+.lessons-card-columnssss {
+  @include media-breakpoint-up(xs) {
+    column-count: 1;
+  }
+  @include media-breakpoint-up(sm) {
+    column-count: 2;
+  }
+  @include media-breakpoint-up(md) {
+    column-count: 4;
+  }
+  @include media-breakpoint-up(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-up(xl) {
+    column-count: 6;
+  }
+}
+
+.lessons-card-columns .card-header {
+  background-color: $primary-fill-color;
+  color: $primary-font-inverse-color;
+}
+
+.lessons-card-columns .card {
+  margin-bottom: 1rem;
+}
+
+.lessons-card-columnssssss .card {
+
+  @include media-breakpoint-up(xs) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(sm) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(md) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(lg) {
+    max-width: 20rem;
+  }
+  @include media-breakpoint-only(xl) {
+    max-width: 20rem;
+  }
+}
+
+
+.better-u-card-deck {
+  width: auto;
+}

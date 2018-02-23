@@ -1,0 +1,37 @@
+html {
+  background: asset-url('veggie-spread-bg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  background-color: rgba(255, 255, 255, 0);
+  //border: solid 2px lawngreen;
+}
+
+html,body {
+  //SETTING HEIGHT BREAKS BOOTSTRAP STICKYTOP
+  //https://github.com/twbs/bootstrap/issues/21919
+  //http://blog.cloud66.com/position-sticky-problem/
+
+  //height: 100%;
+  //border: solid 2px lawngreen;
+}
+
+a, a:link a:visited, a:hover, a:active {
+  color: $primary-fill-color;
+  text-decoration:  none;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+  border-color: $input-focus-border-color;
+  box-shadow: $input-focus-shadow-color;
+  outline: 0 none;
+}
+
+textarea, input, input[type], .uneditable-input {
+  border-color: $primary-fill-color;
+  outline: 0 none;
+}

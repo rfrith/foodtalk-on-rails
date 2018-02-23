@@ -1,3 +1,7 @@
+#recipes {
+
+}
+
 .recipe-section-header {
   font-family: $roboto-slab;
   color: $content-section-title;
@@ -6,10 +10,50 @@
   line-height: 4rem;
 }
 
+.recipes-deck {
+  padding-top: 2rem;
+}
+
+.recipes-deck .card {
+  margin-bottom: 1rem;
+}
+
 .recipe-card {
-  width: 20rem;
+  min-width: 15rem;
+  max-width: 20rem;
 }
 
 .recipe-card-detail {
-  width: 30rem;
+  width: 100%;
+}
+
+
+.recipe-copy {
+  text-align: justify;
+  font-family: $roboto-slab;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+//TODO: need to fix media-breakpoint-* for bootstrap4
+@include media-breakpoint-up(md) {
+  .recipe-copy {
+    maxwidth: 70%;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .recipes-deck {
+    max-width: 70vw;
+  }
+  .recipes-deck .card {
+    #max-height: 70vw;
+  }
+
+}
+
+@include media-breakpoint-down(md) {
+  .recipes-deck {
+    max-width: 100vw;
+  }
 }
