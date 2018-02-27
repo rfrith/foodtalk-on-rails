@@ -6,7 +6,7 @@
         <% if user_has_completed_curriculum?(current_user, LearningModules::FOOD_ETALK) %>
           Way to go! You have completed Food eTalk.
 
-          When you are ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { vbtype: :iframe}, class: :venobox) %>
+          When you are ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { lity: '' }) %>
           and visit your nearest <%= link_to "UGA Extension Office", "http://extension.uga.edu/county-offices.html", target: "_blank" %> to receive your complimentary bag of Food Talk goodies.
         <% else %>
           <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
