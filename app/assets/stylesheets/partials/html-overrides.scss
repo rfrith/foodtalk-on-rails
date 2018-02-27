@@ -8,17 +8,8 @@ html {
 
 body {
   background-color: rgba(255, 255, 255, 0);
-  //border: solid 2px lawngreen;
 }
 
-html,body {
-  //SETTING HEIGHT BREAKS BOOTSTRAP STICKYTOP
-  //https://github.com/twbs/bootstrap/issues/21919
-  //http://blog.cloud66.com/position-sticky-problem/
-
-  //height: 100%;
-  //border: solid 2px lawngreen;
-}
 
 a, a:link a:visited, a:hover, a:active {
   color: $primary-fill-color;

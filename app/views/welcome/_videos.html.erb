@@ -1,10 +1,10 @@
 <div id="featured-videos" class="content-section2">
-  <div class="d-flex justify-content-center p-0 mb-4">
-    <div class="media content-section-header align-items-center pt-4">
-      <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-4', alt: 'Videos Icon', style: 'width: auto; height: 6rem;' %>
+  <div class="d-flex justify-content-center">
+    <div class="media pt-4 pl-4 pr-4 align-items-center">
+      <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-4', alt: 'Videos Icon', style: '' %>
       <div class="media-body">
         <span class="content-section-title">Featured Videos</span>
-        <div class="content-section-copy-dark">Watch to increase your knowledge of food & nutrition!</div>
+        <p class="content-section-copy-dark">Watch to increase your knowledge of food & nutrition!</p>
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
       <% Video.limit(4).each do |video| %>
         <div class="video-card card">
           <figure class="figure">
-            <a href="https://www.youtube.com/embed/<%=video.video_id%>?controls=0?controls=0" data-vbtype="video" data-autoplay="true" class="venobox">
+            <a href="https://www.youtube.com/embed/<%=video.video_id%>?controls=0?controls=0" data-lity data-autoplay="true">
               <%= image_tag "http://img.youtube.com/vi/#{video.video_id}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
               <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
               <figcaption class="figure-caption"></figcaption>

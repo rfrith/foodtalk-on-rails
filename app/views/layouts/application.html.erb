@@ -20,23 +20,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
-  <div class="container-fluid p-0 m-0">
-    <div class="row no-gutters">
-      <div class="col no-gutters">
+
         <%= yield :header %>
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col no-gutters" id="content">
+
         <%= yield :content %>
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col no-gutters">
+
         <%= yield :footer %>
-      </div>
-    </div>
-  </div>
+
   </body>
 </html>
 

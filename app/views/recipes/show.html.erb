@@ -1,86 +1,95 @@
 <div id="recipe" class="content-section3 p-4">
   <div class="row justify-content-start no-gutters">
-
-    <div class="col-4 pr-4">
-      <%= render :partial => "recipes/recipe_card", locals: {recipe: @recipe, detail_view: true} %>
-    </div>
-
-    <div class="col-8">
-      <div class="recipe-section-header">Summary</div>
-      <table class="table table-sm table-bordered content-section-copy-light-med">
-        <tbody>
-        <tr>
-          <th scope="row">Yield</th>
-          <td><%= @recipe.yield %> <%= @recipe.yield_unit %></td>
-        </tr>
-        <tr>
-          <th scope="row">Source</th>
-          <td>
-            <%= @recipe.source %>
-            <%= link_to "Click Here", @recipe.source_url, target: '_blank' if @recipe.source_url %>
-          </td>
-        </tr>
-        <% if @recipe.prep_time > 0 %>
-        <tr>
-          <th scope="row">Prep Time</th>
-          <td><%= @recipe.prep_time %> Minutes</td>
-        </tr>
-        <% end %>
-        <% if @recipe.cooking_time > 0 %>
-        <tr>
-          <th scope="row">Cooking Time</th>
-          <td><%= @recipe.cooking_time %> Minutes</td>
-        </tr>
-        <% end %>
-        <% if @recipe.total_time > 0 %>
-        <tr>
-          <th scope="row">Total Time</th>
-          <td><%= @recipe.total_time %> Minutes</td>
-        </tr>
-        <% end %>
-        </tbody>
-      </table>
-
-      <span class="recipe-section-header">Instructions</span>
-      <div class="text-justify content-section-copy-light-med">
-        <%= @recipe.instructions.html_safe %>
-      </div>
-
-      <% if !@recipe.notes.blank? %>
-      <span class="recipe-section-header">Notes</span>
-      <div class="text-justify content-section-copy-light-med">
-        <%= @recipe.notes.html_safe %>
-      </div>
-      <% end %>
-
-
-
-    </div>
-
-  </div>
-
-  <div class="row no-gutters w-100">
     <div class="col">
-      <span class="recipe-section-header mt-0">Ingredients</span>
-      <table class="table table-sm content-section-copy-light-med">
-        <tbody class="justify-content-center">
-        <% @recipe.ingredients.each do |i| %>
-          <tr>
-            <th scope="row"><%= Fractional.new(i.quantity, to_human: true).to_s if i.quantity %></th>
-            <th><%= i.unit_of_measure.pluralize(i.quantity) if i.unit_of_measure %></th>
-            <td><%= i.name %></td>
-            <td><%= i.note %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+      <div class="pull-left mr-3">
+        <span class="recipe-section-header">
+          <%= @recipe.title %>
+        </span>
+        <span class="scroll-down-for-more d-block d-md-none" style="color: white;">
+         Rotate Screen/Scroll down for more <%= fa_icon "arrow-circle-down", class: "arrow" %>
+        </span>
+        <span class="scroll-down-for-more d-none d-md-block" style="color: white;">
+         Scroll down for more <%= fa_icon "arrow-circle-down", class: "arrow" %>
+        </span>
+        <div class="d-block d-md-none">
+          <%= image_tag(@recipe.image, class: 'img-fluid card-img-top rounded', alt: @recipe.title) %>
+        </div>
+        <div class="pull-left mr-4 d-none d-md-block">
+          <%= image_tag(@recipe.image, class: 'img-fluid card-img-top rounded', alt: @recipe.title) %>
+        </div>
+      </div>
 
-      <% if false %>
+      <div class="d-flex pull-left mr-4">
+        <div class="">
+          <div class="recipe-section-header">Summary</div>
+          <table class="table table-sm table-bordered content-section-copy-light-med">
+          <tbody>
+            <tr>
+              <th scope="row">Yield</th>
+              <td><%= @recipe.yield %> <%= @recipe.yield_unit %></td>
+            </tr>
+            <tr>
+              <th scope="row">Source</th>
+              <td>
+                <%= @recipe.source %>
+                <%= link_to "Click Here", @recipe.source_url, target: '_blank' if @recipe.source_url %>
+              </td>
+            </tr>
+            <% if @recipe.prep_time > 0 %>
+              <tr>
+                <th scope="row">Prep Time</th>
+                <td><%= @recipe.prep_time %> Minutes</td>
+              </tr>
+            <% end %>
+            <% if @recipe.cooking_time > 0 %>
+              <tr>
+                <th scope="row">Cooking Time</th>
+                <td><%= @recipe.cooking_time %> Minutes</td>
+              </tr>
+            <% end %>
+            <% if @recipe.total_time > 0 %>
+              <tr>
+                <th scope="row">Total Time</th>
+                <td><%= @recipe.total_time %> Minutes</td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="">
+        <div class="recipe-section-header align-self-end">Instructions</div>
+        <div class="text-justify content-section-copy-light-med">
+          <%= @recipe.instructions.html_safe %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <% if !@recipe.notes.blank? %>
+    <span class="recipe-section-header">Notes</span>
+    <div class="text-justify content-section-copy-light-med">
+      <%= @recipe.notes.html_safe %>
+    </div>
+  <% end %>
+  <div class="row no-gutters w-100">
+    <span class="recipe-section-header mt-0">Ingredients</span>
+    <table class="table table-sm content-section-copy-light-med">
+      <tbody class="justify-content-center">
+      <% @recipe.ingredients.each do |i| %>
+        <tr>
+          <th scope="row"><%= Fractional.new(i.quantity, to_human: true).to_s if i.quantity %></th>
+          <th><%= i.unit_of_measure.pluralize(i.quantity) if i.unit_of_measure %></th>
+          <td><%= i.name %></td>
+          <td><%= i.note %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% if false %>
       <div class="d-flex justify-content-center mt-3">
         <p><a href="#"><%= fa_icon "arrow-left" %> PREV </a>| <a href="#">NEXT <%= fa_icon "arrow-right" %></a></p>
       </div>
-      <% end %>
-    </div>
+    <% end %>
   </div>
-
 </div>

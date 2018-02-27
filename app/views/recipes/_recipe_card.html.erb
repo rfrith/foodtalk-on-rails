@@ -1,4 +1,4 @@
-<div class= "card mt-0 <%= !detail_view ? 'recipe-card' : 'recipe-card-detail' %>">
+<div class= "card mt-0 <%= detail_view ? 'recipe-card-detail' : 'recipe-card' %>" style="<%= styles %>">
   <div class="card-header">
     <h4 class="card-title text-center mt-0">
       <%= recipe.title %>
@@ -14,25 +14,21 @@
       <% end %>
     </h4>
   </div>
-  <%= link_to image_tag(recipe.image, class: 'card-img-top', alt: recipe.title), recipe_path(recipe), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+  <%= link_to image_tag(recipe.image, class: 'card-img-top', alt: recipe.title), recipe_path(recipe), data: { lity: '' } %>
   <div class="card-body p-2 m-0">
     <div class="card-text text-justify mb-1">
       <% if(!detail_view) %>
-
-        <span class="d-inline d-md-none">
+        <span class="d-inline d-lg-none">
           <%= recipe.description %>
         </span>
-
         <span class="d-none d-md-inline">
-          <%= truncate(recipe.description, separator: ' ', omission: '... ', length: 80) { link_to("click for more", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox small") } %>
+          <%= truncate(recipe.description, separator: ' ', omission: '... ', length: 80) { link_to("click for more", recipe_path(recipe), data: { lity: '' }, class: "small") } %>
         </span>
-
-
       <% else %>
       <%= recipe.description %>
       <% end %>
     </div>
-    <div class="d-none d-lg-block">
+    <div class="d-none d-md-block">
     <% if !recipe.categories.empty? %>
         <div class="card-title">Categories</div>
         <div class="card-text">
@@ -53,7 +49,7 @@
   </div>
   <% if(!detail_view) %>
   <div class="card-footer text-center">
-    <%= link_to("Details", recipe_path(recipe), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
+    <%= link_to("Details", recipe_path(recipe), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
   </div>
   <% end %>
 </div>

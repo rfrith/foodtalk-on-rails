@@ -15,14 +15,13 @@
 //= require turbolinks
 //= require popper
 //= require bootstrap
-//= require venobox
+//= require lity
 
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
 
     //initialize plugins
-    $('.venobox').venobox();
 
     $('[data-toggle="popover"]').popover();
 

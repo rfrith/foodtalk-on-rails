@@ -1,4 +1,4 @@
-<div id="headerz" class="d-flex hero">
+<div id="header" class="d-flex hero">
 
   <div class="d-none d-md-block d-lg-none ml-4 mr-4">
     <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
@@ -9,12 +9,12 @@
   </div>
 
   <div class="hero-content">
-
-    <div class="d-md-none mt-4 mb-4 d-flex justify-content-center">
-      <% image_tag 'logo-md.png', alt: "FoodTalk.org Logo" %>
-    </div>
-
-    <p class="hero-title text-justify">Helping Georgians Eat Healthy & Get Moving!</p>
+    <span class="d-inline d-md-none p-0 m-0">
+      <%= image_tag 'logo-md.png', class: 'logo img-fluid mt-1', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+    </span>
+    <span class="hero-title text-justify align-bottom">
+      Helping Georgians Eat Healthy & Get Moving!
+    </span>
     <p class="hero-copy text-justify">
       FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
     </p>
@@ -37,8 +37,8 @@
       <% end %>
 
     </div>
-    <div class="scroll-down-for-more pt-4">
-      Read more <%= fa_icon "arrow-circle-down",  class: "pl-3" %>
+    <div class="scroll-down-for-more pt-2">
+      Read more <%= fa_icon "arrow-circle-down", class: "arrow" %>
     </div>
   </div>
 </div>

@@ -1,10 +1,10 @@
 <div class= "card">
-  <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(lesson[:id]), {"data-vbtype"=>'iframe', "data-autoplay"=>'true', "class"=>'venobox'} %>
+  <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(lesson[:id]), data: { lity: '' } %>
   <div class="card-body">
     <div class="card-title text-center"><%=lesson[:title]%></div>
     <div class="card-text text-justify mb-2"><%=lesson[:description].html_safe%></div>
   </div>
   <div class="card-footer text-center">
-    <%= link_to("Click to Launch", launch_module_path(lesson[:id]), data: { vbtype: "iframe", autoplay: true }, class: "venobox btn btn-sm btn-primary") %>
+    <%= link_to("Launch", launch_module_path(lesson[:id]), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
   </div>
 </div>
