@@ -20,15 +20,24 @@
       </div>
     </div>
   </div>
-  <div class="p-4">
-    <div class="card-columns food-etalk-card-deck">
-      <%
-        LearningModules::FOOD_ETALK.each do |lesson|
-      %>
-        <%= render :partial => 'learning_module_card', locals: {lesson: lesson} %>
-      <%
-        end
-      %>
+
+
+
+  <div class="grid">
+    <%
+      LearningModules::FOOD_ETALK.each do |lesson|
+    %>
+      <div class="grid-item">
+        <%= render :partial => 'learning_module_card', locals: {lesson: lesson, css: 'food-etalk-card'} %>
+      </div>
+    <%
+      end
+    %>
+  </div>
+
+  <div class="p-0 w-100">
+    <div class="grid food-etalk-card-deckz">
+
     </div>
   </div>
 </div>

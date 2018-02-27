@@ -2,7 +2,7 @@
   <div class="d-block d-md-none fixed-top">
     <%= render partial: 'layouts/top-nav'%>
   </div>
-  <%= render 'layouts/header' %>
+  <%= render 'layouts/header' if !user_signed_in? %>
 <% end %>
 
 <% content_for :content do %>

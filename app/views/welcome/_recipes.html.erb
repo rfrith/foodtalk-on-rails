@@ -1,5 +1,4 @@
 <div id="featured-recipes" class="content-section">
-
   <div class="d-flex justify-content-center">
     <div class="media pt-4 pl-4 pr-4 align-items-center">
       <%= image_tag 'recipe-graphic-sm.png', class: 'd-none d-md-block mr-4', alt: 'Recipe Card Icon', style: '' %>
@@ -10,49 +9,20 @@
     </div>
   </div>
 
-  <div id="recipesCarousel" class="carousel slide" data-ride="carousel"  data-interval="false">
-
-    <div class="carousel-inner" role="listbox">
+  <div class="mx-auto card-deckz recipes-deck w-100">
+    <div class="grid">
       <%
-        #TODO: FIX ME!  We want Featured Recipes Here (i.e., either selected by site admin or the newest X recipes)
-        #TODO: AJAXIFY ME!
-        #TODO: put me in a helper
-        per_page = 3
-        total_pgs = Recipe.page(1).per(per_page).total_pages
-        total_pgs_to_show = 2
-        i = 1
-        while i <= total_pgs_to_show && i <= total_pgs
-          recipes = Recipe.page(i).per(per_page)
-      %>
-          <div class="carousel-item <%= 'active' if i == 1%>">
-            <div class="d-flex justify-content-center">
-              <div class="card-deck recipes-deck">
-                <% recipes.each do |recipe| %>
-                    <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, styles: '', detail_view: false} %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-      <%
-        i += 1
-        end
-      %>
-
-      <a class="carousel-control-prev" href="#recipesCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-
-      <a class="carousel-control-next" href="#recipesCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+        #recipes = Recipe.order(created_at: :desc).last(3)
+        #recipes = Recipe.order(created_at: :asc).last(3)
+        recipes = Recipe.limit(3).order("RANDOM()")
+        recipes.each do |recipe| %>
+        <div class="grid-item">
+          <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, styles: '', detail_view: false} %>
+        </div>
+      <% end %>
     </div>
-
   </div>
-
   <div class="content-section-copy-light recipe-copy text-center pt-4 pb-4">
     <%= link_to "View All Recipes", recipes_path %>
   </div>
-
 </div>

@@ -66,12 +66,7 @@
 
     </div>
   </div>
-  <% if !@recipe.notes.blank? %>
-    <span class="recipe-section-header">Notes</span>
-    <div class="text-justify content-section-copy-light-med">
-      <%= @recipe.notes.html_safe %>
-    </div>
-  <% end %>
+
   <div class="row no-gutters w-100">
     <span class="recipe-section-header mt-0">Ingredients</span>
     <table class="table table-sm content-section-copy-light-med">
@@ -86,10 +81,20 @@
       <% end %>
       </tbody>
     </table>
-    <% if false %>
-      <div class="d-flex justify-content-center mt-3">
-        <p><a href="#"><%= fa_icon "arrow-left" %> PREV </a>| <a href="#">NEXT <%= fa_icon "arrow-right" %></a></p>
-      </div>
-    <% end %>
+
   </div>
+
+  <% if !@recipe.notes.blank? %>
+    <span class="recipe-section-header">Notes</span>
+    <div class="text-justify content-section-copy-light-med">
+      <%= @recipe.notes.html_safe %>
+    </div>
+  <% end %>
+
+  <% if false %>
+    <div class="d-flex justify-content-center mt-3">
+      <p><a href="#"><%= fa_icon "arrow-left" %> PREV </a>| <a href="#">NEXT <%= fa_icon "arrow-right" %></a></p>
+    </div>
+  <% end %>
+
 </div>

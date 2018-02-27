@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
       #TODO: IMPLEMENT RESPONSE!!!!!
       #format.js
-      format.html { redirect_to recipes_path, notice: '' }
+      format.html { redirect_to recipes_path(favorites: true), notice: '' }
       #format.json { render :show, status: :ok, location: @user }
     end
   end

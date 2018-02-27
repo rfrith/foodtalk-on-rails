@@ -1,4 +1,4 @@
-<div class= "card">
+<div class="card <%= css %>">
   <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(lesson[:id]), data: { lity: '' } %>
   <div class="card-body">
     <div class="card-title text-center"><%=lesson[:title]%></div>
@@ -8,3 +8,8 @@
     <%= link_to("Launch", launch_module_path(lesson[:id]), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
   </div>
 </div>
+
+
+
+
+
