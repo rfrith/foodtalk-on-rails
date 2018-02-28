@@ -6,7 +6,7 @@
     <%= link_to(image_tag(lesson[:img_path], class: 'rounded', alt: "#{lesson[:id]} Cap", style: 'height: auto; width: 4rem;'), launch_module_path(lesson[:id]), data: { lity: '' }, class: 'mr-2' ) %>
     <div class="media-body mr-4">
       <div class="small card-text text-justify mb-2">
-        <%= truncate(lesson[:description], escape: true, separator: ' ', omission: '... ', length: 150) %>
+        <%= truncate(lesson[:description], escape: true, separator: ' ', omission: '... ', length: 120) %>
       </div>
     </div>
   </div>
