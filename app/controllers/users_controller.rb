@@ -35,12 +35,9 @@ class UsersController < ApplicationController
           subscribe_email_to_list(@user.email, mid, @user.first_name, @user.last_name)
         end
       end
-
-      #TODO: IMPLEMENT RESPONSE!!!!!
       format.js
-      format.html { redirect_to @user, notice: 'Subscriptions successfully updated.' }
-      format.json { render :show, status: :ok, location: @user }
-
+      #format.html { redirect_to @user, notice: 'Subscriptions successfully updated.' }
+      #format.json { render :show, status: :ok, location: @user }
     end
   end
 
