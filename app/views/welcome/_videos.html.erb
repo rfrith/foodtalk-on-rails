@@ -13,7 +13,7 @@
       <% Video.limit(4).each do |video| %>
         <div class="video-card card">
           <figure class="figure">
-            <a href="https://www.youtube.com/embed/<%=video.video_id%>?controls=0?controls=0" data-lity data-autoplay="true">
+            <a href="https://www.youtube.com/embed/<%=video.video_id%>" data-lity >
               <%= image_tag "http://img.youtube.com/vi/#{video.video_id}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
               <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
               <figcaption class="figure-caption"></figcaption>

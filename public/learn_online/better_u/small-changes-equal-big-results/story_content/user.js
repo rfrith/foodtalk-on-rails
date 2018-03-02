@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href = "/surveys/small-changes-equals-big-results";
+  window.location.href = "/surveys/small-changes-equals-big-results";
 }
 
 function Script2()
 {
-  window.top.location.href = "/surveys/small-changes-equals-big-results";
+  window.location.href = "/surveys/small-changes-equals-big-results";
 }
 

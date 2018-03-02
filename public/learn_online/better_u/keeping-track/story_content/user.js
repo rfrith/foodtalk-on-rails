@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href = "/surveys/keeping-track";
+  window.location.href = "/surveys/keeping-track";
 }
 
 function Script2()
 {
-  window.top.location.href = "/surveys/keeping-track";
+  window.location.href = "/surveys/keeping-track";
 }
 

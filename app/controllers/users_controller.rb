@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.z
   def set_user
     @user = current_user
   end

@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href="/surveys/color-me-healthy";
+  window.location.href="/surveys/color-me-healthy";
 }
 
 function Script2()
 {
-  window.top.location.href="/surveys/color-me-healthy";
+  window.location.href="/surveys/color-me-healthy";
 }
 

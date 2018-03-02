@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href = "/surveys/no-thanks-im-sweet-enough";
+  window.location.href = "/surveys/no-thanks-im-sweet-enough";
 }
 
 function Script2()
 {
-  window.top.location.href = "/surveys/no-thanks-im-sweet-enough";
+  window.location.href = "/surveys/no-thanks-im-sweet-enough";
 }
 

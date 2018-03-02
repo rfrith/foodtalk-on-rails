@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href="/surveys/eat-well-on-the-go";
+  window.location.href="/surveys/eat-well-on-the-go";
 }
 
 function Script2()
 {
-  window.top.location.href="/surveys/eat-well-on-the-go";
+  window.location.href="/surveys/eat-well-on-the-go";
 }
 

@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href="/surveys/keep-your-pressure-in-check";
+  window.location.href="/surveys/keep-your-pressure-in-check";
 }
 
 function Script2()
 {
-  window.top.location.href="/surveys/keep-your-pressure-in-check";
+  window.location.href="/surveys/keep-your-pressure-in-check";
 }
 

@@ -1,15 +1,5 @@
-<% content_for :header do %>
-  <%= render 'layouts/top-nav' %>
-<% end %>
-
 <% content_for :content do %>
   <%= yield %>
-<% end %>
-
-<% content_for :footer do %>
-  <div class="fixed-bottom">
-    <%= render 'layouts/footer' %>
-  </div>
 <% end %>
 
 <%= render template: "layouts/application" %>

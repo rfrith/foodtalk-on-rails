@@ -1,4 +1,5 @@
 <%= form_with url: update_subscriptions_url,format: :js do |f| %>
+  <%= hidden_field_tag "user[subscription_ids][]", nil %>
   <div id="subscriptions-form-alert" class="alert visible" role="alert"></div>
   <div class="mt-2">
     <div>
