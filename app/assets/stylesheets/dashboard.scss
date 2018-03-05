@@ -35,7 +35,7 @@ $dashboard-tab-content-height: calc(100% - #{$dashboard-tab-height});
 #dashboard-content {
   //border: solid 3px olivedrab;
   background: rgba($content-section2-bg-color, 0.9);
-  min-height: calc(100% - 8.2rem);//TODO: correctly subtract header & footer height
+  min-height: calc(100vh - 8.2rem);//TODO: correctly subtract header & footer height
   //width: 100%;
 }
 
