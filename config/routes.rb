@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:update]
   resources :recipes, only: [:index, :show]
 
+
   get '/auth/auth0/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#failure'
 
@@ -13,6 +14,20 @@ Rails.application.routes.draw do
   get 'surveys/index'
   get 'maps', to: 'maps#index', as: 'maps_index'
   get 'attend_class', to: 'attend_class#index', as: 'attend_class_index'
+
+
+  #TODO: IMPLEMENT BLOGS & REMOVE ME!
+  controller :blogs do
+    get '/blogs', to: 'blogs#index', as: 'blogs_index'
+    get '/blogs/demo_blog1', as: 'demo_blog1'
+    get '/blogs/demo_blog2', as: 'demo_blog2'
+    get '/blogs/demo_blog3', as: 'demo_blog3'
+    get '/blogs/demo_blog4', as: 'demo_blog4'
+    get '/blogs/demo_blog5', as: 'demo_blog5'
+    get '/blogs/demo_blog6', as: 'demo_blog6'
+  end
+
+
 
   get 'surveys/:id', to: 'surveys#show'
   get 'videos/:id', to: 'videos#show'
