@@ -1,10 +1,34 @@
 $("#user-form-alert").removeClass("visible invisible alert-success alert-danger");
 $("#user-form-alert").html("");
+
 <% if @user.valid? %>
-$("#user-form-alert").addClass("alert-success");
-$("#user-form-alert").html("Changes Saved.");
+  $("#user-form-alert").addClass("alert-success");
+  $("#user-form-alert").html("Changes Saved.");
+
+  $("#user-form-alert").addClass("visible");
+
+  <% if(@user.is_eligible?) %>
+    $("#learn-online-link").removeClass("d-none");
+    $("#learn-online-link").addClass("d-block");
+
+    $("#my-activity-tab-link").removeClass("d-none");
+    $("#my-activity-tab-link").addClass("d-block");
+
+    $(window.location.replace("<%= learn_online_path %>"))
+
+  <% else %>
+    $("#learn-online-link").removeClass("d-block");
+    $("#learn-online-link").addClass("d-none");
+
+    $("#my-activity-tab-link").removeClass("d-block");
+    $("#my-activity-tab-link").addClass("d-none");
+
+    $(window.location.replace("<%= root_path %>"))
+
+  <% end %>
+
 <% else %>
-$("#user-form-alert").addClass("alert-danger");
+  $("#user-form-alert").addClass("alert-danger");
   errMsg = ""
   <%
   if @user.errors.any?
@@ -18,25 +42,4 @@ $("#user-form-alert").addClass("alert-danger");
   end
   %>
   $("#user-form-alert").html("Please fix the following errors:<%=errMsg.html_safe%>");
-<% end %>
-$("#user-form-alert").addClass("visible");
-
-<% if(@user.is_eligible?) %>
-$("#learn-online-link").removeClass("d-none");
-$("#learn-online-link").addClass("d-block");
-
-$("#my-activity-tab-link").removeClass("d-none");
-$("#my-activity-tab-link").addClass("d-block");
-
-$(window.location.replace("<%= learn_online_path %>"))
-
-<% else %>
-$("#learn-online-link").removeClass("d-block");
-$("#learn-online-link").addClass("d-none");
-
-$("#my-activity-tab-link").removeClass("d-block");
-$("#my-activity-tab-link").addClass("d-none");
-
-$(window.location.replace("<%= root_path %>"))
-
 <% end %>

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
+      #TODO: FIX ME!
       if @user.update(user_params.except(:subscription_ids))
         format.js #{ redirect_to dashboard_show_path, notice: 'Changes saved.' }
         #format.html { redirect_to @user, notice: 'User was successfully updated.' }

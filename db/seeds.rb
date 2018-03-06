@@ -23,6 +23,7 @@ RacialIdentity.find_or_create_by!(name: 'Other')
 
 # Create FederalAssistances
 FederalAssistance.find_or_create_by!(name: 'Food Stamps / SNAP')
+FederalAssistance.find_or_create_by!(name: 'Free or Reduced Medical Services')
 FederalAssistance.find_or_create_by!(name: 'Free or Reduced Price Lunch')
 FederalAssistance.find_or_create_by!(name: 'Head Start')
 FederalAssistance.find_or_create_by!(name: 'TANF')
