@@ -7,12 +7,12 @@
           Way to go! You have completed Food eTalk.
 
           When you are ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { lity: '' }) %>
-          and visit your nearest <%= link_to "UGA Extension Office", "http://extension.uga.edu/county-offices.html#top", data: { lity: '' } %> to receive your complimentary bag of Food Talk goodies.
+          and call your nearest <%= link_to "UGA Extension Office", "http://extension.uga.edu/county-offices.html#top", data: { lity: '' } %> to schedule an appointment to receive your complimentary bag of Food Talk goodies.
         <% else %>
           <% if(!current_user.course_enrollments.food_etalk.started.empty?) %>
             Continue learning by clicking on the lesson's title or image.
           <% else %>
-            You are not currently enrolled in any Food eTalk lessons.  Why not <%= link_to("start a lesson now", launch_module_path(find_next_lesson(LearningModules::FOOD_ETALK)) , data: { vbtype: "iframe", autoplay: true }, class: "venobox") %>?
+            You are not currently enrolled in any Food eTalk lessons.  Why not <%= link_to("start a lesson now", launch_module_path(find_next_lesson(LearningModules::FOOD_ETALK)), data: { lity: '' }) %>?
           <% end %>
         <% end %>
       </span>

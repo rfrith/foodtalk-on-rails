@@ -1,8 +1,8 @@
 class CreateJoinTableFederalAssistanceUser < ActiveRecord::Migration[5.1]
   def change
-    create_join_table :users, :federal_assistances do |t|
-      # t.index [:user_id, :federal_assistance_id]
-      # t.index [:federal_assistance_id, :user_id]
+    create_join_table :federal_assistances, :users do |t|
+      t.references :federal_assistance, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
     end
   end
 end

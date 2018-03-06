@@ -28,11 +28,15 @@ $("#learn-online-link").addClass("d-block");
 $("#my-activity-tab-link").removeClass("d-none");
 $("#my-activity-tab-link").addClass("d-block");
 
+$(window.location.replace("<%= learn_online_path %>"))
+
 <% else %>
 $("#learn-online-link").removeClass("d-block");
 $("#learn-online-link").addClass("d-none");
 
 $("#my-activity-tab-link").removeClass("d-block");
 $("#my-activity-tab-link").addClass("d-none");
+
+$(window.location.replace("<%= root_path %>"))
 
 <% end %>

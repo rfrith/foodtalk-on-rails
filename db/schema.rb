@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20171214193734) do
   end
 
   create_table "federal_assistances_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "federal_assistance_id", null: false
+    t.bigint "federal_assistance_id"
+    t.bigint "user_id"
+    t.index ["federal_assistance_id"], name: "index_federal_assistances_users_on_federal_assistance_id"
+    t.index ["user_id"], name: "index_federal_assistances_users_on_user_id"
   end
 
   create_table "glossary_terms", force: :cascade do |t|
@@ -79,8 +81,10 @@ ActiveRecord::Schema.define(version: 20171214193734) do
   end
 
   create_table "racial_identities_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "racial_identity_id", null: false
+    t.bigint "racial_identity_id"
+    t.bigint "user_id"
+    t.index ["racial_identity_id"], name: "index_racial_identities_users_on_racial_identity_id"
+    t.index ["user_id"], name: "index_racial_identities_users_on_user_id"
   end
 
   create_table "recipe_categorizations", force: :cascade do |t|
@@ -114,12 +118,10 @@ ActiveRecord::Schema.define(version: 20171214193734) do
   end
 
   create_table "recipes_users", id: false, force: :cascade do |t|
-    t.bigint "recipe_id", null: false
-    t.bigint "user_id", null: false
-    t.bigint "recipes_id"
-    t.bigint "users_id"
-    t.index ["recipes_id"], name: "index_recipes_users_on_recipes_id"
-    t.index ["users_id"], name: "index_recipes_users_on_users_id"
+    t.bigint "recipe_id"
+    t.bigint "user_id"
+    t.index ["recipe_id"], name: "index_recipes_users_on_recipe_id"
+    t.index ["user_id"], name: "index_recipes_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -145,7 +147,11 @@ ActiveRecord::Schema.define(version: 20171214193734) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "federal_assistances_users", "federal_assistances"
+  add_foreign_key "federal_assistances_users", "users"
   add_foreign_key "ingredients", "recipes"
-  add_foreign_key "recipes_users", "recipes", column: "recipes_id"
-  add_foreign_key "recipes_users", "users", column: "users_id"
+  add_foreign_key "racial_identities_users", "racial_identities"
+  add_foreign_key "racial_identities_users", "users"
+  add_foreign_key "recipes_users", "recipes"
+  add_foreign_key "recipes_users", "users"
 end

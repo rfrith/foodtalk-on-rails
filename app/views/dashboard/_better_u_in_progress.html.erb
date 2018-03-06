@@ -6,7 +6,7 @@
         <% if(!current_user.course_enrollments.better_u.started.empty?) %>
           Continue learning by clicking on the lesson's title or image.
         <% else %>
-          You are not currently enrolled in any Better U lessons.  Why not <%= link_to("start a lesson now", launch_module_path(find_next_lesson(LearningModules::BETTER_U)) , data: { vbtype: "iframe", autoplay: true }, class: "venobox") %>?
+          You are not currently enrolled in any Better U lessons.  Why not <%= link_to("start a lesson now", launch_module_path(find_next_lesson(LearningModules::BETTER_U)), data: { lity: '' }) %>?
         <% end %>
       </span>
     </div>

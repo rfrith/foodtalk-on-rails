@@ -1,5 +1,17 @@
+<% if @full_screen %>
+  <% content_for :header do %>
+    <%= render 'layouts/top-nav' %>
+  <% end %>
+<% end %>
+
 <% content_for :content do %>
   <%= yield %>
+<% end %>
+
+<% if @full_screen %>
+  <% content_for :footer do %>
+    <%= render 'layouts/footer' %>
+  <% end %>
 <% end %>
 
 <%= render template: "layouts/application" %>

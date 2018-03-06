@@ -5,9 +5,13 @@ class SurveysController < ApplicationController
   skip_before_action :check_personal_info
 
   def show
+
+    @full_screen = false
+
     case params[:id]
 
       when "consent-form"
+        @full_screen = true
         @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(current_user.uid)
 
       #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
