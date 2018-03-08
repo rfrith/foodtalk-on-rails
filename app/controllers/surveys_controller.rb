@@ -1,9 +1,6 @@
 class SurveysController < ApplicationController
   include Secured
 
-  skip_before_action :check_consent
-  skip_before_action :check_personal_info
-
   def show
 
     @full_screen = false

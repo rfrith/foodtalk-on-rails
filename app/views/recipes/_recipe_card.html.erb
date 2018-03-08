@@ -4,7 +4,8 @@
       <%= recipe.title %>
 
       <span>
-        <% if @current_user %>
+        <% #TODO: FIX ME!!!! e.g., User.registered?%>
+        <% if user_signed_in? & @current_user.valid? %>
         <% fav = @current_user.recipes.exists?(recipe.id) %>
         <% #TODO: AJAXIFY ME!!!!! %>
         <%= link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(recipe.id), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>

@@ -4,8 +4,6 @@ class SessionsController < ApplicationController
   include LogoutHelper
 
   skip_before_action :set_current_user
-  skip_before_action :check_consent
-  skip_before_action :check_personal_info
 
   def create
     # OmniAuth places the User Profile information (retrieved by omniauth-sessions) in request.env['omniauth.auth'].

@@ -2,9 +2,6 @@ class UsersController < ApplicationController
 
   include Secured, MailchimpHelper
 
-  skip_before_action :check_personal_info
-  skip_before_action :check_consent
-
   def create
     @new_user=true
     respond_to do |format|
@@ -49,7 +46,13 @@ class UsersController < ApplicationController
       end
       #TODO: IMPLEMENT RESPONSE!!!!!
       #format.js
-      format.html { redirect_to recipes_path(favorites: true), notice: '' }
+      format.html {
+        if @current_user.recipes.any?
+          redirect_to recipes_path(favorites: true), notice: ''
+        else
+          redirect_to recipes_path, notice: ''
+        end
+      }
       #format.json { render :show, status: :ok, location: @current_user }
     end
   end
