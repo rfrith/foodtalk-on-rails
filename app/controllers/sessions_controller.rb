@@ -3,10 +3,7 @@ class SessionsController < ApplicationController
   require 'omniauth'
   include LogoutHelper
 
-  ####
-  # skip_before_action :set_current_user, only: [:destroy]
-  ####
-  #
+  skip_before_action :set_current_user
   skip_before_action :check_consent
   skip_before_action :check_personal_info
 
@@ -15,8 +12,13 @@ class SessionsController < ApplicationController
     # In this tutorial, you will store that info in the session, under 'userinfo'.
     # If the id_token is needed, you can get it from session[:userinfo]['credentials']['id_token'].
     # Refer to https://github.com/auth0/omniauth-auth0#auth-hash for complete information on 'omniauth.auth' contents.
-    session[:auth_hash] = request.env['omniauth.auth']
-    session[:uid] = session[:auth_hash]["uid"]
+    oauth_hash = request.env['omniauth.auth']
+    session[:auth_hash] = {
+      uid: oauth_hash['uid'],
+      first_name: oauth_hash['info']['name'].split(" ")[0..-2].join(" "),
+      last_name: oauth_hash['info']['name'].split(" ").last,
+      email: oauth_hash['info']['email']
+    }
     redirect_to '/dashboard'
   end
 

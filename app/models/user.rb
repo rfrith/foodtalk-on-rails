@@ -37,15 +37,14 @@ class User < ApplicationRecord
 
   def self.find_or_initialize_from_auth_hash(auth_hash)
 
+    #TODO: CHECK WE'RE GETTING CORRECT AUTH0 HASH KEYS!
+    #first_name = auth_hash['extra']['raw_info']['given_name']
+    #last_name = auth_hash['extra']['raw_info']['family_name']
     if(auth_hash)
-      #TODO: GET CORRECT AUTH0 HASH KEYS!
-      uid = auth_hash["uid"]
-      #first_name = auth_hash['extra']['raw_info']['given_name']
-      #last_name = auth_hash['extra']['raw_info']['family_name']
-
-      first_name = auth_hash['info']['name'].split(" ")[0..-2].join(" ")
-      last_name = auth_hash['info']['name'].split(" ").last
-      email = auth_hash['info']['email']
+      uid = auth_hash['uid']
+      first_name = auth_hash['first_name']
+      last_name = auth_hash['last_name']
+      email = auth_hash['email']
     end
 
     user = self.find_or_initialize_by(uid: uid) do |user|
