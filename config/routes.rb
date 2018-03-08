@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   #TODO: fix all get routes to use resource/resources w/ only: criteria
-  resources :users, only: [:update]
+  resources :users, only: [:create, :update]
   resources :recipes, only: [:index, :show]
 
 

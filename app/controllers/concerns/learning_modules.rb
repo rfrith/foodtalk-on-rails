@@ -8,7 +8,8 @@ module LearningModules
   ]
 
   FOOD_ETALK = [
-      {id: 'FOOD_ETALK[:food_etalk_tutorial]', img_path: 'http://img.youtube.com/vi/WuUFJ2dqmq0/maxresdefault.jpg', target_url: 'https://www.youtube.com/embed/WuUFJ2dqmq0?autoplay=1&controls=0', title: 'Food eTalk Tutorial', description: 'This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.' },
+      #TODO: replace w/ updated intro lesson
+      #{id: 'FOOD_ETALK[:food_etalk_tutorial]', img_path: 'http://img.youtube.com/vi/WuUFJ2dqmq0/maxresdefault.jpg', target_url: 'https://www.youtube.com/embed/WuUFJ2dqmq0?autoplay=1&controls=0', title: 'Food eTalk Tutorial', description: 'This tutorial introduces Food eTalk with a brief overview of the course and demonstrates how to use the lessons.' },
       {id: 'FOOD_ETALK[:your_food_your_choice]', survey_id: 'SV_cYmVTqMVwXrSCsl', img_path: 'shopping-woman.jpg', target_url: '/learn_online/food_etalk/your-food-your-choice/story.html', title: 'Your Food, Your Choice', description: 'Do you want fries with that burger? Choices, choices, choices! Eating healthy is up to you! That’s right, you have the power to choose to make healthy decisions for you and your whole family. Check out this lesson to get started!' },
       {id: 'FOOD_ETALK[:keep_your_pressure_in_check]', survey_id: 'SV_4J9EgfTMf4CxAqx', img_path: 'ekg-heart.png', target_url: '/learn_online/food_etalk/keep-your-pressure-in-check/story.html', title: 'Keep Your Pressure In Check', description: 'We’ve all heard it - too much salt or sodium is not good for us. But how the heck do we reduce it and still have tasty food? Check out this lesson for ideas on how to decrease your sodium and increase your family’s health.' },
       {id: 'FOOD_ETALK[:color_me_healthy]', survey_id: 'SV_7OQOsyGKadacIYZ', img_path: 'fruits-and-veggies-art.png', target_url: '/learn_online/food_etalk/color-me-healthy/story.html', title: 'Color Me Healthy', description: '“Yeah, yeah, yeah. My family is supposed to eat more fruits and veggies - but it’s not as easy as it sounds”. We get it, eating fruits and veggies can be challenging - which is why we’ve dedicated this lesson to helping you! Check it out and see for yourself.' },
@@ -28,6 +29,7 @@ module LearningModules
         return lesson
       end
     end
+    return nil
   end
 
   def self.find_survey_id(id)

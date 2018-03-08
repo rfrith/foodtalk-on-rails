@@ -20,7 +20,7 @@
     <% # Completed Lessons %>
     <div id="completed-courses" class="tab-pane fade show" role="tabpanel" aria-labelledby="completed-courses">
 
-      <% if(current_user.course_enrollments.food_etalk.completed.empty? && current_user.course_enrollments.better_u.completed.empty?) %>
+      <% if(@current_user.course_enrollments.food_etalk.completed.empty? && @current_user.course_enrollments.better_u.completed.empty?) %>
         You have not completed any Food eTalk or Better U lessons.  Why not <%= link_to("start a lesson now", { controller: "learn_online", action: "index", anchor: 'better-u'  }) %>?
       <% end %>
 

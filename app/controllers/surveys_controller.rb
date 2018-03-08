@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
 
       when "consent-form"
         @full_screen = true
-        @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(current_user.uid)
+        @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(@current_user.uid)
 
       #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
 
@@ -50,20 +50,26 @@ class SurveysController < ApplicationController
   end
 
   def process_consent_form
-    if(current_user.uid == params[:uid] && current_user.survey_histories.completed_consent_form.empty?)
-      current_user.activity_histories << SurveyHistory.new(name: SurveyHistory::COMPLETED_CONSENT_FORM)
+    if(@current_user.uid == params[:uid] && @current_user.survey_histories.completed_consent_form.empty?)
+      @current_user.activity_histories << SurveyHistory.new(name: SurveyHistory::COMPLETED_CONSENT_FORM)
     end
-    redirect_to dashboard_show_path
+
+    if(@current_user.is_eligible?)
+      redirect_to learn_online_path
+    else
+      redirect_to root_path
+    end
+
   end
 
   def process_survey
     #TODO: optimize me--make function to return lesson.id based on supplied name (e.g, LearningModules::find_module_id_by_name(params[:id])
     #find Lesson.id
     lesson_id = params[:id]
-    if((current_user.uid == params[:uid]) && LearningModules::valid_module_id?(lesson_id))
-      current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#completed")
+    if((@current_user.uid == params[:uid]) && LearningModules::valid_module_id?(lesson_id))
+      @current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#completed")
     end
-    redirect_to complete_module_path(lesson_id, current_user.uid)
+    redirect_to complete_module_path(lesson_id, @current_user.uid)
   end
 
 
@@ -72,8 +78,8 @@ class SurveysController < ApplicationController
   def prep_module_survey(module_id)
     survey_id = LearningModules::find_survey_id(module_id)
     lesson_id = LearningModules::find_lesson_id_by_survey_id(survey_id)
-    survey_url = get_survey_url survey_id, process_survey_path(lesson_id, current_user.uid)
-    current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#started")
+    survey_url = get_survey_url survey_id, process_survey_path(lesson_id, @current_user.uid)
+    @current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#started")
     return survey_url
   end
 
@@ -84,7 +90,7 @@ class SurveysController < ApplicationController
       survey_id = "SV_2shasM4V0EexFQ1" #this is our test web survey
     end
 
-    return "https://ugeorgia.qualtrics.com/jfe/form/#{survey_id}?email=#{current_user.email}&uid=#{current_user.uid}&redirect=#{redirect}"
+    return "https://ugeorgia.qualtrics.com/jfe/form/#{survey_id}?email=#{@current_user.email}&uid=#{@current_user.uid}&redirect=#{redirect}"
   end
 
 end

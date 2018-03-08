@@ -19,13 +19,13 @@ class User < ApplicationRecord
 
   validates_presence_of :uid
   #TODO: this is a workaround until we can get email from Auth0
-  validates_presence_of :first_name, :last_name, :age, :email, :gender, :zip_code, on: :update
-  validates_inclusion_of :is_hispanic_or_latino, :in => [true, false], :message => "Please answer the question 'Do you consider yourself Hispanic/Latino?'", on: :update
-  validates_numericality_of :age, on: :update
-  validates_length_of :zip_code, :is => 5, :message => "Please enter your 5-digit zip code.", on: :update
+  validates_presence_of :first_name, :last_name, :age, :email, :gender, :zip_code
+  validates_inclusion_of :is_hispanic_or_latino, :in => [true, false], :message => "Please answer the question 'Do you consider yourself Hispanic/Latino?'"
+  validates_numericality_of :age
+  validates_length_of :zip_code, :is => 5, :message => "Please enter your 5-digit zip code."
   validates_uniqueness_of :email
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, on: :update
-  validates :racial_identities, presence: true, on: :update
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :racial_identities, presence: true
 
   def name
     return "#{first_name} #{last_name}"
@@ -35,19 +35,22 @@ class User < ApplicationRecord
     return (is_zip_code_eligible? || has_received_federal_assistance?) #TODO: should age factor into eligibility status?
   end
 
-  def self.find_or_create_from_auth_hash(auth_hash)
-    #TODO: GET CORRECT AUTH0 HASH KEYS!
-    uid = auth_hash["uid"]
-    #first_name = auth_hash['extra']['raw_info']['given_name']
-    #last_name = auth_hash['extra']['raw_info']['family_name']
+  def self.find_or_initialize_from_auth_hash(auth_hash)
 
-    first_name = auth_hash['info']['name'].split(" ")[0..-2].join(" ")
-    last_name = auth_hash['info']['name'].split(" ").last
-    email = auth_hash['info']['email']
+    if(auth_hash)
+      #TODO: GET CORRECT AUTH0 HASH KEYS!
+      uid = auth_hash["uid"]
+      #first_name = auth_hash['extra']['raw_info']['given_name']
+      #last_name = auth_hash['extra']['raw_info']['family_name']
 
-    user = self.find_or_create_by(uid: uid) do |user|
+      first_name = auth_hash['info']['name'].split(" ")[0..-2].join(" ")
+      last_name = auth_hash['info']['name'].split(" ").last
+      email = auth_hash['info']['email']
+    end
+
+    user = self.find_or_initialize_by(uid: uid) do |user|
       user.first_name = first_name
-      user.last_name = last_name
+      user.last_name = last_name unless (last_name == email) # Auth0 inserts email as user's last name for some reason if they sign up using email address
       user.email = email
     end
 

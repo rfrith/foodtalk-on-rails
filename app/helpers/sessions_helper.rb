@@ -1,30 +1,32 @@
 module SessionsHelper
-  private
 
   # Is the user signed in?
   # @return [Boolean]
   def user_signed_in?
-    session[:uid].present?
+    session[:auth_hash].present?
   end
 
-  # Set the @current_user or redirect to public page
+  # Set the @current_user or redirect to login page
   def authenticate_user!
-    # Redirect to page that has the login here
-    if user_signed_in?
-      current_user
-    else
-      redirect_to login_path
+    if !user_signed_in?
+      redirect_to root_path
     end
   end
 
-  # What's the current_user?
-  # @return [Hash]
-  def current_user
-    @current_user = User.find_by uid: session[:uid]
+  def set_current_user
+    @current_user = User.find_or_initialize_from_auth_hash(session[:auth_hash])
   end
 
-  # @return the path to the login page
-  def login_path
-    root_path
+  def check_consent
+    if (user_signed_in? && @current_user.valid? && (!@current_user.survey_histories.any? || @current_user.survey_histories.completed_consent_form.empty?))
+      redirect_to show_survey_path('consent-form')
+    end
   end
+
+  def check_personal_info
+    if (user_signed_in? && !@current_user.valid?)
+      redirect_to dashboard_show_path
+    end
+  end
+
 end

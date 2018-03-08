@@ -20,7 +20,7 @@
         %>
         <%= link_to "All Recipes", recipes_path, class: base_css + (@all_recipes ? ' btn-light' : ' btn-primary'), role: 'button' %>
 
-        <% if (current_user && !current_user.recipes.empty?) %>
+        <% if (@current_user.recipes.any?) %>
           <%= link_to "My Favorites", recipes_path(favorites: true), class: base_css + (@favorites ? ' btn-light' : ' btn-primary'), role: 'button' %>
         <% end %>
 

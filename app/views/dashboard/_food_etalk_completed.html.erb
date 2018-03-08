@@ -1,23 +1,20 @@
-<% if(!current_user.course_enrollments.food_etalk.completed.empty?) %>
+<% if(!@current_user.course_enrollments.food_etalk.completed.empty?) %>
   <div id="food-etalk-lessons-completed" class="d-flex flex-column pb-4">
-
     <div class="media">
       <div class="media-body">
         <span><%= image_tag 'food-etalk-logo-med.png', class: 'align-self-top', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %></span>
-
         <span class="pb-2 lead">
           You should be proud of what you've accomplished!
         </span>
-
-
       </div>
     </div>
-
     <div class="pt-2 food-etalk-completed-grid">
-      <% current_user.course_enrollments.food_etalk.completed.each do |c| %>
-        <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
+      <% @current_user.course_enrollments.food_etalk.completed.each do |c| %>
+        <% m = LearningModules::find_module(c.name) %>
+        <% if(!m.blank?)%>
+          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: m, my_css: 'modules-grid'} %>
+        <% end %>
       <% end %>
     </div>
-
   </div>
 <% end %>

@@ -3,8 +3,8 @@ class RecipesController < ApplicationController
   def index
     @category_id = params[:category_id]
     @favorites = params[:favorites]
-    if(current_user && @favorites)
-      @recipes = current_user.recipes
+    if(@current_user && @favorites)
+      @recipes = @current_user.recipes
     elsif(@category_id)
       category = Category.find(@category_id)
       @recipes = category.recipes

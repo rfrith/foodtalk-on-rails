@@ -1,14 +1,14 @@
 <div id="dashboard-content">
 
   <nav id="dashboard-nav" class="pt-1 nav nav-tabs justify-content-end" role="tablist">
-    <a id="my-activity-tab-link" class="nav-item nav-link <%= (@current_user.valid? && @current_user.is_eligible?) ? "active" : "d-none" %>" data-toggle="tab" href="#my-activity-tab">My Courses</a>
-    <a class="nav-item nav-link <%= "active" if(!@current_user.valid? || !@current_user.is_eligible?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">My Info</a>
+    <a id="my-activity-tab-link" class="nav-item nav-link <%= (@current_user.is_eligible?) ? "active" : "d-none" %>" data-toggle="tab" href="#my-activity-tab">My Courses</a>
+    <a class="nav-item nav-link <%= "active" if(!@current_user.is_eligible?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true">My Info</a>
     <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false">Newsletters</a>
   </nav>
 
   <div id="dashboard-tab-content" class="tab-content d-flex justify-content-center">
 
-    <% if current_user.is_eligible? %>
+    <% if @current_user.is_eligible? %>
     <% #My Activity %>
     <%= render :partial => "dashboard/my_activity" %>
     <% end %>
@@ -18,7 +18,6 @@
 
     <% # Mailchimp Subscriptions %>
     <%= render :partial => "dashboard/mailchimp_subscriptions" %>
-
   </div>
 
 </div>

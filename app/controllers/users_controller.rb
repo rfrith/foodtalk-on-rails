@@ -2,43 +2,37 @@ class UsersController < ApplicationController
 
   include Secured, MailchimpHelper
 
-  before_action :set_user, only: [:update, :update_subscriptions]
-  skip_before_action :check_personal_info, only: [:update]
+  skip_before_action :check_personal_info
+  skip_before_action :check_consent
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  def create
+    @new_user=true
+    respond_to do |format|
+      @current_user.update(user_params.except(:subscription_ids))
+      format.js
+    end
+  end
+
   def update
     respond_to do |format|
-      #TODO: FIX ME!
-      if @user.update(user_params.except(:subscription_ids))
-        format.js #{ redirect_to dashboard_show_path, notice: 'Changes saved.' }
-        #format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @user }
-      else
-        format.js
-        #format.html { render :edit }
-        #format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+      @current_user.update(user_params.except(:subscription_ids))
+      format.js
     end
   end
 
   def update_subscriptions
     respond_to do |format|
-
       mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
       ids = user_subscription_params[:subscription_ids]
-
       mailchimp_ids.split(',').each do |mid|
         if(!ids.include?(mid))
           #unsubscribe user from list
-          un_subscribe_email_from_list(@user.email_as_md5_hash, mid)
+          un_subscribe_email_from_list(@current_user.email_as_md5_hash, mid)
         else
-          subscribe_email_to_list(@user.email, mid, @user.first_name, @user.last_name)
+          subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
         end
       end
       format.js
-      #format.html { redirect_to @user, notice: 'Subscriptions successfully updated.' }
-      #format.json { render :show, status: :ok, location: @user }
     end
   end
 
@@ -47,26 +41,21 @@ class UsersController < ApplicationController
       id = params[:id]
       recipe = Recipe.find(id)
       if(recipe)
-        if(current_user.recipes.exists?(recipe.id))
-          current_user.recipes.destroy(id)
+        if(@current_user.recipes.exists?(recipe.id))
+          @current_user.recipes.destroy(id)
         else
-          current_user.recipes << recipe
+          @current_user.recipes << recipe
         end
       end
-
       #TODO: IMPLEMENT RESPONSE!!!!!
       #format.js
       format.html { redirect_to recipes_path(favorites: true), notice: '' }
-      #format.json { render :show, status: :ok, location: @user }
+      #format.json { render :show, status: :ok, location: @current_user }
     end
   end
 
 
   private
-  # Use callbacks to share common setup or constraints between actions.z
-  def set_user
-    @user = current_user
-  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params

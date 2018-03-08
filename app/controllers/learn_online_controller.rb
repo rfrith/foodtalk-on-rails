@@ -11,15 +11,15 @@ class LearnOnlineController < ApplicationController
       target_url = lesson[:target_url]
       format.html {
         if(lesson && target_url)
-          current_user.activity_histories << OnlineLearningHistory.new(name: lesson_id+"#started")
-          if(!current_user.course_enrollments.exists?(name: lesson_id))
-            current_user.course_enrollments << CourseEnrollment.new(name: lesson_id)
+          @current_user.activity_histories << OnlineLearningHistory.new(name: lesson_id+"#started")
+          if(!@current_user.course_enrollments.exists?(name: lesson_id))
+            @current_user.course_enrollments << CourseEnrollment.new(name: lesson_id)
           end
 
           #Ignore introduction video
           #TODO: is there a better way?
           if lesson_id == "FOOD_ETALK[:food_etalk_tutorial]"
-            l = current_user.course_enrollments.where(name: lesson_id, state: :started).take
+            l = @current_user.course_enrollments.where(name: lesson_id, state: :started).take
             if(l)
               l.complete!
             end
@@ -36,7 +36,7 @@ class LearnOnlineController < ApplicationController
   def complete_module
     respond_to do |format|
       lesson_id = params[:module_name]
-      lesson = current_user.course_enrollments.where(name: lesson_id, state: :started).take
+      lesson = @current_user.course_enrollments.where(name: lesson_id, state: :started).take
       #make sure user has CourseEnrollment record for this lesson
       if(lesson)
         #remove user from course & log history

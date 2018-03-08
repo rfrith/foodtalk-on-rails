@@ -3,25 +3,27 @@
     <div class="media-body">
       <span><%= image_tag 'better-u-logo.png', class: 'align-middle', alt: 'Better U Logo', style: 'width: 4rem; height: auto;' %></span>
       <span class="pb-2 lead">
-        <% if user_has_completed_curriculum?(current_user, LearningModules::BETTER_U) %>
-          Awesome! You have completed Food Talk Better U.
+        <% if user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U) %>
+          Great job! You have completed Food Talk Better U.
         <% else %>
-          <% if(!current_user.course_enrollments.better_u.started.empty?) %>
+          <% if(!@current_user.course_enrollments.better_u.started.empty?) %>
             Continue learning by clicking on the lesson's title or image.
           <% else %>
-            You are not currently enrolled in any Better U lessons.  Why not <%= link_to("start a lesson now", launch_module_path(find_next_lesson(LearningModules::BETTER_U)), data: { lity: '' }) %>?
+            You are not currently enrolled in any Better U lessons.  Why not start one now?  Simply click on the below lesson's title or image to begin.
           <% end %>
         <% end %>
       </span>
     </div>
   </div>
-
   <div class="pt-3 better-u-started-grid">
-    <% if(!current_user.course_enrollments.better_u.started.empty?) %>
-      <% current_user.course_enrollments.better_u.started.each do |c| %>
-        <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
+    <% if(!@current_user.course_enrollments.better_u.started.empty?) %>
+      <% @current_user.course_enrollments.better_u.started.each do |c| %>
+        <% if LearningModules::find_module(c.name) %>
+          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
+        <% end %>
       <% end %>
+    <% else %>
+      <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(find_next_lesson(LearningModules::BETTER_U)), my_css: 'modules-grid'} %>
     <% end %>
   </div>
-
 </div>
