@@ -14,6 +14,7 @@ module CurriculumHelper
         return c[:id]
       end
     end
+    return nil
   end
 
   def curriculum_completion_date(user, curriculum)

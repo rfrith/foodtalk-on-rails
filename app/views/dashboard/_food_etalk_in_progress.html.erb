@@ -25,7 +25,7 @@
           <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
         <% end %>
       <% end %>
-    <% else %>
+    <% elsif (find_next_lesson(LearningModules::FOOD_ETALK)) %>
       <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(find_next_lesson(LearningModules::FOOD_ETALK)), my_css: 'modules-grid'} %>
     <% end %>
   </div>

@@ -16,10 +16,6 @@ $("#user-form-alert").html("");
       $("#my-activity-tab-link").addClass("d-block");
     <% end %>
 
-    <% if (@new_user) %>
-      $(window.location.replace("<%= learn_online_path %>"))
-    <% end %>
-
   <% else %>
     $("#learn-online-link").removeClass("d-block");
     $("#learn-online-link").addClass("d-none");
@@ -27,11 +23,11 @@ $("#user-form-alert").html("");
     $("#my-activity-tab-link").removeClass("d-block");
     $("#my-activity-tab-link").addClass("d-none");
 
-    <% if (@new_user) %>
-      $(window.location.replace("<%= root_path %>"))
-    <% end %>
+  <% end %>
 
-<% end %>
+  <% if (@new_user) %>
+  $(window.location.replace("<%= show_survey_path('consent-form') %>"))
+  <% end %>
 
 <% else %>
   $("#user-form-alert").addClass("alert-danger");
