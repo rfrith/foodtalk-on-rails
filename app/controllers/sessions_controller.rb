@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
   def failure
     @error_type = request.params['error_type']
     @error_msg = request.params['message']
+    @error_desc = request.params['error_description']
   end
 
   protected

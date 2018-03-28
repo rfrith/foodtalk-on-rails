@@ -29,13 +29,13 @@
               <%= link_to values[:phone], "tel:#{values[:phone]}" %>
             </address>
 
-            <p class="lead">Supervising Agent</p>
+            <p class="lead">SNAP-Ed Supervisor</p>
             <div class="media">
-              <%= image_tag(values[:supervising_agent][:photo_url], class: 'rounded mr-2', alt: "#{key} County Supervising Agent", style: 'height: auto; width: 4rem;') %>
+              <%= image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key} SNAP-Ed Supervisor", style: 'height: auto; width: 4rem;') %>
               <div class="media-body mr-4 ">
                 <div class="small card-text text-justify mb-2">
-                  <%= values[:supervising_agent][:name]%><br>
-                  <%= mail_to values[:supervising_agent][:email] %>
+                  <%= values[:snap_ed_supervisor][:name]%><br>
+                  <%= mail_to values[:snap_ed_supervisor][:email] %>
                 </div>
               </div>
             </div>

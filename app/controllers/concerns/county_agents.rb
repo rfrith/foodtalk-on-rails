@@ -10,7 +10,7 @@ module CountyAgents
           state: "GA",
           zip: "30606",
           phone: "(706) 613-3640",
-          supervising_agent: {name: "Jackie Dallas", email: "jdallas@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0146.jpg"},
+          snap_ed_supervisor: {name: "Jackie Dallas", email: "jdallas@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0146.jpg"},
           program_assistants: [
               {name: "Shawanda Johnson", email: "snicolej@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0149.jpg"},
               {name: "Melanie Burton", email: "mburton@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/melanie_burton_100.jpg"}
@@ -25,7 +25,7 @@ module CountyAgents
           state: "GA",
           zip: "30120-3059",
           phone: "(770) 387-5142",
-          supervising_agent: {name: "Alexis Roberts", email: "Roberts9@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0158.jpg"},
+          snap_ed_supervisor: {name: "Alexis Roberts", email: "Roberts9@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0158.jpg"},
           program_assistants: [
               {name: "Karen Martin", email: "Kmart07@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/web.jpg"},
               {name: "Patti Hall", email: "phall@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0165.jpg"}
@@ -40,7 +40,7 @@ module CountyAgents
           state: "GA",
           zip: "30236-5905",
           phone: "(770) 473-3945",
-          supervising_agent: {name: "Gail Kefentse", email: "gkefents@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/gail_kefentse_100.jpg"},
+          snap_ed_supervisor: {name: "Gail Kefentse", email: "gkefents@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/gail_kefentse_100.jpg"},
           program_assistants: [
               {name: "Deborah Cannon", email: "dcannon@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_cannon_100.jpg"}
           ]
@@ -54,7 +54,7 @@ module CountyAgents
           state: "GA",
           zip: "31533",
           phone: "(912) 384-1402",
-          supervising_agent: {name: "Laura Smith", email: "lauras@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/laura_smith_100.jpg"},
+          snap_ed_supervisor: {name: "Laura Smith", email: "lauras@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/laura_smith_100.jpg"},
           program_assistants: []
       },
 
@@ -66,7 +66,7 @@ module CountyAgents
           state: "GA",
           zip: "30032-1239",
           phone: "(404) 298-4080",
-          supervising_agent: {name: "Breeanna Williams", email: "bswilliams@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0184.jpg"},
+          snap_ed_supervisor: {name: "Breeanna Williams", email: "bswilliams@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0184.jpg"},
           program_assistants: [{name: "Alejandra Roman", email: "roman95@uga.edu", photo_url: ""}]
       },
 
@@ -78,7 +78,7 @@ module CountyAgents
           state: "GA",
           zip: "30344-4151",
           phone: "(404) 762-4077",
-          supervising_agent: {name: "Amanda Pencek", email: "adh9513@uga.eduedu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0170.jpg"},
+          snap_ed_supervisor: {name: "Amanda Pencek", email: "adh9513@uga.eduedu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0170.jpg"},
           program_assistants: [
               {name: "Deborah Mallory", email: "dymallor@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_mallory_100.jpg"},
               {name: "Phyllis Cain", email: "sept1986@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0183.jpg"}
@@ -93,7 +93,7 @@ module CountyAgents
           state: "GA",
           zip: "30540",
           phone: "(706) 635-4426",
-          supervising_agent: {name: "Jessie Moore", email: "jessmoor@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/jessie_headshot.png"},
+          snap_ed_supervisor: {name: "Jessie Moore", email: "jessmoor@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/jessie_headshot.png"},
           program_assistants: [
               {name: "Becca Pritchett", email: "beccap@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0193.jpg"}
           ]

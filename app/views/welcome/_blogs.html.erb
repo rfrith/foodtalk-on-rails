@@ -9,7 +9,31 @@
     </div>
   </div>
 
-  <%= render :partial => "blogs/list_demo_blogs" %>
+  <div class="grid">
+
+      <% @blogs.first(3).each do |blog| %>
+
+
+        <div class="no-gutters mb-4 video-card card grid-item">
+          <a href="<%= blog["link"] %>" data-lity>
+            <div class="text-center">
+              <%= image_tag( blog["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"]["source_url"], class: "figure-img img-fluid mt-2" ) %>
+              <% image_tag( blog["_embedded"]["wp:featuredmedia"][0]["source_url"], class: "figure-img img-fluid" ) %>
+            </div>
+            <figcaption class="figure-caption">
+              <h4 class="card-title text-center mt-0"><%= blog["title"]["rendered"] %></h4>
+            </figcaption>
+          </a>
+          <div class="card-text text-justify p-2">
+            <%= blog["excerpt"]["rendered"].html_safe %>
+          </div>
+        </div>
+
+
+      <% end %>
+
+  </div>
+
 
   <div class="content-section-copy-light recipe-copy text-center pt-4 pb-4">
     <%= link_to "View All Blogs", blogs_index_path %>

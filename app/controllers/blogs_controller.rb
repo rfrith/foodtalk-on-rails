@@ -1,18 +1,11 @@
 class BlogsController < ApplicationController
 
+  require 'net/http'
+  require 'json'
+
   def index
-  end
-
-  def show
-  end
-
-  def demo_blog1
-  end
-
-  def demo_blog2
-  end
-
-  def demo_blog3
+    response = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url))
+    @blogs = JSON.parse(response)
   end
 
 end
