@@ -19,12 +19,6 @@ Rails.application.routes.draw do
   #TODO: IMPLEMENT BLOGS & REMOVE ME!
   controller :blogs do
     get '/blogs', to: 'blogs#index', as: 'blogs_index'
-    get '/blogs/demo_blog1', as: 'demo_blog1'
-    get '/blogs/demo_blog2', as: 'demo_blog2'
-    get '/blogs/demo_blog3', as: 'demo_blog3'
-    get '/blogs/demo_blog4', as: 'demo_blog4'
-    get '/blogs/demo_blog5', as: 'demo_blog5'
-    get '/blogs/demo_blog6', as: 'demo_blog6'
   end
 
 
