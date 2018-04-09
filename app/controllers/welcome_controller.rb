@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
 
   def index
     #TODO: fallback if blog server is down
-    response = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url))
-    @blogs = JSON.parse(response)
+    blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed"))
+    @blogs = JSON.parse(blogs)
   end
 end
