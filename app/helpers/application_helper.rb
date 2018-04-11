@@ -19,4 +19,12 @@ module ApplicationHelper
     $stderr.reopen(stderr)
   end
 
+  def find_glossary_terms(text)
+    found_terms = []
+    GlossaryTerm.all.each do |term|
+      found_terms << term if (text.include? term.name)
+    end
+    found_terms
+  end
+
 end

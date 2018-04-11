@@ -41,6 +41,10 @@ class LearnOnlineController < ApplicationController
       if(lesson)
         #remove user from course & log history
         lesson.complete!
+      elsif @current_user.course_enrollments.where(name: lesson_id, state: :completed).take
+          #user completed previously...just show activity
+          # TODO: is there a more elegant way?
+          @current_user.activity_histories << OnlineLearningHistory.new(name: lesson_id+"#completed")
       else
         raise ActionController::RoutingError.new('Lesson Not Found')
       end
