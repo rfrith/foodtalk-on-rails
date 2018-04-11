@@ -12,9 +12,9 @@ class BlogsController < ApplicationController
       slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug="+category))
       parsed_slug = JSON.parse(slug)
       slug_id = parsed_slug[0]["id"]
-      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&categories=#{slug_id}"))
+      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=100&categories=#{slug_id}"))
     else
-      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed"))
+      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=100"))
     end
 
     categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
