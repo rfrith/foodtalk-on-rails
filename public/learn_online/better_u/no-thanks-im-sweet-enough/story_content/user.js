@@ -2,10 +2,10 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6pD847JNAdk":
+      case "6cQtcPohGlt":
         Script1();
         break;
-      case "6OSvpTgLRyL":
+      case "5kyutjBLNo0":
         Script2();
         break;
   }
@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.location.href = "/surveys/no-thanks-im-sweet-enough";
+  window.location.href="/surveys/no-thanks-im-sweet-enough";
 }
 
 function Script2()
 {
-  window.location.href = "/surveys/no-thanks-im-sweet-enough";
+  window.location.href="/surveys/no-thanks-im-sweet-enough";
 }
 
