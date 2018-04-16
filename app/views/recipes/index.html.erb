@@ -24,13 +24,9 @@
           <%= link_to "My Favorites", recipes_path(favorites: true), class: base_css + (@favorites ? ' btn-light' : ' btn-primary'), role: 'button' %>
         <% end %>
 
-        <% Category.all.each do |c| %>
-          <% link_to c.name, recipes_path(category_id: c.id), class: base_css + ((@category_id && Integer(c.id) == Integer(@category_id)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
-        <% end %>
-
         <% @tags.each do |t| %>
           <% if(t["name"].downcase != "uncategorized") %>
-            <%= link_to t["name"], recipes_path(tag: t["slug"]), class: base_css + ((@category_id && Integer(c.id) == Integer(@category_id)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+            <%= link_to t["name"], recipes_path(tag: t["slug"]), class: base_css + ((@category_id && t["slug"] == @category_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
           <% end %>
         <% end %>
 

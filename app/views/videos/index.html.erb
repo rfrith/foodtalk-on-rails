@@ -1,4 +1,4 @@
-<div id="video-list" class="content-section2">
+<div id="videos" class="content-section2">
   <div class="pb-4" style="background-color: white;">
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">
@@ -10,9 +10,45 @@
       </div>
     </div>
   </div>
+
+
+  <div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
+    <div class="flex-col d-flex justify-content-center">
+      <div class="text-center mt-0">
+        <%
+          base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
+        %>
+        <% link_to "All Videos", videos_path, class: base_css + (@all_videos ? ' btn-light' : ' btn-primary'), role: 'button' %>
+
+        <% @playlists["items"].each do |c| %>
+          <%= link_to c["snippet"]["title"], videos_path(playlist: c["id"]), class: base_css + ((@playlist_id && c["id"] == @playlist_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
   <div class="grid pt-3">
-    <% @videos.each do |video| %>
-      <%= render :partial => "videos/video_card", locals: {video: video} %>
+    <% @videos["items"].each do |video| %>
+
+
+      <div class="figure no-gutters mb-4 video-card card grid-item">
+        <a href="https://www.youtube.com/embed/<%= video["contentDetails"]["videoId"] %>" data-lity>
+          <%= image_tag "http://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
+          <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
+          <figcaption class="figure-caption">
+            <h4 class="card-title text-center mt-0"><%= video["snippet"]["title"] %></h4>
+          </figcaption>
+        </a>
+        <p class="card-text text-justify p-2"><%= video["snippet"]["description"] %></p>
+      </div>
+
+
+
+
     <% end %>
   </div>
 </div>

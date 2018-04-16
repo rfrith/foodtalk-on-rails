@@ -21,11 +21,13 @@ class RecipesController < ApplicationController
     #TODO: error handling
     tag = params[:tag]
     if(tag)
+      @category_id = tag
       slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags?slug="+tag))
       parsed_slug = JSON.parse(slug)
       slug_id = parsed_slug[0]["id"]
       recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&tags=#{slug_id}"))
     else
+      @all_recipes = true
       slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug=recipes"))
       parsed_slug = JSON.parse(slug)
       slug_id = parsed_slug[0]["id"]
