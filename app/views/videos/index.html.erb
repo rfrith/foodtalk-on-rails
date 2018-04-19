@@ -27,28 +27,9 @@
     </div>
   </div>
 
-
-
-
-
   <div class="grid pt-3">
     <% @videos["items"].each do |video| %>
-
-
-      <div class="figure no-gutters mb-4 video-card card grid-item">
-        <a href="https://www.youtube.com/embed/<%= video["contentDetails"]["videoId"] %>" data-lity>
-          <%= image_tag "http://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
-          <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
-          <figcaption class="figure-caption">
-            <h4 class="card-title text-center mt-0"><%= video["snippet"]["title"] %></h4>
-          </figcaption>
-        </a>
-        <p class="card-text text-justify p-2"><%= video["snippet"]["description"] %></p>
-      </div>
-
-
-
-
+      <%= render partial: "video_card", locals: {video: video} %>
     <% end %>
   </div>
 </div>

@@ -23,6 +23,9 @@ class VideosController < ApplicationController
 
   def show
     @video_id = params[:id]
-    @survey_url = "/surveys/youtube-test";
+    video = VideoSurveys.find_video_by_id(@video_id)
+    if video && video[:survey_args]
+      @survey_name = VideoSurveys.find_video_by_id(@video_id)[:survey_args][:origin]
+    end
   end
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #TODO: fix all get routes to use resource/resources w/ only: criteria
   resources :users, only: [:create, :update]
   resources :recipes, only: [:index, :show]
+  resources :videos, only: [:index, :show]
 
 
   get '/auth/auth0/callback' => 'sessions#create'
