@@ -38,6 +38,13 @@ class WelcomeController < ApplicationController
 
     @tags = JSON.parse tags
     @recipes = JSON.parse recipes
+
+    #get videos
+    playlist_id = Rails.application.secrets.youtube_default_channel
+    playlist_items_url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=#{playlist_id}&maxResults=25&key=#{Rails.application.secrets.youtube_api_key}"
+    playlists_url = "https://www.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=#{Rails.application.secrets.youtube_channel_id}&maxResults=25&key=#{Rails.application.secrets.youtube_api_key}"
+    playlist_items = Net::HTTP.get(URI(playlist_items_url))
+    @videos = JSON.parse playlist_items
         
   end
 end
