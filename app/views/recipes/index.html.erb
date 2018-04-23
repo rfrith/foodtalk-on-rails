@@ -20,7 +20,7 @@
         %>
         <%= link_to "All Recipes", recipes_path, class: base_css + (@all_recipes ? ' btn-light' : ' btn-primary'), role: 'button' %>
 
-        <% if (@current_user.recipes.any?) %>
+        <% if false %>
           <%= link_to "My Favorites", recipes_path(favorites: true), class: base_css + (@favorites ? ' btn-light' : ' btn-primary'), role: 'button' %>
         <% end %>
 
@@ -48,7 +48,7 @@
             <span>
               <% #TODO: FIX ME!!!! e.g., User.registered? %>
               <% if user_signed_in? & @current_user.valid? %>
-                <% fav = false #@current_user.recipes.exists?(recipe.id) %>
+                <% fav = false %>
                 <% #TODO: AJAXIFY ME!!!!! %>
                 <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
               <% end %>

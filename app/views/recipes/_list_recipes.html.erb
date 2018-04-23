@@ -1,7 +1,0 @@
-<div class="grid">
-  <% @recipes.each do |recipe| %>
-    <div class="grid-item">
-      <%= render :partial => "recipes/recipe_card", locals: {recipe: recipe, styles: '', detail_view: false} %>
-    </div>
-  <% end %>
-</div>

@@ -11,14 +11,8 @@
 
   <div class="mx-auto card-deckz recipes-deck w-100">
     <div class="grid">
-
       <%
-
         #TODO: consolidate me into a single view
-
-        #recipes = Recipe.order(created_at: :desc).last(3)
-        #recipes = Recipe.order(created_at: :asc).last(3)
-        #recipes = Recipe.limit(3).order("RANDOM()")
         @recipes.first(3).each do |recipe| %>
 
         <div class="no-gutters mb-4 video-card card grid-item">
@@ -29,7 +23,7 @@
               <span>
                 <% #TODO: FIX ME!!!! e.g., User.registered? %>
                 <% if user_signed_in? & @current_user.valid? %>
-                  <% fav = false #@current_user.recipes.exists?(recipe.id) %>
+                  <% fav = false %>
                   <% #TODO: AJAXIFY ME!!!!! %>
                   <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
                 <% end %>
@@ -79,13 +73,6 @@
           </div>
 
         </div>
-
-
-
-
-
-
-
 
       <% end %>
     </div>

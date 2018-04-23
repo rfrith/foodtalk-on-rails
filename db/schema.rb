@@ -57,21 +57,10 @@ ActiveRecord::Schema.define(version: 20171214193734) do
     t.string "name"
     t.string "description"
     t.string "source"
-    t.string "image_remote_origin"
+    t.string "remote_image_url"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredients", force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.float "quantity"
-    t.string "unit_of_measure"
-    t.string "name"
-    t.string "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
 
   create_table "racial_identities", force: :cascade do |t|
@@ -85,43 +74,6 @@ ActiveRecord::Schema.define(version: 20171214193734) do
     t.bigint "user_id"
     t.index ["racial_identity_id"], name: "index_racial_identities_users_on_racial_identity_id"
     t.index ["user_id"], name: "index_racial_identities_users_on_user_id"
-  end
-
-  create_table "recipe_categorizations", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "recipe_glossary_terms", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "glossary_term_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "recipes", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.text "instructions"
-    t.text "notes"
-    t.string "source"
-    t.string "source_url"
-    t.string "image"
-    t.integer "yield"
-    t.string "yield_unit"
-    t.integer "prep_time"
-    t.integer "cooking_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "recipes_users", id: false, force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.bigint "user_id"
-    t.index ["recipe_id"], name: "index_recipes_users_on_recipe_id"
-    t.index ["user_id"], name: "index_recipes_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -138,20 +90,8 @@ ActiveRecord::Schema.define(version: 20171214193734) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "videos", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "video_id"
-    t.string "redirect_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "federal_assistances_users", "federal_assistances"
   add_foreign_key "federal_assistances_users", "users"
-  add_foreign_key "ingredients", "recipes"
   add_foreign_key "racial_identities_users", "racial_identities"
   add_foreign_key "racial_identities_users", "users"
-  add_foreign_key "recipes_users", "recipes"
-  add_foreign_key "recipes_users", "users"
 end

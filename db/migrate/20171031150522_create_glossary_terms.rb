@@ -4,7 +4,7 @@ class CreateGlossaryTerms < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :description
       t.string :source
-      t.string :image_remote_origin
+      t.string :remote_image_url
       t.string :image
 
       t.timestamps

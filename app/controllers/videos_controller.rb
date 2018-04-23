@@ -1,8 +1,5 @@
 class VideosController < ApplicationController
   def index
-    #TODO: DEAL WITH ME!
-    #@videos=Video.all
-
     playlist = params[:playlist]
 
     if(playlist)
