@@ -68,9 +68,6 @@ gem 'popper_js', '~> 1.12.3'
 #gem 'unitwise'
 gem 'kaminari'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do
@@ -89,6 +86,7 @@ group :development do
   gem 'capistrano-rvm', require: false
   gem 'capistrano-bundler', '~> 1.3', require: false
   gem 'capistrano3-puma', require: false
+  gem 'capistrano-maintenance', '~> 1.0', require: false
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
