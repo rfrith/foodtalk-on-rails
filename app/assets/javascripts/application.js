@@ -57,6 +57,19 @@ $(document).on("turbolinks:load", function() {
         })
     }
 
+    $('#wp-search').submit(function () {
+        results = lity('//blog.foodtalk.org/?'+ $(this).serialize());
+        return false;
+    });
+
+    $(document).on('lity:open', function() {
+        //$('#body-content').hide();
+    });
+
+    $(document).on('lity:close', function() {
+        //$('#body-content').show();
+    });
+
 });
 
 //TODO: DRY - can this be simplified??

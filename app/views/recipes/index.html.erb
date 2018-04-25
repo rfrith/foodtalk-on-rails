@@ -30,6 +30,16 @@
           <% end %>
         <% end %>
 
+        <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
+                  <span class="input-group ">
+                    <%= f.label(:s, "Search Recipes", class: "ml-2") %>
+                    <%= f.text_field(:s, class: "ml-2 form-control form-control-sm", placeholder: "Type search terms here...") %>
+                    <span class="input-group-append">
+                      <%= f.submit("Submit", class: "mr-2 btn btn-sm btn-primary") %>
+                    </span>
+                  </span>
+        <% end %>
+
       </div>
     </div>
   </div>
