@@ -13,7 +13,7 @@
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
             videoId: '<%=@video_id%>',
-            playerVars: { 'autoplay': 1, 'controls': 0, 'iv_load_policy': 3, 'modestbranding': 1 },
+            playerVars: { 'autoplay': 1, 'controls': 1, 'iv_load_policy': 3, 'modestbranding': 1 },
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange

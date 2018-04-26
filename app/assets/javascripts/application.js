@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require popper
 //= require bootstrap
-//= require lity
 
 //= require_tree .
 
@@ -58,16 +57,11 @@ $(document).on("turbolinks:load", function() {
     }
 
     $('#wp-search').submit(function () {
-        results = lity('//blog.foodtalk.org/?'+ $(this).serialize());
+        $.fancybox.open({
+            src  : '//blog.foodtalk.org/?'+ $(this).serialize(),
+            type : 'iframe'
+        });
         return false;
-    });
-
-    $(document).on('lity:open', function() {
-        //$('#body-content').hide();
-    });
-
-    $(document).on('lity:close', function() {
-        //$('#body-content').show();
     });
 
 });

@@ -1,7 +1,5 @@
-<link href="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css" type="text/css" rel="stylesheet" />
-<script src="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
 <div id="blogs" class="content-section2">
+
   <div class="d-flex justify-content-center" style="background-color: white;">
     <div class="media pt-2 pl-4 pr-4 align-items-center">
       <%= image_tag 'blog-icon-med.png', class: 'd-none d-md-block mr-4', alt: 'Recipe Card Icon', style: '' %>
@@ -26,7 +24,7 @@
         <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
           <span class="input-group ">
             <%= f.label(:s, "Search Blogs", class: "ml-2") %>
-            <%= f.text_field(:s, class: "ml-2 form-control form-control-sm", placeholder: "Type search terms here...") %>
+            <%= f.text_field(:s, class: "ml-2 form-control form-control-sm rounded-left", placeholder: "Type search terms here...") %>
             <span class="input-group-append">
               <%= f.submit("Submit", class: "mr-2 btn btn-sm btn-primary") %>
             </span>
@@ -88,7 +86,7 @@
         </div>
 
         <div class="card-footer text-center">
-          <%= link_to("Details", blog["link"], data: {lity: ''}, class: "btn btn-sm btn-primary") %>
+          <%= link_to("Details", blog["link"], data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
         </div>
 
       </div>
@@ -96,8 +94,5 @@
       end
     %>
   </div>
-
-
-
 
 </div>
