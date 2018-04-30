@@ -6,6 +6,13 @@ class UsersController < ApplicationController
     @new_user=true
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
+      if @current_user.valid?
+        mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
+        #initially subscribe user to all active lists
+        mailchimp_ids.split(',').each do |mid|
+          subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
+        end
+      end
       format.js
     end
   end
