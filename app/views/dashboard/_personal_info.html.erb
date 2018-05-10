@@ -1,6 +1,6 @@
 <div id="personal-info-tab" class="p-4 tab-pane fade show <%= "active" if(!@current_user.valid? || !@current_user.is_eligible?)%>" role="tabpanel" aria-labelledby="personal-info-tab">
   <div id="personal-info-content" class="pt-2">
-    <div class="d-flex justify-content-center content-section-title">Welcome to FoodTalk.org! Please tell us a little about yourself.</div>
+    <div class="d-flex justify-content-center content-section-title"><%=t("dashboard.my_info.description")%></div>
     <div id="user-form" class="d-flex justify-content-center">
       <%= render :partial => "users/form" %>
     </div>

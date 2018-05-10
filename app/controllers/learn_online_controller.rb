@@ -8,7 +8,7 @@ class LearnOnlineController < ApplicationController
     respond_to do |format|
       lesson_id = params[:module_name]
       lesson = LearningModules::find_module(lesson_id)
-      target_url = lesson[:target_url]
+      target_url = "/learn_online/#{I18n.locale}" + lesson[:target_url]
       format.html {
         if(lesson && target_url)
           @current_user.activity_histories << OnlineLearningHistory.new(name: lesson_id+"#started")
@@ -49,7 +49,7 @@ class LearnOnlineController < ApplicationController
         raise ActionController::RoutingError.new('Lesson Not Found')
       end
       format.html {
-        redirect_to dashboard_show_path
+        redirect_to show_dashboard_path
       }
     end
   end

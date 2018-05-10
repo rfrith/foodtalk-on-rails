@@ -4,8 +4,8 @@
       <div class="media align-items-center">
         <%= image_tag 'food-etalk-logo-lg.png', class: 'mr-4 d-none d-md-block', alt: 'Food eTalk Logo', style: 'width: auto; height: 6rem;' %>
         <div class="media-body">
-          <span class="content-section-title">Food eTalk</span>
-          <p class="content-section-copy-dark mr-5">Make healthier food choices!</p>
+          <span class="content-section-title"><%=t("learn_online.food_etalk.name")%></span>
+          <p class="content-section-copy-dark mr-5"><%=t("learn_online.food_etalk.tagline")%></p>
         </div>
       </div>
     </div>
@@ -15,8 +15,7 @@
 
     <div class="col">
       <div class="content-section-copy-dark-med text-justify">
-        Food eTalk is a series of interactive online classes that focus on planning healthy meals
-        on a budget. Free educational and cooking items included at each session!
+        <%=t("learn_online.food_etalk.description")%>
       </div>
     </div>
   </div>

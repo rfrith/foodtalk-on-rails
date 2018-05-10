@@ -25,7 +25,7 @@ module SessionsHelper
 
   def check_personal_info
     if (user_signed_in? && !@current_user.valid?)
-      redirect_to dashboard_show_path
+      redirect_to show_dashboard_path
     end
   end
 

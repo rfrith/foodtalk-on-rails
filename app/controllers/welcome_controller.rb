@@ -47,4 +47,5 @@ class WelcomeController < ApplicationController
     @videos = JSON.parse playlist_items
         
   end
+
 end

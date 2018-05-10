@@ -14,54 +14,51 @@
       %>
 
       <li class="nav-item">
-        <%= link_to("Learn Online",learn_online_path, id: "learn-online-link", class: "nav-link " + my_css  ) %>
+        <%= link_to(t("navigation.learn_online"),learn_online_path, id: "learn-online-link", class: "nav-link " + my_css  ) %>
       </li>
 
       <li class="nav-item">
-        <%= link_to("Blog", blogs_index_path, class: "nav-link") %>
+        <%= link_to(t("navigation.blog"), blogs_index_path, class: "nav-link") %>
       </li>
 
       <li class="nav-item">
-        <%= link_to("Recipes", recipes_path, class: "nav-link") %>
+        <%= link_to(t("navigation.recipes"), recipes_path, class: "nav-link") %>
       </li>
 
       <li class="nav-item">
-        <% #TODO: FIX ME! %>
-        <%= link_to("Videos", { controller: "videos", action: "index" }, class: "nav-link") %>
+        <%= link_to(t("navigation.videos"), { controller: "videos", action: "index" }, class: "nav-link") %>
       </li>
 
       <li class="nav-item">
-        <% #TODO: FIX ME! %>
-        <%= link_to("Food Glossary", { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
+        <%= link_to(t("navigation.food_glossary"), { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
       </li>
-
-      <li class="nav-item">
-        <% link_to("GIS Resources", maps_index_path, class: "nav-link") %>
-      </li>
-
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">SNAP-Ed Resources</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
         <% #TODO: remove hardcoding color %>
         <div class="dropdown-menu" style="background-color: #de4527">
-          <%= link_to("Attend a Class", attend_class_index_path, class: "nav-link drop-down-item") %>
-          <%= link_to("GIS Resources", maps_index_path, class: "nav-link drop-down-item") %>
+          <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
+          <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
         </div>
       </li>
+
+      <li class="nav-item">
+        <%= link_to(t("language_select_label"), "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
+      </li>
+
     </ul>
 
     <ul class="navbar-nav">
       <% if user_signed_in? %>
-          <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
-            <%= link_to( fa_icon('user') + " My Dashboard" , { controller: "dashboard", action: "show" }, class: "nav-link") %>
+          <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>" data-turbolinks="false">
+            <%= link_to( fa_icon('user') + " #{t("navigation.my_dashboard")}" , { controller: "dashboard", action: "show" }, class: "nav-link") %>
           </li>
-          <li class="nav-item">
-            <%= link_to("Logout", "/logout", class: "nav-link mr-auto") %>
+          <li class="nav-item" data-turbolinks="false">
+            <%= link_to(t("navigation.logout"), "/logout", class: "nav-link mr-auto") %>
           </li>
       <% else %>
-          <li class="nav-item ">
-            <% link_to "Login", "javascript:void(0)", { class: "nav-link", onclick:"signin()" } %>
-            <a class="nav-link" href="/login">Login/Signup</a>
+          <li class="nav-item " data-turbolinks="false">
+            <%= link_to(t("navigation.login"), "/login", class: "nav-link mr-auto") %>
           </li>
       <% end %>
 

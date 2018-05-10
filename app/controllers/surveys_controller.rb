@@ -2,8 +2,13 @@ class SurveysController < ApplicationController
   include Secured
 
   def show
-
     @full_screen = false
+
+    if(params[:id] == 'consent-form')
+      add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 10000
+    else
+      add_notification :info, t(:info), t(:ask_for_feedback), 10000
+    end
 
     case params[:id]
 
@@ -11,8 +16,10 @@ class SurveysController < ApplicationController
       @full_screen = true
       @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(@current_user.uid)
 
-      #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
 
+
+
+    #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
     #Better U
     when "keeping-track"
       @survey_url = prep_module_survey 'BETTER_U[:keeping_track]'
@@ -104,10 +111,13 @@ class SurveysController < ApplicationController
   def get_survey_url(survey_id, redirect, origin = nil)
 
     if(Rails.application.secrets.use_test_survey)
-      survey_id = "SV_2shasM4V0EexFQ1" #this is our test web survey
+      survey_id = "SV_cur2qODTOPqQsU5" #this is our test web survey
     end
 
-    return "https://ugeorgia.qualtrics.com/jfe/form/#{survey_id}?origin=#{origin}&email=#{@current_user.email}&uid=#{@current_user.uid}&redirect=#{redirect}"
+    url = "https://ugeorgia.qualtrics.com/jfe/form/#{survey_id}?origin=#{origin}&email=#{@current_user.email}&uid=#{@current_user.uid}&redirect=#{redirect}&Q_Language=#{I18n.locale.upcase}"
+
+    return url
+
   end
 
 end

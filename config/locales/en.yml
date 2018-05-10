@@ -30,4 +30,159 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  info: "Notice"
+  welcome: "Hello and welcome to Foodtalk.org!  Please take a few minutes to update your personal profile.  Please answer all of the below questions and press the \"Update\" button to continue."
+  ask_for_feedback: "Your feedback is very important to help us improve the quality of our program.  Please take a few minutes to fill out the following survey. Make sure to scroll all the way down and be sure to press the \"Submit\" button when you are finished."
+  thank_you: "Hello!  Thank You for creating an account on Foodtalk.org. We need to ask you a few questions before you can get started."
+  language_select_label: "Español"
+  language_select_value: "es"
+
+  navigation:
+    learn_online: "Learn Online"
+    blog: "Blog"
+    recipes: "Recipes"
+    videos: "Videos"
+    food_glossary: "Food Glossary"
+    snap_ed_resources: "SNAP-Ed Resources"
+    attend_a_class: "Attend a Class"
+    gis_resources: "GIS Resources"
+    my_dashboard: "My Dashboard"
+    login: "Login/Signup"
+    logout: "Logout"
+    view_all_blog_posts: "View All Blog Posts"
+    view_all_recipes: "View All Recipes"
+    view_all_videos: "View All Videos"
+
+  footer:
+    created_by: "Created By"
+    about: "About"
+    contact: "Contact"
+    statements: "Statements"
+    auth0: "Secured By"
+
+  forms:
+    submit: "Update"
+
+  welcome:
+    title: "Helping Georgians Eat Healthy & Get Moving!"
+    description: "FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!"
+    sign_up: "now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning."
+    read_more: "Read More"
+
+    blog:
+      title: "Featured Blog Posts"
+      description: "Read Interesting & Informative Articles by Nutrition Experts!"
+    recipes:
+      title: "Featured Recipes"
+      description: "Check out these delicious, healthy, & inexpensive meals!"
+    videos:
+      title: "Featured Videos"
+      description: "Watch now to increase your knowledge of food & nutrition!"
+
+  blog:
+    name: "Food Talk Blog"
+    description: "Read Interesting & Informative Articles by Nutrition Experts!"
+
+  recipes:
+      name: "Food Talk Recipes"
+      description: "Check out our healthy, delicious, and affordable meal ideas!"
+
+  videos:
+      name: "Food Talk Educational Videos"
+      description: "Watch to increase your knowledge of food & nutrition!"
+
+  glossary:
+    name: "Food Talk Glossary"
+    description: "Enhance your food preparation knowledge!"
+
+  attend_a_class:
+    name: "Attend a Food Talk Class"
+    description_html: "By attending a Food Talk class, you’ll learn from a nutrition educator how to eat more healthfully, feed your family on a budget, keep your food safe, and the best part -- you’ll learn how to make a delicious new recipe and get to taste it! Call or email today to find a class near you! <br><br> Food Talk classes are currently being held in the following counties. Contact one of the staff members listed below to find out how you can join a class."
+    snap_ed_supervisor: "SNAP-Ed Supervisor"
+    program_assistants: "Program Assistants"
+
+  gis_resources:
+    name: "GIS Resources"
+    description: "Provided by UGA SNAP-Ed"
+
+  learn_online:
+    start_learning_module: "Why not improve your knowledge on health & nutrition and start a Food eTalk or Better U course from the below choices?"
+    continue_learning_module: "Why not finish what you started?  Complete any started lessons by clicking the links below and continue improving your health & nutrition knowledge!"
+    better_u:
+      name: "Better U"
+      tagline: "Increase your food knowledge!"
+      description: "Food eTalk: Better U is a series of interactive sessions aimed at helping you identify ways to make small lifestyle choices that lead to a Better U! Participants receive free incentives that promote healthy eating and an active lifestyle. Come ready to have fun and learn!"
+    food_etalk:
+      name: "Food eTalk"
+      tagline: "Make healthier food choices!"
+      description: "Food eTalk is a series of interactive online classes that focus on planning healthy meals on a budget. Free educational and cooking items included at each session!"
+
+  dashboard:
+    my_courses:
+      label: "My Courses"
+      not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"
+      start_now: "start a lesson now"
+      started:
+        label: "Started"
+        start_learning: "Start learning by clicking on the lesson's title or image."
+        continue_learning: "Continue learning by clicking on the lesson's title or image."
+      completed:
+        label: "Completed"
+        food_talk_completed_lesson: "You should be proud of what you've accomplished!"
+        better_u_completed_lesson: "You're well on your way to becoming a Better U!"
+    my_info:
+      label: "My Info"
+      description: "Welcome to FoodTalk.org! Please tell us a little about yourself."
+    newsletters:
+      label: "Newsletters"
+      make_selection: "Please choose which of these lists you'd like to receive emails from."
+
+  activerecord:
+    models:
+      user: 'User'
+    attributes:
+      user:
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        email: "Email"
+        gender: "Gender"
+        age: "Age"
+        zip_code: "Zip Code"
+        is_hispanic_or_latino: "Do you consider yourself Hispanic/Latino?"
+        racial_identity_ids: "Which race do you identify with? Check all that apply."
+        federal_assistance_ids: "Have you or your children ever received any of the following Federal Assistances? Check all that apply."
+
+  learning_modules:
+    launch: "Launch"
+    better_u:
+      keeping_track:
+        title: "Keeping Track"
+        description: "One of the best ways to manage your weight and nutrition health is to watch the portion size of your foods. Learn how to correctly measure different foods and some helpful tips to Keeping Track of how much you’re eating and drinking."
+      no_thanks_im_sweet_enough:
+        title: "No Thanks I'm Sweet Enough"
+        description: "Did you know decreasing the amount of sugar you eat and drink could help prevent unwanted weight gain? Check out this short lesson to learn how you can decrease the sugar in your whole family’s meals and snacks."
+      small_changes_equal_big_results:
+        title: "Small Changes = Big Results"
+        description: "Changing your entire diet sounds overwhelming right? Never fear -- following some of the tips in this lesson, you can make small shifts in what your family is already eating and see big results in their health and nutrition."
+      what_gets_in_the_weigh:
+        title: "What Gets in the Weigh"
+        description: "A little planning goes a long way towards keeping yourself healthy and meeting your weight goals. Plans can go right out the window when unexpected challenges arise.  The ideas in this lesson can help make your healthy Better U plans & goals easier to reach."
+    food_etalk:
+      your_food_your_choice:
+        title: "Your Food, Your Choice"
+        description: "Do you want fries with that burger? Choices, choices, choices! Eating healthy is up to you! That’s right, you have the power to choose to make healthy decisions for you and your whole family. Check out this lesson to get started!"
+      keep_your_pressure_in_check:
+        title: "Keep Your Pressure In Check"
+        description: "We’ve all heard it - too much salt or sodium is not good for us. But how the heck do we reduce it and still have tasty food? Check out this lesson for ideas on how to decrease your sodium and increase your family’s health."
+      color_me_healthy:
+        title: "Color Me Healthy"
+        description: "\"Yeah, yeah, yeah. My family is supposed to eat more fruits and veggies - but it’s not as easy as it sounds\". We get it, eating fruits and veggies can be challenging - which is why we’ve dedicated this lesson to helping you! Check it out and see for yourself."
+      eat_well_on_the_go:
+        title: "Eat Well on the Go"
+        description: "Let’s face it - fast food happens. But you don’t have to pull up to a drive through to get a fast meal -- in this lesson you’ll learn tips to make healthy, budget-friendly \"fast\" meals at home."
+      keep_yourself_well:
+        title: "Keep Yourself Well"
+        description: "No one wants a belly-ache after they’ve eaten unsafe food. In this lesson we’re talking about food safety and how you can keep your family food free of food-borne illness."
+      play_food_etalk:
+        title: "Play Food eTalk"
+        description: "Let’s see what you’ve learned! Try this interactive game to see how much you learned, or take it as a \"pre-test\" to see what you may want to learn."

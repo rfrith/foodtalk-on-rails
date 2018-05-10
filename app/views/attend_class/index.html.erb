@@ -1,10 +1,9 @@
 <div id="attend-class" class="content-section2">
   <div class="row no-gutters align-items-center jumbotron jumbotron-fluid pt-0 pb-0" style="background-color: white;">
     <div class="col content-section-copy-dark-med pl-5 pr-5" style="min-width: 50%;">
-      <%= image_tag("foodtalk-class-2.jpg", class: 'img-fluid pull-left mr-4', alt: "Fooe_tak Live Classroom", style: 'height: 16rem; width: auto;') %>
-      <div class="content-section-title align-bottom mt-2 mb-2">Attend a Food Talk Class</div>
-      <p class="text-justify">By attending a Food Talk class, you’ll learn from a nutrition educator how to eat more healthfully, feed your family on a budget, keep your food safe, and the best part -- you’ll learn how to make a delicious new recipe and get to taste it! Call or email today to find a class near you!
-      <p class="text-justify">Food Talk classes are currently being held in the following counties. Contact one of the staff members listed below to find out how you can join a class.</p>
+      <%= image_tag("foodtalk-class-2.jpg", class: 'img-fluid pull-left mr-4', alt: "Food eTalk Live Classroom", style: 'height: 16rem; width: auto;') %>
+      <div class="content-section-title align-bottom mt-2 mb-2"><%= t("attend_a_class.name") %></div>
+      <p class="text-justify"><%= t("attend_a_class.description_html") %></p>
     </div>
   </div>
 
@@ -29,9 +28,9 @@
               <%= link_to values[:phone], "tel:#{values[:phone]}" %>
             </address>
 
-            <p class="lead">SNAP-Ed Supervisor</p>
+            <p class="lead"><%= t("attend_a_class.snap_ed_supervisor") %></p>
             <div class="media">
-              <%= image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key} SNAP-Ed Supervisor", style: 'height: auto; width: 4rem;') %>
+              <%= image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{t('attend_a_class.snap_ed_supervisor')}", style: 'height: auto; width: 4rem;') %>
               <div class="media-body mr-4 ">
                 <div class="small card-text text-justify mb-2">
                   <%= values[:snap_ed_supervisor][:name]%><br>
@@ -41,10 +40,10 @@
             </div>
 
             <% if(!values[:program_assistants].empty?) %>
-              <p class="lead pt-2">Program Assistants</p>
+              <p class="lead pt-2"><%= t("attend_a_class.program_assistants") %></p>
               <% values[:program_assistants].each do |pas| %>
                 <div class="media mb-2">
-                  <%= image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key} County Program Assistant", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].empty?)%>
+                  <%= image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{ t('attend_a_class.snap_ed_supervisor').singularize }", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].empty?)%>
                   <div class="media-body mr-4 ">
                     <div class="small card-text text-justify mb-2">
                       <%= pas[:name]%><br>

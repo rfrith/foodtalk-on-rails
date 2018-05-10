@@ -3,7 +3,7 @@
   <div class="row no-gutters d-flex justify-content-center mx-auto">
 
     <span class="col-auto">
-      <span class="navbar-text created-by-copy d-none d-md-inline" style="color: white;">Created by</span>
+      <span class="navbar-text created-by-copy d-none d-md-inline" style="color: white;"><%=t("footer.created_by")%></span>
       <a href="https://snaped.fns.usda.gov/state-snap-ed-contacts/georgia" target="_blank">
         <%= image_tag 'ga-snap-ed-sm.png', class: 'ml-2 mr-2 m-0 p-0', alt: 'GA SNAP-Ed Logo', style: 'height: 50px; width: auto;' %>
       </a>
@@ -15,9 +15,9 @@
     <div class="w-100 d-block d-lg-none"></div>
 
     <span class="col-auto d-inline-flex">
-      <%= link_to("About", "http://www.fcs.uga.edu/extension/uga-snap-ed-about-us", class: "nav-item nav-link", target: "_blank") %>
-      <%= link_to("Contact", "/html/contact-us.html", data: {"fancybox": "", "type": 'iframe'}, class: "nav-item nav-link") %>
-      <%= link_to("Statements", "/html/statements.html", data: {"fancybox": "", "type": 'iframe'}, class: "nav-item nav-link") %>
+      <%= link_to(t("footer.about"), "http://www.fcs.uga.edu/extension/uga-snap-ed-about-us", class: "nav-item nav-link", target: "_blank") %>
+      <%= link_to(t("footer.contact"), "/html/contact-us.html", data: {"fancybox": "", "type": 'iframe'}, class: "nav-item nav-link") %>
+      <%= link_to(t("footer.statements"), "/html/statements.html", data: {"fancybox": "", "type": 'iframe'}, class: "nav-item nav-link") %>
     </span>
 
     <div class="w-100 d-block d-lg-none"></div>
@@ -33,7 +33,7 @@
     </span>
 
     <span class="col-auto ml-5" style="color: white;">
-      Secured By
+      <%= t("footer.auth0") %>
       <a class="ml-2" width="auto" height="50px" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="auto" height="50px" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-light.png"/></a>
     </span>
 

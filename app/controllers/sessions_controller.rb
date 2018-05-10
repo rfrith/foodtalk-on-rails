@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       last_name: oauth_hash['info']['name'].split(" ").last,
       email: oauth_hash['info']['email']
     }
-    redirect_to '/dashboard'
+    redirect_to show_dashboard_path
   end
 
   def destroy

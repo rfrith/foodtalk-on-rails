@@ -1,9 +1,15 @@
-$("#user-form-alert").removeClass("visible invisible alert-success alert-danger");
-$("#user-form-alert").html("");
+iziToast.destroy();
 
 <% if @current_user.valid? %>
-  $("#user-form-alert").addClass("alert-success");
-  $("#user-form-alert").html("Changes Saved.");
+
+  var timeout = 3000;
+
+  iziToast.success({
+      title: 'Success',
+      message: 'Changes saved.',
+      target: '#notifications',
+      timeout: timeout
+  });
 
   $("#user-form-alert").addClass("visible");
 
@@ -26,11 +32,16 @@ $("#user-form-alert").html("");
   <% end %>
 
   <% if (@new_user) %>
-  $(window.location.replace("<%= show_survey_path('consent-form') %>"))
+
+  setTimeout(function(){
+      $(window.location.replace("<%= show_survey_path('consent-form') %>"));
+  }, timeout);
+
+
   <% end %>
 
 <% else %>
-  $("#user-form-alert").addClass("alert-danger");
+
   errMsg = ""
   <%
     if @current_user.errors.any?
@@ -43,5 +54,12 @@ $("#user-form-alert").html("");
       errMsg += "<ul>"
     end
   %>
-  $("#user-form-alert").html("Please fix the following errors:<%=errMsg.html_safe%>");
+
+  iziToast.error({
+      title: 'Please fix the following errors:',
+      message: "<%= errMsg.html_safe %>",
+      target: '#notifications',
+      timeout: false
+  });
+
 <% end %>

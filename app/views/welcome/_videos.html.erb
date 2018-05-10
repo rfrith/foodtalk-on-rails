@@ -3,8 +3,8 @@
     <div class="media pt-4 pl-4 pr-4 align-items-center">
       <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-4', alt: 'Videos Icon', style: '' %>
       <div class="media-body">
-        <span class="content-section-title">Featured Videos</span>
-        <p class="content-section-copy-dark">Watch to increase your knowledge of food & nutrition!</p>
+        <span class="content-section-title"><%= t("welcome.videos.title") %></span>
+        <p class="content-section-copy-dark"><%= t("welcome.videos.description") %></p>
       </div>
     </div>
   </div>
@@ -30,6 +30,6 @@
     </div>
   </div>
   <div class="content-section-copy-dark recipe-copy text-center pt-4 pb-4">
-    <%= link_to "View All Videos", videos_path %>
+    <%= link_to t("navigation.view_all_videos"), videos_path %>
   </div>
 </div>

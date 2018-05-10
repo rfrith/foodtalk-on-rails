@@ -40,6 +40,8 @@ class UsersController < ApplicationController
     end
   end
 
+  #TODO implement or remove me!
+
   def update_recipe_favorites
     respond_to do |format|
       id = params[:id]

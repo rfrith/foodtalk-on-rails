@@ -1,0 +1,13 @@
+<script language="JavaScript" defer>
+    $(document).on("turbolinks:load", function() {
+        iziToast.destroy();
+        <% @notifications.each do |n| %>
+        iziToast.info({
+            title: '<%= n.title %>',
+            message: '<%= n.message %>',
+            target: '#notifications',
+            timeout: <%= n.timeout %>
+        });
+        <% end %>
+    });
+</script>

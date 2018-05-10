@@ -18,7 +18,15 @@
 
 //= require_tree .
 
+$(document).on("turbolinks:before-cache", function() {
+    //iziToast.destroy();
+    //$("#notifications").hide();
+});
+
+
 $(document).on("turbolinks:load", function() {
+
+    iziToast.destroy();
 
     //initialize plugins
 

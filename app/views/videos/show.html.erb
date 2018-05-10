@@ -28,17 +28,16 @@
     var done = false;
     function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
-
-            <% if(user_signed_in? && @survey_name) %>
+          <% if(should_serve_survey(@survey_name, @current_user)) %>
             showSurvey();
-            <% end %>
+          <% end %>
         }
     }
 
     function showSurvey() {
-        <% if(user_signed_in? && @survey_name) %>
+      <% if(should_serve_survey(@survey_name, @current_user)) %>
         window.location.href = '<%= show_survey_path(@survey_name) %>';
-        <% end %>
+      <% end %>
     }
 
 </script>

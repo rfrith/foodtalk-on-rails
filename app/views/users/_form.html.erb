@@ -38,14 +38,14 @@
     </div>
   </div>
   <div class="form-row mt-4">
-    <%= form.label :is_hispanic_or_latino, "Do you consider yourself Hispanic/Latino?", class: "col-form-label-sm" %>
+    <%= form.label :is_hispanic_or_latino, class: "col-form-label-sm" %>
     <div class="col-sm-2">
       <%= form.select :is_hispanic_or_latino, [['No', false], ['Yes', true]], { include_blank: false}, {id: :user_is_hispanic_or_latino, class: "form-control form-control-sm"} %>
     </div>
   </div>
   <div class="form-row mt-2">
     <div class="mr-5 col-auto">
-      <%= form.label :racial_identity_ids, "Which race do you identify with? Check all that apply.", class: "col-form-label-sm" %>
+      <%= form.label :racial_identity_ids, class: "col-form-label-sm" %>
       <%= form.collection_check_boxes :racial_identity_ids, RacialIdentity.all, :id, :name do |b| %>
         <div class="form-check">
           <%= b.label(:"data-value" => b.value, class: "form-check-label col-form-label-sm") { b.check_box(class: "form-check-input") + b.text } %>
@@ -53,7 +53,7 @@
       <% end %>
     </div>
     <div class="col">
-      <%= form.label :federal_assistance_ids, "Have you or your children ever received any of the following Federal Assistances? Check all that apply.", class: "col-form-label-sm" %>
+      <%= form.label :federal_assistance_ids, class: "col-form-label-sm" %>
       <%= form.collection_check_boxes :federal_assistance_ids, FederalAssistance.all, :id, :name do |b| %>
         <div class="form-check">
           <%=  b.label(:"data-value" => b.value, class: "form-check-label col-form-label-sm") { b.check_box(class: "form-check-input") + b.text } %>
@@ -62,7 +62,7 @@
     </div>
   </div>
   <div class="actions pt-2">
-    <%= form.submit "Update", class: "btn btn-primary" %>
-    <% link_to 'Cancel', dashboard_show_path, class: "btn btn-primary" %>
+    <%= form.submit t("forms.submit"), class: "btn btn-primary" %>
+    <% link_to 'Cancel', show_dashboard_path, class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -10,9 +10,9 @@
           and call your nearest <%= link_to "UGA Extension Office", "http://extension.uga.edu/county-offices.html#top", data: { lity: '' } %> to schedule an appointment to receive your complimentary bag of Food Talk goodies.
         <% else %>
           <% if(!@current_user.course_enrollments.food_etalk.started.empty?) %>
-            Continue learning by clicking on the lesson's title or image.
+            <%=t("dashboard.my_courses.started.continue_learning")%>
           <% else %>
-            You are not currently enrolled in any Food eTalk lessons.  Why not start one now?  Simply click on the below lesson's title or image to begin.
+            <%=t("dashboard.my_courses.started.start_learning")%>
           <% end %>
         <% end %>
       </span>

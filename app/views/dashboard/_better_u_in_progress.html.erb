@@ -7,9 +7,9 @@
           Great job! You have completed Food Talk Better U.
         <% else %>
           <% if(!@current_user.course_enrollments.better_u.started.empty?) %>
-            Continue learning by clicking on the lesson's title or image.
+            <%=t("dashboard.my_courses.started.continue_learning")%>
           <% else %>
-            You are not currently enrolled in any Better U lessons.  Why not start one now?  Simply click on the below lesson's title or image to begin.
+            <%=t("dashboard.my_courses.started.start_learning")%>
           <% end %>
         <% end %>
       </span>

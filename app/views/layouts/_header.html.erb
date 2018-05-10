@@ -13,10 +13,10 @@
       <%= image_tag 'logo-md.png', class: 'logo img-fluid mt-1', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
     </span>
     <span class="hero-title text-justify align-bottom">
-      Helping Georgians Eat Healthy & Get Moving!
+      <%= t("welcome.title") %>
     </span>
     <p class="hero-copy text-justify">
-      FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!
+      <%= t("welcome.description") %>
     </p>
     <div>
       <% form_with(url: '/search') do |f| %>
@@ -25,20 +25,11 @@
         <% f.submit("Search") %>
       <% end %>
 
-      <div class="hero-subtitle mr-2"><%= link_to fa_icon("user") + " Sign Up/Log In", login_url, class: "badge badge-dark hero-subtitle" %> now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning.</div>
-
-      <% form_with url: newsletter_sign_up_url, remote: true, class: "form-inline" do |f| %>
-        <div class="input-group">
-          <%= f.text_field(:email, class: "form-control", placeholder: "Enter Your Email Here") %>
-          <div class="input-group-append">
-            <%= f.submit("Sign Up Now!", class: "btn btn-primary") %>
-          </div>
-        </div>
-      <% end %>
+      <div class="hero-subtitle mr-2"><%= link_to fa_icon("user") + " #{t("navigation.login")}", login_url, class: "badge badge-dark hero-subtitle" %> <%= t("welcome.sign_up") %></div>
 
     </div>
     <div class="scroll-down-for-more pt-2">
-      Read more <%= fa_icon "arrow-circle-down", class: "arrow" %>
+      <%= t("welcome.read_more") %> <%= fa_icon "arrow-circle-down", class: "arrow" %>
     </div>
   </div>
 </div>

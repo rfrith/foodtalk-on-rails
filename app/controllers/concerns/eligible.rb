@@ -13,7 +13,7 @@ module Eligible
     if !user_signed_in?
       redirect_to root_path
     elsif !@current_user.is_eligible?
-      redirect_to dashboard_show_path
+      redirect_to show_dashboard_path
     end
   end
 

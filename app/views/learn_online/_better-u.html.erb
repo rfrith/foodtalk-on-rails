@@ -4,8 +4,8 @@
       <div class="media align-items-center">
         <%= image_tag 'better-u-logo.png', class: 'mr-4 d-none d-md-block', alt: 'Better U Logo', style: 'width: auto; height: 6rem;' %>
         <div class="media-body">
-          <span class="content-section-title">Better U</span>
-          <p class="content-section-copy-dark mr-5">Increase your food knowledge!</p>
+          <span class="content-section-title"><%=t("learn_online.better_u.name")%></span>
+          <p class="content-section-copy-dark mr-5"><%=t("learn_online.better_u.tagline")%></p>
         </div>
       </div>
     </div>
@@ -15,10 +15,7 @@
 
     <div class="col">
       <div class="content-section-copy-dark-med text-justify">
-        Food eTalk: Better U is a series of interactive sessions aimed at helping
-        you identify ways to make small lifestyle choices that lead to a Better U!
-        Participants receive free incentives that promote healthy eating and an
-        active lifestyle. Come ready to have fun and learn!
+        <%=t("learn_online.better_u.description")%>
       </div>
     </div>
   </div>
