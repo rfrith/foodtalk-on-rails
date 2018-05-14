@@ -53,7 +53,7 @@ iziToast.destroy();
  <% end %>
 
   iziToast.error({
-      title: 'Please fix the following errors:',
+      title: '<%= t("activerecord.errors.message")%>',
       message: "<%= errMsg.html_safe %>",
       target: '#notifications',
       timeout: false

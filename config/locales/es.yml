@@ -160,11 +160,7 @@ es:
         racial_identity_ids: "¿Con qué raza te identificas? Marque todo lo que corresponda."
         federal_assistance_ids: "¿Alguna vez ha recibido usted o sus hijos alguna de las siguientes Asistencias Federales? Marque todo lo que corresponda."
     errors:
-      template:
-        header:
-          one:   "1 error prohibited this %{model} from being saved"
-          other: "%{count} errors prohibited this %{model} from being saved"
-        body:    "There were problems with the following fields:"
+      message: "Por favor corrige los siguientes errores:"
       models:
         user:
           attributes:

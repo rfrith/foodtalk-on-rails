@@ -156,6 +156,8 @@ en:
         is_hispanic_or_latino: "Do you consider yourself Hispanic/Latino?"
         racial_identity_ids: "Which race do you identify with? Check all that apply."
         federal_assistance_ids: "Have you or your children ever received any of the following Federal Assistances? Check all that apply."
+    errors:
+      message: "Please fix the following errors:"
 
 
   learning_modules:
