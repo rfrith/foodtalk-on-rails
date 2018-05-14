@@ -156,8 +156,31 @@ es:
         age: "Años"
         zip_code: "Código Postal"
         is_hispanic_or_latino: "¿Te consideras hispano / latino?"
+        racial_identities: "¿Con qué raza te identificas?"
         racial_identity_ids: "¿Con qué raza te identificas? Marque todo lo que corresponda."
         federal_assistance_ids: "¿Alguna vez ha recibido usted o sus hijos alguna de las siguientes Asistencias Federales? Marque todo lo que corresponda."
+    errors:
+      template:
+        header:
+          one:   "1 error prohibited this %{model} from being saved"
+          other: "%{count} errors prohibited this %{model} from being saved"
+        body:    "There were problems with the following fields:"
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: " %{attribute} no puede estar en blanco"
+            last_name:
+              blank: "no puede estar en blanco"
+            email:
+              blank: "no puede estar en blanco"
+            age:
+              blank: "no puede estar en blanco"
+            zip_code:
+              blank: "no puede estar en blanco"
+              wrong_length: "debe tener al menos 5 dígitos"
+            racial_identities:
+              blank: "no puede estar en blanco"
 
   learning_modules:
     launch: "Lanzamiento"

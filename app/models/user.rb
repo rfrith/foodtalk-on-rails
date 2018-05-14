@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :age, :email, :gender, :zip_code
   validates_inclusion_of :is_hispanic_or_latino, :in => [true, false], :message => "Please answer the question 'Do you consider yourself Hispanic/Latino?'"
   validates_numericality_of :age
-  validates_length_of :zip_code, :is => 5, :message => "Please enter your 5-digit zip code."
+  validates_length_of :zip_code, :is => 5, :message => "must be at least 5-digits."
   validates_uniqueness_of :email
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :racial_identities, presence: true

@@ -42,7 +42,7 @@
         </div>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" data-turbolinks="false">
         <%= link_to(t("language_select_label"), "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
       </li>
 
@@ -57,7 +57,7 @@
             <%= link_to(t("navigation.logout"), logout_path, class: "nav-link mr-auto") %>
           </li>
       <% else %>
-          <li class="nav-item " data-turbolinks="false">
+          <li class="nav-item" data-turbolinks="false">
             <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
           </li>
       <% end %>
