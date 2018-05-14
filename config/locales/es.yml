@@ -36,6 +36,7 @@ es:
   thank_you: "¡Hola! Gracias por crear una cuenta en Foodtalk.org. Necesitamos hacerle algunas preguntas antes de que pueda comenzar."
   language_select_label: "English"
   language_select_value: "en"
+  switch_language: "Click for English"
 
   navigation:
     learn_online: "Aprender en Línea"
@@ -47,11 +48,12 @@ es:
     attend_a_class: "Atender Una Clase"
     gis_resources: "GIS Recursos"
     my_dashboard: "Mi Tablero"
-    login: "Iniciar Sesión Registrarse"
+    login: "Inicia Sesión/Regístrate"
     logout: "Cerrar Sesión"
     view_all_blog_posts: "Ver Todas las Publicaciones del Blog"
     view_all_recipes: "Ver Todas las Recetas"
     view_all_videos: "Ver Todos los Videos"
+    uga_extension_office: "UGA Oficina de Extensión"
 
   footer:
     created_by: "Creado Por"
@@ -118,6 +120,8 @@ es:
       name: "Food eTalk"
       tagline: "¡Elija alimentos más saludables!"
       description: "Food eTalk es una serie de clases interactivas en línea que se centran en la planificación de comidas saludables con un presupuesto. ¡Artículos educativos y de cocina gratuitos incluidos en cada sesión!"
+      completed_html: "¡Buen trabajo! Has completado Food eTalk. Cuando esté listo, %{href} y llame al %{href2} más cercano para recibir su bolsa gratuita de golosinas de Food Talk."
+      print_your_certificate: "imprime tu certificado"
 
   dashboard:
     my_courses:
@@ -135,6 +139,7 @@ es:
     my_info:
       label: "Mi Información"
       description: "Bienvenido a FoodTalk.org! Por favor, cuéntanos un poco sobre ti."
+      notice: "Por favor, rellene el siguiente formulario."
     newsletters:
       label: "Boletines informativos"
       make_selection: "Elija de cuál de estas listas le gustaría recibir correos electrónicos."

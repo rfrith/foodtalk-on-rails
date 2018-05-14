@@ -12,6 +12,11 @@
     <span class="d-inline d-md-none p-0 m-0">
       <%= image_tag 'logo-md.png', class: 'logo img-fluid mt-1', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
     </span>
+
+    <div class="text-right">
+      <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "", style: "color: white;") %></u>
+    </div>
+
     <span class="hero-title text-justify align-bottom">
       <%= t("welcome.title") %>
     </span>

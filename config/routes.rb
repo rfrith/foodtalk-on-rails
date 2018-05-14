@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
-  get '/login', to: redirect('/auth/auth0')
-  get '/logout' => 'sessions#destroy'
-  get '/:locale' => 'welcome#index'
+
+  #get '/:locale' => 'welcome#index'
+
+  get '/en' => 'welcome#index'
+  get '/es' => 'welcome#index'
+  get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
   get '/auth/auth0/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#failure'
 
+
+
   scope "/:locale" do
+
+    get '/logout' => 'sessions#destroy'
+
 
     #TODO: fix all get routes to use resource/resources w/ only: criteria
     resources :users, only: [:create, :update]

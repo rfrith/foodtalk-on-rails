@@ -4,10 +4,9 @@
       <span><%= image_tag 'food-etalk-logo-med.png', class: 'align-middle', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %></span>
       <span class="pb-2 lead">
         <% if user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) %>
-          Way to go! You have completed Food eTalk.
 
-          When you are ready, <%= link_to('print your certificate', show_certificate_path('FOOD_ETALK'), data: { lity: '' }) %>
-          and call your nearest <%= link_to "UGA Extension Office", "http://extension.uga.edu/county-offices.html#top", data: { lity: '' } %> to schedule an appointment to receive your complimentary bag of Food Talk goodies.
+          <%= t("learn_online.food_etalk.completed_html", href: link_to(t("learn_online.food_etalk.print_your_certificate"), show_certificate_path('FOOD_ETALK'), data: { lity: '' }), href2: link_to( t("navigation.uga_extension_office"), "http://extension.uga.edu/county-offices.html#top", data: { lity: '' } ) ) %>
+
         <% else %>
           <% if(!@current_user.course_enrollments.food_etalk.started.empty?) %>
             <%=t("dashboard.my_courses.started.continue_learning")%>

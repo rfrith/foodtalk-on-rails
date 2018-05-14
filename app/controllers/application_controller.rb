@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    if (request.path != "/login_path" && request.path != "/login")
+      I18n.locale = !params[:locale].blank? ? params[:locale] : I18n.default_locale
+    end
   end
 
   #TODO: IMPLEMENT ME

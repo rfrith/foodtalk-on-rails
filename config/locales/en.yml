@@ -36,6 +36,7 @@ en:
   thank_you: "Hello!  Thank You for creating an account on Foodtalk.org. We need to ask you a few questions before you can get started."
   language_select_label: "Español"
   language_select_value: "es"
+  switch_language: "Haga clic para Español"
 
   navigation:
     learn_online: "Learn Online"
@@ -52,6 +53,7 @@ en:
     view_all_blog_posts: "View All Blog Posts"
     view_all_recipes: "View All Recipes"
     view_all_videos: "View All Videos"
+    uga_extension_office: "UGA Extension Office"
 
   footer:
     created_by: "Created By"
@@ -116,6 +118,8 @@ en:
       name: "Food eTalk"
       tagline: "Make healthier food choices!"
       description: "Food eTalk is a series of interactive online classes that focus on planning healthy meals on a budget. Free educational and cooking items included at each session!"
+      completed_html: "Way to go! You have completed Food eTalk. When you are ready, %{href} and call your nearest %{href2} to receive your complimentary bag of Food Talk goodies."
+      print_your_certificate: "print your certificate"
 
   dashboard:
     my_courses:
@@ -133,6 +137,7 @@ en:
     my_info:
       label: "My Info"
       description: "Welcome to FoodTalk.org! Please tell us a little about yourself."
+      notice: "Please fill out the form below."
     newsletters:
       label: "Newsletters"
       make_selection: "Please choose which of these lists you'd like to receive emails from."

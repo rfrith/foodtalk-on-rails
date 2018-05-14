@@ -54,11 +54,11 @@
             <%= link_to( fa_icon('user') + " #{t("navigation.my_dashboard")}" , { controller: "dashboard", action: "show" }, class: "nav-link") %>
           </li>
           <li class="nav-item" data-turbolinks="false">
-            <%= link_to(t("navigation.logout"), "/logout", class: "nav-link mr-auto") %>
+            <%= link_to(t("navigation.logout"), logout_path, class: "nav-link mr-auto") %>
           </li>
       <% else %>
           <li class="nav-item " data-turbolinks="false">
-            <%= link_to(t("navigation.login"), "/login", class: "nav-link mr-auto") %>
+            <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
           </li>
       <% end %>
 
