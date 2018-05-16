@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
 
-  #get '/:locale' => 'welcome#index'
-
-  get '/en' => 'welcome#index'
-  get '/es' => 'welcome#index'
-  get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
+  get '/:locale' => 'welcome#index'
+  get '/:locale/login', to: redirect(path: '/auth/auth0'), as: 'login'
   get '/auth/auth0/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#failure'
-
-
 
   scope "/:locale" do
 
