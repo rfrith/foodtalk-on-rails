@@ -1,13 +1,17 @@
+<%
+  id_split = lesson[:id].split('/')
+  cur = id_split[0]
+  mod = id_split[1]
+%>
+
 <div class="card <%= css %>">
-  <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(lesson[:id]), data: { lity: '' } %>
+  <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' } %>
   <div class="card-body">
-    <div class="card-title text-center"><%=t(lesson[:title])%></div>
-    <div class="card-text text-justify mb-2"><%=t(lesson[:description]).html_safe%></div>
+    <div class="card-title text-center"><%= t(lesson[:title]) %></div>
+    <div class="card-text text-justify mb-2"><%= t(lesson[:description]).html_safe %></div>
   </div>
   <div class="card-footer text-center">
-    <%= link_to(t("learning_modules.launch"), launch_module_path(lesson[:id]), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
+
+    <%= link_to(t("learning_modules.launch"), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
   </div>
 </div>
-
-
-

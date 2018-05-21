@@ -12,14 +12,14 @@ class CertificatesController < ApplicationController
     img_url = open(view_context.asset_url('FoodEtalkCompletionCertificate.png'))
     img.from_blob(img_url.read)
     txt = Draw.new
-    img.annotate(txt, 0,0,0,-50, @current_user.name){
+    img.annotate(txt, 0,0,0,20, @current_user.name){
       txt.gravity = Magick::CenterGravity
       txt.font_family = 'helvetica'
       txt.pointsize = 25
       txt.font_weight = Magick::BoldWeight
     }
 
-    img.annotate(txt, 0,0,0,40, curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK).strftime("%B %d, %Y")){
+    img.annotate(txt, 0,0,0,130, curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK).strftime("%B %d, %Y")){
       txt.gravity = Magick::CenterGravity
       txt.font_family = 'helvetica'
       txt.pointsize = 25

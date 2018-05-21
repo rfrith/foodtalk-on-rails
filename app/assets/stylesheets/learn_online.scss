@@ -1,3 +1,7 @@
+#learn-online-content {
+  min-height: calc(100vh - 8.2rem);
+}
+
 .lessons-card-columnssss {
   @include media-breakpoint-up(xs) {
     column-count: 1;

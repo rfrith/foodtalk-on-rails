@@ -21,22 +21,28 @@ module Notifications
   end
 
   def add_notification(type, title, message, timeout)
-    @@notifications << Notification.new(type, title, message, timeout)
+    notification = Notification.new(type, title, message, timeout)
+    @@notifications << notification unless @@notifications.include?(notification)
+    #flash[:notifications] << Notification.new(type, title, message, timeout)
   end
   module_function :add_notification
 
   def get_notifications
-    return @@notifications
+    notifications = @@notifications
+    return notifications
+    #return flash[:notifications]
   end
   module_function :get_notifications
 
   def remove_notification(notification)
     @@notifications.delete(notification)
+    #flash[:notifications].delete(notification)
   end
   module_function :remove_notification
 
   def destroy_all_notifications
     @@notifications = []
+    #flash[:notifications] = []
   end
   module_function :destroy_all_notifications
 

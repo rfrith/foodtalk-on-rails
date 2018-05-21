@@ -23,10 +23,10 @@
         <% end %>
         <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
           <span class="input-group ">
-            <%= f.label(:s, "Search Blogs", class: "ml-2") %>
-            <%= f.text_field(:s, class: "ml-2 form-control form-control-sm rounded-left", placeholder: "Type search terms here...") %>
+            <%= f.label(:s, t("blog.search"), class: "ml-2") %>
+            <%= f.text_field(:s, class: "ml-2 form-control form-control-sm rounded-left", placeholder: t("forms.search_terms")) %>
             <span class="input-group-append">
-              <%= f.submit("Submit", class: "mr-2 btn btn-sm btn-primary") %>
+              <%= f.submit(t("forms.submit"), class: "mr-2 btn btn-sm btn-primary") %>
             </span>
           </span>
         <% end %>

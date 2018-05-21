@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
 
-  get '/:locale' => 'welcome#index'
-  get '/:locale/login', to: redirect(path: '/auth/auth0'), as: 'login'
-  get '/auth/auth0/callback' => 'sessions#create'
-  get '/auth/failure' => 'sessions#failure'
+  scope "(:locale)", locale: /en|es/ do
 
-  scope "/:locale" do
+    root to: 'welcome#index'
 
+    #Auth0/user session
+    get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
+    get 'auth/auth0/callback' => 'sessions#create'
+    get 'auth/failure' => 'sessions#failure'
     get '/logout' => 'sessions#destroy'
 
+    #externally bound URLs (e.g., Newsletters, blogs, recipes, etc.)
+    get 'food_etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
+    get 'better_u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
 
-    #TODO: fix all get routes to use resource/resources w/ only: criteria
+
+    #internal
     resources :users, only: [:create, :update]
     resources :recipes, only: [:index, :show]
     resources :videos, only: [:index, :show]
 
-    get '/dashboard' => 'dashboard#show', as: 'show_dashboard'
+    get 'dashboard' => 'dashboard#show', as: 'show_dashboard'
     get 'welcome/index'
     get 'recipes/index'
 
@@ -24,17 +28,17 @@ Rails.application.routes.draw do
     get 'attend_class', to: 'attend_class#index', as: 'attend_class_index'
 
     get 'videos/:id', to: 'videos#show'
-    get '/food-glossary' => 'glossary_terms#index'
-    get '/lessons' => 'learn_online#index'
+    get 'food-glossary' => 'glossary_terms#index'
+    get 'lessons' => 'learn_online#index'
     get 'maps/:id', to: 'maps#show'
-    get '/videos' => 'videos#index'
+    get 'videos' => 'videos#index'
 
     controller :welcome do
       get 'language/:language' => :set_language, as: 'set_language'
     end
 
     controller :blogs do
-      get '/blog', to: 'blogs#index', as: 'blogs_index'
+      get 'blog', to: 'blogs#index', as: 'blogs_index'
     end
 
     controller :certificates do
@@ -46,7 +50,7 @@ Rails.application.routes.draw do
       get 'surveys/:id', to: 'surveys#show'
       get 'show_survey/:id' => :show, as: 'show_survey'
       get 'process_consent_form/:uid' => :process_consent_form, as: 'process_consent_form'
-      get 'process_survey/:id/uid/:uid' => :process_survey, as: 'process_survey'
+      get 'process_survey/:type/:name/uid/:uid' => :process_survey, as: 'process_survey'
     end
 
     controller :maps do
@@ -63,9 +67,9 @@ Rails.application.routes.draw do
     end
 
     controller :learn_online do
-      get '/learn_online' => 'learn_online#index'
-      get '/launch_module/:module_name' => :launch_module, as: 'launch_module'
-      get '/complete_module/:module_name/uid/:uid' => :complete_module, as: 'complete_module'
+      get 'learn_online' => 'learn_online#index'
+      get 'launch_module/:curriculum/:module_name' => :launch_module, as: 'launch_module'
+      get 'complete_module/:module_name/uid/:uid' => :complete_module, as: 'complete_module'
     end
 
   end

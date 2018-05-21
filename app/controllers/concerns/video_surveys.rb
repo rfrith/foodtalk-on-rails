@@ -8,7 +8,7 @@ module VideoSurveys
 
          survey_args:
              {
-                 origin: "sweet_deceit",
+                 origin: "sweet-deceit",
                  uid: true,
                  email: true,
                  redirect: "/videos"
@@ -21,7 +21,7 @@ module VideoSurveys
          survey_id: "SV_cvCaqFDgMTP5XHD",
          survey_args:
              {
-                 origin: "better_u_beach_ball_exercises",
+                 origin: "better-u-beach-ball-exercises",
                  uid: true,
                  email: true,
                  redirect: "/videos"
@@ -34,7 +34,7 @@ module VideoSurveys
          survey_id: "SV_cvCaqFDgMTP5XHD",
          survey_args:
              {
-                 origin: "using_a_better_u_resistance_band",
+                 origin: "using-a-better-u-resistance-band",
                  uid: true,
                  email: true,
                  redirect: "/videos"
@@ -48,7 +48,7 @@ module VideoSurveys
 
          survey_args:
              {
-                 origin: "better_u_chair_exercises",
+                 origin: "better-u-chair-exercises",
                  uid: true,
                  email: true,
                  redirect: "/videos"
@@ -63,7 +63,7 @@ module VideoSurveys
 
          survey_args:
              {
-                 origin: "using_a_better_u_pedometer",
+                 origin: "using-a-better-u-pedometer",
                  uid: true,
                  email: true,
                  redirect: "/videos"
@@ -77,7 +77,7 @@ module VideoSurveys
 
          survey_args:
              {
-                 origin: "how_to_make_tuscan_pasta",
+                 origin: "how-to-make-tuscan-pasta",
                  uid: true,
                  email: true,
                  redirect: "/videos"
@@ -163,7 +163,7 @@ module VideoSurveys
   end
 
   def self.valid_video_survey?(id)
-    return get_survey_names.include?(id)
+    return (get_survey_names.include?(id.gsub("video/", "")))
   end
 
 end

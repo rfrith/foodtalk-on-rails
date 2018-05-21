@@ -3,18 +3,21 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper, Notifications
 
-  before_action :set_current_user, :clear_notifications, :set_notifications, :set_locale
+  before_action :set_current_user, :get_notifications, :set_locale
+  after_action :clear_notifications
 
   def default_url_options
-    { locale: I18n.locale }
+    if(Rails.application.secrets.i18n_enabled || params[:locale])
+      { locale: I18n.locale }
+    else
+      { locale: nil }
+    end
   end
 
   private
 
   def set_locale
-    if (request.path != "/login_path" && request.path != "/login")
-      I18n.locale = !params[:locale].blank? ? params[:locale] : I18n.default_locale
-    end
+    I18n.locale = !params[:locale].blank? ? params[:locale] : I18n.default_locale
   end
 
   #TODO: IMPLEMENT ME
@@ -22,7 +25,7 @@ class ApplicationController < ActionController::Base
     Notifications.destroy_all_notifications
   end
 
-  def set_notifications
+  def get_notifications
     @notifications = Notifications.get_notifications
   end
 

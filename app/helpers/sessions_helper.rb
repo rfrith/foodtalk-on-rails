@@ -9,7 +9,7 @@ module SessionsHelper
   # Set the @current_user or redirect to login page
   def authenticate_user!
     if !user_signed_in?
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 

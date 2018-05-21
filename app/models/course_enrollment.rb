@@ -9,8 +9,8 @@ class CourseEnrollment < ApplicationRecord
     end
   end
 
-  scope :better_u, -> { where("name like '%BETTER_U%'") }
-  scope :food_etalk, -> { where("name like '%FOOD_ETALK%'") }
+  scope :better_u, -> { where("name like '%better_u%'") }
+  scope :food_etalk, -> { where("name like '%food_etalk%'") }
   scope :find_by_curriculum_id, ->(id = nil) { where("name = '#{id}'") }
 
 

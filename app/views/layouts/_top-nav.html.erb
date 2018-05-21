@@ -42,9 +42,11 @@
         </div>
       </li>
 
+      <% if(Rails.application.secrets.i18n_enabled) %>
       <li class="nav-item" data-turbolinks="false">
         <%= link_to(t("language_select_label"), "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
       </li>
+      <% end %>
 
     </ul>
 

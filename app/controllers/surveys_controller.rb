@@ -16,33 +16,30 @@ class SurveysController < ApplicationController
       @full_screen = true
       @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(@current_user.uid)
 
-
-
-
     #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
     #Better U
     when "keeping-track"
-      @survey_url = prep_module_survey 'BETTER_U[:keeping_track]'
+      @survey_url = prep_module_survey 'better_u/keeping_track'
     when "no-thanks-im-sweet-enough"
-      @survey_url = prep_module_survey 'BETTER_U[:no_thanks_im_sweet_enough]'
+      @survey_url = prep_module_survey 'better_u/no_thanks_im_sweet_enough'
     when "small-changes-equals-big-results"
-      @survey_url = prep_module_survey 'BETTER_U[:small_changes_equal_big_results]'
+      @survey_url = prep_module_survey 'better_u/small_changes_equal_big_results'
     when "what-gets-in-the-weigh"
-      @survey_url = prep_module_survey 'BETTER_U[:what_gets_in_the_weigh]'
+      @survey_url = prep_module_survey 'better_u/what_gets_in_the_weigh'
 
     #Food eTalk
     when "your-food-your-choice"
-      @survey_url = prep_module_survey 'FOOD_ETALK[:your_food_your_choice]'
+      @survey_url = prep_module_survey 'food_etalk/your_food_your_choice'
     when "keep-your-pressure-in-check"
-      @survey_url = prep_module_survey 'FOOD_ETALK[:keep_your_pressure_in_check]'
+      @survey_url = prep_module_survey 'food_etalk/keep_your_pressure_in_check'
     when "color-me-healthy"
-      @survey_url = prep_module_survey 'FOOD_ETALK[:color_me_healthy]'
+      @survey_url = prep_module_survey 'food_etalk/color_me_healthy'
     when "eat-well-on-the-go"
-      @survey_url = prep_module_survey 'FOOD_ETALK[:eat_well_on_the_go]'
+      @survey_url = prep_module_survey 'food_etalk/eat_well_on_the_go'
     when "keep-yourself-well"
-      @survey_url = prep_module_survey 'FOOD_ETALK[:keep_yourself_well]'
+      @survey_url = prep_module_survey 'food_etalk/keep_yourself_well'
     when "play-food-etalk"
-      @survey_url = prep_module_survey 'FOOD_ETALK[:play_food_etalk]'
+      @survey_url = prep_module_survey 'food_etalk/play_food_etalk'
 
     #video surveys
     when *VideoSurveys::get_survey_names
@@ -60,7 +57,7 @@ class SurveysController < ApplicationController
     end
 
     if(@current_user.is_eligible?)
-      redirect_to learn_online_path
+      redirect_to show_dashboard_path
     else
       redirect_to root_path
     end
@@ -69,13 +66,11 @@ class SurveysController < ApplicationController
 
   def process_survey
     #TODO: optimize me--make function to return .id based on supplied name (e.g, LearningModules::find_module_id_by_name(params[:id])
-    survey_name = params[:id]
+    survey_name = "#{params[:type]}/#{params[:name]}"
     if @current_user.uid == params[:uid]
-
-      if(LearningModules::valid_module_id?(survey_name) || VideoSurveys::valid_video_survey?(survey_name))
+      if(LearningModules::valid_module_id?(survey_name) || (VideoSurveys::valid_video_survey?(survey_name)))
         @current_user.survey_histories << SurveyHistory.new(name: survey_name+"#completed")
       end
-
       if LearningModules::valid_module_id? survey_name
         redirect_to complete_module_path(survey_name, @current_user.uid)
       elsif VideoSurveys::valid_video_survey? survey_name
@@ -84,7 +79,6 @@ class SurveysController < ApplicationController
         raise "Invalid Survey name provided."
       end
     end
-
   end
 
 
@@ -93,7 +87,12 @@ class SurveysController < ApplicationController
   def prep_module_survey(module_id)
     survey_id = LearningModules::find_survey_id(module_id)
     lesson_id = LearningModules::find_lesson_id_by_survey_id(survey_id)
-    survey_url = get_survey_url survey_id, process_survey_path(lesson_id, @current_user.uid), lesson_id.gsub("[:", "_").gsub("]", "").downcase
+
+    id_split = lesson_id.split('/')
+    type = id_split[0]
+    name = id_split[1]
+
+    survey_url = get_survey_url survey_id, process_survey_path(type: type, name: name, uid: @current_user.uid), lesson_id
     @current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#started")
     return survey_url
   end
@@ -102,11 +101,10 @@ class SurveysController < ApplicationController
     video = VideoSurveys.find_video_by_name(survey_name)
     survey_id = video[:survey_id]
     video_name = video[:survey_args][:origin]
-    survey_url = get_survey_url survey_id, process_survey_path(video_name, @current_user.uid), video[:survey_args][:origin]
-    @current_user.survey_histories << SurveyHistory.new(name: video_name+"#started")
+    survey_url = get_survey_url survey_id, process_survey_path(type: "video", name: video_name, uid: @current_user.uid), video[:survey_args][:origin]
+    @current_user.survey_histories << SurveyHistory.new(name: "#{video_name}#started")
     return survey_url
   end
-
 
   def get_survey_url(survey_id, redirect, origin = nil)
 
@@ -114,7 +112,7 @@ class SurveysController < ApplicationController
       survey_id = "SV_cur2qODTOPqQsU5" #this is our test web survey
     end
 
-    url = "https://ugeorgia.qualtrics.com/jfe/form/#{survey_id}?origin=#{origin}&email=#{@current_user.email}&uid=#{@current_user.uid}&redirect=#{redirect}&Q_Language=#{I18n.locale.upcase}"
+    url = "#{Rails.application.secrets.qualtrics_survey_base_url}#{survey_id}?origin=#{origin}&email=#{@current_user.email}&uid=#{@current_user.uid}&redirect=#{redirect}&Q_Language=#{I18n.locale.upcase}"
 
     return url
 

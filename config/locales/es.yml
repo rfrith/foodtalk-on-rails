@@ -37,6 +37,7 @@ es:
   language_select_label: "English"
   language_select_value: "en"
   switch_language: "Click for English"
+  eligibility_restriction: "La función que ha solicitado está restringida debido a los requisitos de elegibilidad actuales de SNAP-Ed. Para obtener más información, revise las pautas publicadas en <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\"> https: // snaped. fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf </a>."
 
   navigation:
     learn_online: "Aprender en Línea"
@@ -64,6 +65,7 @@ es:
 
   forms:
     submit: "Actualizar"
+    search_terms: "Términos de búsqueda..."
 
   welcome:
     title: "¡Ayudando a los Georgianos a Comer Saludablemente y a Moverse!"
@@ -84,10 +86,12 @@ es:
   blog:
     name: "Blog de Food Talk"
     description: "¡Lee Artículos Interesantes & Informativos de Expertos en Nutrición!"
+    search: "Buscar Blog"
 
   recipes:
       name: "Recetas de Food Talk"
       description: "¡Eche un Vistazo a Nuestras Ideas de Comidas Saludables, Deliciosas y Asequibles!"
+      search: "Buscar Recetas"
 
   videos:
       name: "Videos educacionales de Food Talk"
@@ -121,7 +125,7 @@ es:
       tagline: "¡Elija alimentos más saludables!"
       description: "Food eTalk es una serie de clases interactivas en línea que se centran en la planificación de comidas saludables con un presupuesto. ¡Artículos educativos y de cocina gratuitos incluidos en cada sesión!"
       completed_html: "¡Buen trabajo! Has completado Food eTalk. Cuando esté listo, %{href} y llame al %{href2} más cercano para recibir su bolsa gratuita de golosinas de Food Talk."
-      print_your_certificate: "imprime tu certificado"
+      print_your_certificate: "imprime tu recibo de finalización"
 
   dashboard:
     my_courses:
