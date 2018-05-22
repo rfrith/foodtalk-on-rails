@@ -5,13 +5,12 @@
 %>
 
 <div class="card <%= css %>">
-  <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' } %>
+  <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} %>
   <div class="card-body">
     <div class="card-title text-center"><%= t(lesson[:title]) %></div>
     <div class="card-text text-justify mb-2"><%= t(lesson[:description]).html_safe %></div>
   </div>
   <div class="card-footer text-center">
-
-    <%= link_to(t("learning_modules.launch"), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
+    <%= link_to(t("learning_modules.launch"), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 </div>

@@ -2,6 +2,22 @@
   min-height: calc(100vh - 8.2rem);
 }
 
+.fancybox-slide--iframe .fancybox-content {
+  @include media-breakpoint-up(xs) {
+  }
+  @include media-breakpoint-up(sm) {
+  }
+  @include media-breakpoint-up(md) {
+  }
+  @include media-breakpoint-up(lg) {
+  }
+  @include media-breakpoint-up(xl) {
+    max-width  : 90%;
+    max-height : 90%;
+    margin: 0;
+  }
+}
+
 .lessons-card-columnssss {
   @include media-breakpoint-up(xs) {
     column-count: 1;

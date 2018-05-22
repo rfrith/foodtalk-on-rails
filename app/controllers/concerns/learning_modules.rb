@@ -6,7 +6,7 @@ module LearningModules
       {id: 'better_u/keeping_track', survey_id: 'SV_2m192rZTqtLT63H', img_path: 'keeping-track-cap.jpg', target_url: '/better_u/keeping-track/story_html5.html', title: "learning_modules.better_u.keeping_track.title", description: "learning_modules.better_u.keeping_track.description" },
       {id: 'better_u/no_thanks_im_sweet_enough', survey_id: 'SV_0CIDt2IgyAkApxj', img_path: 'no-thanks-im-sweet-enough-cap.jpg', target_url: '/better_u/no-thanks-im-sweet-enough/story_html5.html', title: "learning_modules.better_u.no_thanks_im_sweet_enough.title", description: "learning_modules.better_u.no_thanks_im_sweet_enough.description" },
       {id: 'better_u/small_changes_equal_big_results', survey_id: 'SV_5BAEJFx3222PkVL', img_path: 'small-changes-equal-big-results-cap.jpg', target_url: '/better_u/small-changes-equal-big-results/story_html5.html', title: "learning_modules.better_u.small_changes_equal_big_results.title", description: "learning_modules.better_u.small_changes_equal_big_results.description" },
-      {id: 'better_u/what_gets_in_the_weigh', survey_id: 'SV_4158YZmgkwvDgYB', img_path: 'handwriting-in-journal.jpg', target_url: '/surveys/what-gets-in-the-weigh', title: "learning_modules.better_u.what_gets_in_the_weigh.title", description: "learning_modules.better_u.what_gets_in_the_weigh.description" }
+      {id: 'better_u/what_gets_in_the_weigh', survey_id: 'SV_4158YZmgkwvDgYB', img_path: 'handwriting-in-journal.jpg', target_url: '/better_u/what_gets_in_the_weigh', title: "learning_modules.better_u.what_gets_in_the_weigh.title", description: "learning_modules.better_u.what_gets_in_the_weigh.description" }
   ]
 
   FOOD_ETALK = [

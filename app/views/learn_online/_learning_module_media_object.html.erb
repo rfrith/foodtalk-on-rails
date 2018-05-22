@@ -6,7 +6,7 @@
 
 <div class="card module-grid-item mr-2 mb-2 pt-1 pl-2 pb-1">
   <div class="card-title">
-    <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' } ) %>
+    <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} ) %>
   </div>
   <div class="media">
     <%= link_to(image_tag(lesson[:img_path], class: 'rounded', alt: "#{lesson[:id]} Cap", style: 'height: auto; width: 4rem;'), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' }, class: 'mr-2' ) %>
