@@ -1,9 +1,7 @@
 <script language="JavaScript">
     $(document).on("turbolinks:load", function() {
         iziToast.destroy();
-
         <% if @notifications %>
-
           <% @notifications.each do |n| %>
           iziToast.info({
               title: '<%= n.title %>',

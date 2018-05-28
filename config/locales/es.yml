@@ -30,7 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
+  success: "Éxito"
   info: "Atención"
+  error: "Error"
+  error_occurred: "El siguiente error ha ocurrido:"
+  changes_saved: "Cambios guardados."
   welcome: "¡Hola y bienvenido a Foodtalk.org! Tómese unos minutos para actualizar su perfil personal. Responda todas las preguntas a continuación y presione el botón \"Actualizar\" para continuar."
   ask_for_feedback: "Sus comentarios son muy importantes para ayudarnos a mejorar la calidad de nuestro programa. Tómese unos minutos para completar la siguiente encuesta. Asegúrese de desplazarse hacia abajo y asegúrese de presionar el botón \"Enviar\" cuando haya terminado."
   thank_you: "¡Hola! Gracias por crear una cuenta en Foodtalk.org. Necesitamos hacerle algunas preguntas antes de que pueda comenzar."

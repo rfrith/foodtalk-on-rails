@@ -5,16 +5,19 @@ iziToast.destroy();
   var timeout = 3000;
 
   iziToast.success({
-      title: 'Success',
-      message: 'Changes saved.',
+      title: '<%= t("success") %>',
+      message: '<%= t("changes_saved") %>',
       target: '#notifications',
       timeout: timeout
   });
 
-
   <% if(@current_user.is_eligible?) %>
     $("#learn-online-link").removeClass("d-none");
     $("#learn-online-link").addClass("d-block");
+
+
+    $("#learn-online-link").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
+
 
     <% if(@current_user.course_enrollments.any?) %>
       $("#my-activity-tab-link").removeClass("d-none");
@@ -32,10 +35,9 @@ iziToast.destroy();
 
   <% if (@new_user) %>
 
-  setTimeout(function(){
-      $(window.location.replace("<%= show_survey_path('consent-form') %>"));
-  }, timeout);
-
+    setTimeout(function(){
+        $(window.location.replace("<%= show_survey_path('consent-form') %>"));
+    }, timeout);
 
   <% end %>
 

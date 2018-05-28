@@ -10,7 +10,11 @@ class UsersController < ApplicationController
         mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
         #initially subscribe user to all active lists
         mailchimp_ids.split(',').each do |mid|
-          subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
+          begin
+            subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
+          rescue => e
+            add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+          end
         end
       end
       format.js
@@ -26,15 +30,19 @@ class UsersController < ApplicationController
 
   def update_subscriptions
     respond_to do |format|
-      mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
-      ids = user_subscription_params[:subscription_ids]
-      mailchimp_ids.split(',').each do |mid|
-        if(!ids.include?(mid))
-          #unsubscribe user from list
-          un_subscribe_email_from_list(@current_user.email_as_md5_hash, mid)
-        else
-          subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
+      begin
+        mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
+        ids = user_subscription_params[:subscription_ids]
+        mailchimp_ids.split(',').each do |mid|
+          if(!ids.include?(mid))
+            un_subscribe_email_from_list(@current_user.email_as_md5_hash, mid)
+          else
+            subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
+          end
         end
+        add_notification :success, t(:info), t("changes_saved"), 10000
+      rescue => e
+        add_notification :error, t(:error), "#{t("error_occurred")} #{e.to_s}", false
       end
       format.js
     end

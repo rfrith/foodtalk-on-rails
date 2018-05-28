@@ -1,9 +1,12 @@
 iziToast.destroy();
 
-iziToast.success({
-    title: 'Success',
-    message: 'Changes saved.',
-    position: 'topCenter',
-    target: '#notifications',
-    timeout: 3000
-});
+<% if @notifications %>
+  <% @notifications.each do |n| %>
+    iziToast.<%=n.type%>({
+        title: '<%= n.title %>',
+        message: '<%= n.message.html_safe %>',
+        target: '#notifications',
+        timeout: <%= n.timeout %>
+    });
+  <% end %>
+<% end %>

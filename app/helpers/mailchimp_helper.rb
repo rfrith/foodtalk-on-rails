@@ -1,10 +1,13 @@
 module MailchimpHelper
 
+  include Notifications
+
   def subscribe_email_to_list(email, list_id, first_name, last_name)
-    gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
     if(!email_has_been_added_to_list(Digest::MD5.hexdigest(email.downcase), list_id))
+      gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
       gibbon.lists(list_id).members.create(body: {email_address: email, status: "subscribed", merge_fields: {FNAME: first_name, LNAME: last_name}})
     else
+      gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
       gibbon.lists(list_id).members(Digest::MD5.hexdigest(email.downcase)).update(body: { status: "subscribed" })
     end
   end
@@ -27,8 +30,8 @@ module MailchimpHelper
   end
   
   def email_has_been_added_to_list(email_as_md5_hash, list_id)
-    gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
     begin
+      gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
       #TODO: is there a better way to do this?
       result = gibbon.lists(list_id).members(email_as_md5_hash).retrieve
       return true
@@ -38,8 +41,8 @@ module MailchimpHelper
   end
 
   def email_is_subscribed_to_list(email_as_md5_hash, list_id)
-    gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
     begin
+      gibbon = Gibbon::Request.new(api_key: Rails.application.secrets.mailchimp_api_key)
       result = gibbon.lists(list_id).members(email_as_md5_hash).retrieve
       if(result.body['status'] == "subscribed")
         return true
@@ -53,6 +56,5 @@ module MailchimpHelper
       return false
     end
   end
-
 
 end
