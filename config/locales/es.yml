@@ -118,8 +118,6 @@ es:
   learn_online:
     start_learning_module: "¿Por qué no mejorar su conocimiento sobre salud y nutrición e iniciar un curso de Food eTalk o Better U de las siguientes opciones?"
     continue_learning_module: "¿Por qué no terminas lo que comenzaste? Complete todas las lecciones iniciadas haciendo clic en los enlaces a continuación y continúe mejorando su conocimiento de salud y nutrición."
-    start_learning_module: "¿Por qué no mejorar su conocimiento sobre salud y nutrición e iniciar un curso de Food eTalk o Better U de las siguientes opciones?"
-    continue_learning_module: "¿Por qué no terminas lo que comenzaste? Complete todas las lecciones iniciadas haciendo clic en los enlaces a continuación y continúe mejorando su conocimiento de salud y nutrición."
     better_u:
       name: "Better U"
       tagline: "¡Aumenta tu conocimiento de la comida!"

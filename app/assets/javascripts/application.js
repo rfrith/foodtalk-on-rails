@@ -18,15 +18,7 @@
 
 //= require_tree .
 
-$(document).on("turbolinks:before-cache", function() {
-    //iziToast.destroy();
-    //$("#notifications").hide();
-});
-
-
 $(document).on("turbolinks:load", function() {
-
-    iziToast.destroy();
 
     //initialize plugins
 
@@ -36,18 +28,17 @@ $(document).on("turbolinks:load", function() {
         trigger: 'focus'
     })
 
-    $('.grid').imagesLoaded( function() {
-
-
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            fitWidth: true
+    if( $('.grid').length) {
+        $('.grid').imagesLoaded( function() {
+            $('.grid').masonry({
+                // options
+                itemSelector: '.grid-item',
+                fitWidth: true
+            });
         });
+    }
 
-    });
-
-    if($("#dashboard-content").length > 0) {
+    if($("#dashboard-content").length) {
         init_isotope_started_courses();
 
         $('a[data-toggle=tab]').on('shown.bs.tab', function (e) {
@@ -74,7 +65,6 @@ $(document).on("turbolinks:load", function() {
 
 });
 
-//TODO: DRY - can this be simplified??
 
 function init_isotope_started_courses() {
 

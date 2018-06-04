@@ -6,10 +6,19 @@
 
 <div class="card module-grid-item mr-2 mb-2 pt-1 pl-2 pb-1">
   <div class="card-title">
-    <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} ) %>
+    <% if lesson[:survey_lesson] %>
+      <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod) ) %>
+    <% else %>
+      <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} ) %>
+    <% end %>
   </div>
   <div class="media">
-    <%= link_to(image_tag(lesson[:img_path], class: 'rounded', alt: "#{lesson[:id]} Cap", style: 'height: auto; width: 4rem;'), launch_module_path(curriculum: cur, module_name: mod), data: { lity: '' }, class: 'mr-2' ) %>
+    <% if lesson[:survey_lesson] %>
+      <%= link_to(image_tag(lesson[:img_path], class: 'rounded', alt: "#{lesson[:id]} Cap", style: 'height: auto; width: 4rem;'), launch_module_path(curriculum: cur, module_name: mod), class: 'mr-2' ) %>
+    <% else %>
+      <%= link_to(image_tag(lesson[:img_path], class: 'rounded', alt: "#{lesson[:id]} Cap", style: 'height: auto; width: 4rem;'), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} , class: 'mr-2' ) %>
+    <% end %>
+
     <div class="media-body mr-4">
       <div class="small card-text text-justify mb-2">
         <%= truncate(t(lesson[:description]), escape: true, separator: ' ', omission: '... ', length: 120) %>

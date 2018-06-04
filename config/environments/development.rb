@@ -54,6 +54,7 @@ Rails.application.configure do
 
   #config.web_console.whitelisted_ips = '172.19.100.4'
 
+  #TODO: IMPLEMENT SSL AND REMOVE ME!!!!
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 end

@@ -8,15 +8,28 @@ class LearnOnlineController < ApplicationController
     lesson_id = "#{params[:curriculum]}/#{params[:module_name]}"
     LearningModules::launch_module(lesson_id, @current_user)
     lesson = LearningModules::find_module(lesson_id)
-    @module_url =  "/learn_online/#{I18n.locale}" + lesson[:target_url]
+
+    #handle modules that are non-ArticulateStorylyine, i.e.,g Qualtrics Survey
+    if lesson[:survey_lesson]
+      @module_url = lesson[:target_url]
+    else
+      @module_url = "/elearning/#{I18n.locale}" + lesson[:target_url]
+    end
   end
 
   def launch_module
     respond_to do |format|
       lesson_id = "#{params[:curriculum]}/#{params[:module_name]}"
       lesson = LearningModules::find_module(lesson_id)
-      target_url = "/learn_online/#{I18n.locale}" + lesson[:target_url]
-      LearningModules::launch_module(lesson[:id], @current_user)
+
+      #handle modules that are non-ArticulateStorylyine, i.e.,g Qualtrics Survey
+      if lesson[:survey_lesson]
+        target_url = lesson[:target_url]
+      else
+        LearningModules::launch_module(lesson[:id], @current_user)
+        target_url = "/elearning/#{I18n.locale}" + lesson[:target_url]
+      end
+
       format.html {
         redirect_to target_url
       }

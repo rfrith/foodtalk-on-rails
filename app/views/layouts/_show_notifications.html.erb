@@ -1,15 +1,15 @@
+<% if @notifications.any? %>
 <script language="JavaScript">
     $(document).on("turbolinks:load", function() {
-        iziToast.destroy();
-        <% if @notifications %>
-          <% @notifications.each do |n| %>
-          iziToast.info({
-              title: '<%= n.title %>',
-              message: '<%= n.message.html_safe %>',
-              target: '#notifications',
-              timeout: <%= n.timeout %>
-          });
-          <% end %>
-        <% end %>
+      iziToast.destroy();
+      <% @notifications.each do |n| %>
+      iziToast.info({
+          title: '<%= n.title %>',
+          message: '<%= n.message.html_safe %>',
+          target: '#notifications',
+          timeout: <%= n.timeout %>
+      });
+      <% end %>
     });
 </script>
+<% end %>

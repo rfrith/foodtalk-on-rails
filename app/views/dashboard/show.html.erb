@@ -3,7 +3,11 @@
   <nav id="dashboard-nav" class="pt-1 nav nav-tabs justify-content-end" role="tablist">
     <a id="my-activity-tab-link" class="nav-item nav-link <%= (@current_user.is_eligible?) ? "active" : "d-none" %>" data-toggle="tab" href="#my-activity-tab"><%= t("dashboard.my_courses.label") %></a>
     <a class="nav-item nav-link <%= "active" if(!@current_user.is_eligible?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true"><%= t("dashboard.my_info.label") %></a>
+
+    <% if(!@current_user.new_record?) %>
     <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false"><%= t("dashboard.newsletters.label") %></a>
+    <% end %>
+
   </nav>
 
   <div id="dashboard-tab-content" class="tab-content d-flex justify-content-center">

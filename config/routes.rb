@@ -10,12 +10,11 @@ Rails.application.routes.draw do
     get 'auth/failure' => 'sessions#failure'
     get '/logout' => 'sessions#destroy'
 
+    get '/user_logged_in' => 'sessions#user_logged_in'
+
     #externally bound URLs (e.g., Newsletters, blogs, recipes, etc.)
     get 'food_etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
     get 'better_u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
-
-
-
 
     #internal
     resources :users, only: [:create, :update]
@@ -53,7 +52,6 @@ Rails.application.routes.draw do
       get 'show_survey/:id' => :show, as: 'show_survey'
       get 'process_consent_form/:uid' => :process_consent_form, as: 'process_consent_form'
       get 'process_survey/:type/:name/uid/:uid' => :process_survey, as: 'process_survey'
-
     end
 
     controller :maps do
@@ -73,7 +71,6 @@ Rails.application.routes.draw do
       get 'learn_online' => 'learn_online#index'
       get 'launch_module/:curriculum/:module_name' => :launch_module, as: 'launch_module'
       get 'complete_module/:module_name/uid/:uid' => :complete_module, as: 'complete_module'
-      get '/learn_online/:locale/better_u/what_gets_in_the_weigh' => 'surveys#show', defaults: { id: 'what-gets-in-the-weigh' }
     end
 
   end

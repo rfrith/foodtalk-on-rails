@@ -1,9 +1,18 @@
 class SessionsController < ApplicationController
 
   require 'omniauth'
-  include LogoutHelper
+  include LogoutHelper, SessionsHelper
 
   skip_before_action :set_current_user
+
+  def user_logged_in
+    case user_signed_in?
+    when true
+      head 200
+    else
+      head 401
+    end
+  end
 
   def create
     # OmniAuth places the User Profile information (retrieved by omniauth-sessions) in request.env['omniauth.auth'].

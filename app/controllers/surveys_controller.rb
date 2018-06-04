@@ -2,7 +2,8 @@ class SurveysController < ApplicationController
   include Secured
 
   def show
-    @full_screen = false
+    #set to false for any surveys that should NOT have header & footer elements
+    @full_screen = true
 
     if(params[:id] == 'consent-form')
       add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 10000
@@ -13,7 +14,6 @@ class SurveysController < ApplicationController
     case params[:id]
 
     when "consent-form"
-      @full_screen = true
       @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(@current_user.uid)
 
     #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
