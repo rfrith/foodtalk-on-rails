@@ -26,7 +26,15 @@ class SessionsController < ApplicationController
       last_name: oauth_hash['info']['name'].split(" ").last,
       email: oauth_hash['info']['email']
     }
-    redirect_to show_dashboard_path
+
+    if session[:org_uri]
+      redirect_to session[:org_uri]
+      session[:org_uri] = nil
+    else
+      redirect_to show_dashboard_path
+    end
+
+
   end
 
   def destroy
