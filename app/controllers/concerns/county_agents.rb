@@ -1,5 +1,7 @@
 module CountyAgents
 
+  extend ActiveSupport::Concern
+
   COUNTIES = {
 
       "athens-clarke": {

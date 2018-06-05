@@ -1,6 +1,6 @@
 module Notifications
 
-  #extend ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
   VALID_NOTIFICATION_TYPES = [:info, :success, :warning, :error]
 
@@ -11,6 +11,7 @@ module Notifications
     attr_reader :title
     attr_reader :message
     attr_reader :timeout
+
     def initialize(type, title, message, timeout)
       raise "Invalid notification." unless title && VALID_NOTIFICATION_TYPES.include?(type)
       @type = type
@@ -23,7 +24,6 @@ module Notifications
   def add_notification(type, title, message, timeout)
     notification = Notification.new(type, title, message, timeout)
     @@notifications << notification unless @@notifications.include?(notification)
-    #flash[:notifications] << Notification.new(type, title, message, timeout)
   end
   module_function :add_notification
 
@@ -36,13 +36,11 @@ module Notifications
 
   def remove_notification(notification)
     @@notifications.delete(notification)
-    #flash[:notifications].delete(notification)
   end
   module_function :remove_notification
 
   def destroy_all_notifications
     @@notifications = []
-    #flash[:notifications] = []
   end
   module_function :destroy_all_notifications
 

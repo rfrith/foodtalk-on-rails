@@ -1,5 +1,7 @@
 module VideoSurveys
 
+  extend ActiveSupport::Concern
+
  MAP_VIDEOS_TO_SURVEYS = [
      {
          name: "Sweet Deceit",

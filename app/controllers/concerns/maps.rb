@@ -1,4 +1,7 @@
 module Maps
+
+  extend ActiveSupport::Concern
+
   GA_SNAP_ED_MAPS = [
       {id: 'snap-ed-eligibility-locator', target_url: 'https://w-cookie.github.io/SNAP-Ed-Locator-Web-Tool/index.html', title: "Georgia SNAP-Ed Eligibility Locator", description: "" },
       {id: 'snap-ed-qualified-areas', target_url: 'https://w-cookie.github.io/SNAP-Ed-Site-Lists/index.html#7/32.706/-83.197', title: "Georgia SNAP-Ed Implementation Sites", description: "" },

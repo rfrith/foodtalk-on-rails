@@ -1,5 +1,7 @@
 module LearningModules
 
+  extend ActiveSupport::Concern
+
   #TODO: YUKON needs to fix the HTML5 option for the modules; they aren't working right in Food eTalk
 
   BETTER_U = [
