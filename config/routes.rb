@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     get 'food-etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
     get 'better-u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
 
-    get 'recipes/:year/:month/:day/:title' => 'recipes#show'
-    get 'blog/:year/:month/:day/:title' => 'blogs#show'
+    get 'recipes/:title' => 'recipes#show'
+    get 'blog/:title' => 'blogs#show'
 
     #internal
     resources :users, only: [:create, :update]
