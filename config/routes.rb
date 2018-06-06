@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     get '/user_logged_in' => 'sessions#user_logged_in'
 
     #externally bound URLs (e.g., Newsletters, blogs, recipes, etc.)
-    get 'food_etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
-    get 'better_u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
+    get 'food-etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
+    get 'better-u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
+
+    get 'recipes/:year/:month/:day/:title' => 'recipes#show'
+    get 'blog/:year/:month/:day/:title' => 'blogs#show'
 
     #internal
     resources :users, only: [:create, :update]

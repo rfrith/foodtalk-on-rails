@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center" style="background-color: white;">
+  <div class="media pt-2 pl-4 pr-4 align-items-center">
+    <%= image_tag 'blog-icon-med.png', class: 'd-none d-md-block mr-4', alt: 'Recipe Card Icon', style: '' %>
+    <div class="media-body">
+      <span class="content-section-title"><%=t("blog.name")%></span>
+      <p class="content-section-copy-dark"><%=t("blog.description")%></p>
+    </div>
+  </div>
+</div>
+<div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
+  <div class="flex-col d-flex justify-content-center">
+    <div class="text-center mt-0">
+      <%
+        base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
+      %>
+      <%= link_to "All Blogs", blogs_index_path, class: base_css + (@all_blogs ? ' btn-light' : ' btn-primary'), role: 'button' %>
+      <% @categories.each do |c| %>
+        <% if(c["name"].downcase != "uncategorized") %>
+          <%= link_to c["name"], blogs_index_path(category: c["slug"]), class: base_css + ((@category_id && (c["slug"] == @category_id)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+        <% end %>
+      <% end %>
+      <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
+          <span class="input-group ">
+            <%= f.label(:s, t("blog.search"), class: "ml-2") %>
+            <%= f.text_field(:s, class: "ml-2 form-control form-control-sm rounded-left", placeholder: t("forms.search_terms")) %>
+            <span class="input-group-append">
+              <%= f.submit(t("forms.submit"), class: "mr-2 btn btn-sm btn-primary") %>
+            </span>
+          </span>
+      <% end %>
+    </div>
+  </div>
+</div>

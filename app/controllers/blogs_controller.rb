@@ -44,4 +44,21 @@ class BlogsController < ApplicationController
 
   end
 
+
+  def show
+    categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
+    @categories = JSON.parse categories
+
+    #remove "recipes" from categories and blogs as they are displayed on a different page
+    recipes_category = nil
+    @categories.delete_if do |c|
+      if c["slug"] == "recipes"
+        recipes_category = c["id"]
+        true
+      end
+    end
+
+    @blog_url = "#{Rails.application.secrets.blog_url}/#{params[:year]}/#{params[:month]}/#{params[:day]}/#{params[:title]}"
+  end
+
 end

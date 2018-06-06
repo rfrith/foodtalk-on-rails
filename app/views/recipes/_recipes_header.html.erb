@@ -1,0 +1,44 @@
+<div class="flex-row no-gutters" style="background-color: white;">
+  <div class="flex-col d-flex justify-content-center">
+    <div class="media align-items-center mt-3 ml-5 mr-5">
+        <span>
+          <%= image_tag 'recipe-graphic.png', class: 'd-none d-md-block', alt: 'Recipe Card Icon', style: 'width: auto; height: 6rem;' %>
+        </span>
+      <div class="media-body ml-4">
+        <p class="content-section-title mb-0"><%=t("recipes.name")%></p>
+        <p class="content-section-copy-dark mt-0 mb-0 w-100"><%=t("recipes.description")%></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
+  <div class="flex-col d-flex justify-content-center">
+    <div class="text-center mt-0">
+      <%
+        base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
+      %>
+      <%= link_to "All Recipes", recipes_path, class: base_css + (@all_recipes ? ' btn-light' : ' btn-primary'), role: 'button' %>
+
+      <% if false %>
+        <%= link_to "My Favorites", recipes_path(favorites: true), class: base_css + (@favorites ? ' btn-light' : ' btn-primary'), role: 'button' %>
+      <% end %>
+
+      <% @tags.each do |t| %>
+        <% if(t["name"].downcase != "uncategorized") %>
+          <%= link_to t["name"], recipes_path(tag: t["slug"]), class: base_css + ((@category_id && t["slug"] == @category_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+        <% end %>
+      <% end %>
+
+      <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
+                  <span class="input-group ">
+                    <%= f.label(:s, t("recipes.search"), class: "ml-2") %>
+                    <%= f.text_field(:s, class: "ml-2 form-control form-control-sm rounded-left", placeholder: t("forms.search_terms")) %>
+                    <span class="input-group-append">
+                      <%= f.submit(t("forms.submit"), class: "mr-2 btn btn-sm btn-primary") %>
+                    </span>
+                  </span>
+      <% end %>
+
+    </div>
+  </div>
+</div>

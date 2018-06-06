@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   include SessionsHelper
 
-
   def index
     #TODO: fallback if blog server is down
     #TODO: error handling
@@ -28,7 +27,9 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
+    @tags = JSON.parse tags
+    @recipe_url = "#{Rails.application.secrets.blog_url}/#{params[:year]}/#{params[:month]}/#{params[:day]}/#{params[:title]}"
   end
 
 end

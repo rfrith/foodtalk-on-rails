@@ -5,7 +5,8 @@ class LearnOnlineController < ApplicationController
   end
 
   def show
-    lesson_id = "#{params[:curriculum]}/#{params[:module_name]}"
+    module_name = params[:module_name].gsub("-", "_")
+    lesson_id = "#{params[:curriculum]}/#{module_name}"
     LearningModules::launch_module(lesson_id, @current_user)
     lesson = LearningModules::find_module(lesson_id)
 
