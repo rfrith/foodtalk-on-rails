@@ -1,3 +1,8 @@
+<script language="JavaScript">
+    //necessary for https://github.com/fancyapps/fancybox/issues/1911
+    $(document).off("click.fb-start", "[data-trigger]");
+</script>
+
 <div id="recipes" class="content-section2">
 
   <%= render partial: 'recipes_header' %>
