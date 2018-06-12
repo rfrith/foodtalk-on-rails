@@ -1,3 +1,7 @@
-<div id="<%= @full_screen ? 'surveys-content-full' : 'surveys-content-popup' %>">
-  <iframe id="survey-iframe" style="" src="<%=@survey_url%>" frameborder="0"></iframe>
-</div>
+<iframe
+  style="height: 99vh; width: 99vw; "
+  src="<%=@survey_url%>"
+  id="survey-iframe"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
