@@ -32,9 +32,11 @@
             </h4>
           </div>
 
-          <% #TODO Make me better! %>
-          <% if (recipe["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]) %>
-            <%= link_to image_tag(recipe["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"], class: 'card-img-top img-fluid', alt: recipe["title"]["rendered"]), recipe["link"], data: {"fancybox": "", "type": 'iframe'} %>
+          <%
+            media_url = get_recipe_media_url(recipe)
+          %>
+          <% if media_url %>
+            <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: recipe["title"]["rendered"]), recipe["link"], data: {"fancybox": "", "type": 'iframe'} %>
           <% end %>
 
           <div class="card-body p-2 m-0">
