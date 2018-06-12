@@ -3,12 +3,12 @@ class SurveysController < ApplicationController
 
   def show
     #set to false for any surveys that should NOT have header & footer elements
-    @full_screen = true
+    @full_screen = false
 
     if(params[:id] == 'consent-form')
-      add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 10000
+      add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 20000
     else
-      add_notification :info, t(:info), t(:ask_for_feedback), 10000
+      add_notification :info, t(:info), t(:ask_for_feedback), 20000
     end
 
     case params[:id]

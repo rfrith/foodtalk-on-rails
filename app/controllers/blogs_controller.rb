@@ -7,16 +7,18 @@ class BlogsController < ApplicationController
     #TODO: fallback if blog server is down
     #TODO: error handling
 
+    per_page = 100
+
     category = params[:category]
     if(category)
       @category_id = category
       slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug="+category))
       parsed_slug = JSON.parse(slug)
       slug_id = parsed_slug[0]["id"]
-      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=100&categories=#{slug_id}"))
+      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=#{per_page}&categories=#{slug_id}"))
     else
       @all_blogs = true
-      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=100"))
+      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=#{per_page}"))
     end
 
     categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
