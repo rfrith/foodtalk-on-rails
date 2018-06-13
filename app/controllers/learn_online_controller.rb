@@ -27,9 +27,10 @@ class LearnOnlineController < ApplicationController
       if lesson[:survey_lesson]
         target_url = lesson[:target_url]
       else
-        LearningModules::launch_module(lesson[:id], @current_user)
         target_url = "/elearning/#{I18n.locale}" + lesson[:target_url]
       end
+
+      LearningModules::launch_module(lesson[:id], @current_user)
 
       format.html {
         redirect_to target_url
