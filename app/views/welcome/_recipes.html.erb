@@ -14,71 +14,7 @@
       <%
         #TODO: consolidate me into a single view
         @recipes.first(3).each do |recipe| %>
-
-        <div class="no-gutters mb-4 video-card card grid-item">
-
-          <div class="card-header">
-            <h4 class="card-title text-center mt-0">
-              <%= recipe["title"]["rendered"] %>
-              <span>
-                <% #TODO: FIX ME!!!! e.g., User.registered? %>
-                <% if user_signed_in? & @current_user.valid? %>
-                  <% fav = false %>
-                  <% #TODO: AJAXIFY ME!!!!! %>
-                  <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
-                <% end %>
-                <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
-              </span>
-            </h4>
-          </div>
-
-          <%
-            media_url = get_recipe_media_url(recipe)
-          %>
-          <% if media_url %>
-            <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: recipe["title"]["rendered"]), recipe["link"], data: {"fancybox": "", "type": 'iframe'} %>
-          <% end %>
-
-          <div class="card-body p-2 m-0">
-
-            <div class="card-text text-justify mb-1">
-              <%= recipe["excerpt"]["rendered"].html_safe %>
-            </div>
-
-            <div class="d-none d-md-block">
-              <% if !recipe["tags"].empty? %>
-                <div class="card-title">Categories</div>
-                <div class="card-text">
-                  <% recipe["tags"].each do |t| %>
-                    <% @tags.each do |t2| %>
-                      <% if (t2["id"] == t) %>
-                        <%= link_to t2["name"], recipes_path(tag: t2["slug"]), class: 'badge badge-light ml-1', role: 'button', target: '_parent' %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% glossary_terms = find_glossary_terms(recipe["content"]["rendered"]) %>
-
-              <% if !glossary_terms.empty? %>
-                <div class="card-title mt-1">Glossary Terms</div>
-                <div class="card-text">
-                  <% glossary_terms.each do |gt| %>
-                    <%= link_to gt.name, 'javascript:;', class: 'badge badge-light m-0 p-0 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus", tabindex: "0", title: gt.name, "data-content": gt.description %>
-                  <% end %>
-                </div>
-              <% end %>
-
-            </div>
-          </div>
-
-          <div class="card-footer text-center">
-            <%= link_to("Details", recipe["link"], data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
-          </div>
-
-        </div>
-
+        <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe}%>
       <% end %>
     </div>
   </div>
