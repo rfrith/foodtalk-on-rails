@@ -2,18 +2,29 @@
 
 <div id="recipes" class="content-section2">
 
-  <%= render partial: 'recipes_header' %>
+  <% if @recipes %>
 
-  <div class="grid">
-    <%
-      #TODO: consolidate me into a single view
+    <%= render partial: 'recipes_header' %>
 
-      @recipes.each do |recipe|
-    %>
-      <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe}%>
-    <%
-      end
-    %>
-  </div>
+    <div class="grid">
+      <%
+        #TODO: consolidate me into a single view
+
+        @recipes.each do |recipe|
+      %>
+        <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
+      <%
+        end
+      %>
+    </div>
+
+  <% else %>
+    <div class="d-flex justify-content-center">
+      <div class="media align-items-center mt-4 ml-5 mr-5">
+        <% #TODO: I18n ME! %>
+        Error displaying recipes.
+      </div>
+    </div>
+  <% end %>
 
 </div>

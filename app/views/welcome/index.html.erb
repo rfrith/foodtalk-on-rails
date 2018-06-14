@@ -1,4 +1,13 @@
 <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
+
+<% if @blogs %>
 <%= render partial: "blogs" %>
+<% end %>
+
+<% if @recipes %>
 <%= render partial: "recipes" %>
+<% end %>
+
+<% if @videos %>
 <%= render partial: "videos" %>
+<% end %>

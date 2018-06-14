@@ -11,21 +11,7 @@
   <div class="d-flex justify-content-center">
     <div class="card-group better-u-card-deck d-flex mx-auto mt-4">
       <% @videos["items"].last(4).each do |video| %>
-        <div class="video-card card">
-          <figure class="figure">
-            <a href="<%= video_path(video["contentDetails"]["videoId"]) %>" data-lity>
-              <%= image_tag "http://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
-              <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
-              <figcaption class="figure-caption"></figcaption>
-            </a>
-          </figure>
-          <div class="card-block mt-0 pt-0">
-            <h5 class="text-center"><%= video["snippet"]["title"] %></h5>
-            <p class="card-text text-left p-2">
-              <%= truncate(video["snippet"]["description"], separator: '.', omission: '', length: 120) %>
-            </p>
-          </div>
-        </div>
+        <%= render partial: "videos/video_card", locals: {video: video} %>
       <% end %>
     </div>
   </div>

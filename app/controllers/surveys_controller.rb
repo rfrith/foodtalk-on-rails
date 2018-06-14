@@ -49,6 +49,8 @@ class SurveysController < ApplicationController
       raise "Invalid Survey URL provided."
     end
 
+    redirect_to @survey_url
+
   end
 
   def process_consent_form

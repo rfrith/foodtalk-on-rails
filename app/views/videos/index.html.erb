@@ -11,7 +11,7 @@
     </div>
   </div>
 
-
+  <% if @playlists && @videos %>
   <div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
     <div class="flex-col d-flex justify-content-center">
       <div class="text-center mt-0">
@@ -26,10 +26,20 @@
       </div>
     </div>
   </div>
+  <% end %>
 
+  <% if @videos %>
   <div class="grid pt-3">
     <% @videos["items"].each do |video| %>
-      <%= render partial: "video_card", locals: {video: video} %>
+      <%= render partial: "videos/video_card", locals: {video: video} %>
     <% end %>
   </div>
+  <% else %>
+    <div class="d-flex justify-content-center">
+      <div class="media align-items-center mt-4 ml-5 mr-5">
+        <% #TODO: I18n ME! %>
+        Error displaying videos.
+      </div>
+    </div>
+  <% end %>
 </div>
