@@ -16,8 +16,13 @@ Rails.application.routes.draw do
     get 'food-etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
     get 'better-u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
 
-    get 'recipes/:title' => 'recipes#show'
-    get 'blog/:title' => 'blogs#show'
+    get 'recipes/show/:id' => 'recipes#show', as: 'show_recipe'
+    get 'blog/show/:id' => 'blogs#show', as: 'show_blog'
+
+    get 'recipes/:name' => 'recipes#find_by_name', as: 'find_recipe'
+    get 'blog/:name' => 'blogs#find_by_name', as: 'find_blog'
+
+
 
     #internal
     resources :users, only: [:create, :update]

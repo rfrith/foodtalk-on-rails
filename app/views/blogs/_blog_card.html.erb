@@ -10,7 +10,7 @@
   </div>
 
   <%
-    media_url = get_blog_media_url(blog)
+    media_url = get_blog_media_url(blog, :medium)
   %>
   <% if media_url %>
     <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: blog["title"]["rendered"]), blog["link"], data: {"fancybox": "", "type": 'iframe'} %>
@@ -51,7 +51,7 @@
   </div>
 
   <div class="card-footer text-center">
-    <%= link_to("Details", blog["link"], data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%= link_to("Details", show_blog_path(blog["id"]), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 
 </div>

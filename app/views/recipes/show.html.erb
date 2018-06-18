@@ -1,6 +1,16 @@
-<div id="recipe-content">
-  <div class="content-section2">
-    <%= render partial: 'recipes_header' %>
-    <iframe style="width: 100%;height: calc(100vh - 8.6rem);" src="<%=@recipe_url%>" frameborder="0" allowfullscreen></iframe>
+<div id="recipe-post" class="content-section2">
+
+  <% if @show_categories %>
+    <%= render partial: 'recipes/recipes_header' %>
+  <% end %>
+
+  <div class="p-4">
+    <% if @featured_image %>
+      <%= image_tag(@featured_image, class: 'rounded img-fluid mx-auto d-block', alt: @blog["title"]["rendered"]) %>
+    <% end %>
+    <div class="d-flex justify-content-center mt-4 mb-4">
+      <span class="content-section-title"><%== @title %></span>
+    </div>
+    <%== @content %>
   </div>
 </div>

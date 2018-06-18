@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  include SessionsHelper
+  include SessionsHelper, WordpressHelper
 
   def index
     begin
@@ -32,10 +32,41 @@ class RecipesController < ApplicationController
 
   end
 
+
+  def find_by_name
+    begin
+      @show_categories = true
+      tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
+      @tags = JSON.parse tags
+
+      blog = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts?_embed&slug=#{params[:name]}"))
+      @blog = JSON.parse(blog)[0]
+      @featured_image = get_blog_media_url(@blog, :full)
+      @excerpt = @blog['excerpt']['rendered']
+      @title = @blog['title']['rendered']
+      @author = @blog['_embedded']['author'][0]['name']
+      @content = @blog['content']['rendered']
+
+    rescue
+      #do nothing
+    end
+
+    render :show
+
+  end
+
   def show
-    tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
-    @tags = JSON.parse tags
-    @recipe_url = "#{Rails.application.secrets.blog_url}/#{params[:year]}/#{params[:month]}/#{params[:day]}/#{params[:title]}"
+    begin
+      blog = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/#{params[:id]}?_embed"))
+      @blog = JSON.parse blog
+      @featured_image = get_blog_media_url(@blog, :full)
+      @excerpt = @blog['excerpt']['rendered']
+      @title = @blog['title']['rendered']
+      @author = @blog['_embedded']['author'][0]['name']
+      @content = @blog['content']['rendered']
+    rescue
+      #do nothing
+    end
   end
 
 end

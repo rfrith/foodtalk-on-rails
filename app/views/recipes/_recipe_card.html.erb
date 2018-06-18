@@ -57,7 +57,7 @@
   </div>
 
   <div class="card-footer text-center">
-    <%= link_to("Details", recipe["link"], data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%= link_to("Details", show_recipe_path(recipe["id"]), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 
 </div>

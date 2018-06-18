@@ -3,6 +3,8 @@ class BlogsController < ApplicationController
   require 'net/http'
   require 'json'
 
+  include WordpressHelper
+
   def index
 
     begin
@@ -49,21 +51,40 @@ class BlogsController < ApplicationController
 
   end
 
+  def find_by_name
+    begin
+      @show_categories = true
+      categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
+      @categories = JSON.parse categories
 
-  def show
-    categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
-    @categories = JSON.parse categories
+      blog = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts?_embed&slug=#{params[:name]}"))
+      @blog = JSON.parse(blog)[0]
+      @featured_image = get_blog_media_url(@blog, :full)
+      @excerpt = @blog['excerpt']['rendered']
+      @title = @blog['title']['rendered']
+      @author = @blog['_embedded']['author'][0]['name']
+      @content = @blog['content']['rendered']
 
-    #remove "recipes" from categories and blogs as they are displayed on a different page
-    recipes_category = nil
-    @categories.delete_if do |c|
-      if c["slug"] == "recipes"
-        recipes_category = c["id"]
-        true
-      end
+    rescue
+      #do nothing
     end
 
-    @blog_url = "#{Rails.application.secrets.blog_url}/#{params[:year]}/#{params[:month]}/#{params[:day]}/#{params[:title]}"
+    render :show
+
+  end
+
+  def show
+    begin
+      blog = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/#{params[:id]}?_embed"))
+      @blog = JSON.parse blog
+      @featured_image = get_blog_media_url(@blog, :full)
+      @excerpt = @blog['excerpt']['rendered']
+      @title = @blog['title']['rendered']
+      @author = @blog['_embedded']['author'][0]['name']
+      @content = @blog['content']['rendered']
+    rescue
+      #do nothing
+    end
   end
 
 end

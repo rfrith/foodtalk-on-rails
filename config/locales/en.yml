@@ -70,6 +70,7 @@ en:
   forms:
     submit: "Update"
     search_terms: "Enter search terms..."
+    search_submit: "Search"
 
   welcome:
     title: "Helping Georgians Eat Healthy & Get Moving!"
