@@ -4,13 +4,13 @@
     <h4 class="card-title text-center mt-0">
       <%== blog["title"]["rendered"] %>
       <span>
-              <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
-            </span>
+        <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
+      </span>
     </h4>
   </div>
 
   <%
-    media_url = get_blog_media_url(blog, :medium)
+    media_url = get_media_url(blog, :medium, true)
   %>
   <% if media_url %>
     <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: blog["title"]["rendered"]), show_blog_path(blog["id"]), data: {"fancybox": "", "type": 'iframe'} %>

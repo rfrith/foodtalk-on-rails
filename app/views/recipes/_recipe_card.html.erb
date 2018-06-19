@@ -4,19 +4,19 @@
     <h4 class="card-title text-center mt-0">
       <%== recipe["title"]["rendered"] %>
       <span>
-              <% #TODO: FIX ME!!!! e.g., User.registered? %>
+        <% #TODO: FIX ME!!!! e.g., User.registered? %>
         <% if user_signed_in? & @current_user.valid? %>
-                <% fav = false %>
+          <% fav = false %>
           <% #TODO: AJAXIFY ME!!!!! %>
           <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
-              <% end %>
+        <% end %>
         <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
-            </span>
+      </span>
     </h4>
   </div>
 
   <%
-    media_url = get_recipe_media_url(recipe)
+    media_url = get_media_url(recipe, :medium, true)
   %>
   <% if media_url %>
     <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: recipe["title"]["rendered"]), show_recipe_path(recipe["id"]), data: {"fancybox": "", "type": 'iframe'} %>

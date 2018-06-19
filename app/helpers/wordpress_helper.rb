@@ -1,30 +1,32 @@
 module WordpressHelper
 
-  def get_blog_media_url(blog, size)
+  def get_media_url(post, size, *degrade)
     begin
-      case size
-      when :thumbnail
-        media_url = blog["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"]["source_url"]
-      when :medium
-        media_url = blog["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"]
-      when :full
-        media_url = blog["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"]
-      end
-    rescue
-      # do nothing
-    end
-  end
+      if (degrade)
+        case size
+        when :thumbnail
+          #can't degrade
+          media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"]["source_url"]
 
-  def get_recipe_media_url(recipe)
-    begin
-      if (recipe["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"])
-        media_url = recipe["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"]
-      elsif (blog["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"])
-        media_url = recipe["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"]
-      elsif (blog["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"])
-        media_url = recipe["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"]["source_url"]
+        when :medium
+          if (post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"])
+            media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"]
+          elsif (post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"])
+            media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"]["source_url"]
+          end
+
+        when :full
+          if (post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"])
+            media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"]
+          elsif (post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"])
+            media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"]
+          elsif (post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"])
+            media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["thumbnail"]["source_url"]
+          end
+        end
+      else
+        media_url = post["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["#{size}"]["source_url"]
       end
-      return media_url
     rescue
       # do nothing
     end
