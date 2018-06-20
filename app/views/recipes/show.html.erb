@@ -6,11 +6,9 @@
 
   <div class="p-4">
     <% if @featured_image %>
-      <%= image_tag(@featured_image, class: 'rounded img-fluid mx-auto d-block', alt: @blog["title"]["rendered"]) %>
+      <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @blog["title"]["rendered"]) %>
     <% end %>
-    <div class="d-flex justify-content-center mt-4 mb-4">
-      <span class="content-section-title"><%== @title %></span>
-    </div>
-    <%== @content %>
+    <span class="content-section-title"><%== @title %></span>
+    <%== filter_content_for_display(@content) %>
   </div>
 </div>
