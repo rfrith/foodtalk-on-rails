@@ -29,6 +29,7 @@ FederalAssistance.find_or_create_by!(name: 'Head Start')
 FederalAssistance.find_or_create_by!(name: 'TANF')
 FederalAssistance.find_or_create_by!(name: 'Temporary Emergency Foods or Commodity Foods')
 FederalAssistance.find_or_create_by!(name: 'WIC')
+FederalAssistance.find_or_create_by!(name: 'Extension Employee')
 
 #Create GlossaryTerms
 #GlossaryTerm.find_or_create_by!(name: '', description: '', source: '', remote_image_url: '')
