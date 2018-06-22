@@ -32,7 +32,7 @@
 
             <p class="lead"><%= t("attend_a_class.snap_ed_supervisor") %></p>
             <div class="media">
-              <%= image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{t('attend_a_class.snap_ed_supervisor')}", style: 'height: auto; width: 4rem;') %>
+              <% image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{t('attend_a_class.snap_ed_supervisor')}", style: 'height: auto; width: 4rem;') %>
               <div class="media-body mr-4 ">
                 <div class="small card-text text-justify mb-2">
                   <%= values[:snap_ed_supervisor][:name]%><br>
@@ -45,7 +45,7 @@
               <p class="lead pt-2"><%= t("attend_a_class.program_assistants") %></p>
               <% values[:program_assistants].each do |pas| %>
                 <div class="media mb-2">
-                  <%= image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{ t('attend_a_class.snap_ed_supervisor').singularize }", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].empty?)%>
+                  <% image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{ t('attend_a_class.snap_ed_supervisor').singularize }", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].empty?)%>
                   <div class="media-body mr-4 ">
                     <div class="small card-text text-justify mb-2">
                       <%= pas[:name]%><br>
