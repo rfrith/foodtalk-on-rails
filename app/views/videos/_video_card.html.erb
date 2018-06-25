@@ -3,7 +3,7 @@
   <% link_to(fa_icon("youtube-play"), video_path(video["contentDetails"]["videoId"]), data: { lity: '' }, class: "btn btn-sm btn-primary") %>
 
   <a href="<%= video_path(video["contentDetails"]["videoId"]) %>" data-lity>
-    <%= image_tag "http://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
+    <%= image_tag "https://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top figure-img img-fluid', alt: 'Video Cap' %>
     <div class="text-center"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
     <figcaption class="figure-caption">
       <h4 class="card-title text-center mt-0"><%= video["snippet"]["title"] %></h4>
