@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.10.1"
+lock "~> 3.11"
 
 set :application, ENV['APPLICATION']
 set :repo_url, ENV['REPO_URL']

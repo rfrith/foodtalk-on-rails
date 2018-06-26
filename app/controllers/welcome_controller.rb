@@ -1,8 +1,5 @@
 class WelcomeController < ApplicationController
 
-  require 'net/http'
-  require 'json'
-
   def index
     #TODO: fallback if blog server is down
 

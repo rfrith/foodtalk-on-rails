@@ -3,7 +3,7 @@
     <div class="flex-col d-flex justify-content-center">
       <div class="media align-items-center">
         <span>
-          <%= image_tag 'state-of-ga-orange-lg.png', class: 'd-none d-md-block', alt: 'Recipe Card Icon', style: 'width: auto; height: 6rem;' %>
+          <%= image_tag 'state-of-ga-orange-lg.png', class: 'd-none d-md-block', alt: 'State of Georgia Logo', style: 'width: auto; height: 6rem;' %>
         </span>
         <div class="media-body ml-4">
           <p class="content-section-title mb-0"><%=t("gis_resources.name")%></p>
@@ -18,11 +18,11 @@
   %>
     <div class="grid-item mb-4">
       <div class="card m-1" style="width: 18rem; height: 16rem;">
-        <div class="card-title ml-2 mb-1">
-          <%= link_to map[:title], show_map_path(map[:id]), data: { lity: '' } %>
+        <div class="card-title ml-2 mb-1" style="min-height: 3rem;">
+          <%= link_to map[:title], show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'} %>
         </div>
         <div class="card-body p-0 m-0">
-          <iframe style="width: 100%;height: 100%;position: relative;" src="<%=map[:target_url]%>" frameborder="0" allowfullscreen></iframe>
+          <%= link_to image_tag(map[:thumbnail], class: 'img-fluid', alt: map[:title]), show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'} %>
         </div>
         <div class="card-footer">
           <%= link_to("Expand Map", show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
