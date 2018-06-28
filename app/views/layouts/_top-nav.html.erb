@@ -1,10 +1,15 @@
 <nav class="top-nav navbar navbar-expand-md navbar-light <%= local_assigns[:css] %>" role="navigation">
 
+  <%= link_to controller: "welcome", action: "index", class: "navbar-brand" do %>
+    <%= image_tag('logo-sm.png', class: 'img-fluid m-0 p-0', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>
+    <% if (avatar = DomainGroups::get_domain_group_icon(request.host)) %>
+      <%= image_tag avatar, class: 'img-fluid m-0 p-0', alt: 'Partner logo' %>
+    <% end %>
+  <% end %>
+
   <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <%= link_to(image_tag('logo-sm.png', class: '', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving"), { controller: "welcome", action: "index" }, class: "navbar-brand") %>
 
   <div class="collapse navbar-collapse" id="navbarToggler1">
     <ul class="navbar-nav mr-auto">

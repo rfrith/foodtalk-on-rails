@@ -1,16 +1,46 @@
 <div id="header" class="d-flex hero">
 
   <div class="d-none d-md-block d-lg-none ml-4 mr-4">
-    <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+    <div class="text-center">
+      <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+    </div>
+    <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+      <div class="small text-light text-center">
+        In partnership with
+      </div>
+      <div class="text-center">
+      <%= image_tag(avatar, class: 'img-fluid', alt: 'Partner logo', class: "img-fluid") %>
+      </div>
+    <% end %>
   </div>
 
   <div class="d-none d-lg-block ml-5 mr-5">
-    <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+    <div class="text-center">
+      <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: t("welcome.title") %>
+    </div>
+    <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+    <div class="small text-light text-center">
+      In partnership with
+    </div>
+    <div class="text-center">
+      <%= image_tag(avatar, class: 'img-fluid', alt: 'Partner logo', class: "img-fluid") %>
+    </div>
+    <% end %>
   </div>
 
   <div class="hero-content">
     <span class="d-inline d-md-none p-0 m-0">
-      <%= image_tag 'logo-md.png', class: 'logo img-fluid mt-1', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+      <div class="small text-light text-center">
+        <%= image_tag 'logo-md.png', class: 'logo img-fluid mt-1', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+      </div>
+      <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+        <div class="small text-light text-center">
+          In partnership with
+        </div>
+        <div class="text-center">
+          <%= image_tag(avatar, class: 'img-fluid', alt: 'Partner logo', class: "img-fluid") %>
+        </div>
+      <% end %>
     </span>
 
     <% if(Rails.application.secrets.i18n_enabled) %>
