@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
 
-  include Secured, MailchimpHelper
+  include Secured, MailchimpHelper, DomainGroups
 
   def create
     @new_user=true
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
       if @current_user.valid?
+
+        #add user to group based on domain
+        add_user_to_domain_group(@current_user, request.host)
+
         mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
         #initially subscribe user to all active lists
         mailchimp_ids.split(',').each do |mid|

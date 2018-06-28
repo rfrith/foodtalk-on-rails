@@ -1,4 +1,4 @@
-class GlossaryImageUploader < CarrierWave::Uploader::Base
+class GroupIconUploader < CarrierWave::Uploader::Base
 
   def extension_whitelist
     %w(jpg jpeg gif png)
