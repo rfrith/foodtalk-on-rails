@@ -9,7 +9,6 @@ module SessionsHelper
   # Set the @current_user or redirect to login page
   def authenticate_user!
     if !user_signed_in?
-      session[:org_uri] = request.fullpath
       redirect_to login_path
     end
   end
