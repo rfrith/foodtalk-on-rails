@@ -8,10 +8,11 @@ class SessionsController < ApplicationController
   def user_logged_in
     case user_signed_in?
     when true
-      head 200
+      status = 200
     else
-      head 401
+      status = 401
     end
+    head status
   end
 
   def create
@@ -27,9 +28,8 @@ class SessionsController < ApplicationController
       email: oauth_hash['info']['email']
     }
 
-    if session[:org_uri]
-      redirect_to session[:org_uri]
-      session[:org_uri] = nil
+    if request[:org_uri]
+      redirect_to request[:org_uri]
     else
       redirect_to show_dashboard_path
     end

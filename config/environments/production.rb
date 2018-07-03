@@ -46,6 +46,9 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  #must have this for nginx auth_request
+  config.ssl_options = { redirect: { exclude: -> request { request.path =~ /user_logged_in/ } } }
+
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
