@@ -1,47 +1,34 @@
 <div id="header" class="d-flex hero">
 
-  <div class="d-none d-md-block d-lg-none ml-4 mr-4">
-    <div class="text-center">
-      <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
-    </div>
-    <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
-      <div class="small text-light text-center">
-        In partnership with
-      </div>
+  <div class="col-4zzz">
+    <div class="d-none d-md-block d-lg-none ml-4 mr-4">
       <div class="text-center">
-      <%= image_tag(avatar, class: 'img-fluid', alt: 'Partner logo', class: "img-fluid") %>
+        <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+          <%= image_tag(avatar, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% else %>
+          <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+
+    <div class="d-none d-lg-block ml-5 mr-5">
+      <div class="text-center">
+        <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+          <%= image_tag(avatar, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% else %>
+          <%= image_tag 'logo-xl.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <div class="d-none d-lg-block ml-5 mr-5">
-    <div class="text-center">
-      <%= image_tag 'logo-xl.png', class: 'logo img-fluid', alt: t("welcome.title") %>
-    </div>
-    <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
-    <div class="small text-light text-center">
-      In partnership with
-    </div>
-    <div class="text-center">
-      <%= image_tag(avatar, class: 'img-fluid', alt: 'Partner logo', class: "img-fluid") %>
-    </div>
-    <% end %>
-  </div>
-
-  <div class="hero-content">
-    <span class="d-inline d-md-none p-0 m-0">
-      <div class="small text-light text-center">
-        <%= image_tag 'logo-md.png', class: 'logo img-fluid mt-1', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
-      </div>
+  <div class="hero-content col-8zzz">
+    <div class="d-md-none text-center p-0 m-0">
       <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
-        <div class="small text-light text-center">
-          In partnership with
-        </div>
-        <div class="text-center">
-          <%= image_tag(avatar, class: 'img-fluid', alt: 'Partner logo', class: "img-fluid") %>
-        </div>
+        <% #TODO: fix me in css! %>
+        <span class="mt-2">&nbsp;</span>
       <% end %>
-    </span>
+    </div>
 
     <% if(Rails.application.secrets.i18n_enabled) %>
     <div class="text-right">
