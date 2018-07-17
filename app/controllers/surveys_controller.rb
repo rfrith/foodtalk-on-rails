@@ -14,7 +14,8 @@ class SurveysController < ApplicationController
     case params[:id]
 
     when "consent-form"
-      @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_path(@current_user.uid)
+      @current_user.survey_histories << SurveyHistory.new(name: SurveyHistory::STARTED_CONSENT_FORM)
+      @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_url(@current_user.uid)
 
     #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
     #Better U
@@ -94,7 +95,7 @@ class SurveysController < ApplicationController
     type = id_split[0]
     name = id_split[1]
 
-    survey_url = get_survey_url survey_id, process_survey_path(type: type, name: name, uid: @current_user.uid), lesson_id
+    survey_url = get_survey_url survey_id, process_survey_url(type: type, name: name, uid: @current_user.uid), lesson_id
     @current_user.survey_histories << SurveyHistory.new(name: lesson_id+"#started")
     return survey_url
   end
@@ -103,15 +104,16 @@ class SurveysController < ApplicationController
     video = VideoSurveys.find_video_by_name(survey_name)
     survey_id = video[:survey_id]
     video_name = video[:survey_args][:origin]
-    survey_url = get_survey_url survey_id, process_survey_path(type: "video", name: video_name, uid: @current_user.uid), video[:survey_args][:origin]
+    survey_url = get_survey_url survey_id, process_survey_url(type: "video", name: video_name, uid: @current_user.uid), video[:survey_args][:origin]
     @current_user.survey_histories << SurveyHistory.new(name: "#{video_name}#started")
     return survey_url
   end
 
   def get_survey_url(survey_id, redirect, origin = nil)
 
+
     if(Rails.application.secrets.use_test_survey)
-      survey_id = "SV_cur2qODTOPqQsU5" #this is our test web survey
+      survey_id = "SV_2shasM4V0EexFQ1" #this is our test web survey
     end
 
     url = "#{Rails.application.secrets.qualtrics_survey_base_url}#{survey_id}?origin=#{origin}&email=#{@current_user.email}&uid=#{@current_user.uid}&redirect=#{redirect}&Q_Language=#{I18n.locale.upcase}"
