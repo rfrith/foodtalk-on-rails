@@ -1,4 +1,4 @@
-<div id="my-activity-tab" class="tab-pane fade show <%= "active" if(@current_user.valid?)%>" role="tabpanel" aria-labelledby="my-activity-tab">
+<div id="my-activity-tab" class="tab-pane fade show <%= "active" if(@current_user.valid? && !@current_user.is_admin?) %>" role="tabpanel" aria-labelledby="my-activity-tab">
 
   <nav id="my-activity-nav" class="nav nav-tabs ml-5 justify-content-start" role="tablist">
     <a id="started-courses-tab-link" class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#started-courses"><%= t("dashboard.my_courses.started.label") %></a>

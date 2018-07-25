@@ -69,6 +69,7 @@ es:
 
   forms:
     submit: "Actualizar"
+    generate: "Generar"
     search_terms: "Términos de búsqueda..."
     search_submit: "Búsqueda"
 
@@ -131,6 +132,10 @@ es:
       print_your_certificate: "imprime tu recibo de finalización"
 
   dashboard:
+    admin:
+      label: "Admin"
+      stats: "Statistics"
+      reports: "Informe"
     my_courses:
       label: "Mis Cursos"
       not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"

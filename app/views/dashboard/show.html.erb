@@ -1,20 +1,28 @@
 <div id="dashboard-content">
 
   <nav id="dashboard-nav" class="pt-1 nav nav-tabs justify-content-end" role="tablist">
-    <a id="my-activity-tab-link" class="nav-item nav-link <%= (@current_user.is_eligible?) ? "active" : "d-none" %>" data-toggle="tab" href="#my-activity-tab"><%= t("dashboard.my_courses.label") %></a>
-    <a class="nav-item nav-link <%= "active" if(!@current_user.is_eligible?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true"><%= t("dashboard.my_info.label") %></a>
+    <% if @current_user.is_admin? %>
+      <a class="nav-item nav-link <%= "active" if(@current_user.is_admin?)%>" data-toggle="tab" href="#admin-tab" role="tab" aria-controls="admin-tab" aria-selected="false"><%= t("dashboard.admin.label") %></a>
+    <% end %>
+
+    <a id="my-activity-tab-link" class="nav-item nav-link <%= "active" if(!@current_user.is_admin?)%> <%= (@current_user.is_eligible?) ? "d-block" : "d-none" %>" data-toggle="tab" href="#my-activity-tab"><%= t("dashboard.my_courses.label") %></a>
+
+    <a class="nav-item nav-link <%= "active" if(!@current_user.is_eligible? && !@current_user.is_admin?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true"><%= t("dashboard.my_info.label") %></a>
 
     <% if(!@current_user.new_record?) %>
     <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false"><%= t("dashboard.newsletters.label") %></a>
     <% end %>
-
   </nav>
 
   <div id="dashboard-tab-content" class="tab-content d-flex justify-content-center">
+    <% if @current_user.is_admin? %>
+      <% #Admin %>
+      <%= render :partial => "dashboard/admin" %>
+    <% end %>
 
     <% if @current_user.is_eligible? %>
-    <% #My Activity %>
-    <%= render :partial => "dashboard/my_activity" %>
+      <% #My Activity %>
+      <%= render :partial => "dashboard/my_activity" %>
     <% end %>
 
     <% # Personal Info %>

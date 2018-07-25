@@ -75,6 +75,10 @@ Rails.application.routes.draw do
       post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
     end
 
+    controller :reports do
+      post 'generate_report' => :generate_report
+    end
+
     controller :learn_online do
       get 'learn_online' => 'learn_online#index'
       get 'launch_module/:curriculum/:module_name' => :launch_module, as: 'launch_module'

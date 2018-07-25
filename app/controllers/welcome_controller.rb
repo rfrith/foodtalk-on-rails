@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   def index
     #TODO: fallback if blog server is down
 
-    blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=100"))
+    blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=5"))
     categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
 
     @categories = JSON.parse categories
@@ -30,7 +30,7 @@ class WelcomeController < ApplicationController
     slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug=recipes"))
     parsed_slug = JSON.parse(slug)
     slug_id = parsed_slug[0]["id"]
-    recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=100&categories=#{slug_id}"))
+    recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories=#{slug_id}"))
     tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
 
     @tags = JSON.parse tags

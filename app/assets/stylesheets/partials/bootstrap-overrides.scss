@@ -28,6 +28,10 @@
   background-color: $primary-font-inverse-color;
 }
 
+.nav-pills > a.active {
+  background-color: $primary-fill-color !important;
+}
+
 .form-control {
   border-color: $primary-fill-color;
 }

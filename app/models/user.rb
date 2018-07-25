@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :racial_identities
   has_and_belongs_to_many :federal_assistances
   has_and_belongs_to_many :recipes
-  has_and_belongs_to_many :groups
+  has_and_belongs_to_many :groups, -> { distinct }
   has_many :activity_histories, dependent: :destroy
   has_many :online_learning_histories, dependent: :destroy
   has_many :survey_histories, dependent: :destroy
@@ -27,6 +27,14 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :racial_identities, presence: true
+
+  def group=(group)
+    groups << group unless tags.include?(tag)
+  end
+
+  def is_admin?
+    groups.include?(Group.find_by_name(Group::ADMIN))
+  end
 
   def name
     return "#{first_name} #{last_name}"

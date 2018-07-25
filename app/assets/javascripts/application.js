@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require popper
 //= require bootstrap
+//= require chartkick
 
 //= require_tree .
 
@@ -62,7 +63,18 @@ $(document).on("turbolinks:load", function() {
         });
         return false;
     });
+});
 
+//track current tab in admin>stats dashboard
+//fix to redraw chart after selecting a Bootstrap tab
+$(function(){
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var id = e.target.id
+        $('#stats-current-tab').val(id)
+        Chartkick.eachChart( function(chart) {
+            chart.redraw();
+        });
+    })
 });
 
 

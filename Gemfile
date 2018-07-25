@@ -51,6 +51,9 @@ gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'fractional', '~> 1.2'
 gem 'aasm'
 gem 'rmagick'
+gem 'pundit'
+gem 'chartkick', '~> 2.3', '>= 2.3.5'
+gem 'groupdate'
 
 #TODO: decide on
 #gem 'devise'

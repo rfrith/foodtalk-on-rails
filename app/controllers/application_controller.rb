@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
+
+  include Pundit, SessionsHelper, Notifications
+
   protect_from_forgery with: :exception
+  before_action :current_user, :set_locale
 
-  include SessionsHelper, Notifications
-
-  before_action :set_current_user, :get_notifications, :set_locale
-  after_action :clear_notifications
+  helper_method :get_notifications
 
   def default_url_options
     if(Rails.application.secrets.i18n_enabled || params[:locale])
@@ -14,19 +15,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def add_notification(type, title, message, timeout)
+    session[:notifications] ||= []
+    notification = Notification.new(type, title, message, timeout)
+    session[:notifications] << notification.instance_values
+    logger.debug "Added notification to session"
+  end
+
   private
 
   def set_locale
     I18n.locale = !params[:locale].blank? ? params[:locale] : I18n.default_locale
   end
 
-  #TODO: IMPLEMENT ME
-  def clear_notifications
-    Notifications.destroy_all_notifications
-  end
-
   def get_notifications
-    @notifications = Notifications.get_notifications
+    notifications = session[:notifications]
+    session[:notifications] = []
+    return notifications
   end
-
 end

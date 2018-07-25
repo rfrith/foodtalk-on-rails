@@ -1,0 +1,148 @@
+<nav>
+  <div id="stats-nav-tab" class="nav nav-pills mt-0 pt-0" role="tablist">
+
+    <a id="user-stats-tab" class="nav-item nav-link <%= "active" if (@current_tab == "user-stats-tab") %>" data-toggle="tab" href="#user-stats" role="tab" aria-controls="user-stats" aria-selected="true">User Stats</a>
+    <a id="food-etalk-stats-tab" class="nav-item nav-link <%= "active" if (@current_tab == "food-etalk-stats-tab") %>" data-toggle="tab" href="#food-etalk-stats" role="tab" aria-controls="food-etalk-stats" aria-selected="false">Food eTalk Stats</a>
+    <a id="better-u-stats-tab" class="nav-item nav-link <%= "active" if (@current_tab == "better-u-stats-tab") %>" data-toggle="tab" href="#better-u-stats" role="tab" aria-controls="better-u-stats" aria-selected="false">Better U Stats</a>
+
+    <span class="mx-auto">
+      <%= form_with id: "stats-date-range", url: show_dashboard_path, class: "form-inline", local: true, method: :get do |form| %>
+        <%= form.hidden_field "stats-current-tab", id: "stats-current-tab", value: @current_tab %>
+        <div class="form-row">
+          <div class="col-auto">
+            <%= form.label :start_date, class: "col-form-label-sm d-inline" %>
+            <%= select_date @start_date, prefix: :start_date, class: 'form-control form-control-sm' %>
+          </div>
+          <div class="col-auto">
+            <%= form.label :end_date, class: "col-form-label-sm d-inline" %>
+            <%= select_date @end_date, prefix: :end_date, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+        <div class="actions pt-2">
+          <%= form.button "Apply", type: :submit, class: "btn btn-sm btn-primary ml-2" %>
+        </div>
+      <% end %>
+    </span>
+
+  </div>
+</nav>
+
+<div class="tab-content mt-2" id="nav-tabContent">
+
+  <div id="user-stats" class="tab-pane <%= "active" if (@current_tab == "user-stats-tab") %>" role="tabpanel" aria-labelledby="user-stats-tab">
+
+    <div class="row">
+      <div class="col-6">
+        <%= column_chart [{name: "New Users", data: @new_users_by_month}], title: "Registered Users: #{@user_count}\n During period:  #{@start_date.strftime("%m/%d/%Y")}-#{@end_date.strftime("%m/%d/%Y")}" %>
+      </div>
+      <div class="col-6">
+        <%= line_chart @grouped_user_counts.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "User Registrations By Month" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <%= pie_chart({"Eligible": @eligible_user_count, "Ineligible": @ineligible_user_count}, title: "Total Eligible/Ineligible", legend: "bottom", library: {pieSliceText: 'value-and-percentage'}) %>
+      </div>
+      <div class="col-6">
+        <%= pie_chart @group_users, title: "Breakdown of Users By Group Affiliation", legend: "bottom", donut: false, library: {pieSliceText: 'value-and-percentage'} %>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="food-etalk-stats" class="tab-pane  <%= "active" if (@current_tab == "food-etalk-stats-tab") %>" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+    <div class="row">
+      <div class="col">
+        <%= pie_chart(@food_etalk_started_completed, title: "Food eTalk Program Started/Completed", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <%= pie_chart(@food_etalk_modules_started, title: "#Times Food eTalk Modules Started", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+      <div class="col-6">
+        <%= pie_chart(@food_etalk_modules_completed, title: "#Times Food eTalk Modules Completed", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= line_chart @food_etalk_modules_started_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Times Food eTalk Modules Started By Group" %>
+      </div>
+      <div class="col-6">
+        <%= line_chart @food_etalk_modules_completed_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Times Food eTalk Modules Completed By Group" %>
+      </div>
+    </div>
+
+
+    <div class="row mt-2 mb-4">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+  <div id="better-u-stats" class="tab-pane  <%= "active" if (@current_tab == "better-u-stats-tab") %>" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+
+    <div class="row">
+      <div class="col">
+        <%= pie_chart(@better_u_started_completed, title: "Better U Program Started/Completed", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+        <%= pie_chart(@better_u_modules_started, title: "#Times Better U Modules Started", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+      <div class="col-6">
+        <%= pie_chart(@better_u_modules_completed, title: "#Times Better U Modules Completed", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <%= line_chart @better_u_modules_started_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Times Better U Modules Started By Group" %>
+      </div>
+      <div class="col-6">
+        <%= line_chart @better_u_modules_completed_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Times Better U Modules Completed By Group" %>
+      </div>
+    </div>
+
+
+    <div class="row mt-2 mb-4">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+
+  </div>
+
+</div>

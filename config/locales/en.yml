@@ -69,6 +69,7 @@ en:
 
   forms:
     submit: "Update"
+    generate: "Generate"
     search_terms: "Enter search terms..."
     search_submit: "Search"
 
@@ -131,6 +132,10 @@ en:
       print_your_certificate: "print your receipt of completion"
 
   dashboard:
+    admin:
+      label: "Admin"
+      stats: "Statistics"
+      reports: "Run Report"
     my_courses:
       label: "My Courses"
       not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"

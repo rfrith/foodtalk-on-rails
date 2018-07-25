@@ -1,12 +1,12 @@
-iziToast.destroy();
-
-<% if @notifications %>
-  <% @notifications.each do |n| %>
-    iziToast.<%=n.type%>({
-        title: '<%= n.title %>',
-        message: '<%= n.message.html_safe %>',
-        target: '#notifications',
-        timeout: <%= n.timeout %>
-    });
+<% notifications = get_notifications %>
+<% if notifications %>
+  iziToast.destroy();
+  <% notifications.each do |n| %>
+    iziToast.<%=n['type']%>({
+      title: '<%= n['title'] %>',
+      message: '<%= n['message'].html_safe %>',
+      target: '#notifications',
+      timeout: <%= n['timeout'] %>
+  });
   <% end %>
 <% end %>
