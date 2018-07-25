@@ -30,91 +30,38 @@ $dashboard-tab-content-height: calc(100% - #{$dashboard-tab-height});
 
 }
 
-
-
 #dashboard-content {
-  //border: solid 3px olivedrab;
   background: rgba($content-section2-bg-color, 0.9);
   min-height: calc(100vh - 8.2rem);//TODO: correctly subtract header & footer height
-  //width: 100%;
-}
-
-#dashboard-nav {
-  //border: solid 5px deeppink;
-  //height: $dashboard-tab-height;
 }
 
 #dashboard-tab-content {
-  //border: solid 2px #5eb0e2;
   background: rgba($content-section2-bg-color, 0.9);
-  //height: $dashboard-tab-content-height;
-  //width: 100%;
-  //min-height: $dashboard-tab-content-height;
-  //min-width: 100%;
-
-
-  //width: 100%;
   height: 100%;
-
 }
 
-
-#my-activity-content, #personal-info-content, #mail-subscriptions-content {
+#admin-content, #my-activity-content, #personal-info-content, #mail-subscriptions-content {
   min-width: 100%;
   min-height: 100%;
 }
 
-#my-activity-tab, #personal-info-tab, #mail-subscriptions-tab {
+#admin-tab, #my-activity-tab, #personal-info-tab, #mail-subscriptions-tab {
   width: 100%;
-  //border: solid 1px greenyellow;
 }
 
-
-#my-activity-tab {
+#admin-tab, #my-activity-tab {
   padding-top: .25rem;
-  //border: solid 2px red;
-  //height: 100%;
-  //width: 100%;
-  //min-height: 100%;
 }
 
-
-
-#my-activity-nav > a.nav-item.nav-link {
-}
-
-#my-activity-content, #my-activity-nav > a.nav-item.nav-link.active {
+#admin-content, #admin-nav > a.nav-item.nav-link.active, #my-activity-content, #my-activity-nav > a.nav-item.nav-link.active {
   background-color: #ebebeb !important;
 }
 
-#my-activity-content {
-  //border: solid 5px peachpuff;
-  //height: calc(100% - #{$dashboard-tab-height});
-  //width: 100%;
-  //min-height: calc(100% - #{$dashboard-tab-height});
-}
-
-#my-activity-nav > a.nav-item.nav-link.active {
+#admin-nav > a.nav-item.nav-link.active, #my-activity-nav > a.nav-item.nav-link.active {
   border-bottom: none;
-  //height: $dashboard-tab-height;
-}
-
-#started-courses, #completed-courses{
-}
-
-#food-etalk-lessons-started, #better-u-lessons-started, #food-etalk-lessons-completed, #better-u-lessons-completed {
-}
+ }
 
 //for isotope.js initialization (see application.js)
 .learning-module-grid {
   width: 100%;
-}
-
-
-
-//Personal Info Tab
-#personal-info-tab {
- }
-
-#personal-info-content {
 }

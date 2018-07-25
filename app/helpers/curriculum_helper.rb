@@ -8,6 +8,15 @@ module CurriculumHelper
     return true
   end
 
+  def user_has_started_curriculum?(user, curriculum)
+    curriculum.each do |c|
+      if(!user.course_enrollments.find_by_curriculum_id(c[:id]).started.empty?)
+        return true
+      end
+    end
+    return false
+  end
+
   def find_next_lesson(curriculum)
     curriculum.each do |c|
       if(!@current_user.course_enrollments.exists?(name: c[:id]))

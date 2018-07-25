@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   require 'omniauth'
   include LogoutHelper, SessionsHelper
 
-  skip_before_action :set_current_user
+  skip_before_action :current_user
 
   def user_logged_in
     case user_signed_in?

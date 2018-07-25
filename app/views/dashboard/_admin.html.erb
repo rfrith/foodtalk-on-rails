@@ -1,0 +1,29 @@
+<% if @current_user.is_admin? %>
+<div id="admin-tab" class="tab-pane fade show active" role="tabpanel" aria-labelledby="admin-tab">
+
+  <nav id="admin-nav" class="nav nav-tabs ml-5 justify-content-start" role="tablist">
+    <% if policy(:report).view_site_stats? %>
+    <a id="stats-tab-link" class="nav-item nav-link active" data-toggle="tab" href="#stats" aria-controls="stats" aria-selected="true"><%= t("dashboard.admin.stats") %></a>
+    <% end %>
+    <% if policy(:report).generate_report? %>
+    <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#reports" aria-controls="reports" aria-selected="false"><%= t("dashboard.admin.reports") %></a>
+    <% end %>
+  </nav>
+
+  <div id="admin-content" class="tab-content p-4">
+    <% if policy(:report).view_site_stats? %>
+    <div id="stats" class="tab-pane fade show active" role="tabpanel" aria-labelledby="stats">
+      <%= render :partial => "dashboard/site_statistics" %>
+    </div>
+    <% end %>
+    <% if policy(:report).generate_report? %>
+    <div id="reports" class="tab-pane fade show" role="tabpanel" aria-labelledby="reports">
+      <%= render :partial => "dashboard/monthly_report" %>
+    </div>
+    <% end %>
+  </div>
+
+</div>
+<% else %>
+  You are not authorized to view this content.
+<% end %>

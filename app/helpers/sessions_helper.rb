@@ -13,7 +13,7 @@ module SessionsHelper
     end
   end
 
-  def set_current_user
+  def current_user
     @current_user = User.find_or_initialize_from_auth_hash(session[:auth_hash])
   end
 
