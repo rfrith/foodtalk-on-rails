@@ -1,35 +1,44 @@
 <div id="dashboard-content">
 
-  <nav id="dashboard-nav" class="pt-1 nav nav-tabs justify-content-end" role="tablist">
+  <nav>
+    <div class="nav nav-tabs justify-content-end pt-1" id="dashboard-nav" role="tablist">
+
     <% if @current_user.is_admin? %>
-      <a class="nav-item nav-link <%= "active" if(@current_user.is_admin?)%>" data-toggle="tab" href="#admin-tab" role="tab" aria-controls="admin-tab" aria-selected="false"><%= t("dashboard.admin.label") %></a>
-    <% end %>
-
-    <a id="my-activity-tab-link" class="nav-item nav-link <%= "active" if(!@current_user.is_admin?)%> <%= (@current_user.is_eligible?) ? "d-block" : "d-none" %>" data-toggle="tab" href="#my-activity-tab"><%= t("dashboard.my_courses.label") %></a>
-
-    <a class="nav-item nav-link <%= "active" if(!@current_user.is_eligible? && !@current_user.is_admin?)%>" data-toggle="tab" href="#personal-info-tab" role="tab" aria-controls="personal-info-tab" aria-selected="true"><%= t("dashboard.my_info.label") %></a>
-
-    <% if(!@current_user.new_record?) %>
-    <a class="nav-item nav-link" data-toggle="tab" href="#mail-subscriptions-tab" role="tab" aria-controls="mail-subscriptions-tab" aria-selected="false"><%= t("dashboard.newsletters.label") %></a>
-    <% end %>
-  </nav>
-
-  <div id="dashboard-tab-content" class="tab-content d-flex justify-content-center">
-    <% if @current_user.is_admin? %>
-      <% #Admin %>
-      <%= render :partial => "dashboard/admin" %>
+      <a id="nav-admin-tab" class="nav-item nav-link active" data-toggle="tab" href="#nav-admin" role="tab" aria-controls="nav-admin" aria-selected="true"><%= t("dashboard.admin.label") %></a>
     <% end %>
 
     <% if @current_user.is_eligible? %>
-      <% #My Activity %>
-      <%= render :partial => "dashboard/my_activity" %>
+      <a id="nav-my-activity-tab" class="nav-item nav-link <%= "active" if !@current_user.is_admin? %>" data-toggle="tab" href="#nav-my-activity" role="tab" aria-controls="nav-my-activity" aria-selected="<%= !@current_user.is_admin? ? "true" : "false" %>"><%= t("dashboard.my_courses.label") %></a>
     <% end %>
 
-    <% # Personal Info %>
-    <%= render :partial => "dashboard/personal_info" %>
+      <a id="nav-personal-info-tab" class="nav-item nav-link <%= "active" if(!@current_user.valid? || !@current_user.is_admin? || !@current_user.is_eligible?)%>" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="false"><%= t("dashboard.my_info.label") %></a>
 
-    <% # Mailchimp Subscriptions %>
-    <%= render :partial => "dashboard/mailchimp_subscriptions" %>
+      <a id="nav-mail-subscriptions-tab" class="nav-item nav-link" data-toggle="tab" href="#nav-mail-subscriptions" role="tab" aria-controls="nav-mail-subscriptions" aria-selected="false"><%= t("dashboard.newsletters.label") %></a>
+    </div>
+  </nav>
+
+  <div id="dashboard-tab-content" class="tab-content">
+
+    <% if @current_user.is_admin? %>
+    <div class="tab-pane fade show active" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
+      <%= render :partial => "dashboard/admin" %>
+    </div>
+    <% end %>
+
+    <% if @current_user.is_eligible? %>
+    <div class="tab-pane fade show <%= "active" if !@current_user.is_admin? %>" id="nav-my-activity" role="tabpanel" aria-labelledby="nav-my-activity-tab">
+      <%= render :partial => "dashboard/my_activity" %>
+    </div>
+    <% end %>
+
+    <div class="tab-pane fade <%= "show active" if(!@current_user.valid? || !@current_user.is_admin? || !@current_user.is_eligible?)%>" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
+      <%= render :partial => "dashboard/personal_info" %>
+    </div>
+
+    <div class="tab-pane fade p-4" id="nav-mail-subscriptions" role="tabpanel" aria-labelledby="nav-mail-subscriptions-tab">
+      <%= render :partial => "dashboard/mailchimp_subscriptions" %>
+    </div>
+
   </div>
 
 </div>

@@ -5,11 +5,12 @@ class SurveysController < ApplicationController
     #set to false for any surveys that should NOT have header & footer elements
     @full_screen = false
 
-    if(params[:id] == 'consent-form')
-      add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 20000
-    else
-      add_notification :info, t(:info), t(:ask_for_feedback), 20000
-    end
+    # we no longer show the survey in our own iframe, we simply redirect, so this is unnecessary
+    #if(params[:id] == 'consent-form')
+      #add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 20000
+    #else
+      #add_notification :info, t(:info), t(:ask_for_feedback), 20000
+    #end
 
     case params[:id]
 

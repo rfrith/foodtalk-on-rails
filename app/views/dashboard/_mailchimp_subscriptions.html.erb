@@ -1,6 +1,9 @@
-<div id="mail-subscriptions-tab" class="p-4 tab-pane fade show" role="tabpanel" aria-labelledby="mail-subscriptions-tab">
-  <div id="mail-subscriptions-content" class="pt-2">
+<div id="mail-subscriptions-tab" class="p-4 tab-pane" role="tabpanel" aria-labelledby="mail-subscriptions-tab">
+
+  <div id="mail-subscriptions-content" class="tab-content pt-2">
+
     <div class="d-flex justify-content-center content-section-title"><%=t("dashboard.newsletters.make_selection")%></div>
+
     <div id="user-form" class="d-flex justify-content-center">
       <%= render :partial => "subscriptions/form" %>
     </div>

@@ -45,13 +45,6 @@ $dashboard-tab-content-height: calc(100% - #{$dashboard-tab-height});
   min-height: 100%;
 }
 
-#admin-tab, #my-activity-tab, #personal-info-tab, #mail-subscriptions-tab {
-  width: 100%;
-}
-
-#admin-tab, #my-activity-tab {
-  padding-top: .25rem;
-}
 
 #admin-content, #admin-nav > a.nav-item.nav-link.active, #my-activity-content, #my-activity-nav > a.nav-item.nav-link.active {
   background-color: #ebebeb !important;

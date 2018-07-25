@@ -70,10 +70,12 @@ $(document).on("turbolinks:load", function() {
 $(function(){
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var id = e.target.id
-        $('#stats-current-tab').val(id)
-        Chartkick.eachChart( function(chart) {
-            chart.redraw();
-        });
+        if ($('#admin-content').length) {
+            $('#stats-current-tab').val(id)
+            Chartkick.eachChart( function(chart) {
+                chart.redraw();
+            });
+        }
     })
 });
 
