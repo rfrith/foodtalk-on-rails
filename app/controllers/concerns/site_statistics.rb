@@ -5,14 +5,18 @@ module SiteStatistics
 
   def fetch_site_statistics(start_date, end_date)
 
+    start_date ||= Date.new(Date.current.year, Date.current.month)
+    end_date ||= Date.today
+
+    #make inclusive for the whole day
+    start_date = start_date.beginning_of_day
+    end_date = end_date.end_of_day
+
     @start_date = start_date
     @end_date = end_date
 
-    @start_date ||= Date.new(Date.current.year, Date.current.month)
-    @end_date ||= Date.today
-
     #users filtered by date range
-    users_in_date_range = User.where("Users.created_at >= ? AND Users.created_at <= ?", start_date, end_date)
+    users_in_date_range = User.where("Users.created_at BETWEEN ? AND ?", start_date, end_date)
 
     #users with no group affiliation by date range
     ft_users = users_in_date_range.left_outer_joins(:groups).where(groups: {id: nil})
@@ -22,9 +26,9 @@ module SiteStatistics
 
     @group_users = []
 
-    non_admin_groups = Group.where("groups.name != '#{Group::ADMIN}'")
+    non_admin_groups = Group.all #where("groups.name != '#{Group::ADMIN}'")
 
-    ft_users_grouped = ft_users.group_by_month("Users.created_at", range: @start_date..@end_date)
+    ft_users_grouped = ft_users.group_by_month("Users.created_at", range: start_date..end_date)
 
     @new_users_by_month = users_in_date_range.group_by_month(:created_at, format: "%B").count
 
@@ -42,7 +46,7 @@ module SiteStatistics
 
     #add group affiliated users
     Group.where("name != '#{Group::ADMIN}'").each do |g|
-      users = g.users.where("Users.created_at >= ? AND Users.created_at <= ?", @start_date, @end_date).group_by_month(:created_at, range: @start_date..@end_date).count
+      users = g.users.where("Users.created_at BETWEEN ? AND ?", start_date, end_date).group_by_month(:created_at, range: start_date..end_date).count
       @grouped_user_counts.merge! "#{g.name.humanize}" => users
     end
 
@@ -139,30 +143,30 @@ module SiteStatistics
     @group_users += [[FOODTALK_GROUP_NAME, ft_users.size]] #if ft_users.size > 0
 
     non_admin_groups.each do |g|
-      @group_users += [["#{g.name.titleize} Users", g.users.where("created_at >= ? AND created_at <= ?", @start_date, @end_date).size]]
+      @group_users += [["#{g.name.titleize} Users", g.users.where("created_at BETWEEN ? AND ?", start_date, end_date).size]]
     end
 
     @food_etalk_modules_started = {}
     LearningModules::FOOD_ETALK.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at >= ? AND created_at <= ?", "#{m[:id]}#started", start_date, end_date).size
+      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#started", start_date, end_date).size
       @food_etalk_modules_started.merge!({m[:id].gsub('food_etalk/','').titleize => count})
     end
 
     @food_etalk_modules_completed = {}
     LearningModules::FOOD_ETALK.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at >= ? AND created_at <= ?", "#{m[:id]}#completed", start_date, end_date).size
+      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#completed", start_date, end_date).size
       @food_etalk_modules_completed.merge!({m[:id].gsub('food_etalk/','').titleize => count})
     end
 
     @better_u_modules_started = {}
     LearningModules::BETTER_U.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at >= ? AND created_at <= ?", "#{m[:id]}#started", start_date, end_date).size
+      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#started", start_date, end_date).size
       @better_u_modules_started.merge!({m[:id].gsub('better_u/','').titleize => count})
     end
 
     @better_u_modules_completed = {}
     LearningModules::BETTER_U.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at >= ? AND created_at <= ?", "#{m[:id]}#completed", start_date, end_date).size
+      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#completed", start_date, end_date).size
       @better_u_modules_completed.merge!({m[:id].gsub('better_u/','').titleize => count})
     end
 
@@ -177,9 +181,9 @@ module SiteStatistics
 
     users.each do |u|
       #don't count the user twice
-      if user_has_completed_curriculum?(u, curriculum)
+      if(user_has_completed_curriculum?(u, curriculum))
         all_users_completed_count += 1
-      elsif user_has_started_curriculum?(u, curriculum)
+      elsif(user_has_started_curriculum?(u, curriculum))
         all_users_started_count += 1
       end
     end
@@ -203,7 +207,7 @@ module SiteStatistics
       count = 0
 
       users.each do |u|
-        count += u.online_learning_histories.distinct(:user_id).where("name = ? AND created_at >= ? AND created_at <= ?", "#{module_id+history_event}", start_date, end_date).size
+        count += u.online_learning_histories.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{module_id+history_event}", start_date, end_date).size
       end
 
       module_completion_by_group[FOODTALK_GROUP_NAME].merge! module_name => count
@@ -222,7 +226,7 @@ module SiteStatistics
         count = 0
 
         g.users.each do |u|
-          count += u.online_learning_histories.distinct(:user_id).where("name = ? AND created_at >= ? AND created_at <= ?", "#{module_id+history_event}", start_date, end_date).size
+          count += u.online_learning_histories.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{module_id+history_event}", start_date, end_date).size
         end
 
         module_completion_by_group[group_name].merge! module_name => count

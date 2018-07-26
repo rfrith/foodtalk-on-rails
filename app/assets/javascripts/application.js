@@ -69,8 +69,23 @@ $(document).on("turbolinks:load", function() {
 //fix to redraw chart after selecting a Bootstrap tab
 $(function(){
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
         var id = e.target.id
-        if ($('#admin-content').length) {
+        var should_update = false;
+
+        switch(id) {
+        case 'user-stats-tab':
+            should_update = true;
+            break;
+        case 'food-etalk-stats-tab':
+            should_update = true;
+            break;
+        case 'better-u-stats-tab':
+            should_update = true;
+            break;
+        }
+
+        if (should_update) {
             $('#stats-current-tab').val(id)
             Chartkick.eachChart( function(chart) {
                 chart.redraw();
