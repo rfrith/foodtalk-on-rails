@@ -3,6 +3,12 @@ module SiteStatistics
 
   FOODTALK_GROUP_NAME = "Foodtalk Users"
 
+  STARTED_TAG = "#started"
+  COMPLETED_TAG = "#completed"
+  FOOD_ETALK = "food_etalk"
+  BETTER_U = "better_u"
+    
+
   def fetch_site_statistics(start_date, end_date)
 
     start_date ||= Date.new(Date.current.year, Date.current.month)
@@ -51,10 +57,7 @@ module SiteStatistics
     end
 
 
-    started_tag = "#started"
-    completed_tag = "#completed"
-    food_etalk = "food_etalk"
-    better_u = "better_u"
+
 
 
     ###############################################################################################
@@ -65,39 +68,20 @@ module SiteStatistics
     @better_u_started_completed = get_curriculum_started_completed(users_in_date_range, LearningModules::BETTER_U)
 
 
+
+
+
     ###############################################################################################
-    # show curriculum started count by group
+    # show curriculum started/completed count by group
     ###############################################################################################
 
-=begin
-    @food_etalk_curriculum_started_by_group = {}
+    @food_etalk_curriculum_started_by_group = get_curriculum_started_or_completed_by_group(STARTED_TAG, LearningModules.constants[0], ft_users, all_groups)
+    @food_etalk_curriculum_completed_by_group = get_curriculum_started_or_completed_by_group(COMPLETED_TAG, LearningModules.constants[0], ft_users, all_groups)
+    @better_u_curriculum_started_by_group = get_curriculum_started_or_completed_by_group(STARTED_TAG, LearningModules.constants[1], ft_users, all_groups)
+    @better_u_curriculum_completed_by_group = get_curriculum_started_or_completed_by_group(COMPLETED_TAG, LearningModules.constants[1], ft_users, all_groups)
 
-    @food_etalk_curriculum_started_by_group.merge! FOODTALK_GROUP_NAME => {}
 
-    count = 0
-
-    ft_users.each do |u|
-      count += 1 if user_has_started_curriculum?(u, LearningModules::FOOD_ETALK)
-    end
-
-    @food_etalk_curriculum_started_by_group[FOODTALK_GROUP_NAME].merge! food_etalk.titleize => count
-
-    all_groups.each do |g|
-      count = 0
-      group_name = g.name.titleize
-
-      @food_etalk_curriculum_started_by_group.merge! group_name => {}
-
-      g.users.each do |u|
-        count += 1 if user_has_started_curriculum?(u, LearningModules::FOOD_ETALK)
-      end
-
-      @food_etalk_curriculum_started_by_group[group_name].merge! food_etalk.titleize => count
-    end
-
-    #user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK)
     #@food_etalk_curriculum_completed_by_group = nil
-=end
 
 
     ###############################################################################################
@@ -109,16 +93,16 @@ module SiteStatistics
     # show modules started count by group
     ###############################################################################################
 
-    @food_etalk_modules_started_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[0], started_tag, start_date, end_date)
-    @better_u_modules_started_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[1], started_tag, start_date, end_date)
+    @food_etalk_modules_started_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[0], STARTED_TAG, start_date, end_date)
+    @better_u_modules_started_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[1], STARTED_TAG, start_date, end_date)
 
 
     ###############################################################################################
     # show modules completion count by group
     ###############################################################################################
 
-    @food_etalk_modules_completed_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[0], completed_tag, start_date, end_date)
-    @better_u_modules_completed_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[1], completed_tag, start_date, end_date)
+    @food_etalk_modules_completed_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[0], COMPLETED_TAG, start_date, end_date)
+    @better_u_modules_completed_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[1], COMPLETED_TAG, start_date, end_date)
 
 
 
@@ -149,28 +133,77 @@ module SiteStatistics
     @food_etalk_modules_started = {}
     LearningModules::FOOD_ETALK.each do |m|
       count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#started", start_date, end_date).size
-      @food_etalk_modules_started.merge!({m[:id].gsub('food_etalk/','').titleize => count})
+      @food_etalk_modules_started.merge!({m[:id].gsub("#{FOOD_ETALK}/", "").titleize => count})
     end
 
     @food_etalk_modules_completed = {}
     LearningModules::FOOD_ETALK.each do |m|
       count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#completed", start_date, end_date).size
-      @food_etalk_modules_completed.merge!({m[:id].gsub('food_etalk/','').titleize => count})
+      @food_etalk_modules_completed.merge!({m[:id].gsub("#{FOOD_ETALK}/", "").titleize => count})
     end
 
     @better_u_modules_started = {}
     LearningModules::BETTER_U.each do |m|
       count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#started", start_date, end_date).size
-      @better_u_modules_started.merge!({m[:id].gsub('better_u/','').titleize => count})
+      @better_u_modules_started.merge!({m[:id].gsub("#{BETTER_U}/", "").titleize => count})
     end
 
     @better_u_modules_completed = {}
     LearningModules::BETTER_U.each do |m|
       count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#completed", start_date, end_date).size
-      @better_u_modules_completed.merge!({m[:id].gsub('better_u/','').titleize => count})
+      @better_u_modules_completed.merge!({m[:id].gsub("#{BETTER_U}/", "").titleize => count})
     end
 
   end
+
+
+
+  def get_curriculum_started_or_completed_by_group(activity, curriculum_id, foodtalk_users, all_groups)
+
+    curriculum = LearningModules.const_get(curriculum_id)
+
+    curriculum_stats_by_group = {}
+
+    curriculum_stats_by_group.merge! FOODTALK_GROUP_NAME => {}
+
+    count = 0
+
+    foodtalk_users.each do |u|
+      
+      case activity
+      when STARTED_TAG
+        count += 1 if user_has_started_curriculum?(u, curriculum)
+      when COMPLETED_TAG
+        count += 1 if user_has_completed_curriculum?(u, curriculum)
+      end
+      
+
+    end
+
+    curriculum_stats_by_group[FOODTALK_GROUP_NAME].merge! curriculum_id.to_s.titleize => count
+
+    all_groups.each do |g|
+      count = 0
+      group_name = g.name.titleize
+
+      curriculum_stats_by_group.merge! group_name => {}
+
+      g.users.each do |u|
+        case activity
+        when STARTED_TAG
+          count += 1 if user_has_started_curriculum?(u, curriculum)
+        when COMPLETED_TAG
+          count += 1 if user_has_completed_curriculum?(u, curriculum)
+        end
+      end
+
+      curriculum_stats_by_group[group_name].merge! curriculum_id.to_s.titleize => count
+    end
+
+    return curriculum_stats_by_group
+
+  end
+
 
   def get_curriculum_started_completed(users, curriculum)
 
@@ -236,7 +269,6 @@ module SiteStatistics
     end
 
     return module_completion_by_group
-
 
   end
 

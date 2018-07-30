@@ -57,7 +57,26 @@
 
     <div class="row">
       <div class="col">
-        <%= pie_chart(@food_etalk_started_completed, title: "#Unique Users who Started/Completed Food eTalk Program", legend: "left", library: {pieSliceText: 'value'}) %>
+        <%= pie_chart(@food_etalk_started_completed, title: "#Users Having Started/Completed Food eTalk Program", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <%= column_chart @food_etalk_curriculum_started_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Users Having Started Food eTalk Curriculum By Group" %>
+      </div>
+      <div class="col-6">
+        <%= column_chart @food_etalk_curriculum_completed_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Users Having Completed Food eTalk Curriculum By Group" %>
       </div>
     </div>
 
@@ -103,7 +122,26 @@
 
     <div class="row">
       <div class="col">
-        <%= pie_chart(@better_u_started_completed, title: "Better U Program Started/Completed", legend: "left", library: {pieSliceText: 'value'}) %>
+        <%= pie_chart(@better_u_started_completed, title: "Users Having Started/Completed Better U Program", legend: "left", library: {pieSliceText: 'value'}) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <%= column_chart @better_u_curriculum_started_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Users Having Started Better U Curriculum By Group" %>
+      </div>
+      <div class="col-6">
+        <%= column_chart @better_u_curriculum_completed_by_group.map {|g|
+          {name: g[0].titleize, data: g[1]}
+        }, title: "#Users Having Completed Better U Curriculum By Group" %>
       </div>
     </div>
 
