@@ -20,11 +20,11 @@
       </div>
       <div class="col-auto">
         <%= form.label :start_date, class: "col-form-label-sm d-inline" %>
-        <%= select_date Date.new(Date.current.year), prefix: :start_date, class: 'form-control form-control-sm' %>
+        <%= select_date Date.today.beginning_of_month, prefix: :start_date, class: 'form-control form-control-sm' %>
       </div>
       <div class="col-auto">
         <%= form.label :end_date, class: "col-form-label-sm d-inline" %>
-        <%= select_date Date.today, prefix: :end_date, class: 'form-control form-control-sm' %>
+        <%= select_date Date.today.end_of_month, prefix: :end_date, class: 'form-control form-control-sm' %>
       </div>
     </div>
 

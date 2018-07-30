@@ -6,7 +6,7 @@ module SiteStatistics
   def fetch_site_statistics(start_date, end_date)
 
     start_date ||= Date.new(Date.current.year, Date.current.month)
-    end_date ||= Date.now.today
+    end_date ||= Date.today
 
     #make inclusive for the whole day
     start_date = start_date.to_time.beginning_of_day
@@ -26,7 +26,7 @@ module SiteStatistics
 
     @group_users = []
 
-    non_admin_groups = Group.all #where("groups.name != '#{Group::ADMIN}'")
+    all_groups = Group.all
 
     ft_users_grouped = ft_users.group_by_month("Users.created_at", range: start_date..end_date)
 
@@ -45,7 +45,7 @@ module SiteStatistics
     @grouped_user_counts.merge! FOODTALK_GROUP_NAME => ft_users_grouped.size
 
     #add group affiliated users
-    Group.where("name != '#{Group::ADMIN}'").each do |g|
+    all_groups.each do |g|
       users = g.users.where("Users.created_at BETWEEN ? AND ?", start_date, end_date).group_by_month(:created_at, range: start_date..end_date).count
       @grouped_user_counts.merge! "#{g.name.humanize}" => users
     end
@@ -82,7 +82,7 @@ module SiteStatistics
 
     @food_etalk_curriculum_started_by_group[FOODTALK_GROUP_NAME].merge! food_etalk.titleize => count
 
-    non_admin_groups.each do |g|
+    all_groups.each do |g|
       count = 0
       group_name = g.name.titleize
 
@@ -109,16 +109,16 @@ module SiteStatistics
     # show modules started count by group
     ###############################################################################################
 
-    @food_etalk_modules_started_by_group = get_module_count_by_group(non_admin_groups, ft_users, LearningModules.constants[0], started_tag, start_date, end_date)
-    @better_u_modules_started_by_group = get_module_count_by_group(non_admin_groups, ft_users, LearningModules.constants[1], started_tag, start_date, end_date)
+    @food_etalk_modules_started_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[0], started_tag, start_date, end_date)
+    @better_u_modules_started_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[1], started_tag, start_date, end_date)
 
 
     ###############################################################################################
     # show modules completion count by group
     ###############################################################################################
 
-    @food_etalk_modules_completed_by_group = get_module_count_by_group(non_admin_groups, ft_users, LearningModules.constants[0], completed_tag, start_date, end_date)
-    @better_u_modules_completed_by_group = get_module_count_by_group(non_admin_groups, ft_users, LearningModules.constants[1], completed_tag, start_date, end_date)
+    @food_etalk_modules_completed_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[0], completed_tag, start_date, end_date)
+    @better_u_modules_completed_by_group = get_module_count_by_group(all_groups, ft_users, LearningModules.constants[1], completed_tag, start_date, end_date)
 
 
 
@@ -142,7 +142,7 @@ module SiteStatistics
 
     @group_users += [[FOODTALK_GROUP_NAME, ft_users.size]] #if ft_users.size > 0
 
-    non_admin_groups.each do |g|
+    all_groups.each do |g|
       @group_users += [["#{g.name.titleize} Users", g.users.where("created_at BETWEEN ? AND ?", start_date, end_date).size]]
     end
 
