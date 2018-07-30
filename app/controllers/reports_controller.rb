@@ -24,6 +24,10 @@ class ReportsController < ApplicationController
       redirect_back(fallback_location: show_dashboard_path) and return
     end
 
+    #handle time zone
+    signup_start = signup_start.to_time.beginning_of_day
+    signup_end = signup_end.to_time.end_of_day
+
     #build where clause
     #
     # TODO: filter out any user in admin group

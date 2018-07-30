@@ -6,11 +6,11 @@ module SiteStatistics
   def fetch_site_statistics(start_date, end_date)
 
     start_date ||= Date.new(Date.current.year, Date.current.month)
-    end_date ||= Date.today
+    end_date ||= Date.now.today
 
     #make inclusive for the whole day
-    start_date = start_date.beginning_of_day
-    end_date = end_date.end_of_day
+    start_date = start_date.to_time.beginning_of_day
+    end_date = end_date.to_time.end_of_day
 
     @start_date = start_date
     @end_date = end_date
