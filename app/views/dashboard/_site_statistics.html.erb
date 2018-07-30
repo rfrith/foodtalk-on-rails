@@ -35,10 +35,17 @@
       <div class="col-6">
         <%= column_chart [{name: "New Users", data: @new_users_by_month}], title: "Registered Users: #{@user_count}\n During period:  #{@start_date.strftime("%m/%d/%Y")}-#{@end_date.strftime("%m/%d/%Y")}" %>
       </div>
+
       <div class="col-6">
         <%= line_chart @grouped_user_counts.map {|g|
           {name: g[0].titleize, data: g[1]}
         }, title: "User Registrations By Month" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        &nbsp;
       </div>
     </div>
 
@@ -48,6 +55,12 @@
       </div>
       <div class="col-6">
         <%= pie_chart @group_users, title: "Breakdown of Users By Group Affiliation", legend: "bottom", donut: false, library: {pieSliceText: 'value-and-percentage'} %>
+      </div>
+    </div>
+
+    <div class="row mt-2 mb-4">
+      <div class="col">
+        &nbsp;
       </div>
     </div>
 
