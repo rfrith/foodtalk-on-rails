@@ -33,4 +33,17 @@ class ApplicationController < ActionController::Base
     session[:notifications] = []
     return notifications
   end
+
+
+  def initialize_date_range
+    begin
+      @start_date = DateTime.parse params[:start_date] unless params[:start_date].nil?
+      @end_date = DateTime.parse params[:end_date] unless params[:end_date].nil?
+    rescue ArgumentError => e
+      #do nothing
+    end
+
+    initialize_date_range_for_reports(@start_date, @end_date)
+  end
+
 end

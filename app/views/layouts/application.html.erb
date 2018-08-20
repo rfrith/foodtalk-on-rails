@@ -4,10 +4,14 @@
 
     <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
     <%= csrf_meta_tags %>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= render :partial => "layouts/google_analytics" %>
+
+    <%= yield :js %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.min.css"/>
@@ -19,7 +23,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.3.0/js/iziToast.js"></script>
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
     <%= render partial: "layouts/show_notifications" %>
 

@@ -1,0 +1,59 @@
+<!-- Better U -->
+
+<div id="better-u-stats" class="tab-pane  <%= "active" if (@current_tab == "better-u-stats-tab") %>" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+
+  <div class="row">
+    <div class="col">
+      <div id="users-started-completed-curricula-chartBETTER_U" style="height: auto; width: 100%;"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div id="users-started-completed-by-group-curricula-chartBETTER_U" style="height: auto; width: 100%;"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <%= pie_chart(@better_u_modules_started, title: "#Times Better U Modules Started", legend: "left", library: {pieSliceText: 'value'}) %>
+    </div>
+    <div class="col-6">
+      <%= pie_chart(@better_u_modules_completed, title: "#Times Better U Modules Completed", legend: "left", library: {pieSliceText: 'value'}) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <%= line_chart @better_u_modules_started_by_group.map {|g|
+        {name: g[0].titleize, data: g[1]}
+      }, title: "#Times Better U Modules Started By Group" %>
+    </div>
+    <div class="col-6">
+      <%= line_chart @better_u_modules_completed_by_group.map {|g|
+        {name: g[0].titleize, data: g[1]}
+      }, title: "#Times Better U Modules Completed By Group" %>
+    </div>
+  </div>
+
+
+  <div class="row mt-2 mb-4">
+    <div class="col">
+      &nbsp;
+    </div>
+  </div>
+
+
+</div>

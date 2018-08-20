@@ -1,0 +1,64 @@
+<% content_for :content do %>
+  <script>
+      $(document).ready(function() {
+          $('table').on('click', 'tr' , function (event) {
+              var href = $(this).find("a").attr("href");
+              if(href) {
+                  window.location = href;
+              }
+          });
+      });
+  </script>
+
+  <style>
+    tr {
+      cursor: pointer;
+    }
+  </style>
+  <div class="content-section p-4" style="width: 100vw; height: 100vh; background-color: white">
+
+    <%= render partial: "nav" %>
+
+    <% if(!@users.empty?) %>
+      <div class="table-responsive">
+        <table id="users-table" class="table table-sm table-striped table-hover pb-0 mb-0">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+            <th scope="col">Zip Code</th>
+            <th scope="col">Eligible?</th>
+            <th scope="col">UID</th>
+            <th scope="col">Sign Up Date</th>
+            <th scope="col" colspan="2">Groups</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @users.each do |u| %>
+            <tr>
+              <td><%= u.name %></td>
+              <td><%= u.email %></td>
+              <td><%= u.gender %></td>
+              <td><%= u.age %></td>
+              <td><%= u.zip_code %></td>
+              <td><%= t u.is_eligible?.class %></td>
+              <td><%= u.uid %></td>
+              <td><%= u.created_at.strftime('%Y-%m-%d') %></td>
+              <td><%= u.group_names.to_sentence %></td>
+              <td><%= link_to fa_icon('user'), user_path(u.id) %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    <% else %>
+
+      <div class="p-5 h-100 w-100">There is no data to display.</div>
+
+    <% end %>
+
+  </div>
+<% end %>

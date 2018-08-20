@@ -1,0 +1,241 @@
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    var usersByMonthInDateRangeChart;
+    var usersByGroupInDateRangeChart;
+    var usersByGroupAndMonthInDateRangeChart;
+    var userEligibilityByRangeChart;
+    var userEligibilityByRangeAndGroupChart;
+
+
+    function drawCharts() {
+
+/////////////////////////////////////////
+// usersByMonthInDateRangeData
+// users-by-month-in-date-range-chart
+/////////////////////////////////////////
+
+        var usersByMonthInDateRangeData = $.ajax({
+            url: '<%= users_by_month_in_date_range_data_table_path(start_date: @start_date, end_date: @end_date) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        usersByMonthInDateRangeChart = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            options: {'title': 'New User Registrations Per Month In Range', 'legend': 'none'},
+            containerId: 'users-by-month-in-date-range-chart',
+            dataTable: usersByMonthInDateRangeData
+        });
+
+        google.visualization.events.addListener(usersByMonthInDateRangeChart, 'select', function(){
+            var selection = usersByMonthInDateRangeChart.getChart().getSelection();
+            if (selection && selection[0]) {
+                var selected = usersByMonthInDateRangeChart.getDataTable().getFormattedValue(selection[0].row, 0);
+                $.fancybox.open({
+                    src: 'users/find_by_month/' + selected,
+                    type: 'iframe'
+                });
+                //reset selection to avoid click-locking selection
+                usersByMonthInDateRangeChart.getChart().setSelection(null)
+            }
+        });
+
+        google.visualization.events.addListener(usersByMonthInDateRangeChart, 'ready', onReadyUsersByMonthInDateRangeChart);
+        usersByMonthInDateRangeChart.draw();
+
+
+
+/////////////////////////////////////////
+// usersByGroupInDateRangeChart
+// users-by-group-in-date-range-chart
+/////////////////////////////////////////
+
+
+        var usersByGroupInDateRangeData = $.ajax({
+            url: '<%= users_by_group_in_date_range_data_table_path(start_date: @start_date, end_date: @end_date) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        usersByGroupInDateRangeChart = new google.visualization.ChartWrapper({
+            chartType: 'PieChart',
+            options: {'title': 'New User Registrations By Group In Range', 'legend': 'bottom'},
+            containerId: 'users-by-group-in-date-range-chart',
+            dataTable: usersByGroupInDateRangeData
+        });
+
+        google.visualization.events.addListener(usersByGroupInDateRangeChart, 'select', function () {
+            var data = usersByGroupInDateRangeChart.getDataTable();
+            var selection = usersByGroupInDateRangeChart.getChart().getSelection();
+            if (selection && selection[0]) {
+                var selected = data.getFormattedValue(selection[0].row, 0);
+                //console.log('/users/find_by_group/'+selected+'/<%=@start_date%>'+'/<%=@end_date%>')
+                $.fancybox.open({
+                    src: '/users/find_by_group/'+selected+'/<%=@start_date%>'+'/<%=@end_date%>',
+                    type: 'iframe'
+                });
+                //reset selection to avoid click-locking selection
+                usersByGroupInDateRangeChart.getChart().setSelection(null)
+            }
+        });
+        google.visualization.events.addListener(usersByGroupInDateRangeChart, 'ready', onReadyUsersByGroupInDateRangeChart);
+        usersByGroupInDateRangeChart.draw();
+
+
+
+
+/////////////////////////////////////////
+// usersByGroupAndMonthInDateRangeChart
+// users-by-group-and-month-in-date-range-chart
+/////////////////////////////////////////
+
+        var usersByGroupAndMonthInDateRangeChartData = $.ajax({
+            url: '<%= users_by_group_and_month_in_date_range_data_table_path(start_date: @start_date, end_date: @end_date) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        usersByGroupAndMonthInDateRangeChart = new google.visualization.ChartWrapper({
+            chartType: 'LineChart',
+            options: {'title': 'New User Registrations Per Month By Group Affiliation In Range', 'legend': 'bottom', 'curveType': 'function',
+                vAxis: {
+                    viewWindow: {min: 0},
+                },},
+            containerId: 'users-by-group-and-month-in-date-range-chart',
+            dataTable: usersByGroupAndMonthInDateRangeChartData
+        });
+
+        google.visualization.events.addListener(usersByGroupAndMonthInDateRangeChart, 'select', function () {
+
+            var data = usersByGroupAndMonthInDateRangeChart.getDataTable();
+            var selection = usersByGroupAndMonthInDateRangeChart.getChart().getSelection();
+
+            var month = data.getFormattedValue(selection[0].row, 0);
+            var group = data.getColumnLabel(selection[0].column);
+
+            $.fancybox.open({
+                src: '/users/find_by_month_and_group/'+month+'/'+group,
+                type: 'iframe'
+            });
+
+            //reset selection to avoid click-locking selection
+            usersByGroupAndMonthInDateRangeChart.getChart().setSelection(null);
+
+
+        });
+
+        google.visualization.events.addListener(usersByGroupAndMonthInDateRangeChart, 'ready', onReadyUsersByGroupAndMonthInDateRangeChart);
+        usersByGroupAndMonthInDateRangeChart.draw();
+
+
+
+
+
+/////////////////////////////////////////
+// userEligibilityByRangeChart
+// user-eligibility-by-range-chart
+/////////////////////////////////////////
+
+        var userEligibilityByRangeData = $.ajax({
+            url: '<%= user_eligibility_by_range_data_table_path(start_date: @start_date, end_date: @end_date) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        userEligibilityByRangeChart = new google.visualization.ChartWrapper({
+            chartType: 'PieChart',
+            options: {'title': 'Total User Eligibility In Range', 'legend': 'bottom'},
+            containerId: 'user-eligibility-by-range-chart',
+            dataTable: userEligibilityByRangeData
+        });
+
+        google.visualization.events.addListener(userEligibilityByRangeChart, 'select', function () {
+            var selection = userEligibilityByRangeChart.getChart().getSelection();
+            if (selection && selection[0]) {
+                var selected = userEligibilityByRangeChart.getDataTable().getFormattedValue(selection[0].row, 0);
+                $.fancybox.open({
+                    src: '/users/find_by_eligibility/' + selected +'/<%=@start_date%>' +'/<%=@end_date%>',
+                    type: 'iframe'
+                });
+                //reset selection to avoid click-locking selection
+                userEligibilityByRangeChart.getChart().setSelection(null)
+            }
+        });
+
+        google.visualization.events.addListener(userEligibilityByRangeChart, 'ready', onReadyUserEligibilityByRangeChart);
+        userEligibilityByRangeChart.draw();
+
+
+
+
+
+/////////////////////////////////////////
+// userEligibilityByRangeAndGroupChart
+// user-eligibility-by-range-and-group-chart
+/////////////////////////////////////////
+
+
+        var userEligibilityByRangeAndGroupData = $.ajax({
+            url: '<%= user_eligibility_by_range_and_group_data_table_path(start_date: @start_date, end_date: @end_date) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        userEligibilityByRangeAndGroupChart = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            options: {'title': 'User Eligibility By Group In Range', 'legend': 'right'},
+            containerId: 'user-eligibility-by-range-and-group-chart',
+            dataTable: userEligibilityByRangeAndGroupData
+        });
+
+        google.visualization.events.addListener(userEligibilityByRangeAndGroupChart, 'select', function () {
+
+
+            var data = userEligibilityByRangeAndGroupChart.getDataTable();
+            var selection = userEligibilityByRangeAndGroupChart.getChart().getSelection();
+
+            var group = data.getFormattedValue(selection[0].row, 0);
+            var eligibility = data.getColumnLabel(selection[0].column);
+
+            console.log('Selection: ' + selection);
+
+
+            $.fancybox.open({
+                src: '/users/find_by_eligibility_and_group/' + eligibility + '/' + group +'/<%= @start_date %>' +'/<%= @end_date %>',
+                type: 'iframe'
+            });
+
+            userEligibilityByRangeAndGroupChart.getChart().setSelection(null)
+
+        });
+
+        google.visualization.events.addListener(userEligibilityByRangeAndGroupChart, 'ready', onReadyUserEligibilityByRangeAndGroupChart);
+        userEligibilityByRangeAndGroupChart.draw();
+
+    }
+
+
+    function onReadyUsersByMonthInDateRangeChart() {
+        var divId = "#" + usersByMonthInDateRangeChart.getContainerId();
+        addMouseEvents(usersByMonthInDateRangeChart, divId);
+    }
+    function onReadyUsersByGroupInDateRangeChart() {
+        var divId = "#" + usersByGroupInDateRangeChart.getContainerId();
+        addMouseEvents(usersByGroupInDateRangeChart, divId);
+    }
+    function onReadyUsersByGroupAndMonthInDateRangeChart() {
+        var divId = "#" + usersByGroupAndMonthInDateRangeChart.getContainerId();
+        addMouseEvents(usersByGroupAndMonthInDateRangeChart, divId);
+    }
+    function onReadyUserEligibilityByRangeChart() {
+        var divId = "#" + userEligibilityByRangeChart.getContainerId();
+        addMouseEvents(userEligibilityByRangeChart, divId);
+    }
+    function onReadyUserEligibilityByRangeAndGroupChart() {
+        var divId = "#" + userEligibilityByRangeAndGroupChart.getContainerId();
+        addMouseEvents(userEligibilityByRangeAndGroupChart, divId);
+    }
+
+</script>

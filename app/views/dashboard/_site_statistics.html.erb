@@ -1,3 +1,25 @@
+<% content_for :js do %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+      function addMouseEvents(chart, divId) {
+          google.visualization.events.addListener(chart.getChart(), 'onmouseover', function () {
+              //console.log("processing: " + divId);
+              $(divId).css('cursor', 'pointer');
+          });
+          google.visualization.events.addListener(chart.getChart(), 'onmouseout', function () {
+              //console.log("processing: " + divId);
+              $(divId).css('cursor', 'default');
+          });
+      }
+  </script>
+
+  <%= render partial: 'dashboard/charts/user_charts' %>
+  <%= render partial: 'dashboard/charts/food_etalk_charts' %>
+  <%= render partial: 'dashboard/charts/better_u_charts' %>
+
+<% end %>
+
 <nav>
   <div id="stats-nav-tab" class="nav nav-pills mt-0 pt-0" role="tablist">
 
@@ -27,173 +49,12 @@
   </div>
 </nav>
 
-<div class="tab-content mt-2" id="nav-tabContent">
+<div id="nav-tabContent" class="tab-content mt-2">
 
-  <div id="user-stats" class="tab-pane <%= "active" if (@current_tab == "user-stats-tab") %>" role="tabpanel" aria-labelledby="user-stats-tab">
+  <%= render partial: 'dashboard/tabs/user_info_tab' %>
 
-    <div class="row">
-      <div class="col-6">
-        <%= column_chart [{name: "New Users", data: @new_users_by_month}], title: "Registered Users: #{@user_count}\n During period:  #{@start_date.strftime("%m/%d/%Y")}-#{@end_date.strftime("%m/%d/%Y")}" %>
-      </div>
+  <%= render partial: 'dashboard/tabs/food_etalk_tab' %>
 
-      <div class="col-6">
-        <%= line_chart @grouped_user_counts.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "User Registrations By Month" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <%= pie_chart({"Eligible": @eligible_user_count, "Ineligible": @ineligible_user_count}, title: "Total Eligible/Ineligible", legend: "bottom", library: {pieSliceText: 'value-and-percentage'}) %>
-      </div>
-      <div class="col-6">
-        <%= pie_chart @group_users, title: "Breakdown of Users By Group Affiliation", legend: "bottom", donut: false, library: {pieSliceText: 'value-and-percentage'} %>
-      </div>
-    </div>
-
-    <div class="row mt-2 mb-4">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-  </div>
-
-  <div id="food-etalk-stats" class="tab-pane  <%= "active" if (@current_tab == "food-etalk-stats-tab") %>" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-    <div class="row">
-      <div class="col">
-        <%= pie_chart(@food_etalk_started_completed, title: "#Users Having Started/Completed Food eTalk Program", legend: "left", library: {pieSliceText: 'value'}) %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <%= column_chart @food_etalk_curriculum_started_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Users Having Started Food eTalk Curriculum By Group" %>
-      </div>
-      <div class="col-6">
-        <%= column_chart @food_etalk_curriculum_completed_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Users Having Completed Food eTalk Curriculum By Group" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <%= pie_chart(@food_etalk_modules_started, title: "#Times Food eTalk Modules Started", legend: "left", library: {pieSliceText: 'value'}) %>
-      </div>
-      <div class="col-6">
-        <%= pie_chart(@food_etalk_modules_completed, title: "#Times Food eTalk Modules Completed", legend: "left", library: {pieSliceText: 'value'}) %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <%= line_chart @food_etalk_modules_started_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Times Food eTalk Modules Started By Group" %>
-      </div>
-      <div class="col-6">
-        <%= line_chart @food_etalk_modules_completed_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Times Food eTalk Modules Completed By Group" %>
-      </div>
-    </div>
-
-
-    <div class="row mt-2 mb-4">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-  </div>
-
-
-  <div id="better-u-stats" class="tab-pane  <%= "active" if (@current_tab == "better-u-stats-tab") %>" role="tabpanel" aria-labelledby="nav-contact-tab">
-
-
-    <div class="row">
-      <div class="col">
-        <%= pie_chart(@better_u_started_completed, title: "Users Having Started/Completed Better U Program", legend: "left", library: {pieSliceText: 'value'}) %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <%= column_chart @better_u_curriculum_started_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Users Having Started Better U Curriculum By Group" %>
-      </div>
-      <div class="col-6">
-        <%= column_chart @better_u_curriculum_completed_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Users Having Completed Better U Curriculum By Group" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-6">
-        <%= pie_chart(@better_u_modules_started, title: "#Times Better U Modules Started", legend: "left", library: {pieSliceText: 'value'}) %>
-      </div>
-      <div class="col-6">
-        <%= pie_chart(@better_u_modules_completed, title: "#Times Better U Modules Completed", legend: "left", library: {pieSliceText: 'value'}) %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <%= line_chart @better_u_modules_started_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Times Better U Modules Started By Group" %>
-      </div>
-      <div class="col-6">
-        <%= line_chart @better_u_modules_completed_by_group.map {|g|
-          {name: g[0].titleize, data: g[1]}
-        }, title: "#Times Better U Modules Completed By Group" %>
-      </div>
-    </div>
-
-
-    <div class="row mt-2 mb-4">
-      <div class="col">
-        &nbsp;
-      </div>
-    </div>
-
-  </div>
+  <%= render partial: 'dashboard/tabs/better_u_tab' %>
 
 </div>

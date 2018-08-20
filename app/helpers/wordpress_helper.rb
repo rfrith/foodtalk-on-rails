@@ -32,13 +32,11 @@ module WordpressHelper
     end
   end
 
-
   def filter_content_for_display(content)
     content.gsub!('alignright', 'float-right')
     content.gsub!('alignleft', 'float-left')
     content.gsub!('aligncenter', 'mx-auto d-block')
     return content
   end
-
 
 end

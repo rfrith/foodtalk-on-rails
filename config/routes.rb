@@ -9,20 +9,15 @@ Rails.application.routes.draw do
     get 'auth/auth0/callback' => 'sessions#create'
     get 'auth/failure' => 'sessions#failure'
     get '/logout' => 'sessions#destroy'
-
     get '/user_logged_in' => 'sessions#user_logged_in'
 
     #externally bound URLs (e.g., Newsletters, blogs, recipes, etc.)
     get 'food-etalk/:module_name' => 'learn_online#show',  defaults: { curriculum: 'food_etalk' }
     get 'better-u/:module_name' => 'learn_online#show',  defaults: { curriculum: 'better_u' }
-
     get 'recipes/show/:id' => 'recipes#show', as: 'show_recipe'
     get 'blog/show/:id' => 'blogs#show', as: 'show_blog'
-
     get 'recipes/:name' => 'recipes#find_by_name', as: 'find_recipe'
     get 'blog/:name' => 'blogs#find_by_name', as: 'find_blog'
-
-
 
     #internal
     resources :users, only: [:create, :update]
@@ -32,10 +27,8 @@ Rails.application.routes.draw do
     get 'dashboard' => 'dashboard#show', as: 'show_dashboard'
     get 'welcome/index'
     get 'recipes/index'
-
     get 'maps', to: 'maps#index', as: 'maps_index'
     get 'attend_class', to: 'attend_class#index', as: 'attend_class_index'
-
     get 'videos/:id', to: 'videos#show'
     get 'food-glossary' => 'glossary_terms#index'
     get 'lessons' => 'learn_online#index'
@@ -71,11 +64,35 @@ Rails.application.routes.draw do
     end
 
     controller :users do
+      get 'users/:id', to: 'users#show'
+      get 'users/find_by_month/:month' => :find_by_month, as: 'find_users_by_month'
+      get 'users/find_by_month_and_group/:month/:group_name' => :find_by_month_and_group, as: 'find_by_month_and_group'
+      get 'users/find_by_group/:group_name(/:start_date/:end_date)' => :find_by_group, as: 'find_by_group'
+      get 'users/find_by_eligibility/:eligibility/:start_date/:end_date' => :find_by_eligibility, as: 'find_by_eligibility'
+      get 'users/find_by_eligibility_and_group/:eligibility/:group/:start_date/:end_date' => :find_by_eligibility_and_group, as: 'find_by_eligibility_and_group'
+      get 'users/find_by_started_and_or_completed_curricula/:curricula_name/:started_or_completed/:start_date/:end_date' => :find_by_started_and_or_completed_curricula, as: 'find_by_started_and_or_completed_curricula'
+
+
+
+      get 'users/find_by_started_and_or_completed_curricula_by_group/:curricula_name/:started_or_completed/:group/:start_date/:end_date' => :find_by_started_and_or_completed_curricula_by_group, as: 'find_by_started_and_or_completed_curricula_by_group'
+
+
+
       post 'update_subscriptions' => :update_subscriptions
       post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
     end
 
     controller :reports do
+      get 'users_by_month_in_date_range_data_table/:start_date/:end_date' => :users_by_month_in_date_range_data_table, as: 'users_by_month_in_date_range_data_table'
+      get 'users_by_group_and_month_in_date_range_data_table/:start_date/:end_date' => :users_by_group_and_month_in_date_range_data_table, as: 'users_by_group_and_month_in_date_range_data_table'
+      get 'users_by_group_in_date_range_data_table/:start_date/:end_date' => :users_by_group_in_date_range_data_table, as: 'users_by_group_in_date_range_data_table'
+
+      get 'users_started_completed_curricula_by_range_data_table/:start_date/:end_date/:curricula' => :users_started_completed_curricula_by_range_data_table, as: 'users_started_completed_curricula_by_range_data_table'
+      get 'users_started_completed_curricula_by_range_and_group_data_table/:start_date/:end_date/:curricula' => :users_started_completed_curricula_by_range_and_group_data_table, as: 'users_started_completed_curricula_by_range_and_group_data_table'
+
+      get 'user_eligibility_by_range_data_table/:start_date/:end_date' => :user_eligibility_by_range_data_table, as: 'user_eligibility_by_range_data_table'
+      get 'user_eligibility_by_range_and_group_data_table/:start_date/:end_date' => :user_eligibility_by_range_and_group_data_table, as: 'user_eligibility_by_range_and_group_data_table'
+
       post 'generate_report' => :generate_report
     end
 

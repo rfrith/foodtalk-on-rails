@@ -2,6 +2,7 @@ module LearningModules
 
   extend ActiveSupport::Concern
 
+
   #TODO: YUKON needs to fix the HTML5 option for the modules; they aren't working right in Food eTalk
 
   BETTER_U = [
@@ -21,6 +22,11 @@ module LearningModules
       {id: 'food_etalk/keep_yourself_well', survey_id: 'SV_efCzpYRLIMMwu2x', img_path: 'moldy-food-sick-woman.jpg', target_url: '/food_etalk/keep-yourself-well/story_html5.html', title: "learning_modules.food_etalk.keep_yourself_well.title", description: "learning_modules.food_etalk.keep_yourself_well.description" },
       {id: 'food_etalk/play_food_etalk', survey_id: 'SV_54hkNqK0SFJVS9D', img_path: 'play-food-etalk.png', target_url: '/food_etalk/play-food-etalk/story_html5.html', title: "learning_modules.food_etalk.play_food_etalk.title", description: "learning_modules.food_etalk.play_food_etalk.description" }
   ]
+
+  def self.module_name(symbol)
+    module_name = constants.find {|e| e == symbol}
+    return module_name.to_s
+  end
 
   def self.launch_module(lesson_id, user)
     lesson = LearningModules::find_module(lesson_id)
@@ -106,5 +112,61 @@ module LearningModules
     end
     return false
   end
+
+  def self.user_started_module?(user, learning_module)
+    !user.online_learning_histories.distinct.find_by_module_id(learning_module[:id]).started.empty?
+  end
+
+  def self.user_completed_module?(user, learning_module)
+    !user.online_learning_histories.distinct.find_by_module_id(learning_module[:id]).completed.empty?
+  end
+
+  def self.modules_started_by_user(curriculum, user)
+    modules_completed = []
+    curriculum.each do |m|
+      modules_completed << m if user_started_module?(user, m)
+    end
+    return modules_completed
+  end
+
+  def self.modules_completed_by_user(curriculum, user)
+    modules_completed = []
+    curriculum.each do |m|
+      modules_completed << m if user_completed_module?(user, m)
+    end
+    return modules_completed
+  end
+
+  def self.modules_started_by_user_names(curriculum, user)
+    modules_started = modules_started_by_user(curriculum, user)
+    names = []
+    modules_started.each do |m|
+      #filter out curriculum name
+      name = m[:id].dup
+      LearningModules.constants.each do |c|
+        name.gsub!("#{c.downcase}/", "")
+      end
+      names << name.titleize
+    end
+    return !names.empty? ? names : ['None']
+  end
+
+
+  def self.modules_completed_by_user_names(curriculum, user)
+    modules_completed = modules_completed_by_user(curriculum, user)
+    names = []
+    modules_completed.each do |m|
+      #filter out curriculum name
+      name = m[:id].dup
+      LearningModules.constants.each do |c|
+       name.gsub!("#{c.downcase}/", "")
+      end
+      names << name.titleize
+    end
+    return !names.empty? ? names : ['None']
+  end
+
+
+
 
 end

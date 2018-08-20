@@ -1,0 +1,116 @@
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    var usersStartedCompletedCurriculaChart<%=curricula%>;
+    var usersStartedCompletedCurriculaByGroupChart<%=curricula%>;
+
+    var usersStartedCurriculaByGroupChart<%=curricula%>;
+    var usersCompletedCurriculaByGroupChart<%=curricula%>;
+
+    var numTimesModulesStartedChart<%=curricula%>;
+    var numTimesModulesCompletedChart<%=curricula%>;
+
+    var numTimesModulesStartedByGroupChart<%=curricula%>;
+    var numTimesModulesCompletedByGroupChart<%=curricula%>;
+
+
+    function drawCharts() {
+
+/////////////////////////////////////////
+// usersStartedCompletedCurriculaChart
+// users-started-completed-curricula-chart
+/////////////////////////////////////////
+
+        var usersStartedCompletedCurriculaData<%=curricula%> = $.ajax({
+            url: '<%= users_started_completed_curricula_by_range_data_table_path(start_date: @start_date, end_date: @end_date, curricula: curricula) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        usersStartedCompletedCurriculaChart<%=curricula%> = new google.visualization.ChartWrapper({
+            chartType: 'PieChart',
+            options: {'title': 'Users Having Started/Completed <%= curricula.titleize %> Program', 'legend': 'none'},
+            containerId: 'users-started-completed-curricula-chart<%=curricula%>',
+            dataTable: usersStartedCompletedCurriculaData<%=curricula%>
+        });
+
+        google.visualization.events.addListener(usersStartedCompletedCurriculaChart<%=curricula%>, 'select', function(){
+
+            var data = usersStartedCompletedCurriculaChart<%=curricula%>.getDataTable();
+            var selection = usersStartedCompletedCurriculaChart<%=curricula%>.getChart().getSelection();
+            var started_or_completed = data.getFormattedValue(selection[0].row, 0);
+
+            if (selection && selection[0]) {
+                $.fancybox.open({
+                    src: '/users/find_by_started_and_or_completed_curricula/<%=LearningModules.module_name(curricula.to_sym)%>/'+started_or_completed+'/<%=@start_date%>/<%=@end_date%>/',
+                    type: 'iframe'
+                });
+                //reset selection to avoid click-locking selection
+                usersStartedCompletedCurriculaChart<%=curricula%>.getChart().setSelection(null)
+            }
+        });
+
+        google.visualization.events.addListener(usersStartedCompletedCurriculaChart<%=curricula%>, 'ready', onReadyUsersStartedCompletedCurriculaChart<%=curricula%>);
+        usersStartedCompletedCurriculaChart<%=curricula%>.draw();
+
+
+
+
+
+
+/////////////////////////////////////////
+// usersStartedCompletedCurriculaByGroupChart
+// users-started-completed-curricula-by-group-chart
+/////////////////////////////////////////
+        var usersStartedCompletedCurriculaByGroupData<%=curricula%> = $.ajax({
+            url: '<%= users_started_completed_curricula_by_range_and_group_data_table_path(start_date: @start_date, end_date: @end_date, curricula: LearningModules.module_name(curricula.to_sym)) %>',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        usersStartedCompletedCurriculaByGroupChart<%=curricula%> = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            options: {'title': 'Users Started/Completed <%= curricula.titleize %> By Group Affiliation', 'legend': 'right'},
+            containerId: 'users-started-completed-by-group-curricula-chart<%=curricula%>',
+            dataTable: usersStartedCompletedCurriculaByGroupData<%=curricula%>
+        });
+
+        google.visualization.events.addListener(usersStartedCompletedCurriculaByGroupChart<%=curricula%>, 'select', function () {
+
+
+            var data = usersStartedCompletedCurriculaByGroupChart<%=curricula%>.getDataTable();
+            var selection = usersStartedCompletedCurriculaByGroupChart<%=curricula%>.getChart().getSelection();
+
+            var group = data.getFormattedValue(selection[0].row, 0);
+            var started_or_completed = data.getColumnLabel(selection[0].column);
+
+            $.fancybox.open({
+                src: '/users/find_by_started_and_or_completed_curricula_by_group/<%=LearningModules.module_name(curricula.to_sym)%>/' + started_or_completed + '/' + group + '/<%= @start_date %>' + '/<%= @end_date %>',
+                type: 'iframe'
+            });
+
+            usersStartedCompletedCurriculaByGroupChart<%=curricula%>.getChart().setSelection(null)
+
+        });
+
+        google.visualization.events.addListener(usersStartedCompletedCurriculaByGroupChart<%=curricula%>, 'ready', onReadyUsersStartedCompletedCurriculaByGroupChart<%=curricula%>);
+        usersStartedCompletedCurriculaByGroupChart<%=curricula%>.draw();
+
+
+    }
+
+    function onReadyUsersStartedCompletedCurriculaChart<%=curricula%>() {
+        var divId = "#" + usersStartedCompletedCurriculaChart<%=curricula%>.getContainerId();
+        addMouseEvents(usersStartedCompletedCurriculaChart<%=curricula%>, divId);
+    }
+
+
+    function onReadyUsersStartedCompletedCurriculaByGroupChart<%=curricula%>() {
+        var divId = "#" + usersStartedCompletedCurriculaByGroupChart<%=curricula%>.getContainerId();
+        addMouseEvents(usersStartedCompletedCurriculaByGroupChart<%=curricula%>, divId);
+    }
+
+
+
+</script>

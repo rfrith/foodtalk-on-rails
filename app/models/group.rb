@@ -4,5 +4,6 @@ class Group < ApplicationRecord
   mount_uploader :icon, GroupIconUploader
 
   ADMIN = "admin"
+  FOODTALK_USERS = "foodtalk-users"
 
 end

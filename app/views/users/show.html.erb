@@ -1,0 +1,116 @@
+<% content_for :content do %>
+  <div class="content-section p-4" style="width: 100vw; height: 100vh; background-color: white">
+
+    <%= render partial: "nav" %>
+
+    <% if @user %>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col" colspan="2">Email</th>
+            <th scope="col">Group Affiliations</th>
+            <th scope="col">UID</th>
+            <th scope="col">Sign Up Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= @user.name %></td>
+            <td colspan="2"><%= @user.email %></td>
+            <td>
+              <%= get_group_links(@user) %>
+            </td>
+            <td><%= @user.uid %></td>
+            <td><%= @user.created_at.strftime('%Y-%m-%d') %></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead>
+          <tr class="pt-4">
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+            <th scope="col">Zip Code</th>
+            <th scope="col">Hispanic/Latino?</th>
+            <th scope="col">Eligible?</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= @user.gender %></td>
+            <td><%= @user.age %></td>
+            <td><%= @user.zip_code %></td>
+            <td><%= t @user.is_hispanic_or_latino.class %></td>
+            <td><%= t @user.is_eligible?.class %></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Racial Identities</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= @user.racial_identities_names.to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Federal Assistances</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= @user.federal_assistances_names.to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Food eTalk Modules Started <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::FOOD_ETALK) %></th>
+            <th scope="col">Food eTalk Modules Completed <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::FOOD_ETALK)%></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= LearningModules::modules_started_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
+            <td><%= LearningModules::modules_completed_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Better U Modules Started <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::BETTER_U)%></th>
+            <th scope="col">Better U Modules Completed <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::BETTER_U)%></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= LearningModules::modules_started_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+            <td><%= LearningModules::modules_completed_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <% else %>
+      There is no data to display.
+    <% end %>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/simple_layout' %>
