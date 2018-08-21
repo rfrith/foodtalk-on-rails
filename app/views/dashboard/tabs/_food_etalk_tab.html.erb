@@ -1,32 +1,14 @@
 <!-- FOOD ETALK -->
-
 <div id="food-etalk-stats" class="tab-pane  <%= "active" if (@current_tab == "food-etalk-stats-tab") %>" role="tabpanel" aria-labelledby="nav-profile-tab">
-
   <div class="row">
-    <div class="col">
+    <div class="col-6">
       <div id="users-started-completed-curricula-chartFOOD_ETALK" style="height: auto; width: 100%;"></div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      &nbsp;
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
+    <div class="col-6">
       <div id="users-started-completed-by-group-curricula-chartFOOD_ETALK" style="height: auto; width: 100%;"></div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col">
-      &nbsp;
-    </div>
-  </div>
-
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-6">
       <%= pie_chart(@food_etalk_modules_started, title: "#Times Food eTalk Modules Started", legend: "left", library: {pieSliceText: 'value'}) %>
     </div>
@@ -34,7 +16,7 @@
       <%= pie_chart(@food_etalk_modules_completed, title: "#Times Food eTalk Modules Completed", legend: "left", library: {pieSliceText: 'value'}) %>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-4 mb-4">
     <div class="col-6">
       <%= line_chart @food_etalk_modules_started_by_group.map {|g|
         {name: g[0].titleize, data: g[1]}
@@ -46,12 +28,4 @@
       }, title: "#Times Food eTalk Modules Completed By Group" %>
     </div>
   </div>
-
-
-  <div class="row mt-2 mb-4">
-    <div class="col">
-      &nbsp;
-    </div>
-  </div>
-
 </div>

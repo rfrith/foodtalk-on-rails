@@ -30,7 +30,11 @@
 
         usersStartedCompletedCurriculaChart<%=curricula%> = new google.visualization.ChartWrapper({
             chartType: 'PieChart',
-            options: {'title': 'Users Having Started/Completed <%= curricula.titleize %> Program', 'legend': 'none'},
+            options: {
+                'title': 'Users Having Started/Completed <%= curricula.titleize %> Program',
+                'legend': 'right',
+                pieSliceText: 'value'
+            },
             containerId: 'users-started-completed-curricula-chart<%=curricula%>',
             dataTable: usersStartedCompletedCurriculaData<%=curricula%>
         });

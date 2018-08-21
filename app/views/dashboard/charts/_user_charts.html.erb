@@ -61,7 +61,7 @@
 
         usersByGroupInDateRangeChart = new google.visualization.ChartWrapper({
             chartType: 'PieChart',
-            options: {'title': 'New User Registrations By Group In Range', 'legend': 'bottom'},
+            options: {'title': 'New User Registrations By Group In Range', 'legend': 'bottom', pieSliceText: 'value'},
             containerId: 'users-by-group-in-date-range-chart',
             dataTable: usersByGroupInDateRangeData
         });
@@ -146,7 +146,7 @@
 
         userEligibilityByRangeChart = new google.visualization.ChartWrapper({
             chartType: 'PieChart',
-            options: {'title': 'Total User Eligibility In Range', 'legend': 'bottom'},
+            options: {'title': 'Total User Eligibility In Range', 'legend': 'bottom', pieSliceText: 'value'},
             containerId: 'user-eligibility-by-range-chart',
             dataTable: userEligibilityByRangeData
         });
