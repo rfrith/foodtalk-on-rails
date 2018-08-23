@@ -78,17 +78,17 @@ class UsersController < ApplicationController
       #support supplied date range
       if(@start_date && @end_date)
         if(group_name == Group::FOODTALK_USERS)
-          @users = User.created_in_range(@start_date..@end_date).not_in_group
+          @users = User.created_in_range(@start_date..@end_date).not_in_group.page params[:page]
         else
           group = Group.find_by_name(group_name)
-          @users = group.users.created_in_range(@start_date..@end_date)
+          @users = group.users.created_in_range(@start_date..@end_date).page params[:page]
         end
       else
         if(group_name == Group::FOODTALK_USERS)
-          @users = User.all.not_in_group
+          @users = User.all.not_in_group.page params[:page]
         else
           group = Group.find_by_name(group_name)
-          @users = group.users
+          @users = group.users.page params[:page]
         end
       end
     rescue Exception => e
@@ -111,7 +111,8 @@ class UsersController < ApplicationController
       #do nothing
     end
     parsed_date ||= Date.today
-    @users = User.created_in_range(parsed_date.to_time.beginning_of_month..parsed_date.to_time.end_of_month)
+
+    @users = User.created_in_range(parsed_date.to_time.beginning_of_month..parsed_date.to_time.end_of_month).page params[:page]
   end
 
   def find_by_month_and_group
@@ -135,10 +136,10 @@ class UsersController < ApplicationController
 
 
     if(group_name == Group::FOODTALK_USERS)
-      @users = User.where(where_string, where_params).not_in_group
+      @users = User.where(where_string, where_params).not_in_group.page params[:page]
     else
       group = Group.find_by_name(group_name)
-      @users = group.users.where(where_string, where_params)
+      @users = group.users.where(where_string, where_params).page params[:page]
     end
   end
 
@@ -151,9 +152,9 @@ class UsersController < ApplicationController
     begin
       #support supplied date range
       if(@start_date && @end_date)
-        @users = User.created_in_range(@start_date..@end_date).send(eligibility.parameterize)
+        @users = User.created_in_range(@start_date..@end_date).send(eligibility.parameterize).page params[:page]
       else
-        @users = User.send(eligibility.parameterize)
+        @users = User.send(eligibility.parameterize).page params[:page]
       end
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
@@ -175,15 +176,15 @@ class UsersController < ApplicationController
       #support supplied date range
       if(@start_date && @end_date)
         if(group)
-          @users = group.users.created_in_range(@start_date..@end_date).send(eligibility)
+          @users = group.users.created_in_range(@start_date..@end_date).send(eligibility).page params[:page]
         else
-          @users = User.not_in_group.created_in_range(@start_date..@end_date).send(eligibility)
+          @users = User.not_in_group.created_in_range(@start_date..@end_date).send(eligibility).page params[:page]
         end
       else
         if(group)
-          @users = group.users.send(eligibility)
+          @users = group.users.send(eligibility).page params[:page]
         else
-          @users = User.not_in_group.send(eligibility)
+          @users = User.not_in_group.send(eligibility).page params[:page]
         end
       end
     rescue Exception => e
@@ -200,7 +201,7 @@ class UsersController < ApplicationController
     authorize @current_user
     curricula = params[:curricula_name].parameterize
     started_or_completed = params[:started_or_completed].parameterize
-    @users = User.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%")
+    @users = User.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
   end
 
 
@@ -211,9 +212,9 @@ class UsersController < ApplicationController
     group = params[:group].parameterize
 
     if(group == Group::FOODTALK_USERS)
-      @users = User.not_in_group.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%")
+      @users = User.not_in_group.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
     else
-      @users = User.distinct.left_outer_joins(:groups).where("groups.name = ?", group).left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%")
+      @users = User.distinct.left_outer_joins(:groups).where("groups.name = ?", group).left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
     end
 
   end

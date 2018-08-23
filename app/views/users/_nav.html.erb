@@ -1,3 +1,8 @@
-<div class="p-2">
-  <%= link_to fa_icon('arrow-left') + " Back", 'javascript:history.back()' %>
+<div class="p-2 row">
+  <div class="col-1">
+    <%= link_to fa_icon('arrow-left') + " Back", 'javascript:history.back()' %>
+  </div>
+  <div class="col-11">
+    <%= paginate @users %>
+  </div>
 </div>

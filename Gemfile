@@ -53,6 +53,8 @@ gem 'rmagick'
 gem 'pundit'
 gem 'chartkick', '~> 2.3', '>= 2.3.5'
 gem 'groupdate'
+gem 'kaminari'
+
 
 #TODO: decide on
 #gem 'devise'
@@ -68,7 +70,6 @@ gem 'popper_js', '~> 1.12.3'
 
 #possibly for later:
 #gem 'unitwise'
-gem 'kaminari'
 
 gem 'dotenv-rails', groups: [:development, :test]
 

@@ -105,3 +105,41 @@
 .card-deck > .card {
   width: auto;
 }
+
+
+.pagination > li > a
+{
+  background-color: white;
+  color: $primary-fill-color;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+  color: $primary-fill-color;
+  background-color: #eee;
+  border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+  color: white;
+  background-color: $primary-fill-color;
+  border: solid 1px $primary-fill-color;
+}
+
+.pagination > .active > a:hover
+{
+  background-color: $primary-fill-color;
+  border: solid 1px $primary-fill-color;
+}
+
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: $primary-fill-color;
+  border: solid 1px $primary-fill-color;
+}
