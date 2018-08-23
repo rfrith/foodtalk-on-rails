@@ -71,12 +71,9 @@ Rails.application.routes.draw do
       get 'users/find_by_eligibility/:eligibility/:start_date/:end_date' => :find_by_eligibility, as: 'find_by_eligibility'
       get 'users/find_by_eligibility_and_group/:eligibility/:group/:start_date/:end_date' => :find_by_eligibility_and_group, as: 'find_by_eligibility_and_group'
       get 'users/find_by_started_and_or_completed_curricula/:curricula_name/:started_or_completed/:start_date/:end_date' => :find_by_started_and_or_completed_curricula, as: 'find_by_started_and_or_completed_curricula'
-
-
-
       get 'users/find_by_started_and_or_completed_curricula_by_group/:curricula_name/:started_or_completed/:group/:start_date/:end_date' => :find_by_started_and_or_completed_curricula_by_group, as: 'find_by_started_and_or_completed_curricula_by_group'
 
-
+      get 'find_user_by_criteria' => :find_user_by_criteria
 
       post 'update_subscriptions' => :update_subscriptions
       post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'

@@ -66,9 +66,16 @@ class UsersController < ApplicationController
     end
   end
 
-
-
-
+  def find_user_by_criteria
+    search_criteria = params[:search_criteria].to_sym
+    search_value = params[:search_value]
+    case search_criteria
+    when :name
+      @users = User.search_by_full_name(search_value).page params[:page]
+    when :email
+      @users = User.search_by_email(search_value).page params[:page]
+    end
+  end
 
 
   def find_by_group

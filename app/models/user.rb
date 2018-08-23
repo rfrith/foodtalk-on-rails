@@ -16,6 +16,8 @@ class User < ApplicationRecord
   #regular Foodtalk users; non-admins & no group affiliation
   scope :not_in_group, ->  {left_outer_joins(:groups).where(groups: {id: nil})}
 
+  scope :search_by_full_name, ->(query) { where("CONCAT_WS(' ', LOWER(first_name), LOWER(last_name)) LIKE LOWER(?)", "%#{query}%") }
+  scope :search_by_email, ->(query) { where("LOWER(email) LIKE LOWER(?)", "%#{query}%") }
 
 
   #TODO: improve this
