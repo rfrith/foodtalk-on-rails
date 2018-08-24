@@ -1,0 +1,12 @@
+<script>
+    $(document).on("turbolinks:load", function() {
+        $('#user-search').submit(function () {
+            $.fancybox.open({
+                src: '<%=find_user_by_criteria_path%>?' + $(this).serialize(),
+                type: 'iframe'
+            });
+            return false;
+        });
+    });
+</script>
+<%= render :partial => "users/find_user_form" %>

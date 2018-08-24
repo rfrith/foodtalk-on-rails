@@ -67,6 +67,7 @@ class UsersController < ApplicationController
   end
 
   def find_user_by_criteria
+    authorize @current_user
     search_criteria = params[:search_criteria].to_sym
     search_value = params[:search_value]
     case search_criteria

@@ -7,6 +7,9 @@
     <% if policy(:report).generate_report? %>
     <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#reports" aria-controls="reports" aria-selected="false"><%= t("dashboard.admin.reports") %></a>
     <% end %>
+    <% if policy(:user).find_user_by_criteria? %>
+      <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#find-user" aria-controls="find-user" aria-selected="false"><%= t("dashboard.admin.find_user") %></a>
+    <% end %>
   </nav>
 
   <div id="admin-content" class="tab-content p-4">
@@ -18,6 +21,11 @@
     <% if policy(:report).generate_report? %>
     <div id="reports" class="tab-pane fade show" role="tabpanel" aria-labelledby="reports">
       <%= render :partial => "dashboard/monthly_report" %>
+    </div>
+    <% end %>
+    <% if policy(:user).find_user_by_criteria? %>
+    <div id="find-user" class="tab-pane fade show" role="tabpanel" aria-labelledby="find-user">
+      <%= render :partial => "users/find_user" %>
     </div>
     <% end %>
   </div>

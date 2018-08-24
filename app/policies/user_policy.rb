@@ -9,6 +9,10 @@ class UserPolicy < ApplicationPolicy
     user.is_admin?
   end
 
+  def find_user_by_criteria?
+    user.is_admin?
+  end
+
   def find_by_month?
     user.is_admin?
   end
