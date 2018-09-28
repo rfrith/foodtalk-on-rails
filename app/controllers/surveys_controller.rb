@@ -16,7 +16,7 @@ class SurveysController < ApplicationController
 
     when "consent-form"
       @current_user.survey_histories << SurveyHistory.new(name: SurveyHistory::STARTED_CONSENT_FORM)
-      @survey_url = get_survey_url"SV_9LTxafpuOXzgpTf", process_consent_form_url(@current_user.uid)
+      @survey_url = get_survey_url"SV_bjXqRk6LZ8748iF", process_consent_form_url(@current_user.uid)
 
     #NOTE: surveys for learning modules are hard-coded from ArticulateStoryline as window.top.location.href = "/surveys/keeping-track"
     #Better U
