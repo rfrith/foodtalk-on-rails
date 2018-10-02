@@ -4,4 +4,5 @@ class ActivityHistory < ApplicationRecord
   scope :started, -> { where("name like '%#started'") }
   scope :completed, -> { where("name like '%#completed'") }
 
+  validates_presence_of :name, :user
 end

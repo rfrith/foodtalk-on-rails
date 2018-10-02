@@ -17,9 +17,9 @@ module CurriculumHelper
     return false
   end
 
-  def find_next_lesson(curriculum)
+  def find_next_lesson(user, curriculum)
     curriculum.each do |c|
-      if(!@current_user.course_enrollments.exists?(name: c[:id]))
+      if(!user.course_enrollments.exists?(name: c[:id]))
         return c[:id]
       end
     end
@@ -31,7 +31,7 @@ module CurriculumHelper
     if user_has_completed_curriculum?(user, curriculum)
       curriculum.each do |c|
         completion_date = Date.new
-        date = @current_user.course_enrollments.where(name: c[:id]).last.updated_at
+        date = user.course_enrollments.where(name: c[:id]).last.updated_at
         if date > completion_date
          completion_date = date
         end

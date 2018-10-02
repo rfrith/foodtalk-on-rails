@@ -284,14 +284,14 @@ class ReportsController < ApplicationController
   def generate_report
     authorize :report
 
-    user_email = nil
-    eligible = nil
-    domain_group = nil
+    domain_groups = []
 
     ids = params[:group_ids]
     ids.each do |id|
-      group = Group.find(id) unless id.blank?
-      domain_group = group
+      if(!id.blank?)
+        group = Group.find(id)
+        domain_groups << group
+      end
     end
 
     begin
@@ -306,6 +306,9 @@ class ReportsController < ApplicationController
     signup_start = signup_start.to_time.beginning_of_day
     signup_end = signup_end.to_time.end_of_day
 
+    users = []
+
+
     #build where clause
     #
     # TODO: filter out any user in admin group
@@ -313,21 +316,34 @@ class ReportsController < ApplicationController
     where_string = ""
     where_params = {}
 
-    if(!user_email.nil?)
-      where_string += "email LIKE %:email%"
-      where_params.merge! email: user_email
-    else
-      where_string += "created_at >= :signup_start AND created_at <= :signup_end"
-      where_params.merge! signup_start: signup_start, signup_end: signup_end
+    where_string += "users.created_at >= :signup_start AND users.created_at <= :signup_end"
+    where_params.merge! signup_start: signup_start, signup_end: signup_end
+
+    if(ActiveRecord::Type::Boolean.new.cast(params[:foodtalk_users]))
+      users.push(User.not_in_group.where(where_string, where_params))
+      users.flatten!
     end
 
-    if(domain_group)
-      users = domain_group.users.where(where_string, where_params)
-    else
+    if(ActiveRecord::Type::Boolean.new.cast(params[:extension_employees]))
+      condition = " AND federal_assistances.name = :federal_assistances"
+      params = {federal_assistances: "Extension Employee"}.merge where_params
+      ext_emp = User.joins(:federal_assistances).where(where_string + condition, params)
+      users.push(ext_emp)
+      users.flatten!
+    end
+
+    if(!domain_groups.blank?)
+      domain_groups.each do |dg|
+        users.push(dg.users.where(where_string, where_params))
+      end
+      users.flatten!
+    end
+
+    if(users.blank?)
       users = User.where(where_string, where_params)
     end
 
-    csv_string = generate_report_as_csv(users, eligible)
+    csv_string = generate_report_as_csv(users.uniq)
 
     filename = "foodtalk-user-report-#{signup_start.strftime("%m.%d.%Y")}-#{signup_end.strftime("%m.%d.%Y")}.csv"
 

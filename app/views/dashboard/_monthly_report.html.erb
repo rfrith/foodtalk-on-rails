@@ -3,14 +3,26 @@
 
     <div class="form-row">
 
-      <div class="col">
+      <div class="form-col">
         <%= form.label "Filter by Group Affiliation", class: "col-form-label-sm" %>
-        <%= form.collection_check_boxes :group_ids, Group.where("name != '#{Group::ADMIN}'"), :id, :name do |b| %>
+
+        <div class="form-check">
+          <%= form.check_box(:foodtalk_users, class: "form-check-input") %>
+          <%= form.label :foodtalk_users, class: "col-form-label-sm" %>
+        </div>
+
+        <%= form.collection_check_boxes :group_ids, Group.all, :id, :name do |b| %>
           <div class="form-check">
-            <%= b.label(:"data-value" => b.value, class: "form-check-label col-form-label-sm") {b.check_box(class: "form-check-input") + b.text.titleize} %>
+            <%= b.label(:"data-value" => b.value, class: "col-form-label-sm") {b.check_box(class: "form-check-input") + b.text.titleize} %>
           </div>
         <% end %>
+
+        <div class="form-check">
+          <%= form.check_box(:extension_employees, class: "form-check-input") %>
+          <%= form.label :extension_employees, class: "col-form-label-sm" %>
+        </div>
       </div>
+
     </div>
 
     <div class="form-row">

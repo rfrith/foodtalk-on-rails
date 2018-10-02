@@ -11,8 +11,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
 
 # Rails doesn't support Postgres 1.0 gem yet
 # https://github.com/rails/rails/issues/31673
@@ -57,21 +55,16 @@ gem 'kaminari'
 
 
 #TODO: decide on
-#gem 'devise'
 #gem 'foreman'
 #gem 'resque'
 #gem 'resque-scheduler'
 
-
-#TODO: do we really need any of these
 gem 'jquery-rails'
-#gem 'jquery-ui-rails'
 gem 'popper_js', '~> 1.12.3'
 
-#possibly for later:
-#gem 'unitwise'
-
-gem 'dotenv-rails', groups: [:development, :test]
+group :test do
+  gem 'sqlite3'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -79,10 +72,13 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.6.0'
+  gem 'factory_bot_rails', '~> 4.10.0'
 end
 
-
 group :development do
+  gem 'dotenv-rails'
+
   # Deploy using Capistrano & RVM
   gem 'capistrano', '~> 3.10', require: false
   gem 'capistrano-rails', '~> 1.3', require: false
@@ -97,6 +93,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

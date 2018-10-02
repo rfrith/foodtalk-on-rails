@@ -28,14 +28,14 @@
     var done = false;
     function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
-          <% if(should_serve_survey(@survey_name, @current_user)) %>
+          <% if(should_serve_survey?(@survey_name, @current_user)) %>
             showSurvey();
           <% end %>
         }
     }
 
     function showSurvey() {
-      <% if(should_serve_survey(@survey_name, @current_user)) %>
+      <% if(should_serve_survey?(@survey_name, @current_user)) %>
         parent.location.href = '<%= show_survey_path(@survey_name) %>';
       <% end %>
     }

@@ -1,6 +1,10 @@
 class CourseEnrollment < ApplicationRecord
   include AASM, LearningModules
+
   belongs_to :user
+
+  validates_presence_of :name, :user
+
   aasm :column => 'state' do
     state :started, :initial => true
     state :completed

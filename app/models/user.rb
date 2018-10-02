@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :racial_identities
   has_and_belongs_to_many :federal_assistances
-  has_and_belongs_to_many :recipes
+  #has_and_belongs_to_many :recipes
   has_and_belongs_to_many :groups, -> { distinct }
 
   has_many :activity_histories, dependent: :destroy
@@ -26,13 +26,11 @@ class User < ApplicationRecord
   enum gender: [:male, :female]
 
 
-  validates_presence_of :uid
-  #TODO: this is a workaround until we can get email from Auth0
-  validates_presence_of :first_name, :last_name, :age, :email, :gender, :zip_code
+  validates_presence_of :uid, :first_name, :last_name, :age, :email, :gender, :zip_code
   validates_inclusion_of :is_hispanic_or_latino, :in => [true, false], :message => "Please answer the question 'Do you consider yourself Hispanic/Latino?'"
   validates_numericality_of :age
   validates_length_of :zip_code, :is => 5, :message => "must be at least 5-digits."
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :uid
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :racial_identities, presence: true
 
@@ -68,12 +66,11 @@ class User < ApplicationRecord
     return where(id: ineligible_users.map(&:id))
   end
 
-
   def group_names
     names = []
     if !groups.empty?
       groups.each do |g|
-        names << g.title.titleize
+        names << (g.title ? g.title.titleize : g.name.titleize)
       end
     else
       names << Group::FOODTALK_USERS.titleize
@@ -100,10 +97,7 @@ class User < ApplicationRecord
 
   def self.find_or_initialize_from_auth_hash(auth_hash)
 
-    #TODO: CHECK WE'RE GETTING CORRECT AUTH0 HASH KEYS!
-    #first_name = auth_hash['extra']['raw_info']['given_name']
-    #last_name = auth_hash['extra']['raw_info']['family_name']
-    if(auth_hash)
+    if(!auth_hash.blank?)
       uid = auth_hash['uid']
       first_name = auth_hash['first_name']
       last_name = auth_hash['last_name']
@@ -133,7 +127,7 @@ class User < ApplicationRecord
   end
 
   def has_received_federal_assistance?
-    return (federal_assistances.size >= 1)
+    return (federal_assistances.size > 0)
   end
 
 

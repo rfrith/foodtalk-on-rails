@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  include Secured, MailchimpHelper, DashboardHelper, CurriculumHelper, SiteStatistics
+  include Secured, MailchimpHelper, CurriculumHelper, SiteStatistics
   before_action :check_consent
 
   def show
