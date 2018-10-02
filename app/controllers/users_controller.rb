@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   include Secured, MailchimpHelper, DomainGroups, DateHelper
 
-  before_action :initialize_date_range, only: [:find_by_eligibility, :find_by_eligibility_and_group, :find_by_group]
+  before_action :initialize_date_range, only: [:find_by_eligibility, :find_by_eligibility_and_group, :find_by_group, :find_by_started_and_or_completed_curricula, :find_by_started_and_or_completed_curricula_by_group]
 
   def show
     authorize @current_user
@@ -209,7 +209,7 @@ class UsersController < ApplicationController
     authorize @current_user
     curricula = params[:curricula_name].parameterize
     started_or_completed = params[:started_or_completed].parameterize
-    @users = User.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
+    @users = User.created_in_range(@start_date..@end_date).distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
   end
 
 
@@ -220,9 +220,9 @@ class UsersController < ApplicationController
     group = params[:group].parameterize
 
     if(group == Group::FOODTALK_USERS)
-      @users = User.not_in_group.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
+      @users = User.created_in_range(@start_date..@end_date).not_in_group.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
     else
-      @users = User.distinct.left_outer_joins(:groups).where("groups.name = ?", group).left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
+      @users = User.created_in_range(@start_date..@end_date).distinct.left_outer_joins(:groups).where("groups.name = ?", group).left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
     end
 
   end
