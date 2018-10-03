@@ -207,13 +207,8 @@ class ReportsController < ApplicationController
 
   def users_started_completed_curricula_by_range_data_table
     authorize :report
-
     curricula = params[:curricula]
-
-    users_in_date_range = User.created_in_range(@start_date..@end_date)
-    started_completed = get_curriculum_started_completed(users_in_date_range, curricula)
-    eligible_users_in_date_range = User.eligible.created_in_range(@start_date..@end_date).size
-    ineligible_users_in_date_range = User.ineligible.created_in_range(@start_date..@end_date).size
+    started_completed = get_curriculum_started_completed(curricula, @start_date..@end_date)
 
     started_completed_data = {
         cols: [
@@ -372,21 +367,26 @@ class ReportsController < ApplicationController
 
   #TODO: MOVE THESE INTO SiteStatistics.rb concern???
 
-  def get_curriculum_started_completed(users, curriculum_id)
+  def get_curriculum_started_completed(curriculum_id, date_range)
 
     curriculum = LearningModules.const_get(curriculum_id)
 
     started_completed = {started: 0, completed: 0}
-    all_users_started_count = 0
     all_users_completed_count = 0
-    users.each do |u|
-      #don't count the user twice
-      if(user_has_completed_curriculum?(u, curriculum))
+
+    #TODO: DRY ME
+    #state engine uses existing row, must check updated_at column
+    all_users_started_count = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curriculum_id.downcase).updated_in_range(date_range).started.count
+
+    completed_enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curriculum_id.downcase).updated_in_range(date_range).completed
+
+    completed_enrollments.each do |ce|
+      user = ce.user
+      if(user_has_completed_curriculum?(user, curriculum, date_range))
         all_users_completed_count += 1
-      elsif(user_has_started_curriculum?(u, curriculum))
-        all_users_started_count += 1
       end
     end
+
     started_completed[:started] = all_users_started_count
     started_completed[:completed] = all_users_completed_count
     return started_completed
@@ -399,9 +399,10 @@ class ReportsController < ApplicationController
     curriculum_stats_by_group = {}
     started_count = 0
     completed_count = 0
-    User.created_in_range(date_range).not_in_group.each do |u|
-      started_count += 1 if user_has_started_curriculum?(u, curriculum)
-      completed_count += 1 if user_has_completed_curriculum?(u, curriculum)
+
+    User.not_in_group.each do |u|
+      started_count += 1 if user_has_started_curriculum?(u, curriculum, date_range)
+      completed_count += 1 if user_has_completed_curriculum?(u, curriculum, date_range)
     end
 
     curriculum_stats_by_group.merge! FOODTALK_GROUP_NAME => {started_count: started_count, completed_count: completed_count}
@@ -412,8 +413,8 @@ class ReportsController < ApplicationController
       group_name = g.name.titleize
 
       g.users.each do |u|
-        started_count += 1 if user_has_started_curriculum?(u, curriculum)
-        completed_count += 1 if user_has_completed_curriculum?(u, curriculum)
+        started_count += 1 if user_has_started_curriculum?(u, curriculum, date_range)
+        completed_count += 1 if user_has_completed_curriculum?(u, curriculum, date_range)
       end
       curriculum_stats_by_group.merge! group_name => {started_count: started_count, completed_count: completed_count}
     end

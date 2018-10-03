@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  include Secured, MailchimpHelper, DomainGroups, DateHelper
+  include Secured, MailchimpHelper, DomainGroups, DateHelper, CurriculumHelper
 
   before_action :initialize_date_range, only: [:find_by_eligibility, :find_by_eligibility_and_group, :find_by_group, :find_by_started_and_or_completed_curricula, :find_by_started_and_or_completed_curricula_by_group]
 
@@ -209,7 +209,27 @@ class UsersController < ApplicationController
     authorize @current_user
     curricula = params[:curricula_name].parameterize
     started_or_completed = params[:started_or_completed].parameterize
-    @users = User.created_in_range(@start_date..@end_date).distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
+    users = []
+
+    if(started_or_completed.downcase == "started")
+      @users = User.joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ? and course_enrollments.created_at BETWEEN ? AND ?", started_or_completed, "%#{curricula}%", @start_date, @end_date).distinct.page params[:page]
+    else
+      date_range = @start_date..@end_date
+      curriculum = LearningModules.const_get(curricula.upcase)
+
+      #TODO: DRY ME
+      #state engine uses existing row, must check updated_at column
+      completed_enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curricula.downcase).updated_in_range(date_range).completed
+
+      completed_enrollments.each do |ce|
+        user = ce.user
+        if(user_has_completed_curriculum?(user, curriculum, date_range))
+          users << user
+        end
+      end
+
+      @users = Kaminari.paginate_array(users).page(params[:page])
+    end
   end
 
 
@@ -219,10 +239,27 @@ class UsersController < ApplicationController
     started_or_completed = params[:started_or_completed].parameterize
     group = params[:group].parameterize
 
+    users = []
+    found_users = []
+
     if(group == Group::FOODTALK_USERS)
-      @users = User.created_in_range(@start_date..@end_date).not_in_group.distinct.left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
+      users = User.not_in_group
     else
-      @users = User.created_in_range(@start_date..@end_date).distinct.left_outer_joins(:groups).where("groups.name = ?", group).left_outer_joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ?", started_or_completed, "%#{curricula}%").page params[:page]
+      users = User.joins(:groups).where("groups.name = ?", group)
+    end
+
+    #TODO: DRY ME
+    if(started_or_completed.downcase == "started")
+      @users = users.joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ? and course_enrollments.created_at BETWEEN ? AND ?", started_or_completed, "%#{curricula}%", @start_date, @end_date).distinct.page params[:page]
+    else
+      date_range = @start_date..@end_date
+      users.each do |u|
+        curriculum = LearningModules.const_get(curricula.upcase)
+        if(user_has_completed_curriculum?(u, curriculum, date_range))
+          found_users << u
+        end
+      end
+      @users = Kaminari.paginate_array(found_users).page(params[:page])
     end
 
   end

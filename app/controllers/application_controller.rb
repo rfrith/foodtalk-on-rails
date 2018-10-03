@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
     rescue ArgumentError => e
       #do nothing
     end
-    range = initialize_date_range_for_reports(start_date...end_date+1)
+    range = initialize_date_range_for_reports(start_date...end_date)
     @start_date = range.first.to_date
     @end_date = range.last.to_date
   end

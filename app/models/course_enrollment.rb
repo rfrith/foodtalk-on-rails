@@ -15,8 +15,13 @@ class CourseEnrollment < ApplicationRecord
 
   scope :better_u, -> { where("name like '%better_u%'") }
   scope :food_etalk, -> { where("name like '%food_etalk%'") }
-  scope :find_by_curriculum_id, ->(id = nil) { where("name = '#{id}'") }
+  scope :find_by_curriculum_id, ->(id = nil) { where("name like '%#{id}%'") }
+  scope :created_in_range, ->(date_range = nil)  { where(created_at: date_range.first..date_range.last) }
+  scope :updated_in_range, ->(date_range = nil)  { where(updated_at: date_range.first..date_range.last) }
+  scope :is_started, -> {where(state: :started)}
+  scope :is_completed, -> {where(state: :completed)}
 
+  scope :completed_in_range, ->(curricula_name, date_range = nil) { where("name like '%#{curricula_name}%' AND state = 'completed' AND updated_at BETWEEN '#{date_range.first}' AND '#{date_range.last}'") }
 
   private
 
