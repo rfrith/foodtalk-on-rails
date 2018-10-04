@@ -372,18 +372,21 @@ class ReportsController < ApplicationController
     curriculum = LearningModules.const_get(curriculum_id)
 
     started_completed = {started: 0, completed: 0}
+
+    all_users_started_count = 0
     all_users_completed_count = 0
 
     #TODO: DRY ME
     #state engine uses existing row, must check updated_at column
-    all_users_started_count = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curriculum_id.downcase).updated_in_range(date_range).started.count
 
-    completed_enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curriculum_id.downcase).updated_in_range(date_range).completed
+    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curriculum_id.downcase).updated_in_range(date_range)
 
-    completed_enrollments.each do |ce|
+    enrollments.each do |ce|
       user = ce.user
       if(user_has_completed_curriculum?(user, curriculum, date_range))
         all_users_completed_count += 1
+      elsif(user_has_started_curriculum?(user, curriculum, date_range))
+        all_users_started_count += 1
       end
     end
 

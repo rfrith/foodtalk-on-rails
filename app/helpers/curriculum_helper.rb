@@ -26,11 +26,11 @@ module CurriculumHelper
       if(!date_range.blank?)
         start_date=date_range.first
         end_date=date_range.last
-        if(!user.course_enrollments.created_in_range(date_range).find_by_curriculum_id(c[:id]).started.blank?)
+        if(user.course_enrollments.updated_in_range(date_range).find_by_curriculum_id(c[:id]).size > 0)
           return true
         end
       else
-        if(!user.course_enrollments.find_by_curriculum_id(c[:id]).started.blank?)
+        if(user.course_enrollments.find_by_curriculum_id(c[:id]).size > 0)
           return true
         end
       end

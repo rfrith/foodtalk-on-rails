@@ -211,25 +211,26 @@ class UsersController < ApplicationController
     started_or_completed = params[:started_or_completed].parameterize
     users = []
 
-    if(started_or_completed.downcase == "started")
-      @users = User.joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ? and course_enrollments.created_at BETWEEN ? AND ?", started_or_completed, "%#{curricula}%", @start_date, @end_date).distinct.page params[:page]
-    else
-      date_range = @start_date..@end_date
-      curriculum = LearningModules.const_get(curricula.upcase)
+    date_range = @start_date..@end_date
+    curriculum = LearningModules.const_get(curricula.upcase)
 
-      #TODO: DRY ME
-      #state engine uses existing row, must check updated_at column
-      completed_enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curricula.downcase).updated_in_range(date_range).completed
+    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curricula.downcase).updated_in_range(date_range)
 
-      completed_enrollments.each do |ce|
-        user = ce.user
+    enrollments.each do |ce|
+      user = ce.user
+
+      case started_or_completed.downcase
+      when "started"
+        if(user_has_started_curriculum?(user, curriculum, date_range))
+          users << user
+        end
+      when "completed"
         if(user_has_completed_curriculum?(user, curriculum, date_range))
           users << user
         end
       end
-
-      @users = Kaminari.paginate_array(users).page(params[:page])
     end
+    @users = Kaminari.paginate_array(users).page(params[:page])
   end
 
 
@@ -238,9 +239,10 @@ class UsersController < ApplicationController
     curricula = params[:curricula_name].parameterize
     started_or_completed = params[:started_or_completed].parameterize
     group = params[:group].parameterize
-
     users = []
     found_users = []
+    date_range = @start_date..@end_date
+    curriculum = LearningModules.const_get(curricula.upcase)
 
     if(group == Group::FOODTALK_USERS)
       users = User.not_in_group
@@ -248,20 +250,23 @@ class UsersController < ApplicationController
       users = User.joins(:groups).where("groups.name = ?", group)
     end
 
-    #TODO: DRY ME
-    if(started_or_completed.downcase == "started")
-      @users = users.joins(:course_enrollments).where("course_enrollments.state = ? and course_enrollments.name like ? and course_enrollments.created_at BETWEEN ? AND ?", started_or_completed, "%#{curricula}%", @start_date, @end_date).distinct.page params[:page]
-    else
-      date_range = @start_date..@end_date
-      users.each do |u|
-        curriculum = LearningModules.const_get(curricula.upcase)
-        if(user_has_completed_curriculum?(u, curriculum, date_range))
-          found_users << u
+    case started_or_completed.downcase
+    when "started"
+      users.each do |user|
+        if(user_has_started_curriculum?(user, curriculum, date_range))
+          found_users << user
         end
       end
-      @users = Kaminari.paginate_array(found_users).page(params[:page])
+
+    when "completed"
+      users.each do |user|
+        if(user_has_completed_curriculum?(user, curriculum, date_range))
+          found_users << user
+        end
+      end
     end
 
+    @users = Kaminari.paginate_array(found_users).page(params[:page])
   end
 
 

@@ -12,7 +12,9 @@ class User < ApplicationRecord
   has_many :survey_histories, dependent: :destroy
   has_many :course_enrollments, dependent: :destroy
 
-  scope :created_in_range, ->(date_range = nil)  { where(created_at: date_range.first..date_range.last) }
+  scope :created_in_range, ->(date_range = nil)  { where(created_at: date_range.first.to_time.beginning_of_day..date_range.last.to_time.end_of_day) }
+  scope :updated_in_range, ->(date_range = nil)  { where(updated_at: date_range.first.to_time.beginning_of_day..date_range.last.to_time.end_of_day) }
+
   #regular Foodtalk users; non-admins & no group affiliation
   scope :not_in_group, ->  {left_outer_joins(:groups).where(groups: {id: nil})}
 
