@@ -124,7 +124,9 @@ class ReportsController < ApplicationController
 
     (@start_date..@end_date).select{|date| date.day==1}.each do |date|
       month = Date::MONTHNAMES[date.month]
-      date_simple = Date.parse(date.strftime('%Y-%m-%d'))
+
+      date_simple = Time.zone.parse(date.strftime('%Y-%m-%d')).to_date
+
       row = {c:[{v: month}]}
       data.each do |key,val|
         val.each do |v|

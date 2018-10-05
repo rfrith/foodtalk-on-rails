@@ -30,12 +30,12 @@ namespace :export_users do
       eligible = ActiveModel::Type::Boolean.new.cast(args.eligible)
 
       begin
-        signup_start = Date.parse(args.signup_date_range_start)
+        signup_start = Time.zone.parse(args.signup_date_range_start)
       rescue Exception
         puts "Invalid signup_date_range_start argument"
       end
       begin
-        signup_end = Date.parse(args.signup_date_range_end)
+        signup_end = Time.zone.parse(args.signup_date_range_end)
       rescue Exception
         puts "Invalid signup_date_end_start argument"
       end

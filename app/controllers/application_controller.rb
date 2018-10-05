@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
 
   def initialize_date_range
     begin
-      start_date = DateTime.parse params[:start_date] unless params[:start_date].nil?
-      end_date = DateTime.parse params[:end_date] unless params[:end_date].nil?
+      start_date = Time.zone.parse params[:start_date] unless params[:start_date].nil?
+      end_date = Time.zone.parse params[:end_date] unless params[:end_date].nil?
     rescue ArgumentError => e
       #do nothing
     end

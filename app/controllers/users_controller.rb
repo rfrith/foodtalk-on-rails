@@ -114,25 +114,24 @@ class UsersController < ApplicationController
   def find_by_month
     authorize @current_user
     begin
-      parsed_date = DateTime.parse params[:month]
+      parsed_date = Time.zone.parse params[:month]
     rescue ArgumentError => e
       #do nothing
     end
-    parsed_date ||= Date.today
+    parsed_date ||= Time.current
 
-    @users = User.created_in_range(parsed_date.to_time.beginning_of_month..parsed_date.to_time.end_of_month).page params[:page]
+    @users = User.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
   end
 
   def find_by_month_and_group
     authorize @current_user
-
     begin
-      parsed_date = DateTime.parse params[:month]
+      parsed_date = Time.zone.parse params[:month]
     rescue ArgumentError => e
       #do nothing
     end
+    parsed_date ||= Time.current
 
-    parsed_date ||= Date.today
     group_name = params[:group_name].parameterize
 
     where_string = ""

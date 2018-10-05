@@ -7,7 +7,7 @@ module DateHelper
     end
 
     start_date ||= Date.new(Date.current.year)
-    end_date ||= Date.today
+    end_date ||= Date.current
 
     begin
       #make inclusive for the whole day
