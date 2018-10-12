@@ -131,7 +131,7 @@ RSpec.describe  User,  type:  :model  do
   end
 
   it "returns a user's full name as a string" do
-    expect(static_user.name).to eq "Test User"
+    expect(static_user.name).to eq "#{static_user.first_name} #{static_user.last_name}"
   end
 
   it "is_admin? = false" do
@@ -140,37 +140,34 @@ RSpec.describe  User,  type:  :model  do
   end
 
   it "is_admin? = true" do
-    FactoryBot.create(:group)
-    user.groups << Group.administrators
-    expect(user.is_admin?).to eq true
+    expect(admin_user.is_admin?).to eq true
   end
 
   it "is_eligible? = true" do
-    user = FactoryBot.create(:user, :is_eligible)
-    expect(user.is_eligible?).to eq true
+    expect(eligible_user.is_eligible?).to eq true
   end
 
   it "is_eligible? = false" do
-    user = FactoryBot.create(:user, :is_ineligible)
-    expect(user.is_eligible?).to eq false
+    expect(ineligible_user.is_eligible?).to eq false
   end
 
   it "returns a list of eligible users" do
-    user = FactoryBot.create(:user, :is_eligible)
-    expect(User.eligible.size).to eq 1
+    eligible_user #lazy loaded
+    expect(User.eligible).to include eligible_user
+    ineligible_user #lazy loaded
+    expect(User.eligible).not_to include ineligible_user
   end
 
   it "returns a list of ineligible users" do
-    user = FactoryBot.create(:user, :is_ineligible)
-    expect(User.ineligible.size).to eq 1
+    ineligible_user #lazy loaded
+    expect(User.ineligible).to include ineligible_user
+    eligible_user #lazy loaded
+    expect(User.ineligible).not_to include eligible_user
   end
 
   it "group_names" do
-    FactoryBot.create(:group)
-    user.groups = []
-    expect(user.group_names).to eq ["Foodtalk Users"]
-    user.groups << Group.administrators
-    expect(user.group_names).to eq ["Foodtalk Admin Group"]
+    expect(user.group_names).to include "Foodtalk Users"
+    expect(admin_user.group_names).to include "Foodtalk Admin Group"
   end
 
   it "racial_identities_names" do
@@ -187,6 +184,33 @@ RSpec.describe  User,  type:  :model  do
 
   it "email_as_md5_hash" do
     expect(user.email_as_md5_hash).to eq Digest::MD5.hexdigest(user.email)
+  end
+
+  it "search_by_full_name" do
+    full_name = "#{user.first_name} #{user.last_name}"
+    expect(User.search_by_full_name(full_name).size).to eq 1
+    expect(User.search_by_full_name(full_name).first.name).to eq full_name
+    expect(User.search_by_full_name(full_name).first.first_name).to eq user.first_name
+    expect(User.search_by_full_name(full_name).first.last_name).to eq user.last_name
+  end
+
+  it "search_by_email" do
+    expect(User.search_by_email(user.email).size).to eq 1
+    expect(User.search_by_email(user.email).first.email).to eq user.email
+  end
+
+  it "not_in_group" do
+    create_list(:user, 3)
+    create_list(:user, 3, :admin)
+    expect(User.not_in_group.size).to eq 3
+  end
+
+  it "in_group" do
+    create_list(:user, 3, :admin)
+    expect(User.in_group(Group::ADMIN).size).to eq 3
+    expect(User.in_group(Group::ADMIN)).to include admin_user
+    expect(User.in_group(Group::ADMIN)).to_not include user
+    expect(User.all.size).to eq 5
   end
 
 end

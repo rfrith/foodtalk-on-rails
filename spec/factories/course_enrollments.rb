@@ -1,6 +1,9 @@
 FactoryBot.define do
   factory :course_enrollment do
+
     name "Course Enrollment"
+
+    association :user
 
     #######################
     # food etalk

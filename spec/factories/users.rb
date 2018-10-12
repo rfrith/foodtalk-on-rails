@@ -19,11 +19,11 @@ FactoryBot.define do
       email "tester@example.com"
     end
 
-    trait :is_eligible do
+    trait :eligible do
       zip_code 30601
     end
 
-    trait :is_ineligible do
+    trait :ineligible do
       zip_code 11111
     end
 
@@ -31,38 +31,46 @@ FactoryBot.define do
       racial_identities {[]}
     end
 
-    trait :user_with_course_enrollment do
-      ce = FactoryBot.build(:course_enrollment)
-      course_enrollments {[ce]}
+
+    #groups
+
+    trait :admin do
+      groups {[FactoryBot.create(:group, :admin)]}
     end
 
-    trait :user_with_food_etalk_enrollment do
-      ce = FactoryBot.build(:course_enrollment, :food_etalk_started)
-      course_enrollments {[ce]}
+
+    #enrollments
+
+    trait :with_food_etalk_enrollment do
+      after(:create) do |user|
+        FactoryBot.create(:course_enrollment, :food_etalk_started, user: user)
+      end
     end
 
-    trait :user_with_better_u_enrollment do
-      ce = FactoryBot.build(:course_enrollment, :better_u_started)
-      course_enrollments {[ce]}
+    trait :with_better_u_enrollment do
+      after(:create) do |user|
+        FactoryBot.create(:course_enrollment, :better_u_started, user: user)
+      end
     end
 
-    trait :user_has_completed_food_etalk do
-      l1 = FactoryBot.build(:course_enrollment, :your_food_your_choice_completed)
-      l2 = FactoryBot.build(:course_enrollment, :keep_your_pressure_in_check_completed)
-      l3 = FactoryBot.build(:course_enrollment, :color_me_healthy_completed)
-      l4 = FactoryBot.build(:course_enrollment, :eat_well_on_the_go_completed)
-      l5 = FactoryBot.build(:course_enrollment, :keep_yourself_well_completed)
-      l6 = FactoryBot.build(:course_enrollment, :play_food_etalk_completed)
-      course_enrollments {[l1, l2, l3, l4, l5, l6]}
-
+    trait :has_completed_food_etalk do
+      after(:create) do |user|
+        FactoryBot.create(:course_enrollment, :your_food_your_choice_completed, user: user)
+        FactoryBot.create(:course_enrollment, :keep_your_pressure_in_check_completed, user: user)
+        FactoryBot.create(:course_enrollment, :color_me_healthy_completed, user: user)
+        FactoryBot.create(:course_enrollment, :eat_well_on_the_go_completed, user: user)
+        FactoryBot.create(:course_enrollment, :keep_yourself_well_completed, user: user)
+        FactoryBot.create(:course_enrollment, :play_food_etalk_completed, user: user)
+      end
     end
 
-    trait :user_has_completed_better_u do
-      l1 = FactoryBot.build(:course_enrollment, :keeping_track_completed)
-      l2 = FactoryBot.build(:course_enrollment, :no_thanks_im_sweet_enough_completed)
-      l3 = FactoryBot.build(:course_enrollment, :small_changes_equal_big_results_completed)
-      l4 = FactoryBot.build(:course_enrollment, :what_gets_in_the_weigh_completed)
-      course_enrollments {[l1, l2, l3, l4]}
+    trait :has_completed_better_u do
+      after(:create) do |user|
+        FactoryBot.create(:course_enrollment, :keeping_track_completed, user: user)
+        FactoryBot.create(:course_enrollment, :no_thanks_im_sweet_enough_completed, user: user)
+        FactoryBot.create(:course_enrollment, :small_changes_equal_big_results_completed, user: user)
+        FactoryBot.create(:course_enrollment, :what_gets_in_the_weigh_completed, user: user)
+      end
     end
 
   end

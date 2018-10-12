@@ -213,7 +213,7 @@ class UsersController < ApplicationController
     date_range = @start_date..@end_date
     curriculum = LearningModules.const_get(curricula.upcase)
 
-    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curricula.downcase).updated_in_range(date_range)
+    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_name(curricula.downcase).updated_in_range(date_range)
 
     enrollments.each do |ce|
       user = ce.user

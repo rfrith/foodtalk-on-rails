@@ -9,9 +9,11 @@ module CurriculumHelper
       if(!date_range.blank?)
         start_date=date_range.first
         end_date=date_range.last
-        course_enrollments = user.course_enrollments.distinct.updated_in_range(date_range).find_by_curriculum_id(c[:id]).completed
+        enrollment = user.course_enrollments.distinct.completed.updated_in_range(date_range).find_by_name(c[:id])
+        course_enrollments << enrollment unless enrollment.blank?
       else
-        course_enrollments = user.course_enrollments.distinct.find_by_curriculum_id(c[:id]).completed
+        enrollment = user.course_enrollments.completed.find_by_name(c[:id])
+        course_enrollments << enrollment unless enrollment.blank?
       end
 
       if(course_enrollments.size > 0)
@@ -26,11 +28,11 @@ module CurriculumHelper
       if(!date_range.blank?)
         start_date=date_range.first
         end_date=date_range.last
-        if(user.course_enrollments.updated_in_range(date_range).find_by_curriculum_id(c[:id]).size > 0)
+        if(!user.course_enrollments.updated_in_range(date_range).find_by_name(c[:id]).blank?)
           return true
         end
       else
-        if(user.course_enrollments.find_by_curriculum_id(c[:id]).size > 0)
+        if(!user.course_enrollments.find_by_name(c[:id]).blank?)
           return true
         end
       end
@@ -51,10 +53,14 @@ module CurriculumHelper
     completion_date = nil
     if user_has_completed_curriculum?(user, curriculum)
       curriculum.each do |c|
-        completion_date = Date.new
-        date = user.course_enrollments.where(name: c[:id]).last.updated_at
-        if date > completion_date
-         completion_date = date
+        #completion_date = Date.new
+        e = user.course_enrollments.find_by_name(c[:id]).last
+        if(!e.blank?)
+          date = e.updated_at
+          completion_date ||= date
+          if date > completion_date
+           completion_date = date
+          end
         end
       end
     end

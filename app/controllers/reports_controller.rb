@@ -300,8 +300,8 @@ class ReportsController < ApplicationController
     end
 
     #handle time zone
-    signup_start = signup_start.to_time.beginning_of_day
-    signup_end = signup_end.to_time.end_of_day
+    signup_start = signup_start.in_time_zone.beginning_of_day
+    signup_end = signup_end.in_time_zone.end_of_day
 
     users = []
 
@@ -381,7 +381,7 @@ class ReportsController < ApplicationController
     #TODO: DRY ME
     #state engine uses existing row, must check updated_at column
 
-    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_curriculum_id(curriculum_id.downcase).updated_in_range(date_range)
+    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_name(curriculum_id.downcase).updated_in_range(date_range)
 
     enrollments.each do |ce|
       user = ce.user

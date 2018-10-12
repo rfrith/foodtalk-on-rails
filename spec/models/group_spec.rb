@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe  Group,  type:  :model  do
+
+  include_context "project setup"
+
   it "has a valid factory" do
-    group = FactoryBot.build(:group)
-    expect(group).to be_valid
+    expect(admin_group).to be_valid
   end
 end
