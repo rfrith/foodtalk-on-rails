@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :survey_history do
-    name "Survey History"
+    sequence(:name) { |n| "Survey History #{n}" }
   end
 end

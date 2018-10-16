@@ -12,7 +12,7 @@ FactoryBot.define do
     zip_code 90210
     is_hispanic_or_latino false
 
-    racial_identities {[FactoryBot.create(:racial_identity)]}
+    racial_identities {[FactoryBot.create(:racial_identity, :white)]}
 
     trait :static_email_uid do
       uid "facebook|123467890"

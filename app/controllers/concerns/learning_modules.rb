@@ -61,7 +61,7 @@ module LearningModules
 
   def self.find_module(id)
     BETTER_U.each do |lesson|
-      if (lesson[:id] == id) || (lesson[:id] == id)
+      if (lesson[:id] == id)
         return lesson
       end
     end
@@ -165,8 +165,5 @@ module LearningModules
     end
     return !names.empty? ? names : ['None']
   end
-
-
-
 
 end

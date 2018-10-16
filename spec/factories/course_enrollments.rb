@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :course_enrollment do
 
-    name "Course Enrollment"
-
+    sequence(:name) { |n| "Course Enrollment #{n}" }
     association :user
 
     #######################

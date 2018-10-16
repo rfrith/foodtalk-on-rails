@@ -1,20 +1,33 @@
 module DomainGroups
   extend ActiveSupport::Concern
 
-  MAP_USERS_TO_DOMAIN_GROUPS = [
+  DOMAIN_GROUPS = [
       {
+          id: :mhc,
           group_name: "mercy-health-center"
+      },
+      {
+          id: :hhip,
+          group_name: "hancock-health-improvement-partnership"
       }
   ]
 
-  def user_belongs_to_domain_group(user)
-    MAP_USERS_TO_DOMAIN_GROUPS.each do |entry|
-      return user.groups.exists?(name: entry[:group_name])
+  def self.find_domain_group(id)
+    DOMAIN_GROUPS.each do |dg|
+      if (dg[:id] == id)
+        return dg
+      end
     end
+    return nil
   end
 
+  def user_belongs_to_domain_group(user, group_id)
+    return user.groups.exists?(name: group_id)
+  end
+
+
   def get_domain_group_logo(host)
-    MAP_USERS_TO_DOMAIN_GROUPS.each do |entry|
+    DOMAIN_GROUPS.each do |entry|
       group = Group.find_by(name: entry[:group_name])
       if group && (group.domain == host)
         return group.logo
@@ -24,7 +37,7 @@ module DomainGroups
   end
 
   def get_domain_group_icon(host)
-    MAP_USERS_TO_DOMAIN_GROUPS.each do |entry|
+    DOMAIN_GROUPS.each do |entry|
       group = Group.find_by(name: entry[:group_name])
       if group && (group.domain == host)
         return group.icon
@@ -33,9 +46,9 @@ module DomainGroups
     return nil
   end
 
-  def add_user_to_domain_group(user, domain)
-    group = Group.find_by(domain: domain)
-    user.groups << group unless group.nil? or user.groups.include?(group)
+  def add_user_to_domain_group(user, group_id)
+    group = Group.find_by_name(group_id)
+    user.groups << group unless group.blank? or user.groups.include?(group)
   end
 
   module_function :user_belongs_to_domain_group, :get_domain_group_logo, :get_domain_group_icon

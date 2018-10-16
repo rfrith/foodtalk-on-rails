@@ -6,5 +6,7 @@ RSpec.describe  Group,  type:  :model  do
 
   it "has a valid factory" do
     expect(admin_group).to be_valid
+    expect(mhc).to be_valid
   end
+
 end

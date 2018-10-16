@@ -13,5 +13,11 @@ FactoryBot.define do
       title "Mercy Health Center"
     end
 
+    trait :hhip do
+      name "hhip"
+      domain "hhip.foodtalk.org"
+      title "hhip"
+    end
+
   end
 end
