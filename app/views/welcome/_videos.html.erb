@@ -1,4 +1,7 @@
 <div id="featured-videos" class="content-section2">
+
+  <% if !@videos["items"].blank? %>
+
   <div class="d-flex justify-content-center">
     <div class="media pt-4 pl-4 pr-4 align-items-center">
       <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-4', alt: 'Videos Icon', style: '' %>
@@ -18,4 +21,7 @@
   <div class="content-section-copy-dark recipe-copy text-center pt-4 pb-4">
     <%= link_to t("navigation.view_all_videos"), videos_path %>
   </div>
+
+  <% end %>
+
 </div>
