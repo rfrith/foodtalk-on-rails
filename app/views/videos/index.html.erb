@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <% if !@playlists.blank? && !@videos.blank? %>
+  <% if !@playlists.blank? && !@videos.blank? && !@playlists["items"].blank? %>
   <div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
     <div class="flex-col d-flex justify-content-center">
       <div class="text-center mt-0">
@@ -28,7 +28,7 @@
   </div>
   <% end %>
 
-  <% if !@videos.blank? %>
+  <% if !@videos.blank? && !@videos["items"].blank? %>
   <div class="grid pt-3">
     <% @videos["items"].each do |video| %>
       <%= render partial: "videos/video_card", locals: {video: video} %>
