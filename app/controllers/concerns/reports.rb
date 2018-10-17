@@ -51,7 +51,7 @@ module Reports
         values = []
 
         #skip users based on presence of eligible argument
-        next if !eligible.nil? and u.is_eligible? != eligible
+        next if !eligible.nil? and u.is_eligible? != eligible #must check for .nil? because .blank? will return true for false value
 
         groups.each do |g|
 

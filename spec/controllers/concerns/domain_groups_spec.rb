@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-class FakeController < ApplicationController
+class DomainGroupsSpec < ApplicationController
   include DomainGroups
 end
 
-describe FakeController do
+describe DomainGroupsSpec do
 
   include_context "project setup"
 

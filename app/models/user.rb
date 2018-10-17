@@ -38,8 +38,17 @@ class User < ApplicationRecord
     groups << group unless tags.include?(tag)
   end
 
+  #TODO: is first condition necesary?
   def is_admin?
-    groups.include?(Group.find_by_name(Group::ADMIN))
+    admin = false
+    if (groups.include?(Group.find_by_name(Group::ADMIN)))
+      admin = true
+    elsif (groups.any? {|g| g[:name] == Group::ADMIN})
+      admin =  true
+    end
+
+    return admin
+
   end
 
   def name

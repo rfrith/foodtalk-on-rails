@@ -15,11 +15,13 @@ RSpec.shared_context "project setup" do
 
 
   #groups
-  let(:admin_group) { FactoryBot.create(:group, :admin) }
-  let(:mhc) { FactoryBot.create(:group, :mhc) }
+  let!(:admin_group) { FactoryBot.create(:group, :admin) }
+  let!(:mhc) { FactoryBot.create(:group, :mhc) }
 
   #racial identities
-  let(:white) { FactoryBot.create(:racial_identity, :white) }
-  let(:black) { FactoryBot.create(:racial_identity, :black) }
+  let!(:white) { FactoryBot.create(:racial_identity, :white) }
+  let!(:black) { FactoryBot.create(:racial_identity, :black) }
+
+  let!(:tanf) { FactoryBot.create(:federal_assistance, :tanf)}
 
 end
