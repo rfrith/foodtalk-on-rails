@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       if @current_user.valid?
 
         #add user to group based on domain
-        add_user_to_domain_group(@current_user, request.host)
+        add_user_to_domain_group(@current_user, criteria: :domain, value: request.host)
 
         mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
         #initially subscribe user to all active lists

@@ -14,9 +14,9 @@ FactoryBot.define do
     end
 
     trait :hhip do
-      name "hhip"
+      name "hancock-health-improvement-partnership"
       domain "hhip.foodtalk.org"
-      title "hhip"
+      title "Hanckock Health Improvement Partnership "
     end
 
   end

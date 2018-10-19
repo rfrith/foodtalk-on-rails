@@ -21,10 +21,9 @@ module DomainGroups
     return nil
   end
 
-  def user_belongs_to_domain_group(user, group_id)
-    return user.groups.exists?(name: group_id)
+  def user_belongs_to_domain_group(user, criteria:, value:)
+    return user.groups.exists?(criteria => value)
   end
-
 
   def get_domain_group_logo(host)
     DOMAIN_GROUPS.each do |entry|
@@ -46,8 +45,8 @@ module DomainGroups
     return nil
   end
 
-  def add_user_to_domain_group(user, domain)
-    group = Group.find_by(domain: domain)
+  def add_user_to_domain_group(user, criteria:, value:)
+    group = Group.find_by(criteria => value)
     user.groups << group unless group.nil? or user.groups.include?(group)
   end
 

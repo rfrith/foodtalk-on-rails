@@ -17,6 +17,7 @@ RSpec.shared_context "project setup" do
   #groups
   let!(:admin_group) { FactoryBot.create(:group, :admin) }
   let!(:mhc) { FactoryBot.create(:group, :mhc) }
+  let!(:hhip) { FactoryBot.create(:group, :hhip) }
 
   #racial identities
   let!(:white) { FactoryBot.create(:racial_identity, :white) }

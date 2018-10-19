@@ -42,18 +42,21 @@ FactoryBot.define do
     #enrollments
 
     trait :with_food_etalk_enrollment do
+      zip_code 30601
       after(:create) do |user|
         FactoryBot.create(:course_enrollment, :food_etalk_started, user: user)
       end
     end
 
     trait :with_better_u_enrollment do
+      zip_code 30601
       after(:create) do |user|
         FactoryBot.create(:course_enrollment, :better_u_started, user: user)
       end
     end
 
     trait :has_completed_food_etalk do
+      zip_code 30601
       after(:create) do |user|
         FactoryBot.create(:course_enrollment, :your_food_your_choice_completed, user: user)
         FactoryBot.create(:course_enrollment, :keep_your_pressure_in_check_completed, user: user)
@@ -65,6 +68,7 @@ FactoryBot.define do
     end
 
     trait :has_completed_better_u do
+      zip_code 30601
       after(:create) do |user|
         FactoryBot.create(:course_enrollment, :keeping_track_completed, user: user)
         FactoryBot.create(:course_enrollment, :no_thanks_im_sweet_enough_completed, user: user)

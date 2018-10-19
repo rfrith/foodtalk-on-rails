@@ -14,20 +14,23 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents[0][0]).to eq "admin"
-    expect(csv_contents[0][1]).to eq "mercy-health-center"
-    expect(csv_contents[0][2]).to eq "signup_date"
-    expect(csv_contents[0][3]).to eq "uid"
-    expect(csv_contents[0][4]).to eq "is_eligible"
-    expect(csv_contents[0][5]).to eq "first_name"
-    expect(csv_contents[0][6]).to eq "last_name"
-    expect(csv_contents[0][7]).to eq "email"
-    expect(csv_contents[0][8]).to eq "gender"
-    expect(csv_contents[0][9]).to eq "age"
-    expect(csv_contents[0][10]).to eq "zip_code"
-    expect(csv_contents[0][11]).to eq "is_hispanic_or_latino"
+    expect(csv_contents.size).to eq 5
 
-    current_index = 12
+    expect(csv_contents[0][0]).to eq "admin"
+    expect(csv_contents[0][1]).to eq "hancock-health-improvement-partnership"
+    expect(csv_contents[0][2]).to eq "mercy-health-center"
+    expect(csv_contents[0][3]).to eq "signup_date"
+    expect(csv_contents[0][4]).to eq "uid"
+    expect(csv_contents[0][5]).to eq "is_eligible"
+    expect(csv_contents[0][6]).to eq "first_name"
+    expect(csv_contents[0][7]).to eq "last_name"
+    expect(csv_contents[0][8]).to eq "email"
+    expect(csv_contents[0][9]).to eq "gender"
+    expect(csv_contents[0][10]).to eq "age"
+    expect(csv_contents[0][11]).to eq "zip_code"
+    expect(csv_contents[0][12]).to eq "is_hispanic_or_latino"
+
+    current_index = 13
 
     RacialIdentity.all.each_with_index do |ri, index|
       element = csv_contents[0][(current_index + index)]
@@ -54,23 +57,103 @@ describe ReportsSpec do
     current_index += LearningModules::BETTER_U.size
 
     LearningModules::FOOD_ETALK.each_with_index do |m, index|
-      expect(csv_contents[0][current_index + index]).to eq m[:id].gsub("/", "_").gsub("#", "_") + "_started"
+      element = csv_contents[0][(current_index + index)]
+      expect(element).to eq m[:id].gsub("/", "_").gsub("#", "_") + "_started"
       current_index += 1
-      expect(csv_contents[0][current_index + index]).to eq m[:id].gsub("/", "_").gsub("#", "_") + "_completed"
+      element2 = csv_contents[0][(current_index + index)]
+      expect(element2).to eq m[:id].gsub("/", "_").gsub("#", "_") + "_completed"
     end
 
     current_index += LearningModules::FOOD_ETALK.size
 
     VideoSurveys::MAP_VIDEOS_TO_SURVEYS.each_with_index do |vs, index|
-      expect(csv_contents[0][current_index + index]).to eq vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_started"
+      element = csv_contents[0][(current_index + index)]
+      expect(element).to eq vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_started"
       current_index += 1
-      expect(csv_contents[0][current_index + index]).to eq vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_completed"
+      element2 = csv_contents[0][(current_index + index)]
+      expect(element2).to eq vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_completed"
     end
 
   end
 
-  it "creates data values properly" do
+  it "creates data values properly for user_with_food_etalk_enrollment" do
     #TODO: verify data values are correct
+
+    FactoryBot.reload
+
+    users = [user_with_food_etalk_enrollment]
+    csv_string = subject.generate_report_as_csv(users)
+    csv_contents = CSV.parse(csv_string)
+
+    expect(csv_contents[1][0]).to eq "0" #"admin"
+    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
+    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
+    expect((csv_contents[1][3] == user_with_food_etalk_enrollment.created_at.to_s)).to eq true #"signup_date"
+    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
+    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
+    expect(csv_contents[1][6]).to eq "Test" #"first_name"
+    expect(csv_contents[1][7]).to eq "User" #"last_name"
+    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
+    expect(csv_contents[1][9]).to eq "male" #"gender"
+    expect(csv_contents[1][10]).to eq "21" #"age"
+    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
+    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+
+    current_index = 13
+
+    RacialIdentity.all.each_with_index do |ri, index|
+      if(ri.name == "white")
+        element = csv_contents[1][(current_index + index)]
+        expect(element).to eq "1"
+      end
+    end
+
+    current_index += RacialIdentity.all.size
+
+    FederalAssistance.all.each_with_index do |fa, index|
+      element = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+    end
+
+    current_index += FederalAssistance.all.size
+
+    LearningModules::BETTER_U.each_with_index do |m, index|
+      element = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+      current_index += 1
+      element2 = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+    end
+
+    current_index += LearningModules::BETTER_U.size
+
+    LearningModules::FOOD_ETALK.each_with_index do |m, index|
+      element = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+      current_index += 1
+      element2 = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+    end
+
+    current_index += LearningModules::FOOD_ETALK.size
+
+    VideoSurveys::MAP_VIDEOS_TO_SURVEYS.each_with_index do |vs, index|
+      element = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+      current_index += 1
+      element2 = csv_contents[1][(current_index + index)]
+      expect(element).to eq "0"
+    end
+
+
+
+
+
+
+
+
+
+
 
   end
 
@@ -80,7 +163,7 @@ describe ReportsSpec do
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 2 #1 header row and 1 data row (exludes ineligble users)
-    expect(csv_contents[1][4]).to eq "1"
+    expect(csv_contents[1][5]).to eq "1"
   end
 
   it "deals with eligible flag false" do
@@ -89,7 +172,7 @@ describe ReportsSpec do
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 2 #1 header row and 1 data row (exludes eligble users)
-    expect(csv_contents[1][4]).to eq "0"
+    expect(csv_contents[1][5]).to eq "0"
   end
 
 end
