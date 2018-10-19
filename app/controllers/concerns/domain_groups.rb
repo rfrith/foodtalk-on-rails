@@ -46,9 +46,9 @@ module DomainGroups
     return nil
   end
 
-  def add_user_to_domain_group(user, group_id)
-    group = Group.find_by_name(group_id)
-    user.groups << group unless group.blank? or user.groups.include?(group)
+  def add_user_to_domain_group(user, domain)
+    group = Group.find_by(domain: domain)
+    user.groups << group unless group.nil? or user.groups.include?(group)
   end
 
   module_function :user_belongs_to_domain_group, :get_domain_group_logo, :get_domain_group_icon
