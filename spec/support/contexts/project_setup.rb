@@ -11,7 +11,11 @@ RSpec.shared_context "project setup" do
   let(:user_with_food_etalk_enrollment) { FactoryBot.create(:user, :with_food_etalk_enrollment) }
   let(:user_with_better_u_enrollment) { FactoryBot.create(:user, :with_better_u_enrollment) }
   let(:user_has_completed_food_etalk) { FactoryBot.create(:user, :has_completed_food_etalk) }
-  let(:user_has_completed_better_u) { FactoryBot.create(:user, :has_completed_better_u) }
+  let(:user_has_completed_better_u) { FactoryBot.create(:user, :has_completed_better_u) }\
+
+  #users with survey history
+  let(:user_has_started_video_survey_sweet_deceit) { FactoryBot.create(:user, :has_started_video_survey_sweet_deceit) }
+  let(:user_has_completed_video_survey_sweet_deceit) { FactoryBot.create(:user, :has_completed_video_survey_sweet_deceit) }
 
 
   #groups
