@@ -64,7 +64,7 @@ module Reports
           end
         end
 
-        values += [u.created_at, u.uid, (u.is_eligible? ? 1 : 0), u.first_name, u.last_name, u.email, u.gender, u.age, u.zip_code, u.is_hispanic_or_latino]
+        values += [u.created_at.to_s, u.uid, (u.is_eligible? ? 1 : 0), u.first_name, u.last_name, u.email, u.gender, u.age, u.zip_code, u.is_hispanic_or_latino]
 
         RacialIdentity.all.each do |ri|
           if u.racial_identities.exists?(ri.id)
@@ -117,7 +117,7 @@ module Reports
             values << 0
           end
 
-          if u.online_learning_histories.where("name LIKE ?", "%#{vs[:survey_args][:origin]}%#completed").size > 0
+          if u.survey_histories.where("name LIKE ?", "%#{vs[:survey_args][:origin]}%#completed").size > 0
             values << 1
           else
             values << 0
