@@ -316,12 +316,16 @@ class ReportsController < ApplicationController
     where_string += "users.created_at >= :signup_start AND users.created_at <= :signup_end"
     where_params.merge! signup_start: signup_start, signup_end: signup_end
 
-    if(ActiveRecord::Type::Boolean.new.cast(params[:foodtalk_users]))
+    process_foodtalk_users = ActiveRecord::Type::Boolean.new.cast(params[:foodtalk_users])
+
+    if(process_foodtalk_users)
       users.push(User.not_in_group.where(where_string, where_params))
       users.flatten!
     end
 
-    if(ActiveRecord::Type::Boolean.new.cast(params[:extension_employees]))
+    process_extension_employees = ActiveRecord::Type::Boolean.new.cast(params[:extension_employees])
+
+    if(process_extension_employees)
       condition = " AND federal_assistances.name = :federal_assistances"
       params = {federal_assistances: "Extension Employee"}.merge where_params
       ext_emp = User.joins(:federal_assistances).where(where_string + condition, params)
@@ -329,14 +333,16 @@ class ReportsController < ApplicationController
       users.flatten!
     end
 
-    if(!domain_groups.blank?)
+    process_domain_groups = !domain_groups.blank?
+
+    if(process_domain_groups)
       domain_groups.each do |dg|
         users.push(dg.users.where(where_string, where_params))
       end
       users.flatten!
     end
 
-    if(users.blank?)
+    if(!process_foodtalk_users && !process_extension_employees && !process_domain_groups)
       users = User.where(where_string, where_params)
     end
 
