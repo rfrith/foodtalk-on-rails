@@ -345,7 +345,7 @@ describe ReportsSpec do
     #TODO IMPLEMENT ME!
   end
 
-  
+
   private
 
   def check_common_columns(csv_contents, users)

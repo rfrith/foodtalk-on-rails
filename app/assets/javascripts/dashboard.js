@@ -40,6 +40,12 @@ function resizeCharts () {
     }
 }
 
+
+function show_spinner() {
+    $("#nav-tabContent").hide();
+    $("#loader").show();
+}
+
 //track current tab in admin>stats dashboard
 //also fix to redraw chart after selecting a Bootstrap tab
 $(function(){

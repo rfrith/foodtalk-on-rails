@@ -218,22 +218,27 @@
 
 
     function onReadyUsersByMonthInDateRangeChart() {
+        $("#loader").hide();
         var divId = "#" + usersByMonthInDateRangeChart.getContainerId();
         addMouseEvents(usersByMonthInDateRangeChart, divId);
     }
     function onReadyUsersByGroupInDateRangeChart() {
+        $("#loader").hide();
         var divId = "#" + usersByGroupInDateRangeChart.getContainerId();
         addMouseEvents(usersByGroupInDateRangeChart, divId);
     }
     function onReadyUsersByGroupAndMonthInDateRangeChart() {
+        $("#loader").hide();
         var divId = "#" + usersByGroupAndMonthInDateRangeChart.getContainerId();
         addMouseEvents(usersByGroupAndMonthInDateRangeChart, divId);
     }
     function onReadyUserEligibilityByRangeChart() {
+        $("#loader").hide();
         var divId = "#" + userEligibilityByRangeChart.getContainerId();
         addMouseEvents(userEligibilityByRangeChart, divId);
     }
     function onReadyUserEligibilityByRangeAndGroupChart() {
+        $("#loader").hide();
         var divId = "#" + userEligibilityByRangeAndGroupChart.getContainerId();
         addMouseEvents(userEligibilityByRangeAndGroupChart, divId);
     }
