@@ -37,6 +37,11 @@ class DashboardController < ApplicationController
 
     end
 
-    @subscriptions = all_enabled_lists
+    begin
+      @subscriptions = all_enabled_lists
+    rescue
+      @subscriptions = []
+    end
+
   end
 end

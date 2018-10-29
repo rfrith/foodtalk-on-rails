@@ -107,22 +107,7 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents[1][0]).to eq "0" #"admin"
-    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
-    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
-
-    #using user_has_completed_food_etalk causes issues here...
-    expect(csv_contents[1][3]).to eq users.first.created_at.to_s #"signup_date"
-
-    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
-    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
-    expect(csv_contents[1][6]).to eq "Test" #"first_name"
-    expect(csv_contents[1][7]).to eq "User" #"last_name"
-    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
-    expect(csv_contents[1][9]).to eq "male" #"gender"
-    expect(csv_contents[1][10]).to eq "21" #"age"
-    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
-    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+    check_common_columns(csv_contents, users)
 
     current_index = 13
 
@@ -180,23 +165,7 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents[1][0]).to eq "0" #"admin"
-    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
-    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
-
-    #using user_has_completed_food_etalk causes issues here...
-    expect(csv_contents[1][3]).to eq users.first.created_at.to_s #"signup_date"
-
-
-    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
-    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
-    expect(csv_contents[1][6]).to eq "Test" #"first_name"
-    expect(csv_contents[1][7]).to eq "User" #"last_name"
-    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
-    expect(csv_contents[1][9]).to eq "male" #"gender"
-    expect(csv_contents[1][10]).to eq "21" #"age"
-    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
-    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+    check_common_columns(csv_contents, users)
 
     current_index = 13
 
@@ -247,7 +216,6 @@ describe ReportsSpec do
   end
 
 
-
   it "creates data values properly for user_has_started_video_survey_sweet_deceit" do
 
     FactoryBot.reload
@@ -256,22 +224,7 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents[1][0]).to eq "0" #"admin"
-    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
-    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
-
-    #using user_has_completed_food_etalk causes issues here...
-    expect(csv_contents[1][3]).to eq users.first.created_at.to_s #"signup_date"
-
-    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
-    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
-    expect(csv_contents[1][6]).to eq "Test" #"first_name"
-    expect(csv_contents[1][7]).to eq "User" #"last_name"
-    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
-    expect(csv_contents[1][9]).to eq "male" #"gender"
-    expect(csv_contents[1][10]).to eq "21" #"age"
-    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
-    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+    check_common_columns(csv_contents, users)
 
     current_index = 13
 
@@ -325,9 +278,6 @@ describe ReportsSpec do
 
   end
 
-
-  #TODO: FINISH ME!!!!!
-
   it "creates data values properly for user_has_completed_video_survey_sweet_deceit" do
 
     FactoryBot.reload
@@ -336,22 +286,7 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents[1][0]).to eq "0" #"admin"
-    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
-    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
-
-    #using user_has_completed_food_etalk causes issues here...
-    expect(csv_contents[1][3]).to eq users.first.created_at.to_s #"signup_date"
-
-    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
-    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
-    expect(csv_contents[1][6]).to eq "Test" #"first_name"
-    expect(csv_contents[1][7]).to eq "User" #"last_name"
-    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
-    expect(csv_contents[1][9]).to eq "male" #"gender"
-    expect(csv_contents[1][10]).to eq "21" #"age"
-    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
-    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+    check_common_columns(csv_contents, users)
 
     current_index = 13
 
@@ -405,6 +340,32 @@ describe ReportsSpec do
 
   end
 
+  #ADD OTHER CASES FOR EXERCISE/COOKING VIDEOS?
+  it "tests other videos" do
+    #TODO IMPLEMENT ME!
+  end
+
+  
+  private
+
+  def check_common_columns(csv_contents, users)
+    expect(csv_contents[1][0]).to eq "0" #"admin"
+    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
+    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
+
+    #using user_has_completed_food_etalk causes issues here...
+    expect(csv_contents[1][3]).to eq users.first.created_at.to_s #"signup_date"
+
+    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
+    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
+    expect(csv_contents[1][6]).to eq "Test" #"first_name"
+    expect(csv_contents[1][7]).to eq "User" #"last_name"
+    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
+    expect(csv_contents[1][9]).to eq "male" #"gender"
+    expect(csv_contents[1][10]).to eq "21" #"age"
+    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
+    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+  end
 
 
 end

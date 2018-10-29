@@ -5,7 +5,13 @@
     <div class="d-flex justify-content-center content-section-title"><%=t("dashboard.newsletters.make_selection")%></div>
 
     <div id="user-form" class="d-flex justify-content-center">
-      <%= render :partial => "subscriptions/form" %>
+
+
+      <% if @subscriptions.blank? %>
+        <%= t "error" %>
+      <% else %>
+        <%= render :partial => "subscriptions/form" %>
+      <% end %>
     </div>
   </div>
 </div>

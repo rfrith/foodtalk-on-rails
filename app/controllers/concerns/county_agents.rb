@@ -14,7 +14,6 @@ module CountyAgents
           phone: "(706) 613-3640",
           snap_ed_supervisor: {name: "Jackie Dallas", email: "jdallas@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0146.jpg"},
           program_assistants: [
-              {name: "Shawanda Johnson", email: "snicolej@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0149.jpg"},
               {name: "Melanie Burton", email: "mburton@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/melanie_burton_100.jpg"}
           ]
       },
