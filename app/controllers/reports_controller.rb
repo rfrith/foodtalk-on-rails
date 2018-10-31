@@ -81,6 +81,8 @@ class ReportsController < ApplicationController
   def users_by_group_and_month_in_date_range_data_table
     authorize :report
 
+    data = {}
+
     #users filtered by date range
     users_in_date_range = User.created_in_range @start_date..@end_date
 
@@ -105,9 +107,8 @@ class ReportsController < ApplicationController
 
     else
       #TODO: DRY ME
-      data = {}
       (@start_date..@end_date).select{|date| date.day==1}.each do |date|
-        data.merge! Date::MONTHNAMES[date.month] => 0
+        data.merge! Date::MONTHNAMES[date.month] => [0]
       end
     end
 
