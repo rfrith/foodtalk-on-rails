@@ -35,7 +35,15 @@ FactoryBot.define do
     #groups
 
     trait :admin do
-      groups {[FactoryBot.create(:group, :admin)]}
+      role "admin"
+    end
+
+    trait :mhc do
+      groups {[FactoryBot.create(:group, :mhc)]}
+    end
+
+    trait :hhip do
+      groups {[FactoryBot.create(:group, :hhip)]}
     end
 
 

@@ -21,25 +21,14 @@ describe DomainGroupsSpec do
     end
 
     expect(result).to eq true
-
-
-
   end
 
 
   it "adds a user to domain group" do
-
     subject.add_user_to_domain_group(user, criteria: :domain, value: mhc.domain)
-
     expect(DomainGroups.user_belongs_to_domain_group(user, criteria: :name, value: mhc.name)).to eq true
     expect(DomainGroups.user_belongs_to_domain_group(user, criteria: :domain, value: mhc.domain)).to eq true
     expect(user.groups.exists?(name: mhc.name)).to eq true
-
-    #subject.add_user_to_domain_group(eligible_user, criteria: :name, value: hhip.name)
-    #expect(DomainGroups.user_belongs_to_domain_group(eligible_user, criteria: :name, value: hhip.name)).to eq true
-    #expect(DomainGroups.user_belongs_to_domain_group(eligible_user, criteria: :domain, value: hhip.domain)).to eq true
-    #expect(eligible_user.groups.exists?(name: hhip.name)).to eq true
-
   end
 
 end

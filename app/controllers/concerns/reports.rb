@@ -13,7 +13,9 @@ module Reports
 
     csv_string = CSV.generate do |csv|
 
-      #Group.where("name != '#{Group::ADMIN}'").each do |g|
+      column_names << "admin"
+      column_names << "group_admin"
+
       Group.order('name ASC').each do |g|
         groups << g
         column_names << g.name
@@ -52,6 +54,9 @@ module Reports
 
         #skip users based on presence of eligible argument
         next if !eligible.nil? and u.is_eligible? != eligible #must check for .nil? because .blank? will return true for false value
+
+        u.admin? ? values << 1 : values << 0
+        u.group_admin? ? values << 1 : values << 0
 
         groups.each do |g|
 

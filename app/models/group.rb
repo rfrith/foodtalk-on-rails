@@ -5,10 +5,12 @@ class Group < ApplicationRecord
 
   mount_uploader :logo, GroupLogoUploader
   mount_uploader :icon, GroupIconUploader
-
-  ADMIN = "admin"
   FOODTALK_USERS = "foodtalk-users"
 
   scope :administrators, -> { where("name = ?", ADMIN) }
+
+  def has_user(user)
+    users.include?(user)
+  end
 
 end

@@ -136,11 +136,11 @@ RSpec.describe  User,  type:  :model  do
 
   it "is_admin? = false" do
     user.groups = []
-    expect(user.is_admin?).to eq false
+    expect(user.admin?).to eq false
   end
 
   it "is_admin? = true" do
-    expect(admin_user.is_admin?).to eq true
+    expect(admin_user.admin?).to eq true
   end
 
   it "is_eligible? = true" do
@@ -167,7 +167,7 @@ RSpec.describe  User,  type:  :model  do
 
   it "group_names" do
     expect(user.group_names).to include "Foodtalk Users"
-    expect(admin_user.group_names).to include "Foodtalk Admin Group"
+    #TODO: add tests for other groups
   end
 
   it "racial_identities_names" do
@@ -201,16 +201,16 @@ RSpec.describe  User,  type:  :model  do
 
   it "not_in_group" do
     create_list(:user, 3)
-    create_list(:user, 3, :admin)
     expect(User.not_in_group.size).to eq 3
   end
 
   it "in_group" do
-    create_list(:user, 3, :admin)
-    expect(User.in_group(Group::ADMIN).size).to eq 3
-    expect(User.in_group(Group::ADMIN)).to include admin_user
-    expect(User.in_group(Group::ADMIN)).to_not include user
-    expect(User.all.size).to eq 5
+    #TODO use another group
+    create_list(:user, 1, :mhc)
+    create_list(:user, 1, :hhip)
+
+    expect(User.in_group("mercy-health-center").size).to eq 1
+    expect(User.in_group("hancock-health-improvement-partnership").size).to eq 1
   end
 
 end

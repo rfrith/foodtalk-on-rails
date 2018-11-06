@@ -308,25 +308,42 @@ class ReportsController < ApplicationController
 
 
     #build where clause
-    #
-    # TODO: filter out any user in admin group
-    #
     where_string = ""
     where_params = {}
 
     where_string += "users.created_at >= :signup_start AND users.created_at <= :signup_end"
     where_params.merge! signup_start: signup_start, signup_end: signup_end
 
+    process_all = true
+
     process_foodtalk_users = ActiveRecord::Type::Boolean.new.cast(params[:foodtalk_users])
 
     if(process_foodtalk_users)
+      process_all = false
       users.push(User.not_in_group.where(where_string, where_params))
+      users.flatten!
+    end
+
+    process_admin_users = ActiveRecord::Type::Boolean.new.cast(params[:admin_users])
+
+    if(process_admin_users)
+      process_all = false
+      users.push(User.admin)
+      users.flatten!
+    end
+
+    process_group_admin_users = ActiveRecord::Type::Boolean.new.cast(params[:group_admin_users])
+
+    if(process_group_admin_users)
+      process_all = false
+      users.push(User.group_admin)
       users.flatten!
     end
 
     process_extension_employees = ActiveRecord::Type::Boolean.new.cast(params[:extension_employees])
 
     if(process_extension_employees)
+      process_all = false
       condition = " AND federal_assistances.name = :federal_assistances"
       params = {federal_assistances: "Extension Employee"}.merge where_params
       ext_emp = User.joins(:federal_assistances).where(where_string + condition, params)
@@ -337,13 +354,14 @@ class ReportsController < ApplicationController
     process_domain_groups = !domain_groups.blank?
 
     if(process_domain_groups)
+      process_all = false
       domain_groups.each do |dg|
         users.push(dg.users.where(where_string, where_params))
       end
       users.flatten!
     end
 
-    if(!process_foodtalk_users && !process_extension_employees && !process_domain_groups)
+    if(process_all)
       users = User.where(where_string, where_params)
     end
 

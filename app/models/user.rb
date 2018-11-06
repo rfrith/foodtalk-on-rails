@@ -23,7 +23,9 @@ class User < ApplicationRecord
   #TODO: improve this
   ELIGIBLE_ZIP_CODES = [30458, 31001, 30021, 31634, 31030, 31063, 30660, 30436, 31549, 31794, 30756, 31642, 30631, 30250, 30289, 30471, 30428, 30070, 30434, 30442, 30531, 30401, 30451, 31650, 31747, 30828, 30830, 31533, 31601, 31815, 31061, 31068, 31627, 31087, 39828, 31090, 31547, 30456, 30821, 31780, 30669, 31901, 31730, 31750, 30464, 31821, 39842, 31044, 31217, 30504, 31552, 31051, 30337, 30071, 31716, 39841, 30575, 31705, 31812, 30079, 31903, 30746, 39861, 31765, 39817, 31075, 31701, 30032, 30340, 31058, 31645, 31408, 31085, 31561, 31709, 31830, 31816, 30285, 31743, 39840, 39834, 31625, 30607, 31015, 30238, 30303, 30336, 30315, 30311, 30313, 30314, 30354, 31006, 30093, 30439, 30083, 30446, 30060, 30507, 30477, 30501, 30147, 30450, 39846, 39867, 30823, 31719, 30812, 31501, 31415, 30753, 30805, 31768, 30833, 31027, 31562, 31779, 31781, 31009, 31065, 31823, 31037, 31041, 31810, 31050, 31055, 31204, 30562, 31206, 39824, 39827, 39826, 31637, 31081, 31084, 31315, 30629, 30310, 30601, 30665, 30605, 31647, 31774, 31404, 31756, 31775, 31629, 31520, 30420, 39851, 30906, 30012, 39866, 31630, 31566, 31091, 31648, 30901, 30297, 30168, 31201, 31062, 31519, 31401, 30453, 31825]
 
+  #WARNING!!!! DO NOT change the order of enum values once in use as they are stored as integer in DB specifying position in list
   enum gender: [:male, :female]
+  enum role: [:user, :group_admin, :admin]
 
 
   validates_presence_of :uid, :first_name, :last_name, :age, :email, :gender, :zip_code
@@ -34,21 +36,21 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :racial_identities, presence: true
 
+
+  after_initialize do
+    if self.new_record?
+      self.role ||= :user
+    end
+  end
+
+
   def group=(group)
     groups << group unless tags.include?(tag)
   end
 
   #TODO: is first condition necesary?
   def is_admin?
-    admin = false
-    if (groups.include?(Group.find_by_name(Group::ADMIN)))
-      admin = true
-    elsif (groups.any? {|g| g[:name] == Group::ADMIN})
-      admin =  true
-    end
-
-    return admin
-
+    return self.admin?
   end
 
   def name
@@ -129,6 +131,7 @@ class User < ApplicationRecord
     end
   end
 
+
   private
 
   def is_zip_code_eligible?
@@ -138,6 +141,5 @@ class User < ApplicationRecord
   def has_received_federal_assistance?
     return (federal_assistances.size > 0)
   end
-
 
 end

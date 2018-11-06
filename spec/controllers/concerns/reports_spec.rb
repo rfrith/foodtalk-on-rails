@@ -17,20 +17,21 @@ describe ReportsSpec do
     expect(csv_contents.size).to eq 5
 
     expect(csv_contents[0][0]).to eq "admin"
-    expect(csv_contents[0][1]).to eq "hancock-health-improvement-partnership"
-    expect(csv_contents[0][2]).to eq "mercy-health-center"
-    expect(csv_contents[0][3]).to eq "signup_date"
-    expect(csv_contents[0][4]).to eq "uid"
-    expect(csv_contents[0][5]).to eq "is_eligible"
-    expect(csv_contents[0][6]).to eq "first_name"
-    expect(csv_contents[0][7]).to eq "last_name"
-    expect(csv_contents[0][8]).to eq "email"
-    expect(csv_contents[0][9]).to eq "gender"
-    expect(csv_contents[0][10]).to eq "age"
-    expect(csv_contents[0][11]).to eq "zip_code"
-    expect(csv_contents[0][12]).to eq "is_hispanic_or_latino"
+    expect(csv_contents[0][1]).to eq "group_admin"
+    expect(csv_contents[0][2]).to eq "hancock-health-improvement-partnership"
+    expect(csv_contents[0][3]).to eq "mercy-health-center"
+    expect(csv_contents[0][4]).to eq "signup_date"
+    expect(csv_contents[0][5]).to eq "uid"
+    expect(csv_contents[0][6]).to eq "is_eligible"
+    expect(csv_contents[0][7]).to eq "first_name"
+    expect(csv_contents[0][8]).to eq "last_name"
+    expect(csv_contents[0][9]).to eq "email"
+    expect(csv_contents[0][10]).to eq "gender"
+    expect(csv_contents[0][11]).to eq "age"
+    expect(csv_contents[0][12]).to eq "zip_code"
+    expect(csv_contents[0][13]).to eq "is_hispanic_or_latino"
 
-    current_index = 13
+    current_index = 14
 
     RacialIdentity.all.each_with_index do |ri, index|
       element = csv_contents[0][(current_index + index)]
@@ -85,7 +86,7 @@ describe ReportsSpec do
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 2 #1 header row and 1 data row (exludes ineligble users)
-    expect(csv_contents[1][5]).to eq "1"
+    expect(csv_contents[1][6]).to eq "1"
   end
 
 
@@ -95,7 +96,7 @@ describe ReportsSpec do
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 2 #1 header row and 1 data row (exludes eligble users)
-    expect(csv_contents[1][5]).to eq "0"
+    expect(csv_contents[1][6]).to eq "0"
   end
 
 
@@ -109,7 +110,7 @@ describe ReportsSpec do
 
     check_common_columns(csv_contents, users)
 
-    current_index = 13
+    current_index = 14
 
     RacialIdentity.all.each_with_index do |ri, index|
       if(ri.name == "white")
@@ -167,7 +168,7 @@ describe ReportsSpec do
 
     check_common_columns(csv_contents, users)
 
-    current_index = 13
+    current_index = 14
 
     RacialIdentity.all.each_with_index do |ri, index|
       if(ri.name == "white")
@@ -226,7 +227,7 @@ describe ReportsSpec do
 
     check_common_columns(csv_contents, users)
 
-    current_index = 13
+    current_index = 14
 
     RacialIdentity.all.each_with_index do |ri, index|
       if(ri.name == "white")
@@ -288,7 +289,7 @@ describe ReportsSpec do
 
     check_common_columns(csv_contents, users)
 
-    current_index = 13
+    current_index = 14
 
     RacialIdentity.all.each_with_index do |ri, index|
       if(ri.name == "white")
@@ -350,21 +351,22 @@ describe ReportsSpec do
 
   def check_common_columns(csv_contents, users)
     expect(csv_contents[1][0]).to eq "0" #"admin"
-    expect(csv_contents[1][1]).to eq "0" #"hancock-health-improvement-partnership"
-    expect(csv_contents[1][2]).to eq "0" #"mercy-health-center"
+    expect(csv_contents[1][1]).to eq "0" #"group_admin"
+    expect(csv_contents[1][2]).to eq "0" #"hancock-health-improvement-partnership"
+    expect(csv_contents[1][3]).to eq "0" #"mercy-health-center"
 
     #using user_has_completed_food_etalk causes issues here...
-    expect(csv_contents[1][3]).to eq users.first.created_at.to_s #"signup_date"
+    expect(csv_contents[1][4]).to eq users.first.created_at.to_s #"signup_date"
 
-    expect(csv_contents[1][4]).to eq "uid|1" #"uid"
-    expect(csv_contents[1][5]).to eq "1" #"is_eligible"
-    expect(csv_contents[1][6]).to eq "Test" #"first_name"
-    expect(csv_contents[1][7]).to eq "User" #"last_name"
-    expect(csv_contents[1][8]).to eq "tester1@example.com" #"email"
-    expect(csv_contents[1][9]).to eq "male" #"gender"
-    expect(csv_contents[1][10]).to eq "21" #"age"
-    expect(csv_contents[1][11]).to eq "30601" #"zip_code"
-    expect(csv_contents[1][12]).to eq "false" #"is_hispanic_or_latino"
+    expect(csv_contents[1][5]).to eq "uid|1" #"uid"
+    expect(csv_contents[1][6]).to eq "1" #"is_eligible"
+    expect(csv_contents[1][7]).to eq "Test" #"first_name"
+    expect(csv_contents[1][8]).to eq "User" #"last_name"
+    expect(csv_contents[1][9]).to eq "tester1@example.com" #"email"
+    expect(csv_contents[1][10]).to eq "male" #"gender"
+    expect(csv_contents[1][11]).to eq "21" #"age"
+    expect(csv_contents[1][12]).to eq "30601" #"zip_code"
+    expect(csv_contents[1][13]).to eq "false" #"is_hispanic_or_latino"
   end
 
 
