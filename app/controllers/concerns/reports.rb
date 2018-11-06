@@ -15,6 +15,7 @@ module Reports
 
       column_names << "admin"
       column_names << "group_admin"
+      column_names << "test_user"
 
       Group.order('name ASC').each do |g|
         groups << g
@@ -57,6 +58,7 @@ module Reports
 
         u.admin? ? values << 1 : values << 0
         u.group_admin? ? values << 1 : values << 0
+        u.test_user? ? values << 1 : values << 0
 
         groups.each do |g|
 

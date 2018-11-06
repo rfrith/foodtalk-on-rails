@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   #WARNING!!!! DO NOT change the order of enum values once in use as they are stored as integer in DB specifying position in list
   enum gender: [:male, :female]
-  enum role: [:user, :group_admin, :admin]
+  enum role: [:user, :group_admin, :admin, :test_user]
 
 
   validates_presence_of :uid, :first_name, :last_name, :age, :email, :gender, :zip_code

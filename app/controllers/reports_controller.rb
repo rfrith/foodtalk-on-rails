@@ -340,6 +340,14 @@ class ReportsController < ApplicationController
       users.flatten!
     end
 
+    process_test_users = ActiveRecord::Type::Boolean.new.cast(params[:test_users])
+
+    if(process_test_users)
+      process_all = false
+      users.push(User.test_user)
+      users.flatten!
+    end
+
     process_extension_employees = ActiveRecord::Type::Boolean.new.cast(params[:extension_employees])
 
     if(process_extension_employees)

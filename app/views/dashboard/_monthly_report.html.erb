@@ -21,6 +21,11 @@
           <%= form.label :group_admin_users, class: "col-form-label-sm" %>
         </div>
 
+        <div class="form-check">
+          <%= form.check_box(:test_users, class: "form-check-input") %>
+          <%= form.label :test_users, class: "col-form-label-sm" %>
+        </div>
+
         <%= form.collection_check_boxes :group_ids, Group.all, :id, :name do |b| %>
           <div class="form-check">
             <%= b.label(:"data-value" => b.value, class: "col-form-label-sm") {b.check_box(class: "form-check-input") + b.text.titleize} %>
