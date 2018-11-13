@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
       blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories_exclude=#{recipes_slug_id}"))
       @blogs = JSON.parse blogs
 
-      categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories"))
+      categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories/?_embed&exclude=#{recipes_slug_id}"))
       @categories = JSON.parse categories
 
       recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories=#{recipes_slug_id}"))
