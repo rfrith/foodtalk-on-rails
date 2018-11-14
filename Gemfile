@@ -53,6 +53,7 @@ gem 'pundit'
 gem 'chartkick', '~> 2.3', '>= 2.3.5'
 gem 'groupdate'
 gem 'kaminari'
+gem 'lol_dba'
 
 
 #TODO: decide on

@@ -3,7 +3,7 @@ require 'csv'
 module Reports
   extend ActiveSupport::Concern
 
-  TYPES = [:activity]
+  TYPES ||= [:activity]
 
   def generate_report_as_csv(users, eligible=nil)
 

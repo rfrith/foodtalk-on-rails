@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031193904) do
+ActiveRecord::Schema.define(version: 20181114171826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20181031193904) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "type"], name: "index_activity_histories_on_id_and_type"
     t.index ["user_id"], name: "index_activity_histories_on_user_id"
   end
 
