@@ -36,7 +36,7 @@ es:
   error_occurred: "El siguiente error ha ocurrido:"
   changes_saved: "Cambios guardados."
   welcome: "¡Hola y bienvenido a Foodtalk.org! Tómese unos minutos para actualizar su perfil personal. Responda todas las preguntas a continuación y presione el botón \"Actualizar\" para continuar."
-  ask_for_feedback: "Sus comentarios son muy importantes para ayudarnos a mejorar la calidad de nuestro programa. Tómese unos minutos para completar la siguiente encuesta. Asegúrese de desplazarse hacia abajo y asegúrese de presionar el botón \"Enviar\" cuando haya terminado."
+  ask_for_feedback: "Sus comentarios son muy importantes para ayudarnos a mejorar la calidad de nuestro programa. Tómese unos minutos para completar la siguiente encuesta. Asegúrese de continuar hacia abajo y asegúrese de presionar el botón \"Enviar\" cuando haya terminado."
   thank_you: "¡Hola! Gracias por crear una cuenta en Foodtalk.org. Necesitamos hacerle algunas preguntas antes de que pueda comenzar."
   language_select_label: "English"
   language_select_value: "en"
@@ -51,7 +51,7 @@ es:
     blog: "Blog"
     recipes: "Recetas"
     videos: "Videos"
-    food_glossary: "Glosario de Alimentos"
+    food_glossary: "Lista de Alimentos"
     snap_ed_resources: "SNAP-Ed Recursos"
     attend_a_class: "Atender Una Clase"
     gis_resources: "GIS Recursos"
@@ -73,13 +73,13 @@ es:
   forms:
     submit: "Actualizar"
     generate: "Generar"
-    search_terms: "Términos de búsqueda..."
+    search_terms: "Búsqueda de términos..."
     search_submit: "Búsqueda"
 
   welcome:
     title: "¡Ayudando a los Georgianos a Comer Saludablemente y a Moverse!"
-    description: "¡FoodTalk.org ha sido creado especialmente para georgianos que desean ideas GRATUITAS sobre cómo mantener a sus familias sanas haciendo elecciones nutritivas de alimentos con un presupuesto ajustado!"
-    sign_up: "ahora suscríbase a nuestro boletín electrónico Food Talk y descubra si es elegible para el aprendizaje en línea gratuito."
+    description: "¡FoodTalk.org ha sido creado especialmente para georgianos que desean ideas GRATUITAS sobre cómo mantener a sus familias sanas haciendo elecciones nutritivos de alimentos con un presupuesto ajustado!"
+    sign_up: "ahora suscríbase a nuestro boletín electrónico Food Talk y descubra usted elegible para el aprendizaje en línea gratuito."
     read_more: "Lee Mas"
 
     blog:
@@ -99,7 +99,7 @@ es:
 
   recipes:
       name: "Recetas de Food Talk"
-      description: "¡Eche un Vistazo a Nuestras Ideas de Comidas Saludables, Deliciosas y Asequibles!"
+      description: "¡Eche un Vistazo a Nuestras Ideas de Comidas Saludables, Deliciosas y Economicas!"
       search: "Buscar Recetas"
 
   videos:
@@ -112,8 +112,8 @@ es:
 
   attend_a_class:
     name: "Asistir a Una Clase de Food Talk"
-    description_html: "Al asistir a una clase de Food Talk, aprenderás de un educador de nutrición cómo comer de forma más saludable, alimentar a tu familia con un presupuesto, mantener la seguridad de los alimentos y la mejor parte: aprenderás a preparar una nueva receta deliciosa. y llega a probarlo! ¡Llama o envía un correo electrónico hoy para encontrar una clase cerca de ti! <br> <br> Las clases de Food Talk se llevan a cabo actualmente en los siguientes condados. Póngase en contacto con uno de los miembros del personal que figuran a continuación para averiguar cómo puede unirse a una clase."
-    snap_ed_supervisor: "SNAP-Ed Inspector"
+    description_html: "Al asistir a una clase de Food Talk, aprenderás de un educador de nutrición cómo comer de forma más saludable, alimentar a tu familia con un presupuesto, mantener la seguridad de los alimentos y la mejor parte: aprenderás a preparar una nueva receta deliciosa y llega a probarla! ¡Llama o envía un correo electrónico hoy para encontrar una clase cerca de ti! <br> <br> Las clases de Food Talk se llevan a cabo actualmente en los siguientes condados. Póngase en contacto con uno de los miembros del personal que figuran a continuación para averiguar cómo puede unirse a una clase."
+    snap_ed_supervisor: "SNAP-Ed Supervisor"
     program_assistants: "Programa Asistente"
 
   gis_resources:
@@ -126,7 +126,7 @@ es:
     better_u:
       name: "Better U"
       tagline: "¡Aumenta tu conocimiento de la comida!"
-      description: "Food eTalk: Better U es una serie de sesiones interactivas destinadas a ayudarlo a identificar formas de hacer pequeñas elecciones de estilo de vida que lo conduzcan a una mejor U! Los participantes reciben incentivos gratuitos que promueven una alimentación saludable y un estilo de vida activo. ¡Prepárate para divertirte y aprender!"
+      description: "Food eTalk: Better U es una serie de sesiones interactivas destinadas a ayudarlo a identificar formas de hacer pequeñas elecciones de estilo de vida que lo conduzcan a una mejor U! Los participantes reciben incentivos reqalos que promueven una alimentación saludable y un estilo de vida activo. ¡Prepárate para divertirte y aprender!"
     food_etalk:
       name: "Food eTalk"
       tagline: "¡Elija alimentos más saludables!"
@@ -142,7 +142,7 @@ es:
     my_courses:
       label: "Mis Cursos"
       not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"
-      start_now: "comienza una lección ahora?"
+      start_now: "comienza una lección ahora"
       started:
         label: "Empezado"
         start_learning: "Comience a aprender haciendo clic en el título o la imagen de la lección."
@@ -154,7 +154,7 @@ es:
     my_info:
       label: "Mi Información"
       description: "Bienvenido a FoodTalk.org! Por favor, cuéntanos un poco sobre ti."
-      notice: "Por favor, rellene el siguiente formulario."
+      notice: "Por favor, complete el siguiente formulario."
     newsletters:
       label: "Boletines informativos"
       make_selection: "Elija de cuál de estas listas le gustaría recibir correos electrónicos."
@@ -164,16 +164,16 @@ es:
       user: 'Usuario'
     attributes:
       user:
-        first_name: 'Nombre de Pila'
+        first_name: 'Primer nombre'
         last_name: 'Apellido'
         email: "Email"
-        gender: "Género"
+        gender: "Sexo"
         age: "Años"
         zip_code: "Código Postal"
         is_hispanic_or_latino: "¿Te consideras hispano / latino?"
         racial_identities: "¿Con qué raza te identificas?"
         racial_identity_ids: "¿Con qué raza te identificas? Marque todo lo que corresponda."
-        federal_assistance_ids: "¿Alguna vez ha recibido usted o sus hijos alguna de las siguientes Asistencias Federales? Marque todo lo que corresponda."
+        federal_assistance_ids: "¿Alguna vez ha recibido usted o sus hijos alguna de las siguientes Programas de Asistencia Federales? Marque todo lo que corresponda."
     errors:
       message: "Por favor corrige los siguientes errores:"
       models:
@@ -198,9 +198,9 @@ es:
     better_u:
       keeping_track:
         title: "Hacer un Seguimiento"
-        description: "Mantener una de las mejores maneras de controlar su peso y la salud nutricional es observar el tamaño de la porción de sus alimentos. Aprenda a medir correctamente diferentes alimentos y algunos consejos útiles para hacer un seguimiento de cuánto está comiendo y bebiendo."
+        description: "Una de las mejores maneras de controlar su peso y la salud nutricional es observar el tamaño de la porción de sus alimentos. Aprenda a medir correctamente diferentes alimentos y algunos consejos útiles para hacer un control de cuánto está comiendo y bebiendo."
       no_thanks_im_sweet_enough:
-        title: "No, Gracias, Soy lo Basta Dulce"
+        title: "No, Gracias, Soy Basta Dulce"
         description: "¿Sabía que disminuir la cantidad de azúcar que come y bebe podría ayudar a prevenir el aumento de peso no deseado? Vea esta breve lección para aprender cómo puede disminuir el azúcar en las comidas y refrigerios de toda su familia."
       small_changes_equal_big_results:
         title: "Pequeños Cambios = Grandes Resultados"
@@ -216,11 +216,11 @@ es:
         title: "Mantenga Su Presión Bajo Control"
         description: "Todos lo hemos oído: demasiada sal o sodio no es bueno para nosotros. Pero ¿cómo diablos lo reducimos y todavía tenemos comida sabrosa? Consulte esta lección para obtener ideas sobre cómo reducir el sodio y aumentar la salud de su familia."
       color_me_healthy:
-        title: "Color Yo Mismo Sano"
-        description: "\"Sí, sí, sí. Se supone que mi familia debe comer más frutas y verduras, pero no es tan fácil como parece\". Lo conseguimos, comer frutas y verduras puede ser un desafío. ¡Por eso hemos dedicado esta lección a ayudarte! Compruébalo y compruébalo por ti mismo."
+        title: "Color Me Sano"
+        description: "\"Sí, sí, sí. Se supone que mi familia debe comer más frutas y verduras, pero no es tan fácil como parece\". Lo entendemos, comer frutas y verduras puede ser un desafío. ¡Por eso hemos dedicado esta lección a ayudarte! Compruébalo y compruébalo por ti mismo."
       eat_well_on_the_go:
         title: "Coma Bien en el Camino"
-        description: "Reconozcámoslo: ocurre comida rápida. Pero no tiene que hacer una parada para obtener una comida rápida; en esta lección aprenderá consejos para hacer comidas \"rápidas\" saludables y económicas en su hogar."
+        description: "Reconozcámoslo: comida rápida ocurre. Pero no tiene que hacer una parada para obtener una comida rápida; en esta lección aprenderá consejos para hacer comidas \"rápidas\" saludables y económicas en su hogar."
       keep_yourself_well:
         title: "Mantente Bien"
         description: "Nadie quiere un dolor de estómago después de haber comido alimentos no seguros. En esta lección, hablamos de la seguridad alimentaria y de cómo puede mantener sus alimentos familiares libres de enfermedades transmitidas por los alimentos."
