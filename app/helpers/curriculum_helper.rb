@@ -5,20 +5,15 @@ module CurriculumHelper
     course_enrollments = []
 
     curriculum.each do |c|
-
       if(!date_range.blank?)
         start_date=date_range.first
         end_date=date_range.last
         enrollment = user.course_enrollments.distinct.completed.updated_in_range(date_range).find_by_name(c[:id])
-        course_enrollments << enrollment unless enrollment.blank?
       else
         enrollment = user.course_enrollments.completed.find_by_name(c[:id])
         course_enrollments << enrollment unless enrollment.blank?
       end
-
-      if(course_enrollments.size > 0)
-        completed += 1
-      end
+      completed += 1 unless enrollment.blank?
     end
     return (completed == curriculum.size)
   end
