@@ -1,14 +1,4 @@
 <%= form_with url: update_subscriptions_url,format: :js do |f| %>
-  <%= hidden_field_tag "user[subscription_ids][]", nil %>
-  <div id="subscriptions-form-alert" class="alert visible" role="alert"></div>
-  <div class="mt-2">
-    <div>
-      <% @subscriptions.each do |key, value| %>
-        <%= check_box_tag "user[subscription_ids][]", key, email_is_subscribed_to_list(@current_user.email_as_md5_hash, key), id: key %>
-        <%= label_tag key, value.camelcase, class: 'ml-2' %>
-        <br>
-      <% end %>
-      <input type="submit" value="<%= t("forms.submit") %>" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
-    </div>
-  </div>
+  <%= render :partial => "subscriptions/list_subscriptions_checkboxes" %>
+  <input type="submit" value="<%= t("forms.submit") %>" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
 <% end %>

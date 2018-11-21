@@ -318,6 +318,23 @@ class ReportsController < ApplicationController
 
     process_foodtalk_users = ActiveRecord::Type::Boolean.new.cast(params[:foodtalk_users])
 
+    process_eligible = true
+    process_ineligible = true
+
+    eligibility_filter = params[:eligible]
+
+    case eligibility_filter
+    when "all"
+      process_eligible = true
+      process_ineligible = true
+    when "eligible"
+      process_eligible = true
+      process_ineligible = false
+    when "ineligible"
+      process_eligible = false
+      process_ineligible = true
+    end
+
     if(process_foodtalk_users)
       process_all = false
       users.push(User.not_in_group.where(where_string, where_params))
@@ -371,6 +388,14 @@ class ReportsController < ApplicationController
 
     if(process_all)
       users = User.where(where_string, where_params)
+    end
+
+    if(!process_eligible)
+      users.delete_if { |user| user.is_eligible?}
+    end
+
+    if(!process_ineligible)
+      users.delete_if { |user| user.is_ineligible?}
     end
 
     csv_string = generate_report_as_csv(users.uniq)

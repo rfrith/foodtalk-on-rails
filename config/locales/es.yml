@@ -156,6 +156,7 @@ es:
       description: "Bienvenido a FoodTalk.org! Por favor, cuéntanos un poco sobre ti."
       notice: "Por favor, complete el siguiente formulario."
     newsletters:
+      opt_in: "Me gustaría recibir correos electrónicos de FoodTalk.org sobre los siguientes temas"
       label: "Boletines informativos"
       make_selection: "Elija de cuál de estas listas le gustaría recibir correos electrónicos."
 

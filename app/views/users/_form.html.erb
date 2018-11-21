@@ -42,6 +42,7 @@
       <%= form.select :is_hispanic_or_latino, [['No', false], ['Yes', true]], { include_blank: false}, {id: :user_is_hispanic_or_latino, class: "form-control form-control-sm"} %>
     </div>
   </div>
+
   <div class="form-row mt-2">
     <div class="mr-5 col-auto">
       <%= form.label :racial_identity_ids, class: "col-form-label-sm" %>
@@ -60,6 +61,17 @@
       <% end %>
     </div>
   </div>
+
+  <div class="form-row">
+
+    <div class="col-auto">
+      <%= form.label "Newsletter Opt-in", class: "font-weight-bold col-form-label-md" %>
+      <div class=""><%= t("dashboard.newsletters.opt_in") %></div>
+      <%= render :partial => "subscriptions/list_subscriptions_checkboxes" %>
+    </div>
+
+  </div>
+
   <div class="actions pt-2">
     <%= form.submit t("forms.submit"), class: "btn btn-primary" %>
     <% link_to 'Cancel', show_dashboard_path, class: "btn btn-primary" %>

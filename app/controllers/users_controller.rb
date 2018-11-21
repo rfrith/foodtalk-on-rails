@@ -21,19 +21,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
       if @current_user.valid?
-
         #add user to group based on domain
         add_user_to_domain_group(@current_user, criteria: :domain, value: request.host)
-
-        mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
-        #initially subscribe user to all active lists
-        mailchimp_ids.split(',').each do |mid|
-          begin
-            subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
-          rescue => e
-            add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
-          end
-        end
+        update_mailchimp_subscriptions
       end
       format.js
     end
@@ -42,26 +32,15 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
+      update_mailchimp_subscriptions
       format.js
     end
   end
 
+  #TODO: REMOVE ME!
   def update_subscriptions
     respond_to do |format|
-      begin
-        mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
-        ids = user_subscription_params[:subscription_ids]
-        mailchimp_ids.split(',').each do |mid|
-          if(!ids.include?(mid))
-            un_subscribe_email_from_list(@current_user.email_as_md5_hash, mid)
-          else
-            subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
-          end
-        end
-        add_notification :success, t(:info), t("changes_saved"), 10000
-      rescue => e
-        add_notification :error, t(:error), "#{t("error_occurred")} #{e.to_s}", false
-      end
+      update_mailchimp_subscriptions
       format.js
     end
   end
@@ -77,7 +56,6 @@ class UsersController < ApplicationController
       @users = User.search_by_email(search_value).page params[:page]
     end
   end
-
 
   def find_by_group
     authorize @current_user
@@ -103,13 +81,6 @@ class UsersController < ApplicationController
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
   end
-
-
-
-
-
-
-
 
   def find_by_month
     authorize @current_user
@@ -150,8 +121,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   def find_by_eligibility
     authorize @current_user
     eligibility = params[:eligibility]
@@ -167,11 +136,6 @@ class UsersController < ApplicationController
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
   end
-
-
-
-
-
 
   def find_by_eligibility_and_group
     authorize @current_user
@@ -198,11 +162,6 @@ class UsersController < ApplicationController
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
   end
-
-
-
-
-
 
   def find_by_started_and_or_completed_curricula
     authorize @current_user
@@ -320,11 +279,31 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.fetch(:user, {})
-    params.require(:user).permit(:first_name, :last_name, :email, :gender, :age, :zip_code, :is_hispanic_or_latino, :racial_identity_ids =>[], :federal_assistance_ids => [], :subscription_ids => [])
+    params.require(:user).permit(:first_name, :last_name, :email, :gender, :age, :zip_code, :is_hispanic_or_latino, :newsletter_opt_in, :racial_identity_ids =>[], :federal_assistance_ids => [], :subscription_ids => [])
   end
 
   def user_subscription_params
     params.fetch(:user, {})
     params.require(:user).permit(:subscription_ids => [])
   end
+
+  def update_mailchimp_subscriptions
+    begin
+      mailchimp_ids = Rails.application.secrets.mailchimp_list_ids;
+      ids = user_subscription_params[:subscription_ids]
+      mailchimp_ids.split(',').each do |mid|
+        if(!ids.include?(mid))
+          un_subscribe_email_from_list(@current_user.email_as_md5_hash, mid)
+        else
+          subscribe_email_to_list(@current_user.email, mid, @current_user.first_name, @current_user.last_name)
+        end
+      end
+    rescue => e
+      #@current_user.errors.add(:subscription_ids, message: "#{t("error_occurred")} #{e.to_s}")
+      #add_notification :error, t(:error), "#{t("error_occurred")} #{e.to_s}", false
+      @current_user.errors.add(:base, :subscription_error, message: "#{t("error_occurred")} #{e.to_s}")
+    end
+  end
+
+
 end

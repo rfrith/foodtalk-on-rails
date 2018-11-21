@@ -2,66 +2,78 @@
   <%= form_with url: generate_report_path, local: true do |form| %>
 
     <div class="form-row">
-
-      <div class="form-col">
-        <%= form.label "Filter by Group Affiliation", class: "col-form-label-sm" %>
-
-        <div class="form-check">
-          <%= form.check_box(:foodtalk_users, class: "form-check-input") %>
-          <%= form.label :foodtalk_users, class: "col-form-label-sm" %>
-        </div>
-
-        <div class="form-check">
-          <%= form.check_box(:admin_users, class: "form-check-input") %>
-          <%= form.label :admin_users, class: "col-form-label-sm" %>
-        </div>
-
-        <div class="form-check">
-          <%= form.check_box(:group_admin_users, class: "form-check-input") %>
-          <%= form.label :group_admin_users, class: "col-form-label-sm" %>
-        </div>
-
-        <div class="form-check">
-          <%= form.check_box(:test_users, class: "form-check-input") %>
-          <%= form.label :test_users, class: "col-form-label-sm" %>
-        </div>
-
-        <%= form.collection_check_boxes :group_ids, Group.all, :id, :name do |b| %>
-          <div class="form-check">
-            <%= b.label(:"data-value" => b.value, class: "col-form-label-sm") {b.check_box(class: "form-check-input") + b.text.titleize} %>
-          </div>
-        <% end %>
-
-        <div class="form-check">
-          <%= form.check_box(:extension_employees, class: "form-check-input") %>
-          <%= form.label :extension_employees, class: "col-form-label-sm" %>
-        </div>
+      <div class="col-auto">
+        <%= form.label :start_date, class: "col-form-label-md font-weight-bold d-inline" %>
+        <%= select_date Date.today.beginning_of_month, prefix: :start_date, class: 'form-control form-control-sm' %>
       </div>
-
-    </div>
-
-    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label :end_date, class: "col-form-label-md font-weight-bold d-inline" %>
+        <%= select_date Date.today.end_of_month, prefix: :end_date, class: 'form-control form-control-sm' %>
+      </div>
       <div class="col-auto">
         <% form.label :report_type, class: "col-form-label-sm d-inline" %>
         <% form.select :report_type, Reports::TYPES.map {|k, v| [k.to_s.humanize.capitalize, k]}, {include_blank: false}, {autofocus: 'true', class: 'form-control form-control-sm'} %>
       </div>
-      <div class="col-auto">
-        <%= form.label :start_date, class: "col-form-label-sm d-inline" %>
-        <%= select_date Date.today.beginning_of_month, prefix: :start_date, class: 'form-control form-control-sm' %>
-      </div>
-      <div class="col-auto">
-        <%= form.label :end_date, class: "col-form-label-sm d-inline" %>
-        <%= select_date Date.today.end_of_month, prefix: :end_date, class: 'form-control form-control-sm' %>
-      </div>
     </div>
 
-    <div class="form-row">
+    <hr/>
+
+    <div class="form-row mt-3">
+
       <div class="col-auto">
+        <%= form.label "Filter by Role", class: "font-weight-bold col-form-label-md" %>
+
         <div class="form-check">
-          <% form.label(:"data-value" => :eligible, class: "form-check-label col-form-label-sm") { form.check_box(class: "form-check-input") + " Only Show Eligible Users" } %>
+          <%= form.check_box(:foodtalk_users, class: "form-check-input") %>
+          <%= form.label :foodtalk_users, class: "" %>
+        </div>
+
+        <div class="form-check">
+          <%= form.check_box(:admin_users, class: "form-check-input") %>
+          <%= form.label :admin_users, class: "" %>
+        </div>
+
+        <div class="form-check">
+          <%= form.check_box(:group_admin_users, class: "form-check-input") %>
+          <%= form.label :group_admin_users, class: "" %>
+        </div>
+
+        <div class="form-check">
+          <%= form.check_box(:test_users, class: "form-check-input") %>
+          <%= form.label :test_users, class: "" %>
+        </div>
+
+        <div class="form-check">
+          <%= form.check_box(:extension_employees, class: "form-check-input") %>
+          <%= form.label :extension_employees, class: "" %>
         </div>
       </div>
+
+
+      <div class="col-auto pl-5">
+        <%= form.label "Filter By Group Affiliation", class: "font-weight-bold col-form-label-md" %>
+        <%= form.collection_check_boxes :group_ids, Group.all, :id, :name do |b| %>
+          <div class="form-check">
+            <%= b.label(:"data-value" => b.value, class: "") {b.check_box(class: "form-check-input") + b.text.titleize} %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-auto pl-5">
+        <%= form.label "Filter By Eligibility", class: "font-weight-bold col-form-label-md" %>
+        <br>
+        <div class="form-check form-check-inline">
+          <%= form.label(:"data-value" => :eligible, class: "form-check-label") { form.radio_button(:eligible, :all, checked: true, class: "form-check-input") + " All" } %>
+          &nbsp;&nbsp;
+          <%= form.label(:"data-value" => :eligible, class: "form-check-label") { form.radio_button(:eligible, :eligible, class: "form-check-input") + " Eligible Only" } %>
+          &nbsp;&nbsp;
+          <%= form.label(:"data-value" => :eligible, class: "form-check-label") { form.radio_button(:eligible, :ineligible, class: "ml-6form-check-input") + " Ineligible Only" } %>
+        </div>
+      </div>
+
     </div>
+
+    <hr/>
 
     <div class="actions pt-2">
       <%= form.button t("forms.generate"), type: :submit, class: "btn btn-primary" %>

@@ -1,0 +1,9 @@
+<%= hidden_field_tag "user[subscription_ids][]", nil %>
+  <div>
+    <% @subscriptions.each do |key, value| %>
+      <% checked = @current_user.new_record? ? true : email_is_subscribed_to_list(@current_user.email_as_md5_hash, key) %>
+      <%= check_box_tag "user[subscription_ids][]", key, checked, id: key %>
+      <%= label_tag key, value.camelcase, class: 'ml-2, form-check-label col-form-label-sm' %>
+      <br>
+    <% end %>
+</div>

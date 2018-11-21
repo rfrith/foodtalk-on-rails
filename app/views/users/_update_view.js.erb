@@ -1,6 +1,6 @@
 iziToast.destroy();
 
-<% if @current_user.valid? %>
+<% if @current_user.errors.empty? && @current_user.valid? %>
 
   var timeout = 3000;
 

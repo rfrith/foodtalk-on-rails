@@ -61,6 +61,10 @@ class User < ApplicationRecord
     return (is_zip_code_eligible? || has_received_federal_assistance?) #TODO: should age factor into eligibility status?
   end
 
+  def is_ineligible?
+    return !is_eligible?
+  end
+
   def self.eligible
     eligible_users = []
     User.all.each do |u|
