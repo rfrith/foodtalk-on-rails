@@ -54,7 +54,7 @@ gem 'chartkick', '~> 2.3', '>= 2.3.5'
 gem 'groupdate'
 gem 'kaminari'
 gem 'lol_dba'
-
+gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 
 #TODO: decide on
 #gem 'foreman'

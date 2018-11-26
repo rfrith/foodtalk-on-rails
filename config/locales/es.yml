@@ -157,7 +157,7 @@ es:
       notice: "Por favor, complete el siguiente formulario."
     newsletters:
       opt_in: "Me gustaría recibir correos electrónicos de FoodTalk.org sobre los siguientes temas"
-      label: "Boletines informativos"
+      label: "Boletín de Suscripción"
       make_selection: "Elija de cuál de estas listas le gustaría recibir correos electrónicos."
 
   activerecord:
