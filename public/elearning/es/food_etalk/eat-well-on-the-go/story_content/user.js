@@ -2,10 +2,10 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "5yximkRTO2C":
+      case "5VCXNpRK82i":
         Script1();
         break;
-      case "6FEse8TWsOx":
+      case "6GH3fEYs9iA":
         Script2();
         break;
   }
@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-    window.top.location.href="/es/surveys/eat-well-on-the-go";
+  window.top.location.href="/es/surveys/eat-well-on-the-go";
 }
 
 function Script2()
 {
-    window.top.location.href="/es/surveys/eat-well-on-the-go";
+  window.top.location.href="/es/surveys/eat-well-on-the-go";
 }
 

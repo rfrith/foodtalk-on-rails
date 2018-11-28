@@ -13,7 +13,7 @@
         <options>
           <option name="title_enabled" value="false">
             <options>
-              <option name="title_text" value="Session 2 No Thanks, I'm Sweet Enough" />
+              <option name="title_text" value="Sesión 2 No, gracias, ya estoy bastante dulce" />
             </options>
           </option>
           <option name="logo_enabled" value="false">
@@ -60,6 +60,7 @@
           <option name="seekbar" value="false">
             <options>
               <option name="readonly" value="false" />
+              <option name="readonlyOnce" value="false" />
             </options>
           </option>
           <option name="search" value="false" />
@@ -75,6 +76,13 @@
       <optiongroup name="bottombaroptions">
         <options>
           <option name="bottombar_enabled" value="false" />
+        </options>
+      </optiongroup>
+      <optiongroup name="buttonoptions">
+        <options>
+          <option name="next" value="icon" />
+          <option name="previous" value="icon" />
+          <option name="submit" value="icon" />
         </options>
       </optiongroup>
     </optiongroups>
@@ -1102,51 +1110,52 @@
   </colorschemes>
   <string_tables>
     <string_table name="npnxnanbnsnfns00000000001">
-      <string id="check_include">Check to include</string>
-      <string id="clear">Clear and return to Menu</string>
-      <string id="close">Close</string>
-      <string id="acc_closed_captions">Closed captions. Press the spacebar to toggle captions on and off.</string>
-      <string id="continue">Continue</string>
-      <string id="continueresponsive">Continue</string>
-      <string id="exit">Exit</string>
-      <string id="filter">Filter</string>
-      <string id="finish">FINISH</string>
-      <string id="acc_finish">finish</string>
-      <string id="definition">Definition</string>
-      <string id="acc_definition">definition</string>
-      <string id="glossary">Glossary</string>
-      <string id="terms">Terms</string>
-      <string id="outline">Menu</string>
-      <string id="disabled_orientation">Please rotate your device</string>
-      <string id="next">NEXT</string>
-      <string id="acc_next">next</string>
-      <string id="transcript_chk">Notes</string>
-      <string id="transcript">Notes</string>
-      <string id="bio">Bio</string>
-      <string id="more_info">More info</string>
-      <string id="closed_captions">Captions</string>
-      <string id="acc_pause">pause</string>
-      <string id="acc_play">play</string>
-      <string id="send_an_email">Send an email</string>
-      <string id="prev">PREV</string>
-      <string id="acc_previous">previous</string>
-      <string id="question_list">Question List</string>
-      <string id="acc_replay">replay</string>
-      <string id="resources">Resources</string>
-      <string id="acc_resources">resources</string>
-      <string id="restart">Restart</string>
-      <string id="resume">Resume</string>
-      <string id="search">Search...</string>
-      <string id="acc_search_input">search</string>
-      <string id="search_in">Search in:</string>
-      <string id="search_results">Search Results</string>
-      <string id="acc_skipnavigation">Skip Navigation. Hit enter to return to the slide.</string>
-      <string id="slide_text_chk">Slide Text</string>
-      <string id="submitall">SUBMIT ALL</string>
-      <string id="acc_submitall">submit all</string>
-      <string id="submit">SUBMIT</string>
-      <string id="acc_submit">submit</string>
-      <string id="acc_volume">volume</string>
+      <string id="acc_active">activo</string>
+      <string id="check_include">De verificación para incluir</string>
+      <string id="clear">Borrar y volver al menú</string>
+      <string id="close">Cerrar</string>
+      <string id="acc_closed_captions">Subtítulos cerrados. Presiona la barra de espacio para activar y desactivar los subtítulos.</string>
+      <string id="continue">Continuar</string>
+      <string id="continueresponsive">Continuar</string>
+      <string id="exit">Salir</string>
+      <string id="filter">Filtro</string>
+      <string id="finish">FINALIZAR</string>
+      <string id="acc_finish">finalizar</string>
+      <string id="definition">Definición</string>
+      <string id="acc_definition">definición</string>
+      <string id="glossary">Glosario</string>
+      <string id="terms">Condiciones</string>
+      <string id="outline">Menú</string>
+      <string id="disabled_orientation">Rote el dispositivo</string>
+      <string id="next">SIG</string>
+      <string id="acc_next">siguiente</string>
+      <string id="transcript_chk">Notas</string>
+      <string id="transcript">Notas</string>
+      <string id="bio">Biografía</string>
+      <string id="more_info">Más información</string>
+      <string id="closed_captions">Subtítulos</string>
+      <string id="acc_pause">pausa</string>
+      <string id="acc_play">Reproducir</string>
+      <string id="send_an_email">Enviar correo electrónico</string>
+      <string id="prev">ANT</string>
+      <string id="acc_previous">siguiente</string>
+      <string id="question_list">Lista de preguntas</string>
+      <string id="acc_replay">repetición</string>
+      <string id="resources">Recursos</string>
+      <string id="acc_resources">los recursos</string>
+      <string id="restart">Reiniciar</string>
+      <string id="resume">Continuar</string>
+      <string id="search">Buscar ...</string>
+      <string id="acc_search_input">búsqueda</string>
+      <string id="search_in">Buscar en:</string>
+      <string id="search_results">Resultados de la búsqueda</string>
+      <string id="acc_skipnavigation">Omitir navegación. Presiona Aceptar para volver a la diapositiva.</string>
+      <string id="slide_text_chk">Texto Diapositiva</string>
+      <string id="submitall">ENVIAR TODO</string>
+      <string id="acc_submitall">enviar todo</string>
+      <string id="submit">ENVIAR</string>
+      <string id="acc_submit">presentar</string>
+      <string id="acc_volume">volumen</string>
     </string_table>
   </string_tables>
   <fonts>
@@ -1161,13 +1170,13 @@
   <nav_data>
     <outline>
       <links>
-        <slidelink slideid="_player.67qMCjrtlJ7.60bykeA9bgj" displaytext="No Thanks, I’m Sweet Enough" expand="false" type="slide" />
-        <slidelink slideid="_player.67qMCjrtlJ7.6mlJgGMcDt1" displaytext="Did You Know?" expand="false" type="slide" />
-        <slidelink slideid="_player.67qMCjrtlJ7.6hZwMmVmvgk" displaytext="How Much Added Sugar?" expand="false" type="slide" />
-        <slidelink slideid="_player.67qMCjrtlJ7.5s3WpL3nksI" displaytext="Choosing Foods at the Store" expand="false" type="slide" />
-        <slidelink slideid="_player.67qMCjrtlJ7.5fFVo3UuBf7" displaytext="Find the Added Sugar" expand="false" type="slide" />
-        <slidelink slideid="_player.67qMCjrtlJ7.5nMZ9slh69g" displaytext="Make Some Healthy Shifts" expand="false" type="slide" />
-        <slidelink slideid="_player.67qMCjrtlJ7.6GsOCl7jw7J" displaytext="Thank You" expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.60bykeA9bgj" displaytext="No, gracias, ya estoy bastante dulce." expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.6mlJgGMcDt1" displaytext="¿Sabía que...?" expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.6hZwMmVmvgk" displaytext="¿Cuánto azúcar añadido?" expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.5s3WpL3nksI" displaytext="Cómo elegir alimentos en la tienda" expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.5fFVo3UuBf7" displaytext="Encuentre el azúcar añadido" expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.5nMZ9slh69g" displaytext="Haga algunos cambios saludables" expand="false" type="slide" />
+        <slidelink slideid="_player.67qMCjrtlJ7.6GsOCl7jw7J" displaytext="Gracias" expand="false" type="slide" />
       </links>
     </outline>
   </nav_data>

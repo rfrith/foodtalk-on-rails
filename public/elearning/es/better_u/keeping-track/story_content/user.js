@@ -2,10 +2,10 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6qOm3JpnZ8X":
+      case "6n1QqUiB80N":
         Script1();
         break;
-      case "5bYQw0qK7Nb":
+      case "5ySKnCgGJ2g":
         Script2();
         break;
   }
@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-    window.top.location.href="/es/surveys/keeping-track";
+  window.top.location.href="/es/surveys/keeping-track";
 }
 
 function Script2()
 {
-    window.top.location.href="/es/surveys/keeping-track";
+  window.top.location.href="/es/surveys/keeping-track";
 }
 

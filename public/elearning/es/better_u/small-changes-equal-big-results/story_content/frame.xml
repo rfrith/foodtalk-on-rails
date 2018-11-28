@@ -13,7 +13,7 @@
         <options>
           <option name="title_enabled" value="false">
             <options>
-              <option name="title_text" value="Session 3 Small Changes = Big Results" />
+              <option name="title_text" value="Sesión 3 Pequeños cambios = grandes resultados" />
             </options>
           </option>
           <option name="logo_enabled" value="false">
@@ -75,6 +75,13 @@
       <optiongroup name="bottombaroptions">
         <options>
           <option name="bottombar_enabled" value="false" />
+        </options>
+      </optiongroup>
+      <optiongroup name="buttonoptions">
+        <options>
+          <option name="next" value="icon" />
+          <option name="previous" value="icon" />
+          <option name="submit" value="icon" />
         </options>
       </optiongroup>
     </optiongroups>
@@ -1102,51 +1109,52 @@
   </colorschemes>
   <string_tables>
     <string_table name="npnxnanbnsnfns00000000001">
-      <string id="check_include">Check to include</string>
-      <string id="clear">Clear and return to Menu</string>
-      <string id="close">Close</string>
-      <string id="acc_closed_captions">Closed captions. Press the spacebar to toggle captions on and off.</string>
-      <string id="continue">Continue</string>
-      <string id="continueresponsive">Continue</string>
-      <string id="exit">Exit</string>
-      <string id="filter">Filter</string>
-      <string id="finish">FINISH</string>
-      <string id="acc_finish">finish</string>
-      <string id="definition">Definition</string>
-      <string id="acc_definition">definition</string>
-      <string id="glossary">Glossary</string>
-      <string id="terms">Terms</string>
-      <string id="outline">Menu</string>
-      <string id="disabled_orientation">Please rotate your device</string>
-      <string id="next">NEXT</string>
-      <string id="acc_next">next</string>
-      <string id="transcript_chk">Notes</string>
-      <string id="transcript">Notes</string>
-      <string id="bio">Bio</string>
-      <string id="more_info">More info</string>
-      <string id="closed_captions">Captions</string>
-      <string id="acc_pause">pause</string>
-      <string id="acc_play">play</string>
-      <string id="send_an_email">Send an email</string>
-      <string id="prev">PREV</string>
-      <string id="acc_previous">previous</string>
-      <string id="question_list">Question List</string>
-      <string id="acc_replay">replay</string>
-      <string id="resources">Resources</string>
-      <string id="acc_resources">resources</string>
-      <string id="restart">Restart</string>
-      <string id="resume">Resume</string>
-      <string id="search">Search...</string>
-      <string id="acc_search_input">search</string>
-      <string id="search_in">Search in:</string>
-      <string id="search_results">Search Results</string>
-      <string id="acc_skipnavigation">Skip Navigation. Hit enter to return to the slide.</string>
-      <string id="slide_text_chk">Slide Text</string>
-      <string id="submitall">SUBMIT ALL</string>
-      <string id="acc_submitall">submit all</string>
-      <string id="submit">SUBMIT</string>
-      <string id="acc_submit">submit</string>
-      <string id="acc_volume">volume</string>
+      <string id="acc_active">activo</string>
+      <string id="check_include">De verificación para incluir</string>
+      <string id="clear">Borrar y volver al menú</string>
+      <string id="close">Cerrar</string>
+      <string id="acc_closed_captions">Subtítulos cerrados. Presiona la barra de espacio para activar y desactivar los subtítulos.</string>
+      <string id="continue">Continuar</string>
+      <string id="continueresponsive">Continuar</string>
+      <string id="exit">Salir</string>
+      <string id="filter">Filtro</string>
+      <string id="finish">FINALIZAR</string>
+      <string id="acc_finish">finalizar</string>
+      <string id="definition">Definición</string>
+      <string id="acc_definition">definición</string>
+      <string id="glossary">Glosario</string>
+      <string id="terms">Condiciones</string>
+      <string id="outline">Menú</string>
+      <string id="disabled_orientation">Rote el dispositivo</string>
+      <string id="next">SIG</string>
+      <string id="acc_next">siguiente</string>
+      <string id="transcript_chk">Notas</string>
+      <string id="transcript">Notas</string>
+      <string id="bio">Biografía</string>
+      <string id="more_info">Más información</string>
+      <string id="closed_captions">Subtítulos</string>
+      <string id="acc_pause">pausa</string>
+      <string id="acc_play">Reproducir</string>
+      <string id="send_an_email">Enviar correo electrónico</string>
+      <string id="prev">ANT</string>
+      <string id="acc_previous">siguiente</string>
+      <string id="question_list">Lista de preguntas</string>
+      <string id="acc_replay">repetición</string>
+      <string id="resources">Recursos</string>
+      <string id="acc_resources">los recursos</string>
+      <string id="restart">Reiniciar</string>
+      <string id="resume">Continuar</string>
+      <string id="search">Buscar ...</string>
+      <string id="acc_search_input">búsqueda</string>
+      <string id="search_in">Buscar en:</string>
+      <string id="search_results">Resultados de la búsqueda</string>
+      <string id="acc_skipnavigation">Omitir navegación. Presiona Aceptar para volver a la diapositiva.</string>
+      <string id="slide_text_chk">Texto Diapositiva</string>
+      <string id="submitall">ENVIAR TODO</string>
+      <string id="acc_submitall">enviar todo</string>
+      <string id="submit">ENVIAR</string>
+      <string id="acc_submit">presentar</string>
+      <string id="acc_volume">volumen</string>
     </string_table>
   </string_tables>
   <fonts>
@@ -1163,15 +1171,15 @@
       <links>
         <slidelink slideid="_player.67qMCjrtlJ7" displaytext="Better U" expand="true" type="slide">
           <links>
-            <slidelink slideid="_player.67qMCjrtlJ7.6hAqLkShxWA" displaytext="Welcome" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.6ki0HqRZIZ0" displaytext="Did You Know?" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.6YcETxPBKIa" displaytext="Your Starting Point is Unique" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.6lhmeuh5TEq" displaytext="Beverages Count!" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.63JPQ6BGwTK" displaytext="Small Changes in Food" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.5q67bXjJbq1" displaytext="How Much You Choose" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.6KiNid49oiB" displaytext="Change How Much You Move" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.6DnwQJK4FA6" displaytext="See the Difference" expand="false" type="slide" />
-            <slidelink slideid="_player.67qMCjrtlJ7.5rGJdVWgFBJ" displaytext="Thank You" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.6hAqLkShxWA" displaytext="Bienvenido" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.6ki0HqRZIZ0" displaytext="¿Sabía que...?" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.6YcETxPBKIa" displaytext="Su punto de inicio es único" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.6lhmeuh5TEq" displaytext="¡Las bebidas cuentan!" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.63JPQ6BGwTK" displaytext="Cambios pequeños en los alimentos" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.5q67bXjJbq1" displaytext="Cuánto escoge" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.6KiNid49oiB" displaytext="Cambie cuánto se mueve" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.6DnwQJK4FA6" displaytext="Vea la diferencia" expand="false" type="slide" />
+            <slidelink slideid="_player.67qMCjrtlJ7.5rGJdVWgFBJ" displaytext="Gracias" expand="false" type="slide" />
           </links>
         </slidelink>
       </links>

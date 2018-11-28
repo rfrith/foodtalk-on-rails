@@ -2,10 +2,10 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6Gs9sBD5yQF":
+      case "60lq7eeQaXK":
         Script1();
         break;
-      case "5t1Na4u1I4O":
+      case "6jrGQazGcZY":
         Script2();
         break;
   }
@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-    window.top.location.href="/es/surveys/keep-yourself-well";
+  window.top.location.href="/es/surveys/keep-yourself-well";
 }
 
 function Script2()
 {
-    window.top.location.href="/es/surveys/keep-yourself-well";
+  window.top.location.href="/es/surveys/keep-yourself-well";
 }
 

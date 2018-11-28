@@ -10,6 +10,6 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-  window.top.location.href="/surveys/play-food-etalk";
+  window.top.location.href="/en/surveys/play-food-etalk";
 }
 

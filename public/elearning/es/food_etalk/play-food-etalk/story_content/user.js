@@ -2,7 +2,7 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "61M4bOvVlxe":
+      case "5h79VJ7PeNs":
         Script1();
         break;
   }
@@ -10,6 +10,6 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-    window.top.location.href="/es/surveys/play-food-etalk";
+  window.top.location.href="/es/surveys/play-food-etalk";
 }
 

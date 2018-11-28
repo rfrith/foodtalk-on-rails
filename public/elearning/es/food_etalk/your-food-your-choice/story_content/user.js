@@ -2,10 +2,10 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6ERxWmxF6PB":
+      case "5iIHrKujcLL":
         Script1();
         break;
-      case "6omfJakmyFk":
+      case "67ixM7SnOgC":
         Script2();
         break;
   }
@@ -13,11 +13,11 @@ function ExecuteScript(strId)
 
 function Script1()
 {
-    window.top.location.href="/es/surveys/your-food-your-choice";
+  window.top.location.href="/es/surveys/your-food-your-choice";
 }
 
 function Script2()
 {
-    window.top.location.href="/es/surveys/your-food-your-choice";
+  window.top.location.href="/es/surveys/your-food-your-choice";
 }
 
