@@ -100,3 +100,18 @@ function init_isotope_completed_courses() {
         });
     });
 }
+
+function launchVideo(videoPath, surveyPath) {
+    $.fancybox.open({
+        src  : videoPath,
+        type : 'iframe',
+        opts : {
+            afterClose : function( instance, current ) {
+                if(surveyPath != 'undefined') {
+                    parent.location.href = surveyPath;
+                }
+            }
+        }
+    });
+    return false; //cancel click event
+}

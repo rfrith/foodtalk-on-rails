@@ -18,6 +18,7 @@
         <%
           base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
         %>
+        <% #TODO: IMPLEMENT OR REMOVE ME! %>
         <% link_to "All Videos", videos_path, class: base_css + (@all_videos ? ' btn-light' : ' btn-primary'), role: 'button' %>
 
         <% @playlists["items"].each do |c| %>

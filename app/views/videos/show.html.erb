@@ -25,7 +25,6 @@
         event.target.playVideo();
     }
 
-    var done = false;
     function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
           <% if(should_serve_survey?(@survey_name, @current_user)) %>

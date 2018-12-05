@@ -1,16 +1,17 @@
 class SurveysController < ApplicationController
-  include Secured
+
+  before_action do |controller|
+    #for now VideoSurveys don't require a user to be logged in and can be taken anonymously
+    if !VideoSurveys.valid_video_survey?(params[:id]) #authenticate user for all other surveys
+      #TODO: should we allow users to take survey w/out first watching module?
+      #session[:org_uri] = request.original_url
+      authenticate_user!
+    end
+  end
 
   def show
     #set to false for any surveys that should NOT have header & footer elements
     @full_screen = false
-
-    # we no longer show the survey in our own iframe, we simply redirect, so this is unnecessary
-    #if(params[:id] == 'consent-form')
-      #add_notification :info, t(:info), t(:thank_you) + " "+ t(:ask_for_feedback), 20000
-    #else
-      #add_notification :info, t(:info), t(:ask_for_feedback), 20000
-    #end
 
     case params[:id]
 
@@ -105,7 +106,15 @@ class SurveysController < ApplicationController
     video = VideoSurveys.find_video_by_name(survey_name)
     survey_id = video[:survey_id]
     video_name = video[:survey_args][:origin]
-    survey_url = get_survey_url survey_id, process_survey_url(type: "video", name: video_name, uid: @current_user.uid), video[:survey_args][:origin]
+
+    if(user_signed_in?)
+      redirect_path = process_survey_url(type: "video", name: video_name, uid: @current_user.uid)
+    else
+      redirect_path = videos_url
+    end
+
+    survey_url = get_survey_url survey_id, redirect_path, video[:survey_args][:origin]
+
     @current_user.survey_histories << SurveyHistory.new(name: "#{video_name}#started")
     return survey_url
   end

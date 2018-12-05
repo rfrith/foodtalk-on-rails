@@ -165,7 +165,7 @@ module VideoSurveys
   end
 
   def self.valid_video_survey?(id)
-    return (get_survey_names.include?(id.gsub("video/", "")))
+    return id.nil? ? false : get_survey_names.include?(id.gsub("video/", ""))
   end
 
 end
