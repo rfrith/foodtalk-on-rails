@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     if request[:org_uri]
       redirect_to request[:org_uri]
     elsif session[:org_uri]
-      redirect_to session[:org_uri] and session[:org_uri] = nil
+      redirect_to session.delete(:org_uri)
     else
       redirect_to show_dashboard_path
     end

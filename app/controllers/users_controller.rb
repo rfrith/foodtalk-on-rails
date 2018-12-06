@@ -37,13 +37,58 @@ class UsersController < ApplicationController
     end
   end
 
-  #TODO: REMOVE ME!
+  #TODO: REMOVE ME???
   def update_subscriptions
     respond_to do |format|
       update_mailchimp_subscriptions
       format.js
     end
   end
+
+
+
+
+
+
+
+  def update_user_groups
+    begin
+      authorize @current_user
+      user = User.find(user_group_params[:id])
+      is_admin = user_group_params[:is_admin]
+      group_ids = user_group_params[:group_ids]
+      if user.present? and Group.find(group_ids).present?
+        user.group_ids = group_ids
+        user.save!
+      else
+        raise "Invalid User or Group supplied."
+      end
+    rescue => e
+      #TODO: IMPLEMENT/FIX ME!
+      add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+    end
+  end
+
+  def update_user_roles
+    begin
+      authorize @current_user
+      user = User.find(user_group_params[:id])
+      role = user_role_params[:role]
+      if user.present? and User.roles.include?(role)
+        user.role = role
+        user.save!
+      else
+        raise "Invalid User or Role supplied."
+      end
+    rescue => e
+      #TODO: IMPLEMENT/FIX ME!
+      add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+    end
+  end
+
+
+
+
 
   def find_user_by_criteria
     authorize @current_user
@@ -285,6 +330,16 @@ class UsersController < ApplicationController
   def user_subscription_params
     params.fetch(:user, {})
     params.require(:user).permit(:subscription_ids => [])
+  end
+
+  def user_group_params
+    params.fetch(:user, {})
+    params.require(:user).permit(:id, :group_ids => [])
+  end
+
+  def user_role_params
+    params.fetch(:user, {})
+    params.require(:user).permit(:id, :role)
   end
 
   def update_mailchimp_subscriptions

@@ -75,6 +75,8 @@ Rails.application.routes.draw do
 
       get 'find_user_by_criteria' => :find_user_by_criteria
 
+      post 'update_user_groups' => :update_user_groups
+      post 'update_user_roles' => :update_user_roles
       post 'update_subscriptions' => :update_subscriptions
       post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
     end

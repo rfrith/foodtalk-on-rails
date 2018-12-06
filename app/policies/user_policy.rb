@@ -9,6 +9,14 @@ class UserPolicy < ApplicationPolicy
     user.is_admin?
   end
 
+  def update_user_groups?
+    user.is_admin?
+  end
+
+  def update_user_roles?
+    user.is_admin?
+  end
+
   def find_user_by_criteria?
     user.is_admin?
   end
