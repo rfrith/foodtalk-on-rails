@@ -18,15 +18,7 @@
 
       <div class="w-100 d-block d-lg-none"></div>
 
-      <span class="mx-auto d-inline-flex sm-icon-group">
-        <a class="nav-item nav-link" href="https://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
-        <a class="nav-item nav-link" href="https://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
-        <a class="nav-item nav-link" href="https://plus.google.com/116761006042596808728" target="_blank"><%= fa_icon('google-plus-square') %></a>
-        <a class="nav-item nav-link" href="https://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
-        <a class="nav-item nav-link" href="https://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
-        <a class="nav-item nav-link" href="https://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
-        <a class="nav-item nav-link" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
-      </span>
+      <%= render partial: "layouts/social_media_links", locals: { should_show_facebook: true, should_show_twitter: true, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: true, should_show_instagram: true, should_show_email: true } %>
 
       <span class="mx-auto" style="color: white;">
         <%= t("footer.auth0") %>

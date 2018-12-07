@@ -38,6 +38,7 @@ es:
   welcome: "¡Hola y bienvenido a Foodtalk.org! Tómese unos minutos para actualizar su perfil personal. Responda todas las preguntas a continuación y presione el botón \"Actualizar\" para continuar."
   ask_for_feedback: "Sus comentarios son muy importantes para ayudarnos a mejorar la calidad de nuestro programa. Tómese unos minutos para completar la siguiente encuesta. Asegúrese de continuar hacia abajo y asegúrese de presionar el botón \"Enviar\" cuando haya terminado."
   thank_you: "¡Hola! Gracias por crear una cuenta en Foodtalk.org. Necesitamos hacerle algunas preguntas antes de que pueda comenzar."
+  social_media_prompt: "Para recetas y más:"
   language_select_label: "English"
   language_select_value: "en"
   switch_language: "Click for English"

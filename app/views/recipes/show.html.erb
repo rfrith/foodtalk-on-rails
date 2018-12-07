@@ -10,5 +10,10 @@
     <% end %>
     <span class="content-section-title"><%== @title %></span>
     <%== filter_content_for_display(@content) %>
+
+    <%= t("social_media_prompt") %>
+    <br>
+    <%= render partial: "layouts/social_media_links", locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
+
   </div>
 </div>
