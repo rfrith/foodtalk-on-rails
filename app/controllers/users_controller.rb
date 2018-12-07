@@ -55,11 +55,11 @@ class UsersController < ApplicationController
     begin
       authorize @current_user
       user = User.find(user_group_params[:id])
-      is_admin = user_group_params[:is_admin]
       group_ids = user_group_params[:group_ids]
-      if user.present? and Group.find(group_ids).present?
+
+      if user.present?
         user.group_ids = group_ids
-        user.save!
+        user.save! if group_ids.nil? || Group.find(group_ids).present?
       else
         raise "Invalid User or Group supplied."
       end
