@@ -32,6 +32,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <% #TODO: SAFE TO REMOVE ME ONCE PINTEREST HAS VERIFIED DOMAIN (https://help.pinterest.com/en/business/article/claim-your-website) %>
+    <meta name="p:domain_verify" content="7c6f75d0cc280aa75a5381e98d66112c"/>
+
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
     <div id="body-content" class="h-100">
@@ -40,6 +43,5 @@
       <%= yield :content %>
       <%= yield :footer %>
     </div>
-
   </body>
 </html>
