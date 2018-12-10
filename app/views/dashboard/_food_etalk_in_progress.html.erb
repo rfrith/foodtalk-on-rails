@@ -4,9 +4,8 @@
       <span><%= image_tag 'food-etalk-logo-med.png', class: 'align-middle', alt: 'Food eTalk Logo', style: 'width: 6rem; height: auto;' %></span>
       <span class="pb-2 lead">
         <% if user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) %>
-
-          <%= t("learn_online.food_etalk.completed_html", href: link_to(t("learn_online.food_etalk.print_your_certificate"), show_certificate_path('FOOD_ETALK'), data: { lity: '' }), href2: link_to( t("navigation.uga_extension_office"), "http://extension.uga.edu/county-offices.html#top", target: '_blank' ) ) %>
-
+          <%= t("learn_online.completed_html", curriculum: LearningModules.module_name(:FOOD_ETALK).titleize, href: link_to(t("learn_online.print_your_certificate"), show_certificate_path('FOOD_ETALK'), data: { lity: '' })).html_safe %>
+          <%= t("learn_online.extenders_prompt", href2: link_to(t("navigation.uga_extension_office"), "http://extension.uga.edu/county-offices.html#top", target: '_blank')).html_safe %>
         <% else %>
           <% if(!@current_user.course_enrollments.food_etalk.started.empty?) %>
             <%=t("dashboard.my_courses.started.continue_learning")%>

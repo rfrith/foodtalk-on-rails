@@ -124,6 +124,11 @@ en:
   learn_online:
     start_learning_module: "Why not improve your knowledge on health & nutrition and start a Food eTalk or Better U course from the below choices?"
     continue_learning_module: "Why not finish what you started?  Complete any started lessons by clicking the links below and continue improving your health & nutrition knowledge!"
+    completed_html: "Way to go! You have completed %{curriculum}. When you are ready, %{href}"
+
+    extenders_prompt: "and call your nearest %{href2} to receive your complimentary bag of Food Talk goodies."
+    print_your_certificate: "print your receipt of completion"
+
     better_u:
       name: "Better U"
       tagline: "Increase your food knowledge!"
@@ -132,8 +137,6 @@ en:
       name: "Food eTalk"
       tagline: "Make healthier food choices!"
       description: "Food eTalk is a series of interactive online classes that focus on planning healthy meals on a budget. Free educational and cooking items included at each session!"
-      completed_html: "Way to go! You have completed Food eTalk. When you are ready, %{href} and call your nearest %{href2} to receive your complimentary bag of Food Talk goodies."
-      print_your_certificate: "print your receipt of completion"
 
   dashboard:
     admin:

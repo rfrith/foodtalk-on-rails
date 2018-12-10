@@ -124,6 +124,11 @@ es:
   learn_online:
     start_learning_module: "¿Por qué no mejorar su conocimiento sobre salud y nutrición e iniciar un curso de Food eTalk o Better U de las siguientes opciones?"
     continue_learning_module: "¿Por qué no terminas lo que comenzaste? Complete todas las lecciones iniciadas haciendo clic en los enlaces a continuación y continúe mejorando su conocimiento de salud y nutrición."
+
+    completed_html: "¡Buen trabajo! Has completado Food eTalk. Cuando esté listo, %{href}"
+    extenders_prompt: " y llame al %{href2} más cercano para recibir su bolsa gratuita de golosinas de Food Talk."
+
+    print_your_certificate: "imprime tu recibo de finalización"
     better_u:
       name: "Better U"
       tagline: "¡Aumenta tu conocimiento de la comida!"
@@ -132,8 +137,7 @@ es:
       name: "Food eTalk"
       tagline: "¡Elija alimentos más saludables!"
       description: "Food eTalk es una serie de clases interactivas en línea que se centran en la planificación de comidas saludables con un presupuesto. ¡Artículos educativos y de cocina gratuitos incluidos en cada sesión!"
-      completed_html: "¡Buen trabajo! Has completado Food eTalk. Cuando esté listo, %{href} y llame al %{href2} más cercano para recibir su bolsa gratuita de golosinas de Food Talk."
-      print_your_certificate: "imprime tu recibo de finalización"
+
 
   dashboard:
     admin:

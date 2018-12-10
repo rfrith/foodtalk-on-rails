@@ -7,29 +7,49 @@ class CertificatesController < ApplicationController
   require 'base64'
 
   def show
-    #https://stackoverflow.com/a/7625116
-    img = ImageList.new
-    img_url = open(view_context.asset_url('FoodEtalkCompletionCertificate.png'))
-    img.from_blob(img_url.read)
-    txt = Draw.new
-    img.annotate(txt, 0,0,0,20, @current_user.name){
-      txt.gravity = Magick::CenterGravity
-      txt.font_family = 'helvetica'
-      txt.pointsize = 25
-      txt.font_weight = Magick::BoldWeight
-    }
 
-    img.annotate(txt, 0,0,0,130, curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK).strftime("%B %d, %Y")){
-      txt.gravity = Magick::CenterGravity
-      txt.font_family = 'helvetica'
-      txt.pointsize = 25
-      txt.font_weight = Magick::BoldWeight
-    }
+    begin
+      curriculum = params[:id]
 
-    img.format = 'png'
-    #to send directly to browser, bypassing view
-    #send_data img.to_blob, stream: false, filename: 'certificate.png', type: 'image/png', disposition: 'inline'
-    img_data = Base64.encode64(img.to_blob).gsub(/\n/, "")
-    @certificate = img_data
+      case params[:id]
+      when LearningModules.module_name(:FOOD_ETALK)
+        image_name = 'FoodEtalkCompletionCertificate.png'
+        completion_date = curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK).strftime("%B %d, %Y")
+      when LearningModules.module_name(:BETTER_U)
+        image_name = 'BetterUCompletionCertificate.png'
+        completion_date = curriculum_completion_date(@current_user, LearningModules::BETTER_U).strftime("%B %d, %Y")
+      else
+        raise "Invalid Curriculum supplied."
+      end
+
+      #https://stackoverflow.com/a/7625116
+      img = ImageList.new
+      img_url = open(view_context.asset_url(image_name))
+      img.from_blob(img_url.read)
+      txt = Draw.new
+      img.annotate(txt, 0,0,0,20, @current_user.name){
+        txt.gravity = Magick::CenterGravity
+        txt.font_family = 'helvetica'
+        txt.pointsize = 25
+        txt.font_weight = Magick::BoldWeight
+      }
+
+      img.annotate(txt, 0,0,0,130, completion_date){
+        txt.gravity = Magick::CenterGravity
+        txt.font_family = 'helvetica'
+        txt.pointsize = 25
+        txt.font_weight = Magick::BoldWeight
+      }
+
+      img.format = 'png'
+      #to send directly to browser, bypassing view
+      #send_data img.to_blob, stream: false, filename: 'certificate.png', type: 'image/png', disposition: 'inline'
+      img_data = Base64.encode64(img.to_blob).gsub(/\n/, "")
+      @certificate = img_data
+
+    rescue => e
+      add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+    end
+
   end
 end

@@ -1,3 +1,32 @@
-<div id="certificate">
-  <%= render partial: 'food-etalk-completion' %>
+<style>
+
+  @page { size: a4 landscape}
+
+  body {
+    background-color: white;
+  }
+
+  @media screen {
+    #certificate-img {
+      height: 60%;
+      width: 60%;
+    }
+  }
+
+  @media print {
+    #certificate-img {
+      height: auto;
+      width: auto;
+    }
+    .hide {
+      visibility:hidden;
+    }
+  }
+</style>
+
+<div class="text-center" style="overflow: hidden;">
+  <div id="certificate">
+    <h4 class="hide mt-4"><a href="#" onclick="window.print();"><%= t("learn_online.print_your_certificate") %> <%= fa_icon "print" %></a></h4>
+    <%= image_tag("data:image/png;base64,#{@certificate}", alt:"Food eTalk Completion Certificate", id: "certificate-img", class: "mx-auto img-fluid p-0 m-0") %>
+  </div>
 </div>
