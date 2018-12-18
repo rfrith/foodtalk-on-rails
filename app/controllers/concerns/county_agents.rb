@@ -14,7 +14,9 @@ module CountyAgents
           phone: "(706) 613-3640",
           snap_ed_supervisor: {name: "Jackie Dallas", email: "jdallas@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0146.jpg"},
           program_assistants: [
-              {name: "Melanie Burton", email: "mburton@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/melanie_burton_100.jpg"}
+              {name: "Melanie Burton", email: "mburton@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/melanie_burton_100.jpg"},
+              {name: "Lina Rivera", email: "lina1@uga.edu", photo_url: ""},
+              {name: "Catherine Scott", email: "cls1435@uga.edu", photo_url: ""}
           ]
       },
 
@@ -43,7 +45,8 @@ module CountyAgents
           phone: "(770) 473-3945",
           snap_ed_supervisor: {name: "Gail Kefentse", email: "gkefents@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/gail_kefentse_100.jpg"},
           program_assistants: [
-              {name: "Deborah Cannon", email: "dcannon@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_cannon_100.jpg"}
+              {name: "Deborah Cannon", email: "dcannon@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_cannon_100.jpg"},
+              {name: "Ariane Durden", email: "cdurden1@uga.edu", photo_url: ""}
           ]
       },
 
@@ -56,7 +59,9 @@ module CountyAgents
           zip: "31533",
           phone: "(912) 384-1402",
           snap_ed_supervisor: {name: "Laura Smith", email: "lauras@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/laura_smith_100.jpg"},
-          program_assistants: []
+          program_assistants: [
+              {name: "Malory Howard", email: "malory.howard@uga.edu", photo_url: ""}
+          ]
       },
 
       dekalb: {
@@ -68,7 +73,7 @@ module CountyAgents
           zip: "30032-1239",
           phone: "(404) 298-4080",
           snap_ed_supervisor: {name: "Breeanna Williams", email: "bswilliams@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0184.jpg"},
-          program_assistants: [{name: "Alejandra Roman", email: "roman95@uga.edu", photo_url: ""}]
+          program_assistants: []
       },
 
       fulton: {
@@ -79,7 +84,7 @@ module CountyAgents
           state: "GA",
           zip: "30344-4151",
           phone: "(404) 762-4077",
-          snap_ed_supervisor: {name: "Amanda Pencek", email: "adh9513@uga.eduedu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0170.jpg"},
+          snap_ed_supervisor: {name: "Amanda Pencek", email: "adh9513@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0170.jpg"},
           program_assistants: [
               {name: "Deborah Mallory", email: "dymallor@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_mallory_100.jpg"},
               {name: "Phyllis Cain", email: "sept1986@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0183.jpg"}
