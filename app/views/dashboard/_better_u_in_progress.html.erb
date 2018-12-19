@@ -16,14 +16,12 @@
     </div>
   </div>
   <div class="pt-3 better-u-started-grid">
-    <% if(!@current_user.course_enrollments.better_u.started.empty?) %>
-      <% @current_user.course_enrollments.better_u.started.each do |c| %>
-        <% if LearningModules::find_module(c.name) %>
-          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
-        <% end %>
+
+    <% #if(!user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK)) %>
+      <% LearningModules::BETTER_U.each do |lesson| %>
+        <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
       <% end %>
-    <% elsif (find_next_lesson(@current_user, LearningModules::BETTER_U)) %>
-      <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(find_next_lesson(@current_user, LearningModules::BETTER_U)), my_css: 'modules-grid'} %>
-    <% end %>
+    <% #end %>
+
   </div>
 </div>

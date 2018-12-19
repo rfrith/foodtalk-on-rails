@@ -9,10 +9,9 @@
       </div>
     </div>
     <div class="pt-2 food-etalk-completed-grid">
-      <% @current_user.course_enrollments.food_etalk.completed.each do |c| %>
-        <% m = LearningModules::find_module(c.name) %>
-        <% if(!m.blank?)%>
-          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: m, my_css: 'modules-grid'} %>
+      <% LearningModules::FOOD_ETALK.each do |lesson| %>
+        <% if LearningModules.user_completed_module?(@current_user, lesson) %>
+          <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson, my_css: 'modules-grid'} %>
         <% end %>
       <% end %>
     </div>

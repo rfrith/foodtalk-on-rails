@@ -9,6 +9,14 @@ class UserPolicy < ApplicationPolicy
     user.is_admin?
   end
 
+  def update?
+    !user.test_user?
+  end
+
+  def update_subscriptions?
+    !user.test_user?
+  end
+
   def update_user_groups?
     user.is_admin?
   end
@@ -16,6 +24,18 @@ class UserPolicy < ApplicationPolicy
   def update_user_roles?
     user.is_admin?
   end
+
+
+
+  def launch_module?
+    !user.test_user?
+  end
+
+  def complete_module?
+    !user.test_user?
+  end
+
+
 
   def find_user_by_criteria?
     user.is_admin?

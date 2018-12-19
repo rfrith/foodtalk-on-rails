@@ -17,14 +17,12 @@
     </div>
   </div>
   <div class="pt-3 food-etalk-started-grid">
-    <% if(!@current_user.course_enrollments.food_etalk.started.empty?) %>
-      <% @current_user.course_enrollments.food_etalk.started.each do |c| %>
-        <% if LearningModules::find_module(c.name) %>
-          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
-        <% end %>
+
+    <% #if(!user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK)) %>
+      <% LearningModules::FOOD_ETALK.each do |lesson| %>
+        <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
       <% end %>
-    <% elsif (find_next_lesson(@current_user, LearningModules::FOOD_ETALK)) %>
-      <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(find_next_lesson(@current_user, LearningModules::FOOD_ETALK)), my_css: 'modules-grid'} %>
-    <% end %>
+    <% #end %>
+
   </div>
 </div>

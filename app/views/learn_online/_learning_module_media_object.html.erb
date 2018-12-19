@@ -6,11 +6,17 @@
 
 <div class="card module-grid-item mr-2 mb-2 pt-1 pl-2 pb-1">
   <div class="card-title">
+
     <% if lesson[:survey_lesson] %>
-      <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod) ) %>
+      <% data = {} %>
     <% else %>
-      <%= link_to(t(lesson[:title]), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} ) %>
+      <% data = {"fancybox": "", "type": 'iframe'} %>
     <% end %>
+
+    <%= link_to(launch_module_path(curriculum: cur, module_name: mod), data: data ) do %>
+      <%= t(lesson[:title])%> <%= fa_icon(icon_text) %>
+    <% end %>
+
   </div>
   <div class="media">
     <% if lesson[:survey_lesson] %>

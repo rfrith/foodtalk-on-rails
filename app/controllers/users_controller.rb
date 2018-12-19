@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    authorize @current_user
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
       update_mailchimp_subscriptions
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
 
   #TODO: REMOVE ME???
   def update_subscriptions
+    authorize @current_user
     respond_to do |format|
       update_mailchimp_subscriptions
       format.js

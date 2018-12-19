@@ -61,7 +61,9 @@ class SurveysController < ApplicationController
       @current_user.activity_histories << SurveyHistory.new(name: SurveyHistory::COMPLETED_CONSENT_FORM)
     end
 
-    if(@current_user.is_eligible?)
+    if(@current_user.test_user?)
+      redirect_to learn_online_path
+    elsif(@current_user.is_eligible?)
       redirect_to show_dashboard_path
     else
       redirect_to root_path
@@ -122,7 +124,7 @@ class SurveysController < ApplicationController
   def get_survey_url(survey_id, redirect, origin = nil)
 
 
-    if(Rails.application.secrets.use_test_survey)
+    if(Rails.application.secrets.use_test_survey || @current_user.test_user?)
       survey_id = "SV_2shasM4V0EexFQ1" #this is our test web survey
     end
 

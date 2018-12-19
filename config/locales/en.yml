@@ -148,7 +148,7 @@ en:
       not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"
       start_now: "start a lesson now"
       started:
-        label: "Started"
+        label: "All Modules"
         start_learning: "Start learning by clicking on the lesson's title or image."
         continue_learning: "Continue learning by clicking on the lesson's title or image."
       completed:

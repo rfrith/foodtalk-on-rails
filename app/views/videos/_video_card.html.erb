@@ -1,7 +1,8 @@
 <%
   video_id = video["contentDetails"]["videoId"]
   video_survey = VideoSurveys.find_video_by_id(video_id)
-  survey_location = video_survey ? show_survey_path(video_survey[:survey_args][:origin]) : ""
+  survey_name = video_survey ? video_survey[:survey_args][:origin] : ""
+  survey_location = should_serve_survey?(survey_name, @current_user) ? show_survey_path(video_survey[:survey_args][:origin]) : ""
 %>
 
 <div class="figure no-gutters mb-4 video-card card grid-item">

@@ -32,6 +32,7 @@
             <th scope="col">Eligible?</th>
             <th scope="col">UID</th>
             <th scope="col">Sign Up Date</th>
+            <th scope="col">Role</th>
             <th scope="col" colspan="2">Groups</th>
           </tr>
           </thead>
@@ -46,6 +47,7 @@
               <td><%= t u.is_eligible?.class %></td>
               <td><%= u.uid %></td>
               <td><%= u.created_at.strftime('%Y-%m-%d') %></td>
+              <td><%= u.role.titleize %></td>
               <td><%= u.group_names.to_sentence %></td>
               <td><%= link_to fa_icon('user'), user_path(u.id) %></td>
             </tr>

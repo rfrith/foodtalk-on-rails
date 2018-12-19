@@ -149,7 +149,7 @@ es:
       not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"
       start_now: "comienza una lección ahora"
       started:
-        label: "Empezado"
+        label: "Todos Los Modulos"
         start_learning: "Comience a aprender haciendo clic en el título o la imagen de la lección."
         continue_learning: "Continúa aprendiendo haciendo clic en el título o la imagen de la lección."
       completed:

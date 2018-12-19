@@ -9,11 +9,11 @@
       </div>
     </div>
     <div class="pt-2 better-u-completed-grid">
-      <% @current_user.course_enrollments.better_u.completed.each do |c| %>
-        <% if LearningModules::find_module(c.name) %>
-          <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: LearningModules::find_module(c.name), my_css: 'modules-grid'} %>
+        <% LearningModules::BETTER_U.each do |lesson| %>
+          <% if LearningModules.user_completed_module?(@current_user, lesson) %>
+            <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson, my_css: 'modules-grid'} %>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
   </div>
 <% end %>

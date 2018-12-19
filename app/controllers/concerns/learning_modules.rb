@@ -1,5 +1,4 @@
 module LearningModules
-
   extend ActiveSupport::Concern
 
 
@@ -33,21 +32,31 @@ module LearningModules
 
     raise ActionController::RoutingError.new('Lesson Not Found') if lesson.nil?
 
-    user.activity_histories << OnlineLearningHistory.new(name: lesson[:id]+"#started")
-    if(!user.course_enrollments.exists?(name: lesson[:id]))
-      user.course_enrollments << CourseEnrollment.new(name: lesson[:id])
-    end
+    if user.test_user?
+      #user.activity_histories.delete_all
+      user.course_enrollments.delete_all
+    else
 
-    #Ignore introduction video TODO: is there a better way?
-    if lesson[:id] == "food_etalk/food_etalk_tutorial"
-      l = user.course_enrollments.where(name: lesson_id, state: :started).take
-      if(l)
-        l.complete!
+      user.activity_histories << OnlineLearningHistory.new(name: lesson[:id]+"#started")
+      if(!user.course_enrollments.exists?(name: lesson[:id]))
+        user.course_enrollments << CourseEnrollment.new(name: lesson[:id])
+      end
+
+      #Ignore introduction video TODO: is there a better way?
+      if lesson[:id] == "food_etalk/food_etalk_tutorial"
+        l = user.course_enrollments.where(name: lesson_id, state: :started).take
+        if(l)
+          l.complete!
+        end
       end
     end
+
   end
 
   def self.complete_module(lesson_id, user)
+
+    return if user.test_user?
+
     lesson = user.course_enrollments.where(name: lesson_id, state: :started).take
     if(lesson)
       lesson.complete!
