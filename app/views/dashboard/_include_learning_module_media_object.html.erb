@@ -1,4 +1,6 @@
-<% icon_text = (LearningModules.user_completed_module?(@current_user, lesson) ? 'check' : '') %>
+<%
+  has_completed = LearningModules.user_completed_module?(@current_user, lesson)
+%>
 <div class="grid-item">
-  <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: lesson, my_css: 'modules-grid', icon_text: icon_text} %>
+  <%= render :partial => 'learn_online/learning_module_media_object', locals: {lesson: lesson, my_css: 'modules-grid', has_completed: has_completed} %>
 </div>

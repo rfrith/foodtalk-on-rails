@@ -9,11 +9,24 @@
     <% # Started Lessons %>
     <div id="started-courses" class="tab-pane fade show active" role="tabpanel" aria-labelledby="started-courses">
 
-      <% # Food eTalk Started Lessons %>
-      <%= render :partial => "dashboard/food_etalk_in_progress" %>
+      <% if user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) &&  !user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U) %>
 
-      <% # Better U Started Lessons %>
-      <%= render :partial => "dashboard/better_u_in_progress" %>
+        <% # Better U Started Lessons %>
+        <%= render :partial => "dashboard/better_u_in_progress" %>
+        <br>
+        <% # Food eTalk Started Lessons %>
+        <%= render :partial => "dashboard/food_etalk_in_progress" %>
+
+      <% else %>
+
+        <% # Food eTalk Started Lessons %>
+        <%= render :partial => "dashboard/food_etalk_in_progress" %>
+        <br>
+        <% # Better U Started Lessons %>
+        <%= render :partial => "dashboard/better_u_in_progress" %>
+
+      <% end %>
+
     </div>
 
     <% # Completed Lessons %>

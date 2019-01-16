@@ -4,7 +4,8 @@
   mod = id_split[1]
 %>
 
-<div class="card module-grid-item mr-2 mb-2 pt-1 pl-2 pb-1">
+<div id="<%=mod%>" class="card module-grid-item mr-2 mb-2 pt-1 pl-2 pb-1
+">
   <div class="card-title">
 
     <% if lesson[:survey_lesson] %>
@@ -14,7 +15,14 @@
     <% end %>
 
     <%= link_to(launch_module_path(curriculum: cur, module_name: mod), data: data ) do %>
-      <%= t(lesson[:title])%> <%= fa_icon(icon_text) %>
+      <% if(has_completed) %>
+        <script language="javascript">
+            $(document).on("turbolinks:load", function () {
+                $("#<%=mod%>").fadeTo(0, 0.35);
+            });
+        </script>
+      <% end %>
+      <span id="<%=mod%>-title"><%= t(lesson[:title]) %></span> <%= ( has_completed ? fa_icon('check') : '') %>
     <% end %>
 
   </div>
