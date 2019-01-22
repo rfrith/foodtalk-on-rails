@@ -1,6 +1,7 @@
 <nav class="top-nav navbar navbar-expand-md navbar-light <%= local_assigns[:css] %>" role="navigation">
 
-  <%= link_to root_path, class: "navbar-brand" do %>
+
+  <%= link_to root_path, class: "navbar-brand", data: {turbolinks: false} do %>
     <%= image_tag('logo-sm.png', class: 'img-fluid m-0 p-0', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>
     <% if (avatar = DomainGroups::get_domain_group_icon(request.host)) %>
       <%= image_tag avatar, class: 'img-fluid m-0 p-0', alt: 'Partner logo' %>

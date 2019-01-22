@@ -34,7 +34,7 @@
     <% end %>
 
     <% if @current_user.is_eligible? %>
-    <div class="tab-pane fade <%= "show active" if !@current_user.is_admin? %>" id="nav-my-activity" role="tabpanel" aria-labelledby="nav-my-activity-tab">
+    <div class="p-1 tab-pane fade <%= "show active" if !@current_user.is_admin? %>" id="nav-my-activity" role="tabpanel" aria-labelledby="nav-my-activity-tab">
       <%= render :partial => "dashboard/my_activity" %>
     </div>
     <% end %>

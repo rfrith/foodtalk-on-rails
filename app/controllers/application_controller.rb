@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def get_notifications
     notifications = session[:notifications]
-    session[:notifications] = []
+    session[:notifications] = nil
     return notifications
   end
 

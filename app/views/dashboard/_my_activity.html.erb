@@ -1,10 +1,6 @@
 
-  <nav id="my-activity-nav" class="pt-1 nav nav-tabs ml-5 justify-content-start" role="tablist">
-    <a id="started-courses-tab-link" class="nav-item nav-link <%= "active" if(@current_user.valid?)%>" data-toggle="tab" href="#started-courses"><%= t("dashboard.my_courses.started.label") %></a>
-    <a id="completed-courses-tab-link" class="nav-item nav-link" data-toggle="tab" href="#completed-courses"><%= t("dashboard.my_courses.completed.label") %></a>
-  </nav>
 
-  <div id="my-activity-content" class="tab-content p-4">
+  <div id="my-activity-content" class="tab-content p-4 rounded">
 
     <% # Started Lessons %>
     <div id="started-courses" class="tab-pane fade show active" role="tabpanel" aria-labelledby="started-courses">
@@ -29,20 +25,6 @@
 
     </div>
 
-    <% # Completed Lessons %>
-    <div id="completed-courses" class="tab-pane fade show" role="tabpanel" aria-labelledby="completed-courses">
-
-      <% if(@current_user.course_enrollments.food_etalk.completed.empty? && @current_user.course_enrollments.better_u.completed.empty?) %>
-        <%= t("dashboard.my_courses.not_started") %> <%= link_to(t("dashboard.my_courses.start_now"), { controller: "learn_online", action: "index", anchor: 'better-u'  }) %>?
-      <% end %>
-
-      <% # Food eTalk Completed Lessons %>
-      <%= render :partial => "food_etalk_completed" %>
-
-      <% # Better U Completed Lessons %>
-      <%= render :partial => "better_u_completed" %>
-
-    </div>
 
   </div>
 
