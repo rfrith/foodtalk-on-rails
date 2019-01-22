@@ -81,6 +81,8 @@ en:
     title: "Helping Georgians Eat Healthy & Get Moving!"
     description: "FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!"
     sign_up: "now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning."
+    stretch_snap_dollars_title: "Stretch your SNAP dollars now!"
+    stretch_snap_dollars_body: "Click here for information on how to make the most of your SNAP dollars!"
     read_more: "Read More"
 
     blog:
@@ -150,7 +152,7 @@ en:
       started:
         label: "All Modules"
         start_learning: "Start learning by clicking on the lesson's title or image."
-        continue_learning: "Continue learning by clicking on the lesson's title or image."
+        continue_learning: "Continue learning by clicking on a lesson's title or image."
       completed:
         label: "Completed"
         food_talk_completed_lesson: "You should be proud of what you've accomplished!"

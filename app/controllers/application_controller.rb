@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def add_notification(type, title, message, timeout)
+  def add_notification(type, title, message, timeout=false, url=nil)
     session[:notifications] ||= []
-    notification = Notification.new(type, title, message, timeout)
+    notification = Notification.new(type, title, message, timeout, url)
     session[:notifications] << notification.instance_values
     logger.debug "Added notification to session"
   end

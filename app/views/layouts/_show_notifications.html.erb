@@ -4,10 +4,23 @@
     $(document).on("turbolinks:load", function() {
         iziToast.destroy();
         <% notifications.each do |n| %>
+
+          <% if(n['type']) != :popup %>
             iziToast.<%=n['type']%>({
-              title: '<%= n['title'] %>',
-              message: '<%= n['message'].html_safe %>',
               target: '#notifications',
+              message: '<%= n['message'].html_safe %>',
+          <% else %>
+
+            iziToast.show({
+                message: '<%= link_to(n['message'].html_safe, "/blog?category=save-money", id: "my-popup-link") %>',
+                color: '#fbec64',
+                image: '<%= image_url("logo-sm.png", class: "img-fluid m-0 p-0", alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>',
+                layout: '2',
+                transitionIn: 'bounceInDown',
+                close: false,
+                closeOnClick: true,
+          <% end %>
+              title: '<%= n['title'] %>',
               timeout: <%= n['timeout'] %>
             });
         <% end %>
