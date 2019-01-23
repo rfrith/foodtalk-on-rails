@@ -50,24 +50,35 @@ function show_spinner() {
 //also fix to redraw chart after selecting a Bootstrap tab
 $(function(){
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
         var id = e.target.id
         //set currently clicked tab
         $('#stats-current-tab').val(id)
-        var should_redraw_charts = false;
+
         switch(id) {
             case 'nav-admin-tab':
             case 'stats-tab-link':
             case 'user-stats-tab':
             case 'food-etalk-stats-tab':
             case 'better-u-stats-tab':
-                should_redraw_charts = true;
+                resizeCharts();
+                Chartkick.eachChart( function(chart) {
+                    chart.redraw();
+                });
                 break;
         }
-        if (should_redraw_charts) {
-            resizeCharts();
-            Chartkick.eachChart( function(chart) {
-                chart.redraw();
-            });
+        switch(id) {
+            case 'nav-my-activity-tab':
+                $('.food-etalk-started-grid').isotope({
+                    // options
+                    itemSelector: '.module-grid-item',
+                    layoutMode: 'fitRows'
+                });
+                $('.better-u-started-grid').isotope({
+                    // options
+                    itemSelector: '.module-grid-item',
+                    layoutMode: 'fitRows'
+                });
         }
     })
 });
