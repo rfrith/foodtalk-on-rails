@@ -65,20 +65,9 @@ $(function(){
                 Chartkick.eachChart( function(chart) {
                     chart.redraw();
                 });
-                break;
         }
-        switch(id) {
-            case 'nav-my-activity-tab':
-                $('.food-etalk-started-grid').isotope({
-                    // options
-                    itemSelector: '.module-grid-item',
-                    layoutMode: 'fitRows'
-                });
-                $('.better-u-started-grid').isotope({
-                    // options
-                    itemSelector: '.module-grid-item',
-                    layoutMode: 'fitRows'
-                });
+        if(id == 'nav-my-activity-tab'){
+            init_isotope_started_courses();
         }
     })
 });
