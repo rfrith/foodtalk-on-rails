@@ -228,7 +228,7 @@ class UsersController < ApplicationController
     date_range = @start_date..@end_date
     curriculum = LearningModules.const_get(curricula.upcase)
 
-    enrollments = CourseEnrollment.by_name(curricula.downcase).updated_in_range(date_range)
+    enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).updated_in_range(date_range)
 
     enrollments.each do |ce|
       user = ce.user
@@ -236,11 +236,11 @@ class UsersController < ApplicationController
       case started_or_completed.downcase
       when "started"
         if(user_has_started_curriculum?(user, curriculum, date_range))
-          users << user
+          users << user if !users.include?(user)
         end
       when "completed"
         if(user_has_completed_curriculum?(user, curriculum, date_range))
-          users << user
+          users << user if !users.include?(user)
         end
       end
     end
