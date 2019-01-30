@@ -34,8 +34,8 @@ iziToast.destroy();
   <% end %>
 
   <% if (@new_user) %>
-
     setTimeout(function(){
+        <% #TODO: GET PATH FROM CONTROLLER LOGIC %>
         $(window.location.replace("<%= show_survey_path('consent-form') %>"));
     }, timeout);
 

@@ -42,7 +42,7 @@ gem 'jbuilder', '~> 2.5'
 # custom gems
 gem 'omniauth'
 gem 'omniauth-auth0'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.2.1'
 gem 'font-awesome-rails'
 gem 'gibbon', '~> 3.1', '>= 3.1.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
@@ -62,7 +62,7 @@ gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 #gem 'resque-scheduler'
 
 gem 'jquery-rails'
-gem 'popper_js', '~> 1.12.3'
+gem 'popper_js', '~> 1.14.3'
 
 group :test do
   gem 'sqlite3'

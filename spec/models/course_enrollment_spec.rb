@@ -24,7 +24,7 @@ RSpec.describe CourseEnrollment, type: :model do
   it "scope find_by_name" do
     module_name = LearningModules::FOOD_ETALK[0][:id]
     course_enrollment = CourseEnrollment.create!(name: module_name, user: user)
-    expect(user.course_enrollments.find_by_name(module_name).first.name).to eq module_name
+    expect(user.course_enrollments.by_name(module_name).first.name).to eq module_name
   end
 
   #TODO: move me into ApplicationRecord test

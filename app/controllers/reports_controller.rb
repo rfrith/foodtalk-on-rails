@@ -20,8 +20,8 @@ class ReportsController < ApplicationController
     users_in_date_range = User.created_in_range(@start_date..@end_date)
 
     if(!users_in_date_range.empty?)
-      #e.g., {June: 1, July: 8}
-      data = users_in_date_range.group_by_month(:created_at, format: "%B").count
+      #e.g., {June 2019: 1, July 2019: 8}
+      data = users_in_date_range.group_by_month(:created_at, format: "%b %Y").count
     else
       #TODO: DRY ME
       data = {}
@@ -90,16 +90,16 @@ class ReportsController < ApplicationController
 
       #users with no group affiliation by date range
       ft_users = users_in_date_range.not_in_group
-      ft_users_grouped = ft_users.group_by_month("Users.created_at", range: @start_date..@end_date)
+      ft_users_grouped = ft_users.group_by_month("Users.created_at", format: "%b %Y", range: @start_date..@end_date).count
 
       grouped_user_counts = {}
 
       #add regular Foodtalk users
-      grouped_user_counts.merge! "Foodtalk Users" => ft_users_grouped.size
+      grouped_user_counts.merge! "Foodtalk Users" => ft_users_grouped
 
       #add group affiliated users
       Group.all.each do |g|
-        users = g.users.created_in_range(@start_date..@end_date).group_by_month(:created_at, range: @start_date..@end_date).count
+        users = g.users.created_in_range(@start_date..@end_date).group_by_month(:created_at, format: "%b %Y", range: @start_date..@end_date).count
         grouped_user_counts.merge! "#{g.name.humanize}" => users
       end
 
@@ -112,6 +112,7 @@ class ReportsController < ApplicationController
       end
     end
 
+
     new_users_by_group_in_date_range_data = {
         cols: [
             {id: "month", label: "Month", pattern: "", type: "string"}
@@ -119,23 +120,23 @@ class ReportsController < ApplicationController
         rows: []
     }
 
-    data.each do |key,val|
-      new_users_by_group_in_date_range_data[:cols] << {id: key, label: key.titleize, pattern: "", type: "number"}
+    data.each do |key, val|
+      #put group name
+      new_users_by_group_in_date_range_data[:cols] << {id: key.parameterize, label: key.titleize, type: "number"}
     end
 
-    (@start_date..@end_date).select{|date| date.day==1}.each do |date|
+
+    (@start_date..@end_date).select{|date| date.day==1}.each_with_index do |date, index|
       month = Date::MONTHNAMES[date.month]
 
       date_simple = Time.zone.parse(date.strftime('%Y-%m-%d')).to_date
 
-      row = {c:[{v: month}]}
+      row = {c:[{v: "#{month} #{date_simple.year}"}]}
+
       data.each do |key,val|
-        val.each do |v|
-          if(v[0] == date_simple)
-            row[:c] << {v: v[1]}
-          end
-        end
+        row[:c] << {v: val.values[index]}
       end
+
       new_users_by_group_in_date_range_data[:rows] << row
     end
 
@@ -152,8 +153,8 @@ class ReportsController < ApplicationController
     authorize :report
 
     #TODO: DRY ME!  Put into before_action??
-    eligible_users_in_date_range = User.eligible.created_in_range(@start_date..@end_date).size
-    ineligible_users_in_date_range = User.ineligible.created_in_range(@start_date..@end_date).size
+    eligible_users_in_date_range = User.all_eligible.created_in_range(@start_date..@end_date).size
+    ineligible_users_in_date_range = User.all_ineligible.created_in_range(@start_date..@end_date).size
 
     user_eligibility_by_range_data = {
         cols: [
@@ -187,15 +188,15 @@ class ReportsController < ApplicationController
     }
 
     #users with no group affiliation by date range
-    ft_eligible_users = User.eligible.created_in_range(@start_date..@end_date).not_in_group.size
-    ft_ineligible_users = User.ineligible.created_in_range(@start_date..@end_date).not_in_group.size
+    ft_eligible_users = User.all_eligible.created_in_range(@start_date..@end_date).not_in_group.size
+    ft_ineligible_users = User.all_ineligible.created_in_range(@start_date..@end_date).not_in_group.size
 
     users_by_group[:rows] << {c:[{v: Group::FOODTALK_USERS.titleize}, {v: ft_eligible_users}, {v: ft_ineligible_users}]}
 
     Group.all.each do |g|
       name = "#{g.name.titleize}"
-      eligible = g.users.eligible.created_in_range(@start_date..@end_date).size
-      ineligible = g.users.ineligible.created_in_range(@start_date..@end_date).size
+      eligible = g.users.all_eligible.created_in_range(@start_date..@end_date).size
+      ineligible = g.users.all_ineligible.created_in_range(@start_date..@end_date).size
       users_by_group[:rows] << {c:[{v: name}, {v: eligible}, {v: ineligible}]}
     end
 
@@ -246,6 +247,7 @@ class ReportsController < ApplicationController
     curriculum_name = params[:curricula]
 
     curriculum_started_by_group = get_curriculum_started_and_completed_by_group(curriculum_name, @start_date..@end_date, Group.all)
+
     started_completed_data = {
         cols: [
             {id: "group", label: "Group", pattern: "", type: "string"},
@@ -428,30 +430,13 @@ class ReportsController < ApplicationController
   #TODO: MOVE THESE INTO SiteStatistics.rb concern???
 
   def get_curriculum_started_completed(curriculum_id, date_range)
-
     curriculum = LearningModules.const_get(curriculum_id)
-
-    started_completed = {started: 0, completed: 0}
-
-    all_users_started_count = 0
-    all_users_completed_count = 0
-
-    #TODO: DRY ME
-    #state engine uses existing row, must check updated_at column
-
-    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_name(curriculum_id.downcase).updated_in_range(date_range)
-
-    enrollments.each do |ce|
-      user = ce.user
-      if(user_has_completed_curriculum?(user, curriculum, date_range))
-        all_users_completed_count += 1
-      elsif(user_has_started_curriculum?(user, curriculum, date_range))
-        all_users_started_count += 1
-      end
-    end
-
-    started_completed[:started] = all_users_started_count
-    started_completed[:completed] = all_users_completed_count
+    started_count = count_users_have_started_curriculum(User.all, curriculum, date_range)
+    completed_count = count_users_have_completed_curriculum(User.all, curriculum, date_range)
+    started_completed = {
+        started: started_count,
+        completed: completed_count
+    }
     return started_completed
   end
 
@@ -463,10 +448,13 @@ class ReportsController < ApplicationController
     started_count = 0
     completed_count = 0
 
-    User.not_in_group.each do |u|
-      started_count += 1 if user_has_started_curriculum?(u, curriculum, date_range)
-      completed_count += 1 if user_has_completed_curriculum?(u, curriculum, date_range)
-    end
+    started_count = count_users_have_started_curriculum(User.not_in_group, curriculum, date_range)
+    completed_count = count_users_have_completed_curriculum(User.not_in_group, curriculum, date_range)
+
+    #User.not_in_group.each do |u|
+    #  started_count += 1 if user_has_started_curriculum?(u, curriculum, date_range)
+    #  completed_count += 1 if user_has_completed_curriculum?(u, curriculum, date_range)
+    #end
 
     curriculum_stats_by_group.merge! FOODTALK_GROUP_NAME => {started_count: started_count, completed_count: completed_count}
 
@@ -475,10 +463,9 @@ class ReportsController < ApplicationController
       completed_count = 0
       group_name = g.name.titleize
 
-      g.users.each do |u|
-        started_count += 1 if user_has_started_curriculum?(u, curriculum, date_range)
-        completed_count += 1 if user_has_completed_curriculum?(u, curriculum, date_range)
-      end
+      started_count = count_users_have_started_curriculum(g.users, curriculum, date_range)
+      completed_count = count_users_have_completed_curriculum(g.users, curriculum, date_range)
+
       curriculum_stats_by_group.merge! group_name => {started_count: started_count, completed_count: completed_count}
     end
     return curriculum_stats_by_group

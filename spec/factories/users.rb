@@ -21,10 +21,12 @@ FactoryBot.define do
 
     trait :eligible do
       zip_code 30601
+      eligible true
     end
 
     trait :ineligible do
       zip_code 11111
+      eligible false
     end
 
     trait :with_no_racial_identities do

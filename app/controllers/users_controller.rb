@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     begin
       @user = User.find(id) unless id.nil?
     rescue => e
+      #TODO: I18N ME!
       add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
     end
 
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
       if @current_user.valid?
         #add user to group based on domain
         add_user_to_domain_group(@current_user, criteria: :domain, value: request.host)
+        update_eligibility!
         update_mailchimp_subscriptions
       end
       format.js
@@ -33,10 +35,15 @@ class UsersController < ApplicationController
     authorize @current_user
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
+      update_eligibility!
       update_mailchimp_subscriptions
       format.js
     end
   end
+
+
+
+
 
   #TODO: REMOVE ME???
   def update_subscriptions
@@ -67,6 +74,7 @@ class UsersController < ApplicationController
       end
     rescue => e
       #TODO: IMPLEMENT/FIX ME!
+      #TODO: I18N ME!
       add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
     end
   end
@@ -84,6 +92,7 @@ class UsersController < ApplicationController
       end
     rescue => e
       #TODO: IMPLEMENT/FIX ME!
+      #TODO: I18N ME!
       add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
     end
   end
@@ -175,9 +184,9 @@ class UsersController < ApplicationController
     begin
       #support supplied date range
       if(@start_date && @end_date)
-        @users = User.created_in_range(@start_date..@end_date).send(eligibility.parameterize).page params[:page]
+        @users = User.created_in_range(@start_date..@end_date).send("all_#{eligibility.parameterize}").page params[:page]
       else
-        @users = User.send(eligibility.parameterize).page params[:page]
+        @users = User.send("all_#{eligibility.parameterize}").page params[:page]
       end
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
@@ -194,15 +203,15 @@ class UsersController < ApplicationController
       #support supplied date range
       if(@start_date && @end_date)
         if(group)
-          @users = group.users.created_in_range(@start_date..@end_date).send(eligibility).page params[:page]
+          @users = group.users.created_in_range(@start_date..@end_date).send("all_#{eligibility.parameterize}").page params[:page]
         else
-          @users = User.not_in_group.created_in_range(@start_date..@end_date).send(eligibility).page params[:page]
+          @users = User.not_in_group.created_in_range(@start_date..@end_date).send("all_#{eligibility.parameterize}").page params[:page]
         end
       else
         if(group)
-          @users = group.users.send(eligibility).page params[:page]
+          @users = group.users.send("all_#{eligibility.parameterize}").page params[:page]
         else
-          @users = User.not_in_group.send(eligibility).page params[:page]
+          @users = User.not_in_group.send("all_#{eligibility.parameterize}").page params[:page]
         end
       end
     rescue Exception => e
@@ -219,7 +228,7 @@ class UsersController < ApplicationController
     date_range = @start_date..@end_date
     curriculum = LearningModules.const_get(curricula.upcase)
 
-    enrollments = CourseEnrollment.select(:user_id).distinct.find_by_name(curricula.downcase).updated_in_range(date_range)
+    enrollments = CourseEnrollment.by_name(curricula.downcase).updated_in_range(date_range)
 
     enrollments.each do |ce|
       user = ce.user
@@ -360,6 +369,10 @@ class UsersController < ApplicationController
       #add_notification :error, t(:error), "#{t("error_occurred")} #{e.to_s}", false
       @current_user.errors.add(:base, :subscription_error, message: "#{t("error_occurred")} #{e.to_s}")
     end
+  end
+
+  def update_eligibility!
+    @current_user.update_eligibile!
   end
 
 

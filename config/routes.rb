@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'welcome/index'
     get 'recipes/index'
     get 'maps', to: 'maps#index', as: 'maps_index'
-    get 'attend_class', to: 'attend_class#index', as: 'attend_class_index'
+    get 'attend-class', to: 'attend_class#index', as: 'attend_class_index'
     get 'videos/:id', to: 'videos#show'
     get 'food-glossary' => 'glossary_terms#index'
     get 'lessons' => 'learn_online#index'

@@ -15,10 +15,10 @@ class CourseEnrollment < ApplicationRecord
 
   scope :better_u, -> { where("name like '%better_u%'") }
   scope :food_etalk, -> { where("name like '%food_etalk%'") }
-  scope :find_by_name, ->(name = nil) { where("name = ?", "#{name}") }
+  scope :by_name, ->(name = nil) { where("name like '%#{name}%'") }
 
   scope :completed_in_range, ->(module_name, date_range = nil) {
-    completed.where("name = ? AND updated_at >= ? AND updated_at <= ?", module_name, date_range.first.to_time.beginning_of_day, date_range.last.to_time.end_of_day)
+    completed.where(name: module_name, updated_at: date_range.first.to_time.beginning_of_day..date_range.last.to_time.end_of_day)
   }
 
   private

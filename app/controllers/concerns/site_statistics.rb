@@ -47,25 +47,25 @@ module SiteStatistics
 
     @food_etalk_modules_started = {}
     LearningModules::FOOD_ETALK.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#started", start_date, end_date).size
+      count = OnlineLearningHistory.where(name: "#{m[:id]}#started", created_at: start_date..end_date).size
       @food_etalk_modules_started.merge!({m[:id].gsub("#{FOOD_ETALK}/", "").titleize => count})
     end
 
     @food_etalk_modules_completed = {}
     LearningModules::FOOD_ETALK.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#completed", start_date, end_date).size
+      count = OnlineLearningHistory.where(name: "#{m[:id]}#completed", created_at: start_date..end_date).size
       @food_etalk_modules_completed.merge!({m[:id].gsub("#{FOOD_ETALK}/", "").titleize => count})
     end
 
     @better_u_modules_started = {}
     LearningModules::BETTER_U.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#started", start_date, end_date).size
+      count = OnlineLearningHistory.where(name: "#{m[:id]}#started", created_at: start_date..end_date).size
       @better_u_modules_started.merge!({m[:id].gsub("#{BETTER_U}/", "").titleize => count})
     end
 
     @better_u_modules_completed = {}
     LearningModules::BETTER_U.each do |m|
-      count = OnlineLearningHistory.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{m[:id]}#completed", start_date, end_date).size
+      count = OnlineLearningHistory.where(name: "#{m[:id]}#completed", created_at: start_date..end_date).size
       @better_u_modules_completed.merge!({m[:id].gsub("#{BETTER_U}/", "").titleize => count})
     end
 
@@ -79,14 +79,16 @@ module SiteStatistics
     module_completion_by_group = {}
     module_completion_by_group.merge! FOODTALK_GROUP_NAME => {}
     modules = LearningModules.const_get curriculum
+
     modules.each do |m|
       module_id = m[:id]
       module_name = module_id.gsub("#{curriculum.downcase}/", "").titleize
-      count = 0
-      users.each do |u|
-        count += u.online_learning_histories.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{module_id+history_event}", start_date, end_date).size
-      end
+
+
+      count = count_module_events(users, curriculum, "#{module_id+history_event}", start_date..end_date) #OnlineLearningHistory.joins(:user).where(users: {id: users.map{|u| u[:id]}}, activity_histories: {name: "#{module_id+history_event}", created_at: start_date..end_date}).size
       module_completion_by_group[FOODTALK_GROUP_NAME].merge! module_name => count
+
+
     end
 
     groups.each do |g|
@@ -95,13 +97,15 @@ module SiteStatistics
       modules.each do |m|
         module_id = m[:id]
         module_name = module_id.gsub("#{curriculum.downcase}/", "").titleize
-        count = 0
-        g.users.each do |u|
-          count += u.online_learning_histories.distinct(:user_id).where("name = ? AND created_at BETWEEN ? AND ?", "#{module_id+history_event}", start_date, end_date).size
-        end
+        count = count_module_events(g.users, curriculum, "#{module_id+history_event}", start_date..end_date)
         module_completion_by_group[group_name].merge! module_name => count
       end
     end
     return module_completion_by_group
   end
+
+  def count_module_events(users, curriculum, module_name, date_range)
+    return OnlineLearningHistory.joins(:user).where(users: {id: users.map{|u| u[:id]}}, activity_histories: {name: module_name, created_at: date_range}).size
+  end
+
 end

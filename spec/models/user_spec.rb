@@ -153,16 +153,16 @@ RSpec.describe  User,  type:  :model  do
 
   it "returns a list of eligible users" do
     eligible_user #lazy loaded
-    expect(User.eligible).to include eligible_user
+    expect(User.all_eligible).to include eligible_user
     ineligible_user #lazy loaded
-    expect(User.eligible).not_to include ineligible_user
+    expect(User.all_eligible).not_to include ineligible_user
   end
 
   it "returns a list of ineligible users" do
     ineligible_user #lazy loaded
-    expect(User.ineligible).to include ineligible_user
+    expect(User.all_ineligible).to include ineligible_user
     eligible_user #lazy loaded
-    expect(User.ineligible).not_to include eligible_user
+    expect(User.all_ineligible).not_to include eligible_user
   end
 
   it "group_names" do

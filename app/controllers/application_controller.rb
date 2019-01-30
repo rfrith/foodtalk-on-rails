@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     session[:notifications] ||= []
     notification = Notification.new(type, title, message, timeout, url)
     session[:notifications] << notification.instance_values
-    logger.debug "Added notification to session"
+    logger.debug "Added notification to session."
   end
 
   private
