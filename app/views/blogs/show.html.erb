@@ -5,16 +5,19 @@
   <% end %>
 
   <div class="p-4">
-    <% if @featured_image %>
+    <% if @featured_image && !@embedded_content%>
       <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @blog["title"]["rendered"]) %>
     <% end %>
+
+    <% if !@embedded_content%>
     <span class="content-section-title"><%== @title %></span>
+    <% end %>
+
     <%== filter_content_for_display(@content) %>
 
     <%= t("social_media_prompt") %>
     <br>
     <%= render partial: "layouts/social_media_links", locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
-
 
   </div>
 </div>

@@ -17,16 +17,15 @@
       <%
         base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
       %>
+      <% #TODO: I18N ME!!!! "All Recipes" %>
       <%= link_to "All Recipes", recipes_path, class: base_css + (@all_recipes ? ' btn-light' : ' btn-primary'), role: 'button' %>
 
       <% if false %>
         <%= link_to "My Favorites", recipes_path(favorites: true), class: base_css + (@favorites ? ' btn-light' : ' btn-primary'), role: 'button' %>
       <% end %>
 
-      <% @tags.each do |t| %>
-        <% if(t["name"].downcase != "uncategorized") %>
-          <%= link_to t["name"], recipes_path(tag: t["slug"]), class: base_css + ((@category_id && t["slug"] == @category_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
-        <% end %>
+      <% filter_categories_or_tags_for_display!(@tags).each do |t| %>
+        <%= link_to t["name"], recipes_path(tag: t["slug"]), class: base_css + ((@category_id && t["slug"] == @category_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
       <% end %>
 
       <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>

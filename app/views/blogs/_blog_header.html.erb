@@ -13,11 +13,10 @@
       <%
         base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
       %>
+      <% #TODO: I18N ME!!!! "All Blogs" %>
       <%= link_to "All Blogs", blogs_index_path, class: base_css + (@all_blogs ? ' btn-light' : ' btn-primary'), role: 'button' %>
-      <% @categories.each do |c| %>
-        <% if(c["name"].downcase != "uncategorized") %>
-          <%= link_to c["name"], blogs_index_path(category: c["slug"]), class: base_css + ((@category_id && (c["slug"] == @category_id)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
-        <% end %>
+      <% filter_categories_or_tags_for_display!(@categories).each do |c| %>
+        <%= link_to c["name"], blogs_index_path(category: c["slug"]), class: base_css + ((@category_id && (c["slug"] == @category_id)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
       <% end %>
       <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
           <span class="input-group ">

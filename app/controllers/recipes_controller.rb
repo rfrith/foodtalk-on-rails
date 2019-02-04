@@ -59,6 +59,7 @@ class RecipesController < ApplicationController
     begin
       blog = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/#{params[:id]}?_embed"))
       @blog = JSON.parse blog
+      @embedded_content = is_embedded_content?(@blog)
       @featured_image = get_media_url(@blog, :full, true)
       @excerpt = @blog['excerpt']['rendered']
       @title = @blog['title']['rendered']
