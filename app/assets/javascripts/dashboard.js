@@ -40,6 +40,19 @@ function resizeCharts () {
     }
 }
 
+function select_tab() {
+    //make sure tab doesn't lose state
+    var selectedTab = $('#stats-current-tab').val()
+    switch(selectedTab) {
+        case 'user-stats-tab':
+        case 'food-etalk-stats-tab':
+        case 'better-u-stats-tab':
+            break;
+        default:
+            $('#user-stats-tab').tab('show')
+    }
+}
+
 
 function show_spinner() {
     $("#nav-tabContent").hide();
@@ -50,7 +63,6 @@ function show_spinner() {
 //also fix to redraw chart after selecting a Bootstrap tab
 $(function(){
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-
         var id = e.target.id
         //set currently clicked tab
         $('#stats-current-tab').val(id)

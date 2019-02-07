@@ -7,9 +7,7 @@
       <a id="nav-admin-tab" class="nav-item nav-link active" data-toggle="tab" href="#nav-admin" role="tab" aria-controls="nav-admin" aria-selected="true"><%= t("dashboard.admin.label") %></a>
     <% end %>
 
-    <% if @current_user.is_eligible? %>
-      <a id="nav-my-activity-tab" class="nav-item nav-link <%= "active" if !@current_user.is_admin? %>" data-toggle="tab" href="#nav-my-activity" role="tab" aria-controls="nav-my-activity" aria-selected="<%= !@current_user.is_admin? ? "true" : "false" %>"><%= t("dashboard.my_courses.label") %></a>
-    <% end %>
+      <a id="nav-my-activity-tab" class="<%=  @current_user.is_eligible? ? "d-block" : "d-none" %> nav-item nav-link <%= "active" if !@current_user.is_admin? %>" data-toggle="tab" href="#nav-my-activity" role="tab" aria-controls="nav-my-activity" aria-selected="<%= !@current_user.is_admin? ? "true" : "false" %>"><%= t("dashboard.my_courses.label") %></a>
 
       <a id="nav-personal-info-tab" class="nav-item nav-link <%= "active" if(!@current_user.valid? || (!@current_user.is_admin? && !@current_user.is_eligible?))%>" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="false"><%= t("dashboard.my_info.label") %></a>
 

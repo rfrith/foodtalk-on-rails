@@ -82,6 +82,7 @@ class ReportsController < ApplicationController
     authorize :report
 
     data = {}
+    grouped_user_counts = {}
 
     #users filtered by date range
     users_in_date_range = User.created_in_range @start_date..@end_date
@@ -92,15 +93,13 @@ class ReportsController < ApplicationController
       ft_users = users_in_date_range.not_in_group
       ft_users_grouped = ft_users.group_by_month("Users.created_at", format: "%b %Y", range: @start_date..@end_date).count
 
-      grouped_user_counts = {}
-
       #add regular Foodtalk users
       grouped_user_counts.merge! "Foodtalk Users" => ft_users_grouped
 
       #add group affiliated users
       Group.all.each do |g|
-        users = g.users.created_in_range(@start_date..@end_date).group_by_month(:created_at, format: "%b %Y", range: @start_date..@end_date).count
-        grouped_user_counts.merge! "#{g.name.humanize}" => users
+        count = g.users.created_in_range(@start_date..@end_date).group_by_month(:created_at, format: "%b %Y", range: @start_date..@end_date).count
+        grouped_user_counts.merge! "#{g.name.humanize}" => count
       end
 
       data = grouped_user_counts
@@ -108,8 +107,17 @@ class ReportsController < ApplicationController
     else
       #TODO: DRY ME
       (@start_date..@end_date).select{|date| date.day==1}.each do |date|
-        data.merge! Date::MONTHNAMES[date.month] => [0]
+        grouped_user_counts.merge! Date::MONTHNAMES[date.month] => [0]
       end
+
+      #add regular Foodtalk users
+      data.merge! "Foodtalk Users" => grouped_user_counts
+
+      #add group affiliated users
+      Group.all.each do |g|
+        data.merge! "#{g.name.humanize}" => grouped_user_counts
+      end
+
     end
 
 
