@@ -1,0 +1,7 @@
+<%
+  @blogs.each do |blog|
+%>
+  <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
+<%
+  end
+%>

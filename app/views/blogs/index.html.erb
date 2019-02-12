@@ -6,9 +6,8 @@
 
     <%= render partial: 'blog_header' %>
 
-    <div class="grid">
+    <div id="blog-grid" class="grid">
       <%
-        #TODO: consolidate me into a single view
         @blogs.each do |blog|
       %>
         <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
@@ -27,3 +26,18 @@
   <% end %>
 
 </div>
+
+<script language="JavaScript">
+    <% ((@page+=1)..@total_pages).each { |index| %>
+    $.ajax({
+        url: "<%= blog_load_page_path(page: index, category: @category_id) %>",
+        dataType: "html",
+        async: true,
+        success: function (data) {
+            var html = $(data);
+            $('#blog-grid').append(html);
+            $('.grid').masonry( 'appended', html );
+        }
+    });
+    <% } %>
+</script>

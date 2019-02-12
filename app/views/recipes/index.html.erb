@@ -6,10 +6,8 @@
 
     <%= render partial: 'recipes_header' %>
 
-    <div class="grid">
+    <div id="recipes-grid" class="grid">
       <%
-        #TODO: consolidate me into a single view
-
         @recipes.each do |recipe|
       %>
         <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
@@ -28,3 +26,18 @@
   <% end %>
 
 </div>
+
+<script language="JavaScript">
+    <% ((@page+=1)..@total_pages).each { |index| %>
+    $.ajax({
+        url: "<%= recipe_load_page_path(page: index, tag: @category_id) %>",
+        dataType: "html",
+        async: true,
+        success: function (data) {
+            var html = $(data);
+            $('#recipes-grid').append(html);
+            $('.grid').masonry( 'appended', html );
+        }
+    });
+    <% } %>
+</script>

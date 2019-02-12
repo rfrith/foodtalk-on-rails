@@ -43,11 +43,4 @@ module WordpressHelper
     categories_or_tags.delete_if { |c| c["slug"] == "uncategorized" || c["slug"] == "embedded-content" }
   end
 
-  def is_embedded_content?(post)
-    slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url+"categories/?_embed&slug=embedded-content"))
-    parsed_slug = JSON.parse(slug)
-    slug_id = parsed_slug[0]["id"]
-    return post["categories"].include? slug_id
-  end
-
 end

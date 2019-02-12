@@ -40,7 +40,13 @@ Rails.application.routes.draw do
     end
 
     controller :blogs do
+      #for loading blog individually w/ rendered navigation/footer
       get 'blog', to: 'blogs#index', as: 'blogs_index'
+      get 'blog/load_page/:page/(:category)' => :load_page, as: 'blog_load_page'
+    end
+
+    controller :recipes do
+      get 'recipes/load_page/:page/(:tag)' => :load_page, as: 'recipe_load_page'
     end
 
     controller :certificates do

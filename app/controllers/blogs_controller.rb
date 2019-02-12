@@ -1,39 +1,44 @@
 class BlogsController < ApplicationController
 
-  require 'net/http'
-  require 'json'
+  include WordpressUtils, WordpressHelper
 
-  include WordpressHelper
 
   def index
-
     begin
 
-      per_page = 100
+      @page = 1
+      @posts_per_page = PER_PAGE
+      @category_id = params[:category]
+      @all_blogs = @category_id.blank?
 
-      recipes_slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug=recipes"))
-      parsed_slug = JSON.parse(recipes_slug)
-      recipes_slug_id = parsed_slug[0]["id"]
+      @categories = get_all_categories_or_tags_as_json(:categories, get_category_slug_id_by_name(RECIPES))
+      response = get_posts_by_category(PER_PAGE, @category_id, @page, get_category_slug_id_by_name(RECIPES))
+      @total_posts = response.header["x-wp-total"].to_i
+      @total_pages = response.header["x-wp-totalpages"].to_i
 
-      category = params[:category]
-      if(category)
-        @category_id = category
-        slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug="+category))
-        parsed_slug = JSON.parse(slug)
-        slug_id = parsed_slug[0]["id"]
-        blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=#{per_page}&categories=#{slug_id}"))
-      else
-        @all_blogs = true
-        blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=#{per_page}&categories_exclude=#{recipes_slug_id}"))
-      end
+      @blogs = JSON.parse response.body
 
-      categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories/?_embed&exclude=#{recipes_slug_id}"))
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
+    end
+  end
 
-      @categories = JSON.parse categories
-      @blogs = JSON.parse blogs
+  def load_page
+    begin
+      @posts_per_page = PER_PAGE
+      @page = params[:page]
+      @category_id = params[:category]
+      @categories = get_all_categories_or_tags_as_json(:categories, get_category_slug_id_by_name(RECIPES))
+      response = get_posts_by_category(PER_PAGE, @category_id, @page, get_category_slug_id_by_name(RECIPES))
+      @total_posts = response.header["x-wp-total"].to_i
+      @total_pages = response.header["x-wp-totalpages"].to_i
+      @blogs = JSON.parse response.body
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
+    end
 
-    rescue
-      #do nothing
+    respond_to do |format|
+      format.js
     end
 
   end

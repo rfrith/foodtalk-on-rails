@@ -1,37 +1,55 @@
 class RecipesController < ApplicationController
-  include SessionsHelper, WordpressHelper
+
+  include WordpressUtils, WordpressHelper
 
   def index
     begin
-      per_page = 100
-
-      #TODO: fallback if blog server is down
-      #TODO: error handling
-      tag = params[:tag]
-      if(tag)
-        @category_id = tag
-        slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags?slug="+tag))
-        parsed_slug = JSON.parse(slug)
-        slug_id = parsed_slug[0]["id"]
-        recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?per_page=#{per_page}&_embed&tags=#{slug_id}"))
-      else
-        @all_recipes = true
-        slug = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories?slug=recipes"))
-        parsed_slug = JSON.parse(slug)
-        slug_id = parsed_slug[0]["id"]
-        recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?per_page=#{per_page}&_embed&categories=#{slug_id}"))
-      end
-
-      tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
-
+      @page = 1
+      @posts_per_page = PER_PAGE
+      @category_id = params[:tag]
+      tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + TAGS))
       @tags = JSON.parse tags
-      @recipes = JSON.parse recipes
-    rescue
-      #do nothing
+
+
+      response = get_posts_by_tag(PER_PAGE, @category_id, @page, nil)
+      @recipes = JSON.parse response.body
+
+      @all_recipes = @category_id.blank?
+      @categories = get_all_categories_or_tags_as_json(:tags)
+
+      @total_posts = response.header["x-wp-total"].to_i
+      @total_pages = response.header["x-wp-totalpages"].to_i
+
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
+    end
+  end
+
+  def load_page
+    begin
+      @posts_per_page = PER_PAGE
+      @page = params[:page]
+      @category_id = params[:tag]
+
+      tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + TAGS))
+      @tags = JSON.parse tags
+
+      response = get_posts_by_tag(PER_PAGE, @category_id, @page, nil)
+      @recipes = JSON.parse response.body
+      @categories = get_all_categories_or_tags_as_json(:tags)
+
+      @total_posts = response.header["x-wp-total"].to_i
+      @total_pages = response.header["x-wp-totalpages"].to_i
+
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
+    end
+
+    respond_to do |format|
+      format.js
     end
 
   end
-
 
   def find_by_name
     begin
@@ -47,8 +65,8 @@ class RecipesController < ApplicationController
       @author = @blog['_embedded']['author'][0]['name']
       @content = @blog['content']['rendered']
 
-    rescue
-      #do nothing
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
     end
 
     render :show
@@ -65,8 +83,8 @@ class RecipesController < ApplicationController
       @title = @blog['title']['rendered']
       @author = @blog['_embedded']['author'][0]['name']
       @content = @blog['content']['rendered']
-    rescue
-      #do nothing
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
     end
   end
 
