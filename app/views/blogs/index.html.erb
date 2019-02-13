@@ -34,10 +34,10 @@
         dataType: "html",
         async: true,
         success: function (data) {
-            var html = $(data);
-            $('#blog-grid').append(html);
-            $('#blog-grid').imagesLoaded( function() {
-                $('.grid').masonry( 'appended', html );
+            var jqData = $(data)
+            jqData.imagesLoaded( function() {
+                $('#blog-grid').append(jqData);
+                $('.grid').masonry( 'appended', jqData );
             });
         }
     });

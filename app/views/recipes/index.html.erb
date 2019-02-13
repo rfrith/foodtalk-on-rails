@@ -28,18 +28,23 @@
 </div>
 
 <script language="JavaScript">
-    <% ((@page+=1)..@total_pages).each { |index| %>
-    $.ajax({
-        url: "<%= recipe_load_page_path(page: index, tag: @category_id) %>",
-        dataType: "html",
-        async: true,
-        success: function (data) {
-            var html = $(data);
-            $('#recipes-grid').append(html);
-            $('#recipes-grid').imagesLoaded( function() {
-                $('.grid').masonry( 'appended', html );
-            });
-        }
-    });
-    <% } %>
+
+  <% ((@page+=1)..@total_pages).each { |index| %>
+  $.ajax({
+      url: "<%= recipe_load_page_path(page: index, tag: @category_id) %>",
+      dataType: "html",
+      async: true,
+      success: function (data) {
+          var jqData = $(data)
+          jqData.imagesLoaded( function() {
+              $('#recipes-grid').append(jqData);
+              $('.grid').masonry( 'appended', jqData );
+          });
+      }
+  });
+  <% } %>
+
+
+
+
 </script>
