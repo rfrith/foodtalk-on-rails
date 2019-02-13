@@ -36,7 +36,9 @@
         success: function (data) {
             var html = $(data);
             $('#blog-grid').append(html);
-            $('.grid').masonry( 'appended', html );
+            $('#blog-grid').imagesLoaded( function() {
+                $('.grid').masonry( 'appended', html ).layout();
+            });
         }
     });
     <% } %>
