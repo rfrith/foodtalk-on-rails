@@ -37,7 +37,7 @@
             var html = $(data);
             $('#recipes-grid').append(html);
             $('#recipes-grid').imagesLoaded( function() {
-                $('.grid').masonry( 'appended', html ).layout();
+                $('.grid').masonry( 'appended', html );
             });
         }
     });

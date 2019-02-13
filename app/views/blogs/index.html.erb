@@ -37,7 +37,7 @@
             var html = $(data);
             $('#blog-grid').append(html);
             $('#blog-grid').imagesLoaded( function() {
-                $('.grid').masonry( 'appended', html ).layout();
+                $('.grid').masonry( 'appended', html );
             });
         }
     });
