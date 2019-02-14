@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
     begin
       @posts_per_page = PER_PAGE
       @page = params[:page]
-      @category_id = params[:tag]
+      @category_id = params[:category]
 
       tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + TAGS))
       @tags = JSON.parse tags

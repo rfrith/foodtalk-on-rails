@@ -27,19 +27,44 @@
 
 </div>
 
-<script language="JavaScript">
-    <% ((@page+=1)..@total_pages).each { |index| %>
-    $.ajax({
-        url: "<%= blog_load_page_path(page: index, category: @category_id) %>",
-        dataType: "html",
-        async: true,
-        success: function (data) {
-            var jqData = $(data)
-            jqData.imagesLoaded( function() {
-                $('#blog-grid').append(jqData);
-                $('.grid').masonry( 'appended', jqData );
-            });
-        }
-    });
-    <% } %>
-</script>
+<% if @blogs %>
+  <script>
+      var pages = [];
+
+      <% ((@page+=1)..@total_pages).each { |index| %>
+      pages.push("<%= blog_load_page_url(page: index, category: @category_id) %>");
+      <% } %>
+
+      function getPages() {
+          var slug = pages[ this.loadCount ];
+          if ( slug ) {
+              return slug;
+          }
+      }
+
+      var $grid = $('.grid').masonry({
+          // Masonry options...
+          itemSelector: '.grid-item',
+          fitWidth: true
+      });
+
+      var msnry = $grid.data('masonry');
+
+      $grid.infiniteScroll({
+          path: getPages,
+          append: false,
+          outlayer: msnry,
+          responseType: 'text',
+          history: false,
+      });
+
+      $grid.on( 'load.infiniteScroll', function( event, response ) {
+          var jqData = $(response)
+          jqData.imagesLoaded( function() {
+              $('#blog-grid').append(jqData);
+              $('.grid').masonry( 'appended', jqData );
+          });
+      });
+  </script>
+
+<% end %>

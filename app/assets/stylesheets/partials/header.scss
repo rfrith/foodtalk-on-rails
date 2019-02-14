@@ -21,17 +21,18 @@
 }
 
 
-.scroll-down-for-more, .scroll-down-for-more-light {
+.scroll-down-for-more, .scroll-down-for-more-light, .scroll-down-for-more-content {
   font-family: $caveat-brush;
 }
 
-.scroll-down-for-more {
+.scroll-down-for-more, .scroll-down-for-more-content {
   color: $primary-font-color;
 }
 
 .scroll-down-for-more-light {
   color: $primary-font-inverse-color;
 }
+
 
 /**
  * Responsive Styles
@@ -53,6 +54,11 @@
   .scroll-down-for-more, .scroll-down-for-more-light {
     font-weight: 400;
     font-size: 4rem;
+  }
+
+  .scroll-down-for-more-content {
+    font-weight: 300;
+    font-size: 2rem;
   }
 
   .scroll-down-for-more a,  .scroll-down-for-more a:hover,  .scroll-down-for-more a:active {
