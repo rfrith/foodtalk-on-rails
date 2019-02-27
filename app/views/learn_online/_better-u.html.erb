@@ -2,7 +2,7 @@
   <div class="row p-4 pt-5 no-gutters" style="background-color: white;">
     <div class="col">
       <div class="media align-items-center">
-        <%= image_tag 'better-u-logo.png', class: 'mr-4 d-none d-md-block', alt: 'Better U Logo', style: 'width: auto; height: 6rem;' %>
+        <%= image_tag 'better-u-logo.png', class: 'mr-4 d-none d-lg-block', alt: 'Better U Logo', style: 'width: auto; height: 6rem;' %>
         <div class="media-body">
           <span class="content-section-title"><%=t("learn_online.better_u.name")%></span>
           <p class="content-section-copy-dark mr-5"><%=t("learn_online.better_u.tagline")%></p>
@@ -11,7 +11,7 @@
     </div>
 
     <% #Force next columns to break to new line at md breakpoint and down - https://getbootstrap.com/docs/4.0/layout/grid/#column-wrapping %>
-    <div class="w-100 d-lg-none"></div>
+    <div class="w-100 d-block d-md-none"></div>
 
     <div class="col">
       <div class="content-section-copy-dark-med text-justify">
