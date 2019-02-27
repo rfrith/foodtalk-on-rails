@@ -8,7 +8,7 @@
   <% if lesson[:survey_lesson] %>
     <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(curriculum: cur, module_name: mod) %>
   <% else %>
-    <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'} %>
+    <%= link_to image_tag(lesson[:img_path], class: 'card-img-top', alt: 'Lesson Cap'), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe', preload: false} %>
   <% end %>
 
   <div class="card-body">
@@ -19,7 +19,7 @@
     <% if lesson[:survey_lesson] %>
       <%= link_to(t("learning_modules.launch"), launch_module_path(curriculum: cur, module_name: mod), class: "btn btn-sm btn-primary") %>
     <% else %>
-      <%= link_to(t("learning_modules.launch"), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+      <%= link_to(t("learning_modules.launch"), launch_module_path(curriculum: cur, module_name: mod), data: {"fancybox": "", "type": 'iframe', preload: false}, class: "btn btn-sm btn-primary") %>
     <% end %>
   </div>
 </div>
