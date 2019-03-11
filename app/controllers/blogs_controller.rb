@@ -56,7 +56,7 @@ class BlogsController < ApplicationController
       @title = @blog['title']['rendered']
       @author = @blog['_embedded']['author'][0]['name']
       @content = @blog['content']['rendered']
-
+      @embedded_content = is_embedded_content?(@blog)
     rescue
       #do nothing
     end
