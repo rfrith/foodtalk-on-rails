@@ -57,8 +57,8 @@ class BlogsController < ApplicationController
       @author = @blog['_embedded']['author'][0]['name']
       @content = @blog['content']['rendered']
       @embedded_content = is_embedded_content?(@blog)
-    rescue
-      #do nothing
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
     end
 
     render :show
@@ -75,8 +75,8 @@ class BlogsController < ApplicationController
       @title = @blog['title']['rendered']
       @author = @blog['_embedded']['author'][0]['name']
       @content = @blog['content']['rendered']
-    rescue
-      #do nothing
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
     end
   end
 
