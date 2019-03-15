@@ -49,7 +49,16 @@ gem 'gibbon', '~> 3.2'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'fractional', '~> 1.2', '>= 1.2.1'
 gem 'aasm', '~> 5.0', '>= 5.0.2'
-gem 'rmagick', '~> 3.0'
+
+#TODO FIX ME! THIS DOESN'T WORK: gem 'rmagick', '~> 3.0'
+# An error occurred while installing rmagick (3.0.0), and Bundler cannot continue.
+#
+# Make sure that `gem install rmagick -v '3.0.0'` succeeds before bundling.
+# In Gemfile:
+#
+#   rmagick
+gem 'rmagick', '~> 2.16.0'
+
 gem 'pundit', '~> 2.0', '>= 2.0.1'
 gem 'chartkick', '~> 3.0', '>= 3.0.2'
 gem 'groupdate', '~> 4.1', '>= 4.1.1'
