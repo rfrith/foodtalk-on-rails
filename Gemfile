@@ -11,92 +11,95 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
+gem 'pg', '~> 1.1', '>= 1.1.4'
 
-# Rails doesn't support Postgres 1.0 gem yet
-# https://github.com/rails/rails/issues/31673
-gem 'pg', '~> 0.21.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
+
 # Use SCSS for stylesheets
-gem 'sassc-rails'
+gem 'sassc-rails', '~> 2.1'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 4.1', '>= 4.1.20'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 4.2', '>= 4.2.2'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.8'
+
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+#gem 'redis', '~> 4.1'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 
 # custom gems
 gem 'omniauth'
-gem 'omniauth-auth0'
-gem 'bootstrap', '~> 4.2.1'
-gem 'font-awesome-rails'
-gem 'gibbon', '~> 3.1', '>= 3.1.1'
-gem 'carrierwave', '~> 1.2', '>= 1.2.1'
-gem 'fractional', '~> 1.2'
-gem 'aasm'
-gem 'rmagick'
-gem 'pundit'
-gem 'chartkick', '~> 2.3', '>= 2.3.5'
-gem 'groupdate'
-gem 'kaminari'
-gem 'lol_dba'
-gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
+gem 'omniauth-auth0', '~> 2.1'
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
+gem 'gibbon', '~> 3.2'
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'fractional', '~> 1.2', '>= 1.2.1'
+gem 'aasm', '~> 5.0', '>= 5.0.2'
+gem 'rmagick', '~> 3.0'
+gem 'pundit', '~> 2.0', '>= 2.0.1'
+gem 'chartkick', '~> 3.0', '>= 3.0.2'
+gem 'groupdate', '~> 4.1', '>= 4.1.1'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'lol_dba', '~> 2.1', '>= 2.1.5'
+gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 
 #TODO: decide on
-#gem 'foreman'
-#gem 'resque'
-#gem 'resque-scheduler'
+#gem 'foreman', '~> 0.85.0'
+#gem 'resque', '~> 2.0'
+#gem 'resque-scheduler', '~> 4.3', '>= 4.3.1'
 
-gem 'jquery-rails'
-gem 'popper_js', '~> 1.14.3'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'popper_js', '~> 1.14', '>= 1.14.5'
 
 group :test do
-  gem 'sqlite3'
+  #TODO FIX ME!  THIS DOESN'T WORK: gem 'sqlite3', '~> 1.4'
+  gem 'sqlite3', '~> 1.3.13'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', '~> 11.0', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
-  gem 'rspec-rails', '~> 3.6.0'
-  gem 'factory_bot_rails', '~> 4.10.0'
+  gem 'capybara', '~> 3.14'
+  gem 'selenium-webdriver', '~> 3.141'
+  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
+  gem 'factory_bot_rails', '~> 5.0', '>= 5.0.1'
+  gem 'faker', '~> 1.9', '>= 1.9.3'
 end
 
 group :development do
   gem 'dotenv-rails'
 
   # Deploy using Capistrano & RVM
-  gem 'capistrano', '~> 3.10', require: false
-  gem 'capistrano-rails', '~> 1.3', require: false
-  gem 'capistrano-rvm', require: false
-  gem 'capistrano-bundler', '~> 1.3', require: false
-  gem 'capistrano3-puma', require: false
-  gem 'capistrano-maintenance', '~> 1.0', require: false
+  gem 'capistrano', '~> 3.11', require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano-rvm', '~> 0.1.2', require: false
+  gem 'capistrano-bundler', '~> 1.5', require: false
+  gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1', require: false
+  gem 'capistrano-maintenance', '~> 1.2', require: false
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '~> 3.7'
+  gem 'listen', '~> 3.1', '>= 3.1.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring-commands-rspec'
+  gem 'spring', '~> 2.0', '>= 2.0.2'
+  gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
+  gem 'spring-commands-rspec', '~> 1.0', '>= 1.0.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', '~> 1.2018', '>= 1.2018.9', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

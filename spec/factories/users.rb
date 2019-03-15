@@ -5,28 +5,28 @@ FactoryBot.define do
     sequence(:uid) { |n| "uid|#{n}" }
     sequence(:email) { |n| "tester#{n}@example.com" }
 
-    first_name "Test"
-    last_name "User"
-    age 21
-    gender "male"
-    zip_code 90210
-    is_hispanic_or_latino false
+    first_name {"Test"}
+    last_name {"User"}
+    age {21}
+    gender {"male"}
+    zip_code {90210}
+    is_hispanic_or_latino {false}
 
     racial_identities {[FactoryBot.create(:racial_identity, :white)]}
 
     trait :static_email_uid do
-      uid "facebook|123467890"
-      email "tester@example.com"
+      uid {"facebook|123467890"}
+      email {"tester@example.com"}
     end
 
     trait :eligible do
-      zip_code 30601
-      eligible true
+      zip_code {30601}
+      eligible {true}
     end
 
     trait :ineligible do
-      zip_code 11111
-      eligible false
+      zip_code {11111}
+      eligible {false}
     end
 
     trait :with_no_racial_identities do
@@ -37,7 +37,7 @@ FactoryBot.define do
     #groups
 
     trait :admin do
-      role "admin"
+      role {"admin"}
     end
 
     trait :mhc do
@@ -52,21 +52,21 @@ FactoryBot.define do
     #enrollments
 
     trait :with_food_etalk_enrollment do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
         FactoryBot.create(:course_enrollment, :food_etalk_started, user: user)
       end
     end
 
     trait :with_better_u_enrollment do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
         FactoryBot.create(:course_enrollment, :better_u_started, user: user)
       end
     end
 
     trait :has_completed_food_etalk do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
 
         #TODO: should we manually change machine state from started to completed?
@@ -95,7 +95,7 @@ FactoryBot.define do
     end
 
     trait :has_completed_better_u do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
 
         #TODO: should we manually change machine state from started to completed?
@@ -119,7 +119,7 @@ FactoryBot.define do
 
 
     trait :has_completed_video_surveys do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
 
         #TODO: should we manually change machine state from started to completed?
@@ -142,14 +142,14 @@ FactoryBot.define do
     end
 
     trait :has_started_video_survey_sweet_deceit do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
         FactoryBot.create(:survey_history, :sweet_deceit_started, user: user)
       end
     end
 
     trait :has_completed_video_survey_sweet_deceit do
-      zip_code 30601
+      zip_code {30601}
       after(:create) do |user|
         FactoryBot.create(:survey_history, :sweet_deceit_started, user: user)
         FactoryBot.create(:survey_history, :sweet_deceit_completed, user: user)

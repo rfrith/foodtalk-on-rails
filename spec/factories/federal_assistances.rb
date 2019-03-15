@@ -5,7 +5,7 @@ FactoryBot.define do
     initialize_with { FederalAssistance.where(:id => id).first_or_create }
 
     trait :tanf do
-      name "tanf"
+      name {"tanf"}
     end
 
   end

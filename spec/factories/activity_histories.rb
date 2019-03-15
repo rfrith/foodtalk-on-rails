@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :activity_history do
-    name "Test History"
+    name { 'Test History' }
   end
 end

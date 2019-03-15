@@ -4,11 +4,11 @@ FactoryBot.define do
   end
 
   trait :sweet_deceit_started do
-    name "sweet-deceit#started"
+    name {"sweet-deceit#started"}
   end
 
   trait :sweet_deceit_completed do
-    name "sweet-deceit#completed"
+    name {"sweet-deceit#completed"}
   end
 
 end
