@@ -5,7 +5,16 @@ class User < ApplicationRecord
   has_and_belongs_to_many :racial_identities
   has_and_belongs_to_many :federal_assistances
   #has_and_belongs_to_many :recipes
-  has_and_belongs_to_many :groups, -> { distinct }
+  has_and_belongs_to_many :groups do
+    def members
+      group_members = []
+      proxy_association.owner.groups.collect {|group| group.users }.each do |users|
+        group_members << users
+      end
+      group_members.flatten!
+      return User.where(id: group_members.map(&:id))
+    end
+  end
 
   has_many :activity_histories, dependent: :destroy
   has_many :online_learning_histories, dependent: :destroy
@@ -52,7 +61,7 @@ class User < ApplicationRecord
 
   #TODO: is first condition necesary?
   def is_admin?
-    return self.admin?
+    return self.admin? || self.group_admin?
   end
 
   def name

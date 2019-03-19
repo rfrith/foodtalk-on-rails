@@ -4,8 +4,22 @@ class DashboardController < ApplicationController
 
   def show
 
-    #TODO: switch to look at currently selected tab instead
-    if(!@current_user.is_admin?)
+    if(@current_user.is_admin?)
+
+      @current_tab = params["stats-current-tab"] unless params["stats-current-tab"].nil?
+      @current_tab = "user-stats-tab" if @current_tab.nil?
+
+      begin
+        start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i) unless params[:start_date].nil?
+        end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i) unless params[:end_date].nil?
+      rescue ArgumentError => e
+        add_notification :error, t(:error), e.to_s, 20000
+        redirect_back(fallback_location: show_dashboard_path) and return
+      end
+
+      fetch_site_statistics(@current_user, start_date, end_date)
+
+    else
 
       if(@current_user.course_enrollments.started.any?)
         add_notification :info, t(:info), t("learn_online.continue_learning_module"), 20000
@@ -19,21 +33,6 @@ class DashboardController < ApplicationController
       elsif(@current_user.new_record?)
         add_notification :info, t(:info), t("dashboard.my_info.notice"), false
       end
-
-    elsif(@current_user.is_admin?)
-
-      @current_tab = params["stats-current-tab"] unless params["stats-current-tab"].nil?
-      @current_tab = "user-stats-tab" if @current_tab.nil?
-
-      begin
-        start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i) unless params[:start_date].nil?
-        end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i) unless params[:end_date].nil?
-      rescue ArgumentError => e
-        add_notification :error, t(:error), e.to_s, 20000
-        redirect_back(fallback_location: show_dashboard_path) and return
-      end
-
-      fetch_site_statistics(start_date, end_date)
 
     end
 

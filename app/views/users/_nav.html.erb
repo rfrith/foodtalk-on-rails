@@ -1,15 +1,17 @@
-<div class="p-2 row no-gutters">
+<div class="m-0 p-0 pb-2 row no-gutters">
+
+  <% if(false) %>
   <div class="col-1">
-
     <%= link_to fa_icon('arrow-left') + " Back", 'javascript:history.back()' %>
-
-  </div>
-  <% if(@users) %>
-  <div class="col-5">
-    <%= paginate @users %>
   </div>
   <% end %>
 
-  <%= render :partial => "find_user_form" %>
+  <div class="col-5">
+    <% if(@users) %>
+    <%= paginate @users %>
+    <% end %>
+  </div>
+
+  <%= render :partial => "users/find_user_form" %>
 
 </div>

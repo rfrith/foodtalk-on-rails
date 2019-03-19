@@ -11,20 +11,55 @@ class WelcomeController < ApplicationController
       parsed_slug = JSON.parse(recipes_slug)
       recipes_slug_id = parsed_slug[0]["id"]
 
-      blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&pe_page=3&categories_exclude=#{recipes_slug_id}"))
+      #blogs = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&pe_page=3&categories_exclude=#{recipes_slug_id}"))
+
+      #move to wordpress_utils.rb
+      uri = URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&pe_page=3&categories_exclude=#{recipes_slug_id}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.open_timeout = 30 # in seconds
+      http.read_timeout = 30 # in seconds
+      blogs = http.request(Net::HTTP::Get.new(uri.request_uri)).body
       @blogs = JSON.parse blogs
 
-      categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories/?_embed&exclude=#{recipes_slug_id}"))
+
+      #categories = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "categories/?_embed&exclude=#{recipes_slug_id}"))
+
+      uri = URI(Rails.application.secrets.blog_feed_url + "categories/?_embed&exclude=#{recipes_slug_id}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.open_timeout = 30 # in seconds
+      http.read_timeout = 30 # in seconds
+      categories = http.request(Net::HTTP::Get.new(uri.request_uri)).body
       @categories = JSON.parse categories
 
-      recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories=#{recipes_slug_id}"))
-      tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
 
-      @tags = JSON.parse tags
+
+      #recipes = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories=#{recipes_slug_id}"))
+
+      uri = URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories=#{recipes_slug_id}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.open_timeout = 30 # in seconds
+      http.read_timeout = 30 # in seconds
+      recipes = http.request(Net::HTTP::Get.new(uri.request_uri)).body
       @recipes = JSON.parse recipes
 
-    rescue
-      #do nothing
+
+      #tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + "tags"))
+
+      uri = URI(Rails.application.secrets.blog_feed_url + "tags")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.open_timeout = 30 # in seconds
+      http.read_timeout = 30 # in seconds
+      tags = http.request(Net::HTTP::Get.new(uri.request_uri)).body
+
+      @tags = JSON.parse tags
+
+
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
     end
 
     begin
@@ -35,8 +70,8 @@ class WelcomeController < ApplicationController
       playlists_url = "https://www.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=#{Rails.application.secrets.youtube_channel_id}&maxResults=25&key=#{Rails.application.secrets.youtube_api_key}"
       playlist_items = Net::HTTP.get(URI(playlist_items_url))
       @videos = JSON.parse playlist_items
-    rescue
-      #do nothing
+    rescue Exception => e
+      logger.error "An error occurred: #{e.inspect}"
     end
 
   end

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update]
     resources :recipes, only: [:index, :show]
     resources :videos, only: [:index, :show]
+    resources :users, only: [:show]
 
     get 'dashboard' => 'dashboard#show', as: 'show_dashboard'
     get 'welcome/index'
@@ -70,7 +71,7 @@ Rails.application.routes.draw do
     end
 
     controller :users do
-      get 'users/:id', to: 'users#show'
+
       get 'users/find_by_month/:month' => :find_by_month, as: 'find_users_by_month'
       get 'users/find_by_month_and_group/:month/:group_name' => :find_by_month_and_group, as: 'find_by_month_and_group'
       get 'users/find_by_group/:group_name(/:start_date/:end_date)' => :find_by_group, as: 'find_by_group'

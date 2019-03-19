@@ -1,3 +1,15 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#simple-layout>#users-list, #simple-layout>#user-detail, #users-list, #user-detail {
+  background-color: white;
+  padding: 2em;
+}
+
+#users-list, #user-detail {
+}
+
+#simple-layout>#users-list, #simple-layout>#user-detail {
+  min-height: calc(100vh);
+}

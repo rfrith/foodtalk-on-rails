@@ -18,11 +18,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update_user_groups?
-    user.is_admin?
+    user.admin?
   end
 
   def update_user_roles?
-    user.is_admin?
+    user.admin?
   end
 
 

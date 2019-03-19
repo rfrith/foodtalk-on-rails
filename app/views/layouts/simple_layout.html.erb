@@ -11,22 +11,17 @@
 
     <%= render :partial => "layouts/google_analytics" %>
 
+    <%= yield :js %>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
-
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-
-
     <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
 
     <meta charset="UTF-8">
@@ -37,10 +32,13 @@
         background: none;
       }
     </style>
+    <%= yield :head %>
   </head>
   <body>
     <div id="notifications"></div>
-    <%= yield %>
+    <div id="simple-layout">
+      <%= yield %>
+    </div>
     <% #must include here so that turbolinks won't cache %>
     <%= render partial: "layouts/show_notifications" %>
   </body>

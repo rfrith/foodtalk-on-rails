@@ -1,0 +1,24 @@
+<%
+  #TODO: move into different layout files & choose which to use in controller
+  #
+  # https://stackoverflow.com/questions/3025784/rails-layouts-per-action/21203783#21203783
+  #
+  if(action_name == :find_user_by_criteria.to_s || action_name == :show.to_s)
+%>
+
+  <% content_for :header do %>
+    <%= render 'layouts/top-nav' %>
+  <% end %>
+
+  <% content_for :content do %>
+    <%= yield %>
+  <% end %>
+
+  <% content_for :footer do %>
+    <%= render 'layouts/footer' %>
+  <% end %>
+
+  <%= render template: 'layouts/application' %>
+<% else %>
+  <%= render template: 'layouts/simple_layout' %>
+<% end %>

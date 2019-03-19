@@ -7,12 +7,15 @@ class UsersController < ApplicationController
   def show
     authorize @current_user
     id = params[:id]
-
     begin
       @user = User.find(id) unless id.nil?
     rescue => e
       #TODO: I18N ME!
       add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+    end
+
+    respond_to do |format|
+      format.js
     end
 
   end
@@ -105,31 +108,66 @@ class UsersController < ApplicationController
     authorize @current_user
     search_criteria = params[:search_criteria].to_sym
     search_value = params[:search_value]
+
+    @users = []
+
     case search_criteria
     when :name
-      @users = User.search_by_full_name(search_value).page params[:page]
+      if(@current_user.admin?)
+        #show all users
+        @users = User.search_by_full_name(search_value).page params[:page]
+      elsif(@current_user.group_admin?)
+        #show only users in GroupAdmin's assigned groups
+        @users = current_user.groups.members.search_by_full_name(search_value).page params[:page]
+      end
+
     when :email
-      @users = User.search_by_email(search_value).page params[:page]
+      if(@current_user.admin?)
+        #show all users
+        @users = User.search_by_email(search_value).page params[:page]
+      elsif(@current_user.group_admin?)
+        #show only users in GroupAdmin's assigned groups
+        @users = current_user.groups.members.search_by_email(search_value).page params[:page]
+      end
     end
+
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def find_by_group
     authorize @current_user
+
     group_name = params[:group_name].parameterize
     begin
       #support supplied date range
-      if(@start_date && @end_date)
-        if(group_name == Group::FOODTALK_USERS)
-          @users = User.created_in_range(@start_date..@end_date).not_in_group.page params[:page]
-        else
-          group = Group.find_by_name(group_name)
+      # TODO check this against conflicting ApplicationController.initialize_date_range
+      if(params[:start_date] && params[:end_date])
+
+        if(@current_user.admin?)
+          if(group_name == Group::FOODTALK_USERS)
+            @users = User.created_in_range(@start_date..@end_date).not_in_group.page params[:page]
+          else
+            group = Group.find_by_name(group_name)
+            @users = group.users.created_in_range(@start_date..@end_date).page params[:page]
+          end
+        elsif(@current_user.group_admin?)
+          group = @current_user.groups.find_by_name(group_name)
           @users = group.users.created_in_range(@start_date..@end_date).page params[:page]
         end
       else
-        if(group_name == Group::FOODTALK_USERS)
-          @users = User.all.not_in_group.page params[:page]
-        else
-          group = Group.find_by_name(group_name)
+        if(@current_user.admin?)
+          if(group_name == Group::FOODTALK_USERS)
+            @users = User.all.not_in_group.page params[:page]
+          else
+            group = Group.find_by_name(group_name)
+            @users = group.users.page params[:page]
+          end
+        elsif(@current_user.group_admin?)
+          group = @current_user.groups.find_by_name(group_name)
           @users = group.users.page params[:page]
         end
       end
