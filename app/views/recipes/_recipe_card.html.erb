@@ -4,9 +4,8 @@
     <h4 class="card-title text-center mt-0">
       <%== recipe["title"]["rendered"] %>
       <span>
-        <% #TODO: FIX ME!!!! e.g., User.registered? %>
-        <% if user_signed_in? & @current_user.valid? %>
-          <% fav = false %>
+        <% #TODO: FIX ME!!!!  %>
+        <% if false #user_signed_in? %>
           <% #TODO: AJAXIFY ME!!!!! %>
           <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
         <% end %>

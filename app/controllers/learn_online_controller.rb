@@ -1,6 +1,8 @@
 class LearnOnlineController < ApplicationController
   include Secured, Eligible, LearningModules, ApplicationHelper
 
+  caches_action :index
+
   def index
   end
 

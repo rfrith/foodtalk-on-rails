@@ -11,6 +11,10 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
+
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+
 gem 'pg', '~> 1.1', '>= 1.1.4'
 
 # Use Puma as the app server
