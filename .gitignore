@@ -35,5 +35,7 @@ dump.rdb
 
 /public/uploads/*
 
+/public/cached_pages/*
+
 #OSX File System Crud
 .DS_Store

@@ -1,4 +1,7 @@
 class VideosController < ApplicationController
+
+  caches_page :index
+
   def index
     begin
       playlist = params[:playlist]
