@@ -20,6 +20,9 @@ Rails.application.configure do
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }
+
+    config.action_controller.page_cache_directory = Rails.root.join "public/cached_pages"
+
   else
     config.action_controller.perform_caching = false
 

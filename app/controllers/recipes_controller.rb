@@ -2,6 +2,8 @@ class RecipesController < ApplicationController
 
   include WordpressUtils, WordpressHelper
 
+  caches_page :index, :load_page, :find_by_name, :show
+
   def index
     begin
       @page = 1

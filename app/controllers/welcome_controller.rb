@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
 
+  caches_page :index
+
   def index
     #TODO: fallback if blog server is down
     begin
