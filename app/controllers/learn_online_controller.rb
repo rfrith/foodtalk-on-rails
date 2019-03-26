@@ -1,7 +1,7 @@
 class LearnOnlineController < ApplicationController
   include Secured, Eligible, LearningModules, ApplicationHelper
 
-  caches_action :index
+  caches_page :index, :expires_in => 1.year
 
   def index
   end

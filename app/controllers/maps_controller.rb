@@ -1,6 +1,6 @@
 class MapsController < ApplicationController
 
-  caches_page :index, :show
+  caches_page :index, :show, :expires_in => 1.week
 
   def index
   end
