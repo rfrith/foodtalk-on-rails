@@ -53,6 +53,7 @@ gem 'gibbon', '~> 3.2'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'fractional', '~> 1.2', '>= 1.2.1'
 gem 'aasm', '~> 5.0', '>= 5.0.2'
+gem 'faker', '~> 1.9', '>= 1.9.3'
 
 #TODO FIX ME! THIS DOESN'T WORK: gem 'rmagick', '~> 3.0'
 # An error occurred while installing rmagick (3.0.0), and Bundler cannot continue.
@@ -91,7 +92,6 @@ group :development, :test do
   gem 'selenium-webdriver', '~> 3.141'
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.1'
-  gem 'faker', '~> 1.9', '>= 1.9.3'
 end
 
 group :development do
