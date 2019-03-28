@@ -1,6 +1,6 @@
 <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
 
-<% #cache [create_cache_key_prefix, "recipes-index"], :expires_in => 1.day do %>
+<% cache [create_cache_key_prefix, "recipes-index"], :expires_in => 1.day do %>
 
   <div id="recipes" class="content-section2">
 
@@ -71,4 +71,4 @@
 
   <% end %>
 
-<% #end %>
+<% end %>
