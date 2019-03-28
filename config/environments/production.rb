@@ -15,9 +15,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
 
-
-  # TODO: REMOVE ME!
-  # config.action_controller.page_cache_directory = Rails.root.join "public/cached_pages"
+  # for memcached integration
+  config.cache_store = :dalli_store, '127.0.0.1:11211', { :pool_size => ENV['RAILS_MAX_THREADS'] }
 
 
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.

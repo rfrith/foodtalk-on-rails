@@ -28,7 +28,7 @@ set :rvm_ruby_version, ENV['RVM_RUBY_VERSION']
 append :linked_files, "config/database.yml", "config/secrets.yml"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "public/cached_pages"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
 
 # Add bundler support
 append :linked_dirs, '.bundle'
