@@ -12,9 +12,6 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
-
 gem 'pg', '~> 1.1', '>= 1.1.4'
 
 # Use Puma as the app server
@@ -54,6 +51,10 @@ gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'fractional', '~> 1.2', '>= 1.2.1'
 gem 'aasm', '~> 5.0', '>= 5.0.2'
 gem 'faker', '~> 1.9', '>= 1.9.3'
+#for memcached integration
+gem 'dalli', '~> 2.7', '>= 2.7.10'
+gem 'connection_pool', '~> 2.2', '>= 2.2.2'
+
 
 #TODO FIX ME! THIS DOESN'T WORK: gem 'rmagick', '~> 3.0'
 # An error occurred while installing rmagick (3.0.0), and Bundler cannot continue.

@@ -1,3 +1,4 @@
+<% cache "recent-recipes", :expires_in => 1.day do %>
 <div id="featured-recipes" class="content-section">
   <div class="d-flex justify-content-center">
     <div class="media pt-4 pl-4 pr-4 align-items-center">
@@ -8,7 +9,6 @@
       </div>
     </div>
   </div>
-
   <div class="mx-auto card-deckz recipes-deck w-100">
     <div class="grid">
       <%
@@ -22,3 +22,4 @@
     <%= link_to t("navigation.view_all_recipes"), recipes_path %>
   </div>
 </div>
+<% end %>

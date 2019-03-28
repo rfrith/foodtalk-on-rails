@@ -2,8 +2,6 @@ class BlogsController < ApplicationController
 
   include WordpressUtils, WordpressHelper
 
-  caches_page :index, :load_page, :find_by_name, :show, :expires_in => 1.week
-
   def index
     begin
 

@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+  def create_cache_key_prefix
+    key = ""
+    key += request.host
+    key += user_signed_in?.to_s.slice(0)
+    key += @current_user.is_eligible?.to_s.slice(0)
+    key += Rails.application.secrets.i18n_enabled.to_s.slice(0)
+    key += I18n.locale.to_s
+    return key
+  end
+
   def get_learning_module(module_id)
     if(correct_syntax?(lesson_id))
       lesson = eval lesson_id

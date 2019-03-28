@@ -1,70 +1,74 @@
 <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
 
-<div id="blogs" class="content-section2">
+<% cache [create_cache_key_prefix, "blog-index"], :expires_in => 1.day do %>
+
+  <div id="blogs" class="content-section2">
+
+    <% if @blogs %>
+
+      <%= render partial: 'blog_header' %>
+
+      <div id="blog-grid" class="grid">
+        <%
+          @blogs.each do |blog|
+        %>
+          <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
+        <%
+          end
+        %>
+      </div>
+
+    <% else %>
+      <div class="d-flex justify-content-center">
+        <div class="media align-items-center mt-4 ml-5 mr-5">
+          <% #TODO: I18n ME! %>
+          Error displaying Blog.
+        </div>
+      </div>
+    <% end %>
+
+  </div>
 
   <% if @blogs %>
+    <script>
+        var pages = [];
 
-    <%= render partial: 'blog_header' %>
+        <% ((@page+=1)..@total_pages).each { |index| %>
+        pages.push("<%= blog_load_page_url(page: index, category: @category_id) %>");
+        <% } %>
 
-    <div id="blog-grid" class="grid">
-      <%
-        @blogs.each do |blog|
-      %>
-        <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
-      <%
-        end
-      %>
-    </div>
+        function getPages() {
+            var slug = pages[ this.loadCount ];
+            if ( slug ) {
+                return slug;
+            }
+        }
 
-  <% else %>
-    <div class="d-flex justify-content-center">
-      <div class="media align-items-center mt-4 ml-5 mr-5">
-        <% #TODO: I18n ME! %>
-        Error displaying Blog.
-      </div>
-    </div>
+        var $grid = $('.grid').masonry({
+            // Masonry options...
+            itemSelector: '.grid-item',
+            fitWidth: true
+        });
+
+        var msnry = $grid.data('masonry');
+
+        $grid.infiniteScroll({
+            path: getPages,
+            append: false,
+            outlayer: msnry,
+            responseType: 'text',
+            history: false,
+        });
+
+        $grid.on( 'load.infiniteScroll', function( event, response ) {
+            var jqData = $(response)
+            jqData.imagesLoaded( function() {
+                $('#blog-grid').append(jqData);
+                $('.grid').masonry( 'appended', jqData );
+            });
+        });
+    </script>
+
   <% end %>
-
-</div>
-
-<% if @blogs %>
-  <script>
-      var pages = [];
-
-      <% ((@page+=1)..@total_pages).each { |index| %>
-      pages.push("<%= blog_load_page_url(page: index, category: @category_id) %>");
-      <% } %>
-
-      function getPages() {
-          var slug = pages[ this.loadCount ];
-          if ( slug ) {
-              return slug;
-          }
-      }
-
-      var $grid = $('.grid').masonry({
-          // Masonry options...
-          itemSelector: '.grid-item',
-          fitWidth: true
-      });
-
-      var msnry = $grid.data('masonry');
-
-      $grid.infiniteScroll({
-          path: getPages,
-          append: false,
-          outlayer: msnry,
-          responseType: 'text',
-          history: false,
-      });
-
-      $grid.on( 'load.infiniteScroll', function( event, response ) {
-          var jqData = $(response)
-          jqData.imagesLoaded( function() {
-              $('#blog-grid').append(jqData);
-              $('.grid').masonry( 'appended', jqData );
-          });
-      });
-  </script>
 
 <% end %>

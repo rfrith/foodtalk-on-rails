@@ -1,7 +1,5 @@
 class VideosController < ApplicationController
 
-  caches_page :index, :expires_in => 1.week
-
   def index
     begin
       playlist = params[:playlist]

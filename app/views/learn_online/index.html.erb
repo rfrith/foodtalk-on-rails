@@ -1,6 +1,8 @@
+<% cache [create_cache_key_prefix, "learn_online"], :expires_in => 1.year do %>
 <div id="lessons">
   <div class="content-section2">
     <%= render :partial => "better-u" %>
     <%= render :partial => "food-etalk" %>
   </div>
 </div>
+<% end %>

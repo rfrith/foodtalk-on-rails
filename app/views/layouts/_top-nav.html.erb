@@ -1,6 +1,5 @@
 <nav class="top-nav navbar navbar-expand-md navbar-light <%= local_assigns[:css] %>" role="navigation">
 
-
   <%= link_to root_path, class: "navbar-brand", data: {turbolinks: false} do %>
     <%= image_tag('logo-sm.png', class: 'img-fluid m-0 p-0', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>
     <% if (avatar = DomainGroups::get_domain_group_icon(request.host)) %>
@@ -12,6 +11,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <% cache [create_cache_key_prefix, "top-nav"], :expires_in => 1.month do %>
   <div class="collapse navbar-collapse" id="navbarToggler1">
     <ul class="navbar-nav mr-auto">
 
@@ -93,8 +93,8 @@
 
       <% end %>
 
-
     </ul>
 
   </div>
+  <% end %>
 </nav>

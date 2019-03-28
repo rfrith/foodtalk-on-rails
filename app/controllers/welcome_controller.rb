@@ -1,7 +1,5 @@
 class WelcomeController < ApplicationController
 
-  caches_action :index, layout: false
-
   def index
     #TODO: fallback if blog server is down
     begin

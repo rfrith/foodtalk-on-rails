@@ -1,6 +1,8 @@
 <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
 
-<div id="recipes" class="content-section2">
+<% cache [create_cache_key_prefix, "recipes-index"], :expires_in => 1.day do %>
+
+  <div id="recipes" class="content-section2">
 
   <% if @recipes %>
 
@@ -27,44 +29,46 @@
 
 </div>
 
-<% if @recipes %>
-  <script>
-      var pages = [];
+  <% if @recipes %>
+    <script>
+        var pages = [];
 
-      <% ((@page+=1)..@total_pages).each { |index| %>
-      pages.push("<%= recipe_load_page_path(page: index, category: @category_id) %>");
-      <% } %>
+        <% ((@page+=1)..@total_pages).each { |index| %>
+        pages.push("<%= recipe_load_page_path(page: index, category: @category_id) %>");
+        <% } %>
 
-      function getPages() {
-          var slug = pages[ this.loadCount ];
-          if ( slug ) {
-              return slug;
-          }
-      }
+        function getPages() {
+            var slug = pages[ this.loadCount ];
+            if ( slug ) {
+                return slug;
+            }
+        }
 
-      var $grid = $('.grid').masonry({
-          // Masonry options...
-          itemSelector: '.grid-item',
-          fitWidth: true
-      });
+        var $grid = $('.grid').masonry({
+            // Masonry options...
+            itemSelector: '.grid-item',
+            fitWidth: true
+        });
 
-      var msnry = $grid.data('masonry');
+        var msnry = $grid.data('masonry');
 
-      $grid.infiniteScroll({
-          path: getPages,
-          append: false,
-          outlayer: msnry,
-          responseType: 'text',
-          history: false,
-      });
+        $grid.infiniteScroll({
+            path: getPages,
+            append: false,
+            outlayer: msnry,
+            responseType: 'text',
+            history: false,
+        });
 
-      $grid.on( 'load.infiniteScroll', function( event, response ) {
-          var jqData = $(response)
-          jqData.imagesLoaded( function() {
-              $('#recipes-grid').append(jqData);
-              $('.grid').masonry( 'appended', jqData );
-          });
-      });
-  </script>
+        $grid.on( 'load.infiniteScroll', function( event, response ) {
+            var jqData = $(response)
+            jqData.imagesLoaded( function() {
+                $('#recipes-grid').append(jqData);
+                $('.grid').masonry( 'appended', jqData );
+            });
+        });
+    </script>
+
+  <% end %>
 
 <% end %>

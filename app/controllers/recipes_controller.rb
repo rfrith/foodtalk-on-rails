@@ -2,8 +2,6 @@ class RecipesController < ApplicationController
 
   include WordpressUtils, WordpressHelper
 
-  caches_page :index, :load_page, :find_by_name, :show, :expires_in => 1.week
-
   def index
     begin
       @page = 1
@@ -11,7 +9,6 @@ class RecipesController < ApplicationController
       @category_id = params[:tag]
       tags = Net::HTTP.get(URI(Rails.application.secrets.blog_feed_url + TAGS))
       @tags = JSON.parse tags
-
 
       response = get_posts_by_tag(PER_PAGE, @category_id, @page, nil)
       @recipes = JSON.parse response.body
