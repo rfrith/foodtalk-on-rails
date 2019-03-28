@@ -1,6 +1,6 @@
-<% cache [create_cache_key_prefix, "map-rendered"], :expires_in => 1.year do %>
+<% #cache [create_cache_key_prefix, "map-rendered"], :expires_in => 1.year do %>
 <div class="content-section2" style="background-color: white">
   <%@map_name%>
   <iframe style="width: 100%;height: 100%;position: absolute;" src="<%=@map_url%>" frameborder="0" allowfullscreen></iframe>
 </div>
-<% end %>
+<% #end %>

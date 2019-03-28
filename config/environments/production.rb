@@ -14,11 +14,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-
-  # for memcached integration
-  config.cache_store = :dalli_store, '127.0.0.1:11211', { :pool_size => ENV['RAILS_MAX_THREADS'] }
-
-
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
   # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
   # `config/secrets.yml.key`.
@@ -64,6 +59,9 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+
+  # for memcached integration
+  config.cache_store = :dalli_store, '127.0.0.1:11211', { :pool_size => 5 }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

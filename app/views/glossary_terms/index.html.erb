@@ -1,5 +1,5 @@
 <% content_for :header do %>
-  <% cache [create_cache_key_prefix, "glossary-header"], :expires_in => 1.month do %>
+  <% #cache [create_cache_key_prefix, "glossary-header"], :expires_in => 1.month do %>
   <div class="row no-gutters p-4 fixed-top" style="background-color: white;">
     <div class="mx-auto mt-3">
       <div class="media align-items-center mt-5" style="margin-bottom: .2rem;">
@@ -31,15 +31,15 @@
       </div>
     </div>
   </div>
-  <% end %>
+  <% #end %>
 <% end %>
 
 <% content_for :content do %>
-  <% cache "glossary-contents", :expires_in => 1.month do %>
+  <% #cache "glossary-contents", :expires_in => 1.month do %>
   <div id="glossary" class="content-section2" style="padding-top: 16.5rem;">
     <div class="col-auto">
       <%= render partial: 'glossary_terms/glossary_term', collection: @glossary_terms, cached: true %>
     </div>
   </div>
-  <% end %>
+  <% #end %>
 <% end %>
