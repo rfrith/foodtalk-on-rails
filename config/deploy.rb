@@ -14,6 +14,9 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :deploy_to, ENV['DEPLOY_TO']
 set :rvm_ruby_version, ENV['RVM_RUBY_VERSION']
 
+set :loaderio_auth_files, ENV['LOADERIO_AUTH_FILES']
+
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
@@ -44,3 +47,21 @@ set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+
+namespace :deploy do
+  desc "Copy Loader.io auth files"
+  task :copy_loader_auth_files do
+    on roles(:web) do
+      fetch(:loaderio_auth_files, "").to_s.split(",").each do |f|
+        execute "cp #{f} #{fetch(:deploy_to, "")}/current/public"
+      end
+    end
+  end
+end
+
+after :deploy, "deploy:copy_loader_auth_files"
+
+#NECESSARY FOR JRUBY - https://github.com/jruby/jruby/issues/4191
+#Net::SSH::Transport::Algorithms::ALGORITHMS.values.each { |algs| algs.reject! { |a| a =~ /^ecd(sa|h)-sha2/ } }
+#Net::SSH::KnownHosts::SUPPORTED_TYPE.reject! { |t| t =~ /^ecd(sa|h)-sha2/ }

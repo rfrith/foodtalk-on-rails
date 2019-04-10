@@ -1,4 +1,4 @@
-<% cache "recent-videos", :expires_in => 1.day do %>
+<% #cache "recent-videos", :expires_in => 1.day do %>
 <div id="featured-videos" class="content-section2">
   <% if !@videos["items"].blank? %>
   <div class="d-flex justify-content-center">
@@ -22,4 +22,4 @@
   </div>
   <% end %>
 </div>
-<% end %>
+<% #end %>
