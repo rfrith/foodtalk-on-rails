@@ -1,7 +1,5 @@
-<%
-  @recipes.each do |recipe|
-%>
-<%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
-<%
-  end
-%>
+<% cache "recipe-card-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
+  <% @recipes.each do |recipe| %>
+    <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
+  <% end %>
+<% end %>

@@ -1,3 +1,5 @@
+<% cache "recipe-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
+
 <div id="recipe-post" class="content-section2">
 
   <% if @show_categories %>
@@ -21,3 +23,5 @@
 
   </div>
 </div>
+
+<% end %>

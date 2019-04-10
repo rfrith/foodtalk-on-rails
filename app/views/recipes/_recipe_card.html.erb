@@ -1,3 +1,4 @@
+<% cache "recipe-card-#{recipe["title"]["rendered"].to_s.parameterize.underscore}", :expires_in => 1.week do %>
 <div class="no-gutters mb-4 video-card card grid-item">
 
   <div class="card-header">
@@ -60,3 +61,4 @@
   </div>
 
 </div>
+<% end %>

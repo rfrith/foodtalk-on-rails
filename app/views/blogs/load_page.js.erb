@@ -1,7 +1,3 @@
-<%
-  @blogs.each do |blog|
-%>
+<% @blogs.each do |blog| %>
   <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
-<%
-  end
-%>
+<% end %>
