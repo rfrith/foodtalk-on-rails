@@ -1,3 +1,1 @@
-<% @blogs.each do |blog| %>
-  <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
-<% end %>
+<%= render partial: 'blogs/blog', collection: @blogs, cached: true %>

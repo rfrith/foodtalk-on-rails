@@ -1,8 +1,8 @@
 <% cache "fancybox_bootstrap_fix", :expires_in => 1.month do %>
-<%= render partial: 'layouts/fancybox_bootstrap_fix' %>
+  <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
 <% end %>
 
-<% cache [create_cache_key_prefix, "recipes-index"], :expires_in => 1.day do %>
+<% cache [create_cache_key_prefix, "recipes-index-#{@category_id}"], :expires_in => 1.week do %>
 
   <div id="recipes" class="content-section2">
 
@@ -11,13 +11,7 @@
     <%= render partial: 'recipes_header' %>
 
     <div id="recipes-grid" class="grid">
-      <%
-        @recipes.each do |recipe|
-      %>
-        <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
-      <%
-        end
-      %>
+      <%= render partial: 'recipes/recipe', collection: @recipes, cached: true %>
     </div>
 
   <% else %>

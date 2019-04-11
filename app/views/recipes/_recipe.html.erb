@@ -1,17 +1,16 @@
-<% cache "recipe-card-#{recipe["title"]["rendered"].to_s.parameterize.underscore}", :expires_in => 1.week do %>
 <div class="no-gutters mb-4 video-card card grid-item">
 
   <div class="card-header">
     <h4 class="card-title text-center mt-0">
       <%== recipe["title"]["rendered"] %>
       <span>
-        <% #TODO: FIX ME!!!!  %>
+      <% #TODO: FIX ME!!!!  %>
         <% if false #user_signed_in? %>
-          <% #TODO: AJAXIFY ME!!!!! %>
+        <% #TODO: AJAXIFY ME!!!!! %>
           <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
         <% end %>
         <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
-      </span>
+    </span>
     </h4>
   </div>
 
@@ -61,4 +60,3 @@
   </div>
 
 </div>
-<% end %>

@@ -2,32 +2,26 @@
   <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
 <% end %>
 
-<% cache [create_cache_key_prefix, "blog-index"], :expires_in => 1.day do %>
+<% cache [create_cache_key_prefix, "blog-index-#{@category_id}"], :expires_in => 1.week do %>
 
   <div id="blogs" class="content-section2">
 
-    <% if @blogs %>
+  <% if @blogs %>
 
-      <%= render partial: 'blog_header' %>
+    <%= render partial: 'blog_header', cached: true %>
 
-      <div id="blog-grid" class="grid">
-        <%
-          @blogs.each do |blog|
-        %>
-          <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
-        <%
-          end
-        %>
+    <div id="blog-grid" class="grid">
+      <%= render partial: 'blogs/blog', collection: @blogs, cached: true %>
+    </div>
+
+  <% else %>
+    <div class="d-flex justify-content-center">
+      <div class="media align-items-center mt-4 ml-5 mr-5">
+        <% #TODO: I18n ME! %>
+        Error displaying Blog.
       </div>
-
-    <% else %>
-      <div class="d-flex justify-content-center">
-        <div class="media align-items-center mt-4 ml-5 mr-5">
-          <% #TODO: I18n ME! %>
-          Error displaying Blog.
-        </div>
-      </div>
-    <% end %>
+    </div>
+  <% end %>
 
   </div>
 

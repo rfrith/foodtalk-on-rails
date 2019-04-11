@@ -1,5 +1,3 @@
-<% cache "recipe-card-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
-  <% @recipes.each do |recipe| %>
-    <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
-  <% end %>
-<% end %>
+<%= render partial: 'recipes/recipe', collection: @recipes, cached: true %>
+
+
