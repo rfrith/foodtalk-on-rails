@@ -55,6 +55,7 @@ gem 'faker', '~> 1.9', '>= 1.9.3'
 #for memcached integration
 gem 'dalli', '~> 2.7', '>= 2.7.10'
 gem 'connection_pool', '~> 2.2', '>= 2.2.2'
+gem 'api_cache', '~> 0.3.0'
 
 
 #TODO FIX ME! THIS DOESN'T WORK: gem 'rmagick', '~> 3.0'
