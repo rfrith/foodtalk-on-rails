@@ -3,7 +3,7 @@
 <div id="blog-post" class="content-section2">
 
   <% if @show_categories %>
-    <%= render partial: 'blogs/blog_header' %>
+    <%= render partial: 'blogs/blog_header', cached: true %>
   <% end %>
 
   <div class="p-4">
@@ -19,7 +19,7 @@
 
     <%= t("social_media_prompt") %>
     <br>
-    <%= render partial: "layouts/social_media_links", locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
+    <%= render partial: "layouts/social_media_links", cached: true, locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
 
   </div>
 </div>

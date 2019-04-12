@@ -1,6 +1,4 @@
-<% cache "fancybox_bootstrap_fix", :expires_in => 1.month do %>
-  <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
-<% end %>
+<%= render partial: 'layouts/fancybox_bootstrap_fix', cached: true %>
 
 <% cache [create_cache_key_prefix, "blog-index-#{@category_id}"], :expires_in => 1.week do %>
 

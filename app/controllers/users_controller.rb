@@ -44,10 +44,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-
-
-
   #TODO: REMOVE ME???
   def update_subscriptions
     authorize @current_user

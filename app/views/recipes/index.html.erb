@@ -1,6 +1,4 @@
-<% cache "fancybox_bootstrap_fix", :expires_in => 1.month do %>
-  <%= render partial: 'layouts/fancybox_bootstrap_fix' %>
-<% end %>
+<%= render partial: 'layouts/fancybox_bootstrap_fix', cached: true  %>
 
 <% cache [create_cache_key_prefix, "recipes-index-#{@category_id}"], :expires_in => 1.week do %>
 
@@ -8,7 +6,7 @@
 
   <% if @recipes %>
 
-    <%= render partial: 'recipes_header' %>
+    <%= render partial: 'recipes_header', cached: true %>
 
     <div id="recipes-grid" class="grid">
       <%= render partial: 'recipes/recipe', collection: @recipes, cached: true %>

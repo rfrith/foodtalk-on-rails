@@ -21,12 +21,6 @@ Rails.application.configure do
       'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }
 
-    #TODO: REMOVE ME
-    #config.action_controller.page_cache_directory = Rails.root.join "public/cached_pages"
-
-    #for memcached integration
-    config.cache_store = :dalli_store, '127.0.0.1:11211', { :pool_size => 5 }
-
   else
     config.action_controller.perform_caching = false
 

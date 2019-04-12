@@ -82,6 +82,8 @@ Rails.application.routes.draw do
 
       get 'find_user_by_criteria' => :find_user_by_criteria
 
+      get 'get_user_info' => :get_user_info
+
       post 'update_user_groups' => :update_user_groups
       post 'update_user_roles' => :update_user_roles
       post 'update_subscriptions' => :update_subscriptions
