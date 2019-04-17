@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="grid">
-    <%= render partial: 'blogs/blog', collection: @blogs.first(3), cached: true %>
+    <%= render partial: 'shared/post', collection: @blogs.first(3), cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
   </div>
   <div class="content-section-copy-light recipe-copy text-center pt-4 pb-4">
     <%= link_to t("navigation.view_all_blog_posts"), blogs_index_path %>

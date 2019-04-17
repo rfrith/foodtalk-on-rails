@@ -1,16 +1,18 @@
 <%= render partial: 'layouts/fancybox_bootstrap_fix', cached: true %>
 
-<% cache [create_cache_key_prefix, "blog-index-#{@category_id}"], :expires_in => 1.week do %>
+<% cache [create_cache_key_prefix, "blog-index-#{@slug}"], :expires_in => 1.week do %>
 
   <div id="blogs" class="content-section2">
 
-  <% if @blogs %>
+  <% if @posts %>
 
-    <%= render partial: 'blog_header', cached: true %>
+    <%= render partial: 'shared/post_header', cached: true, locals: {title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_label: t("blog.search"), slugs: @categories} %>
 
-    <div id="blog-grid" class="grid">
-      <%= render partial: 'blogs/blog', collection: @blogs, cached: true %>
+    <div id="posts-grid" class="grid">
+      <%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
     </div>
+
+    <%= render partial: 'shared/infinite_scroll', cached: true, locals: {page_path: "blog_load_page_path"} %>
 
   <% else %>
     <div class="d-flex justify-content-center">
@@ -22,47 +24,5 @@
   <% end %>
 
   </div>
-
-  <% if @blogs %>
-    <script>
-        var pages = [];
-
-        <% ((@page+=1)..@total_pages).each { |index| %>
-        pages.push("<%= blog_load_page_url(page: index, category: @category_id) %>");
-        <% } %>
-
-        function getPages() {
-            var slug = pages[ this.loadCount ];
-            if ( slug ) {
-                return slug;
-            }
-        }
-
-        var $grid = $('.grid').masonry({
-            // Masonry options...
-            itemSelector: '.grid-item',
-            fitWidth: true
-        });
-
-        var msnry = $grid.data('masonry');
-
-        $grid.infiniteScroll({
-            path: getPages,
-            append: false,
-            outlayer: msnry,
-            responseType: 'text',
-            history: false,
-        });
-
-        $grid.on( 'load.infiniteScroll', function( event, response ) {
-            var jqData = $(response)
-            jqData.imagesLoaded( function() {
-                $('#blog-grid').append(jqData);
-                $('.grid').masonry( 'appended', jqData );
-            });
-        });
-    </script>
-
-  <% end %>
 
 <% end %>

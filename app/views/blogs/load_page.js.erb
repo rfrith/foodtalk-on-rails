@@ -1,1 +1,1 @@
-<%= render partial: 'blogs/blog', collection: @blogs, cached: true %>
+<%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>

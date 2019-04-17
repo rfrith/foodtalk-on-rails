@@ -11,7 +11,7 @@
   </div>
   <div class="mx-auto card-deckz recipes-deck w-100">
     <div class="grid">
-      <%= render partial: 'recipes/recipe', collection: @recipes.first(3), cached: true %>
+      <%= render partial: 'shared/post', collection: @recipes.first(3), cached: true, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
     </div>
   </div>
   <div class="content-section-copy-light recipe-copy text-center pt-4 pb-4">
