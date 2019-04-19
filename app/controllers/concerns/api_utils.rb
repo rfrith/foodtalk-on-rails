@@ -11,6 +11,7 @@ module ApiUtils
 
     if(API_CACHING_ENABLED)
       begin
+        logger.debug "Getting cached API response"
         APICache.get(key, :cache => 3600) do
           get_api_response(uri)
         end
@@ -26,6 +27,7 @@ module ApiUtils
   private
 
   def get_api_response(uri)
+    logger.debug "Getting live API response"
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.open_timeout = 30 # in seconds
