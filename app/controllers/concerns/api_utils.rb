@@ -12,11 +12,13 @@ module ApiUtils
       begin
         logger.debug "Getting cached API response"
         #TODO: make ENV var for cache, timeout, and period - also pass in as param?
-        APICache.get("api_cache_#{key}", :cache => 3600, timeout: 60, period: 0) do
+        APICache.get("api_cache_#{key}", :cache => 3600, timeout: 180, period: 0) do
           get_api_response(uri)
         end
       rescue Exception => e
         logger.error "An error occurred: #{e.inspect}"
+        logger.warn "Attempting to fall back to live api call..."
+        get_api_response(uri)
       end
     else
       get_api_response(uri)
