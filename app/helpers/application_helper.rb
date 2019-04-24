@@ -2,11 +2,10 @@ module ApplicationHelper
 
   def create_cache_key_prefix
     key = ""
-    key += request.host
+    key += request.host #needed for partner organizations
+    key += request.original_fullpath.slice(0..-1) #needed for I18N (URL contains locale)
     key += user_signed_in?.to_s.slice(0)
     key += @current_user.is_eligible?.to_s.slice(0)
-    key += Rails.application.secrets.i18n_enabled.to_s.slice(0)
-    key += I18n.locale.to_s
     return key
   end
 

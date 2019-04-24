@@ -119,6 +119,7 @@ es:
     description_html: "Al asistir a una clase de Food Talk, aprenderás de un educador de nutrición cómo comer de forma más saludable, alimentar a tu familia con un presupuesto, mantener la seguridad de los alimentos y la mejor parte: aprenderás a preparar una nueva receta deliciosa y llega a probarla! ¡Llama o envía un correo electrónico hoy para encontrar una clase cerca de ti! <br> <br> Las clases de Food Talk se llevan a cabo actualmente en los siguientes condados. Póngase en contacto con uno de los miembros del personal que figuran a continuación para averiguar cómo puede unirse a una clase."
     snap_ed_supervisor: "SNAP-Ed Supervisor"
     program_assistants: "Programa Asistente"
+    contact: "Para Información Contactar"
 
   gis_resources:
     name: "Recursos GIS"
