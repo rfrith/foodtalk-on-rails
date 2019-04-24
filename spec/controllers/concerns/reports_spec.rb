@@ -86,7 +86,7 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users, true)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents.size).to eq 2 #1 header row and 1 data row (exludes ineligble users)
+    expect(csv_contents.size).to eq 2 #1 header row and 1 data row (excludes ineligble users)
     expect(csv_contents[1][7]).to eq "1"
   end
 
@@ -96,7 +96,7 @@ describe ReportsSpec do
     csv_string = subject.generate_report_as_csv(users, false)
     csv_contents = CSV.parse(csv_string)
 
-    expect(csv_contents.size).to eq 2 #1 header row and 1 data row (exludes eligble users)
+    expect(csv_contents.size).to eq 2 #1 header row and 1 data row (excludes eligble users)
     expect(csv_contents[1][7]).to eq "0"
   end
 

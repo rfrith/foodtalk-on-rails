@@ -11,8 +11,8 @@ module ApiUtils
     if(API_CACHING_ENABLED)
       begin
         logger.debug "Getting cached API response"
-        #TODO: make ENV var for cache timeout
-        APICache.get("api_cache_#{key}", :cache => 3600) do
+        #TODO: make ENV var for cache timeout and period - also pass in as param?
+        APICache.get("api_cache_#{key}", :cache => 3600, period: 0) do
           get_api_response(uri)
         end
       rescue Exception => e

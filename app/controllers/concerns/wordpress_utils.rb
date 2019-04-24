@@ -71,7 +71,7 @@ module WordpressUtils
         uri = format_uri("posts/?_embed&per_page=#{per_page}&page=#{page}&categories=#{get_category_slug_id_by_name(RECIPES)}")
       end
 
-      response = get_cached_api_response("#{tag}_page_#{page}_per_page_#{per_page}_exlude_slug_id_#{excluded_slug_id}_posts_replies", uri)
+      response = get_cached_api_response("#{tag}_page_#{page}_per_page_#{per_page}_exclude_slug_id_#{excluded_slug_id}_posts_replies", uri)
       return response
 
     rescue Exception => e
@@ -89,7 +89,7 @@ module WordpressUtils
       else
         uri = format_uri("posts/?_embed&per_page=#{per_page}&page=#{page}&categories_exclude=#{excluded_slug_id}")
       end
-      response = get_cached_api_response("#{category}_page_#{page}_per_page_#{per_page}_exlude_slug_id_#{excluded_slug_id}_posts_replies", uri)
+      response = get_cached_api_response("#{category}_page_#{page}_per_page_#{per_page}_exclude_slug_id_#{excluded_slug_id}_posts_replies", uri)
       return response
     rescue Exception => e
       logger.error "An error occurred: #{e.inspect}"
