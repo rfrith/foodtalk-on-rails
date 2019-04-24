@@ -8,11 +8,11 @@ module ApiUtils
   API_CACHING_ENABLED = Rails.application.secrets.api_caching_enabled ||= false
 
   def get_cached_api_response(key, uri)
-
     if(API_CACHING_ENABLED)
       begin
         logger.debug "Getting cached API response"
-        APICache.get(key, :cache => 3600) do
+        #TODO: make ENV var for cache timeout
+        APICache.get("api_cache_#{key}", :cache => 3600) do
           get_api_response(uri)
         end
       rescue Exception => e
@@ -21,8 +21,8 @@ module ApiUtils
     else
       get_api_response(uri)
     end
-
   end
+
 
   private
 

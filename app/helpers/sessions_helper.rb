@@ -15,11 +15,7 @@ module SessionsHelper
   end
 
   def current_user
-    if(user_signed_in?)
-      @current_user = User.find_or_initialize_from_auth_hash(session[:auth_hash])
-    else
-      @current_user = User.new
-    end
+    @current_user ||= user_signed_in? ? User.find_or_initialize_from_auth_hash(session[:auth_hash]) : User.new
   end
 
   def check_consent

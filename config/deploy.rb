@@ -60,7 +60,56 @@ namespace :deploy do
   end
 end
 
+namespace :cache do
+  task :clear do
+    on roles(:app) do |host|
+      with rails_env: fetch(:rails_env) do
+        within current_path do
+          execute :bundle, :exec, "rake cache:clear"
+        end
+      end
+    end
+  end
+end
+
+namespace :memcached do
+
+  desc "Flushes memcached local instance"
+  task :flush do
+    on roles(:app) do
+      execute "cd #{fetch(:deploy_to, '')}/current/public && rake memcached:flush"
+      #execute :bundle, :exec, "rake memcached:flush"
+    end
+  end
+
+  desc "Restart the Memcache daemon"
+  task :restart do
+    on roles(:app) do
+      deploy.memcached.stop
+      deploy.memcached.start
+    end
+  end
+
+  desc "Start the Memcache daemon"
+  task :start do
+    on roles(:app) do
+      invoke_command "memcached -P #{current_path}/log/memcached.pid  -d", :via => run_method
+    end
+  end
+
+  desc "Stop the Memcache daemon"
+  task :stop do
+    on roles(:app) do
+      pid_file = "#{current_path}/log/memcached.pid"
+      invoke_command("killall -9 memcached", :via => run_method) if File.exist?(pid_file)
+    end
+  end
+end
+
+
 after :deploy, "deploy:copy_loader_auth_files"
+#after 'deploy:update', 'cache:clear'
+after 'deploy', 'memcached:flush'
 
 #NECESSARY FOR JRUBY - https://github.com/jruby/jruby/issues/4191
 #Net::SSH::Transport::Algorithms::ALGORITHMS.values.each { |algs| algs.reject! { |a| a =~ /^ecd(sa|h)-sha2/ } }

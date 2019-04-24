@@ -31,7 +31,12 @@ module ApplicationHelper
 
   def find_glossary_terms(text)
     found_terms = []
-    GlossaryTerm.all.each do |term|
+
+    glossary_terms = Rails.cache.fetch("all_glossary_terms", expires_in: 1.month) do
+      GlossaryTerm.all
+    end
+
+    glossary_terms.each do |term|
       found_terms << term if (text.include? term.name)
     end
     found_terms

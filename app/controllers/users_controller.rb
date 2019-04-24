@@ -44,20 +44,6 @@ class UsersController < ApplicationController
     end
   end
 
-  #TODO: REMOVE ME???
-  def update_subscriptions
-    authorize @current_user
-    respond_to do |format|
-      update_mailchimp_subscriptions
-      format.js
-    end
-  end
-
-
-
-
-
-
 
   def update_user_groups
     begin

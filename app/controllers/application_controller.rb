@@ -15,9 +15,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #TODO: add to DB and implement lifespan etc.
   def add_notification(type, title, message, timeout=false, url=nil)
     session[:notifications] ||= []
-    notification = Notification.new(type, title, message, timeout, url)
+    notification = Rails.cache.fetch(title, expires_in: 1.day) do
+      Notification.new(type, title, message, timeout, url)
+    end
     session[:notifications] << notification.instance_values
     logger.debug "Added notification to session."
   end

@@ -13,10 +13,6 @@ class UserPolicy < ApplicationPolicy
     !user.test_user?
   end
 
-  def update_subscriptions?
-    !user.test_user?
-  end
-
   def update_user_groups?
     user.admin?
   end

@@ -4,6 +4,18 @@ class DashboardController < ApplicationController
 
   def show
 
+    @genders = Rails.cache.fetch("all_user_genders", expires_in: 1.month) do
+      User.genders
+    end
+
+    @racial_identities = Rails.cache.fetch("all_racial_identities", expires_in: 1.month) do
+      RacialIdentity.all
+    end
+
+    @federal_assistances = Rails.cache.fetch("all_federal_assistances", expires_in: 1.month) do
+      FederalAssistance.all
+    end
+
     if(@current_user.is_admin?)
 
       @current_tab = params["stats-current-tab"] unless params["stats-current-tab"].nil?
