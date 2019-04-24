@@ -1,4 +1,4 @@
-<% cache "recent-recipes", :expires_in => 1.week do %>
+<% cache [create_cache_key_prefix, "recent-recipes"], :expires_in => 1.week do %>
 <div id="featured-recipes" class="content-section">
   <div class="d-flex justify-content-center">
     <div class="media pt-4 pl-4 pr-4 align-items-center">
