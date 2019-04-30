@@ -44,7 +44,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def update_user_groups
     begin
       authorize @current_user
@@ -82,37 +81,27 @@ class UsersController < ApplicationController
     end
   end
 
-
-
-
-
   def find_user_by_criteria
     authorize @current_user
     search_criteria = params[:search_criteria].to_sym
     search_value = params[:search_value]
 
-    @users = []
+    @users = nil
+
+    if(@current_user.admin?)
+      #show all users
+      users = User.all
+    elsif(@current_user.group_admin?)
+      #show only users in GroupAdmin's assigned groups
+      users = current_user.users
+    end
 
     case search_criteria
     when :name
-      if(@current_user.admin?)
-        #show all users
-        @users = User.search_by_full_name(search_value).page params[:page]
-      elsif(@current_user.group_admin?)
-        #show only users in GroupAdmin's assigned groups
-        @users = current_user.groups.members.search_by_full_name(search_value).page params[:page]
-      end
-
+      @users = users.search_by_full_name(search_value).page params[:page]
     when :email
-      if(@current_user.admin?)
-        #show all users
-        @users = User.search_by_email(search_value).page params[:page]
-      elsif(@current_user.group_admin?)
-        #show only users in GroupAdmin's assigned groups
-        @users = current_user.groups.members.search_by_email(search_value).page params[:page]
-      end
+      @users = users.search_by_email(search_value).page params[:page]
     end
-
 
     respond_to do |format|
       format.js
@@ -122,37 +111,26 @@ class UsersController < ApplicationController
 
   def find_by_group
     authorize @current_user
-
     group_name = params[:group_name].parameterize
     begin
-      #support supplied date range
-      # TODO check this against conflicting ApplicationController.initialize_date_range
-      if(params[:start_date] && params[:end_date])
-
-        if(@current_user.admin?)
-          if(group_name == Group::FOODTALK_USERS)
-            @users = User.created_in_range(@start_date..@end_date).not_in_group.page params[:page]
-          else
-            group = Group.find_by_name(group_name)
-            @users = group.users.created_in_range(@start_date..@end_date).page params[:page]
-          end
-        elsif(@current_user.group_admin?)
-          group = @current_user.groups.find_by_name(group_name)
-          @users = group.users.created_in_range(@start_date..@end_date).page params[:page]
+      if(@current_user.admin?)
+        if(group_name == Group::FOODTALK_USERS)
+          users = User.not_in_group
+        else
+          group = Group.find_by_name(group_name)
+          users = group.users
         end
-      else
-        if(@current_user.admin?)
-          if(group_name == Group::FOODTALK_USERS)
-            @users = User.all.not_in_group.page params[:page]
-          else
-            group = Group.find_by_name(group_name)
-            @users = group.users.page params[:page]
-          end
-        elsif(@current_user.group_admin?)
-          group = @current_user.groups.find_by_name(group_name)
-          @users = group.users.page params[:page]
-        end
+      elsif(@current_user.group_admin?)
+        group = @current_user.groups.find_by_name(group_name)
+        users = group.users
       end
+
+      if(@start_date && @end_date)
+        @users = users.created_in_range(@start_date..@end_date).page params[:page]
+      else
+        @users = users.page params[:page]
+      end
+
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
@@ -167,7 +145,11 @@ class UsersController < ApplicationController
     end
     parsed_date ||= Time.current
 
-    @users = User.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
+    if(@current_user.admin?)
+      @users = User.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
+    elsif(@current_user.group_admin?)
+      @users = @current_user.users.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
+    end
   end
 
   def find_by_month_and_group
@@ -188,7 +170,6 @@ class UsersController < ApplicationController
     where_params.merge! start: parsed_date.to_time.beginning_of_month
     where_params.merge! end: parsed_date.to_time.end_of_month
 
-
     if(group_name == Group::FOODTALK_USERS)
       @users = User.where(where_string, where_params).not_in_group.page params[:page]
     else
@@ -200,14 +181,21 @@ class UsersController < ApplicationController
   def find_by_eligibility
     authorize @current_user
     eligibility = params[:eligibility]
-    @users = []
+    @users = nil
     begin
-      #support supplied date range
-      if(@start_date && @end_date)
-        @users = User.created_in_range(@start_date..@end_date).send("all_#{eligibility.parameterize}").page params[:page]
-      else
-        @users = User.send("all_#{eligibility.parameterize}").page params[:page]
+
+      if(@current_user.admin?)
+        users = User.send("all_#{eligibility.parameterize}").page params[:page]
+      elsif(@current_user.group_admin?)
+        users = @current_user.users.send("all_#{eligibility.parameterize}").page params[:page]
       end
+
+      if(@start_date && @end_date)
+        users = users.created_in_range(@start_date..@end_date)
+      end
+
+      @users = users
+
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
@@ -219,21 +207,25 @@ class UsersController < ApplicationController
       eligibility = params[:eligibility].parameterize
       group_name = params[:group].parameterize
       group = Group.find_by_name(group_name)
-      @users = []
-      #support supplied date range
-      if(@start_date && @end_date)
-        if(group)
-          @users = group.users.created_in_range(@start_date..@end_date).send("all_#{eligibility.parameterize}").page params[:page]
-        else
-          @users = User.not_in_group.created_in_range(@start_date..@end_date).send("all_#{eligibility.parameterize}").page params[:page]
+      group_users = nil
+      @users = nil
+
+      if(group)
+        if( @current_user.admin? || (@current_user.group_admin? && @current_user.groups.include?(group)) )
+          group_users = group.users.send("all_#{eligibility.parameterize}").page params[:page]
         end
       else
-        if(group)
-          @users = group.users.send("all_#{eligibility.parameterize}").page params[:page]
-        else
-          @users = User.not_in_group.send("all_#{eligibility.parameterize}").page params[:page]
+        if(@current_user.admin?)
+          group_users = User.not_in_group.send("all_#{eligibility.parameterize}").page params[:page]
         end
       end
+
+      if(@start_date && @end_date)
+        group_users = group_users.created_in_range(@start_date..@end_date)
+      end
+
+      @users = group_users
+
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
@@ -249,6 +241,12 @@ class UsersController < ApplicationController
     curriculum = LearningModules.const_get(curricula.upcase)
 
     enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).updated_in_range(date_range)
+
+    if(@current_user.admin?)
+      enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).updated_in_range(date_range)
+    elsif(@current_user.group_admin?)
+      enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).where(user: @current_user.users).updated_in_range(date_range)
+    end
 
     enrollments.each do |ce|
       user = ce.user
@@ -385,8 +383,6 @@ class UsersController < ApplicationController
         end
       end
     rescue => e
-      #@current_user.errors.add(:subscription_ids, message: "#{t("error_occurred")} #{e.to_s}")
-      #add_notification :error, t(:error), "#{t("error_occurred")} #{e.to_s}", false
       @current_user.errors.add(:base, :subscription_error, message: "#{t("error_occurred")} #{e.to_s}")
     end
   end

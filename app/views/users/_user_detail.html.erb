@@ -10,7 +10,9 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col" colspan="2">Email</th>
+          <% if(@current_user.admin?) %>
           <th scope="col">Roles</th>
+          <% end %>
           <th scope="col">Group Affiliations</th>
           <th scope="col">UID</th>
           <th scope="col">Sign Up Date</th>
@@ -20,6 +22,8 @@
         <tr>
           <td><%= @user.name %></td>
           <td colspan="2"><%= @user.email %></td>
+
+          <% if(@current_user.admin?) %>
           <td>
             <%= form_with(url: update_user_roles_path) do |f| %>
               <%= hidden_field :user, :id %>
@@ -33,10 +37,21 @@
               <% end %>
             <% end %>
           </td>
+          <% end %>
+
           <td>
             <%= form_with(url: update_user_groups_path) do |f| %>
               <%= hidden_field :user, :id %>
-              <% Group.all.each do |g| %>
+
+              <%
+                if(@current_user.admin?)
+                  groups = Group.all
+                elsif(@current_user.group_admin?)
+                  groups = @user.groups.where(id: @current_user.groups)
+                end
+              %>
+
+              <% groups.each do |g| %>
                 <%= check_box_tag g.id, g.id, @user.groups.include?(g), name: 'user[group_ids][]', class: "col-form-label-md", disabled: !@current_user.admin? %>
                 <%= label_tag g.id, g.name.titleize %>
                 <br>
@@ -78,23 +93,12 @@
         <thead>
         <tr>
           <th scope="col">Racial Identities</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><%= @user.racial_identities_names.to_sentence %></td>
-        </tr>
-        </tbody>
-      </table>
-
-      <table class="table">
-        <thead>
-        <tr>
           <th scope="col">Federal Assistances</th>
         </tr>
         </thead>
         <tbody>
         <tr>
+          <td><%= @user.racial_identities_names.to_sentence %></td>
           <td><%= @user.federal_assistances_names.to_sentence %></td>
         </tr>
         </tbody>

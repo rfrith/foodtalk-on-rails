@@ -146,8 +146,9 @@ es:
   dashboard:
     admin:
       label: "Admin"
-      stats: "Statistics"
-      reports: "Informe"
+      stats: "Site Statistics"
+      reports: "CSV Data Export"
+      user_search: "User Search"
     my_courses:
       label: "Mis Cursos"
       not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"

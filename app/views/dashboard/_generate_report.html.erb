@@ -20,6 +20,7 @@
 
     <div class="form-row mt-3">
 
+      <% if @current_user.admin? %>
       <div class="col-auto">
         <%= form.label "Filter by Role", class: "font-weight-bold col-form-label-md" %>
 
@@ -48,13 +49,28 @@
           <%= form.label :extension_employees, class: "" %>
         </div>
       </div>
+      <% end %>
 
+      <%
+        if @current_user.admin?
+          groups = Group.all
+        elsif @current_user.group_admin?
+          groups = @current_user.groups
+        end
+      %>
 
       <div class="col-auto pl-5">
         <%= form.label "Filter By Group Affiliation", class: "font-weight-bold col-form-label-md" %>
-        <%= form.collection_check_boxes :group_ids, Group.all, :id, :name do |b| %>
+        <%= form.collection_check_boxes :group_ids, groups, :id, :name do |b| %>
           <div class="form-check">
-            <%= b.label(:"data-value" => b.value, class: "") {b.check_box(class: "form-check-input") + b.text.titleize} %>
+            <%
+              options = {class: "form-check-input"}
+              if @current_user.group_admin?
+                group_admin_options = {checked: true, readonly: true}
+                options.merge! group_admin_options
+              end
+            %>
+            <%= b.label(:"data-value" => b.value, class: "") {b.check_box(options) + b.text.titleize} %>
           </div>
         <% end %>
       </div>

@@ -11,14 +11,14 @@ describe ReportsSpec do
   it "creates header row properly" do
 
     users = [user_with_food_etalk_enrollment, user_with_better_u_enrollment, user_has_completed_food_etalk, user_has_completed_better_u]
-    csv_string = subject.generate_report_as_csv(users)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all)
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 5
 
-    expect(csv_contents[0][0]).to eq "admin"
-    expect(csv_contents[0][1]).to eq "group_admin"
-    expect(csv_contents[0][2]).to eq "test_user"
+    expect(csv_contents[0][0]).to eq "Administrator"
+    expect(csv_contents[0][1]).to eq "Group Administrator"
+    expect(csv_contents[0][2]).to eq "Test User"
     expect(csv_contents[0][3]).to eq "hancock-health-improvement-partnership"
     expect(csv_contents[0][4]).to eq "mercy-health-center"
     expect(csv_contents[0][5]).to eq "signup_date"
@@ -83,7 +83,7 @@ describe ReportsSpec do
 
   it "deals with eligible flag true" do
     users = [eligible_user, ineligible_user]
-    csv_string = subject.generate_report_as_csv(users, true)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all, true)
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 2 #1 header row and 1 data row (excludes ineligble users)
@@ -93,7 +93,7 @@ describe ReportsSpec do
 
   it "deals with eligible flag false" do
     users = [eligible_user, ineligible_user]
-    csv_string = subject.generate_report_as_csv(users, false)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all, false)
     csv_contents = CSV.parse(csv_string)
 
     expect(csv_contents.size).to eq 2 #1 header row and 1 data row (excludes eligble users)
@@ -106,7 +106,7 @@ describe ReportsSpec do
     FactoryBot.reload
 
     users = [user_has_completed_food_etalk]
-    csv_string = subject.generate_report_as_csv(users)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all)
     csv_contents = CSV.parse(csv_string)
 
     check_common_columns(csv_contents, users)
@@ -164,7 +164,7 @@ describe ReportsSpec do
     FactoryBot.reload
 
     users = [user_has_completed_better_u]
-    csv_string = subject.generate_report_as_csv(users)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all)
     csv_contents = CSV.parse(csv_string)
 
     check_common_columns(csv_contents, users)
@@ -223,7 +223,7 @@ describe ReportsSpec do
     FactoryBot.reload
 
     users = [user_has_started_video_survey_sweet_deceit]
-    csv_string = subject.generate_report_as_csv(users)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all)
     csv_contents = CSV.parse(csv_string)
 
     check_common_columns(csv_contents, users)
@@ -285,7 +285,7 @@ describe ReportsSpec do
     FactoryBot.reload
 
     users = [user_has_completed_video_survey_sweet_deceit]
-    csv_string = subject.generate_report_as_csv(users)
+    csv_string = subject.generate_report_as_csv("admin".to_sym, users, Group.all)
     csv_contents = CSV.parse(csv_string)
 
     check_common_columns(csv_contents, users)

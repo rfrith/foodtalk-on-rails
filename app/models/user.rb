@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :online_learning_histories, dependent: :destroy
   has_many :survey_histories, dependent: :destroy
   has_many :course_enrollments, dependent: :destroy
+  has_many :users, through: :groups
 
   #regular Foodtalk users; non-admins & no group affiliation
   scope :not_in_group, ->  {left_outer_joins(:groups).where(groups: {id: nil})}
