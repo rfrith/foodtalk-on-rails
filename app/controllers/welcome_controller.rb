@@ -7,9 +7,6 @@ class WelcomeController < ApplicationController
     #TODO: fallback if blog server is down
     begin
 
-      #TODO: MOVE TO DATABASE
-      add_notification :popup, t("welcome.stretch_snap_dollars_title"), t("welcome.stretch_snap_dollars_body"), 30000, "/blog?category=save-money"
-
       recipes_slug = get_cached_api_response('recipes_slug_replies', URI(Rails.application.secrets.blog_feed_url + "categories?slug=recipes")).body
       parsed_slug = JSON.parse(recipes_slug)
       recipes_slug_id = parsed_slug[0]["id"]
