@@ -10,7 +10,7 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col" colspan="2">Email</th>
-          <% if(@current_user.admin?) %>
+          <% if(@current_user.super_admin?) %>
           <th scope="col">Roles</th>
           <% end %>
           <th scope="col">Group Affiliations</th>
@@ -23,45 +23,55 @@
           <td><%= @user.name %></td>
           <td colspan="2"><%= @user.email %></td>
 
-          <% if(@current_user.admin?) %>
+          <% if(@current_user.super_admin?) %>
           <td>
             <%= form_with(url: update_user_roles_path) do |f| %>
               <%= hidden_field :user, :id %>
               <% User.roles.each do |name, qty| %>
-                <%= radio_button_tag name, name, @user.role == name, name: 'user[role]', class: "col-form-label-md", disabled: !@current_user.admin? %>
+                <%= radio_button_tag name, name, @user.role == name, name: 'user[role]', class: "col-form-label-md", disabled: !@current_user.super_admin? %>
                 <%= label_tag name, name.titleize %>
                 <br>
               <% end %>
-              <% if(@current_user.admin?) %>
-                <%= f.submit("Update Roles", class: "btn btn-primary btn-sm") %>
-              <% end %>
+              <%= f.submit("Update Roles", class: "btn btn-primary btn-sm") %>
             <% end %>
           </td>
           <% end %>
 
+
+          <% if(@current_user.is_admin?) %>
           <td>
             <%= form_with(url: update_user_groups_path) do |f| %>
               <%= hidden_field :user, :id %>
 
               <%
-                if(@current_user.admin?)
+                if(@current_user.super_admin? || @current_user.admin?)
                   groups = Group.all
                 elsif(@current_user.group_admin?)
                   groups = @user.groups.where(id: @current_user.groups)
                 end
               %>
 
+              <% if @user.groups.empty? %>
+                <% #visual aid so users with no group assignment; won't ever get sent w/ form since disable=true %>
+                <%= check_box_tag "foodtalk-user", "foodtalk-user", true, class: "col-form-label-md", disabled: true %>
+                <%= label_tag "foodtalk-user", "Foodtalk User" %>
+                <br>
+              <% end %>
+
               <% groups.each do |g| %>
-                <%= check_box_tag g.id, g.id, @user.groups.include?(g), name: 'user[group_ids][]', class: "col-form-label-md", disabled: !@current_user.admin? %>
+                <%= check_box_tag g.id, g.id, @user.groups.include?(g), name: 'user[group_ids][]', class: "col-form-label-md", disabled: !@current_user.super_admin? %>
                 <%= label_tag g.id, g.name.titleize %>
                 <br>
               <% end %>
-              <% if(@current_user.admin?) %>
+              <% if(@current_user.super_admin?) %>
                 <%= f.submit("Update Groups", class: "btn btn-primary btn-sm") %>
               <% end %>
             <% end %>
             <% get_group_links(@user) %>
           </td>
+
+          <% end %>
+
           <td><%= @user.uid %></td>
           <td><%= @user.created_at.strftime('%Y-%m-%d') %></td>
         </tr>

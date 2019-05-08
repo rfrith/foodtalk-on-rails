@@ -66,7 +66,8 @@ class UsersController < ApplicationController
   def update_user_roles
     begin
       authorize @current_user
-      user = User.find(user_group_params[:id])
+
+      user = policy_scope(User).find(user_group_params[:id])
       role = user_role_params[:role]
       if user.present? and User.roles.include?(role)
         user.role = role
@@ -86,21 +87,11 @@ class UsersController < ApplicationController
     search_criteria = params[:search_criteria].to_sym
     search_value = params[:search_value]
 
-    @users = nil
-
-    if(@current_user.admin?)
-      #show all users
-      users = User.all
-    elsif(@current_user.group_admin?)
-      #show only users in GroupAdmin's assigned groups
-      users = current_user.users
-    end
-
     case search_criteria
     when :name
-      @users = users.search_by_full_name(search_value).page params[:page]
+      @users = policy_scope(User).search_by_full_name(search_value).page params[:page]
     when :email
-      @users = users.search_by_email(search_value).page params[:page]
+      @users = policy_scope(User).search_by_email(search_value).page params[:page]
     end
 
     respond_to do |format|
@@ -113,7 +104,7 @@ class UsersController < ApplicationController
     authorize @current_user
     group_name = params[:group_name].parameterize
     begin
-      if(@current_user.admin?)
+      if(@current_user.super_admin? || @current_user.admin?)
         if(group_name == Group::FOODTALK_USERS)
           users = User.not_in_group
         else
@@ -145,7 +136,7 @@ class UsersController < ApplicationController
     end
     parsed_date ||= Time.current
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       @users = User.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
     elsif(@current_user.group_admin?)
       @users = @current_user.users.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
@@ -184,7 +175,7 @@ class UsersController < ApplicationController
     @users = nil
     begin
 
-      if(@current_user.admin?)
+      if(@current_user.super_admin? || @current_user.admin?)
         users = User.send("all_#{eligibility.parameterize}").page params[:page]
       elsif(@current_user.group_admin?)
         users = @current_user.users.send("all_#{eligibility.parameterize}").page params[:page]
@@ -211,11 +202,11 @@ class UsersController < ApplicationController
       @users = nil
 
       if(group)
-        if( @current_user.admin? || (@current_user.group_admin? && @current_user.groups.include?(group)) )
+        if( (@current_user.super_admin? || @current_user.admin?) || (@current_user.group_admin? && @current_user.groups.include?(group)) )
           group_users = group.users.send("all_#{eligibility.parameterize}").page params[:page]
         end
       else
-        if(@current_user.admin?)
+        if(@current_user.super_admin? || @current_user.admin?)
           group_users = User.not_in_group.send("all_#{eligibility.parameterize}").page params[:page]
         end
       end
@@ -242,7 +233,7 @@ class UsersController < ApplicationController
 
     enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).updated_in_range(date_range)
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).updated_in_range(date_range)
     elsif(@current_user.group_admin?)
       enrollments = CourseEnrollment.distinct.by_name(curricula.downcase).where(user: @current_user.users).updated_in_range(date_range)

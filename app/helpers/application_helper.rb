@@ -5,7 +5,7 @@ module ApplicationHelper
     key += request.host #needed for partner organizations
     key += request.original_fullpath.slice(0..-1) #needed for I18N (URL contains locale)
     key += user_signed_in?.to_s.slice(0)
-    key += @current_user.is_eligible?.to_s.slice(0)
+    key += is_user_eligibile?.to_s.slice(0)
     return key
   end
 
@@ -16,6 +16,10 @@ module ApplicationHelper
   end
 
   private
+
+  def is_user_eligibile?
+    @current_user ? @current_user.is_eligible? : false
+  end
 
   def correct_syntax? code
     stderr = $stderr

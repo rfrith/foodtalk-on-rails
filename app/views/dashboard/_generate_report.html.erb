@@ -20,7 +20,7 @@
 
     <div class="form-row mt-3">
 
-      <% if @current_user.admin? %>
+      <% if @current_user.super_admin? || @current_user.admin? %>
       <div class="col-auto">
         <%= form.label "Filter by Role", class: "font-weight-bold col-form-label-md" %>
 
@@ -52,7 +52,7 @@
       <% end %>
 
       <%
-        if @current_user.admin?
+        if(@current_user.super_admin? || @current_user.admin?)
           groups = Group.all
         elsif @current_user.group_admin?
           groups = @current_user.groups

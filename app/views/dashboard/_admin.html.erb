@@ -1,5 +1,7 @@
 <% if @current_user.is_admin? %>
 
+  <% if !@current_user.group_admin? || (@current_user.group_admin? && @current_user.groups.present?)%>
+
   <nav id="admin-nav" class="nav nav-tabs ml-5 pt-1 justify-content-start" role="tablist">
     <% if policy(:report).view_site_stats? %>
     <a id="stats-tab-link" class="nav-item nav-link active" data-toggle="tab" href="#stats" aria-controls="stats" aria-selected="true"><%= t("dashboard.admin.stats") %></a>
@@ -31,6 +33,15 @@
     </div>
     <% end %>
   </div>
+
+  <% else %>
+    <div id="admin-content" class="tab-content p-4">
+    You have not yet been assigned to a group.  Please contact a UGA SNAP-Ed administrator for assistance.
+    <script language="JavaScript">
+      hide_spinner();
+    </script>
+    </div>
+  <% end %>
 
 <% else %>
   You are not authorized to view this content.

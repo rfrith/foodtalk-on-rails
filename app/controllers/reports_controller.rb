@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
     authorize :report
 
     #users filtered by date range
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       users_in_date_range = User.created_in_range(@start_date..@end_date)
     elsif(@current_user.group_admin?)
       users_in_date_range = @current_user.users.created_in_range(@start_date..@end_date)
@@ -63,7 +63,7 @@ class ReportsController < ApplicationController
         rows: []
     }
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       #users with no group affiliation by date range
       ft_users = User.created_in_range(@start_date..@end_date).not_in_group
       users_by_group[:rows] << {c:[{v: Group::FOODTALK_USERS.titleize}, {v: ft_users.size}]}
@@ -96,7 +96,7 @@ class ReportsController < ApplicationController
     grouped_user_counts = {}
 
     #users filtered by date range
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       users_in_date_range = User.created_in_range(@start_date..@end_date)
       groups = Group.all
     elsif(@current_user.group_admin?)
@@ -106,7 +106,7 @@ class ReportsController < ApplicationController
 
     if(!users_in_date_range.empty?)
 
-      if(@current_user.admin?)
+      if(@current_user.super_admin? || @current_user.admin?)
         #users with no group affiliation by date range
         ft_users = users_in_date_range.not_in_group
         ft_users_grouped = ft_users.group_by_month("Users.created_at", format: "%b %Y", range: @start_date..@end_date).count
@@ -129,7 +129,7 @@ class ReportsController < ApplicationController
         grouped_user_counts.merge! Date::MONTHNAMES[date.month] => [0]
       end
 
-      if(@current_user.admin?)
+      if(@current_user.super_admin? || @current_user.admin?)
         #add regular Foodtalk users
         data.merge! "Foodtalk Users" => grouped_user_counts
       end
@@ -187,7 +187,7 @@ class ReportsController < ApplicationController
         rows: []
     }
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       users = User.all
     elsif(@current_user.group_admin?)
       users = @current_user.users
@@ -219,7 +219,7 @@ class ReportsController < ApplicationController
         rows: []
     }
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       groups = Group.all
 
       #users with no group affiliation by date range
@@ -276,7 +276,7 @@ class ReportsController < ApplicationController
 
     curriculum_name = params[:curricula]
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       groups = Group.all
     elsif(@current_user.group_admin?)
       groups = @current_user.groups
@@ -312,7 +312,7 @@ class ReportsController < ApplicationController
     ids.each do |id|
       if(!id.blank?)
         group = Group.find(id)
-        if( @current_user.admin? || (@current_user.group_admin? && @current_user.groups.include?(group)) )
+        if( (@current_user.super_admin? || @current_user.admin?) || (@current_user.group_admin? && @current_user.groups.include?(group)) )
           domain_groups << group
         end
       end
@@ -342,7 +342,7 @@ class ReportsController < ApplicationController
 
     process_all = true
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       process_foodtalk_users = ActiveRecord::Type::Boolean.new.cast(params[:foodtalk_users])
     end
 
@@ -369,7 +369,7 @@ class ReportsController < ApplicationController
       users.flatten!
     end
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       process_admin_users = ActiveRecord::Type::Boolean.new.cast(params[:admin_users])
     end
 
@@ -379,7 +379,7 @@ class ReportsController < ApplicationController
       users.flatten!
     end
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       process_group_admin_users = ActiveRecord::Type::Boolean.new.cast(params[:group_admin_users])
     end
 
@@ -389,7 +389,7 @@ class ReportsController < ApplicationController
       users.flatten!
     end
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       process_test_users = ActiveRecord::Type::Boolean.new.cast(params[:test_users])
     end
 
@@ -399,7 +399,7 @@ class ReportsController < ApplicationController
       users.flatten!
     end
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       process_extension_employees = ActiveRecord::Type::Boolean.new.cast(params[:extension_employees])
     end
 
@@ -434,7 +434,7 @@ class ReportsController < ApplicationController
       users.delete_if { |user| user.is_ineligible?}
     end
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       report_type = "admin"
       filtered_groups = Group.all
     elsif(@current_user.group_admin?)
@@ -464,7 +464,7 @@ class ReportsController < ApplicationController
   def get_curriculum_started_completed(curriculum_id, date_range)
     curriculum = LearningModules.const_get(curriculum_id)
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       users = User.all
     elsif(@current_user.group_admin?)
       users = @current_user.users
@@ -486,7 +486,7 @@ class ReportsController < ApplicationController
     started_count = 0
     completed_count = 0
 
-    if(@current_user.admin?)
+    if(@current_user.super_admin? || @current_user.admin?)
       started_count = count_users_have_started_curriculum(User.not_in_group, curriculum, date_range)
       completed_count = count_users_have_completed_curriculum(User.not_in_group, curriculum, date_range)
       curriculum_stats_by_group.merge! FOODTALK_GROUP_NAME => {started_count: started_count, completed_count: completed_count}

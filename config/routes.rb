@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
     root to: 'welcome#index'
 
+    # Dynamic error pages
+    get "/400", to: "errors#bad_request"
+    get "/404", to: "errors#not_found"
+    get "/422", to: "errors#unacceptable"
+    get "/500", to: "errors#internal_error"
+
     #Auth0/user session
     get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
     get 'auth/auth0/callback' => 'sessions#create'

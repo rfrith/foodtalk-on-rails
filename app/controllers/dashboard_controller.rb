@@ -18,18 +18,22 @@ class DashboardController < ApplicationController
 
     if(@current_user.is_admin?)
 
-      @current_tab = params["stats-current-tab"] unless params["stats-current-tab"].nil?
-      @current_tab = "user-stats-tab" if @current_tab.nil?
+      if !@current_user.group_admin? || (@current_user.group_admin? && @current_user.groups.present?) #don't bother looking for info if user not assigned any groups
 
-      begin
-        start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i) unless params[:start_date].nil?
-        end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i) unless params[:end_date].nil?
-      rescue ArgumentError => e
-        add_notification :error, t(:error), e.to_s, 20000
-        redirect_back(fallback_location: show_dashboard_path) and return
+        @current_tab = params["stats-current-tab"] unless params["stats-current-tab"].nil?
+        @current_tab = "user-stats-tab" if @current_tab.nil?
+
+        begin
+          start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i) unless params[:start_date].nil?
+          end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i) unless params[:end_date].nil?
+        rescue ArgumentError => e
+          add_notification :error, t(:error), e.to_s, 20000
+          redirect_back(fallback_location: show_dashboard_path) and return
+        end
+
+        fetch_site_statistics(@current_user, start_date, end_date)
+
       end
-
-      fetch_site_statistics(@current_user, start_date, end_date)
 
     else
 

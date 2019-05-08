@@ -26,29 +26,22 @@ module DomainGroups
   end
 
   def get_domain_group_logo(host)
-    #check in module before even looking in DB
-    if DOMAIN_GROUPS.any? {|h| h[:group_name] == host}
-      DOMAIN_GROUPS.each do |entry|
-        group = Group.find_by(name: entry[:group_name])
-        if group && (group.domain == host)
-          return group.logo
-        end
+    DOMAIN_GROUPS.each do |entry|
+      group = Group.find_by(name: entry[:group_name])
+      if group && (group.domain == host)
+        return group.logo
       end
     end
     return nil
   end
 
   def get_domain_group_icon(host)
-    #check in module before even looking in DB
-    if DOMAIN_GROUPS.any? {|h| h[:group_name] == host}
-      DOMAIN_GROUPS.each do |entry|
-        group = Group.find_by(name: entry[:group_name])
-        if group && (group.domain == host)
-          return group.icon
-        end
+    DOMAIN_GROUPS.each do |entry|
+      group = Group.find_by(name: entry[:group_name])
+      if group && (group.domain == host)
+        return group.icon
       end
     end
-
     return nil
   end
 
