@@ -1,7 +1,7 @@
 <% content_for :js do %>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <script type="text/javascript">
+  <script defer type="text/javascript">
       function addMouseEvents(chart, divId) {
           google.visualization.events.addListener(chart.getChart(), 'onmouseover', function () {
               //console.log("processing: " + divId);

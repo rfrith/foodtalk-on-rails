@@ -1,5 +1,6 @@
 class Group < ApplicationRecord
   has_and_belongs_to_many :users
+  has_many :activity_histories, through: :users
 
   validates_presence_of :name, :title, :domain #, :logo, :icon
 

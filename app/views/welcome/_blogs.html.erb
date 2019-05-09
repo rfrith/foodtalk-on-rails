@@ -1,3 +1,4 @@
+<% cache [create_cache_key_prefix, "recent-blogs"], :expires_in => 1.week do %>
 <div id="featured-blogs" class="content-section2">
   <div class="d-flex justify-content-center">
     <div class="media pt-4 pl-4 pr-4 align-items-center">
@@ -8,15 +9,11 @@
       </div>
     </div>
   </div>
-
   <div class="grid">
-    <% @blogs.first(3).each do |blog| %>
-      <%= render partial: 'blogs/blog_card', locals: {blog: blog} %>
-    <% end %>
+    <%= render partial: 'shared/post', collection: @blogs.first(3), cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
   </div>
-
   <div class="content-section-copy-light recipe-copy text-center pt-4 pb-4">
     <%= link_to t("navigation.view_all_blog_posts"), blogs_index_path %>
   </div>
-
 </div>
+<% end %>

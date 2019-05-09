@@ -35,6 +35,8 @@ dump.rdb
 
 /public/uploads/*
 
+config/deploy.rb.mina
+
 /public/cached_pages/*
 
 #OSX File System Crud

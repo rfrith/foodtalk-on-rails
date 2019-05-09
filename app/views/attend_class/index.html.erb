@@ -1,9 +1,8 @@
+<% cache [create_cache_key_prefix, "attend-a-class"], :expires_in => 1.month do %>
 <div id="attend-class" class="content-section2">
   <div class="row no-gutters align-items-center jumbotronz jumbotron-fluidz pt-0 pb-0" style="background-color: white;">
     <div class="col content-section-copy-dark-med pl-5 pr-5" style="min-width: 50%;">
-
       <%= image_tag("Recipes_Honeycomb_Larger.jpg", class: 'img-fluid pull-left mr-4', alt: "Food eTalk Live Classroom", style: 'max-height: 16rem; width: auto;') %>
-
       <div class="content-section-title align-bottom mt-2 mb-2"><%= t("attend_a_class.name") %></div>
       <p class="text-justify"><%= t("attend_a_class.description_html") %></p>
     </div>
@@ -23,46 +22,64 @@
 
             <address>
               <%= values[:address1] %><br>
-              <% if(!values[:address2].empty?) %>
+              <% if !values[:address2].blank? %>
                 <%= values[:address2] %><br>
               <% end %>
-              <%= values[:city] %> <%= values[:state] %> <%= values[:zip] %><br>
-              <%= link_to values[:phone], "tel:#{values[:phone]}" %>
+              <%= values[:city] unless values[:city].blank? %> <%= values[:state] unless values[:state].blank? %> <%= values[:zip] unless values[:zip].blank? %><br>
+              <%= link_to values[:phone], "tel:#{values[:phone]}" unless values[:phone].blank? %>
             </address>
 
-            <p class="lead"><%= t("attend_a_class.snap_ed_supervisor") %></p>
-            <div class="media">
-              <% image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{t('attend_a_class.snap_ed_supervisor')}", style: 'height: auto; width: 4rem;') %>
-              <div class="media-body mr-4 ">
-                <div class="small card-text text-justify mb-2">
-                  <%= values[:snap_ed_supervisor][:name]%><br>
-                  <%= mail_to values[:snap_ed_supervisor][:email] %>
+            <% if !values[:contact].blank? %>
+              <p class="lead"><%= t("attend_a_class.contact") %></p>
+              <div class="media">
+                <% #image_tag(values[:contact][:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{t('attend_a_class.snap_ed_contact')}", style: 'height: auto; width: 4rem;') %>
+                <div class="media-body mr-4 ">
+                  <div class="small card-text text-left mb-2">
+                    <%= values[:contact][:name] unless values[:contact][:name].blank? %><br>
+                    <%= values[:contact][:organization] unless values[:contact][:organization].blank? %><br>
+                    <%= values[:contact][:position] unless values[:contact][:position].blank? %><br>
+                    <%= mail_to values[:contact][:phone] unless values[:contact][:phone].blank? %><br>
+                    <%= mail_to values[:contact][:email] unless values[:contact][:email].blank? %><br>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
 
-            <% if(!values[:program_assistants].empty?) %>
+
+            <% if !values[:snap_ed_supervisor].blank? %>
+              <p class="lead"><%= t("attend_a_class.snap_ed_supervisor") %></p>
+              <div class="media">
+                <% #image_tag(values[:snap_ed_supervisor][:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{t('attend_a_class.snap_ed_supervisor')}", style: 'height: auto; width: 4rem;') %>
+                <div class="media-body mr-4 ">
+                  <div class="small card-text text-justify mb-2">
+                    <%= values[:snap_ed_supervisor][:name] unless values[:snap_ed_supervisor][:name].blank? %><br>
+                    <%= mail_to values[:snap_ed_supervisor][:email] unless values[:snap_ed_supervisor][:email].blank? %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if !values[:program_assistants].blank? %>
               <p class="lead pt-2"><%= t("attend_a_class.program_assistants") %></p>
               <% values[:program_assistants].each do |pas| %>
                 <div class="media mb-2">
-                  <% image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{ t('attend_a_class.snap_ed_supervisor').singularize }", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].empty?)%>
+                  <% #image_tag(pas[:photo_url], class: 'rounded mr-2', alt: "#{key.capitalize} #{ t('attend_a_class.snap_ed_supervisor').singularize }", style: 'height: auto; width: 4rem;') unless (pas[:photo_url].blank?)%>
                   <div class="media-body mr-4 ">
                     <div class="small card-text text-justify mb-2">
-                      <%= pas[:name]%><br>
-                      <%= mail_to pas[:email] %>
+                      <%= pas[:name] unless pas[:name].blank? %><br>
+                      <%= mail_to pas[:email] unless pas[:email].blank? %>
                     </div>
                   </div>
                 </div>
               <% end %>
             <% end %>
+
           </div>
 
         </div>
 
       </div>
-    <%
-      end
-    %>
+    <% end %>
   </div>
-
 </div>
+<% end %>

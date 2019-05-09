@@ -1,4 +1,5 @@
-<div id="videos" class="content-section2">
+<% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.week do %>
+  <div id="videos" class="content-section2">
   <div class="pb-4" style="background-color: white;">
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">
@@ -31,9 +32,7 @@
 
   <% if !@videos.blank? && !@videos["items"].blank? %>
   <div class="grid pt-3">
-    <% @videos["items"].each do |video| %>
-      <%= render partial: "videos/video_card", locals: {video: video} %>
-    <% end %>
+    <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
   </div>
   <% else %>
     <div class="d-flex justify-content-center">
@@ -44,3 +43,4 @@
     </div>
   <% end %>
 </div>
+<% end %>

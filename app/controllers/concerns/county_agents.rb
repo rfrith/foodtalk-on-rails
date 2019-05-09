@@ -12,9 +12,9 @@ module CountyAgents
           state: "GA",
           zip: "30606",
           phone: "(706) 613-3640",
-          snap_ed_supervisor: {name: "Jackie Dallas", email: "jdallas@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0146.jpg"},
+          snap_ed_supervisor: {name: "Jackie Dallas", email: "jdallas@uga.edu", photo_url: ""},
           program_assistants: [
-              {name: "Melanie Burton", email: "mburton@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/melanie_burton_100.jpg"},
+              {name: "Melanie Burton", email: "mburton@uga.edu", photo_url: ""},
               {name: "Lina Rivera", email: "lina1@uga.edu", photo_url: ""},
               {name: "Catherine Scott", email: "cls1435@uga.edu", photo_url: ""}
           ]
@@ -28,10 +28,10 @@ module CountyAgents
           state: "GA",
           zip: "30120-3059",
           phone: "(770) 387-5142",
-          snap_ed_supervisor: {name: "Alexis Roberts", email: "Roberts9@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0158.jpg"},
+          snap_ed_supervisor: {name: "Alexis Roberts", email: "Roberts9@uga.edu", photo_url: ""},
           program_assistants: [
-              {name: "Karen Martin", email: "Kmart07@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/web.jpg"},
-              {name: "Patti Hall", email: "phall@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0165.jpg"}
+              {name: "Karen Martin", email: "Kmart07@uga.edu", photo_url: ""},
+              {name: "Patti Hall", email: "phall@uga.edu", photo_url: ""}
           ]
       },
 
@@ -43,9 +43,9 @@ module CountyAgents
           state: "GA",
           zip: "30236-5905",
           phone: "(770) 473-3945",
-          snap_ed_supervisor: {name: "Gail Kefentse", email: "gkefents@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/gail_kefentse_100.jpg"},
+          snap_ed_supervisor: {name: "Gail Kefentse", email: "gkefents@uga.edu", photo_url: ""},
           program_assistants: [
-              {name: "Deborah Cannon", email: "dcannon@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_cannon_100.jpg"},
+              {name: "Deborah Cannon", email: "dcannon@uga.edu", photo_url: ""},
               {name: "Ariane Durden", email: "cdurden1@uga.edu", photo_url: ""}
           ]
       },
@@ -58,7 +58,7 @@ module CountyAgents
           state: "GA",
           zip: "31533",
           phone: "(912) 384-1402",
-          snap_ed_supervisor: {name: "Laura Smith", email: "lauras@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/laura_smith_100.jpg"},
+          snap_ed_supervisor: {name: "Laura Smith", email: "lauras@uga.edu", photo_url: ""},
           program_assistants: [
               {name: "Malory Howard", email: "malory.howard@uga.edu", photo_url: ""}
           ]
@@ -72,7 +72,7 @@ module CountyAgents
           state: "GA",
           zip: "30032-1239",
           phone: "(404) 298-4080",
-          snap_ed_supervisor: {name: "Breeanna Williams", email: "bswilliams@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0184.jpg"},
+          snap_ed_supervisor: {name: "Breeanna Williams", email: "bswilliams@uga.edu", photo_url: ""},
           program_assistants: []
       },
 
@@ -84,10 +84,10 @@ module CountyAgents
           state: "GA",
           zip: "30344-4151",
           phone: "(404) 762-4077",
-          snap_ed_supervisor: {name: "Amanda Pencek", email: "adh9513@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0170.jpg"},
+          snap_ed_supervisor: {name: "Amanda Pencek", email: "adh9513@uga.edu", photo_url: ""},
           program_assistants: [
-              {name: "Deborah Mallory", email: "dymallor@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/deborah_mallory_100.jpg"},
-              {name: "Phyllis Cain", email: "sept1986@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0183.jpg"}
+              {name: "Deborah Mallory", email: "dymallor@uga.edu", photo_url: ""},
+              {name: "Phyllis Cain", email: "sept1986@uga.edu", photo_url: ""}
           ]
       },
 
@@ -99,10 +99,20 @@ module CountyAgents
           state: "GA",
           zip: "30540",
           phone: "(706) 635-4426",
-          snap_ed_supervisor: {name: "Jessie Moore", email: "jessmoor@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/jessie_headshot.png"},
+          snap_ed_supervisor: {name: "Jessie Moore", email: "jessmoor@uga.edu", photo_url: ""},
           program_assistants: [
-              {name: "Becca Pritchett", email: "beccap@uga.edu", photo_url: "https://foodtalk.org/sites/default/files/cimg_0193.jpg"}
+              {name: "Becca Pritchett", email: "beccap@uga.edu", photo_url: ""}
           ]
+      },
+
+      lowndes: {
+          name: "Lowndes County",
+          address1: "2102 East Hill Avenue",
+          address2: "",
+          city: "Valdosta",
+          state: "GA",
+          zip: "31601",
+          contact: {name: "Rachel Hubbard", organization: "Family & Consumer Sciences", position: "PROGRAM DEVELOPMENT COORDINATOR, FACS", phone: "(229) 386-3812",  email: "rubynell@uga.edu"}
       }
   }
 

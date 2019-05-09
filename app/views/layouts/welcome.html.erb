@@ -1,6 +1,6 @@
 <% content_for :header do %>
   <div class="d-block d-md-none fixed-top">
-    <%= render partial: 'layouts/top-nav'%>
+    <%= render partial: 'layouts/top-nav' %>
   </div>
   <%= render 'layouts/header' if !user_signed_in? %>
 <% end %>
@@ -13,7 +13,7 @@
 <% end %>
 
 <% content_for :footer do %>
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/footer', cached: true %>
 <% end %>
 
 <%= render template: 'layouts/application' %>

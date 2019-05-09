@@ -1,5 +1,7 @@
 <% if @current_user.is_admin? %>
 
+  <% if !@current_user.group_admin? || (@current_user.group_admin? && @current_user.groups.present?)%>
+
   <nav id="admin-nav" class="nav nav-tabs ml-5 pt-1 justify-content-start" role="tablist">
     <% if policy(:report).view_site_stats? %>
     <a id="stats-tab-link" class="nav-item nav-link active" data-toggle="tab" href="#stats" aria-controls="stats" aria-selected="true"><%= t("dashboard.admin.stats") %></a>
@@ -8,7 +10,7 @@
     <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#reports" aria-controls="reports" aria-selected="false"><%= t("dashboard.admin.reports") %></a>
     <% end %>
     <% if policy(:user).find_user_by_criteria? %>
-      <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#find-user" aria-controls="find-user" aria-selected="false"><%= t("dashboard.admin.find_user") %></a>
+      <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#find-user" aria-controls="find-user" aria-selected="false"><%= t("dashboard.admin.user_search") %></a>
     <% end %>
   </nav>
 
@@ -20,15 +22,26 @@
     <% end %>
     <% if policy(:report).generate_report? %>
     <div id="reports" class="tab-pane fade show" role="tabpanel" aria-labelledby="reports">
-      <%= render :partial => "dashboard/monthly_report" %>
+      <%= render :partial => "dashboard/generate_report" %>
     </div>
     <% end %>
     <% if policy(:user).find_user_by_criteria? %>
     <div id="find-user" class="tab-pane fade show" role="tabpanel" aria-labelledby="find-user">
-      <%= render :partial => "users/find_user" %>
+      <div id="users-content" class="rounded">
+      <%= render :partial => "users/list_users", locals: {should_remote_paging: false} %>
+      </div>
     </div>
     <% end %>
   </div>
+
+  <% else %>
+    <div id="admin-content" class="tab-content p-4">
+    You have not yet been assigned to a group.  Please contact a UGA SNAP-Ed administrator for assistance.
+    <script language="JavaScript">
+      hide_spinner();
+    </script>
+    </div>
+  <% end %>
 
 <% else %>
   You are not authorized to view this content.

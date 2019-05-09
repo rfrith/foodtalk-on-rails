@@ -1,3 +1,4 @@
+<% cache [create_cache_key_prefix, "footer"], :expires_in => 1.year do %>
 <div id="footer" class="">
 
   <nav id="footer-nav" class="navbar navbar-light" role="navigation">
@@ -18,7 +19,7 @@
 
       <div class="w-100 d-block d-lg-none"></div>
 
-      <%= render partial: "layouts/social_media_links", locals: { should_show_facebook: true, should_show_twitter: true, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: true, should_show_instagram: true, should_show_email: true } %>
+      <%= render partial: "layouts/social_media_links", cached: true, locals: { should_show_facebook: true, should_show_twitter: true, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: true, should_show_instagram: true, should_show_email: true } %>
 
       <span class="mx-auto" style="color: white;">
         <%= t("footer.auth0") %>
@@ -27,6 +28,5 @@
     </div>
 
   </nav>
-
-
 </div>
+<% end %>

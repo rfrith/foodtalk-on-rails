@@ -25,7 +25,7 @@
     </div>
     <div class="col-auto">
       <%= form.label :gender, class: "col-form-label-sm d-inline" %>
-      <%= form.select :gender, User.genders.map {|k, v| [k.humanize.capitalize, k]}, { include_blank: false}, {id: :user_gender, autofocus: 'true', class: 'form-control form-control-sm'}  %>
+      <%= form.select :gender, @genders.map {|k, v| [k.humanize.capitalize, k]}, { include_blank: false}, {id: :user_gender, autofocus: 'true', class: 'form-control form-control-sm'}  %>
     </div>
     <div class="col-auto">
       <%= form.label :age, class: "col-form-label-sm d-inline" %>
@@ -46,7 +46,7 @@
   <div class="form-row mt-2">
     <div class="mr-5 col-auto">
       <%= form.label :racial_identity_ids, class: "col-form-label-sm" %>
-      <%= form.collection_check_boxes :racial_identity_ids, RacialIdentity.all, :id, :name do |b| %>
+      <%= form.collection_check_boxes :racial_identity_ids, @racial_identities, :id, :name do |b| %>
         <div class="form-check">
           <%= b.label(:"data-value" => b.value, class: "form-check-label col-form-label-sm") { b.check_box(class: "form-check-input") + b.text } %>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="col">
       <%= form.label :federal_assistance_ids, class: "col-form-label-sm" %>
-      <%= form.collection_check_boxes :federal_assistance_ids, FederalAssistance.all, :id, :name do |b| %>
+      <%= form.collection_check_boxes :federal_assistance_ids, @federal_assistances, :id, :name do |b| %>
         <div class="form-check">
           <%=  b.label(:"data-value" => b.value, class: "form-check-label col-form-label-sm") { b.check_box(class: "form-check-input") + b.text } %>
         </div>
@@ -67,7 +67,7 @@
     <div class="col-auto">
       <%= form.label t("dashboard.newsletters.label"), class: "font-weight-bold col-form-label-md" %>
       <div class=""><%= t("dashboard.newsletters.opt_in") %></div>
-      <%= render :partial => "subscriptions/list_subscriptions_checkboxes" %>
+      <%= render partial: "users/list_subscriptions_checkboxes" %>
     </div>
 
   </div>

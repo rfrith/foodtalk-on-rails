@@ -1,0 +1,19 @@
+<% cache @error.status, :expires_in => 1.month do %>
+<div class="content-section2 d-flex align-items-center" id="errors">
+  <div class="container ">
+    <div class="row d-flex align-items-center">
+      <div class="d-flex flex-column mx-auto d-flex align-items-center">
+        <%= image_tag 'logo-lg.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
+      </div>
+      <div class="d-flex flex-column mx-auto pl-5">
+        <h2><%= @error.status %></h2>
+        <h1><%= @error.title %></h1>
+        <p class="">
+          <%= @error.message %>
+        </p>
+        <p><%= link_to "Return to the Home Page", root_path %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

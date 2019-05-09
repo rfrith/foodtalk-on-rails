@@ -1,5 +1,14 @@
 module ApplicationHelper
 
+  def create_cache_key_prefix
+    key = ""
+    key += request.host #needed for partner organizations
+    key += request.original_fullpath.slice(0..-1) #needed for I18N (URL contains locale)
+    key += user_signed_in?.to_s.slice(0)
+    key += is_user_eligibile?.to_s.slice(0)
+    return key
+  end
+
   def get_learning_module(module_id)
     if(correct_syntax?(lesson_id))
       lesson = eval lesson_id
@@ -7,6 +16,10 @@ module ApplicationHelper
   end
 
   private
+
+  def is_user_eligibile?
+    @current_user ? @current_user.is_eligible? : false
+  end
 
   def correct_syntax? code
     stderr = $stderr
@@ -21,7 +34,12 @@ module ApplicationHelper
 
   def find_glossary_terms(text)
     found_terms = []
-    GlossaryTerm.all.each do |term|
+
+    glossary_terms = Rails.cache.fetch("all_glossary_terms", expires_in: 1.month) do
+      GlossaryTerm.all
+    end
+
+    glossary_terms.each do |term|
       found_terms << term if (text.include? term.name)
     end
     found_terms

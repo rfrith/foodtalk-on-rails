@@ -1,12 +1,14 @@
+<% cache "blog-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
+
 <div id="blog-post" class="content-section2">
 
   <% if @show_categories %>
-    <%= render partial: 'blogs/blog_header' %>
+    <%= render partial: 'shared/post_header', cached: true, locals: {title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_label: t("blog.search")} %>
   <% end %>
 
   <div class="p-4">
     <% if @featured_image && !@embedded_content%>
-      <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @blog["title"]["rendered"]) %>
+      <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @post["title"]["rendered"]) %>
     <% end %>
 
     <% if !@embedded_content%>
@@ -17,7 +19,9 @@
 
     <%= t("social_media_prompt") %>
     <br>
-    <%= render partial: "layouts/social_media_links", locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
+    <%= render partial: "layouts/social_media_links", cached: true, locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
 
   </div>
 </div>
+
+<% end %>

@@ -35,15 +35,11 @@ es:
   error: "Error"
   error_occurred: "El siguiente error ha ocurrido:"
   changes_saved: "Cambios guardados."
-  welcome: "¡Hola y bienvenido a Foodtalk.org! Tómese unos minutos para actualizar su perfil personal. Responda todas las preguntas a continuación y presione el botón \"Actualizar\" para continuar."
-  ask_for_feedback: "Sus comentarios son muy importantes para ayudarnos a mejorar la calidad de nuestro programa. Tómese unos minutos para completar la siguiente encuesta. Asegúrese de continuar hacia abajo y asegúrese de presionar el botón \"Enviar\" cuando haya terminado."
-  thank_you: "¡Hola! Gracias por crear una cuenta en Foodtalk.org. Necesitamos hacerle algunas preguntas antes de que pueda comenzar."
   social_media_prompt: "Para recetas y más:"
   language_select_label: "English"
   language_select_value: "en"
   switch_language: "Click for English"
-  eligibility_restriction: "La función que ha solicitado está restringida debido a los requisitos de elegibilidad actuales de SNAP-Ed. Para obtener más información, revise las pautas publicadas en <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\"> https: // snaped. fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf </a>."
-
+  eligibility_restriction: "La función que ha solicitado está restringida debido a los requisitos de elegibilidad actuales de SNAP-Ed. Para obtener más información, revise las pautas publicadas en <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\">https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf</a>."
   TrueClass: "Sí"
   FalseClass: "No"
 
@@ -82,8 +78,6 @@ es:
     title: "¡Ayudando a los Georgianos a Comer Saludablemente y a Moverse!"
     description: "¡FoodTalk.org ha sido creado especialmente para georgianos que desean ideas GRATUITAS sobre cómo mantener a sus familias sanas haciendo elecciones nutritivos de alimentos con un presupuesto ajustado!"
     sign_up: "ahora suscríbase a nuestro boletín electrónico Food Talk y descubra usted elegible para el aprendizaje en línea gratuito."
-    stretch_snap_dollars_title: "Stretch your SNAP dollars now!"
-    stretch_snap_dollars_body: "Click here for information on how to make the most of your SNAP dollars!"
     read_more: "Lee Mas"
 
     blog:
@@ -119,6 +113,7 @@ es:
     description_html: "Al asistir a una clase de Food Talk, aprenderás de un educador de nutrición cómo comer de forma más saludable, alimentar a tu familia con un presupuesto, mantener la seguridad de los alimentos y la mejor parte: aprenderás a preparar una nueva receta deliciosa y llega a probarla! ¡Llama o envía un correo electrónico hoy para encontrar una clase cerca de ti! <br> <br> Las clases de Food Talk se llevan a cabo actualmente en los siguientes condados. Póngase en contacto con uno de los miembros del personal que figuran a continuación para averiguar cómo puede unirse a una clase."
     snap_ed_supervisor: "SNAP-Ed Supervisor"
     program_assistants: "Programa Asistente"
+    contact: "Para Información Contactar"
 
   gis_resources:
     name: "Recursos GIS"
@@ -144,9 +139,10 @@ es:
 
   dashboard:
     admin:
-      label: "Admin"
-      stats: "Statistics"
-      reports: "Informe"
+      label: "Reports"
+      stats: "Site Statistics"
+      reports: "CSV Data Export"
+      user_search: "User Search"
     my_courses:
       label: "Mis Cursos"
       not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"

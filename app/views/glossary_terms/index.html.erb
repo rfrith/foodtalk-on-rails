@@ -1,4 +1,5 @@
 <% content_for :header do %>
+  <% cache [create_cache_key_prefix, "glossary-header"], :expires_in => 1.month do %>
   <div class="row no-gutters p-4 fixed-top" style="background-color: white;">
     <div class="mx-auto mt-3">
       <div class="media align-items-center mt-5" style="margin-bottom: .2rem;">
@@ -10,18 +11,33 @@
         </div>
       </div>
       <div>
-        <% ("a".."z").each { |letter| %>
-          <%= link_to letter.upcase, "##{letter.upcase}", class: 'btn btn-sm btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button' %>
+        <%
+          letters = []
+        %>
+        <% @glossary_terms.each do |term| %>
+          <% letters |= [term.name.slice(0)] %>
+        <% end %>
+        <%
+          current_letter = letters.shift
+        %>
+        <% ("a".."z").each { |l| %>
+          <%
+          if letters.include?(l)
+            current_letter = letters.shift
+          end
+          %>
+          <%= link_to l.upcase, "##{current_letter.upcase}", class: 'btn btn-sm btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button' %>
         <% } %>
       </div>
     </div>
   </div>
+  <% end %>
 <% end %>
 
 <% content_for :content do %>
-<div id="glossary" class="content-section2" style="padding-top: 16.5rem;">
-  <div class="col-auto">
-    <%= render :partial => "list_glossary_cards" %>
+  <div id="glossary" class="content-section2" style="padding-top: 16.5rem;">
+    <div class="col-auto">
+      <%= render partial: 'glossary_terms/glossary_term', collection: @glossary_terms, cached: true %>
+    </div>
   </div>
-</div>
 <% end %>

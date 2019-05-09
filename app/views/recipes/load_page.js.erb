@@ -1,7 +1,1 @@
-<%
-  @recipes.each do |recipe|
-%>
-<%= render partial: 'recipes/recipe_card', locals: {recipe: recipe} %>
-<%
-  end
-%>
+<%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "recipes_index_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>

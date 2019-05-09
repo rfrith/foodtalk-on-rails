@@ -1,3 +1,4 @@
+<% cache [create_cache_key_prefix, "recent-recipes"], :expires_in => 1.week do %>
 <div id="featured-recipes" class="content-section">
   <div class="d-flex justify-content-center">
     <div class="media pt-4 pl-4 pr-4 align-items-center">
@@ -8,17 +9,13 @@
       </div>
     </div>
   </div>
-
   <div class="mx-auto card-deckz recipes-deck w-100">
     <div class="grid">
-      <%
-        #TODO: consolidate me into a single view
-        @recipes.first(3).each do |recipe| %>
-        <%= render partial: 'recipes/recipe_card', locals: {recipe: recipe}%>
-      <% end %>
+      <%= render partial: 'shared/post', collection: @recipes.first(3), cached: true, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
     </div>
   </div>
   <div class="content-section-copy-light recipe-copy text-center pt-4 pb-4">
     <%= link_to t("navigation.view_all_recipes"), recipes_path %>
   </div>
 </div>
+<% end %>

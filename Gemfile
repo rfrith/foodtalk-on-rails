@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-#ruby=2.4.2
-#ruby-gemset=foodtalk_rails514
+#ruby=ruby-2.6.2
+#ruby-gemset=rails5.1.7
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -10,12 +10,10 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
-
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
+gem 'rails', '~> 5.1.7'
 
 gem 'pg', '~> 1.1', '>= 1.1.4'
+#gem 'activerecord-jdbcpostgresql-adapter', :platform => :jruby
 
 # Use Puma as the app server
 gem 'puma', '~> 3.12'
@@ -53,6 +51,12 @@ gem 'gibbon', '~> 3.2'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'fractional', '~> 1.2', '>= 1.2.1'
 gem 'aasm', '~> 5.0', '>= 5.0.2'
+gem 'faker', '~> 1.9', '>= 1.9.3'
+#for memcached integration
+gem 'dalli', '~> 2.7', '>= 2.7.10'
+gem 'connection_pool', '~> 2.2', '>= 2.2.2'
+gem 'api_cache', '~> 0.3.0'
+
 
 #TODO FIX ME! THIS DOESN'T WORK: gem 'rmagick', '~> 3.0'
 # An error occurred while installing rmagick (3.0.0), and Bundler cannot continue.
@@ -62,6 +66,8 @@ gem 'aasm', '~> 5.0', '>= 5.0.2'
 #
 #   rmagick
 gem 'rmagick', '~> 2.16.0'
+#gem 'rmagick4j', require: 'RMagick'
+
 
 gem 'pundit', '~> 2.0', '>= 2.0.1'
 gem 'chartkick', '~> 3.0', '>= 3.0.2'
@@ -81,6 +87,7 @@ gem 'popper_js', '~> 1.14', '>= 1.14.5'
 group :test do
   #TODO FIX ME!  THIS DOESN'T WORK: gem 'sqlite3', '~> 1.4'
   gem 'sqlite3', '~> 1.3.13'
+  #gem 'activerecord-jdbcsqlite3-adapter'
 end
 
 group :development, :test do
@@ -91,7 +98,6 @@ group :development, :test do
   gem 'selenium-webdriver', '~> 3.141'
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.1'
-  gem 'faker', '~> 1.9', '>= 1.9.3'
 end
 
 group :development do
@@ -104,6 +110,10 @@ group :development do
   gem 'capistrano-bundler', '~> 1.5', require: false
   gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1', require: false
   gem 'capistrano-maintenance', '~> 1.2', require: false
+
+  #gem 'mina', require: false
+  #gem 'mina-puma', require: false
+
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '~> 3.7'

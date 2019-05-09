@@ -1,0 +1,38 @@
+<script language="JavaScript">
+    var pages = [];
+
+    <% ((@page+=1)..@total_pages).each { |index| %>
+    pages.push('<%= eval(page_path + "(page: index, slug: @slug)") %>');
+    <% } %>
+
+    function getPages() {
+        var slug = pages[ this.loadCount ];
+        if ( slug ) {
+            return slug;
+        }
+    }
+
+    var $grid = $('.grid').masonry({
+        // Masonry options...
+        itemSelector: '.grid-item',
+        fitWidth: true
+    });
+
+    var msnry = $grid.data('masonry');
+
+    $grid.infiniteScroll({
+        path: getPages,
+        append: false,
+        outlayer: msnry,
+        responseType: 'text',
+        history: false,
+    });
+
+    $grid.on( 'load.infiniteScroll', function( event, response ) {
+        var jqData = $(response)
+        jqData.imagesLoaded( function() {
+            $('#posts-grid').append(jqData);
+            $('.grid').masonry( 'appended', jqData );
+        });
+    });
+</script>

@@ -1,8 +1,7 @@
 class GlossaryTermsController < ApplicationController
-
-  caches_page :index
-
   def index
-    @glossary_terms = GlossaryTerm.all
+    @glossary_terms = Rails.cache.fetch("all_glossary_terms", expires_in: 1.month) do
+      GlossaryTerm.all
+    end
   end
 end

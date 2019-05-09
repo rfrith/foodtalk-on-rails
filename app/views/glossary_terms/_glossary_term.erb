@@ -1,0 +1,33 @@
+<a id="<%= glossary_term.name.slice(0).upcase %>"/>
+
+<div class="d-flex justify-content-center">
+  <div class="card glossary-card w-100 mb-3">
+    <div class="card-header">
+    <span class="h4">
+    <%= glossary_term.name %>
+    </span>
+    </div>
+    <div class="card-body d-flex flex-row align-items-center">
+      <% if !glossary_term.image.blank? %>
+        <div class="glossary-image float-left">
+          <%= image_tag glossary_term.image, class: 'card-img-top', alt: glossary_term.name %>
+        </div>
+      <% end %>
+      <div class="card-title glossary-description-copy glossary-description text-left">
+        <%= glossary_term.description %>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <blockquote>
+        <footer class="blockquote-footer">
+          <cite title="Source Title"><%= glossary_term.source %></cite>
+          <small class="text-muted">
+            <% if !glossary_term.image.blank? %>
+              <%= link_to 'Original Image', glossary_term.remote_image_url, target: '_blank' %>
+            <% end %>
+          </small>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</div>

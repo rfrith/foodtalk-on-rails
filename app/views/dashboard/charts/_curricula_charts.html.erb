@@ -1,4 +1,5 @@
-<script type="text/javascript">
+<% content_for(:head) do %>
+<script defer type="text/javascript"  data-turbolinks-eval=false>
     google.charts.load('current', {packages: ['corechart']});
     google.charts.setOnLoadCallback(drawCharts);
 
@@ -50,7 +51,8 @@
                     if (selection && selection[0]) {
                         $.fancybox.open({
                             src: '/users/find_by_started_and_or_completed_curricula/<%=LearningModules.module_name(curricula.to_sym)%>/' + started_or_completed + '/<%=@start_date%>/<%=@end_date%>/',
-                            type: 'iframe'
+                            type: 'iframe',
+                            minHeight: 800,
                         });
                         //reset selection to avoid click-locking selection
                         usersStartedCompletedCurriculaChart<%=curricula%>.getChart().setSelection(null)
@@ -124,3 +126,4 @@
 
 
 </script>
+<% end %>

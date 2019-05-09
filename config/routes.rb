@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
     root to: 'welcome#index'
 
+    # Dynamic error pages
+    get "/400", to: "errors#bad_request"
+    get "/404", to: "errors#not_found"
+    get "/422", to: "errors#unacceptable"
+    get "/500", to: "errors#internal_error"
+
     #Auth0/user session
     get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
     get 'auth/auth0/callback' => 'sessions#create'
@@ -23,6 +29,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update]
     resources :recipes, only: [:index, :show]
     resources :videos, only: [:index, :show]
+    resources :users, only: [:show]
 
     get 'dashboard' => 'dashboard#show', as: 'show_dashboard'
     get 'welcome/index'
@@ -70,7 +77,7 @@ Rails.application.routes.draw do
     end
 
     controller :users do
-      get 'users/:id', to: 'users#show'
+
       get 'users/find_by_month/:month' => :find_by_month, as: 'find_users_by_month'
       get 'users/find_by_month_and_group/:month/:group_name' => :find_by_month_and_group, as: 'find_by_month_and_group'
       get 'users/find_by_group/:group_name(/:start_date/:end_date)' => :find_by_group, as: 'find_by_group'
@@ -81,9 +88,10 @@ Rails.application.routes.draw do
 
       get 'find_user_by_criteria' => :find_user_by_criteria
 
+      get 'get_user_info' => :get_user_info
+
       post 'update_user_groups' => :update_user_groups
       post 'update_user_roles' => :update_user_roles
-      post 'update_subscriptions' => :update_subscriptions
       post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
     end
 

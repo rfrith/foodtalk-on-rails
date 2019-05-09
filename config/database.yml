@@ -14,13 +14,14 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("DB_HOST") %>
-  username: <%= ENV.fetch("DB_USERNAME") %>
-  database: <%= ENV.fetch("DB_NAME") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>
-  timeout: 5000
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -30,12 +31,3 @@ test:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   database: db/test.sqlite3
-
-production:
-  adapter: postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("DB_HOST") %>
-  username: <%= ENV.fetch("DB_USERNAME") %>
-  database: <%= ENV.fetch("DB_NAME") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>
-  timeout: 5000

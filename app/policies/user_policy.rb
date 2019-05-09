@@ -1,7 +1,11 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if user.super_admin? || user.admin?
+        scope.all
+      elsif user.group_admin?
+        user.users
+      end
     end
   end
 
@@ -13,18 +17,13 @@ class UserPolicy < ApplicationPolicy
     !user.test_user?
   end
 
-  def update_subscriptions?
-    !user.test_user?
-  end
-
   def update_user_groups?
-    user.is_admin?
+    user.super_admin? || user.admin?
   end
 
   def update_user_roles?
-    user.is_admin?
+    user.super_admin? || user.admin?
   end
-
 
 
   def launch_module?

@@ -35,15 +35,11 @@ en:
   error: "Error"
   error_occurred: "The following error occurred:"
   changes_saved: "Changes saved."
-  welcome: "Hello and welcome to Foodtalk.org!  Please take a few minutes to update your personal profile.  Please answer all of the below questions and press the \"Update\" button to continue."
-  ask_for_feedback: "Your feedback is very important to help us improve the quality of our program.  Please take a few minutes to fill out the following survey. Make sure to scroll all the way down and be sure to press the \"Submit\" button when you are finished."
-  thank_you: "Hello!  Thank You for creating an account on Foodtalk.org. We need to ask you a few questions before you can get started."
   social_media_prompt: "For recipes and more:"
   language_select_label: "Español"
   language_select_value: "es"
   switch_language: "Haga clic para Español"
   eligibility_restriction: "The feature you have requested is restricted due to current SNAP-Ed eligibility requirements.  For more information please review the guidelines posted at <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\">https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf</a>."
-
   TrueClass: "Yes"
   FalseClass: "No"
 
@@ -82,8 +78,6 @@ en:
     title: "Helping Georgians Eat Healthy & Get Moving!"
     description: "FoodTalk.org has been made especially for Georgians who want FREE ideas on how to keep their families healthy by making nutritious food choices on a budget!"
     sign_up: "now to subscribe to our Food Talk eNewsletter and find out if you are eligible for free online learning."
-    stretch_snap_dollars_title: "Stretch your SNAP dollars now!"
-    stretch_snap_dollars_body: "Click here for information on how to make the most of your SNAP dollars!"
     read_more: "Read More"
 
     blog:
@@ -119,6 +113,7 @@ en:
     description_html: "By attending a Food Talk class, you’ll learn from a nutrition educator how to eat more healthfully, feed your family on a budget, keep your food safe, and the best part -- you’ll learn how to make a delicious new recipe and get to taste it! Call or email today to find a class near you! <br><br> Food Talk classes are currently being held in the following counties. Contact one of the staff members listed below to find out how you can join a class."
     snap_ed_supervisor: "SNAP-Ed Supervisor"
     program_assistants: "Program Assistants"
+    contact: "For Information Contact"
 
   gis_resources:
     name: "GIS Resources"
@@ -143,9 +138,10 @@ en:
 
   dashboard:
     admin:
-      label: "Admin"
-      stats: "Statistics"
-      reports: "Run Report"
+      label: "Reports"
+      stats: "Site Statistics"
+      reports: "CSV Data Export"
+      user_search: "User Search"
     my_courses:
       label: "My Courses"
       not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"

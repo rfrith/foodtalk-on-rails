@@ -59,6 +59,10 @@ function show_spinner() {
     $("#loader").show();
 }
 
+function hide_spinner() {
+    $("#loader").hide();
+}
+
 //track current tab in admin>stats dashboard
 //also fix to redraw chart after selecting a Bootstrap tab
 $(function(){

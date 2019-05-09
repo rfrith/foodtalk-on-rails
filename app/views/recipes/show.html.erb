@@ -1,12 +1,14 @@
+<% cache "recipe-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
+
 <div id="recipe-post" class="content-section2">
 
   <% if @show_categories %>
-    <%= render partial: 'recipes/recipes_header' %>
+    <%= render partial: 'shared/post_header', cached: true, locals: {title: t("recipes.name.name"), description: t("recipes.description"), index_path: "recipes_index_path", search_label: t("recipes.search")} %>
   <% end %>
 
   <div class="p-4">
     <% if @featured_image && !@embedded_content%>
-      <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @blog["title"]["rendered"]) %>
+      <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @post["title"]["rendered"]) %>
     <% end %>
 
     <% if !@embedded_content%>
@@ -21,3 +23,5 @@
 
   </div>
 </div>
+
+<% end %>

@@ -2,46 +2,46 @@
 
   <div class="card-header">
     <h4 class="card-title text-center mt-0">
-      <%== recipe["title"]["rendered"] %>
+      <%== post["title"]["rendered"] %>
       <span>
         <% #TODO: FIX ME!!!!  %>
-        <% if false #user_signed_in? %>
-          <% #TODO: AJAXIFY ME!!!!! %>
-          <% link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark recipe as favorite.", rel: "tooltip" %>
-        <% end %>
+        <% #if false #user_signed_in? %>
+        <% #TODO: AJAXIFY ME!!!!! & make update_post_favorites_path%>
+          <% #link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark post as favorite.", rel: "tooltip" %>
+        <% #end %>
         <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
       </span>
     </h4>
   </div>
 
   <%
-    media_url = get_media_url(recipe, :medium, true)
+    media_url = get_media_url(post, :medium, true)
   %>
   <% if media_url %>
-    <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: recipe["title"]["rendered"]), show_recipe_path(recipe["id"]), data: {"fancybox": "", "type": 'iframe'} %>
+    <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: post["title"]["rendered"]), eval("#{show_path}"+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'} %>
   <% end %>
 
   <div class="card-body p-2 m-0">
 
     <div class="card-text text-justify mb-1">
-      <%== recipe["excerpt"]["rendered"].html_safe %>
+      <%== post["excerpt"]["rendered"].html_safe %>
     </div>
 
     <div class="d-none d-md-block">
-      <% if !recipe["tags"].empty? %>
+      <% if slugs %>
         <div class="card-title">Categories</div>
         <div class="card-text">
-          <% recipe["tags"].each do |t| %>
-            <% @tags.each do |t2| %>
-              <% if (t2["id"] == t) %>
-                <%= link_to t2["name"], recipes_path(tag: t2["slug"]), class: 'badge badge-light ml-1', role: 'button', target: '_parent' %>
+          <% eval(post_slugs).each do |ps| %>
+            <% slugs.each do |s| %>
+              <% if (s["id"] == ps) %>
+                <%= link_to s["name"], eval("#{index_path}(slug: s['slug'])"), class: 'badge badge-light ml-1', role: 'button', target: '_parent' %>
               <% end %>
             <% end %>
           <% end %>
         </div>
       <% end %>
 
-      <% glossary_terms = find_glossary_terms(recipe["content"]["rendered"]) %>
+      <% glossary_terms = find_glossary_terms(post["content"]["rendered"]) %>
 
       <% if !glossary_terms.empty? %>
         <div class="card-title mt-1">Glossary Terms</div>
@@ -56,7 +56,7 @@
   </div>
 
   <div class="card-footer text-center">
-    <%= link_to("Details", show_recipe_path(recipe["id"]), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%= link_to("Details", eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 
 </div>

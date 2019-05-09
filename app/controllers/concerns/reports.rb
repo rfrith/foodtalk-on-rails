@@ -1,51 +1,29 @@
 require 'csv'
 
+
 module Reports
   extend ActiveSupport::Concern
 
-  TYPES ||= [:activity]
+  TYPES ||= [:admin, :group_admin]
 
-  def generate_report_as_csv(users, eligible=nil)
+  def generate_report_as_csv(report_type, users, groups, eligibility_status=nil)
 
-    groups = []
+    raise Exception.new "Invalid report_type!" if !TYPES.include?(report_type)
+
+    uniq_groups = groups.order('name ASC').uniq #remove any duplicates
 
     column_names = []
 
+    racial_identities = RacialIdentity.all
+    federal_assistances = FederalAssistance.all
+    better_u_modules = LearningModules::BETTER_U
+    food_etalk_modules = LearningModules::FOOD_ETALK
+    video_surveys = VideoSurveys::MAP_VIDEOS_TO_SURVEYS
+
+
     csv_string = CSV.generate do |csv|
 
-      column_names << "admin"
-      column_names << "group_admin"
-      column_names << "test_user"
-
-      Group.order('name ASC').each do |g|
-        groups << g
-        column_names << g.name
-      end
-
-      column_names += ["signup_date", "uid", "is_eligible", "first_name", "last_name", "email", "gender", "age", "zip_code", "is_hispanic_or_latino"]
-
-      RacialIdentity.all.each do |ri|
-        column_names << ri.name.parameterize.underscore
-      end
-
-      FederalAssistance.all.each do |fa|
-        column_names << fa.name.parameterize.underscore
-      end
-
-      LearningModules::BETTER_U.each do |m|
-        column_names << m[:id].gsub("/", "_").gsub("#", "_") + "_started"
-        column_names << m[:id].gsub("/", "_").gsub("#", "_") + "_completed"
-      end
-
-      LearningModules::FOOD_ETALK.each do |m|
-        column_names << m[:id].gsub("/", "_").gsub("#", "_") + "_started"
-        column_names << m[:id].gsub("/", "_").gsub("#", "_") + "_completed"
-      end
-
-      VideoSurveys::MAP_VIDEOS_TO_SURVEYS.each do |vs|
-        column_names << vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_started"
-        column_names << vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_completed"
-      end
+      column_names = get_column_headers(report_type, uniq_groups, racial_identities, federal_assistances, better_u_modules, food_etalk_modules, video_surveys)
 
       csv << column_names
 
@@ -53,82 +31,49 @@ module Reports
 
         values = []
 
-        #skip users based on presence of eligible argument
-        next if !eligible.nil? and u.is_eligible? != eligible #must check for .nil? because .blank? will return true for false value
+        #skip users based on presence of eligibility_status argument
+        next if !eligibility_status.nil? and u.is_eligible? != eligibility_status #must check for .nil? because .blank? will return true for false value
 
-        u.admin? ? values << 1 : values << 0
-        u.group_admin? ? values << 1 : values << 0
-        u.test_user? ? values << 1 : values << 0
+        case report_type
+        when :admin
+          values << (u.admin? ? 1 : 0)
+          values << (u.group_admin? ? 1 : 0)
+          values << (u.test_user? ? 1 : 0)
+        end
 
-        groups.each do |g|
-
-          user_groups = u.groups
-
-          if user_groups.include?(g)
-            values << 1
-          else
-            values << 0
-          end
+        uniq_groups.each do |g|
+          values << (u.groups.include?(g) ? 1 : 0)
         end
 
         values += [u.created_at.to_s, u.uid, (u.is_eligible? ? 1 : 0), u.first_name, u.last_name, u.email, u.gender, u.age, u.zip_code, u.is_hispanic_or_latino]
 
-        RacialIdentity.all.each do |ri|
-          if u.racial_identities.exists?(ri.id)
-            values << 1
-          else
-            values << 0
-          end
+        racial_identities.each do |ri|
+          values << ( u.racial_identities.exists?(ri.id) ? 1 : 0)
         end
 
-        FederalAssistance.all.each do |fa|
-          if u.federal_assistances.exists?(fa.id)
-            values << 1
-          else
-            values << 0
-          end
+        federal_assistances.each do |fa|
+          values << ( u.federal_assistances.exists?(fa.id) ? 1 : 0)
         end
 
-        LearningModules::BETTER_U.each do |m|
-          if u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#started").size > 0
-            values << 1
-          else
-            values << 0
-          end
-
-          if u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#completed").size > 0
-            values << 1
-          else
-            values << 0
-          end
+        better_u_modules.each do |m|
+          started = (u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#started").size > 0)
+          values << (started ? 1 : 0)
+          completed = (u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#completed").size > 0)
+          values << (completed ? 1 : 0)
         end
 
-        LearningModules::FOOD_ETALK.each do |m|
-          if u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#started").size > 0
-            values << 1
-          else
-            values << 0
-          end
-
-          if u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#completed").size > 0
-            values << 1
-          else
-            values << 0
-          end
+        food_etalk_modules.each do |m|
+          started = (u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#started").size > 0)
+          values << (started ? 1 : 0)
+          completed = (u.online_learning_histories.where("name LIKE ?", "%#{m[:id]}%#completed").size > 0)
+          values << (completed ? 1 : 0)
         end
 
-        VideoSurveys::MAP_VIDEOS_TO_SURVEYS.each do |vs|
-          if u.survey_histories.where("name LIKE ?", "%#{vs[:survey_args][:origin]}%#started").size > 0
-            values << 1
-          else
-            values << 0
-          end
-
-          if u.survey_histories.where("name LIKE ?", "%#{vs[:survey_args][:origin]}%#completed").size > 0
-            values << 1
-          else
-            values << 0
-          end
+        video_surveys.each do |vs|
+          started = (u.survey_histories.where("name LIKE ?", "%#{vs[:survey_args][:origin]}%#started").size > 0)
+          values << (started ? 1 : 0)
+          completed = (u.survey_histories.where("name LIKE ?", "%#{vs[:survey_args][:origin]}%#completed").size > 0)
+          values << (completed ? 1 : 0)
         end
 
         csv << values
@@ -139,6 +84,52 @@ module Reports
 
     return csv_string
 
+  end
+
+
+  private
+
+  def get_column_headers(report_type, groups, racial_identities, federal_assistances, better_u_modules, food_etalk_modules, video_surveys)
+
+    headers = []
+
+    case report_type
+    when :admin
+      headers << "Administrator"
+      headers << "Group Administrator"
+      headers << "Test User"
+    end
+
+    groups.each do |g|
+      headers << g.name
+    end
+
+    headers += ["signup_date", "uid", "is_eligible", "first_name", "last_name", "email", "gender", "age", "zip_code", "is_hispanic_or_latino"]
+
+    racial_identities.each do |ri|
+      headers << ri.name.parameterize.underscore
+    end
+
+    federal_assistances.each do |fa|
+      headers << fa.name.parameterize.underscore
+    end
+
+    better_u_modules.each do |m|
+      headers << m[:id].gsub("/", "_").gsub("#", "_") + "_started"
+      headers << m[:id].gsub("/", "_").gsub("#", "_") + "_completed"
+    end
+
+    food_etalk_modules.each do |m|
+      headers << m[:id].gsub("/", "_").gsub("#", "_") + "_started"
+      headers << m[:id].gsub("/", "_").gsub("#", "_") + "_completed"
+    end
+
+    video_surveys.each do |vs|
+      headers << vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_started"
+      headers << vs[:survey_args][:origin].gsub("-", "_").gsub("/", "_").gsub("#", "_") + "_completed"
+    end
+
+    return headers
   end
 
 end
