@@ -30,14 +30,14 @@ module SiteStatistics
     groups = []
 
     #users with no group affiliation by date range
-    if(@current_user.super_admin? || current_user.admin?)
+    if(current_user.super_admin? || current_user.admin?)
       ft_users = User.created_in_range(start_date..end_date).not_in_group
     end
 
     ###############################################################################################
     # show modules started count by group
     ###############################################################################################
-    if(@current_user.super_admin? || current_user.admin?)
+    if(current_user.super_admin? || current_user.admin?)
       groups = Group.all
     elsif(current_user.group_admin?)
       groups = current_user.groups
@@ -85,7 +85,7 @@ module SiteStatistics
   private
 
   def get_module_interaction_count(current_user, emodule, started_or_completed, date_range)
-    if(@current_user.super_admin? || current_user.admin?)
+    if(current_user.super_admin? || current_user.admin?)
       #show all activity
       count = OnlineLearningHistory.where(name: "#{emodule[:id]}##{started_or_completed}", created_at: date_range).size
     elsif(current_user.group_admin?)
