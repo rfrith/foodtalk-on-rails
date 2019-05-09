@@ -1,6 +1,6 @@
 <div id="users-list" class="p-3 m-0 rounded">
 
-  <%= render partial: "users/nav" %>
+  <%= render partial: "users/nav", locals: {remote_paging: should_remote_paging} %>
 
   <% if(!@users.blank?) %>
     <div class="table-responsive">

@@ -117,10 +117,10 @@ class UsersController < ApplicationController
       end
 
       if(@start_date && @end_date)
-        @users = users.created_in_range(@start_date..@end_date).page params[:page]
-      else
-        @users = users.page params[:page]
+        users = users.created_in_range(@start_date..@end_date)
       end
+
+      @users = users.page params[:page]
 
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
@@ -141,6 +141,12 @@ class UsersController < ApplicationController
     elsif(@current_user.group_admin?)
       @users = @current_user.users.created_in_range(parsed_date.beginning_of_month..parsed_date.end_of_month).page params[:page]
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def find_by_month_and_group
@@ -176,16 +182,16 @@ class UsersController < ApplicationController
     begin
 
       if(@current_user.super_admin? || @current_user.admin?)
-        users = User.send("all_#{eligibility.parameterize}").page params[:page]
+        users = User.send("all_#{eligibility.parameterize}")
       elsif(@current_user.group_admin?)
-        users = @current_user.users.send("all_#{eligibility.parameterize}").page params[:page]
+        users = @current_user.users.send("all_#{eligibility.parameterize}")
       end
 
       if(@start_date && @end_date)
         users = users.created_in_range(@start_date..@end_date)
       end
 
-      @users = users
+      @users = users.page params[:page]
 
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
@@ -203,11 +209,11 @@ class UsersController < ApplicationController
 
       if(group)
         if( (@current_user.super_admin? || @current_user.admin?) || (@current_user.group_admin? && @current_user.groups.include?(group)) )
-          group_users = group.users.send("all_#{eligibility.parameterize}").page params[:page]
+          group_users = group.users.send("all_#{eligibility.parameterize}")
         end
       else
         if(@current_user.super_admin? || @current_user.admin?)
-          group_users = User.not_in_group.send("all_#{eligibility.parameterize}").page params[:page]
+          group_users = User.not_in_group.send("all_#{eligibility.parameterize}")
         end
       end
 
@@ -215,7 +221,7 @@ class UsersController < ApplicationController
         group_users = group_users.created_in_range(@start_date..@end_date)
       end
 
-      @users = group_users
+      @users = group_users.page params[:page]
 
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"

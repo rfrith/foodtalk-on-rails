@@ -28,7 +28,7 @@
     <% if policy(:user).find_user_by_criteria? %>
     <div id="find-user" class="tab-pane fade show" role="tabpanel" aria-labelledby="find-user">
       <div id="users-content" class="rounded">
-      <%= render :partial => "users/list_users" %>
+      <%= render :partial => "users/list_users", locals: {should_remote_paging: false} %>
       </div>
     </div>
     <% end %>

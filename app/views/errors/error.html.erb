@@ -1,4 +1,4 @@
-<% #cache [create_cache_key_prefix], :expires_in => 1.year do %>
+<% cache @error.status, :expires_in => 1.month do %>
 <div class="content-section2 d-flex align-items-center" id="errors">
   <div class="container ">
     <div class="row d-flex align-items-center">
@@ -16,4 +16,4 @@
     </div>
   </div>
 </div>
-<% #end %>
+<% end %>

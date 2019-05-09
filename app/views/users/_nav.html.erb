@@ -8,7 +8,7 @@
 
   <div class="col-5">
     <% if(@users) %>
-    <%= paginate @users, remote: true %>
+      <%= paginate @users, remote: remote_paging %>
     <% end %>
   </div>
 
