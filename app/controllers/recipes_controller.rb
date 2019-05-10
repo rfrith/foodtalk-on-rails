@@ -24,7 +24,6 @@ class RecipesController < ApplicationController
 
   def find_by_name
     begin
-      @show_categories = true
       @tags = get_all_categories_or_tags_as_json(:tags)
       @post = get_post_by_name_as_json(params[:name])[0]
       get_post_details

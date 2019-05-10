@@ -1,10 +1,6 @@
-<% cache "blog-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
+<% #cache "blog-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
 
 <div id="blog-post" class="content-section2">
-
-  <% if @show_categories %>
-    <%= render partial: 'shared/post_header', cached: true, locals: {title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_label: t("blog.search")} %>
-  <% end %>
 
   <div class="p-4">
     <% if @featured_image && !@embedded_content%>
@@ -24,4 +20,4 @@
   </div>
 </div>
 
-<% end %>
+<% #end %>

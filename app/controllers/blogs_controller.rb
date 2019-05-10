@@ -24,7 +24,6 @@ class BlogsController < ApplicationController
 
   def find_by_name
     begin
-      @show_categories = true
       @categories = get_all_categories_or_tags_as_json(:categories, get_category_slug_id_by_name(RECIPES))
       @post = get_post_by_name_as_json(params[:name])[0]
       get_post_details

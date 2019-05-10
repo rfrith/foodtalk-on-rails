@@ -15,9 +15,13 @@
       %>
       <% #TODO: I18N ME!!!! "All Blogs" %>
       <%= link_to "All Posts", eval("#{index_path}"), class: base_css + (@all_posts ? ' btn-light' : ' btn-primary'), role: 'button' %>
-      <% filter_categories_or_tags_for_display!(slugs).each do |s| %>
-        <%= link_to s["name"], eval("#{index_path}" + '(slug: s["slug"])'), class: base_css + ((@slug && (s["slug"] == @slug)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+
+      <% if slugs %>
+        <% filter_categories_or_tags_for_display!(slugs).each do |s| %>
+          <%= link_to s["name"], eval("#{index_path}" + '(slug: s["slug"])'), class: base_css + ((@slug && (s["slug"] == @slug)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+        <% end %>
       <% end %>
+
       <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
           <span class="input-group ">
             <%= f.label(:s, search_label, class: "ml-2") %>
