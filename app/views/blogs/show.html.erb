@@ -1,4 +1,4 @@
-<% #cache "blog-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
+<% cache "blog-#{@title.parameterize.underscore}", :expires_in => 1.week do %>
 
 <div id="blog-post" class="content-section2">
 
@@ -20,4 +20,4 @@
   </div>
 </div>
 
-<% #end %>
+<% end %>
