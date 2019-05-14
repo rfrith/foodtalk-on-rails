@@ -1,0 +1,6 @@
+<% #fix necessary for https://github.com/fancyapps/fancybox/issues/1911 %>
+<% cache "fancy-box-bootstrap-fix", :expires_in => 1.month do %>
+<script language="JavaScript">
+    $(document).off("click.fb-start", "[data-trigger]");
+</script>
+<% end %>

@@ -22,7 +22,7 @@ class ErrorsController < ApplicationController
       ErrorPageMessage.new(404, "Page not found.", "We are sorry, the page you requested cannot be found. The URL may be misspelled or the page you're looking for is no longer available.")
     end
     respond_to do |format|
-      format.html { render :template => "errors/error", cached: true}
+      format.html { render :template => "errors/error" }
       format.json { render json: { title: @error.title }, status: @error.status }
     end
   end

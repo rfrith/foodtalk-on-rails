@@ -1,0 +1,17 @@
+<div class="p-4">
+  <div class="align-items-centerz">
+    <% if should_show_post_featured_image %>
+      <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @post["title"]["rendered"]) %>
+    <% end %>
+
+    <% if should_show_post_title %>
+      <span class="content-section-title"><%== @title %></span>
+    <% end %>
+
+    <%== filter_content_for_display(@content) %>
+
+    <%= t("social_media_prompt") %>
+    <br>
+    <%= render partial: "shared/social_media_links", locals: { should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>
+  </div>
+</div>

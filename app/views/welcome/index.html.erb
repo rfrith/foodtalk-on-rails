@@ -1,13 +1,13 @@
-<%= render partial: 'layouts/fancybox_bootstrap_fix', cached: true %>
+<%= render partial: 'shared/fancybox_bootstrap_fix' %>
 
 <% if @blogs %>
-<%= render partial: "blogs", cached: true %>
+  <%= render partial: "blogs" %>
 <% end %>
 
 <% if @recipes %>
-<%= render partial: "recipes", cached: true  %>
+  <%= render partial: "recipes" %>
 <% end %>
 
 <% if @videos %>
-<%= render partial: "videos", cached: true  %>
+  <%= render partial: "videos" %>
 <% end %>

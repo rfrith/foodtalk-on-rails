@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
       parsed_slug = JSON.parse(recipes_slug)
       recipes_slug_id = parsed_slug[0]["id"]
 
-      @blogs ||= JSON.parse get_cached_api_response('wp_blog_replies', URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&pe_page=3&categories_exclude=#{recipes_slug_id}")).body
+      @blogs ||= JSON.parse get_cached_api_response('wp_blog_replies', URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories_exclude=#{recipes_slug_id}")).body
       @categories ||= JSON.parse get_cached_api_response('wp_blog_category_replies', URI(Rails.application.secrets.blog_feed_url + "categories/?_embed&exclude=#{recipes_slug_id}")).body
       @recipes ||= JSON.parse get_cached_api_response('wp_recipes_replies', URI(Rails.application.secrets.blog_feed_url + "posts/?_embed&per_page=3&categories=#{recipes_slug_id}")).body
       @tags ||= JSON.parse get_cached_api_response('wp_tags_replies', URI(Rails.application.secrets.blog_feed_url + "tags")).body

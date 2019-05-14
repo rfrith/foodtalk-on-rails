@@ -9,7 +9,7 @@
 
     <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 
-    <%= render :partial => "layouts/google_analytics" %>
+    <%= render partial: "shared/google_analytics" %>
 
     <%= yield :js %>
 
@@ -40,6 +40,6 @@
       <%= yield %>
     </div>
     <% #must include here so that turbolinks won't cache %>
-    <%= render partial: "layouts/show_notifications" %>
+    <%= render partial: "shared/show_notifications" %>
   </body>
 </html>
