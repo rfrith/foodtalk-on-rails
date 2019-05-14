@@ -39,6 +39,7 @@ module WordpressHelper
   end
 
   def filter_content_for_display(content)
+    content.gsub!(/ *\n+/, "")
     content.gsub!('alignright', 'float-right')
     content.gsub!('alignleft', 'float-left')
     content.gsub!('aligncenter', 'mx-auto d-block')

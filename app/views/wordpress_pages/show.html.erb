@@ -1,0 +1,5 @@
+<% cache create_cache_key_prefix, :expires_in => 1.day do %>
+<div id="wp-page" class="content-section2 p-5">
+  <%== filter_content_for_display(@page_content) %>
+</div>
+<% end %>
