@@ -13,7 +13,7 @@
 
   <div class="card-body">
     <div class="card-title text-center"><%= t(lesson[:title]) %></div>
-    <div class="card-text text-justify mb-2"><%= t(lesson[:description]).html_safe %></div>
+    <div class="card-text text-justify mb-2 d-none d-md-block"><%= t(lesson[:description]).html_safe %></div>
   </div>
   <div class="card-footer text-center">
     <% if lesson[:survey_lesson] %>

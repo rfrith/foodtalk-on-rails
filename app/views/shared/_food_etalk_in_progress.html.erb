@@ -18,7 +18,7 @@
   </div>
   <div class="pt-3 food-etalk-started-grid">
     <% LearningModules::FOOD_ETALK.each do |lesson| %>
-      <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
+      <%= render partial: "shared/include_learning_module_media_object", locals: {lesson: lesson} %>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,12 @@
+<div id="better-u-lessons-started" class="pt-2">
+  <div class="media">
+    <div class="media-body p-3">
+      <%= render partial: "shared/better_u_completed_message" %>
+    </div>
+  </div>
+  <div class="pt-3 better-u-started-grid">
+    <% LearningModules::BETTER_U.each do |lesson| %>
+      <%= render partial: "shared/include_learning_module_media_object", locals: {lesson: lesson} %>
+    <% end %>
+  </div>
+</div>

@@ -12,7 +12,7 @@
     <div class="pt-2 food-etalk-completed-grid">
       <% LearningModules::FOOD_ETALK.each do |lesson| %>
         <% if LearningModules.user_completed_module?(@current_user, lesson) %>
-          <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson, my_css: 'modules-grid'} %>
+          <%= render partial: "shared/include_learning_module_media_object", locals: {lesson: lesson, my_css: 'modules-grid'} %>
         <% end %>
       <% end %>
     </div>

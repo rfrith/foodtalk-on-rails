@@ -84,6 +84,26 @@
   width: auto;
 }
 
-.learn_online_card {
+.learn_online_media_object {
   width: 20rem;
+}
+
+.food-etalk-card {
+  @include media-breakpoint-down(sm) {
+    width: 8rem;
+  }
+  @include media-breakpoint-up(md) {
+    min-width: 15rem;
+    max-width: 20rem;
+  }
+}
+
+.better-u-card {
+  @include media-breakpoint-down(sm) {
+    width: 8rem;
+  }
+  @include media-breakpoint-up(md) {
+    min-width: 15rem;
+    max-width: 20rem;
+  }
 }
