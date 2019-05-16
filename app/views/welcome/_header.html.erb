@@ -1,0 +1,112 @@
+<% cache [create_cache_key_prefix, "header"], :expires_in => 1.week do %>
+
+<div id="header" class="d-flex hero">
+
+  <div class="col-4zzz">
+    <div class="d-none d-md-block d-lg-none ml-4 mr-4">
+      <div class="text-center">
+        <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+          <%= image_tag(avatar, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% else %>
+          <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="d-none d-lg-block ml-5 mr-5">
+      <div class="text-center">
+        <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+          <%= image_tag(avatar, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% else %>
+          <%= image_tag 'logo-xl.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-content col-8zzz">
+    <div class="d-md-none text-center p-0 m-0">
+      <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+        <% #TODO: fix me in css! %>
+        <span class="mt-2">&nbsp;</span>
+      <% end %>
+    </div>
+
+
+    <div class="text-right mt-4 mb-2">
+      <% if(Rails.application.secrets.i18n_enabled) %>
+        <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "", style: "color: white;") %></u>
+      <% end %>
+      <span style="color: white;">|</span>
+      <% if user_signed_in? %>
+        <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
+      <% end %>
+    </div>
+
+
+
+
+
+    <span class="hero-title text-justify align-bottom">
+      <%= t("welcome.title") %>
+    </span>
+    <p class="hero-copy text-justify">
+      <% t("welcome.description") %>
+    </p>
+
+    <div>
+      <% form_with(url: '/search') do |f| %>
+        <% f.label(:q, "Search for:") %>
+        <% f.text_field(:q, id: :q) %>
+        <% f.submit("Search") %>
+      <% end %>
+
+      <div class="hero-subtitle mr-2">
+
+        <% if !user_signed_in? %>
+        <div class="flex-row">
+          <span class="h2">
+            <%= link_to fa_icon("user") + " #{t("navigation.login")}", login_url, class: "badge badge-success" %>
+          </span>
+          <span class="h4"><%= t("welcome.sign_up") %></span>
+        </div>
+        <% end %>
+
+        <div class="flex-row mt-4 mb-4 d-block d-md-none">
+
+          <span class="h4">
+            <%= link_to fa_icon("rss") + " #{t("navigation.blog")}", blogs_index_url, class: "badge badge-success" %>
+          </span>
+
+          <span class="h4">
+            <%= link_to fa_icon("cutlery") + " #{t("navigation.recipes")}", recipes_url, class: "badge badge-success" %>
+          </span>
+
+          <span class="h4">
+            <%= link_to fa_icon("play") + " #{t("navigation.videos")}", videos_url, class: "badge badge-success" %>
+          </span>
+
+          <span class="h4">
+            <%= link_to fa_icon("graduation-cap") + " #{t("navigation.learn_online")}", learn_online_url, class: "badge badge-success" %>
+          </span>
+
+          <% if user_signed_in? %>
+            <span class="h4">
+              <%= link_to( fa_icon('user') + "", { controller: "dashboard", action: "show" }, class: "badge badge-success", data: {turbolinks: false}) %>
+            </span>
+          <% end %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="scroll-down-for-more pt-2 d-none d-md-block">
+      <%= t("welcome.scroll_down_for_more") %> <%= fa_icon "arrow-circle-down", class: "arrow" %>
+    </div>
+
+  </div>
+</div>
+<div id="scroll-down"></div>
+<% end %>

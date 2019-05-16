@@ -2,7 +2,7 @@
   <div class="d-block d-md-none fixed-top">
     <%= render partial: 'shared/top-nav' %>
   </div>
-  <%= render 'shared/header' if !user_signed_in? %>
+  <%= render 'welcome/header' %>
 <% end %>
 
 <% content_for :content do %>

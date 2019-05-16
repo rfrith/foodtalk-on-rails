@@ -1,6 +1,6 @@
-<div class="no-gutters mb-4 video-card card grid-item">
+<div class="no-gutters mb-4 card grid-item">
 
-  <div class="card-header">
+  <div class="card-header d-none d-md-block">
     <h4 class="card-title text-center mt-0">
       <%== post["title"]["rendered"] %>
       <span>
@@ -14,14 +14,12 @@
     </h4>
   </div>
 
-  <%
-    media_url = get_media_url(post, :medium, true)
-  %>
+  <% media_url = get_media_url(post, :medium, true) %>
   <% if media_url %>
     <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: post["title"]["rendered"]), eval("#{show_path}"+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'} %>
   <% end %>
 
-  <div class="card-body p-2 m-0">
+  <div class="card-body p-2 m-0 d-none d-md-block">
 
     <div class="card-text text-justify mb-1">
       <%== post["excerpt"]["rendered"].html_safe %>
@@ -44,8 +42,8 @@
       <% glossary_terms = find_glossary_terms(post["content"]["rendered"]) %>
 
       <% if !glossary_terms.empty? %>
-        <div class="card-title mt-1">Glossary Terms</div>
-        <div class="card-text">
+        <div class="card-title mt-1 d-none d-md-block">Glossary Terms</div>
+        <div class="card-text d-none d-md-block">
           <% glossary_terms.each do |gt| %>
             <%= link_to gt.name, 'javascript:;', class: 'badge badge-light m-0 p-0 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus", tabindex: "0", title: gt.name, "data-content": gt.description %>
           <% end %>
@@ -55,7 +53,11 @@
     </div>
   </div>
 
-  <div class="card-footer text-center">
+  <div class="card-footer text-center d-block d-md-none">
+    <%= link_to(post["title"]["rendered"], eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+  </div>
+
+  <div class="card-footer text-center d-none d-md-block">
     <%= link_to("Details", eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 

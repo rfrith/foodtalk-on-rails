@@ -97,3 +97,14 @@
 .grid-item {
   margin: 1rem;
 }
+
+
+.card {
+
+  @include media-breakpoint-down(sm) {
+    width: 8rem;
+  }
+  @include media-breakpoint-up(md) {
+    width: 20rem;
+  }
+}

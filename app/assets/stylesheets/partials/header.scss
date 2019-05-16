@@ -140,7 +140,7 @@
 
 @include media-breakpoint-down(sm) {
   .hero {
-    height: 100vh;
+    height: 100%;
     width: 100%;
   }
   .hero-content {
