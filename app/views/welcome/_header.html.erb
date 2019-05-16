@@ -32,20 +32,15 @@
       <% end %>
     </div>
 
-
     <div class="text-right mt-4 mb-2">
       <% if(Rails.application.secrets.i18n_enabled) %>
         <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "", style: "color: white;") %></u>
       <% end %>
-      <span style="color: white;">|</span>
       <% if user_signed_in? %>
+        <span style="color: white;">|</span>
         <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
       <% end %>
     </div>
-
-
-
-
 
     <span class="hero-title text-justify align-bottom">
       <%= t("welcome.title") %>
