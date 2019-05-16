@@ -38,7 +38,7 @@ es:
   social_media_prompt: "Para recetas y más:"
   language_select_label: "English"
   language_select_value: "en"
-  switch_language: "Click for English"
+  switch_language: "English"
   eligibility_restriction: "La función que ha solicitado está restringida debido a los requisitos de elegibilidad actuales de SNAP-Ed. Para obtener más información, revise las pautas publicadas en <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\">https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf</a>."
   TrueClass: "Sí"
   FalseClass: "No"

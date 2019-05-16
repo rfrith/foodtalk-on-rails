@@ -1,29 +1,28 @@
 <span class="mx-auto d-inline-flex sm-icon-group">
   <% if(should_show_facebook) %>
-    <a class="nav-item nav-link" href="https://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
+    <a class="<%= css %> mr-1" href="https://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
   <% end %>
-
   <% if(should_show_instagram) %>
-    <a class="nav-item nav-link" href="https://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
+    <a class="<%= css %> mr-1" href="https://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
    <% end %>
 
   <% if(should_show_youtube) %>
-    <a class="nav-item nav-link" href="https://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
+    <a class="<%= css %> mr-1" href="https://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
   <% end %>
 
   <% if(should_show_pinterest) %>
-    <a class="nav-item nav-link" href="https://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
+    <a class="<%= css %> mr-1" href="https://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
   <% end %>
 
   <% if(should_show_twitter) %>
-  <a class="nav-item nav-link" href="https://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
+  <a class="<%= css %> mr-1" href="https://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
   <% end %>
 
   <% if(should_show_gplus) %>
-    <a class="nav-item nav-link" href="https://plus.google.com/116761006042596808728" target="_blank"><%= fa_icon('google-plus-square') %></a>
+    <a class="<%= css %> mr-1" href="https://plus.google.com/116761006042596808728" target="_blank"><%= fa_icon('google-plus-square') %></a>
   <% end %>
 
   <% if(should_show_email) %>
-    <a class="nav-item nav-link" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
+    <a class="<%= css %> mr-1" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
   <% end %>
 </span>

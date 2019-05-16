@@ -1,11 +1,12 @@
+<% avatar = DomainGroups::get_domain_group_logo(request.host) %>
 <% cache [create_cache_key_prefix, "header"], :expires_in => 1.week do %>
 
 <div id="header" class="d-flex hero">
 
-  <div class="col-4zzz">
+  <div class="">
     <div class="d-none d-md-block d-lg-none ml-4 mr-4">
       <div class="text-center">
-        <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+        <% if (avatar) %>
           <%= image_tag(avatar, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
         <% else %>
           <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
@@ -15,8 +16,8 @@
 
     <div class="d-none d-lg-block ml-5 mr-5">
       <div class="text-center">
-        <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
-          <%= image_tag(avatar, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% if (avatar) %>
+          <%= image_tag(avatar, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
         <% else %>
           <%= image_tag 'logo-xl.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
         <% end %>
@@ -25,8 +26,8 @@
   </div>
 
   <div class="hero-content col-8zzz">
-    <div class="d-md-none text-center p-0 m-0">
-      <% if (avatar = DomainGroups::get_domain_group_logo(request.host)) %>
+    <div class="d-block d-md-none text-center p-0 m-0">
+      <% if (avatar)%>
         <% #TODO: fix me in css! %>
         <span class="mt-2">&nbsp;</span>
       <% end %>
@@ -42,12 +43,17 @@
       <% end %>
     </div>
 
-    <span class="hero-title text-justify align-bottom">
+    <div class="d-block d-md-none text-center">
+      <% if (!avatar) %>
+        <%= image_tag 'logo-md.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
+      <% end %>
+    </div>
+
+    <div class="hero-title text-justify align-bottom mb-4">
       <%= t("welcome.title") %>
-    </span>
-    <p class="hero-copy text-justify">
-      <% t("welcome.description") %>
-    </p>
+    </div>
+
+    <% #t("welcome.description") TODO: REMOVE ME! %>
 
     <div>
       <% form_with(url: '/search') do |f| %>
@@ -60,36 +66,61 @@
 
         <% if !user_signed_in? %>
         <div class="flex-row">
-          <span class="h2">
-            <%= link_to fa_icon("user") + " #{t("navigation.login")}", login_url, class: "badge badge-success" %>
-          </span>
-          <span class="h4"><%= t("welcome.sign_up") %></span>
+          <div class="h4"><%= link_to fa_icon("user") + " #{t("navigation.login")}", login_url, class: "badge badge-success" %> <%= t("welcome.sign_up") %></div>
         </div>
         <% end %>
 
-        <div class="flex-row mt-4 mb-4 d-block d-md-none">
+        <div class="flex-row mt-4 mb-2 d-block d-md-none">
 
-          <span class="h4">
-            <%= link_to fa_icon("rss") + " #{t("navigation.blog")}", blogs_index_url, class: "badge badge-success" %>
-          </span>
+          <div class="d-flex text-center">
+            <div class="h4 flex-fill">
+              <%= link_to fa_icon("rss") + " #{t("navigation.blog")}", blogs_index_url, class: "badge badge-success" %>
+            </div>
 
-          <span class="h4">
-            <%= link_to fa_icon("cutlery") + " #{t("navigation.recipes")}", recipes_url, class: "badge badge-success" %>
-          </span>
+            <div class="h4 flex-fill">
+              <%= link_to fa_icon("cutlery") + " #{t("navigation.recipes")}", recipes_url, class: "badge badge-success" %>
+            </div>
 
-          <span class="h4">
-            <%= link_to fa_icon("play") + " #{t("navigation.videos")}", videos_url, class: "badge badge-success" %>
-          </span>
+            <div class="h4 flex-fill">
+              <%= link_to fa_icon("play") + " #{t("navigation.videos")}", videos_url, class: "badge badge-success" %>
+            </div>
 
-          <span class="h4">
-            <%= link_to fa_icon("graduation-cap") + " #{t("navigation.learn_online")}", learn_online_url, class: "badge badge-success" %>
-          </span>
+            <div class="h4 flex-fill">
+              <%= link_to fa_icon("graduation-cap") + " #{t("navigation.learn_online")}", learn_online_url, class: "badge badge-success" %>
+            </div>
 
-          <% if user_signed_in? %>
-            <span class="h4">
-              <%= link_to( fa_icon('user') + "", { controller: "dashboard", action: "show" }, class: "badge badge-success", data: {turbolinks: false}) %>
-            </span>
-          <% end %>
+            <% if user_signed_in? %>
+              <div class="h4 flex-fill">
+                <%= link_to( fa_icon('user') + "", { controller: "dashboard", action: "show" }, class: "badge badge-success", data: {turbolinks: false}) %>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="d-flex text-center mt-2 sm-icon-group">
+            <div class="h2 flex-fill">
+              <a class="badge badge-success mr-1" href="https://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
+            </div>
+            <div class="h2 flex-fill">
+              <a class="badge badge-success mr-1" href="https://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
+            </div>
+            <div class="h2 flex-fill">
+              <a class="badge badge-success mr-1" href="https://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
+            </div>
+            <div class="h2 flex-fill">
+              <a class="badge badge-success mr-1" href="https://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
+            </div>
+            <div class="h2 flex-fill">
+              <a class="badge badge-success mr-1" href="https://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
+            </div>
+            <div class="h2 flex-fill">
+              <a class="badge badge-success mr-1" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
+            </div>
+          </div>
+
+
+
+
 
         </div>
 

@@ -38,7 +38,7 @@ en:
   social_media_prompt: "For recipes and more:"
   language_select_label: "Español"
   language_select_value: "es"
-  switch_language: "Haga clic para Español"
+  switch_language: "Español"
   eligibility_restriction: "The feature you have requested is restricted due to current SNAP-Ed eligibility requirements.  For more information please review the guidelines posted at <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\">https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf</a>."
   TrueClass: "Yes"
   FalseClass: "No"
