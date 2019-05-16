@@ -72,28 +72,22 @@
 
         <div class="flex-row mt-4 mb-2 d-block d-md-none sm-icon-group">
 
-          <div class="d-flex text-center h3">
-            <div class="flex-fill">
-              <%= link_to "#{t("navigation.blog")}", blogs_index_url, class: "badge badge-success" %>
+          <div class="d-flex text-center">
+            <div class="h5 flex-fill mr-1">
+              <%= link_to fa_icon("rss") + " #{t("navigation.blog")}", blogs_index_url, class: "badge badge-success" %>
             </div>
 
-            <div class="flex-fill">
-              <%= link_to "#{t("navigation.recipes")}", recipes_url, class: "badge badge-success" %>
+            <div class="h5 flex-fill mr-1">
+              <%= link_to fa_icon("cutlery") + " #{t("navigation.recipes")}", recipes_url, class: "badge badge-success" %>
             </div>
 
-            <div class="flex-fill">
-              <%= link_to "#{t("navigation.videos")}", videos_url, class: "badge badge-success" %>
+            <div class="h5 flex-fill mr-1">
+              <%= link_to fa_icon("play") + " #{t("navigation.videos")}", videos_url, class: "badge badge-success" %>
             </div>
 
-            <div class="flex-fill">
-              <%= link_to "#{t("navigation.learn_online")}", learn_online_url, class: "badge badge-success" %>
+            <div class="h5 flex-fill">
+              <%= link_to fa_icon("graduation-cap") + " #{t("navigation.learn_online")}", learn_online_url, class: "badge badge-success" %>
             </div>
-
-            <% if user_signed_in? %>
-              <div class="flex-fill">
-                <%= link_to( fa_icon('user') + "", { controller: "dashboard", action: "show" }, class: "badge badge-success", data: {turbolinks: false}) %>
-              </div>
-            <% end %>
 
           </div>
 
@@ -130,4 +124,5 @@
 
   </div>
 </div>
+<div id="scroll-down"></div>
 <% end %>

@@ -102,7 +102,7 @@
 .card {
 
   @include media-breakpoint-down(sm) {
-    width: 8rem;
+    width: 6rem;
   }
   @include media-breakpoint-up(md) {
     width: 20rem;
