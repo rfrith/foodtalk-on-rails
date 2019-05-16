@@ -19,13 +19,18 @@
       </div>
     </div>
   </div>
-  <div class="card-group better-u-card-deck d-flex justify-content-center">
+
+  <div class="grid">
     <%
       LearningModules::BETTER_U.each do |lesson|
     %>
-      <%= render :partial => 'learning_module_card', locals: {lesson: lesson, css: 'better-u-card'} %>
+      <div class="grid-item">
+        <%= render :partial => 'learning_module_card', locals: {lesson: lesson, css: 'better-u-card'} %>
+      </div>
     <%
       end
     %>
   </div>
+
+
 </div>

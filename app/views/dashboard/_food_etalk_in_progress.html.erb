@@ -17,12 +17,8 @@
     </div>
   </div>
   <div class="pt-3 food-etalk-started-grid">
-
-    <% #if(!user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK)) %>
-      <% LearningModules::FOOD_ETALK.each do |lesson| %>
-        <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
-      <% end %>
-    <% #end %>
-
+    <% LearningModules::FOOD_ETALK.each do |lesson| %>
+      <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
+    <% end %>
   </div>
 </div>

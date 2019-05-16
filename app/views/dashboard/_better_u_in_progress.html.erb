@@ -16,12 +16,8 @@
     </div>
   </div>
   <div class="pt-3 better-u-started-grid">
-
-    <% #if(!user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK)) %>
-      <% LearningModules::BETTER_U.each do |lesson| %>
-        <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
-      <% end %>
-    <% #end %>
-
+    <% LearningModules::BETTER_U.each do |lesson| %>
+      <%= render partial: "include_learning_module_media_object", locals: {lesson: lesson} %>
+    <% end %>
   </div>
 </div>
