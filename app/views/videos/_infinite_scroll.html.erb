@@ -1,0 +1,40 @@
+<script language="JavaScript">
+
+    var nextURL = '<%= eval(page_path + "(playlist_id: @playlist_id, page_token: @nextPageToken)") %>'; //seed page 2 from org request
+
+    function updateNextURL(doc) {
+        nextURL = $(doc).find("var#page-token").attr("href");
+    }
+
+    var $grid = $('.grid').masonry({
+        // Masonry options...
+        itemSelector: '.grid-item',
+        fitWidth: true
+    });
+
+    var msnry = $grid.data('masonry');
+
+    $grid.infiniteScroll({
+        path: function() {
+            return nextURL;
+        },
+        append: false,
+        outlayer: msnry,
+        responseType: 'text',
+        history: false,
+    });
+
+
+    $grid.on( 'load.infiniteScroll', function( event, response ) {
+
+        updateNextURL( response );
+        //alert(response);
+
+        var jqData = $(response)
+        jqData.imagesLoaded( function() {
+            $('#videos-grid').append(jqData);
+            $('.grid').masonry( 'appended', jqData );
+        });
+
+    });
+</script>

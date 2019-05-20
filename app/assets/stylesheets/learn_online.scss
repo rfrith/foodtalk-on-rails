@@ -90,7 +90,7 @@
 
 .food-etalk-card {
   @include media-breakpoint-down(sm) {
-    width: 8rem;
+    width: 12rem;
   }
   @include media-breakpoint-up(md) {
     min-width: 15rem;
@@ -100,7 +100,7 @@
 
 .better-u-card {
   @include media-breakpoint-down(sm) {
-    width: 8rem;
+    width: 12rem;
   }
   @include media-breakpoint-up(md) {
     min-width: 15rem;

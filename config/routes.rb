@@ -57,6 +57,10 @@ Rails.application.routes.draw do
       get 'recipes/load_page/:page/(:tag)' => :load_page, as: 'recipe_load_page'
     end
 
+    controller :videos do
+      get 'videos/load_page/:playlist_id/(:page_token)' => :load_page, as: 'video_load_page'
+    end
+
     controller :certificates do
       get 'certificate/:id/show' => :show, as: 'show_certificate'
     end

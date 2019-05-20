@@ -19,7 +19,7 @@
     <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: post["title"]["rendered"]), eval("#{show_path}"+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'} %>
   <% end %>
 
-  <div class="card-body p-2 m-0 d-none d-md-block">
+  <div class="card-body p-2 m-0 d-nonez d-md-blockz">
 
     <div class="card-text text-justify mb-1">
       <%== post["excerpt"]["rendered"].html_safe %>

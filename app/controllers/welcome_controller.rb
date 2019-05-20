@@ -21,12 +21,10 @@ class WelcomeController < ApplicationController
     end
 
     begin
-      #TODO: DRY ME!
-      #get videos
+      #get recent videos - TODO: make maxResults & order ENV vars
       playlist_id = Rails.application.secrets.youtube_default_channel
-      playlist_items_url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=#{playlist_id}&maxResults=25&key=#{Rails.application.secrets.youtube_api_key}"
-      playlists_url = "https://www.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=#{Rails.application.secrets.youtube_channel_id}&maxResults=25&key=#{Rails.application.secrets.youtube_api_key}"
-      @videos ||= JSON.parse get_cached_api_response('yt_videos_replies', URI(playlist_items_url)).body
+      playlist_items_url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=#{playlist_id}&maxResults=3&order=date&type=video&key=#{Rails.application.secrets.youtube_api_key}"
+      @videos ||= JSON.parse get_cached_api_response('yt_recent_videos_replies', URI(playlist_items_url)).body
 
     rescue Exception => e
       logger.error "An error occurred: #{e.inspect}"

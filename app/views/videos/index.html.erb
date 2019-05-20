@@ -23,7 +23,7 @@
         <% link_to "All Videos", videos_path, class: base_css + (@all_videos ? ' btn-light' : ' btn-primary'), role: 'button' %>
 
         <% @playlists["items"].each do |c| %>
-          <%= link_to c["snippet"]["title"], videos_path(playlist: c["id"]), class: base_css + ((@playlist_id && c["id"] == @playlist_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+          <%= link_to c["snippet"]["title"], videos_path(playlist_id: c["id"]), class: base_css + ((@playlist_id && c["id"] == @playlist_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
         <% end %>
       </div>
     </div>
@@ -31,9 +31,10 @@
   <% end %>
 
   <% if !@videos.blank? && !@videos["items"].blank? %>
-  <div class="grid pt-3">
-    <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
-  </div>
+      <div id="videos-grid" class="grid pt-3">
+        <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
+      </div>
+      <%= render partial: 'videos/infinite_scroll', locals: {page_path: "video_load_page_path"} %>
   <% else %>
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">
