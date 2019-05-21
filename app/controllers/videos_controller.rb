@@ -1,31 +1,17 @@
 class VideosController < ApplicationController
 
-  include ApiUtils
+  include ApiUtils, YoutubeUtils
   PER_PAGE ||= 8
 
   def index
     begin
-      playlist_id = params[:playlist_id]
-
-
-      if(playlist_id)
-        @playlist_id = playlist_id
-      else
-        @playlist_id = Rails.application.secrets.youtube_default_channel
-      end
-
-      playlist_items_url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=#{@playlist_id}&maxResults=#{PER_PAGE}&order=date&type=video&key=#{Rails.application.secrets.youtube_api_key}"
-      playlists_url = "https://www.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=#{Rails.application.secrets.youtube_channel_id}&maxResults=50&key=#{Rails.application.secrets.youtube_api_key}"
-
-      @playlists ||= JSON.parse get_cached_api_response('yt_playlists_index_replies', URI(playlists_url)).body
-      @videos ||= JSON.parse get_cached_api_response('yt_videos_index_replies', URI(playlist_items_url)).body
-
+      @playlist_id = get_playlist_id(params)
+      @videos = get_playlist_items("yt_videos_index_#{@playlist_id}_replies", @playlist_id, PER_PAGE)
+      @playlists = get_playlists("yt_all_playlists_replies", 50)
       @nextPageToken = @videos["nextPageToken"]
-
     rescue Exception => e
       logger.error "An error occurred: #{e.inspect}"
     end
-
   end
 
   def load_page
@@ -51,15 +37,11 @@ class VideosController < ApplicationController
   private
 
   def get_videos
-    @page_token = params[:page_token]
+    @playlist_id = get_playlist_id(params)
+    page_token = params[:page_token]
 
-    if(@page_token)
-      @posts_per_page = PER_PAGE
-      @playlist_id = params[:playlist_id]
-
-      playlist_items_url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=#{@playlist_id}&maxResults=#{PER_PAGE}&order=date&type=video&pageToken=#{@page_token}&key=#{Rails.application.secrets.youtube_api_key}"
-
-      @videos ||= JSON.parse get_cached_api_response("yt_videos_#{@page_token}_replies", URI(playlist_items_url)).body
+    if page_token
+      @videos = get_playlist_items("yt_videos_#{@playlist_id}_#{page_token}_replies", @playlist_id, PER_PAGE, "date", page_token)
       @nextPageToken = @videos["nextPageToken"]
     end
 

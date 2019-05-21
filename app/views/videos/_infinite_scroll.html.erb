@@ -6,6 +6,14 @@
         nextURL = $(doc).find("var#page-token").attr("href");
     }
 
+    function getNextURL() {
+        if(typeof nextURL !== 'undefined') {
+            return nextURL;
+        } else {
+            console.log("UNDEFINED!")
+        }
+    }
+
     var $grid = $('.grid').masonry({
         // Masonry options...
         itemSelector: '.grid-item',
@@ -28,13 +36,14 @@
     $grid.on( 'load.infiniteScroll', function( event, response ) {
 
         updateNextURL( response );
-        //alert(response);
 
         var jqData = $(response)
         jqData.imagesLoaded( function() {
             $('#videos-grid').append(jqData);
             $('.grid').masonry( 'appended', jqData );
         });
+
+
 
     });
 </script>
