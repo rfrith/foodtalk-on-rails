@@ -61,6 +61,9 @@ es:
     uga_extension_office: "UGA Oficina de Extensión"
     scroll_down_for_more: "Desplácese hacia abajo para más"
 
+  header:
+    categories: "Las Categorías"
+
   footer:
     created_by: "Creado Por"
     about: "Acerca de"
@@ -101,7 +104,7 @@ es:
       search: "Buscar Recetas"
 
   videos:
-      name: "Videos educacionales de Food Talk"
+      name: "Videos de Food Talk"
       description: "¡Mire Para Aumentar su Conocimiento de la Comida y la Nutrición!"
 
   glossary:

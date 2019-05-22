@@ -29,7 +29,7 @@ module ApiUtils
   private
 
   def get_api_response(uri)
-    logger.debug "Getting live API response"
+    logger.debug "Getting live API response: #{uri}"
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.open_timeout = 30 # in seconds

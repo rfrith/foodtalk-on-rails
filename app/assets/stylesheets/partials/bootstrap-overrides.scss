@@ -2,12 +2,21 @@
  * Bootstrap Overrides
  */
 
-.btn-primary, .btn-secondary {
+.btn-primary {
   background-color: $primary-fill-color;
   color: $primary-font-inverse-color;
   border: none;
   text-decoration: none;
 }
+
+
+.btn-secondary {
+  background-color: $secondary-fill-color;
+  color: $primary-font-inverse-color;
+  border: none;
+  text-decoration: none;
+}
+
 
 //bootstrap puts blue outline around clicked buttons and makes the link color blue w/ underline
 .btn:focus, .btn:active, .btn-primary:focus, .btn-primary:active, .btn-secondary:focus, .btn-secondary:active  {
@@ -27,6 +36,19 @@
   border-color: $primary-fill-color;
   background-color: $primary-font-inverse-color;
 }
+
+
+
+.btn-secondary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
+  background-color: $secondary-fill-color !important;
+}
+
+
+
+
+
+
+
 
 .nav-pills > a.active {
   background-color: $primary-fill-color !important;

@@ -61,6 +61,9 @@ en:
     uga_extension_office: "UGA Extension Office"
     scroll_down_for_more: "Scroll down for more"
 
+  header:
+    categories: "Categories"
+
   footer:
     created_by: "Created By"
     about: "About"
@@ -101,7 +104,7 @@ en:
       search: "Search Recipes"
 
   videos:
-      name: "Food Talk Educational Videos"
+      name: "Food Talk Videos"
       description: "Watch to increase your knowledge of food & nutrition!"
 
   glossary:

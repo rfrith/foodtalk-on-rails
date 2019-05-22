@@ -1,12 +1,12 @@
 <% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.week do %>
   <div id="videos" class="content-section2">
-  <div class="pb-4" style="background-color: white;">
+  <div class="pb-0" style="background-color: white;">
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">
         <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-2', alt: 'Videos Icon', style: 'width: auto; height: 6rem;' %>
         <div class="media-body ml-4">
           <span class="content-section-title mb-0"><%=t("videos.name")%></span>
-          <p class="content-section-copy-dark"><%=t("videos.description")%></p>
+          <p class="content-section-copy-dark d-none d-md-block"><%=t("videos.description")%></p>
         </div>
       </div>
     </div>
@@ -14,16 +14,19 @@
 
   <% if !@playlists.blank? && !@videos.blank? && !@playlists["items"].blank? %>
   <div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
+    <div class="flex-col d-flex justify-content-center h4">
+      <%= t("header.categories") %>
+    </div>
     <div class="flex-col d-flex justify-content-center">
       <div class="text-center mt-0">
         <%
-          base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
+          base_css = 'badge mb-1 ml-1 border border-secondary'
         %>
         <% #TODO: IMPLEMENT OR REMOVE ME! %>
-        <% link_to "All Videos", videos_path, class: base_css + (@all_videos ? ' btn-light' : ' btn-primary'), role: 'button' %>
+        <% link_to "All Videos", videos_path, class: base_css + (@all_videos ? ' btn-primary' : ' btn-light'), role: 'button' %>
 
         <% @playlists["items"].each do |c| %>
-          <%= link_to c["snippet"]["title"], videos_path(playlist_id: c["id"]), class: base_css + ((@playlist_id && c["id"] == @playlist_id) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+          <%= link_to c["snippet"]["title"], videos_path(playlist_id: c["id"]), class: base_css + ((@playlist_id && c["id"] == @playlist_id) ? ' btn-primary' : ' btn-light'), role: 'button' %>
         <% end %>
       </div>
     </div>

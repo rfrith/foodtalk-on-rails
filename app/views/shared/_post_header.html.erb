@@ -3,33 +3,36 @@
     <%= image_tag 'blog-icon-med.png', class: 'd-none d-md-block mr-4', alt: 'Recipe Card Icon', style: '' %>
     <div class="media-body">
       <span class="content-section-title"><%=title%></span>
-      <p class="content-section-copy-dark"><%=description%></p>
+      <p class="content-section-copy-dark d-none d-md-block"><%=description%></p>
     </div>
   </div>
 </div>
 <div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
   <div class="flex-col d-flex justify-content-center">
     <div class="text-center mt-0">
+      <div class="flex-col d-flex justify-content-center h4">
+        <%= t("header.categories") %>
+      </div>
       <%
-        base_css = 'btn btn-sm mb-1 ml-1 border border-secondary'
+        base_css = 'badge mb-1 ml-1 border border-secondary'
       %>
-      <% #TODO: I18N ME!!!! "All Blogs" %>
-      <%= link_to "All Posts", eval("#{index_path}"), class: base_css + (@all_posts ? ' btn-light' : ' btn-primary'), role: 'button' %>
+      <% #TODO: I18N ME!!!! "All Posts" %>
+      <%= link_to "All Posts", eval("#{index_path}"), class: base_css + (@all_posts ? ' btn-primary' : ' btn-light'), role: 'button' %>
 
       <% if slugs %>
         <% filter_categories_or_tags_for_display!(slugs).each do |s| %>
-          <%= link_to s["name"], eval("#{index_path}" + '(slug: s["slug"])'), class: base_css + ((@slug && (s["slug"] == @slug)) ? ' btn-light' : ' btn-primary'), role: 'button' %>
+          <%= link_to s["name"], eval("#{index_path}" + '(slug: s["slug"])'), class: base_css + ((@slug && (s["slug"] == @slug)) ? ' btn-primary' : ' btn-light'), role: 'button' %>
         <% end %>
       <% end %>
 
       <%= form_with id: "wp-search", local: false, class: "form-inline" do |f| %>
-          <span class="input-group ">
+          <div class="input-group mt-1">
             <%= f.label(:s, search_label, class: "ml-2") %>
             <%= f.text_field(:s, class: "ml-2 form-control form-control-sm rounded-left", placeholder: t("forms.search_terms")) %>
             <span class="input-group-append">
               <%= f.submit(t("forms.search_submit"), class: "mr-2 btn btn-sm btn-primary") %>
             </span>
-          </span>
+          </div>
       <% end %>
     </div>
   </div>
