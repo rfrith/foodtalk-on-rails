@@ -37,7 +37,7 @@
       <% if(Rails.application.secrets.i18n_enabled) %>
         <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "", style: "color: white;") %></u>
       <% end %>
-      <% if user_signed_in? %>
+      <% if false || user_signed_in? %>
         <span style="color: white;">|</span>
         <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
       <% end %>
@@ -53,7 +53,9 @@
       <%= t("welcome.title") %>
     </div>
 
-    <% #t("welcome.description") TODO: REMOVE ME! %>
+    <p class="hero-copy text-justify">
+      <%= t("welcome.description") %>
+    </p>
 
     <div>
       <% form_with(url: '/search') do |f| %>
@@ -70,6 +72,7 @@
         </div>
         <% end %>
 
+        <% if false %>
         <div class="flex-row mt-4 mb-2 d-block d-md-none sm-icon-group">
 
           <div class="d-flex text-center">
@@ -112,7 +115,9 @@
             </div>
           </div>
 
+
         </div>
+        <% end %>
 
       </div>
 

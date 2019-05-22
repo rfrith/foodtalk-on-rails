@@ -5,15 +5,18 @@ module ApiUtils
   require 'api_cache'
   require 'dalli'
 
+
+  APICache.store = APICache::DalliStore.new(Dalli::Client.new)
+
   API_CACHING_ENABLED = Rails.application.secrets.api_caching_enabled
 
   def get_cached_api_response(key, uri)
     if(API_CACHING_ENABLED)
       begin
-        logger.debug "Getting cached API response. Key: #{key} URI: #{uri} "
+        logger.debug "Getting API response. Key: #{key} URI: #{uri}"
         #TODO: make ENV var for cache, timeout, and period - also pass in as param?
         APICache.get("api_cache_#{key}", :cache => 3600, timeout: 180, period: 0) do
-          logger.debug "Initial cached query."
+          logger.debug "Query not cached."
           get_api_response(uri)
         end
       rescue Exception => e
