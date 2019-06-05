@@ -9,6 +9,11 @@ class WelcomeController < ApplicationController
       blogs = get_posts_by_category(3, nil, 1, get_category_slug_id_by_name(RECIPES))
       @blogs = JSON.parse blogs.body
 
+
+      @tags = get_all_categories_or_tags_as_json(:tags)
+      @categories = filter_categories_or_tags_for_display! get_all_categories_or_tags_as_json(:categories, get_category_slug_id_by_name(RECIPES))
+
+
       recipes = get_posts_by_tag(3, nil, 1, nil)
       @recipes = JSON.parse recipes.body
     rescue Exception => e

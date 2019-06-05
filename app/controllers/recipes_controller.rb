@@ -51,8 +51,8 @@ class RecipesController < ApplicationController
     @posts_per_page = PER_PAGE
     @slug = params[:slug]
     @all_posts = @slug.blank?
-    @tags = get_all_categories_or_tags_as_json(:tags)
-    @categories = get_all_categories_or_tags_as_json(:tags)
+    @tags = filter_categories_or_tags_for_display! get_all_categories_or_tags_as_json(:tags)
+    @categories = filter_categories_or_tags_for_display! get_all_categories_or_tags_as_json(:tags)
     response = get_posts_by_tag(PER_PAGE, @slug, @page, nil)
     @total_posts = get_total_posts(response)
     @total_pages = get_total_pages(response)

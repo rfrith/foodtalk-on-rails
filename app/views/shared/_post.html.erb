@@ -1,3 +1,8 @@
+<%
+  #get slugs from rails created post object
+  rendered_post_slugs = eval(post_slugs)
+%>
+
 <div class="no-gutters mb-4 card grid-item">
 
   <div class="card-header d-none d-md-block">
@@ -19,20 +24,20 @@
     <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: post["title"]["rendered"]), eval("#{show_path}"+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'} %>
   <% end %>
 
-  <div class="card-body p-2 m-0 d-nonez d-md-blockz">
+  <div class="card-body p-2 m-0 d-none d-md-block">
 
     <div class="card-text text-justify mb-1">
       <%== post["excerpt"]["rendered"].html_safe %>
     </div>
 
     <div class="d-none d-md-block">
-      <% if slugs %>
+      <% if should_display_post_categories(rendered_post_slugs, slugs) %>
         <div class="card-title">Categories</div>
         <div class="card-text">
-          <% eval(post_slugs).each do |ps| %>
+          <% rendered_post_slugs.each do |ps| %>
             <% slugs.each do |s| %>
               <% if (s["id"] == ps) %>
-                <%= link_to s["name"], eval("#{index_path}(slug: s['slug'])"), class: 'badge badge-light ml-1', role: 'button', target: '_parent' %>
+                <%= link_to s["name"], eval("#{index_path}(slug: s['slug'])"), class: 'badge badge-warning', role: 'button', target: '_parent' %>
               <% end %>
             <% end %>
           <% end %>
@@ -45,7 +50,7 @@
         <div class="card-title mt-1 d-none d-md-block">Glossary Terms</div>
         <div class="card-text d-none d-md-block">
           <% glossary_terms.each do |gt| %>
-            <%= link_to gt.name, 'javascript:;', class: 'badge badge-light m-0 p-0 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus", tabindex: "0", title: gt.name, "data-content": gt.description %>
+            <%= link_to gt.name, 'javascript:;', class: 'badge badge-warning m-0 p-1 pl-1', role: 'button', target: '_parent', "data-toggle": "popover", "data-placement": "top", "data-trigger": "focus", tabindex: "0", title: gt.name, "data-content": gt.description %>
           <% end %>
         </div>
       <% end %>

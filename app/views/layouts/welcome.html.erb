@@ -1,14 +1,16 @@
 <% content_for :header do %>
-  <div class="d-block d-md-none fixed-top">
+  <div class="d-block d-md-none">
     <%= render partial: 'shared/top-nav' %>
   </div>
+
+  <div class="d-none d-md-block">
+    <%= render partial: 'shared/top-nav' %>
+  </div>
+
   <%= render 'welcome/header' %>
 <% end %>
 
 <% content_for :content do %>
-  <div class="d-none d-md-block sticky-top">
-    <%= render partial: 'shared/top-nav' %>
-  </div>
   <%= yield %>
 <% end %>
 

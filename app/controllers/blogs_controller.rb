@@ -51,8 +51,8 @@ class BlogsController < ApplicationController
     @posts_per_page = PER_PAGE
     @slug = params[:slug]
     @all_posts = @slug.blank?
-    @tags = get_all_categories_or_tags_as_json(:tags)
-    @categories = get_all_categories_or_tags_as_json(:categories, get_category_slug_id_by_name(RECIPES))
+    @tags = filter_categories_or_tags_for_display! get_all_categories_or_tags_as_json(:tags)
+    @categories = filter_categories_or_tags_for_display! get_all_categories_or_tags_as_json(:categories, get_category_slug_id_by_name(RECIPES))
     response = get_posts_by_category(PER_PAGE, @slug, @page, get_category_slug_id_by_name(RECIPES))
     @total_posts = get_total_posts(response)
     @total_pages = get_total_pages(response)

@@ -1,20 +1,14 @@
+<%= render partial: 'videos/infinite_scroll', locals: {page_path: "video_load_page_path"} %>
+
 <% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.week do %>
   <div id="videos" class="content-section2">
-  <div class="pb-0" style="background-color: white;">
-    <div class="d-flex justify-content-center">
-      <div class="media align-items-center mt-4 ml-5 mr-5">
-        <%= image_tag 'videos-icon-sm.png', class: 'd-none d-md-block mr-2', alt: 'Videos Icon', style: 'width: auto; height: 6rem;' %>
-        <div class="media-body ml-4">
-          <span class="content-section-title mb-0"><%=t("videos.name")%></span>
-          <p class="content-section-copy-dark d-none d-md-block"><%=t("videos.description")%></p>
-        </div>
-      </div>
-    </div>
+  <div class="pb-0 bg-white">
+    <%= render partial: "shared/videos_title_block", locals: {title: t("videos.name"), description: t("videos.description")} %>
   </div>
 
   <% if !@playlists.blank? && !@videos.blank? && !@playlists["items"].blank? %>
-  <div class="flex-row no-gutters pt-3 pb-3 sticky-top" style="background-color: white;">
-    <div class="flex-col d-flex justify-content-center h4">
+  <div class="flex-row no-gutters sticky-top white-bg">
+    <div class="flex-col d-flex justify-content-center categories-title">
       <%= t("header.categories") %>
     </div>
     <div class="flex-col d-flex justify-content-center">
@@ -31,7 +25,7 @@
       </div>
     </div>
 
-    <%= render partial: "shared/scroll-down-for-more" %>
+    <%= render partial: "shared/scroll_down_for_more" %>
 
   </div>
   <% end %>
@@ -40,7 +34,6 @@
       <div id="videos-grid" class="grid pt-3">
         <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
       </div>
-      <%= render partial: 'videos/infinite_scroll', locals: {page_path: "video_load_page_path"} %>
   <% else %>
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">

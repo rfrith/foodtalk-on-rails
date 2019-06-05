@@ -58,4 +58,15 @@ module WordpressHelper
     !@embedded_content
   end
 
+  def should_display_post_categories(post_slugs, slugs)
+    display = false
+    post_slugs.each do |ps|
+      slugs.each do |s|
+        if (s["id"] == ps)
+          display = true
+        end
+      end
+    end
+    return display
+  end
 end

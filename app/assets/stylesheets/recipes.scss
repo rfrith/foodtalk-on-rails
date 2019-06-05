@@ -2,6 +2,9 @@
   min-height: calc(100vh - 8.2rem);
 }
 
+#recipes .content-section-header {
+}
+
 .recipe-section-header {
   font-family: $roboto-slab;
   color: $content-section-title;
@@ -14,33 +17,6 @@
   //padding-top: 1rem;
 }
 
-
-
 .recipe-card-detail {
   width: 100%;
-}
-
-.recipe-copy {
-  text-align: justify;
-  font-family: $roboto-slab;
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-@include media-breakpoint-up(md) {
-  .recipe-copy {
-    //maxwidth: 70%;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  .recipe-card {
-    max-width: 20rem;
-  }
-}
-
-@include media-breakpoint-down(md) {
-  .recipe-card {
-    max-width: 20rem;
-  }
 }

@@ -1,41 +1,31 @@
-<% content_for :header do %>
-  <% cache [create_cache_key_prefix, "glossary-header"], :expires_in => 1.month do %>
-  <div class="row no-gutters p-4 fixed-top" style="background-color: white;">
-    <div class="mx-auto mt-3">
-      <div class="media align-items-center mt-5" style="margin-bottom: .2rem;">
-        <%= image_tag 'glossary-icon.png', class: 'd-none d-md-block mr-4', alt: 'Glossary Icon', style: 'width: auto; height: 6rem;' %>
-        <div class="media-body">
-          <span class="content-section-title mb-0 d-flex justify-content-center d-block d-md-none"><%=t("glossary.name")%></span>
-          <span class="content-section-title mb-0 d-none d-md-block"><%=t("glossary.name")%></span>
-          <p class="content-section-copy-dark d-none d-md-block"><%=t("glossary.description")%></p>
-        </div>
-      </div>
-      <div>
-        <%
-          letters = []
-        %>
-        <% @glossary_terms.each do |term| %>
-          <% letters |= [term.name.slice(0)] %>
-        <% end %>
-        <%
-          current_letter = letters.shift
-        %>
-        <% ("a".."z").each { |l| %>
-          <%
-          if letters.include?(l)
-            current_letter = letters.shift
-          end
-          %>
-          <%= link_to l.upcase, "##{current_letter.upcase}", class: 'badge btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button' %>
-        <% } %>
+<% cache [create_cache_key_prefix, "glossary"], :expires_in => 1.week do %>
+  <div class="d-flex justify-content-center white-bg">
+    <div class="media content-section-header align-items-center ">
+      <%= image_tag 'glossary-icon.png', class: 'header-icon', alt: 'Glossary Icon', style: '' %>
+      <div class="media-body">
+        <span class="content-section-title"><%=t("glossary.name")%></span>
+        <p class="content-section-copy-dark d-none d-md-block"><%=t("glossary.description")%></p>
       </div>
     </div>
   </div>
-  <% end %>
-<% end %>
 
-<% content_for :content do %>
-  <div id="glossary" class="content-section2" style="padding-top: 16.5rem;">
+  <div class="row no-gutters pl-4 pr-4 pt-2 pb-4 justify-content-center sticky-top white-bg">
+    <% letters = [] %>
+    <% @glossary_terms.each do |term| %>
+      <% letters |= [term.name.slice(0)] %>
+    <% end %>
+    <% current_letter = letters.shift %>
+    <% ("a".."z").each { |l| %>
+      <%
+        if letters.include?(l)
+          current_letter = letters.shift
+        end
+      %>
+      <%= link_to l.upcase, "##{current_letter.upcase}", class: 'btn btn-sm btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button' %>
+    <% } %>
+  </div>
+
+  <div id="glossary" class="content-section2 pt-4">
     <div class="col-auto">
       <%= render partial: 'glossary_terms/glossary_term', collection: @glossary_terms, cached: true %>
     </div>

@@ -10,6 +10,7 @@
   margin: 0;
 }
 
+
 .lity-active,
 .lity-active body {
   overflow: hidden;
@@ -24,6 +25,28 @@
   margin: 20px 0;
 }
 
+
+.header-icon {
+  width: 10%;
+  height: auto;
+  margin-right: 1rem;
+  margin-left: 10%;
+
+  @include media-breakpoint-up(xl) {
+  }
+
+  @include media-breakpoint-only(lg) {
+  }
+
+  @include media-breakpoint-up(md) {
+
+  }
+
+  @include media-breakpoint-only(sm) {
+  }
+}
+
+
 #notifications {
   padding: 0;
   margin: 0;
@@ -31,14 +54,14 @@
 }
 
 
+.white-bg {
+  background-color: white;
+}
+
 
 .content-section, .content-section2, .content-section3 {
   //min-height: 100vh;
   //calc(100vh - 130px);
-
-  @include media-breakpoint-up(med) {
-
-  }
 }
 
 .content-section {
@@ -53,36 +76,94 @@
   background: rgba($content-section3-bg-color, 0.8);
 }
 
-.content-section-item {
-  //padding-top: 2.8rem;
+
+.content-section-header {
+  padding-top: 1rem;
+  @include media-breakpoint-up(md) {
+
+  }
+
+  @include media-breakpoint-only(md) {
+  }
+
+  @include media-breakpoint-down(sm) {
+  }
+
 }
 
 .content-section-title {
+
   font-family: $roboto-slab;
   //color: rgba(155, 116, 49, 1);
   color: $content-section-title;
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 2.5rem;
+
+  @include media-breakpoint-only(xl) {
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  @include media-breakpoint-only(lg) {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  @include media-breakpoint-only(sm) {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  @include media-breakpoint-only(xs) {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
 }
+
 
 .content-section-copy-dark, .content-section-copy-light, .content-section-copy-dark-med, .content-section-copy-light-med {
   font-family: $roboto;
+
+  @include media-breakpoint-only(xl) {
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-only(lg) {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-only(md) {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-only(sm) {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-only(xs) {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
 }
 
-.content-section-copy-dark, .content-section-copy-light {
-  font-weight: 500;
-  font-size: 1.75rem;
-}
-
-.content-section-copy-dark-med, .content-section-copy-light-med {
-  font-weight: 500;
-  font-size: 1.3rem;
-}
 
 .content-section-copy-dark, .content-section-copy-dark-med {
   color: #000000;
 }
+
 
 .content-section-copy-light, .content-section-copy-light-med {
   color: $primary-font-inverse-color;
@@ -90,21 +171,108 @@
 
 
 
+
+
+
+.categories-title {
+  font-family: $source-sans-pro;
+
+  @include media-breakpoint-only(xl) {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  @include media-breakpoint-only(lg) {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+}
+
+
+.view-all-link {
+  text-align: justify;
+  font-family: $roboto-slab;
+  font-size: 1.5rem;
+  font-weight: 300;
+
+  @include media-breakpoint-only(xl) {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @include media-breakpoint-only(lg) {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  @include media-breakpoint-only(sm) {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  @include media-breakpoint-only(xs) {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+}
+
+
 .grid {
   margin: 0 auto;
 }
+
 
 .grid-item {
   margin: 1rem;
 }
 
 
-.card {
-
+.card-footer-text {
   @include media-breakpoint-down(sm) {
-    width: 12rem;
+    font-weight: 500;
+    font-size: .35rem;
+    text-decoration-color: #00d4ff;
+  }
+}
+
+.card {
+  @include media-breakpoint-down(sm) {
+    width: 7rem;
   }
   @include media-breakpoint-up(md) {
     width: 20rem;
   }
+}
+
+
+.sm-badge-group {
+  font-size: 1.1rem;
 }

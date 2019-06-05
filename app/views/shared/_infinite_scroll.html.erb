@@ -1,19 +1,30 @@
-<script language="JavaScript">
+<script defer language="JavaScript">
+
     var pages = [];
+
+    //unload infinite scroll when user navigates away from page that uses it
+    $(document).on('turbolinks:before-cache', function () {
+        if ($grid) {
+            pages = [];
+            $grid.infiniteScroll.destroy();
+        }
+    });
 
     <% ((@page+=1)..@total_pages).each { |index| %>
     pages.push('<%= eval(page_path + "(page: index, slug: @slug)") %>');
     <% } %>
 
     function getPages() {
-        var slug = pages[ this.loadCount ];
-        if ( slug ) {
-            return slug;
+        //make sure there are pages to scroll through
+        if (Array.isArray(pages) || pages.length) {
+            var slug = pages[this.loadCount];
+            if (slug) {
+                return slug;
+            }
         }
     }
 
     var $grid = $('.grid').masonry({
-        // Masonry options...
         itemSelector: '.grid-item',
         fitWidth: true
     });
@@ -31,8 +42,9 @@
     $grid.on( 'load.infiniteScroll', function( event, response ) {
         var jqData = $(response)
         jqData.imagesLoaded( function() {
-            $('#posts-grid').append(jqData);
+            $('.grid').append(jqData);
             $('.grid').masonry( 'appended', jqData );
         });
     });
+
 </script>

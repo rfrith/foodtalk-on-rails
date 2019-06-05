@@ -2,7 +2,7 @@
 
 <div class="d-flex justify-content-center">
   <div class="card glossary-card w-100 mb-3">
-    <div class="card-header">
+    <div class="card-header d-none d-md-block">
     <span class="h4">
     <%= glossary_term.name %>
     </span>
@@ -14,18 +14,30 @@
         </div>
       <% end %>
       <div class="card-title glossary-description-copy glossary-description text-left">
-        <%= glossary_term.description %>
+
+        <div class="h4 d-block d-md-none">
+
+
+
+          <div class="h4 d-block d-md-none">
+            <u><%= glossary_term.name %></u> - <%= glossary_term.description.downcase %>
+            <div class="blockquote-footer d-none">
+              <cite title="Source Title" class="text-sm text-muted"><%= glossary_term.source %></cite>
+            </div>
+
+
+          </div>
+        </div>
+
+        <span class="h4 d-none d-md-block">
+          <%= glossary_term.description %>
+        </span>
       </div>
     </div>
-    <div class="card-footer text-muted ml-3 mr-3">
+    <div class="card-footer text-muted ml-3 mr-3 d-nonez d-md-block">
       <blockquote>
         <footer class="blockquote-footer">
           <cite title="Source Title"><%= glossary_term.source %></cite>
-          <small class="text-muted">
-            <% if !glossary_term.image.blank? %>
-              <%= link_to 'Original Image', glossary_term.remote_image_url, target: '_blank' %>
-            <% end %>
-          </small>
         </footer>
       </blockquote>
     </div>

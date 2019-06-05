@@ -48,6 +48,42 @@
 
 
 
+.badge {
+}
+.badge:hover {
+  cursor: pointer;
+}
+.badge-error {
+}
+.badge-error:hover {
+}
+.badge-warning {
+  color: $primary-font-inverse-color !important;
+  background-color: $orange-fill-color;
+}
+.badge-warning:hover {
+  background-color: #de784a !important;
+}
+.badge-success {
+}
+.badge-success:hover {
+}
+.badge-info {
+}
+.badge-info:hover {
+}
+.badge-inverse {
+}
+.badge-inverse:hover {
+}
+
+
+
+
+
+
+
+
 
 
 .nav-pills > a.active {
@@ -132,8 +168,6 @@
 .card-deck > .card {
   width: auto;
 }
-
-
 .pagination > li > a
 {
   background-color: white;

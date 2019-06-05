@@ -9,7 +9,7 @@ $secondary-font-color: #5a552f;
 $secondary-fill-color: burlywood;
 $tertiary-fill-color: #fbec64;
 
-$orange-fill-color: #f79246;
+$orange-fill-color: #f98e4f;
 
 $input-focus-border-color: $tertiary-fill-color;
 $input-focus-shadow-color: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(226, 81, 54);
@@ -17,7 +17,7 @@ $input-focus-shadow-color: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rg
 /*
  * Content Colors
  */
-$hero-title: #fbec64;
+$hero-title: $tertiary-fill-color;
 $hero-subtitle: peachpuff;
 $content-section-bg-color: black;
 $content-section2-bg-color: white;

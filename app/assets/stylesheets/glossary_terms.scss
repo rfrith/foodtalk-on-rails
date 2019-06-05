@@ -1,7 +1,31 @@
 .glossary-image img {
   object-fit: cover;
-  height:10rem;
-  width:10rem;
+
+  @include media-breakpoint-only(xs) {
+    height:5rem;
+    width:5rem;
+  }
+  @include media-breakpoint-only(sm) {
+    height:6.5rem;
+    width:6.5rem;
+  }
+  @include media-breakpoint-only(md) {
+    height:8rem;
+    width:8rem;
+  }
+  @include media-breakpoint-only(lg) {
+    height:9rem;
+    width:9rem;
+  }
+  @include media-breakpoint-only(xl) {
+    height:10rem;
+    width:10rem;
+  }
+
+
+
+
+
 }
 
 .glossary-card {
@@ -18,7 +42,6 @@
   }
   @include media-breakpoint-only(lg) {
     width: 60rem;
-
   }
   @include media-breakpoint-only(xl) {
     width: 60rem;
