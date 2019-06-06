@@ -4,23 +4,19 @@
 
     //unload infinite scroll when user navigates away from page that uses it
     $(document).on('turbolinks:before-cache', function () {
-        if ($grid) {
-            pages = [];
-            $grid.infiniteScroll.destroy();
-        }
+        pages = [];
+        $grid.infiniteScroll.destroy();
     });
 
     <% ((@page+=1)..@total_pages).each { |index| %>
-    pages.push('<%= eval(page_path + "(page: index, slug: @slug)") %>');
+      pages.push('<%= eval(page_path + "(page: index, slug: @slug)") %>');
     <% } %>
 
     function getPages() {
         //make sure there are pages to scroll through
-        if (Array.isArray(pages) || pages.length) {
-            var slug = pages[this.loadCount];
-            if (slug) {
-                return slug;
-            }
+        if (typeof pages !== "undefined" && Array.isArray(pages) && (pages.length > 0)) {
+            var page = pages[this.loadCount];
+            return page;
         }
     }
 
@@ -37,6 +33,10 @@
         outlayer: msnry,
         responseType: 'text',
         history: false,
+        //load pages on button click
+        button: '.view-more-button',
+        //disable loading on scroll
+        scrollThreshold: false,
     });
 
     $grid.on( 'load.infiniteScroll', function( event, response ) {

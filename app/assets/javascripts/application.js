@@ -45,11 +45,10 @@ $(document).on("turbolinks:load", function() {
         $('a[data-toggle=tab]').on('shown.bs.tab', function (e) {
             switch(e.target.id ) {
                 case 'started-courses-tab-link':
-                    //alert('started-courses-tab-link');
                     init_isotope_started_courses();
+
                     break;
                 case 'completed-courses-tab-link':
-                    //alert('completed-courses-tab-link');
                     init_isotope_completed_courses();
                     break;
             }
@@ -66,7 +65,6 @@ $(document).on("turbolinks:load", function() {
 });
 
 function init_isotope_started_courses() {
-
     $('.food-etalk-started-grid').imagesLoaded( function() {
         $('.food-etalk-started-grid').isotope({
             // options
@@ -74,7 +72,6 @@ function init_isotope_started_courses() {
             layoutMode: 'fitRows'
         });
     });
-
     $('.better-u-started-grid').imagesLoaded( function() {
         $('.better-u-started-grid').isotope({
             // options

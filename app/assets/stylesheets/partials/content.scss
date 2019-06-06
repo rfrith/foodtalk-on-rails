@@ -250,7 +250,7 @@
 }
 
 
-.grid-item {
+.grid-item, .post-grid-item {
   margin: 1rem;
 }
 
@@ -275,4 +275,10 @@
 
 .sm-badge-group {
   font-size: 1.1rem;
+}
+
+
+.view-more-button {
+  font-color: $primary-font-color;
+  font-family: $roboto;
 }

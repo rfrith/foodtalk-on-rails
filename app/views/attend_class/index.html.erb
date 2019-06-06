@@ -1,4 +1,4 @@
-<% cache [create_cache_key_prefix, "attend-a-class"], :expires_in => 1.month do %>
+<% cache [create_cache_key_prefix, "attend-a-class"], :expires_in => 1.week do %>
 <div id="attend-class" class="content-section2">
   <div class="row no-gutters align-items-center white-bg pb-2">
     <div class="col content-section-copy-dark-med pl-5 pr-5" style="min-width: 50%;">
@@ -44,7 +44,6 @@
                 </div>
               </div>
             <% end %>
-
 
             <% if !values[:snap_ed_supervisor].blank? %>
               <p class="lead"><%= t("attend_a_class.snap_ed_supervisor") %></p>

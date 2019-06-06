@@ -4,9 +4,15 @@
   <div id="recipes" class="content-section2">
     <% if @posts %>
       <%= render partial: 'shared/posts_index_header', locals: {icon: "recipe-graphic-sm.png", title: t("recipes.name"), description: t("recipes.description"), index_path: "recipes_path", search_label: t("recipes.search"), slugs: @tags} %>
+      <% #div id cannot have a hyphen (-) as it will be used as a .js var name %>
       <div id="recipes-grid" class="grid">
         <%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
       </div>
+
+      <div class="p-2 d-flex justify-content-center">
+        <button class="view-more-button">Load more...</button>
+      </div>
+
     <% else %>
       <div class="d-flex justify-content-center">
         <div class="media align-items-center mt-4 ml-5 mr-5">

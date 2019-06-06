@@ -4,10 +4,16 @@
   <div id="blogs" class="content-section2">
     <% if @posts %>
       <%= render partial: 'shared/posts_index_header', locals: {icon: "blog-icon-med.png", title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_label: t("blog.search"), slugs: @categories} %>
+      <% #div id cannot have a hyphen (-) as it will be used as a .js var name %>
       <div id="blogs-grid" class="grid">
         <%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
       </div>
-    <% else %>
+
+      <div class="p-2 d-flex justify-content-center">
+        <button class="view-more-button">Load more...</button>
+      </div>
+
+  <% else %>
       <div class="d-flex justify-content-center">
         <div class="media align-items-center mt-4 ml-5 mr-5">
           <% #TODO: I18n ME! %>

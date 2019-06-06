@@ -14,7 +14,7 @@
         }
     }
 
-    var $grid = $('#videos-grid').masonry({
+    var $grid = $('.grid').masonry({
         // Masonry options...
         itemSelector: '.grid-item',
         fitWidth: true
@@ -30,20 +30,16 @@
         outlayer: msnry,
         responseType: 'text',
         history: false,
+
     });
 
 
     $grid.on( 'load.infiniteScroll', function( event, response ) {
-
         updateNextURL( response );
-
         var jqData = $(response)
         jqData.imagesLoaded( function() {
-            $('#videos-grid').append(jqData);
+            $('.grid').append(jqData);
             $('.grid').masonry( 'appended', jqData );
         });
-
-
-
     });
 </script>
