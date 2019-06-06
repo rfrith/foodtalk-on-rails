@@ -32,7 +32,11 @@
       <div id="videos-grid" class="grid pt-3">
         <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
       </div>
-      <%= render partial: 'videos/infinite_scroll', locals: {page_path: "video_load_page_path"} %>
+
+      <div class="p-2 d-flex justify-content-center">
+        <button class="view-more-button"><%= t("navigation.load_more") %></button>
+      </div>
+
   <% else %>
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">
@@ -43,3 +47,5 @@
   <% end %>
 </div>
 <% end %>
+
+<%= render partial: 'videos/infinite_scroll', locals: {page_path: "video_load_page_path"} %>

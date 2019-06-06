@@ -1,5 +1,7 @@
 <div>
+  <% if @nextPageToken %>
     <var id="page-token" href='<%= video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken) %>' style="display: none;">page-token</var>
+  <% end %>
   <% if @videos %>
     <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
   <% end %>

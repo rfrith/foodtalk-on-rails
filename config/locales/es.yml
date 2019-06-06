@@ -60,6 +60,7 @@ es:
     view_all_videos: "Ver Todos los Videos"
     uga_extension_office: "UGA Oficina de Extensión"
     scroll_down_for_more: "Desplácese hacia abajo para más"
+    load_more: "Mostrar más..."
 
   header:
     categories: "Las Categorías"
