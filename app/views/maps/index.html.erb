@@ -1,38 +1,37 @@
 <div id="maps-content" class="content-section2">
-  <% cache [create_cache_key_prefix, "maps-header"], :expires_in => 1.week do %>
-  <div class="flex-row p-4 white-bg">
-    <div class="flex-col d-flex justify-content-center">
-      <div class="media align-items-center">
-        <span>
-          <%= image_tag 'state-of-ga-orange-lg.png', class: 'd-none d-md-block', alt: 'State of Georgia Logo', style: 'width: auto; height: 6rem;' %>
-        </span>
-        <div class="media-body ml-4">
-          <p class="content-section-title mb-0"><%=t("gis_resources.name")%></p>
-          <p class="content-section-copy-dark mt-0 mb-0 w-100"><%=t("gis_resources.description")%></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% end %>
   <% cache [create_cache_key_prefix, "maps-list"], :expires_in => 1.week do %>
-  <div class="grid pt-4">
-  <%
-    Maps::GA_SNAP_ED_MAPS.each do |map|
-  %>
-    <div class="grid-item mb-4">
-      <div class="card m-1" style="width: 18rem; height: 16rem;">
-        <div class="card-title ml-2 mb-1" style="min-height: 3rem;">
-          <%= link_to map[:title], show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'} %>
-        </div>
-        <div class="card-body p-0 m-0">
-          <%= link_to image_tag(map[:thumbnail], class: 'img-fluid', alt: map[:title]), show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'} %>
-        </div>
-        <div class="card-footer">
-          <%= link_to("Expand Map", show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
-        </div>
+
+    <div class="content-section-header d-flex justify-content-center align-items-center white-bg">
+      <div><%= image_tag 'state-of-ga-orange-lg.png', class: 'header-icon', alt: 'State of GA Icon' %></div>
+      <div>
+        <div class="content-section-title"><%=t("gis_resources.name")%></div>
+        <div class="content-section-copy-dark d-none d-md-block"><%=t("gis_resources.description")%></div>
       </div>
     </div>
-    <% end %>
-  </div>
+
+    <div class="grid pt-4">
+      <%
+        Maps::GA_SNAP_ED_MAPS.each do |map|
+      %>
+        <div class="grid-item">
+          <div class="card map-card">
+            <div class="card-header p-0 m-0 no-gutters">
+              <div class="card-title row text-center d-flex align-items-center">
+            <span class="col">
+              <%= link_to map[:title], show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'} %>
+            </span>
+              </div>
+            </div>
+
+            <div class="card-body p-0 m-0">
+              <%= link_to image_tag(map[:thumbnail], class: 'img-fluid', alt: map[:title]), show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'} %>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-center">
+              <%= link_to("Expand Map", show_map_path(map[:id]), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>

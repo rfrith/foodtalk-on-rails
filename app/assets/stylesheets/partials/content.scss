@@ -27,22 +27,35 @@
 
 
 .header-icon {
-  width: 10%;
-  height: auto;
-  margin-right: 1rem;
-  margin-left: 10%;
 
   @include media-breakpoint-up(xl) {
+    width: 6rem;
+    height: 6rem;
+    margin-right: 1.5rem;
   }
 
   @include media-breakpoint-only(lg) {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1.4em;
   }
 
   @include media-breakpoint-up(md) {
-
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1.2rem;
   }
 
   @include media-breakpoint-only(sm) {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+  }
+
+  @include media-breakpoint-only(xs) {
+    width: 2rem;
+    height: 2rem;
+    margin-right: .5rem;
   }
 }
 
@@ -79,6 +92,7 @@
 
 .content-section-header {
   padding-top: 1rem;
+  padding-bottom: 1rem;
   @include media-breakpoint-up(md) {
 
   }
@@ -224,7 +238,7 @@
     font-weight: 400;
     line-height: 2.5rem;
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
   }
 
   @include media-breakpoint-only(sm) {
@@ -232,7 +246,7 @@
     font-weight: 400;
     line-height: 2.5rem;
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
   }
 
   @include media-breakpoint-only(xs) {
@@ -240,7 +254,7 @@
     font-weight: 300;
     line-height: 1.5rem;
     padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-bottom: 1rem;
   }
 }
 

@@ -1,11 +1,10 @@
 <% cache [create_cache_key_prefix, "glossary"], :expires_in => 1.week do %>
-  <div class="d-flex justify-content-center white-bg">
-    <div class="media content-section-header align-items-center ">
-      <%= image_tag 'glossary-icon.png', class: 'header-icon', alt: 'Glossary Icon', style: '' %>
-      <div class="media-body">
-        <span class="content-section-title"><%=t("glossary.name")%></span>
-        <p class="content-section-copy-dark d-none d-md-block"><%=t("glossary.description")%></p>
-      </div>
+
+  <div class="content-section-header d-flex justify-content-center align-items-center white-bg">
+    <div><%= image_tag 'glossary-icon.png', class: 'header-icon', alt: 'Glossary Icon' %></div>
+    <div>
+      <div class="content-section-title"><%=t("glossary.name")%></div>
+      <div class="content-section-copy-dark d-none d-md-block"><%=t("glossary.description")%></div>
     </div>
   </div>
 

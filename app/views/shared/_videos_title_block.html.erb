@@ -1,9 +1,7 @@
-<div class="d-flex justify-content-center">
-  <div class="media content-section-header align-items-center">
-    <%= image_tag 'videos-icon-sm.png', class: 'header-icon', alt: 'Videos Icon', style: '' %>
-    <div class="media-body">
-      <span class="content-section-title"><%= title %></span>
-      <p class="content-section-copy-dark d-none d-md-block"><%= description %></p>
-    </div>
+<div class="content-section-header d-flex justify-content-center align-items-center">
+  <div><%= image_tag 'videos-icon-sm.png', class: 'header-icon', alt: 'Videos Icon' %></div>
+  <div>
+    <div class="content-section-title"><%=title%></div>
+    <div class="content-section-copy-dark d-none d-md-block"><%=description%></div>
   </div>
 </div>
