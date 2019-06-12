@@ -1,3 +1,36 @@
 #attend-class {
   min-height: calc(100vh - 8.2rem);
 }
+
+.attend-class-card {
+  max-width: 90vw;
+  margin: 0;
+  padding: 0;
+
+  @include media-breakpoint-only(xl) {
+    min-height: 20rem;
+    width: 28rem;
+  }
+
+  @include media-breakpoint-only(lg) {
+    min-height: 20rem;
+    width: 28rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    min-height: 20rem;
+    width: 22rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    max-height: 20rem;
+    width: 18rem;
+  }
+
+  @include media-breakpoint-down(xs) {
+    min-height: 14rem;
+    max-height: 20rem;
+    width: 28rem;
+  }
+
+}
