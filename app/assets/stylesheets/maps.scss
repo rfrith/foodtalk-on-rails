@@ -4,11 +4,11 @@
 
 .map-card {
   @include media-breakpoint-only(xl) {
-    width: 18rem;
-    min-height: 16rem;
+    width: 19rem;
+    min-height: 18rem;
 
     .card-title {
-      min-height: 6rem;
+      min-height: 5rem;
       padding: .4rem;
       font-size: 1.4rem;
     }
@@ -19,7 +19,7 @@
     min-height: 15rem;
 
     .card-title {
-      min-height: 5rem;
+      min-height: 4rem;
       padding: .3rem;
       font-size: 1.2rem;
     }
