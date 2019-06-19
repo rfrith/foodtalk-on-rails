@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123174608) do
+ActiveRecord::Schema.define(version: 20190613211504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(version: 20190123174608) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "county_extension_offices", force: :cascade do |t|
+    t.string "name"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "phone"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zip"], name: "index_county_extension_offices_on_zip"
+  end
+
+  create_table "county_extension_offices_zip_codes", id: false, force: :cascade do |t|
+    t.bigint "county_extension_office_id", null: false
+    t.bigint "zip_code_id", null: false
   end
 
   create_table "course_enrollments", force: :cascade do |t|
@@ -109,6 +128,14 @@ ActiveRecord::Schema.define(version: 20190123174608) do
     t.boolean "eligible"
     t.index ["eligible"], name: "index_users_on_eligible"
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "zip_codes", force: :cascade do |t|
+    t.string "zip"
+    t.boolean "eligible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zip"], name: "index_zip_codes_on_zip"
   end
 
   add_foreign_key "federal_assistances_users", "federal_assistances"

@@ -1,0 +1,47 @@
+.mapouter {
+  position:relative;
+  text-align:right;
+}
+
+.gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+}
+
+.grid address {
+  max-width: 220px;
+}
+
+address {
+  font-family: Roboto Slab, serif;
+  @include media-breakpoint-only(xl) {
+    font-size: 1rem;
+    line-height: 1.1rem;
+  }
+
+  @include media-breakpoint-only(lg) {
+    font-size: .95rem;
+    line-height: 1rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    font-size: .9rem;
+    line-height: 1rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: .85rem;
+    line-height: 1rem;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: .8rem;
+    line-height: 1rem;
+  }
+}
+
+#certificate-border {
+  @include media-breakpoint-up(md) {
+    border-left: solid lightgray 1px;
+  }
+}

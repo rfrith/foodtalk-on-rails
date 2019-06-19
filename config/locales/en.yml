@@ -61,6 +61,9 @@ en:
     uga_extension_office: "UGA Extension Office"
     scroll_down_for_more: "Scroll down for more"
     load_more: "Show more..."
+    click_here: "click here"
+    to: "to"
+    print: "print"
 
   header:
     categories: "Categories"
@@ -126,10 +129,15 @@ en:
   learn_online:
     start_learning_module: "Why not improve your knowledge on health & nutrition and start a Food eTalk or Better U course from the below choices?"
     continue_learning_module: "Why not finish what you started?  Complete any started lessons by clicking the links below and continue improving your health & nutrition knowledge!"
-    completed_html: "Way to go! You have completed %{curriculum}. When you are ready, %{href}"
 
-    extenders_prompt: "and call your nearest %{href2} to receive your complimentary bag of Food Talk goodies."
-    print_your_certificate: "print your receipt of completion"
+
+    completed_html: "Way to go! You have completed %{curriculum}."
+    extenders_prompt: "%{href} for instructions on how to receive your complimentary bag of educational extenders."
+    print_your_certificate: "Please %{print_link} your receipt of completion(s) %{additional_instructions}"
+    extenders_directions: "and bring to %{location_prompt} to get your bag of complimentary education extenders!  If you don't have a printer you may present the certificate from your phone or mobile device."
+    multiple_extension_offices: "one of these county extension offices"
+    single_extension_office: "the following county extension office"
+
 
     better_u:
       name: "Better U"

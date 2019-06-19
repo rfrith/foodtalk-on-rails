@@ -137,10 +137,19 @@ class User < ApplicationRecord
     end
   end
 
+  def get_county_extension_offices
+    zips = ZipCode.where(zip: zip_code)
+    return CountyExtensionOffice.includes(:zip_codes).where("zip_codes.id": zips.each{|zip| zip.id})
+  end
+
 
   private
 
   def is_zip_code_eligible?
+    return false if zip_code.nil?
+    #TODO: replace with following lines once GIS team provides eligibility data
+    #zip = ZipCode.where(zip: zip_code)
+    #return zip.eligible.present? ? zip.eligible : false
     return ELIGIBLE_ZIP_CODES.include?(zip_code)
   end
 

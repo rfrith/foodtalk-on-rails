@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     end
 
     controller :certificates do
-      get 'certificate/:id/show' => :show, as: 'show_certificate'
+      get 'certificates/show' => :show, as: 'show_certificates'
     end
 
     controller :surveys do

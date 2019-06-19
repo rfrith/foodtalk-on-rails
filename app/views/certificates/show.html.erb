@@ -1,32 +1,136 @@
 <style>
-
   @page { size: a4 landscape}
 
   body {
     background-color: white;
+    min-height: 90vh;
   }
 
   @media screen {
-    #certificate-img {
-      height: 60%;
-      width: 60%;
+    .certificate-img {
+      min-width: 22rem;
+      max-width: 50%;
+    }
+    #certificate-print {
+      display: none;
+    }
+
+    #certificate-screen {
+      display: block;
     }
   }
 
   @media print {
-    #certificate-img {
+    .certificate-img {
       height: auto;
       width: auto;
     }
-    .hide {
-      visibility:hidden;
+    #certificate-print {
+      display: block;
+    }
+    #certificate-screen {
+      display: none;
+    }
+    .page-break {
+      page-break-before: always;
     }
   }
 </style>
 
-<div class="text-center" style="overflow: hidden;">
-  <div id="certificate">
-    <h4 class="hide mt-4"><a href="#" onclick="window.print();"><%= t("learn_online.print_your_certificate") %> <%= fa_icon "print" %></a></h4>
-    <%= image_tag("data:image/png;base64,#{@certificate}", alt:"Food eTalk Completion Certificate", id: "certificate-img", class: "mx-auto img-fluid p-0 m-0") %>
+<div id="certificate-screen">
+  <div class="row h-25 no-gutters pt-0">
+    <div class="h6 m-5 pb-5">
+      <%
+        print_link = "<a href='#' onclick='window.print();'> #{t('navigation.click_here')} #{t('navigation.to')} #{t('navigation.print')} #{fa_icon 'print'}</a>"
+        location_prompt = @current_user.get_county_extension_offices.size > 1 ? t('learn_online.multiple_extension_offices') : t('learn_online.single_extension_offices')
+      %>
+      <%== t("learn_online.print_your_certificate", print_link: print_link, additional_instructions: t('learn_online.extenders_directions', location_prompt: location_prompt))%>
+    </div>
   </div>
+  <div class="h-75 row no-gutters m-0 p-0">
+    <div class="col no-gutters m-0 p-0">
+      <strong class="d-block text-center">Locations</strong>
+      <div class="grid">
+        <% @current_user.get_county_extension_offices.each do |ceo| %>
+          <div class="grid-item">
+            <div class="mapouter d-flex">
+              <div class="gmap_canvas">
+                <iframe width="200" height="150" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= ceo.name %>%20<%= ceo.address1 %>%20<%= ceo.address2 %>%20<%= ceo.city %>%2C%20<%= ceo.state %>%20<%= ceo.zip %>&t=&z=6&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+              </div>
+            </div>
+
+            <address class="card-text">
+              <a href="https://maps.google.com/maps?q=<%= ceo.name %>%20<%= ceo.address1 %>%20<%= ceo.address2 %>%20<%= ceo.city %>%2C%20<%= ceo.state %>%20<%= ceo.zip %>&t=&z=6&ie=UTF8" target="_blank">
+                <strong><%= ceo.name %></strong><br>
+                <%== ceo.address1.present? ? ceo.address1 + "<br>" : "" %>
+                <%== ceo.address2.present? ? ceo.address2 + "<br>" : "" %>
+                <%= ceo.city %>, <%= ceo.state %> <%= ceo.zip %>
+              </a>
+              <br>
+              <a href="tel:<%= ceo.phone %>"><abbr title="Phone">P:</abbr> <%= ceo.phone %></a>
+              <br>
+              <a href = "mailto:<%= ceo.email %>">
+                <abbr title="Email">E:</abbr> <%= ceo.email %>
+              </a>
+            </address>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col no-gutters m-0 p-0">
+      <hr class="d-block d-md-none">
+      <div id="certificate-border" class="text-center">
+        <h6 class="mt-4">
+         <a href='#' onclick='window.print();'> <%== t('navigation.print'.capitalize)%> <%== fa_icon 'print' %></a>
+        </h6>
+
+        <% @certificates.each do |certificate| %>
+          <%= image_tag("data:image/png;base64,#{certificate}", alt:"Completion Certificate", id: "", class: "certificate-img img-fluid") %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="certificate-print" class="p-5">
+  <div class="row mt-5 mb-5">
+    <span class="h6">
+      <%
+        print_link = "<a href='#' onclick='window.print();'> #{t('navigation.print')} #{fa_icon 'print'}</a>"
+        location_prompt = @current_user.get_county_extension_offices.size > 1 ? t('learn_online.multiple_extension_offices') : t('learn_online.single_extension_offices')
+      %>
+      <%== t("learn_online.print_your_certificate", print_link: print_link, additional_instructions: t('learn_online.extenders_directions', location_prompt: location_prompt))%>
+    </span>
+  </div>
+  <strong class="d-block mb-1">Locations</strong>
+  <div class="row">
+    <% @current_user.get_county_extension_offices.each do |ceo| %>
+    <div class="col">
+      <address class="card-text">
+        <strong><%= ceo.name %> Extension Office</strong><br>
+        <%== ceo.address1.present? ? ceo.address1 + "<br>" : "" %>
+        <%== ceo.address2.present? ? ceo.address2 + "<br>" : "" %>
+        <%= ceo.city %>, <%= ceo.state %> <%= ceo.zip %><br>
+        <abbr title="Phone">P:</abbr> <%= ceo.phone %>
+        <br>
+        <abbr title="Email">E:</abbr> <%= ceo.email %>
+      </address>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col">
+      <div id="certificate-border" class="text-center mt-5">
+        <% @certificates.each do |certificate| %>
+          <%= image_tag("data:image/png;base64,#{certificate}", alt:"Completion Certificate", id: "", class: "certificate-img img-fluid") %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+
 </div>
