@@ -54,7 +54,8 @@ class DashboardController < ApplicationController
 
     begin
       @subscriptions = all_enabled_lists
-    rescue
+    rescue Exception => e
+      logger.error "An error occurred calling 'all_enabled_lists' #{e.inspect}"
       @subscriptions = []
     end
 
