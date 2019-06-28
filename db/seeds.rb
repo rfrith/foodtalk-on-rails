@@ -22,14 +22,17 @@ RacialIdentity.find_or_create_by!(name: 'White')
 RacialIdentity.find_or_create_by!(name: 'Other')
 
 # Create FederalAssistances
-FederalAssistance.find_or_create_by!(name: 'Food Stamps / SNAP')
-FederalAssistance.find_or_create_by!(name: 'Free or Reduced Medical Services')
-FederalAssistance.find_or_create_by!(name: 'Free or Reduced Price Lunch')
+FederalAssistance.find_or_create_by!(name: 'Extension Employee')
+FederalAssistance.find_or_create_by!(name: 'Free or Reduced Cost Medical Services')
+FederalAssistance.find_or_create_by!(name: 'Free and Reduced Price Lunch')
 FederalAssistance.find_or_create_by!(name: 'Head Start')
+FederalAssistance.find_or_create_by!(name: 'Medicaid')
+FederalAssistance.find_or_create_by!(name: 'SNAP E&T Program')
+FederalAssistance.find_or_create_by!(name: 'SNAP / Food Stamps')
 FederalAssistance.find_or_create_by!(name: 'TANF')
 FederalAssistance.find_or_create_by!(name: 'Temporary Emergency Foods or Commodity Foods')
 FederalAssistance.find_or_create_by!(name: 'WIC')
-FederalAssistance.find_or_create_by!(name: 'Extension Employee')
+
 
 #Create GlossaryTerms
 #GlossaryTerm.find_or_create_by!(name: '', description: '', source: '', remote_image_url: '')

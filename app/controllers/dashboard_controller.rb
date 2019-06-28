@@ -9,11 +9,11 @@ class DashboardController < ApplicationController
     end
 
     @racial_identities = Rails.cache.fetch("all_racial_identities", expires_in: 1.month) do
-      RacialIdentity.all
+      RacialIdentity.all.all.order(name: :asc)
     end
 
     @federal_assistances = Rails.cache.fetch("all_federal_assistances", expires_in: 1.month) do
-      FederalAssistance.all
+      FederalAssistance.all.order(name: :asc)
     end
 
     if(@current_user.is_admin?)

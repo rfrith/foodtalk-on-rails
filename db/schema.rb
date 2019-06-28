@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190613211504) do
+ActiveRecord::Schema.define(version: 20190628134748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20190613211504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id", "type"], name: "index_activity_histories_on_id_and_type"
+    t.index ["name", "created_at"], name: "index_activity_histories_on_name_and_created_at"
     t.index ["user_id"], name: "index_activity_histories_on_user_id"
   end
 
@@ -49,6 +50,8 @@ ActiveRecord::Schema.define(version: 20190613211504) do
   create_table "county_extension_offices_zip_codes", id: false, force: :cascade do |t|
     t.bigint "county_extension_office_id", null: false
     t.bigint "zip_code_id", null: false
+    t.index ["county_extension_office_id", "zip_code_id"], name: "index_county_ext_offices_on_ceo_id_and_id_zip_id"
+    t.index ["zip_code_id", "county_extension_office_id"], name: "index_county_ext_offices_on_zip_id_and_id_ceo_id"
   end
 
   create_table "course_enrollments", force: :cascade do |t|
@@ -57,6 +60,7 @@ ActiveRecord::Schema.define(version: 20190613211504) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "name", "state", "created_at"], name: "index_course_enrollments_on_user_id_name_state_created_at"
     t.index ["user_id"], name: "index_course_enrollments_on_user_id"
   end
 
@@ -128,6 +132,7 @@ ActiveRecord::Schema.define(version: 20190613211504) do
     t.boolean "eligible"
     t.index ["eligible"], name: "index_users_on_eligible"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["first_name", "last_name", "email", "zip_code", "role", "created_at"], name: "index_users_on_fname_lname_email_zip_role_created_at"
   end
 
   create_table "zip_codes", force: :cascade do |t|
