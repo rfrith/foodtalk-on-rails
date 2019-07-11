@@ -51,10 +51,12 @@ Rails.application.routes.draw do
       #for loading blog individually w/ rendered navigation/footer
       get 'blog', to: 'blogs#index', as: 'blogs_index'
       get 'blog/load_page/:page/(:category)' => :load_page, as: 'blog_load_page'
+      get 'blog_search/:page/(:search_terms)', to: 'blogs#search', as: 'blog_search'
     end
 
     controller :recipes do
       get 'recipes/load_page/:page/(:tag)' => :load_page, as: 'recipe_load_page'
+      get 'recipe_search/:page/(:search_terms)', to: 'recipes#search', as: 'recipe_search'
     end
 
     controller :videos do

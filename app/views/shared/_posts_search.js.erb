@@ -1,0 +1,57 @@
+$topElement = $('<%= top_element %>');
+$postsGrid = $('#posts-grid');
+$viewMoreButton = $('#view-more-button');
+
+pages=[];
+
+$grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    fitWidth: true
+});
+
+//remove InfiniteScroll.js view more button created automatically on index load
+$('.view-more-button').remove();
+//remove view more button created by this script
+if ($viewMoreButton.length) {
+    $viewMoreButton.remove();
+}
+
+<% #TODO: I18N ME!!!! %>
+var noResultsMsg = '<div id="no-search-results-msg" class="invisible pt-4 d-flex justify-content-center">No results found.  Please try your search again.</span>';
+$postsGrid.append(noResultsMsg);
+$noResultsMsg = $('#no-search-results-msg');
+
+<% if(!@posts.blank?) %>
+
+  $noResultsMsg.remove();
+
+  <%
+  next_page = nil
+  if (@page < @total_pages)
+  next_page = @page + 1
+  end
+  %>
+
+  var postsList = '<%= j render partial: "recipes/recipe_list", locals: {collection: @posts, slugs: @categories} %>\n';
+  // make jQuery object for masonry to use
+  var $postsList = $(postsList);
+
+  <% if(@page == 1) %>
+    $grid.masonry('remove', $('.grid-item'));
+  <% end %>
+
+  $postsList.imagesLoaded( function() {
+      $grid.append( $postsList ).masonry('appended', $postsList);
+      $grid.masonry();
+  });
+
+  <% if(!next_page.blank?) %>
+    <% #TODO: I18N ME!!!!  button_to "Show More..." %>
+    var button = "<div id='view-more-button' class='pt-2 pb-2 d-flex justify-content-center'><%= escape_javascript button_to "Show More...", eval("#{search_path}(search_terms: @search_terms, page: next_page)"), class: "view-more-button btn btn-primary", method: :get, remote: true %></div>";
+    $topElement.append(button);
+  <% end %>
+
+<% else %>
+  $grid.masonry('remove', $('.grid-item'));
+  $noResultsMsg.removeClass('invisible');
+<% end %>

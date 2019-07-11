@@ -2,12 +2,6 @@
 
     var pages = [];
 
-    //unload infinite scroll when user navigates away from page that uses it
-    $(document).on('turbolinks:before-cache', function () {
-        pages = [];
-        $grid.infiniteScroll.destroy();
-    });
-
     <% ((@page+=1)..@total_pages).each { |index| %>
       pages.push('<%= eval(page_path + "(page: index, slug: @slug)") %>');
     <% } %>

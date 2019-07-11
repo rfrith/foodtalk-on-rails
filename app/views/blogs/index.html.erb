@@ -1,19 +1,19 @@
 <%= render partial: 'shared/fancybox_bootstrap_fix' %>
 
-<% cache [create_cache_key_prefix, "blog-index-#{@slug}"], :expires_in => 1.day do %>
+<% #cache [create_cache_key_prefix, "blog-index-#{@slug}"], :expires_in => 1.day do %>
   <div id="blogs" class="content-section2">
     <% if @posts %>
-      <%= render partial: 'shared/posts_index_header', locals: {icon: "blog-icon-med.png", title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_label: t("blog.search"), slugs: @categories} %>
+      <%= render partial: 'shared/posts_index_header', locals: {icon: "blog-icon-med.png", title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_path: "blog_search_path", search_label: t("blog.search"), slugs: @categories} %>
       <% #div id cannot have a hyphen (-) as it will be used as a .js var name %>
       <div id="blogs-grid" class="grid">
         <%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
       </div>
 
       <div class="p-2 d-flex justify-content-center">
-        <button class="view-more-button"><%= t("navigation.load_more") %></button>
+        <button class="view-more-button btn btn-primary"><%= t("navigation.load_more") %></button>
       </div>
 
-  <% else %>
+    <% else %>
       <div class="d-flex justify-content-center">
         <div class="media align-items-center mt-4 ml-5 mr-5">
           <% #TODO: I18n ME! %>
@@ -22,6 +22,6 @@
       </div>
     <% end %>
   </div>
-<% end %>
+<% #end %>
 
 <%= render partial: 'shared/infinite_scroll', cached: false, locals: {page_path: "blog_load_page_path"} %>
