@@ -45,8 +45,7 @@ $noResultsMsg = $('#no-search-results-msg');
   });
 
   <% if(!next_page.blank?) %>
-    <% #TODO: I18N ME!!!!  button_to "Show More..." %>
-    var button = "<div id='view-more-button' class='pt-2 pb-2 d-flex justify-content-center'><%= escape_javascript button_to "Show More...", eval("#{search_path}(search_terms: @search_terms, page: next_page)"), class: "view-more-button btn btn-primary", method: :get, remote: true %></div>";
+    var button = "<div id='view-more-button' class='pt-2 pb-2 d-flex justify-content-center'><%= escape_javascript button_to t("navigation.load_more"), eval("#{search_path}(search_terms: @search_terms, page: next_page)"), class: "view-more-button btn btn-primary", method: :get, remote: true %></div>";
     $topElement.append(button);
   <% end %>
 
