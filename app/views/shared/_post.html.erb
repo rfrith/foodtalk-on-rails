@@ -67,3 +67,8 @@
   </div>
 
 </div>
+
+<% #necessary for reinitializing Bootstrap popover after loading new Ajax content - https://stackoverflow.com/questions/22277300/bootstrap-popover-not-working-when-loaded-with-ajax %>
+<script>
+    $(function () {  $('[data-toggle="popover"]').popover()});
+</script>

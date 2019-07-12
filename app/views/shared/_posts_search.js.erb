@@ -32,7 +32,6 @@ $noResultsMsg = $('#no-search-results-msg');
   end
   %>
 
-  var postsList = '<%= j render partial: "recipes/recipe_list", locals: {collection: @posts, slugs: @categories} %>\n';
   // make jQuery object for masonry to use
   var $postsList = $(postsList);
 

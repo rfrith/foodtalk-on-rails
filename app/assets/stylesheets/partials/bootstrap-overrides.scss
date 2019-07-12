@@ -18,16 +18,16 @@
 }
 
 
-//bootstrap puts blue outline around clicked buttons and makes the link color blue w/ underline
-.btn:focus, .btn:active, .btn-primary:focus, .btn-primary:active, .btn-secondary:focus, .btn-secondary:active  {
+//bootstrap puts blue outline around clicked buttons, etc., and makes the link color blue w/ underline
+.btn:focus, .btn:active, .btn-primary:focus, .btn-primary:active, .btn-secondary:focus, .btn-secondary:active, .dropdown-toggle[aria-expanded="true"]  {
   outline: none !important;
   box-shadow: none !important;
-  color: $primary-font-inverse-color;
+  color: $primary-font-inverse-color !important;
   //border: none;
   text-decoration: none;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
+.btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
   background-color: $primary-fill-color !important;
 }
 

@@ -1,1 +1,4 @@
+<% if(!@posts.blank?) %>
+var postsList = '<%= j render partial: "blogs/blog_list", locals: {collection: @posts, slugs: @categories} %>\n';
+<% end %>
 <%= render :partial => "shared/posts_search", locals: {search_path: "blog_search_path", top_element: "#blogs"} %>
