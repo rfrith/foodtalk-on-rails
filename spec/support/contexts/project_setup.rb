@@ -25,7 +25,10 @@ RSpec.shared_context "project setup" do
   #racial identities
   let!(:white) { FactoryBot.create(:racial_identity, :white) }
   let!(:black) { FactoryBot.create(:racial_identity, :black) }
-
   let!(:tanf) { FactoryBot.create(:federal_assistance, :tanf)}
+
+  #zip codes
+  FactoryBot.create(:zip_code, :eligible)
+  FactoryBot.create(:zip_code, :ineligible)
 
 end

@@ -34,8 +34,8 @@
             <td><%= u.role.titleize %></td>
             <td><%= u.group_names.to_sentence %></td>
             <td>
-              <%= link_to user_path(u.id), remote: true do %>
-                <%= fa_icon('user') %>
+              <%= link_to user_path({id: u.id, org_query: request.fullpath}), remote: true do %>
+                <%= fa_icon('user') %> Details
               <% end %>
             </td>
           </tr>
@@ -47,3 +47,4 @@
     <div class="p-5 h-100 w-100">There is no data to display.</div>
   <% end %>
 </div>
+

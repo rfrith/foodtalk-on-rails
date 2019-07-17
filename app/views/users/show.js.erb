@@ -1,1 +1,1 @@
-$("#users-list").html("<%= j render(partial: 'users/user_detail') %>");
+$("#users-list").html("<%= j render(partial: 'users/user_detail', locals: {back_url: @back_url}) %>");

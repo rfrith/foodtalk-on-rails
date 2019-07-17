@@ -148,7 +148,9 @@ class User < ApplicationRecord
   def is_zip_code_eligible?
     return false if zip_code.nil?
     zip = ZipCode.where(zip: zip_code).first
-    return zip.eligible.present? ? zip.eligible : false
+
+    return zip ? zip.eligible : false
+
   end
 
   def has_received_federal_assistance?

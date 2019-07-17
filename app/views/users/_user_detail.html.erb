@@ -1,6 +1,8 @@
-<div id="user-detail" class="p-3 m-0 rounded">
+<div id="user-list" class="p-3 m-0 rounded">
 
-  <%= render partial: "users/nav" %>
+  <% #render partial: "users/nav" %>
+
+  <%= render partial: "users/nav", locals: {back_url: local_assigns[:back_url]} %>
 
   <% if @user %>
 
@@ -114,35 +116,46 @@
         </tbody>
       </table>
 
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">Food eTalk Modules Started <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::FOOD_ETALK) %></th>
-          <th scope="col">Food eTalk Modules Completed <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::FOOD_ETALK)%></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><%= LearningModules::modules_started_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
-          <td><%= LearningModules::modules_completed_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
-        </tr>
-        </tbody>
-      </table>
+      <br>
 
       <table class="table">
         <thead>
         <tr>
-          <th scope="col">Better U Modules Started <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::BETTER_U)%></th>
-          <th scope="col">Better U Modules Completed <%= "(Program Completed)" if user_has_completed_curriculum?(@user, LearningModules::BETTER_U)%></th>
+          <th scope="col" colspan="2">Food eTalk Progress</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td><%= LearningModules::modules_started_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
-          <td><%= LearningModules::modules_completed_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+          <td scope="col"><strong>Started:</strong> <%= curriculum_start_date(@user, LearningModules::FOOD_ETALK) %></td>
+          <td scope="col"><strong>Completed:</strong> <%= curriculum_completion_date(@user, LearningModules::FOOD_ETALK) %></td>
+        </tr>
+        <tr>
+          <td><strong>Modules Started: </strong><%= LearningModules::modules_started_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
+          <td><strong>Modules Completed: </strong><%= LearningModules::modules_completed_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
         </tr>
         </tbody>
       </table>
+
+      <br>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col" colspan="2">Better U Progress</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td scope="col"><strong>Started:</strong> <%= curriculum_start_date(@user, LearningModules::BETTER_U) %></td>
+          <td scope="col"><strong>Completed:</strong> <%= curriculum_completion_date(@user, LearningModules::BETTER_U) %></td>
+        </tr>
+        <tr>
+          <td><strong>Modules Started: </strong><%= LearningModules::modules_started_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+          <td><strong>Modules Completed: </strong><%= LearningModules::modules_completed_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+        </tr>
+        </tbody>
+      </table>
+
     </div>
 
   <% else %>

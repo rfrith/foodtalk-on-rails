@@ -1,14 +1,14 @@
 <div class="m-0 p-0 pb-2 row no-gutters">
 
-  <% if(false) %>
+  <% if (local_assigns[:back_url]) %>
   <div class="col-1">
-    <%= link_to fa_icon('arrow-left') + " Back", 'javascript:history.back()' %>
+    <%= link_to fa_icon('arrow-left') + " Back", back_url, remote: true %>
   </div>
   <% end %>
 
   <div class="col-5">
     <% if(@users) %>
-      <%= paginate @users, remote: remote_paging %>
+      <%= paginate @users, remote: local_assigns[:remote_paging] ? remote_paging : false %>
     <% end %>
   </div>
 

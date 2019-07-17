@@ -55,11 +55,26 @@ module CurriculumHelper
     return nil
   end
 
+  def curriculum_start_date(user, curriculum)
+    start_date = nil
+    curriculum.each do |c|
+      e = user.course_enrollments.by_name(c[:id]).first
+      if(!e.blank?)
+        date = e.updated_at
+        start_date ||= date
+        if date > start_date
+          start_date = date
+        end
+      end
+    end
+    return start_date ? start_date.strftime("%m/%d/%Y") : "N/A"
+  end
+
+
   def curriculum_completion_date(user, curriculum)
     completion_date = nil
     if user_has_completed_curriculum?(user, curriculum)
       curriculum.each do |c|
-        #completion_date = Date.new
         e = user.course_enrollments.by_name(c[:id]).last
         if(!e.blank?)
           date = e.updated_at
@@ -70,7 +85,7 @@ module CurriculumHelper
         end
       end
     end
-    return completion_date
+    return completion_date ? completion_date.strftime("%m/%d/%Y") : "N/A"
   end
 
 end

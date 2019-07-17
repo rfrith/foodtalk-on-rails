@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     authorize @current_user
     id = params[:id]
+    @back_url = params[:org_query]
     begin
       @user = User.find(id) unless id.nil?
     rescue => e
@@ -95,7 +96,9 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      format.js
+      format.js {
+        render template: "users/update_user_list"
+      }
     end
 
   end
@@ -122,6 +125,13 @@ class UsersController < ApplicationController
 
       @users = users.page params[:page]
 
+      respond_to do |format|
+        format.html
+        format.js {
+          render template: "users/update_user_list"
+        }
+      end
+
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
     end
@@ -144,7 +154,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js
+      format.js {
+        render template: "users/update_user_list"
+      }
     end
 
   end
@@ -173,6 +185,13 @@ class UsersController < ApplicationController
       group = Group.find_by_name(group_name)
       @users = group.users.where(where_string, where_params).page params[:page]
     end
+
+    respond_to do |format|
+      format.html
+      format.js {
+        render template: "users/update_user_list"
+      }
+    end
   end
 
   def find_by_eligibility
@@ -192,6 +211,13 @@ class UsersController < ApplicationController
       end
 
       @users = users.page params[:page]
+
+      respond_to do |format|
+        format.html
+        format.js {
+          render template: "users/update_user_list"
+        }
+      end
 
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
@@ -222,6 +248,13 @@ class UsersController < ApplicationController
       end
 
       @users = group_users.page params[:page]
+
+      respond_to do |format|
+        format.html
+        format.js {
+          render template: "users/update_user_list"
+        }
+      end
 
     rescue Exception => e
       logger.error "Cannot find users with supplied query: #{e.inspect}"
@@ -260,6 +293,15 @@ class UsersController < ApplicationController
       end
     end
     @users = Kaminari.paginate_array(users).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js {
+        render template: "users/update_user_list"
+      }
+    end
+
+
   end
 
 
@@ -296,6 +338,14 @@ class UsersController < ApplicationController
     end
 
     @users = Kaminari.paginate_array(found_users).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js {
+        render template: "users/update_user_list"
+      }
+    end
+
   end
 
 
