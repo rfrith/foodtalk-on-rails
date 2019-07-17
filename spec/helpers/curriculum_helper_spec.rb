@@ -120,16 +120,16 @@ describe CurriculumHelper, type: :helper do
 
   describe "curriculum_completion_date" do
     it "returns the correct completion date for food etalk" do
-      expect(helper.curriculum_completion_date(user_has_completed_food_etalk, LearningModules::FOOD_ETALK).strftime("%B %d, %Y")).to eq Date.today.strftime("%B %d, %Y")
+      expect(helper.curriculum_completion_date(user_has_completed_food_etalk, LearningModules::FOOD_ETALK)).to eq Date.today.strftime("%B %d, %Y")
     end
 
     it "returns the correct completion date for better u" do
-      expect(helper.curriculum_completion_date(user_has_completed_better_u, LearningModules::BETTER_U).strftime("%B %d, %Y")).to eq Date.today.strftime("%B %d, %Y")
+      expect(helper.curriculum_completion_date(user_has_completed_better_u, LearningModules::BETTER_U)).to eq Date.today.strftime("%B %d, %Y")
     end
 
     it "returns nil if user has not completed curricula" do
-      expect(helper.curriculum_completion_date(user, LearningModules::BETTER_U)).to be nil
-      expect(helper.curriculum_completion_date(user, LearningModules::FOOD_ETALK)).to be nil
+      expect(helper.curriculum_completion_date(user, LearningModules::BETTER_U)).to eq "N/A"
+      expect(helper.curriculum_completion_date(user, LearningModules::FOOD_ETALK)).to eq "N/A"
     end
   end
 

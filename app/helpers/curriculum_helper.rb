@@ -67,7 +67,7 @@ module CurriculumHelper
         end
       end
     end
-    return start_date ? start_date.strftime("%m/%d/%Y") : "N/A"
+    return start_date ? start_date.strftime("%B %d, %Y") : "N/A"
   end
 
 
@@ -85,7 +85,7 @@ module CurriculumHelper
         end
       end
     end
-    return completion_date ? completion_date.strftime("%m/%d/%Y") : "N/A"
+    return completion_date ? completion_date.strftime("%B %d, %Y") : "N/A"
   end
 
 end
