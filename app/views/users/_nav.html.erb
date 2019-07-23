@@ -1,17 +1,17 @@
 <div class="m-0 p-0 pb-2 row no-gutters">
 
   <% if (local_assigns[:back_url]) %>
-  <div class="col-1">
+  <div class="col-auto">
     <%= link_to fa_icon('arrow-left') + " Back", back_url, remote: true %>
   </div>
   <% end %>
 
-  <div class="col-5">
+  <div class="col-auto">
     <% if(@users) %>
       <%= paginate @users, remote: local_assigns[:remote_paging] ? remote_paging : false %>
     <% end %>
   </div>
-
-  <%= render :partial => "users/find_user_form" %>
-
+  <div class="col-auto">
+    <%= render :partial => "users/find_user_form" %>
+  </div>
 </div>

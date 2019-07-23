@@ -1,161 +1,166 @@
-<div id="user-list" class="p-3 m-0 rounded">
-
-  <% #render partial: "users/nav" %>
+<div id="user-list" class="">
 
   <%= render partial: "users/nav", locals: {back_url: local_assigns[:back_url]} %>
 
+  <br>
+
   <% if @user %>
 
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col" colspan="2">Email</th>
-          <% if(@current_user.super_admin?) %>
-          <th scope="col">Roles</th>
-          <% end %>
-          <th scope="col">Group Affiliations</th>
-          <th scope="col">UID</th>
-          <th scope="col">Sign Up Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><%= @user.name %></td>
-          <td colspan="2"><%= @user.email %></td>
+    <div>
+      <details open>
+        <summary><strong>Personal Information</strong></summary>
+        <div class="row p-2">
+          <div class="col">
+            <strong>Name:</strong> <%= @user.name %>
+            <br>
+            <strong>Email:</strong> <%= @user.email %>
+            <br>
+            <strong>UID:</strong> <%= @user.uid %>
+            <br>
+            <strong>Sign Up Date:</strong> <%= @user.created_at.strftime('%m/%d/%Y') %>
+            <br>
+            <strong>SNAP-Ed Eligible:</strong> <%= t @user.is_eligible?.class %>
+            <br>
+          </div>
+          <div class="col">
+            <strong>Gender:</strong> <%= @user.gender %>
+            <br>
+            <strong>Age:</strong> <%= @user.age %>
+            <br>
+            <strong>Zip Code:</strong> <%= @user.zip_code %>
+            <br>
+            <strong>Hispanic/Latino:</strong> <%= t @user.is_hispanic_or_latino.class %>
+            <br>
+            <strong>Racial Identity:</strong> <%= t @user.racial_identities_names.to_sentence %>
+          </div>
+        </div>
+        <br>
+      </details>
+    </div>
 
-          <% if(@current_user.super_admin?) %>
-          <td>
-            <%= form_with(url: update_user_roles_path) do |f| %>
-              <%= hidden_field :user, :id %>
-              <% User.roles.each do |name, qty| %>
-                <%= radio_button_tag name, name, @user.role == name, name: 'user[role]', class: "col-form-label-md", disabled: !@current_user.super_admin? %>
-                <%= label_tag name, name.titleize %>
-                <br>
-              <% end %>
-              <%= f.submit("Update Roles", class: "btn btn-primary btn-sm") %>
+
+
+    <div>
+      <details open>
+        <summary><strong>Roles/Group Affiliations</strong></summary>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <% if(@current_user.super_admin?) %>
+              <th scope="col">Roles</th>
             <% end %>
-          </td>
-          <% end %>
-
-
-          <% if(@current_user.is_admin?) %>
-          <td>
-            <%= form_with(url: update_user_groups_path) do |f| %>
-              <%= hidden_field :user, :id %>
-
-              <%
-                if(@current_user.super_admin? || @current_user.admin?)
-                  groups = Group.all
-                elsif(@current_user.group_admin?)
-                  groups = @user.groups.where(id: @current_user.groups)
-                end
-              %>
-
-              <% if @user.groups.empty? %>
-                <% #visual aid so users with no group assignment; won't ever get sent w/ form since disable=true %>
-                <%= check_box_tag "foodtalk-user", "foodtalk-user", true, class: "col-form-label-md", disabled: true %>
-                <%= label_tag "foodtalk-user", "Foodtalk User" %>
-                <br>
-              <% end %>
-
-              <% groups.each do |g| %>
-                <%= check_box_tag g.id, g.id, @user.groups.include?(g), name: 'user[group_ids][]', class: "col-form-label-md", disabled: !@current_user.super_admin? %>
-                <%= label_tag g.id, g.name.titleize %>
-                <br>
-              <% end %>
-              <% if(@current_user.super_admin?) %>
-                <%= f.submit("Update Groups", class: "btn btn-primary btn-sm") %>
-              <% end %>
+            <th scope="col">Group Affiliations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <% if(@current_user.super_admin?) %>
+              <td>
+                <%= form_with(url: update_user_roles_path) do |f| %>
+                  <%= hidden_field :user, :id %>
+                  <% User.roles.each do |name, qty| %>
+                    <%= radio_button_tag name, name, @user.role == name, name: 'user[role]', class: "col-form-label-md", disabled: !@current_user.super_admin? %>
+                    <%= label_tag name, name.titleize %>
+                    <br>
+                  <% end %>
+                  <%= f.submit("Update Roles", class: "btn btn-primary btn-sm") %>
+                <% end %>
+              </td>
             <% end %>
-            <% get_group_links(@user) %>
-          </td>
 
-          <% end %>
 
-          <td><%= @user.uid %></td>
-          <td><%= @user.created_at.strftime('%Y-%m-%d') %></td>
-        </tr>
-        </tbody>
-      </table>
+            <% if(@current_user.is_admin?) %>
+              <td>
+                <%= form_with(url: update_user_groups_path) do |f| %>
+                  <%= hidden_field :user, :id %>
 
-      <table class="table">
-        <thead>
-        <tr class="pt-4">
-          <th scope="col">Gender</th>
-          <th scope="col">Age</th>
-          <th scope="col">Zip Code</th>
-          <th scope="col">Hispanic/Latino?</th>
-          <th scope="col">Eligible?</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><%= @user.gender %></td>
-          <td><%= @user.age %></td>
-          <td><%= @user.zip_code %></td>
-          <td><%= t @user.is_hispanic_or_latino.class %></td>
-          <td><%= t @user.is_eligible?.class %></td>
-        </tr>
-        </tbody>
-      </table>
+                  <%
+                    if(@current_user.super_admin? || @current_user.admin?)
+                      groups = Group.all
+                    elsif(@current_user.group_admin?)
+                      groups = @user.groups.where(id: @current_user.groups)
+                    end
+                  %>
 
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">Racial Identities</th>
-          <th scope="col">Federal Assistances</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><%= @user.racial_identities_names.to_sentence %></td>
-          <td><%= @user.federal_assistances_names.to_sentence %></td>
-        </tr>
-        </tbody>
-      </table>
+                  <% if @user.groups.empty? %>
+                    <% #visual aid so users with no group assignment; won't ever get sent w/ form since disable=true %>
+                    <%= check_box_tag "foodtalk-user", "foodtalk-user", true, class: "col-form-label-md", disabled: true %>
+                    <%= label_tag "foodtalk-user", "Foodtalk User" %>
+                    <br>
+                  <% end %>
 
-      <br>
+                  <% groups.each do |g| %>
+                    <%= check_box_tag g.id, g.id, @user.groups.include?(g), name: 'user[group_ids][]', class: "col-form-label-md", disabled: !@current_user.super_admin? %>
+                    <%= label_tag g.id, g.name.titleize %>
+                    <br>
+                  <% end %>
+                  <% if(@current_user.super_admin?) %>
+                    <%= f.submit("Update Groups", class: "btn btn-primary btn-sm") %>
+                  <% end %>
+                <% end %>
+                <% get_group_links(@user) %>
+              </td>
 
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col" colspan="2">Food eTalk Progress</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td scope="col"><strong>Started:</strong> <%= curriculum_start_date(@user, LearningModules::FOOD_ETALK) %></td>
-          <td scope="col"><strong>Completed:</strong> <%= curriculum_completion_date(@user, LearningModules::FOOD_ETALK) %></td>
-        </tr>
-        <tr>
-          <td><strong>Modules Started: </strong><%= LearningModules::modules_started_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
-          <td><strong>Modules Completed: </strong><%= LearningModules::modules_completed_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
-        </tr>
-        </tbody>
-      </table>
+            <% end %>
 
-      <br>
+          </tr>
+          </tbody>
+        </table>
 
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col" colspan="2">Better U Progress</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td scope="col"><strong>Started:</strong> <%= curriculum_start_date(@user, LearningModules::BETTER_U) %></td>
-          <td scope="col"><strong>Completed:</strong> <%= curriculum_completion_date(@user, LearningModules::BETTER_U) %></td>
-        </tr>
-        <tr>
-          <td><strong>Modules Started: </strong><%= LearningModules::modules_started_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
-          <td><strong>Modules Completed: </strong><%= LearningModules::modules_completed_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
-        </tr>
-        </tbody>
-      </table>
+      </details>
+    </div>
 
+
+    <div>
+      <details open>
+        <summary><strong>Federal Assistances</strong></summary>
+        <table class="table">
+          <tbody>
+          <tr>
+            <td><%= @user.federal_assistances_names.to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+
+    <div>
+      <details open>
+        <summary><strong>Food eTalk Progress</strong></summary>
+
+        <table class="table">
+          <tbody>
+          <tr>
+            <td scope="col"><strong>Program Started:</strong> <%= curriculum_start_date(@user, LearningModules::FOOD_ETALK) %></td>
+            <td scope="col"><strong>Program Completed:</strong> <%= curriculum_completion_date(@user, LearningModules::FOOD_ETALK) %></td>
+          </tr>
+          <tr>
+            <td><strong>Modules Started: </strong><%= LearningModules::modules_started_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
+            <td><strong>Modules Completed: </strong><%= LearningModules::modules_completed_by_user_names(LearningModules::FOOD_ETALK, @user).to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+
+      </details>
+    </div>
+
+    <div>
+      <details open>
+        <summary><strong>Better U Progress</strong></summary>
+        <table class="table">
+          <tbody>
+          <tr>
+            <td scope="col"><strong>Program Started:</strong> <%= curriculum_start_date(@user, LearningModules::BETTER_U) %></td>
+            <td scope="col"><strong>Program Completed:</strong> <%= curriculum_completion_date(@user, LearningModules::BETTER_U) %></td>
+          </tr>
+          <tr>
+            <td><strong>Modules Started: </strong><%= LearningModules::modules_started_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+            <td><strong>Modules Completed: </strong><%= LearningModules::modules_completed_by_user_names(LearningModules::BETTER_U, @user).to_sentence %></td>
+          </tr>
+          </tbody>
+        </table>
+      </details>
     </div>
 
   <% else %>

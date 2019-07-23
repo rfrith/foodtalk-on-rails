@@ -1,3 +1,15 @@
+<% content_for :head do %>
+
+  <meta property="og:url" content="<%= show_blog_url(@post['id'])%>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="<%== @title %>" />
+  <meta property="og:description" content="<%== @post["excerpt"]["rendered"].html_safe %>" />
+  <% if should_show_post_featured_image %>
+  <meta property="og:image" content="<%= @featured_image %>" />
+  <% end %>
+
+<% end %>
+
 <div id="blog-post" class="content-section2">
   <%= render :partial => "shared/post_details" %>
 </div>

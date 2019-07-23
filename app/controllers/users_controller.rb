@@ -11,8 +11,7 @@ class UsersController < ApplicationController
     begin
       @user = User.find(id) unless id.nil?
     rescue => e
-      #TODO: I18N ME!
-      add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+      add_notification :error, t(:error), "#{t("error_occurred")}: #{e.to_s}", false
     end
 
     respond_to do |format|
@@ -58,9 +57,7 @@ class UsersController < ApplicationController
         raise "Invalid User or Group supplied."
       end
     rescue => e
-      #TODO: IMPLEMENT/FIX ME!
-      #TODO: I18N ME!
-      add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+      add_notification :error, t(:error), "#{t("error_occurred")}: #{e.to_s}", false
     end
   end
 
@@ -77,9 +74,7 @@ class UsersController < ApplicationController
         raise "Invalid User or Role supplied."
       end
     rescue => e
-      #TODO: IMPLEMENT/FIX ME!
-      #TODO: I18N ME!
-      add_notification :error, t(:error), "The following error occurred: #{e.to_s}", false
+      add_notification :error, t(:error), "#{t("error_occurred")}: #{e.to_s}", false
     end
   end
 
@@ -430,7 +425,7 @@ class UsersController < ApplicationController
         end
       end
     rescue => e
-      @current_user.errors.add(:base, :subscription_error, message: "#{t("error_occurred")} #{e.to_s}")
+      @current_user.errors.add(:base, :subscription_error, message: "#{t("error_occurred")}: #{e.to_s}")
     end
   end
 

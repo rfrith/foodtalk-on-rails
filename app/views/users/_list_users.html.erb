@@ -1,5 +1,4 @@
-<div id="users-list" class="p-3 m-0 rounded">
-
+<div id="users-list" class="no-gutters p-2 pt-3 m-0 rounded">
   <%= render partial: "users/nav", locals: {remote_paging: should_remote_paging} %>
 
   <% if(!@users.blank?) %>
@@ -23,7 +22,9 @@
         <tbody>
         <% @users.each do |u| %>
           <tr>
-            <td><%= u.name %></td>
+            <td>
+              <%= link_to u.name, user_path({id: u.id, org_query: request.fullpath}), remote: true %>
+            </td>
             <td><%= u.email %></td>
             <td><%= u.gender %></td>
             <td><%= u.age %></td>
@@ -34,9 +35,7 @@
             <td><%= u.role.titleize %></td>
             <td><%= u.group_names.to_sentence %></td>
             <td>
-              <%= link_to user_path({id: u.id, org_query: request.fullpath}), remote: true do %>
-                <%= fa_icon('user') %> Details
-              <% end %>
+              <%= link_to "Details", user_path({id: u.id, org_query: request.fullpath}), remote: true %>
             </td>
           </tr>
         <% end %>

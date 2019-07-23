@@ -33,7 +33,7 @@ es:
   success: "Éxito"
   info: "Atención"
   error: "Error"
-  error_occurred: "El siguiente error ha ocurrido:"
+  error_occurred: "El siguiente error ha ocurrido"
   changes_saved: "Cambios guardados."
   social_media_prompt: "Para recetas y más:"
   language_select_label: "English"
