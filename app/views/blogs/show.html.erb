@@ -1,10 +1,10 @@
 <% content_for :head do %>
-
+  <meta property="fb:app_id" content="" />
   <meta property="og:url" content="<%= show_blog_url(@post['id'])%>" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="<%== @title %>" />
-  <meta property="og:description" content="<%== @post["excerpt"]["rendered"].html_safe %>" />
-  <meta property="og:image" content="<%= @featured_image %>" />
+  <meta property="og:title" content="<%== ActionView::Base.full_sanitizer.sanitize @title %>" />
+  <meta property="og:description" content="<%== ActionView::Base.full_sanitizer.sanitize @post["excerpt"]["rendered"] %>" />
+  <meta property="og:image" content="<%= ActionView::Base.full_sanitizer.sanitize @featured_image %>" />
 
 <% end %>
 
