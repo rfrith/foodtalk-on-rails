@@ -1,4 +1,4 @@
-<% cache [create_cache_key_prefix, "recent-recipes"], :expires_in => 1.week do %>
+<% cache [create_cache_key_prefix, "recent-recipes"], :expires_in => 1.day do %>
 <div id="featured-recipes" class="content-section">
   <%= render partial: "shared/post_title_block", locals: {inverse: true, icon: "recipe-graphic-sm.png", title: t("welcome.recipes.title"), description: t("welcome.recipes.description")}%>
   <div class="mx-auto recipes-deck w-100">

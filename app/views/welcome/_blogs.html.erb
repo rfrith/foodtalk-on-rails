@@ -1,4 +1,4 @@
-<% cache [create_cache_key_prefix, "recent-blogs"], :expires_in => 1.week do %>
+<% cache [create_cache_key_prefix, "recent-blogs"], :expires_in => 1.day do %>
   <div id="featured-blogs" class="content-section2">
     <%= render partial: "shared/post_title_block", locals: {inverse: false, icon: "blog-icon-med.png", title: t("welcome.blog.title"), description: t("welcome.blog.description")}%>
     <div class="grid">

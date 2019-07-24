@@ -1,5 +1,5 @@
 <% avatar = DomainGroups::get_domain_group_logo(request.host) %>
-<% cache [create_cache_key_prefix, "header"], :expires_in => 1.week do %>
+<% cache [create_cache_key_prefix, "header"], :expires_in => 1.day do %>
 
 <div id="header" class="d-flex hero">
 
@@ -77,10 +77,10 @@
       <div class="mr-2">
 
         <% if !user_signed_in? %>
-        <div class="flex-row">
+        <div class="">
           <%= link_to login_url do %>
             <span class="badge badge-secondary hero-subtitle">
-              <%= fa_icon("user") %> <%= t("navigation.login") %>
+              <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
             </span>
           <% end %>
           <span class="hero-subtitle">

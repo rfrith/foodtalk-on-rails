@@ -7,7 +7,7 @@
     <% end %>
   <% end %>
 
-  <div class="flex-row d-block d-md-none">
+  <div class="d-block d-md-none">
     <div class="d-flex justify-content-center">
       <div class="h4">
         <span class="flex-fill mr-0">
@@ -44,14 +44,14 @@
 
         <% if user_signed_in? %>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon('dashboard', class: "align-middle") + " #{t("navigation.my_dashboard")}", show_dashboard_path, class: "badge badge-secondary", data: {turbolinks: false} %>
+            <%= link_to fa_icon('user', class: "align-middle") + " #{t("navigation.my_dashboard")}", show_dashboard_path, class: "badge badge-secondary", data: {turbolinks: false} %>
           </span>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.logout")}", logout_path, class: "badge badge-secondary" %>
+            <%= link_to fa_icon("sign-out", class: "align-middle") + " #{t("navigation.logout")}", logout_path, class: "badge badge-secondary" %>
           </span>
         <% else %>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
+            <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
           </span>
         <% end %>
 
@@ -104,18 +104,17 @@
         </div>
       </li>
 
-      <% if(Rails.application.secrets.i18n_enabled) %>
+      <%
+        if(Rails.application.secrets.i18n_enabled)
+      %>
       <li class="nav-item">
-        <%= link_to(t("language_select_label"), "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
+        <%= link_to(fa_icon("language") + " #{t('language_select_value').upcase}", "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
       </li>
       <% end %>
 
-    </ul>
-
-    <ul class="navbar-nav">
       <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
-            <%= link_to( fa_icon('user') + " #{t("navigation.my_dashboard")}" , { controller: "dashboard", action: "show" }, class: "nav-link", data: {turbolinks: false}) %>
+            <%= link_to( t("navigation.my_dashboard"), { controller: "dashboard", action: "show" }, class: "nav-link", data: {turbolinks: false}) %>
           </li>
           <li class="nav-item" data-turbolinks="false">
             <%= link_to(t("navigation.logout"), logout_path, class: "nav-link mr-auto") %>

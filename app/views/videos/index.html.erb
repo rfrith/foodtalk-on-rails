@@ -1,11 +1,11 @@
-<%# cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.week do %>
+<% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.day do %>
   <div id="videos" class="content-section2">
   <div class="pb-0 bg-white">
     <%= render partial: "shared/videos_title_block", locals: {title: t("videos.name"), description: t("videos.description")} %>
   </div>
 
   <% if !@playlists.blank? && !@videos.blank? && !@playlists["items"].blank? %>
-  <div class="flex-row no-gutters sticky-top white-bg">
+  <div class="no-gutters sticky-top white-bg">
     <div class=" d-flex justify-content-center categories-title">
       <%= t("header.categories") %>
     </div>
@@ -48,6 +48,6 @@
     </div>
   <% end %>
 </div>
-<%# end %>
+<% end %>
 
 <%= render partial: 'videos/infinite_scroll', cached: false, locals: {page_path: video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken)} %>
