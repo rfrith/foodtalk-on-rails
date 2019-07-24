@@ -11,81 +11,59 @@
     <div class="d-flex justify-content-center">
       <div class="h4">
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("home", class: " align-middle") + " Home", root_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("home", class: " align-middle") + " Home", root_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("rss", class: "align-middle") + " #{t("navigation.blog")}", blogs_index_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("rss", class: "align-middle") + " #{t("navigation.blog")}", blogs_index_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("cutlery", class: "align-middle") + " #{t("navigation.recipes")}", recipes_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("cutlery", class: "align-middle") + " #{t("navigation.recipes")}", recipes_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("play", class: "align-middle") + " #{t("navigation.videos")}", videos_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("play", class: "align-middle") + " #{t("navigation.videos")}", videos_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("book", class: "align-middle") + " #{t("navigation.food_glossary")}", food_glossary_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("book", class: "align-middle") + " #{t("navigation.food_glossary")}", food_glossary_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-secondary" %>
         </span>
 
         <span class="flex-fill mr-0">
-          <%= link_to fa_icon("graduation-cap", class: "align-middle") + " #{t("navigation.learn_online")}", learn_online_path, class: "badge badge-warning" %>
+          <%= link_to fa_icon("graduation-cap", class: "align-middle") + " #{t("navigation.learn_online")}", learn_online_path, class: "badge badge-secondary" %>
         </span>
 
         <% if user_signed_in? %>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon('dashboard', class: "align-middle") + " #{t("navigation.my_dashboard")}", show_dashboard_path, class: "badge badge-warning", data: {turbolinks: false} %>
+            <%= link_to fa_icon('dashboard', class: "align-middle") + " #{t("navigation.my_dashboard")}", show_dashboard_path, class: "badge badge-secondary", data: {turbolinks: false} %>
           </span>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.logout")}", logout_path, class: "badge badge-warning" %>
+            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.logout")}", logout_path, class: "badge badge-secondary" %>
           </span>
         <% else %>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-warning" %>
+            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
           </span>
         <% end %>
 
         <% if Rails.application.secrets.i18n_enabled %>
         <span class="flex-fill">
-          <%= link_to fa_icon("language", class: "align-middle") + " #{t("switch_language")}", "/#{t('language_select_value').to_sym}", class: "badge badge-warning" %>
+          <%= link_to fa_icon("language", class: "align-middle") + " #{t("switch_language")}", "/#{t('language_select_value').to_sym}", class: "badge badge-secondary" %>
         </span>
         <% end %>
       </div>
 
     </div>
 
-    <% if false %>
-      <div class="d-flex text-center mt-2 lg-icon-group">
-        <div class="h2 flex-fill">
-          <a class="badge badge-success mr-1" href="https://www.facebook.com/FoodeTalk" target="_blank"><%= fa_icon('facebook-square') %></a>
-        </div>
-        <div class="h2 flex-fill">
-          <a class="badge badge-success mr-1" href="https://instagram.com/foodetalk" target="_blank"><%= fa_icon('instagram') %></a>
-        </div>
-        <div class="h2 flex-fill">
-          <a class="badge badge-success mr-1" href="https://www.youtube.com/channel/UCDe5pmhN2kt9RIKJAaHikCg?sub_confirmation=1" target="_blank"><%= fa_icon('youtube-square') %></a>
-        </div>
-        <div class="h2 flex-fill">
-          <a class="badge badge-success mr-1" href="https://www.pinterest.com/foodetalk" target="_blank"><%= fa_icon('pinterest-square') %></a>
-        </div>
-        <div class="h2 flex-fill">
-          <a class="badge badge-success mr-1" href="https://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=FoodeTalk" target="_blank"><%= fa_icon('twitter-square') %></a>
-        </div>
-        <div class="h2 flex-fill">
-          <a class="badge badge-success mr-1" href="mailto:foodtalk@uga.edu" target="_blank"><%= fa_icon('envelope-o') %></a>
-        </div>
-      </div>
-    <% end %>
   </div>
 
 

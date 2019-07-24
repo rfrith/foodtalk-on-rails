@@ -2,86 +2,32 @@
  * Bootstrap Overrides
  */
 
-.btn-primary {
-  background-color: $primary-fill-color;
-  color: $primary-font-inverse-color;
-  border: none;
-  text-decoration: none;
-}
+/*
+  import the necessary Bootstrap files - https://stackoverflow.com/questions/38792005/how-to-change-the-bootstrap-primary-color
+ */
 
+@import "bootstrap/functions";
+@import "bootstrap/variables";
 
-.btn-secondary {
-  background-color: $secondary-fill-color;
-  color: $primary-font-inverse-color;
-  border: none;
-  text-decoration: none;
-}
+$theme-colors: (
+        primary: $primary-fill-color,
+        info: $secondary-fill-color,
+        secondary: $orange-fill-color
+);
 
+@import "bootstrap";
 
 //bootstrap puts blue outline around clicked buttons, etc., and makes the link color blue w/ underline
-.btn:focus, .btn:active, .btn-primary:focus, .btn-primary:active, .btn-secondary:focus, .btn-secondary:active, .dropdown-toggle[aria-expanded="true"]  {
+.dropdown-toggle[aria-expanded="true"], summary:focus, summary:active {
   outline: none !important;
   box-shadow: none !important;
-  color: $primary-font-inverse-color !important;
-  //border: none;
   text-decoration: none;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open, .dropdown-toggle.btn-primary, .btn-primary:active:focus {
-  background-color: $primary-fill-color !important;
+
+.badge-secondary, .badge-secondary:hover, .badge-secondary:active {
+  color: white !important;
 }
-
-.btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:active:focus {
-  color: $primary-fill-color;
-  border-color: $primary-fill-color;
-  background-color: $primary-font-inverse-color;
-}
-
-
-
-.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open, .dropdown-toggle.btn-secondary, .btn-secondary:active:focus {
-  background-color: $secondary-fill-color !important;
-}
-
-
-
-
-
-
-.badge {
-}
-.badge:hover {
-  cursor: pointer;
-}
-.badge-error {
-}
-.badge-error:hover {
-}
-.badge-warning {
-  color: $primary-font-inverse-color !important;
-  background-color: $orange-fill-color;
-}
-.badge-warning:hover {
-  background-color: #de784a !important;
-}
-.badge-success {
-}
-.badge-success:hover {
-}
-.badge-info {
-}
-.badge-info:hover {
-}
-.badge-inverse {
-}
-.badge-inverse:hover {
-}
-
-
-
-
-
-
 
 
 
@@ -173,6 +119,10 @@
   background-color: white;
   color: $primary-fill-color;
 }
+
+
+
+//for kaminari pagination component
 
 .pagination > li > a:focus,
 .pagination > li > a:hover,

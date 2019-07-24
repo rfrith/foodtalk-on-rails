@@ -4,38 +4,45 @@
     <%= render partial: "shared/post_title_block", locals: {inverse: false, icon: icon, title: title, description: description}%>
   </div>
 
-  <div class="flex-row no-gutters sticky-top white-bg">
-    <div class="flex-col d-flex justify-content-center">
-      <div class="text-center">
-        <div class="flex-col d-flex justify-content-center categories-title">
-          <%= t("header.categories") %>
-        </div>
+  <div class="no-gutters sticky-top white-bg">
 
-        <% base_css = 'badge mb-1 ml-1 border border-secondary' %>
+    <div class="text-center">
+
+      <div class="categories-title">
+        <%= t("header.categories") %>
+      </div>
+
+      <div class="flex-column">
+        <% base_css = 'badge mb-1 ml-1 border' %>
         <% #TODO: I18N ME!!!! "All Posts" %>
-        <%= link_to "All Posts", eval("#{index_path}"), class: base_css + (@all_posts ? ' btn-primary' : ' btn-light'), role: 'button' %>
+        <%= link_to "All Posts", eval("#{index_path}"), class: base_css + (@all_posts ? ' badge-primary' : ' badge-light'), role: 'button' %>
 
         <% if slugs %>
           <% slugs.each do |s| %>
-            <%= link_to s["name"], eval("#{index_path}" + '(slug: s["slug"])'), class: base_css + ((@slug && (s["slug"] == @slug)) ? ' btn-primary' : ' btn-light'), role: 'button' %>
+            <%= link_to s["name"], eval("#{index_path}" + '(slug: s["slug"])'), class: base_css + ((@slug && (s["slug"] == @slug)) ? ' badge-primary' : ' badge-light'), role: 'button' %>
           <% end %>
         <% end %>
-
-        <%= form_with id: "search-posts", url: eval("#{search_path}(search_terms: '', page: @page)"), class: "form-inline", method: :get do |form| %>
-          <div class="input-group mt-1">
-            <%= form.label(:s, search_label, class: "ml-2") %>
-            <%= form.text_field(:search_terms, class: "ml-2 form-control form-control-sm rounded-left", placeholder: t("forms.search_terms"), value: @search_terms) %>
-            <span class="input-group-append">
-                <%= form.submit(t("forms.search_submit"), class: "mr-2 btn btn-sm btn-primary") %>
-            </span>
-          </div>
-        <% end %>
-
       </div>
+
     </div>
 
-    <%= render partial: "shared/scroll_down_for_more" %>
+  </div>
 
+  <div class="no-gutters row d-flex justify-content-center white-bg pt-4">
+    <%= form_with id: "search-posts", url: eval("#{search_path}(search_terms: '', page: @page)"), class: "form-inline", method: :get do |form| %>
+      <div class="input-group mt-1">
+        <%= form.label(:s, search_label, class: "ml-2") %>
+        <%= form.text_field(:search_terms, class: "ml-2 form-control form-control-sm rounded-left", placeholder: t("forms.search_terms"), value: @search_terms) %>
+        <span class="input-group-append">
+              <%= form.submit(t("forms.search_submit"), class: "mr-2 btn btn-sm btn-primary") %>
+          </span>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="no-gutters row d-flex justify-content-center white-bg">
+    <%= render partial: "shared/scroll_down_for_more" %>
   </div>
 
 </div>
