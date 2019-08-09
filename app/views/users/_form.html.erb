@@ -64,18 +64,20 @@
 
   <%= hidden_field_tag "user[subscription_ids][]", nil %>
 
-  <% if(!@subscriptions.empty?) %>
-  <div class="form-row">
-    <div class="col-auto">
-      <%= form.label t("dashboard.newsletters.label"), class: "font-weight-bold col-form-label-md" %>
-      <div class=""><%= t("dashboard.newsletters.opt_in") %></div>
-      <%= render partial: "users/list_subscriptions_checkboxes" %>
-    </div>
-  </div>
+  <% if policy(:site_access).subscribe_to_newsletter? %>
 
-  <% else %>
-    <% #TODO: I18N ME! %>
-    <div class="alert alert-danger" role="alert">An error occurred while getting newsletter subscription data.</div>
+    <% if(!@subscriptions.empty?) %>
+    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label t("dashboard.newsletters.label"), class: "font-weight-bold col-form-label-md" %>
+        <div class=""><%= t("dashboard.newsletters.opt_in") %></div>
+        <%= render partial: "users/list_subscriptions_checkboxes" %>
+      </div>
+    </div>
+    <% else %>
+      <% #TODO: I18N ME! %>
+      <div class="alert alert-danger" role="alert">An error occurred while getting newsletter subscription data.</div>
+    <% end %>
   <% end %>
 
   <div class="actions pt-2">

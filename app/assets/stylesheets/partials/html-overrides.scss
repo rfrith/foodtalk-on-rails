@@ -6,19 +6,26 @@ html {
   background-size: cover;
 }
 
-body {
-  background-color: rgba(255, 255, 255, 0);
+body, html {
+  height: 100%;
 }
 
-
-
+.flex-grow {
+  flex: 1 0 auto;
+}
 
 a, a:link a:visited, a:hover, a:active {
   color: $primary-fill-color;
   text-decoration:  none;
 }
 
+iframe{
 
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+
+}
 
 
 cite {

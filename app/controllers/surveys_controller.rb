@@ -10,9 +10,6 @@ class SurveysController < ApplicationController
   end
 
   def show
-    #set to false for any surveys that should NOT have header & footer elements
-    @full_screen = false
-
     case params[:id]
 
     when "consent-form"

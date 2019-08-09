@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   #TODO: add to DB and implement lifespan etc.
   def add_notification(type, title, message, timeout=false, url=nil)
     session[:notifications] ||= []
@@ -26,6 +28,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def user_not_authorized(exception)
+    policy_name = exception.policy.class.to_s.underscore
+    logger.info "User not authorized for: #{controller_name} #{policy_name}.#{exception.query}"
+    redirect_to("/422")
+  end
 
   def set_locale
     I18n.locale = !params[:locale].blank? ? params[:locale] : I18n.default_locale

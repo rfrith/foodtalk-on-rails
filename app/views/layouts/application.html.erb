@@ -1,7 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
 <html lang="en">
   <head>
-
     <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
     <%= csrf_meta_tags %>
 
@@ -26,19 +25,33 @@
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
 
-    <%= render partial: "shared/show_notifications" %>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= yield :head %>
   </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div id="body-content" class="h-100">
-      <%= yield :header %>
+  <body class="<% controller_name %> <% action_name %>">
+
+
+  <div class="d-flex flex-column h-100">
+
+    <%= render partial: 'shared/top-nav' %>
+
+    <div class="d-flex flex-column flex-grow">
+
       <div id="notifications" class="pl-1 pr-1"></div>
-      <%= yield :content %>
-      <%= yield :footer %>
+
+      <div class="h-100 flex-grow">
+        <%= yield %>
+      </div>
+
+      <%= render 'shared/footer' %>
     </div>
+  </div>
+
+
+
+
   </body>
 </html>

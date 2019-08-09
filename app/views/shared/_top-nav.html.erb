@@ -14,25 +14,33 @@
           <%= link_to fa_icon("home", class: " align-middle") + " Home", root_path, class: "badge badge-secondary" %>
         </span>
 
+        <% if policy(:site_access).view_blog? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("rss", class: "align-middle") + " #{t("navigation.blog")}", blogs_index_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_recipes? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("cutlery", class: "align-middle") + " #{t("navigation.recipes")}", recipes_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_videos? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("play", class: "align-middle") + " #{t("navigation.videos")}", videos_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-secondary" %>
         </span>
 
+        <% if policy(:site_access).view_food_glossary? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("book", class: "align-middle") + " #{t("navigation.food_glossary")}", food_glossary_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-secondary" %>
@@ -66,34 +74,35 @@
 
   </div>
 
-
-  <% cache [create_cache_key_prefix, "top-nav"], :expires_in => 1.month do %>
   <div class="collapse navbar-collapse" id="navbarToggler1">
     <ul class="navbar-nav mr-auto">
-
-      <%
-        my_css = (!is_user_eligibile?) ? "d-none" : "d-block"
-      %>
-
       <li class="nav-item">
-        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link " + my_css  ) %>
+        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link ") %>
       </li>
 
+      <% if policy(:site_access).view_blog? %>
       <li class="nav-item">
         <%= link_to(t("navigation.blog"), blogs_index_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_recipes? %>
       <li class="nav-item">
         <%= link_to(t("navigation.recipes"), recipes_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_videos? %>
       <li class="nav-item">
-        <%= link_to(t("navigation.videos"), { controller: "videos", action: "index" }, class: "nav-link") %>
+        <%= link_to(t("navigation.videos"), videos_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_food_glossary? %>
       <li class="nav-item">
-        <%= link_to(t("navigation.food_glossary"), { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
+        <%= link_to(t("navigation.food_glossary"), food_glossary_path, class: "nav-link") %>
       </li>
+      <% end %>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
@@ -151,6 +160,5 @@
     </ul>
 
   </div>
-  <% end %>
 
 </nav>

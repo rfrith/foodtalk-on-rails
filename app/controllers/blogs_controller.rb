@@ -3,6 +3,9 @@ class BlogsController < ApplicationController
   include WordpressUtils, WordpressHelper
 
   def index
+
+    authorize(:site_access)
+
     begin
       get_posts
     rescue Exception => e

@@ -4,6 +4,7 @@ class VideosController < ApplicationController
   PER_PAGE ||= 8
 
   def index
+    authorize(:site_access)
     begin
       @playlist_id = get_playlist_id(params)
       @videos = get_playlist_items("yt_videos_index_#{@playlist_id}_replies", @playlist_id, PER_PAGE)

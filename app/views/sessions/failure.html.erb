@@ -1,14 +1,12 @@
-<% content_for :content do %>
-  <div class="container-fluid content-section2 m-0 p-0" style="height: 100vh;">
-    <div class="w-100 pt-5 pb-5 d-flex justify-content-center" style="background-color: antiquewhite">
-      <div>
-        <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org Logo" %>
-        <h2>An error has occurred: <%= @error_msg %></h2>
-        <p><%= @omniauth_error %></p>
-        <p>The following error has occurred: "<%= @error_desc %>"</p>
-        <p>Please report this issue to <a href="mailto:foodtalk@uga.edu?Subject=<%=@error_msg%>" target="_blank">foodtalk@uga.edu</a></p>
-        <p><%= link_to "Return to homepage", root_path %></p>
-      </div>
+<div class="container-fluid content-section2 m-0 p-0" style="height: 100vh;">
+  <div class="w-100 pt-5 pb-5 d-flex justify-content-center" style="background-color: antiquewhite">
+    <div>
+      <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org Logo" %>
+      <h2>An error has occurred: <%= @error_msg %></h2>
+      <p><%= @omniauth_error %></p>
+      <p>The following error has occurred: "<%= @error_desc %>"</p>
+      <p>Please report this issue to <a href="mailto:foodtalk@uga.edu?Subject=<%=@error_msg%>" target="_blank">foodtalk@uga.edu</a></p>
+      <p><%= link_to "Return to homepage", root_path %></p>
     </div>
   </div>
-<% end %>
+</div>

@@ -9,6 +9,10 @@ module DomainGroups
       {
           id: :hhip,
           group_name: "hancock-health-improvement-partnership"
+      },
+      {
+          id: :caresource,
+          group_name: "caresource"
       }
   ]
 

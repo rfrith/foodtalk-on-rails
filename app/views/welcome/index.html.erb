@@ -1,13 +1,38 @@
 <%= render partial: 'shared/fancybox_bootstrap_fix' %>
 
-<% if @blogs %>
-  <%= render partial: "blogs", cached: false %>
+<% if policy(:site_access).view_default_index? %>
+
+  <%= render 'welcome/header' %>
+
+  <% if policy(:site_access).view_blog? %>
+    <% if @blogs %>
+      <%= render partial: "blogs" %>
+    <% end %>
+  <% end %>
+
+  <% if policy(:site_access).view_recipes? %>
+    <% if @recipes %>
+      <%= render partial: "recipes" %>
+    <% end %>
+  <% end %>
+
+  <% if policy(:site_access).view_videos? %>
+    <% if @videos %>
+      <%= render partial: "videos" %>
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <% #= render 'welcome/header' %>
+
+  <div id="custom-landing-page" class="content-section2">
+    <iframe style="width: 100%;min-height: 80vh; position:relative;" src="/<%= request.subdomain %>" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+
+
+
 <% end %>
 
-<% if @recipes %>
-  <%= render partial: "recipes", cached: false %>
-<% end %>
 
-<% if @videos %>
-  <%= render partial: "videos", cached: false %>
-<% end %>

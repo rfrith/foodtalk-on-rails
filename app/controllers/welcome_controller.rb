@@ -3,6 +3,8 @@ class WelcomeController < ApplicationController
   include WordpressUtils, WordpressHelper, YoutubeUtils
 
 
+
+
   def index
     #TODO: fallback if blog server is down
     begin

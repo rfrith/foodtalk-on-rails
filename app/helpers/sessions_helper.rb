@@ -16,6 +16,8 @@ module SessionsHelper
 
   def current_user
     @current_user ||= user_signed_in? ? User.find_or_initialize_from_auth_hash(session[:auth_hash]) : User.new
+    @current_user.host_name = request.host
+    return @current_user
   end
 
   def check_consent

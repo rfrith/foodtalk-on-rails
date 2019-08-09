@@ -49,6 +49,8 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :racial_identities, presence: true
 
+  attr_accessor :host_name #for pundit view access policies by group/domain assignment
+
 
   after_initialize do
     if self.new_record?
