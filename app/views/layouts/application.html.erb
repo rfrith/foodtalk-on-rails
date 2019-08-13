@@ -31,27 +31,16 @@
 
     <%= yield :head %>
   </head>
-  <body class="<% controller_name %> <% action_name %>">
 
-
-  <div class="d-flex flex-column h-100">
-
-    <%= render partial: 'shared/top-nav' %>
-
-    <div class="d-flex flex-column flex-grow">
-
-      <div id="notifications" class="pl-1 pr-1"></div>
-
-      <div class="h-100 flex-grow">
-        <%= yield %>
-      </div>
-
+  <body class="d-flex flex-column <% controller_name %> <% action_name %>">
+    <header>
+      <%= render partial: 'shared/top-nav' %>
+    </header>
+    <main class="container-fluid flex-fill no-gutters m-0 p-0">
+      <%= yield %>
+    </main>
+    <footer>
       <%= render 'shared/footer' %>
-    </div>
-  </div>
-
-
-
-
+    </footer>
   </body>
 </html>
