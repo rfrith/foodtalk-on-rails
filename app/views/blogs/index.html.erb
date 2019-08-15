@@ -5,7 +5,7 @@
     <% if @posts %>
       <%= render partial: 'shared/posts_index_header', locals: {icon: "blog-icon-med.png", title: t("blog.name"), description: t("blog.description"), index_path: "blogs_index_path", search_path: "blog_search_path", search_label: t("blog.search"), slugs: @categories} %>
       <% #div id cannot have a hyphen (-) as it will be used as a .js var name %>
-      <div id="blogs-grid" class="grid">
+      <div id="blogs-grid" class="mx-auto grid">
         <%= render partial: 'shared/post', collection: @posts, cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
       </div>
 

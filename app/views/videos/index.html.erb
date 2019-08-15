@@ -29,7 +29,7 @@
   <% end %>
 
   <% if !@videos.blank? && !@videos["items"].blank? %>
-      <div id="videos-grid" class="grid pt-3">
+      <div id="videos-grid" class="mx-auto grid pt-3">
         <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
       </div>
 

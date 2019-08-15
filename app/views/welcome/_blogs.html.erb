@@ -1,7 +1,7 @@
 <% cache [create_cache_key_prefix, "recent-blogs"], :expires_in => 1.day do %>
   <div id="featured-blogs" class="content-section2">
     <%= render partial: "shared/post_title_block", locals: {inverse: false, icon: "blog-icon-med.png", title: t("welcome.blog.title"), description: t("welcome.blog.description")}%>
-    <div class="grid">
+    <div class="mx-auto grid">
       <%= render partial: 'shared/post', collection: @blogs.first(3), cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
     </div>
     <div class="view-all-link text-center">
