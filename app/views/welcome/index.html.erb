@@ -6,13 +6,13 @@
 
   <% if policy(:site_access).view_blog? %>
     <% if @blogs %>
-      <% render partial: "blogs" %>
+      <%= render partial: "blogs" %>
     <% end %>
   <% end %>
 
   <% if policy(:site_access).view_recipes? %>
     <% if @recipes %>
-      <% render partial: "recipes" %>
+      <%= render partial: "recipes" %>
     <% end %>
   <% end %>
 
