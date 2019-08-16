@@ -74,7 +74,7 @@
 
   </div>
 
-  <div class="collapse navbar-collapse" id="navbarToggler1">
+  <div class="d-none d-md-block">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link ") %>
@@ -105,19 +105,21 @@
       <% end %>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
-        <% #TODO: remove hardcoding color %>
-        <div class="dropdown-menu" style="background-color: #de4527">
-          <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
-          <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
+        <div class="btn-group">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
+          <% #TODO: remove hardcoding color %>
+          <div class="dropdown-menu dropdown-menu-rightzzz" style="background-color: #de4527">
+            <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
+            <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
+          </div>
         </div>
       </li>
-
+      
       <%
         if(Rails.application.secrets.i18n_enabled)
       %>
       <li class="nav-item">
-        <%= link_to(fa_icon("language") + " #{t('language_select_value').upcase}", "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
+        <%= link_to( t('language_select_label'), "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
       </li>
       <% end %>
 

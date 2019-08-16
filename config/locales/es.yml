@@ -53,7 +53,7 @@ es:
     attend_a_class: "Atender Una Clase"
     gis_resources: "GIS Recursos"
     my_dashboard: "Tablero"
-    login: "Inicia Sesión/Regístrate"
+    login: "Inicia Sesión / Regístrate"
     logout: "Cerrar Sesión"
     view_all_blog_posts: "Ver Todas las Publicaciones del Blog"
     view_all_recipes: "Ver Todas las Recetas"
@@ -129,16 +129,12 @@ es:
   learn_online:
     start_learning_module: "¿Por qué no mejorar su conocimiento sobre salud y nutrición e iniciar un curso de Food eTalk o Better U de las siguientes opciones?"
     continue_learning_module: "¿Por qué no terminas lo que comenzaste? Complete todas las lecciones iniciadas haciendo clic en los enlaces a continuación y continúe mejorando su conocimiento de salud y nutrición."
-
-
     completed_html: "Way to go! You have completed %{curriculum}."
     extenders_prompt: "%{href} for instructions on how to receive your complimentary bag of educational extenders."
     print_your_certificate: "Please %{print_link} your receipt of completion(s) %{additional_instructions}"
     extenders_directions: "and bring to %{location_prompt} to get your bag of complimentary education extenders!  If you don't have a printer you may present the certificate from your phone or mobile device."
     multiple_extension_offices: "one of these county extension offices"
     single_extension_office: "the following county extension office"
-
-
     better_u:
       name: "Better U"
       tagline: "¡Aumenta tu conocimiento de la comida!"
@@ -165,8 +161,6 @@ es:
         continue_learning: "Continúa aprendiendo haciendo clic en el título o la imagen de la lección."
       completed:
         label: "Terminado"
-        food_talk_completed_lesson: "¡Deberías estar orgulloso de lo que has logrado!"
-        better_u_completed_lesson: "¡Estás en camino de convertirte en una mejor U!"
     my_info:
       label: "Mi Información"
       description: "Bienvenido a FoodTalk.org! Por favor, cuéntanos un poco sobre ti."
