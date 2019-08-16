@@ -30,6 +30,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= yield :head %>
+
+    <% #BODY STYLE MUST BE DEFINED HERE SO FANCYBOX POPUPS USING simple_layout RENDER CORRECTLY %>
+    <style>
+      body {
+        min-height:100vh;
+        background-color: rgba(255, 255, 255, 0);
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
   </head>
 
   <body class="d-flex flex-column no-gutters <% controller_name %> <% action_name %>">
