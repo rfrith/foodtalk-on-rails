@@ -1,9 +1,11 @@
-html {
+body {
   background: asset-url('veggie-spread-bg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin: 0;
+  padding: 0;
 }
 
 a, a:link a:visited, a:hover, a:active {
