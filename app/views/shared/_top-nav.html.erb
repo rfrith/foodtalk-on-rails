@@ -69,12 +69,8 @@
   <div class="collapse navbar-collapse" id="navbarToggler1">
     <ul class="navbar-nav mr-auto">
 
-      <%
-        my_css = (!is_user_eligibile?) ? "d-none" : "d-block"
-      %>
-
       <li class="nav-item">
-        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link " + my_css  ) %>
+        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link d-block") %>
       </li>
 
       <li class="nav-item">
