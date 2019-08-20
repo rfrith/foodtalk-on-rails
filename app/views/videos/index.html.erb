@@ -50,4 +50,4 @@
 </div>
 <% end %>
 
-<%= render partial: 'videos/infinite_scroll', cached: false, locals: {page_path: video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken)} %>
+<%= render partial: 'videos/infinite_scroll', locals: {page_path: video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken)} %>

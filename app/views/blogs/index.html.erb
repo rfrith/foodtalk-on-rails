@@ -27,5 +27,5 @@
 <% end %>
 
 <% if(@total_pages > 1) %>
-  <%= render partial: 'shared/infinite_scroll', cached: false, locals: {page_path: "blog_load_page_path"} %>
+  <%= render partial: 'shared/infinite_scroll', locals: {page_path: "blog_load_page_path"} %>
 <% end %>

@@ -72,14 +72,7 @@ function init_isotope_started_courses() {
 function launchVideo(videoPath, surveyPath) {
     $.fancybox.open({
         src  : videoPath,
-        type : 'iframe',
-        opts : {
-            afterClose : function( instance, current ) {
-                if(surveyPath != 'undefined') {
-                    parent.location.href = surveyPath;
-                }
-            }
-        }
+        type : 'iframe'
     });
     return false; //cancel click event
 }
