@@ -3,7 +3,7 @@
 <% cache [create_cache_key_prefix, "recipes-index-#{@slug}"], :expires_in => 1.day do %>
   <div id="recipes" class="content-section2 flex-fill">
     <% if @posts %>
-      <%= render partial: 'shared/posts_index_header', locals: {icon: "recipe-graphic-sm.png", title: t("recipes.name"), description: t("recipes.description"), index_path: "recipes_path", search_path: "recipe_search_path", search_label: t("recipes.search"), slugs: @tags} %>
+      <%= render partial: 'shared/posts_index_header', locals: {icon: "recipe-graphic-sm.png", title: t("recipes.name"), description: t("recipes.description"), index_path: "recipes_path", search_path: "recipe_search_path", search_label: t("recipes.search.label"), slugs: @tags} %>
       <% #div id cannot have a hyphen (-) as it will be used as a .js var name %>
       <div id="posts-grid" class="mx-auto grid">
         <%= render partial: 'shared/post', collection: @posts, cached: false, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
@@ -18,8 +18,7 @@
     <% else %>
       <div class="d-flex justify-content-center">
         <div class="media align-items-center mt-4 ml-5 mr-5">
-          <% #TODO: I18n ME! %>
-          Error displaying recipes.
+          <%= t("recipes.error")%>
         </div>
       </div>
     <% end %>

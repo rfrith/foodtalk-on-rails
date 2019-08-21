@@ -75,8 +75,7 @@
       </div>
     </div>
     <% else %>
-      <% #TODO: I18N ME! %>
-      <div class="alert alert-danger" role="alert">An error occurred while getting newsletter subscription data.</div>
+      <div class="alert alert-danger" role="alert"><%= t("dashboard.newsletters.error") %></div>
     <% end %>
   <% end %>
 

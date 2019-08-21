@@ -16,8 +16,7 @@ if ($viewMoreButton.length) {
     $viewMoreButton.remove();
 }
 
-<% #TODO: I18N ME!!!! %>
-var noResultsMsg = '<div id="no-search-results-msg" class="invisible pt-4 d-flex justify-content-center">No results found.  Please try your search again.</span>';
+var noResultsMsg = '<div id="no-search-results-msg" class="invisible pt-4 d-flex justify-content-center"><%= t("forms.no_search_results") %>></span>';
 $postsGrid.append(noResultsMsg);
 $noResultsMsg = $('#no-search-results-msg');
 

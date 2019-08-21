@@ -80,6 +80,7 @@ es:
     generate: "Generar"
     search_terms: "Búsqueda de términos..."
     search_submit: "Búsqueda"
+    no_search_results: "No se han encontrado resultados. Por favor intente su búsqueda nuevamente."
 
   welcome:
     title: "¡Ayudando a los Georgianos a Comer Saludablemente y a Moverse!"
@@ -100,16 +101,21 @@ es:
   blog:
     name: "Blog de Food Talk"
     description: "¡Lee Artículos Interesantes & Informativos de Expertos en Nutrición!"
-    search: "Buscar Blog"
+    error: "Error al mostrar el Blog."
+    search:
+      label: "Buscar Blog"
 
   recipes:
-      name: "Recetas de Food Talk"
-      description: "¡Eche un Vistazo a Nuestras Ideas de Comidas Saludables, Deliciosas y Economicas!"
-      search: "Buscar Recetas"
+    name: "Recetas de Food Talk"
+    description: "¡Eche un Vistazo a Nuestras Ideas de Comidas Saludables, Deliciosas y Economicas!"
+    error: "Error al mostrar recetas."
+    search:
+      label: "Buscar Recetas"
 
   videos:
-      name: "Videos de Food Talk"
-      description: "¡Mire Para Aumentar su Conocimiento de la Comida y la Nutrición!"
+    name: "Videos de Food Talk"
+    description: "¡Mire Para Aumentar su Conocimiento de la Comida y la Nutrición!"
+    error: "Error al mostrar videos."
 
   glossary:
     name: "Glosario de Food Talk"
@@ -144,7 +150,6 @@ es:
       tagline: "¡Elija alimentos más saludables!"
       description: "Food eTalk es una serie de clases interactivas en línea que se centran en la planificación de comidas saludables con un presupuesto. ¡Artículos educativos y de cocina gratuitos incluidos en cada sesión!"
 
-
   dashboard:
     admin:
       label: "Admin"
@@ -169,6 +174,24 @@ es:
       opt_in: "Me gustaría recibir correos electrónicos de FoodTalk.org sobre los siguientes temas"
       label: "Boletín de Suscripción"
       make_selection: "Elija de cuál de estas listas le gustaría recibir correos electrónicos."
+      error: "Se produjo un error al obtener los datos de suscripción al boletín."
+
+  error_pages:
+    http400:
+      label: "Solicitud incorrecta."
+      description: "Lo sentimos, algo parece estar mal con la solicitud que hizo, intente nuevamente."
+
+    http404:
+      label: "Página no encontrada."
+      description: "Lo sentimos, no se puede encontrar la página que solicitó. La URL puede estar mal escrita o la página que está buscando ya no está disponible."
+
+    http422:
+      label: "La acción que solicitó fue rechazada."
+      description: "Lo sentimos, solicitó algo a lo que no tuvo acceso."
+
+    http500:
+      label: "Error de servidor interno."
+      description: "Lo sentimos, algo salió mal. Nuestro equipo técnico investigará el problema. Por favor intente nuevamente en breve."
 
   activerecord:
     models:

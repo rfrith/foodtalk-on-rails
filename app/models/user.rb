@@ -84,7 +84,7 @@ class User < ApplicationRecord
   end
 
   def determine_eligibility
-    (is_zip_code_eligible? || has_received_federal_assistance?) #TODO: should age factor into eligibility status?
+    (is_zip_code_eligible? || has_received_federal_assistance? || is_admin?) #TODO: should age factor into eligibility status?
   end
 
   def group_names
