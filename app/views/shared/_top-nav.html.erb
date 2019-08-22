@@ -1,9 +1,10 @@
+<% icon = DomainGroups::get_domain_group_icon(request.host) %>
 <nav class="top-nav navbar navbar-expand-md navbar-light <%= local_assigns[:css] %>" role="navigation">
 
   <%= link_to root_path, class: "navbar-brand d-none d-md-block", data: {turbolinks: false} do %>
     <%= image_tag('logo-sm.png', class: 'm-0 p-0 ', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>
-    <% if (avatar = DomainGroups::get_domain_group_icon(request.host)) %>
-      <%= image_tag avatar, class: 'img-fluid m-0 p-0', alt: 'Partner logo' %>
+    <% if (icon.url) %>
+      <%= image_tag icon.url, class: 'img-fluid m-0 p-0', alt: 'Partner logo' %>
     <% end %>
   <% end %>
 
