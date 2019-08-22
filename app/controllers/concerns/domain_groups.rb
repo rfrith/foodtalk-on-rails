@@ -9,6 +9,10 @@ module DomainGroups
       {
           id: :hhip,
           group_name: "hancock-health-improvement-partnership"
+      },
+      {
+          id: :cidc,
+          group_name: "collaborative-impact-for-decatur-county"
       }
   ]
 
