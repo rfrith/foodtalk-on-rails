@@ -1,13 +1,13 @@
-<% avatar = DomainGroups::get_domain_group_logo(request.host) %>
 <% cache [create_cache_key_prefix, "header"], :expires_in => 1.day do %>
+<% avatar = DomainGroups::get_domain_group_logo(request.host) %>
 
 <div id="header" class="d-flex hero">
 
   <div class="">
     <div class="d-none d-md-block d-lg-none ml-4 mr-4">
       <div class="text-center">
-        <% if (avatar) %>
-          <%= image_tag(avatar, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% if (avatar.url) %>
+          <%= image_tag(avatar.url, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
         <% else %>
           <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
         <% end %>
@@ -16,8 +16,8 @@
 
     <div class="d-none d-lg-block ml-5 mr-5">
       <div class="text-center">
-        <% if (avatar) %>
-          <%= image_tag(avatar, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
+        <% if (avatar.url) %>
+          <%= image_tag(avatar.url, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
         <% else %>
           <%= image_tag 'logo-xl.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
         <% end %>
@@ -27,12 +27,13 @@
 
   <div class="hero-content">
     <div class="d-block d-md-none text-center">
-      <% if (avatar)%>
+      <% if (avatar.url)%>
         <% #TODO: fix me in css! %>
         <span class="mt-2">&nbsp;</span>
       <% end %>
     </div>
 
+    <% #TODO: fix or remove me %>
     <% if false %>
     <div class="text-right">
       <% if(Rails.application.secrets.i18n_enabled) %>
@@ -50,7 +51,7 @@
 
     <% if false %>
     <div class="d-block d-md-none text-center">
-      <% if (!avatar) %>
+      <% if (!avatar.url) %>
         <%= image_tag 'logo-md.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
       <% end %>
     </div>
@@ -60,12 +61,9 @@
       <%= t("welcome.title") %>
     </div>
 
-    <% if true %>
     <p class="hero-copy">
       <%= t("welcome.description") %>
     </p>
-    <% end %>
-
 
     <div>
       <% form_with(url: '/search') do |f| %>

@@ -11,6 +11,10 @@ module DomainGroups
           group_name: "hancock-health-improvement-partnership"
       },
       {
+          id: :cidc,
+          group_name: "collaborative-impact-for-decatur-county"
+      },
+      {
           id: :caresource,
           group_name: "caresource"
       }

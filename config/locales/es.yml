@@ -112,6 +112,9 @@ es:
     search:
       label: "Buscar Recetas"
 
+  posts:
+    all_posts: "Todos Los Mensajes"
+
   videos:
     name: "Videos de Food Talk"
     description: "¡Mire Para Aumentar su Conocimiento de la Comida y la Nutrición!"

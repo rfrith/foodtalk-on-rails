@@ -112,6 +112,9 @@ en:
     search:
       label: "Search Recipes"
 
+  posts:
+    all_posts: "All Posts"
+
   videos:
     name: "Food Talk Videos"
     description: "Watch to increase your knowledge of food & nutrition!"
