@@ -118,9 +118,10 @@
 
       <%
         if(Rails.application.secrets.i18n_enabled)
+          org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
       %>
       <li class="nav-item">
-        <%= link_to( t('language_select_label'), "/#{t('language_select_value').to_sym}", class: "nav-link") %>
+        <%= link_to( t('language_select_label'), "/#{t('language_select_value').to_sym}#{org_url}", class: "nav-link") %>
       </li>
       <% end %>
 
