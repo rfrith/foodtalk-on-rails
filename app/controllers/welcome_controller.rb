@@ -7,7 +7,9 @@ class WelcomeController < ApplicationController
 
     if !policy(:site_access).view_default_index?
 
-      redirect_to "/#{request.subdomain}"
+
+
+      redirect_to "/#{I18n.locale}/#{request.subdomain}", locale: I18n.locale
 
     else
 

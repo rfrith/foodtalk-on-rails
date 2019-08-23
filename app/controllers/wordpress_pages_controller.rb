@@ -5,7 +5,7 @@ class WordpressPagesController < ApplicationController
   def show
     begin
       @show_nav = params[:show_nav]
-      @slug = params[:slug]
+      @slug = params[:slug] + "-#{I18n.locale}"
       page = get_cached_api_response("wp-page-#{@slug}", URI(Rails.application.secrets.blog_feed_url + "pages?_embed&slug=#{@slug}")).body
       parsed_page = JSON.parse(page)
       @page_content = parsed_page[0]["content"]["rendered"]

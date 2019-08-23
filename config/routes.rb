@@ -24,8 +24,10 @@ Rails.application.routes.draw do
     get 'blog/show/:id' => 'blogs#show', as: 'show_blog'
     get 'recipes/:name' => 'recipes#find_by_name', as: 'find_recipe'
     get 'blog/:name' => 'blogs#find_by_name', as: 'find_blog'
-    get 'fnv' => 'wordpress_pages#show', slug: 'fnv', show_nav: true
-    get 'caresource' => 'wordpress_pages#show', slug: 'caresource', show_nav: true
+
+    #WordPress Pages
+    get '/fnv' => 'wordpress_pages#show', slug: 'fnv', show_nav: true
+    get 'caresource' => 'wordpress_pages#show', slug: "caresource", show_nav: true
 
     #internal
     resources :users, only: [:create, :update]
