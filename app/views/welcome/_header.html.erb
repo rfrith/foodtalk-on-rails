@@ -1,4 +1,4 @@
-<% #cache [create_cache_key_prefix, "header"], :expires_in => 1.day do %>
+<% cache [create_cache_key_prefix, "header"], :expires_in => 1.day do %>
 <% avatar = DomainGroups::get_domain_group_logo(request.host) %>
 
 <div id="header" class="d-flex hero">
@@ -6,7 +6,7 @@
   <div class="">
     <div class="d-none d-md-block d-lg-none ml-4 mr-4">
       <div class="text-center">
-        <% if (avatar.url) %>
+        <% if (avatar && avatar.url) %>
           <%= image_tag(avatar.url, class: 'img-fluidzzz', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
         <% else %>
           <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
@@ -16,7 +16,7 @@
 
     <div class="d-none d-lg-block ml-5 mr-5">
       <div class="text-center">
-        <% if (avatar.url) %>
+        <% if (avatar && avatar.url) %>
           <%= image_tag(avatar.url, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
         <% else %>
           <%= image_tag 'logo-xl.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
@@ -27,7 +27,7 @@
 
   <div class="hero-content">
     <div class="d-block d-md-none text-center">
-      <% if (avatar.url)%>
+      <% if (avatar && avatar.url)%>
         <% #TODO: fix me in css! %>
         <span class="mt-2">&nbsp;</span>
       <% end %>
@@ -52,7 +52,7 @@
     <% #TODO: fix or remove me %>
     <% if false %>
     <div class="d-block d-md-none text-center">
-      <% if (!avatar.url) %>
+      <% if (!(avatar && avatar.url)) %>
         <%= image_tag 'logo-md.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
       <% end %>
     </div>
@@ -99,4 +99,4 @@
   </div>
 </div>
 
-<% #end %>
+<% end %>

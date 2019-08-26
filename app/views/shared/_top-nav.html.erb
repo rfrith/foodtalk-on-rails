@@ -3,7 +3,7 @@
 
   <%= link_to root_path, class: "navbar-brand d-none d-md-block", data: {turbolinks: false} do %>
     <%= image_tag('logo-sm.png', class: 'm-0 p-0 ', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>
-    <% if (icon.url) %>
+    <% if (icon && icon.url) %>
       <%= image_tag icon.url, class: 'img-fluid m-0 p-0', alt: 'Partner logo' %>
     <% end %>
   <% end %>
