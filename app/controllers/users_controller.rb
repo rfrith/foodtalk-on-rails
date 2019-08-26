@@ -38,8 +38,10 @@ class UsersController < ApplicationController
     authorize @current_user
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
-      update_eligibility!
-      update_mailchimp_subscriptions
+      if(@current_user.valid?)
+        update_eligibility!
+        update_mailchimp_subscriptions
+      end
       format.js
     end
   end
