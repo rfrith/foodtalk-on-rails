@@ -51,7 +51,7 @@
 
     <% if false %>
     <div class="d-block d-md-none text-center">
-      <% if (!(avatar || avatar.url)) %>
+      <% if (!(avatar && avatar.url)) %>
         <%= image_tag 'logo-md.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
       <% end %>
     </div>
