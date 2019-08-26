@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   include Secured, MailchimpHelper, DomainGroups, DateHelper, CurriculumHelper
 
+  protect_from_forgery except: :update
+
   before_action :initialize_date_range, only: [:find_by_eligibility, :find_by_eligibility_and_group, :find_by_group, :find_by_started_and_or_completed_curricula, :find_by_started_and_or_completed_curricula_by_group]
 
   def show
@@ -38,8 +40,10 @@ class UsersController < ApplicationController
     authorize @current_user
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
-      update_eligibility!
-      update_mailchimp_subscriptions
+      if(@current_user.valid?)
+        update_eligibility!
+        update_mailchimp_subscriptions
+      end
       format.js
     end
   end
