@@ -9,15 +9,24 @@
 
       <% notifications.each do |n| %>
 
+        <%
+        if(!n['url'].blank?)
+          message = link_to(n['message'].html_safe, "#{n['url']}", id: "my-popup-link")
+        else
+          message = n['message'].html_safe
+        end
+        %>
+
+
         <% if(n['type']) != :popup %>
           iziToast.<%=n['type']%>({
             target: '#notifications',
-            message: '<%= n['message'].html_safe %>',
+            message: '<%= message %>',
         <% else %>
           iziToast.show({
-              message: '<%= link_to(n['message'].html_safe, "/blog?category=save-money", id: "my-popup-link") %>',
+              message: '<%= message %>',
               color: '#fbec64',
-              image: '<%= image_url("logo-sm.png", class: "img-fluid m-0 p-0", alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>',
+              image: '<%= image_url("logo-sm.png", class: "img-fluid m-0 p-0", alt: "FoodTalk.org: #{t('welcome.title')}") %>',
               layout: '2',
               transitionIn: 'bounceInDown',
               close: true,

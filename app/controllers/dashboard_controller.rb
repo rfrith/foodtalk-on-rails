@@ -41,7 +41,7 @@ class DashboardController < ApplicationController
         add_notification :info, t(:info), t("learn_online.continue_learning_module"), 20000
 
       elsif(@current_user.is_eligible? && (!user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) || !user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U)) )
-        add_notification :info, t(:info), t("learn_online.start_learning_module"), false
+        add_notification :info, t(:info), t("learn_online.start_learning_module"), 20000
 
       elsif(user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) || user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U))
         #TODO: implement me!
