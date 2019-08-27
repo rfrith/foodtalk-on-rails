@@ -38,6 +38,26 @@
   }
 }
 
+.partner-logo {
+  height: auto;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 25px;
+  padding: .5rem;
+  min-width: 14rem;
+  max-width: 14rem;
+
+  @include media-breakpoint-up(xl) {
+  }
+  @include media-breakpoint-only(lg) {
+  }
+  @include media-breakpoint-only(md) {
+  }
+  @include media-breakpoint-only(sm) {
+  }
+  @include media-breakpoint-only(xs) {
+  }
+}
+
 .hero-title, .hero-copy {
   font-family: $lato;
 }

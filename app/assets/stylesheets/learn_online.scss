@@ -84,10 +84,6 @@
   width: auto;
 }
 
-.learn_online_media_object {
-  width: 20rem;
-}
-
 .food-etalk-card {
   @include media-breakpoint-down(sm) {
     width: 12rem;
@@ -106,4 +102,94 @@
     min-width: 15rem;
     max-width: 20rem;
   }
+}
+
+
+.learn_online_media_object {
+
+  @include media-breakpoint-only(xl) {
+    min-height: 8rem;
+    width: 22rem;
+    img {
+      height: auto;
+      width: 5rem;
+    }
+    .card-title {
+      line-height: 2rem;
+      font-size: .9rem;
+    }
+    .card-text {
+      font-size: .95rem;
+      line-height: 1.2rem;
+    }
+  }
+
+  @include media-breakpoint-only(lg) {
+    min-height: 7.5rem;
+    width: 21.75rem;
+    img {
+      height: auto;
+      width: 4.5rem;
+    }
+    .card-title {
+      line-height: 1.9rem;
+      font-size: .9rem;
+    }
+    .card-text {
+      font-size: 1rem;
+      line-height: 1.2rem;
+    }
+  }
+
+  @include media-breakpoint-only(md) {
+    min-height: 6.75rem;
+    width: 20.75rem;
+    img {
+      height: auto;
+      width: 4rem;
+    }
+    .card-title {
+      line-height: 1.85rem;
+      font-size: .85rem;
+    }
+    .card-text {
+      font-size: .91rem;
+      line-height: 1.1rem;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    min-height: 6rem;
+    width: 19.5rem;
+    img {
+      height: auto;
+      width: 3.7rem;
+    }
+    .card-title {
+      line-height: 1.75rem;
+      font-size: .8rem;
+    }
+    .card-text {
+      font-size: .9rem;
+      line-height: 1rem;
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    min-height: 5.5rem;
+    width: 18.5rem;
+    img {
+      height: auto;
+      width: 3.6rem;
+    }
+    .card-title {
+      line-height: 1.5rem;
+      font-size: .75rem;
+    }
+    .card-text {
+      font-size: .85rem;
+      line-height: .95rem;
+    }
+  }
+
 }
