@@ -7,12 +7,12 @@
 
   <div class="card-header d-none d-md-block">
     <h4 class="card-title text-center mt-0">
-      <%== post["title"]["rendered"] %>
+      <%== post["title"]["rendered"].html_safe %>
       <span>
         <% #TODO: FIX ME!!!!  %>
         <% #if false #user_signed_in? %>
         <% #TODO: AJAXIFY ME!!!!! & make update_post_favorites_path%>
-          <% #link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark post as favorite.", rel: "tooltip" %>
+        <% #link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark post as favorite.", rel: "tooltip" %>
         <% #end %>
         <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
       </span>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="card-footer text-center d-block d-md-none">
-    <%= link_to(post["title"]["rendered"], eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%== link_to(post["title"]["rendered"].html_safe, eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 
   <div class="card-footer text-center d-none d-md-block">
