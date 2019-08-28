@@ -7,7 +7,7 @@
 
   <div class="card-header d-none d-md-block">
     <h4 class="card-title text-center mt-0">
-      <%== post["title"]["rendered"] %>
+      <%== post["title"]["rendered"].html_safe %>
       <span>
         <% #TODO: FIX ME!!!!  %>
         <% #if false #user_signed_in? %>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="card-footer text-center d-block d-md-none">
-    <%= link_to(post["title"]["rendered"], eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%== link_to(post["title"]["rendered"].html_safe, eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 
   <div class="card-footer text-center d-none d-md-block">

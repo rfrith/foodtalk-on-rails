@@ -38,6 +38,35 @@
   }
 }
 
+.partner-logo {
+  height: auto;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 25px;
+  padding: .5rem;
+
+
+  @include media-breakpoint-up(xl) {
+    min-width: 18rem;
+    max-width: 18rem;
+  }
+  @include media-breakpoint-only(lg) {
+    min-width: 17rem;
+    max-width: 17rem;
+  }
+  @include media-breakpoint-only(md) {
+    min-width: 16rem;
+    max-width: 16rem;
+  }
+  @include media-breakpoint-only(sm) {
+    min-width: 15rem;
+    max-width: 15rem;
+  }
+  @include media-breakpoint-only(xs) {
+    min-width: 14rem;
+    max-width: 14rem;
+  }
+}
+
 .hero-title, .hero-copy {
   font-family: $lato;
 }

@@ -1,61 +1,48 @@
 <% cache [create_cache_key_prefix, "header"], :expires_in => 1.day do %>
-<% avatar = DomainGroups::get_domain_group_logo(request.host) %>
+<% partner_logo = DomainGroups::get_domain_group_logo(request.host) %>
 
 <div id="header" class="d-flex hero">
 
-  <div class="">
-    <div class="d-none d-md-block d-lg-none ml-4 mr-4">
-      <div class="text-center">
-        <% if (avatar && avatar.url) %>
-          <%= image_tag(avatar.url, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
-        <% else %>
-          <%= image_tag 'logo-lg.png', class: 'logo', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving" %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="d-none d-lg-block ml-5 mr-5">
-      <div class="text-center">
-        <% if (avatar && avatar.url) %>
-          <%= image_tag(avatar.url, class: '', style: 'min-width: 15rem; max-width: 100%; height: auto;', alt: 'Partner logo') %>
-        <% else %>
-          <%= image_tag 'logo-xl.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
-        <% end %>
-      </div>
+  <div class="d-none d-md-block ml-4 mr-4">
+    <div class="text-center">
+      <% if (partner_logo && partner_logo.url) %>
+        <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
+      <% else %>
+        <%= image_tag 'logo-xl.png', class: 'img-fluid', alt: t("welcome.title") %>
+      <% end %>
     </div>
   </div>
 
   <div class="hero-content">
-    <div class="d-block d-md-none text-center">
-      <% if (avatar && avatar.url)%>
-        <% #TODO: fix me in css! %>
-        <span class="mt-2">&nbsp;</span>
+    <div class="d-block d-md-none float-left mr-2">
+      <% if (partner_logo && partner_logo.url)%>
+        <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
       <% end %>
     </div>
 
     <% #TODO: fix or remove me %>
     <% if false %>
-    <div class="text-right">
-      <% if(Rails.application.secrets.i18n_enabled) %>
-        <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "white-link", style: "") %></u>
-      <% end %>
-      <% if user_signed_in? %>
-        <span style="color: white;">|</span>
-        <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
-      <% else %>
-        <span style="color: white;">|</span>
-        <u><%= link_to(t("navigation.login"), login_path, class: "", style: "color: white;") %></u>
-      <% end %>
-    </div>
+      <div class="text-right">
+        <% if(Rails.application.secrets.i18n_enabled) %>
+          <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "white-link", style: "") %></u>
+        <% end %>
+        <% if user_signed_in? %>
+          <span style="color: white;">|</span>
+          <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
+        <% else %>
+          <span style="color: white;">|</span>
+          <u><%= link_to(t("navigation.login"), login_path, class: "", style: "color: white;") %></u>
+        <% end %>
+      </div>
     <% end %>
 
-    <% if false %>
+    <% #no partner logo defined in db %>
     <div class="d-block d-md-none text-center">
-      <% if (!(avatar && avatar.url)) %>
-        <%= image_tag 'logo-md.png', class: 'logo img-fluid', style: '', alt: t("welcome.title") %>
+      <% if (!(partner_logo && partner_logo.url)) %>
+        <%= image_tag 'logo-md.png', class: 'logo float-left img-fluid mr-4', style: '', alt: t("welcome.title") %>
       <% end %>
     </div>
-    <% end %>
+
 
     <div class="hero-title align-bottom">
       <%= t("welcome.title") %>
@@ -75,16 +62,16 @@
       <div class="mr-2">
 
         <% if !user_signed_in? %>
-        <div class="">
-          <%= link_to login_url do %>
-            <span class="badge badge-secondary hero-subtitle">
-              <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
-            </span>
-          <% end %>
-          <span class="hero-subtitle">
-            <%= t("welcome.sign_up") %>
+          <div class="">
+            <%= link_to login_url do %>
+          <span class="badge badge-secondary hero-subtitle">
+            <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
           </span>
-        </div>
+            <% end %>
+            <span class="hero-subtitle">
+          <%= t("welcome.sign_up") %>
+        </span>
+          </div>
         <% end %>
 
       </div>

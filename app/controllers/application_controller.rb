@@ -3,9 +3,11 @@ class ApplicationController < ActionController::Base
   include Pundit, SessionsHelper, Notifications
 
   protect_from_forgery with: :exception
-  before_action :current_user, :set_locale
+  before_action :current_user
+  around_action :switch_locale
 
   helper_method :get_notifications
+
 
   def default_url_options
     if(Rails.application.secrets.i18n_enabled || params[:locale])
@@ -33,8 +35,9 @@ class ApplicationController < ActionController::Base
     redirect_to("/422")
   end
 
-  def set_locale
-    I18n.locale = !params[:locale].blank? ? params[:locale] : I18n.default_locale
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
   end
 
   def get_notifications
