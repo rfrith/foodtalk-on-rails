@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
     elsif session[:org_uri]
       redirect_to session.delete(:org_uri)
     else
-      show_dashboard_url
+      redirect_to show_dashboard_url
     end
   end
 
