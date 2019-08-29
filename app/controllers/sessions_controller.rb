@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
     elsif session[:org_uri]
       redirect_to session.delete(:org_uri)
     else
-      redirect_by_group_assignment
+      show_dashboard_url
     end
   end
 
@@ -59,7 +59,7 @@ class SessionsController < ApplicationController
   def redirect_by_group_assignment
     url = show_dashboard_url
     user = current_user
-    if(user.groups)
+    if(false && user.groups)
       user.groups.each do |group|
         if(group.domain && group.domain != request.domain)
           url = "#{request.protocol}#{group.domain}:#{request.port}#{show_dashboard_path}"
