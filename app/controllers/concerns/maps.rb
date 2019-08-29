@@ -4,10 +4,7 @@ module Maps
 
   GA_SNAP_ED_MAPS = [
       {id: 'snap-ed-eligibility-locator', thumbnail: '/images/snap-ed-eligibility-locator.png', target_url: 'https://jshannon75.github.io/SNAP-Ed-Locator-Web-Tool/index.html', title: "Georgia SNAP-Ed Eligibility Locator", description: "" },
-      {id: 'snap-ed-qualified-areas', thumbnail: '/images/snap-ed-implimentation-sites.png', target_url: 'https://jshannon75.github.io/SNAP-Ed-Site-Lists/index.html', title: "Georgia SNAP-Ed Implementation Sites", description: "" },
-      {id: 'county-health-offices', thumbnail: '/images/county-health-office-locations.png', target_url: 'https://www.foodtalk.org/maps/HealthDeptOffice.html', title: "County Health Office Locations", description: "" },
-      {id: 'uga-extension-offices', thumbnail: '/images/uga-extension-offices.png', target_url: 'https://www.foodtalk.org/maps/Extension_office.html', title: "UGA Extension Offices", description: "" },
-      {id: 'dfacs-offices', thumbnail: '/images/dfacs-locations.png', target_url: 'https://www.foodtalk.org/maps/DFCS_office.html', title: "Division of Family And Children Services Offices", description: "" }
+      {id: 'snap-ed-resources', thumbnail: '/images/snap-ed-resources.png', target_url: 'https://comapuga.shinyapps.io/snaped_resources', title: "SNAP-Ed Resources", description: "" },
   ]
 
   def self.find_map(id)
