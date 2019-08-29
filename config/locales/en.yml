@@ -134,6 +134,9 @@ en:
   gis_resources:
     name: "GIS Resources"
     description: "Provided by UGA SNAP-Ed"
+    maps:
+      eligibility_locator: "SNAP-Ed Eligibility Locator"
+      snap_ed_resources: "SNAP-Ed Resources"
 
   learn_online:
     start_learning_module: "Why not improve your knowledge on health & nutrition and start a Food eTalk or Better U course from the below choices?"
