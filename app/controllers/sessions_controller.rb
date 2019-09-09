@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     elsif session[:org_uri]
       redirect_to session.delete(:org_uri)
     else
-      redirect_to show_dashboard_url
+      redirect_by_group_assignment
     end
   end
 

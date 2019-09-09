@@ -31,7 +31,7 @@
           <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
         <% else %>
           <span style="color: white;">|</span>
-          <u><%= link_to(t("navigation.login"), 'auth/auth0', class: "", style: "color: white;", method: :post) %></u>
+          <u><%= link_to(t("navigation.login"), login_path, class: "", style: "color: white;") %></u>
         <% end %>
       </div>
     <% end %>
@@ -63,7 +63,7 @@
 
         <% if !user_signed_in? %>
           <div class="">
-            <%= link_to 'auth/auth0', method: :post do %>
+            <%= link_to login_url do %>
           <span class="badge badge-secondary hero-subtitle">
             <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
           </span>

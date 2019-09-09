@@ -60,7 +60,7 @@
           </span>
         <% else %>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", 'auth/auth0', class: "badge badge-secondary", method: :post %>
+            <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
           </span>
         <% end %>
 
@@ -138,7 +138,7 @@
           </li>
       <% else %>
           <li class="nav-item" data-turbolinks="false">
-            <%= link_to(t("navigation.login"), "auth/auth0", class: "nav-link mr-auto", method: :post) %>
+            <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
           </li>
       <% end %>
 

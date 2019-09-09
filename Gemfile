@@ -45,7 +45,7 @@ gem 'jbuilder', '~> 2.8'
 # custom gems
 gem 'omniauth'
 gem 'omniauth-auth0', '~> 2.1'
-gem 'omniauth-rails_csrf_protection', '~> 0.1'
+#gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 gem 'gibbon', '~> 3.2'
