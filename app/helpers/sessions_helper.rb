@@ -10,7 +10,9 @@ module SessionsHelper
   def authenticate_user!
     if !user_signed_in?
       session[:org_uri] = request.original_url
-      redirect_to login_path
+      #TODO I18N me!!!
+      add_notification :info, t(:info), "You must be logged in to access this URL.  Please click the Log In/Sign Up link to continue.", 20000
+      redirect_to '/'
     end
   end
 

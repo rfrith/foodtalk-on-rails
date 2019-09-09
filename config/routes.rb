@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     get "/500", to: "errors#internal_error"
 
     #Auth0/user session
-    get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
+    #match '/login', to: 'auth/auth0', via: [:post], as: 'login'
+    #get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
     get 'auth/auth0/callback' => 'sessions#create'
     get 'auth/failure' => 'sessions#failure'
+
     get '/logout' => 'sessions#destroy'
     get '/user_logged_in' => 'sessions#user_logged_in'
 

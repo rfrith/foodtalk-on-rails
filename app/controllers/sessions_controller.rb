@@ -5,6 +5,11 @@ class SessionsController < ApplicationController
 
   skip_before_action :current_user
 
+
+  def login
+    render "/auth/auth0"
+  end
+
   def user_logged_in
     case user_signed_in?
     when true
