@@ -64,7 +64,7 @@ class SessionsController < ApplicationController
   def redirect_by_group_assignment
     url = show_dashboard_url
     user = current_user
-    if(false && user.groups)
+    if(user.groups)
       user.groups.each do |group|
         if(group.domain && group.domain != request.domain)
           url = "#{request.protocol}#{group.domain}:#{request.port}#{show_dashboard_path}"
