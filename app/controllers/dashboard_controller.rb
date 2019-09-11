@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
     end
 
     @racial_identities = Rails.cache.fetch("all_racial_identities", expires_in: 1.month) do
-      RacialIdentity.all.all.order(name: :asc)
+      RacialIdentity.all.order(name: :asc)
     end
 
     @federal_assistances = Rails.cache.fetch("all_federal_assistances", expires_in: 1.month) do

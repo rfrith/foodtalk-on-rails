@@ -33,9 +33,11 @@
         </span>
         <% end %>
 
+        <% if policy(:site_access).view_attend_class? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
         <% if policy(:site_access).view_food_glossary? %>
         <span class="flex-fill mr-0">
@@ -43,9 +45,11 @@
         </span>
         <% end %>
 
+        <% if policy(:site_access).view_gis_resources? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("graduation-cap", class: "align-middle") + " #{t("navigation.learn_online")}", learn_online_path, class: "badge badge-secondary" %>
@@ -109,16 +113,22 @@
       </li>
       <% end %>
 
+      <% if policy(:site_access).view_attend_class? || policy(:site_access).view_gis_resources? %>
       <li class="nav-item dropdown">
         <div class="btn-group">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
           <% #TODO: remove hardcoding color %>
           <div class="dropdown-menu dropdown-menu-rightzzz" style="background-color: #de4527">
+            <% if policy(:site_access).view_attend_class? %>
             <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
+            <% end %>
+            <% if policy(:site_access).view_gis_resources? %>
             <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
+            <% end %>
           </div>
         </div>
       </li>
+      <% end %>
 
       <%
         if(Rails.application.secrets.i18n_enabled)

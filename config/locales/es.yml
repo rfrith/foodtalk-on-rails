@@ -53,7 +53,7 @@ es:
     attend_a_class: "Atender Una Clase"
     gis_resources: "GIS Recursos"
     my_dashboard: "Tablero"
-    login: "Inicia Sesión / Regístrate"
+    login: "Regístrate / Inicia Sesión"
     logout: "Cerrar Sesión"
     view_all_blog_posts: "Ver Todas las Publicaciones del Blog"
     view_all_recipes: "Ver Todas las Recetas"

@@ -41,6 +41,14 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
     determine_access_rights_by_host_name
   end
 
+  def view_attend_class?
+    determine_access_rights_by_host_name
+  end
+
+  def view_gis_resources?
+    determine_access_rights_by_host_name
+  end
+
   def subscribe_to_newsletter?
     determine_access_rights_by_host_name
   end
