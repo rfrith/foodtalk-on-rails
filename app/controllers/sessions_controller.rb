@@ -68,6 +68,7 @@ class SessionsController < ApplicationController
       user.groups.each do |group|
         if(!group.domain.blank? && group.domain != request.domain)
           url = "#{request.protocol}#{group.domain}:#{request.port}#{show_dashboard_path}"
+          reset_session
           break
         end
       end
