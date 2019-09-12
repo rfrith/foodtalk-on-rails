@@ -23,7 +23,7 @@
     <% #TODO: fix or remove me %>
     <% if false %>
       <div class="text-right">
-        <% if(Rails.application.secrets.i18n_enabled) %>
+        <% if(Rails.application.secrets.i18n_enabled && policy(:site_access).view_spanish_content?) %>
           <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "white-link", style: "") %></u>
         <% end %>
         <% if user_signed_in? %>

@@ -69,8 +69,8 @@
         <% end %>
 
         <%
-          if(Rails.application.secrets.i18n_enabled)
-            org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
+        if(Rails.application.secrets.i18n_enabled && policy(:site_access).view_spanish_content?)
+          org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
         %>
         <span class="flex-fill">
           <%= link_to fa_icon("language", class: "align-middle") + " #{t("switch_language")}", "/#{t('language_select_value').to_sym}#{org_url}", class: "badge badge-secondary" %>
@@ -131,8 +131,8 @@
       <% end %>
 
       <%
-        if(Rails.application.secrets.i18n_enabled)
-          org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
+      if(Rails.application.secrets.i18n_enabled && policy(:site_access).view_spanish_content?)
+        org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
       %>
       <li class="nav-item">
         <%= link_to( t('language_select_label'), "/#{t('language_select_value').to_sym}#{org_url}", class: "nav-link") %>

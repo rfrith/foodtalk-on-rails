@@ -11,8 +11,8 @@ module SessionsHelper
     if !user_signed_in?
       session[:org_uri] = request.original_url
       #TODO I18N me!!!
-      add_notification :info, t(:info), "You must be logged in to access this URL.  Please click the Log In/Sign Up link to continue.", 20000
-      redirect_to '/'
+      add_notification :info, t(:info), t("general.please_log_in"), 20000
+      redirect_to root_url
     end
   end
 

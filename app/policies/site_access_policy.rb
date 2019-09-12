@@ -6,8 +6,13 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
     @user = user
   end
 
-  def index?
-    determine_access_rights_by_host_name
+  def view_spanish_content?
+    case user.host_name
+    when "caresource.foodtalk.org"
+      true
+    else
+      false
+    end
   end
 
   def view_food_glossary?

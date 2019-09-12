@@ -199,6 +199,9 @@ en:
       label: "Internal Server Error."
       description: "We are sorry, something went wrong. Our technical team will investigate the issue. Please try again shortly."
 
+  general:
+    please_log_in: "You must be logged in to access this content.  Please click the \"Sign Up / Log In\" link in order to continue."
+
   activerecord:
     models:
       user: 'User'
