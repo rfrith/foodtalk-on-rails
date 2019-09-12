@@ -66,7 +66,7 @@ class SessionsController < ApplicationController
     user = current_user
     if(user.groups)
       user.groups.each do |group|
-        if(group.domain && group.domain != request.domain)
+        if(!group.domain.blank? && group.domain != request.domain)
           url = "#{request.protocol}#{group.domain}:#{request.port}#{show_dashboard_path}"
           break
         end
