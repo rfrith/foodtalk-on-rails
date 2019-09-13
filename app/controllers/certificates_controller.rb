@@ -34,6 +34,7 @@ class CertificatesController < ApplicationController
       end
 
     rescue => e
+      logger.error "An error occurred: #{e.inspect}"
       add_notification :error, t(:error), "#{t("error_occurred")}: #{e.to_s}", false
     end
 
