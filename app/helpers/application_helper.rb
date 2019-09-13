@@ -35,7 +35,7 @@ module ApplicationHelper
   def find_glossary_terms(text)
     found_terms = []
 
-    glossary_terms = Rails.cache.fetch("all_glossary_terms", expires_in: 1.month) do
+    glossary_terms = Rails.cache.fetch("all_glossary_terms", expires_in: 1.day) do
       GlossaryTerm.all
     end
 
