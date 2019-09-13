@@ -36,9 +36,6 @@ class ApplicationController < ActionController::Base
   end
 
   def switch_locale(&action)
-    #locale = params[:locale] || I18n.default_locale
-    #I18n.with_locale(locale, &action)
-
     locale = I18n.default_locale
     if(policy(:site_access).view_spanish_content?)
       if params[:locale]
