@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
     #WordPress Pages
     get '/fnv' => 'wordpress_pages#show', slug: 'fnv', show_nav: true
-    get 'caresource' => 'wordpress_pages#show', slug: "caresource", show_nav: true
+    get '/caresource' => 'wordpress_pages#show', slug: "caresource", show_nav: true
 
     #internal
     resources :users, only: [:create, :update]

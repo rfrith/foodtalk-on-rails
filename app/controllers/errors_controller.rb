@@ -7,7 +7,7 @@ class ErrorsController < ApplicationController
 
   def bad_request
     respond_to do |format|
-      @error = Rails.cache.fetch("HTTP400", expires_in: 1.month) do
+      @error = Rails.cache.fetch("HTTP400", expires_in: 1.day) do
         ErrorPageMessage.new(400, t("error_pages.http400.label"), t("error_pages.http400.description"))
       end
       format.html { render :template => "errors/error" }
@@ -16,7 +16,7 @@ class ErrorsController < ApplicationController
   end
 
   def not_found
-    @error = Rails.cache.fetch("HTTP404", expires_in: 1.month) do
+    @error = Rails.cache.fetch("HTTP404", expires_in: 1.day) do
       ErrorPageMessage.new(404, t("error_pages.http404.label"), t("error_pages.http404.description"))
     end
     respond_to do |format|
@@ -26,7 +26,7 @@ class ErrorsController < ApplicationController
   end
 
   def unacceptable
-    @error = Rails.cache.fetch("HTTP422", expires_in: 1.month) do
+    @error = Rails.cache.fetch("HTTP422", expires_in: 1.day) do
       ErrorPageMessage.new(422, t("error_pages.http422.label"), t("error_pages.http422.description"))
     end
     respond_to do |format|
@@ -36,7 +36,7 @@ class ErrorsController < ApplicationController
   end
 
   def internal_error
-    @error = Rails.cache.fetch("HTTP500", expires_in: 1.month) do
+    @error = Rails.cache.fetch("HTTP500", expires_in: 1.day) do
       ErrorPageMessage.new(500, t("error_pages.http500.label"), t("error_pages.http500.description"))
     end
     respond_to do |format|

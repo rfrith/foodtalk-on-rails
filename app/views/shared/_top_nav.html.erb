@@ -69,7 +69,7 @@
         <% end %>
 
         <%
-        if(Rails.application.secrets.i18n_enabled && policy(:site_access).view_spanish_content?)
+        if(policy(:site_access).view_spanish_content?)
           org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
         %>
         <span class="flex-fill">
@@ -131,7 +131,7 @@
       <% end %>
 
       <%
-      if(Rails.application.secrets.i18n_enabled && policy(:site_access).view_spanish_content?)
+      if(policy(:site_access).view_spanish_content?)
         org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
       %>
       <li class="nav-item">

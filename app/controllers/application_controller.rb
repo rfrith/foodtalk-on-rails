@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
 
 
   def default_url_options
-    if(Rails.application.secrets.i18n_enabled || params[:locale])
-      { locale: I18n.locale }
+    if(policy(:site_access).view_spanish_content?)
+      { locale: (params[:locale] || I18n.locale) }
     else
-      { locale: nil }
+      { locale: I18n.default_locale }
     end
   end
 
@@ -36,9 +36,18 @@ class ApplicationController < ActionController::Base
   end
 
   def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
+    #locale = params[:locale] || I18n.default_locale
+    #I18n.with_locale(locale, &action)
+
+    locale = I18n.default_locale
+    if(policy(:site_access).view_spanish_content?)
+      if params[:locale]
+        locale = params[:locale]
+      end
+    end
     I18n.with_locale(locale, &action)
   end
+
 
   def get_notifications
     notifications = session[:notifications]

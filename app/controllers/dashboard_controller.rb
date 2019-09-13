@@ -4,15 +4,15 @@ class DashboardController < ApplicationController
 
   def show
 
-    @genders = Rails.cache.fetch("all_user_genders", expires_in: 1.month) do
+    @genders = Rails.cache.fetch("all_user_genders", expires_in: 1.day) do
       User.genders
     end
 
-    @racial_identities = Rails.cache.fetch("all_racial_identities", expires_in: 1.month) do
+    @racial_identities = Rails.cache.fetch("all_racial_identities", expires_in: 1.day) do
       RacialIdentity.all.order(name: :asc)
     end
 
-    @federal_assistances = Rails.cache.fetch("all_federal_assistances", expires_in: 1.month) do
+    @federal_assistances = Rails.cache.fetch("all_federal_assistances", expires_in: 1.day) do
       FederalAssistance.all.order(name: :asc)
     end
 

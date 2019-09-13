@@ -15,6 +15,10 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
     end
   end
 
+  def index?
+    determine_access_rights_by_host_name
+  end
+
   def view_food_glossary?
     #TODO: uncommment me after testing!
     #return true if user.admin? or user.super_admin?
