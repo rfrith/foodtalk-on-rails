@@ -148,7 +148,6 @@ es:
       tagline: "¡Elija alimentos más saludables!"
       description: "Food eTalk es una serie de clases interactivas en línea que se centran en la planificación de comidas saludables con un presupuesto. ¡Artículos educativos y de cocina gratuitos incluidos en cada sesión!"
 
-
   dashboard:
     admin:
       label: "Admin"
@@ -157,8 +156,8 @@ es:
       user_search: "User Search"
     my_courses:
       label: "Mis Cursos"
-      not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"
-      start_now: "comienza una lección ahora"
+      #not_started: "No ha completado ninguna clase de Food eTalk o Better U. Por qué no"
+      #start_now: "comienza una lección ahora"
       started:
         label: "Todos Los Modulos"
         start_learning: "Comience a aprender haciendo clic en el título o la imagen de la lección."

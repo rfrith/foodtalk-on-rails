@@ -156,8 +156,8 @@ en:
       user_search: "User Search"
     my_courses:
       label: "My Courses"
-      not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"
-      start_now: "start a lesson now"
+#      not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"
+#      start_now: "start a lesson now"
       started:
         label: "All Modules"
         start_learning: "Start learning by clicking on the lesson's title or image."
@@ -214,7 +214,7 @@ en:
         description: "Do you want fries with that burger? Choices, choices, choices! Eating healthy is up to you! That’s right, you have the power to choose to make healthy decisions for you and your whole family. Check out this lesson to get started!"
       keep_your_pressure_in_check:
         title: "Keep Your Pressure In Check"
-        description: "We’ve all heard it - too much salt or sodium is not good for us. But how the heck do we reduce it and still have tasty food? Check out this lesson for ideas on how to decrease your sodium and increase your family’s health."
+        description: "We’ve all heard it - too much salt or sodium is not good for us. But how do we reduce it and still have tasty food? Check out this lesson for ideas on how to decrease your sodium and increase your family’s health."
       color_me_healthy:
         title: "Color Me Healthy"
         description: "\"Yeah, yeah, yeah. My family is supposed to eat more fruits and veggies - but it’s not as easy as it sounds\". We get it, eating fruits and veggies can be challenging - which is why we’ve dedicated this lesson to helping you! Check it out and see for yourself."
