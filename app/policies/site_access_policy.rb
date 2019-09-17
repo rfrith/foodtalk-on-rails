@@ -7,6 +7,9 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
   end
 
   def view_spanish_content?
+
+    return true if user.super_admin? #can we put into a before_ hook w/ pundit?
+
     case user.host_name
     when "caresource.foodtalk.org"
       true
@@ -70,6 +73,9 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
   private
 
   def determine_access_rights_by_host_name
+
+    return true if user.super_admin?
+
     case user.host_name
     when "caresource.foodtalk.org"
       false
