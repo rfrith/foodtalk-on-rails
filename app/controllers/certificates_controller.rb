@@ -46,7 +46,6 @@ class CertificatesController < ApplicationController
   def create_certificate(image_name, completion_date)
 
     begin
-
       #https://stackoverflow.com/a/7625116
       img = ImageList.new
       img_url = open(view_context.asset_url(image_name))
@@ -72,6 +71,8 @@ class CertificatesController < ApplicationController
       img_data = Base64.encode64(img.to_blob).gsub(/\n/, "")
 
     rescue => e
+      logger.error "An error occurred: #{e.inspect}"
+      logger.warn "Falling back to render plain certificate: #{image_name}"
       #fallback to plain image if any ImageMagick/GhostScript failures occur
       img = open(view_context.asset_url(image_name))
       return Base64.encode64 img.read
