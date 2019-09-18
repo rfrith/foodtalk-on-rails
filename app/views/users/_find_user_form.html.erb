@@ -1,20 +1,20 @@
-<div class="align-items-baselinez">
+<div class="">
   <%= form_with id: "user-search", url: find_user_by_criteria_path, class: "form-inline", method: :get do |form| %>
     <div class="form-row ml-2">
       <div class="form-group col-auto">
         <%= form.radio_button :search_criteria, :name, checked: true, class: 'form-control form-control-sm mr-2' %>
-        <%= form.label "Name", class: "col-form-label-sm d-inline" %>
+        <%= form.label t("forms.name"), class: "col-form-label-sm d-inline" %>
       </div>
       <div class="form-group col-auto">
         <%= form.radio_button :search_criteria, :email, {class: 'form-control form-control-sm mr-2'} %>
-        <%= form.label "Email", class: "col-form-label-sm d-inline" %>
+        <%= form.label t("forms.email"), class: "col-form-label-sm d-inline" %>
       </div>
       <div class="form-group col-auto">
         <%= form.text_field :search_value, id: 'criteria-input', class: 'form-control form-control-sm' %>
       </div>
       <div class="col-auto">
-        <%= form.button "Search", type: :submit, class: "btn btn-sm btn-primary ml-2" %>
-        <%= form.button "All Users", remote: true, class: "btn btn-sm btn-primary ml-2", onclick: "$('#criteria-input').val('');" %>
+        <%= form.button t("forms.search_submit"), type: :submit, class: "btn btn-sm btn-primary ml-2" %>
+        <%= form.button t("forms.all_users"), remote: true, class: "btn btn-sm btn-primary ml-2", onclick: "$('#criteria-input').val('');" %>
       </div >
     </div>
   <% end %>

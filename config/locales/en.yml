@@ -58,12 +58,11 @@ en:
     view_all_blog_posts: "View All Blog Posts"
     view_all_recipes: "View All Recipes"
     view_all_videos: "View All Videos"
-    uga_extension_office: "UGA Extension Office"
     scroll_down_for_more: "Scroll down for more"
     load_more: "Show more..."
     click_here: "click here"
     to: "to"
-    print: "print"
+    Exten: "print"
 
   header:
     categories: "Categories"
@@ -76,11 +75,15 @@ en:
     auth0: "Secured By"
 
   forms:
+    name: "Name"
+    email: "Email"
     submit: "Update"
     generate: "Generate"
     search_terms: "Enter search terms..."
     search_submit: "Search"
+    all_users: "All Users"
     no_search_results: "No results found.  Please try your search again."
+    no_data_to_display: "No data to display."
 
   welcome:
     title: "Helping Georgians Eat Healthy & Get Moving!"
@@ -201,6 +204,7 @@ en:
 
   general:
     please_log_in: "You must be logged in to access this content.  Please click the \"Sign Up / Log In\" link in order to continue."
+    uga_extension_offices_in_your_county: "University of Georgia Extension Offices In Your County"
 
   activerecord:
     models:
