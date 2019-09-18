@@ -62,7 +62,7 @@ en:
     load_more: "Show more..."
     click_here: "click here"
     to: "to"
-    Exten: "print"
+    print: "print"
 
   header:
     categories: "Categories"
