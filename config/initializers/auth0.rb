@@ -1,9 +1,10 @@
-#must include this code to override and pass the language selector to Auth0
+#must include this code to override and pass the language selector & initialScreen params to Auth0
 OmniAuth::Strategies::Auth0.class_eval do
   # Define the parameters used for the /authorize endpoint
   def authorize_params
     params = super
     params['ui_locales'] = request.params['ui_locales']
+    params['initialScreen'] = request.params['initialScreen']
     params
   end
 end

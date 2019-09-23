@@ -11,6 +11,11 @@ class SessionsController < ApplicationController
     redirect_to uri
   end
 
+  def signup
+    uri = "/auth/auth0?ui_locales=#{I18n.locale}&initialScreen=signUp"
+    redirect_to uri
+  end
+
   def user_logged_in
     case user_signed_in?
     when true

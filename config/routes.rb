@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     #Auth0/user session
     get '/login' => 'sessions#login'
+    get '/signup' => 'sessions#signup'
     get 'auth/auth0/callback' => 'sessions#create'
     get 'auth/failure' => 'sessions#failure'
 

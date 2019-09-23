@@ -20,22 +20,6 @@
       <% end %>
     </div>
 
-    <% #TODO: fix or remove me %>
-    <% if false %>
-      <div class="text-right">
-        <% if(policy(:site_access).view_spanish_content?) %>
-          <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "white-link", style: "") %></u>
-        <% end %>
-        <% if user_signed_in? %>
-          <span style="color: white;">|</span>
-          <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
-        <% else %>
-          <span style="color: white;">|</span>
-          <u><%= link_to(t("navigation.login"), login_path, class: "", style: "color: white;") %></u>
-        <% end %>
-      </div>
-    <% end %>
-
     <% #no partner logo defined in db %>
     <div class="d-block d-md-none text-center">
       <% if (!(partner_logo && partner_logo.url)) %>
@@ -62,16 +46,24 @@
       <div class="mr-2">
 
         <% if !user_signed_in? %>
-          <div class="">
-            <%= link_to login_url do %>
-          <span class="badge badge-secondary hero-subtitle">
+        <div class="">
+          <%= link_to login_path do %>
+            <span class="badge badge-secondary hero-subtitle">
             <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
+            </span>
+          <% end %>
+
+          <span class="hero-subtitle">/</span>
+
+          <%= link_to signup_path do %>
+            <span class="badge badge-secondary hero-subtitle">
+            <%= fa_icon("user") %> <%= t("navigation.sign_up") %>
+            </span>
+          <% end %>
+          <span class="hero-subtitle">
+            <%= t("welcome.sign_up") %>
           </span>
-            <% end %>
-            <span class="hero-subtitle">
-          <%= t("welcome.sign_up") %>
-        </span>
-          </div>
+        </div>
         <% end %>
 
       </div>
