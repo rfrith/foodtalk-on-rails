@@ -36,15 +36,19 @@ class ApplicationController < ActionController::Base
   end
 
   def switch_locale(&action)
-    locale = I18n.default_locale
+    locale = session[:locale] ||= I18n.default_locale
     if(policy(:site_access).view_spanish_content?)
       if params[:locale]
-        locale = params[:locale]
+        #compare to what's in session
+        if(session[:locale] != params[:locale])
+          locale = params[:locale]
+          #update session if different
+          session[:locale] = locale
+        end
       end
     end
     I18n.with_locale(locale, &action)
   end
-
 
   def get_notifications
     notifications = session[:notifications]

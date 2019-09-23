@@ -69,6 +69,10 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
     user.is_eligible?
   end
 
+  def view_about_link?
+    determine_access_rights_by_host_name
+  end
+
 
   private
 

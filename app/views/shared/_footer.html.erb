@@ -13,7 +13,9 @@
       <div class="w-100 d-block d-lg-none"></div>
 
       <span class="mx-auto d-inline-flex">
+        <% if policy(:site_access).view_about_link? %>
         <%= link_to(t("footer.about"), "https://www.fcs.uga.edu/extension/uga-snap-ed-about-us", class: "nav-item nav-link", target: "_blank") %>
+        <% end %>
         <%= link_to(t("footer.contact"), "/html/contact-us.html", data: {"fancybox": "", "type": 'iframe'}, class: "nav-item nav-link") %>
         <%= link_to(t("footer.statements"), "/html/statements.html", target: "_blank", class: "nav-item nav-link") %>
       </span>

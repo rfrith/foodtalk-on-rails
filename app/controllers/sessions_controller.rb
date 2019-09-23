@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
 
 
   def login
-    render "/auth/auth0"
+    uri = "/auth/auth0?ui_locales=#{I18n.locale}"
+    redirect_to uri
   end
 
   def user_logged_in

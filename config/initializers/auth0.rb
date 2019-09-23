@@ -1,4 +1,17 @@
+#must include this code to override and pass the language selector to Auth0
+OmniAuth::Strategies::Auth0.class_eval do
+  # Define the parameters used for the /authorize endpoint
+  def authorize_params
+    params = super
+    params['ui_locales'] = request.params['ui_locales']
+    params
+  end
+end
+
 Rails.application.config.middleware.use OmniAuth::Builder do
+
+  #OmniAuth.config.full_host = "http://foodtalk.org"
+
   if ENV['AUTH0_AUDIENCE'].blank?
     audience = URI::HTTPS.build(host: ENV['AUTH0_DOMAIN'], path: '/userinfo').to_s
   else
