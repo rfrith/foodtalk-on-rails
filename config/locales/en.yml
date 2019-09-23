@@ -204,7 +204,7 @@ en:
       description: "We are sorry, something went wrong. Our technical team will investigate the issue. Please try again shortly."
 
   general:
-    please_log_in: "You must be logged in to access this content.  Please click the \"Sign Up / Log In\" link in order to continue."
+    please_log_in: "You must be logged in to access this content.  Please click \"Sign Up\" or \"Log In\" in order to continue."
     uga_extension_offices_in_your_county: "University of Georgia Extension Offices In Your County"
 
   activerecord:

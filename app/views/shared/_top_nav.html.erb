@@ -64,10 +64,10 @@
           </span>
         <% else %>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
+            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.sign_up")}", signup_path, class: "badge badge-secondary" %>
           </span>
           <span class="flex-fill mr-0">
-            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.sign_up")}", signup_path, class: "badge badge-secondary" %>
+            <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
           </span>
         <% end %>
 
@@ -151,10 +151,10 @@
         </li>
       <% else %>
         <li class="nav-item" data-turbolinks="false">
-          <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
+          <%= link_to(t("navigation.sign_up"), signup_path, class: "nav-link mr-auto") %>
         </li>
         <li class="nav-item" data-turbolinks="false">
-          <%= link_to(t("navigation.sign_up"), signup_path, class: "nav-link mr-auto") %>
+          <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
         </li>
       <% end %>
 
