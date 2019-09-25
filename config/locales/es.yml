@@ -228,7 +228,7 @@ es:
         user:
           attributes:
             first_name:
-              blank: " %{attribute} no puede estar en blanco"
+              blank: "no puede estar en blanco"
             last_name:
               blank: "no puede estar en blanco"
             email:

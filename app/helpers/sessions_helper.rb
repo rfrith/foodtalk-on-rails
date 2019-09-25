@@ -10,7 +10,6 @@ module SessionsHelper
   def authenticate_user!
     if !user_signed_in?
       session[:org_uri] = request.original_url
-      #TODO I18N me!!!
       add_notification :info, t(:info), t("general.please_log_in"), 20000
       redirect_to root_url
     end
