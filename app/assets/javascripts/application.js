@@ -41,18 +41,6 @@ $(document).on("turbolinks:load", function() {
 
     if($("#dashboard-content").length) {
         init_isotope_started_courses();
-
-        $('a[data-toggle=tab]').on('shown.bs.tab', function (e) {
-            switch(e.target.id ) {
-                case 'started-courses-tab-link':
-                    init_isotope_started_courses();
-
-                    break;
-                case 'completed-courses-tab-link':
-                    init_isotope_completed_courses();
-                    break;
-            }
-        })
     }
 
     $('#wp-search').submit(function () {
@@ -81,34 +69,10 @@ function init_isotope_started_courses() {
     });
 }
 
-function init_isotope_completed_courses() {
-    $('.food-etalk-completed-grid').imagesLoaded( function() {
-        $('.food-etalk-completed-grid').isotope({
-            // options
-            itemSelector: '.module-grid-item',
-            layoutMode: 'fitRows'
-        });
-    });
-    $('.better-u-completed-grid').imagesLoaded( function() {
-        $('.better-u-completed-grid').isotope({
-            // options
-            itemSelector: '.module-grid-item',
-            layoutMode: 'fitRows'
-        });
-    });
-}
-
 function launchVideo(videoPath, surveyPath) {
     $.fancybox.open({
         src  : videoPath,
-        type : 'iframe',
-        opts : {
-            afterClose : function( instance, current ) {
-                if(surveyPath != 'undefined') {
-                    parent.location.href = surveyPath;
-                }
-            }
-        }
+        type : 'iframe'
     });
     return false; //cancel click event
 }

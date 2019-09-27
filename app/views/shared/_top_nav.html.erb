@@ -15,29 +15,41 @@
           <%= link_to fa_icon("home", class: " align-middle") + " Home", root_path, class: "badge badge-secondary" %>
         </span>
 
+        <% if policy(:site_access).view_blog? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("rss", class: "align-middle") + " #{t("navigation.blog")}", blogs_index_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_recipes? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("cutlery", class: "align-middle") + " #{t("navigation.recipes")}", recipes_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_videos? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("play", class: "align-middle") + " #{t("navigation.videos")}", videos_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_attend_class? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_food_glossary? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("book", class: "align-middle") + " #{t("navigation.food_glossary")}", food_glossary_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
+        <% if policy(:site_access).view_gis_resources? %>
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-secondary" %>
         </span>
+        <% end %>
 
         <span class="flex-fill mr-0">
           <%= link_to fa_icon("graduation-cap", class: "align-middle") + " #{t("navigation.learn_online")}", learn_online_path, class: "badge badge-secondary" %>
@@ -52,72 +64,98 @@
           </span>
         <% else %>
           <span class="flex-fill mr-0">
+            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.sign_up")}", signup_path, class: "badge badge-secondary" %>
+          </span>
+          <span class="flex-fill mr-0">
             <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
           </span>
         <% end %>
 
-        <% if Rails.application.secrets.i18n_enabled %>
+        <%
+        if(policy(:site_access).view_spanish_content?)
+          org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
+        %>
         <span class="flex-fill">
-          <%= link_to fa_icon("language", class: "align-middle") + " #{t("switch_language")}", "/#{t('language_select_value').to_sym}", class: "badge badge-secondary" %>
+          <%= link_to fa_icon("language", class: "align-middle") + " #{t("switch_language")}", "/#{t('language_select_value').to_sym}#{org_url}", class: "badge badge-secondary" %>
         </span>
         <% end %>
+
       </div>
 
     </div>
 
   </div>
 
-  <div class="collapse navbar-collapse" id="navbarToggler1">
+  <div class="d-none d-md-block">
     <ul class="navbar-nav mr-auto">
-
       <li class="nav-item">
-        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link d-block") %>
+        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link ") %>
       </li>
 
+      <% if policy(:site_access).view_blog? %>
       <li class="nav-item">
         <%= link_to(t("navigation.blog"), blogs_index_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_recipes? %>
       <li class="nav-item">
         <%= link_to(t("navigation.recipes"), recipes_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_videos? %>
       <li class="nav-item">
-        <%= link_to(t("navigation.videos"), { controller: "videos", action: "index" }, class: "nav-link") %>
+        <%= link_to(t("navigation.videos"), videos_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_food_glossary? %>
       <li class="nav-item">
-        <%= link_to(t("navigation.food_glossary"), { controller: "glossary_terms", action: "index" }, class: "nav-link") %>
+        <%= link_to(t("navigation.food_glossary"), food_glossary_path, class: "nav-link") %>
       </li>
+      <% end %>
 
+      <% if policy(:site_access).view_attend_class? || policy(:site_access).view_gis_resources? %>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
-        <% #TODO: remove hardcoding color %>
-        <div class="dropdown-menu" style="background-color: #de4527">
-          <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
-          <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
+        <div class="btn-group">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
+          <% #TODO: remove hardcoding color %>
+          <div class="dropdown-menu dropdown-menu-rightzzz" style="background-color: #de4527">
+            <% if policy(:site_access).view_attend_class? %>
+            <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
+            <% end %>
+            <% if policy(:site_access).view_gis_resources? %>
+            <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
+            <% end %>
+          </div>
         </div>
       </li>
+      <% end %>
 
       <%
-        if(Rails.application.secrets.i18n_enabled)
+      if(policy(:site_access).view_spanish_content?)
+        org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
       %>
       <li class="nav-item">
-        <%= link_to(fa_icon("language") + " #{t('language_select_value').upcase}", "/#{t('language_select_value').to_sym}#{request.original_fullpath.slice(3..-1)}", class: "nav-link") %>
+        <%= link_to( t('language_select_label'), "/#{t('language_select_value').to_sym}#{org_url}", class: "nav-link") %>
       </li>
       <% end %>
 
       <% if user_signed_in? %>
-          <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
-            <%= link_to( t("navigation.my_dashboard"), { controller: "dashboard", action: "show" }, class: "nav-link", data: {turbolinks: false}) %>
-          </li>
-          <li class="nav-item" data-turbolinks="false">
-            <%= link_to(t("navigation.logout"), logout_path, class: "nav-link mr-auto") %>
-          </li>
+        <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
+          <%= link_to( t("navigation.my_dashboard"), { controller: "dashboard", action: "show" }, class: "nav-link", data: {turbolinks: false}) %>
+        </li>
+        <li class="nav-item" data-turbolinks="false">
+          <%= link_to(t("navigation.logout"), logout_path, class: "nav-link mr-auto") %>
+        </li>
       <% else %>
-          <li class="nav-item" data-turbolinks="false">
-            <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
-          </li>
+        <li class="nav-item" data-turbolinks="false">
+          <%= link_to(t("navigation.sign_up"), signup_path, class: "nav-link mr-auto") %>
+        </li>
+        <li class="nav-item" data-turbolinks="false">
+          <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
+        </li>
       <% end %>
 
       <%

@@ -48,17 +48,17 @@ en:
     blog: "Blog"
     recipes: "Recipes"
     videos: "Videos"
-    food_glossary: "Food Glossary"
+    food_glossary: "Glossary"
     snap_ed_resources: "Resources"
     attend_a_class: "Attend a Class"
     gis_resources: "GIS Resources"
     my_dashboard: "Dashboard"
-    login: "Login/Sign Up"
-    logout: "Logout"
+    login: "Log In"
+    sign_up: "Sign Up"
+    logout: "Log Out"
     view_all_blog_posts: "View All Blog Posts"
     view_all_recipes: "View All Recipes"
     view_all_videos: "View All Videos"
-    uga_extension_office: "UGA Extension Office"
     scroll_down_for_more: "Scroll down for more"
     load_more: "Show more..."
     click_here: "click here"
@@ -76,10 +76,15 @@ en:
     auth0: "Secured By"
 
   forms:
+    name: "Name"
+    email: "Email"
     submit: "Update"
     generate: "Generate"
     search_terms: "Enter search terms..."
     search_submit: "Search"
+    all_users: "All Users"
+    no_search_results: "No results found.  Please try your search again."
+    no_data_to_display: "No data to display."
 
   welcome:
     title: "Helping Georgians Eat Healthy & Get Moving!"
@@ -100,16 +105,24 @@ en:
   blog:
     name: "Food Talk Blog"
     description: "Read Interesting & Informative Articles by Nutrition Experts!"
-    search: "Search Blog"
+    error: "Error displaying Blog."
+    search:
+      label: "Search Blog"
 
   recipes:
-      name: "Food Talk Recipes"
-      description: "Check out our healthy, delicious, and affordable meal ideas!"
-      search: "Search Recipes"
+    name: "Food Talk Recipes"
+    description: "Check out our healthy, delicious, and affordable meal ideas!"
+    error: "Error displaying recipes."
+    search:
+      label: "Search Recipes"
+
+  posts:
+    all_posts: "All Posts"
 
   videos:
-      name: "Food Talk Videos"
-      description: "Watch to increase your knowledge of food & nutrition!"
+    name: "Food Talk Videos"
+    description: "Watch to increase your knowledge of food & nutrition!"
+    error: "Error displaying videos."
 
   glossary:
     name: "Food Talk Glossary"
@@ -125,20 +138,19 @@ en:
   gis_resources:
     name: "GIS Resources"
     description: "Provided by UGA SNAP-Ed"
+    maps:
+      eligibility_locator: "SNAP-Ed Eligibility Locator"
+      snap_ed_resources: "SNAP-Ed Resources"
 
   learn_online:
     start_learning_module: "Why not improve your knowledge on health & nutrition and start a Food eTalk or Better U course from the below choices?"
     continue_learning_module: "Why not finish what you started?  Complete any started lessons by clicking the links below and continue improving your health & nutrition knowledge!"
-
-
     completed_html: "Way to go! You have completed %{curriculum}."
     extenders_prompt: "%{href} for instructions on how to receive your complimentary bag of educational extenders."
     print_your_certificate: "Please %{print_link} your receipt of completion(s) %{additional_instructions}"
     extenders_directions: "and bring to %{location_prompt} to get your bag of complimentary education extenders!  If you don't have a printer you may present the certificate from your phone or mobile device."
     multiple_extension_offices: "one of these county extension offices"
     single_extension_office: "the following county extension office"
-
-
     better_u:
       name: "Better U"
       tagline: "Increase your food knowledge!"
@@ -164,8 +176,6 @@ en:
         continue_learning: "Continue learning by clicking on a lesson's title or image."
       completed:
         label: "Completed"
-        food_talk_completed_lesson: "You should be proud of what you've accomplished!"
-        better_u_completed_lesson: "You're well on your way to becoming a Better U!"
     my_info:
       label: "My Info"
       description: "Welcome to FoodTalk.org! Please tell us a little about yourself."
@@ -174,6 +184,28 @@ en:
       opt_in: "I would like to receive emails from FoodTalk.org about the following topics"
       label: "Newsletter Subscription"
       make_selection: "Please choose which of these lists you'd like to receive emails from."
+      error: "An error occurred while getting newsletter subscription data."
+
+  error_pages:
+    http400:
+      label: "Bad Request."
+      description: "We are sorry, something appears to be wrong with the request you made, please try again."
+
+    http404:
+      label: "Page not found."
+      description: "We are sorry, the page you requested cannot be found. The URL may be misspelled or the page you're looking for is no longer available."
+
+    http422:
+      label: "The action you requested was rejected."
+      description: "We are sorry, you requested something you didn't have access to."
+
+    http500:
+      label: "Internal Server Error."
+      description: "We are sorry, something went wrong. Our technical team will investigate the issue. Please try again shortly."
+
+  general:
+    please_log_in: "You must be logged in to access this content.  Please click \"Sign Up\" or \"Log In\" in order to continue."
+    uga_extension_offices_in_your_county: "University of Georgia Extension Offices In Your County"
 
   activerecord:
     models:

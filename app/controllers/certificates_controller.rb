@@ -13,21 +13,21 @@ class CertificatesController < ApplicationController
 
       case params[:id]
       when LearningModules.module_name(:FOOD_ETALK)
-        image_name = 'FoodEtalkCompletionCertificate.png'
+        image_name = "FoodEtalkCompletionCertificate_#{I18n.locale}.png"
         completion_date = curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK)
         @certificates = [create_certificate(image_name, completion_date)]
 
       when LearningModules.module_name(:BETTER_U)
-        image_name = 'BetterUCompletionCertificate.png'
+        image_name = "BetterUCompletionCertificate_#{I18n.locale}.png"
         completion_date = curriculum_completion_date(@current_user, LearningModules::BETTER_U)
         @certificates = [create_certificate(image_name, completion_date)]
 
       else
         #show all obtained certificates
-        food_etalk_image_name = 'FoodEtalkCompletionCertificate.png'
+        food_etalk_image_name = "FoodEtalkCompletionCertificate_#{I18n.locale}.png"
         food_etalk_completion_date = curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK)
 
-        better_u_image_name = 'BetterUCompletionCertificate.png'
+        better_u_image_name = "BetterUCompletionCertificate_#{I18n.locale}.png"
         better_u_completion_date = curriculum_completion_date(@current_user, LearningModules::BETTER_U)
 
         @certificates = [create_certificate(better_u_image_name, better_u_completion_date), create_certificate(food_etalk_image_name, food_etalk_completion_date)]

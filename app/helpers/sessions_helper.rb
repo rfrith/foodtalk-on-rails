@@ -10,12 +10,15 @@ module SessionsHelper
   def authenticate_user!
     if !user_signed_in?
       session[:org_uri] = request.original_url
-      redirect_to login_path
+      add_notification :info, t(:info), t("general.please_log_in"), 20000
+      redirect_to root_url
     end
   end
 
   def current_user
     @current_user ||= user_signed_in? ? User.find_or_initialize_from_auth_hash(session[:auth_hash]) : User.new
+    @current_user.host_name = request.host
+    return @current_user
   end
 
   def check_consent

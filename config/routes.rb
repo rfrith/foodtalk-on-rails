@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     get "/500", to: "errors#internal_error"
 
     #Auth0/user session
-    get '/login', to: redirect(path: '/auth/auth0'), as: 'login'
+    get '/login' => 'sessions#login'
+    get '/signup' => 'sessions#signup'
     get 'auth/auth0/callback' => 'sessions#create'
     get 'auth/failure' => 'sessions#failure'
+
     get '/logout' => 'sessions#destroy'
     get '/user_logged_in' => 'sessions#user_logged_in'
 
@@ -24,7 +26,10 @@ Rails.application.routes.draw do
     get 'blog/show/:id' => 'blogs#show', as: 'show_blog'
     get 'recipes/:name' => 'recipes#find_by_name', as: 'find_recipe'
     get 'blog/:name' => 'blogs#find_by_name', as: 'find_blog'
-    get 'fnv' => 'wordpress_pages#show', slug: 'fnv'
+
+    #WordPress Pages
+    get '/fnv' => 'wordpress_pages#show', slug: 'fnv', show_nav: true
+    get '/caresource' => 'wordpress_pages#show', slug: "caresource", show_nav: true
 
     #internal
     resources :users, only: [:create, :update]

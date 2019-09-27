@@ -16,25 +16,10 @@
   <div class="hero-content">
     <div class="d-block d-md-none float-left mr-2">
       <% if (partner_logo && partner_logo.url)%>
-          <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
+        <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
       <% end %>
     </div>
 
-    <% #TODO: fix or remove me %>
-    <% if false %>
-    <div class="text-right">
-      <% if(Rails.application.secrets.i18n_enabled) %>
-        <u><%= link_to(t("switch_language"), "/#{t('language_select_value').to_sym}", class: "white-link", style: "") %></u>
-      <% end %>
-      <% if user_signed_in? %>
-        <span style="color: white;">|</span>
-        <u><%= link_to(t("navigation.logout"), logout_path, class: "", style: "color: white;") %></u>
-      <% else %>
-        <span style="color: white;">|</span>
-        <u><%= link_to(t("navigation.login"), login_path, class: "", style: "color: white;") %></u>
-      <% end %>
-    </div>
-    <% end %>
 
     <% #no partner logo defined in db %>
     <div class="d-block d-md-none text-center">
@@ -63,9 +48,17 @@
 
         <% if !user_signed_in? %>
         <div class="">
-          <%= link_to login_url do %>
+          <%= link_to signup_path do %>
             <span class="badge badge-secondary hero-subtitle">
-              <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
+            <%= fa_icon("user") %> <%= t("navigation.sign_up") %>
+            </span>
+          <% end %>
+
+          <span class="hero-subtitle">/</span>
+
+          <%= link_to login_path do %>
+            <span class="badge badge-secondary hero-subtitle">
+            <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
             </span>
           <% end %>
           <span class="hero-subtitle">

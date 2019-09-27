@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
     end
 
     @racial_identities = Rails.cache.fetch("all_racial_identities", expires_in: 1.day) do
-      RacialIdentity.all.all.order(name: :asc)
+      RacialIdentity.all.order(name: :asc)
     end
 
     @federal_assistances = Rails.cache.fetch("all_federal_assistances", expires_in: 1.day) do
@@ -37,11 +37,11 @@ class DashboardController < ApplicationController
 
     else
 
-      if(@current_user.course_enrollments.started.any?)
+      if(@current_user.is_eligible? && @current_user.course_enrollments.started.any?)
         add_notification :info, t(:info), t("learn_online.continue_learning_module"), 20000
 
       elsif(@current_user.is_eligible? && (!user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) || !user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U)) )
-        add_notification :info, t(:info), t("learn_online.start_learning_module"), false
+        add_notification :info, t(:info), t("learn_online.start_learning_module"), 20000
 
       elsif(user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) || user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U))
         #TODO: implement me!

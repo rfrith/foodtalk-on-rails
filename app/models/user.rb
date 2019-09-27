@@ -49,6 +49,8 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :racial_identities, presence: true
 
+  attr_accessor :host_name #for pundit view access policies by group/domain assignment
+
 
   after_initialize do
     if self.new_record?
@@ -114,12 +116,12 @@ class User < ApplicationRecord
   end
 
   def self.find_or_initialize_from_auth_hash(auth_hash)
-
     if(!auth_hash.blank?)
-      uid = auth_hash['uid']
-      first_name = auth_hash['first_name']
-      last_name = auth_hash['last_name']
-      email = auth_hash['email']
+      auth_hash.symbolize_keys! #must do this because the hash sometimes uses symbols and sometimes uses strings
+      uid = auth_hash[:uid]
+      first_name = auth_hash[:first_name]
+      last_name = auth_hash[:last_name]
+      email = auth_hash[:email]
     end
 
     user = self.find_or_initialize_by(uid: uid) do |user|

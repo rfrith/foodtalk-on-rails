@@ -1,18 +1,10 @@
-<% content_for :header do %>
-  <div class="d-block d-md-none fixed-top">
-    <%= render partial: 'shared/top-nav' %>
-  </div>
+<%
+  #TODO: move into different layout files & choose which to use in controller
+  #
+  # https://stackoverflow.com/questions/3025784/rails-layouts-per-action/21203783#21203783
+  if(@show_nav)
+%>
+  <%= render template: 'layouts/application' %>
+<% else %>
+  <%= render template: 'layouts/simple_layout' %>
 <% end %>
-
-<% content_for :content do %>
-  <div class="d-none d-md-block sticky-top">
-    <%= render partial: 'shared/top-nav' %>
-  </div>
-  <%= yield %>
-<% end %>
-
-<% content_for :footer do %>
-  <%= render 'shared/footer' %>
-<% end %>
-
-<%= render template: 'layouts/application' %>

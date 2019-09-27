@@ -1,5 +1,5 @@
 <% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.day do %>
-  <div id="videos" class="content-section2">
+  <div id="videos" class="content-section2 flex-fill">
   <div class="pb-0 bg-white">
     <%= render partial: "shared/videos_title_block", locals: {title: t("videos.name"), description: t("videos.description")} %>
   </div>
@@ -29,7 +29,7 @@
   <% end %>
 
   <% if !@videos.blank? && !@videos["items"].blank? %>
-      <div id="videos-grid" class="grid pt-3">
+      <div id="videos-grid" class="mx-auto grid pt-3">
         <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
       </div>
 
@@ -42,12 +42,11 @@
   <% else %>
     <div class="d-flex justify-content-center">
       <div class="media align-items-center mt-4 ml-5 mr-5">
-        <% #TODO: I18n ME! %>
-        Error displaying videos.
+        <%= t("videos.error")%>
       </div>
     </div>
   <% end %>
 </div>
 <% end %>
 
-<%= render partial: 'videos/infinite_scroll', cached: false, locals: {page_path: video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken)} %>
+<%= render partial: 'videos/infinite_scroll', locals: {page_path: video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken)} %>

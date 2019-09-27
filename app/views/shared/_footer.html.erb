@@ -5,27 +5,29 @@
 
       <div class="row no-gutters d-flex justify-content-center mx-auto">
 
-      <span class="mx-auto">
-        <%= image_tag 'extenstion-healthy-ga-logo-black.png', class: 'img-fluid mr-5', alt: 'UGA SNAP-Ed Logo', style: 'max-height: 50px;' %>
-        <%= image_tag 'foodtalk-ga-snaped.png', class: 'img-fluid mr-5', alt: 'UGA SNAP-Ed Logo', style: 'max-height: 50px;' %>
-      </span>
+        <span class="mx-auto">
+          <%= image_tag 'extenstion-healthy-ga-logo-black.png', class: 'img-fluid mr-5', alt: 'UGA SNAP-Ed Logo', style: 'max-height: 50px;' %>
+          <%= image_tag 'foodtalk-ga-snaped.png', class: 'img-fluid mr-5', alt: 'UGA SNAP-Ed Logo', style: 'max-height: 50px;' %>
+        </span>
 
         <div class="w-100 d-block d-lg-none"></div>
 
         <span class="mx-auto d-inline-flex">
-        <%= link_to(t("footer.about"), "https://www.fcs.uga.edu/extension/uga-snap-ed-about-us", class: "nav-item nav-link", target: "_blank") %>
+          <% if policy(:site_access).view_about_link? %>
+          <%= link_to(t("footer.about"), "https://www.fcs.uga.edu/extension/uga-snap-ed-about-us", class: "nav-item nav-link", target: "_blank") %>
+          <% end %>
           <%= link_to(t("footer.contact"), "/html/contact-us.html", data: {"fancybox": "", "type": 'iframe'}, class: "nav-item nav-link") %>
           <%= link_to(t("footer.statements"), "/html/statements.html", target: "_blank", class: "nav-item nav-link") %>
-      </span>
+        </span>
 
         <div class="w-100 d-block d-lg-none"></div>
 
         <%= render partial: "shared/social_media_links", locals: { css: "nav-item nav-link", should_show_facebook: true, should_show_twitter: true, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: true, should_show_instagram: true, should_show_email: true } %>
 
         <span class="mx-auto" style="color: white;">
-        <%= t("footer.auth0") %>
+          <%= t("footer.auth0") %>
           <a class="ml-2" width="auto" height="50px" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img class="img-fluid" style="height: 50px; width: 150px;" alt="JWT Auth for open source projects" src="https://cdn.auth0.com/oss/badges/a0-badge-light.png"/></a>
-      </span>
+        </span>
 
       </div>
 

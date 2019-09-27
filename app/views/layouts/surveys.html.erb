@@ -1,17 +1,1 @@
-<% if @full_screen %>
-  <% content_for :header do %>
-    <%= render 'shared/top-nav' %>
-  <% end %>
-<% end %>
-
-<% content_for :content do %>
-  <%= yield %>
-<% end %>
-
-<% if @full_screen %>
-  <% content_for :footer do %>
-    <%= render 'shared/footer' %>
-  <% end %>
-<% end %>
-
 <%= render template: "layouts/simple_layout" %>

@@ -25,7 +25,7 @@ class LearnOnlineController < ApplicationController
 
       #handle modules that are non-ArticulateStorylyine, i.e.,g Qualtrics Survey
       if lesson[:survey_lesson]
-        target_url = lesson[:target_url]
+        target_url = "/#{I18n.locale}#{lesson[:target_url]}"
       else
         target_url = "/elearning/#{I18n.locale}" + lesson[:target_url]
       end

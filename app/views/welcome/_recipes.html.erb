@@ -2,7 +2,7 @@
 <div id="featured-recipes" class="content-section">
   <%= render partial: "shared/post_title_block", locals: {inverse: true, icon: "recipe-graphic-sm.png", title: t("welcome.recipes.title"), description: t("welcome.recipes.description")}%>
   <div class="mx-auto recipes-deck w-100">
-    <div class="grid">
+    <div class="mx-auto grid">
       <%= render partial: 'shared/post', collection: @recipes.first(3), cached: true, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
     </div>
   </div>

@@ -1,13 +1,27 @@
 <%= render partial: 'shared/fancybox_bootstrap_fix' %>
 
-<% if @blogs %>
-  <%= render partial: "blogs", cached: false %>
+<% if policy(:site_access).view_default_index? %>
+
+  <%= render 'welcome/header' %>
+
+  <% if policy(:site_access).view_blog? %>
+    <% if @blogs %>
+      <%= render partial: "blogs" %>
+    <% end %>
+  <% end %>
+
+  <% if policy(:site_access).view_recipes? %>
+    <% if @recipes %>
+      <%= render partial: "recipes" %>
+    <% end %>
+  <% end %>
+
+  <% if policy(:site_access).view_videos? %>
+    <% if @videos %>
+      <%= render partial: "videos" %>
+    <% end %>
+  <% end %>
+
 <% end %>
 
-<% if @recipes %>
-  <%= render partial: "recipes", cached: false %>
-<% end %>
 
-<% if @videos %>
-  <%= render partial: "videos", cached: false %>
-<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190628134748) do
+ActiveRecord::Schema.define(version: 20190911190949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,9 +65,10 @@ ActiveRecord::Schema.define(version: 20190628134748) do
   end
 
   create_table "federal_assistances", force: :cascade do |t|
-    t.string "name"
+    t.string "name_bak"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "name", default: {}
   end
 
   create_table "federal_assistances_users", id: false, force: :cascade do |t|
@@ -105,9 +106,10 @@ ActiveRecord::Schema.define(version: 20190628134748) do
   end
 
   create_table "racial_identities", force: :cascade do |t|
-    t.string "name"
+    t.string "name_bak"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "name", default: {}
   end
 
   create_table "racial_identities_users", id: false, force: :cascade do |t|

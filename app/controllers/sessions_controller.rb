@@ -5,6 +5,17 @@ class SessionsController < ApplicationController
 
   skip_before_action :current_user
 
+
+  def login
+    uri = "/auth/auth0?ui_locales=#{I18n.locale}"
+    redirect_to uri
+  end
+
+  def signup
+    uri = "/auth/auth0?ui_locales=#{I18n.locale}&initialScreen=signUp"
+    redirect_to uri
+  end
+
   def user_logged_in
     case user_signed_in?
     when true
@@ -33,7 +44,7 @@ class SessionsController < ApplicationController
     elsif session[:org_uri]
       redirect_to session.delete(:org_uri)
     else
-      redirect_to show_dashboard_path
+      redirect_by_group_assignment
     end
   end
 
@@ -54,6 +65,21 @@ class SessionsController < ApplicationController
 
   def auth_hash
     request.env['omniauth.auth']
+  end
+
+  def redirect_by_group_assignment
+    url = show_dashboard_url
+    user = current_user
+    if(user.groups)
+      user.groups.each do |group|
+        if(!group.domain.blank? && group.domain != request.domain)
+          url = "#{request.protocol}#{group.domain}:#{request.port}#{show_dashboard_path}"
+          reset_session
+          break
+        end
+      end
+    end
+    redirect_to url, :status => :moved_permanently
   end
 
 end

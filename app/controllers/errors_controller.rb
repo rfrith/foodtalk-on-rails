@@ -8,8 +8,7 @@ class ErrorsController < ApplicationController
   def bad_request
     respond_to do |format|
       @error = Rails.cache.fetch("HTTP400", expires_in: 1.day) do
-        #TODO: I18N ME!!!
-        ErrorPageMessage.new(400, "Bad Request.", "We are sorry, something appears to be wrong with the request you made, please try again.")
+        ErrorPageMessage.new(400, t("error_pages.http400.label"), t("error_pages.http400.description"))
       end
       format.html { render :template => "errors/error" }
       format.json { render json: { title: @error.title }, status: @error.status }
@@ -18,8 +17,7 @@ class ErrorsController < ApplicationController
 
   def not_found
     @error = Rails.cache.fetch("HTTP404", expires_in: 1.day) do
-      #TODO: I18N ME!!!
-      ErrorPageMessage.new(404, "Page not found.", "We are sorry, the page you requested cannot be found. The URL may be misspelled or the page you're looking for is no longer available.")
+      ErrorPageMessage.new(404, t("error_pages.http404.label"), t("error_pages.http404.description"))
     end
     respond_to do |format|
       format.html { render :template => "errors/error" }
@@ -29,8 +27,7 @@ class ErrorsController < ApplicationController
 
   def unacceptable
     @error = Rails.cache.fetch("HTTP422", expires_in: 1.day) do
-      #TODO: I18N ME!!!
-      ErrorPageMessage.new(422, "The action you requested was rejected.", "We are sorry, you requested something you didn't have access to.")
+      ErrorPageMessage.new(422, t("error_pages.http422.label"), t("error_pages.http422.description"))
     end
     respond_to do |format|
       format.html { render :template => "errors/error" }
@@ -40,8 +37,7 @@ class ErrorsController < ApplicationController
 
   def internal_error
     @error = Rails.cache.fetch("HTTP500", expires_in: 1.day) do
-      #TODO: I18N ME!!!
-      ErrorPageMessage.new(500, "Internal Server Error.", "We are sorry, something went wrong. Our technical team will investigate the issue. Please try again shortly.")
+      ErrorPageMessage.new(500, t("error_pages.http500.label"), t("error_pages.http500.description"))
     end
     respond_to do |format|
       format.html { render :template => "errors/error" }

@@ -1,7 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
 <html lang="en">
   <head>
-
     <title>Foodtalk.org | Helping Georgians Eat Healthy & Get Moving!</title>
     <%= csrf_meta_tags %>
 
@@ -17,8 +16,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
@@ -28,17 +29,21 @@
 
     <%= render partial: "shared/show_notifications" %>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <%= yield :head %>
+
   </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div id="body-content" class="h-100">
-      <%= yield :header %>
-      <div id="notifications" class="pl-1 pr-1"></div>
-      <%= yield :content %>
-      <%= yield :footer %>
-    </div>
+
+  <body class="d-flex flex-column min-vh-100 <% controller_name %> <% action_name %>">
+    <header>
+      <%= render partial: 'shared/top_nav' %>
+    </header>
+    <div id="notifications" class="pl-1 pr-1"></div>
+    <%= yield %>
+    <footer>
+      <%= render 'shared/footer' %>
+    </footer>
   </body>
 </html>

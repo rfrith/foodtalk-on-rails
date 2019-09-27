@@ -1,4 +1,4 @@
-<% cache [create_cache_key_prefix, "glossary"], :expires_in => 1.day do %>
+<%cache [create_cache_key_prefix, "glossary"], :expires_in => 1.day do %>
 
   <div class="content-section-header d-flex justify-content-center align-items-center white-bg">
     <div><%= image_tag 'glossary-icon.png', class: 'header-icon', alt: 'Glossary Icon' %></div>
@@ -20,13 +20,35 @@
           current_letter = letters.shift
         end
       %>
-      <%= link_to l.upcase, "##{current_letter.upcase}", class: 'btn btn-sm btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button' %>
+      <%= link_to l.upcase, "##{current_letter.upcase}", class: 'btn btn-sm btn-primary border border-secondary', style: 'margin: .05rem;', role: 'button', data: {turbolinks: false} %>
     <% } %>
   </div>
 
   <div id="glossary" class="content-section2 pt-4">
     <div class="col-auto">
-      <%= render partial: 'glossary_terms/glossary_term', collection: @glossary_terms, cached: true %>
+      <%
+        last_term = nil
+        should_execute = false
+      %>
+      <% @glossary_terms.each do |gt| %>
+        <%
+          current_term = gt.name.slice(0).upcase
+          if(last_term != current_term)
+            last_term = current_term
+            should_execute = true
+          else
+            should_execute = false
+          end
+        %>
+
+        <% if(should_execute) %>
+          <div id="<%= last_term %>"></div>
+        <% end %>
+
+        <%= render partial: 'glossary_terms/glossary_term', locals: {glossary_term: gt} %>
+
+      <% end %>
+
     </div>
   </div>
-<% end %>
+<%end %>

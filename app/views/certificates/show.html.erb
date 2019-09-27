@@ -2,6 +2,7 @@
   @page { size: a4 landscape}
 
   body {
+    background: none;
     background-color: white;
     min-height: 90vh;
   }
@@ -49,8 +50,8 @@
   </div>
   <div class="h-75 row no-gutters m-0 p-0">
     <div class="col no-gutters m-0 p-0">
-      <strong class="d-block text-center">Locations</strong>
-      <div class="grid">
+      <strong class="d-block text-center"><%= t("general.uga_extension_offices_in_your_county") %></strong>
+      <div class="mx-auto grid">
         <% @current_user.get_county_extension_offices.each do |ceo| %>
           <div class="grid-item">
             <div class="mapouter d-flex">
@@ -82,7 +83,7 @@
       <hr class="d-block d-md-none">
       <div id="certificate-border" class="text-center">
         <h6 class="mt-4">
-         <a href='#' onclick='window.print();'> <%== t('navigation.print'.capitalize)%> <%== fa_icon 'print' %></a>
+         <a href='#' onclick='window.print();'> <%== t('navigation.print').capitalize %> <%== fa_icon 'print' %></a>
         </h6>
 
         <% @certificates.each do |certificate| %>
@@ -104,12 +105,12 @@
       <%== t("learn_online.print_your_certificate", print_link: print_link, additional_instructions: t('learn_online.extenders_directions', location_prompt: location_prompt))%>
     </span>
   </div>
-  <strong class="d-block mb-1">Locations</strong>
+  <strong class="d-block mb-1"><%= t("general.uga_extension_offices_in_your_county") %></strong>
   <div class="row">
     <% @current_user.get_county_extension_offices.each do |ceo| %>
     <div class="col">
       <address class="card-text">
-        <strong><%= ceo.name %> Extension Office</strong><br>
+        <strong><%= ceo.name %></strong><br>
         <%== ceo.address1.present? ? ceo.address1 + "<br>" : "" %>
         <%== ceo.address2.present? ? ceo.address2 + "<br>" : "" %>
         <%= ceo.city %>, <%= ceo.state %> <%= ceo.zip %><br>

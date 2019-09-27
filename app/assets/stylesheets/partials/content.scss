@@ -260,12 +260,14 @@
 
 
 .grid {
-  margin: 0 auto;
+  margin-top: 2rem;
 }
 
 
 .grid-item, .post-grid-item {
-  margin: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
 }
 
 

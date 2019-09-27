@@ -1,14 +1,14 @@
 <%= content_for :head do %>
   <% #MUST DO THIS TO ENSURE TURBOLINKS DOESN'T CACHE TOAST POPUPS %>
-  <meta name="turbolinks-visit-control" content="reload">
+  <meta name="turbolinks-visit-control" content="reload"/>
 <% end %>
 
 <% notifications = get_notifications %>
 <script language="JavaScript">
 
     $(document).on("turbolinks:load", function() {
-        <% if notifications %>
-        <% notifications.each do |n| %>
+    <% if notifications %>
+      <% notifications.each do |n| %>
         <%
         if(!n['url'].blank?)
           message = link_to(n['message'].html_safe, "#{n['url']}", id: "my-popup-link")
@@ -20,20 +20,20 @@
         iziToast.<%=n['type']%>({
             target: '#notifications',
             message: '<%= message %>',
-            <% else %>
-            iziToast.show({
-                message: '<%= message %>',
-                color: '#fbec64',
-                image: '<%= image_url("logo-sm.png", class: "img-fluid m-0 p-0", alt: "FoodTalk.org: #{t('welcome.title')}") %>',
-                layout: '2',
-                transitionIn: 'bounceInDown',
-                close: true,
-                closeOnClick: false,
-                <% end %>
-                title: '<%= n['title'] %>',
-                timeout: <%= n['timeout'] %>
-            });
+        <% else %>
+          iziToast.show({
+              message: '<%= message %>',
+              color: '#fbec64',
+              image: '<%= image_url("logo-sm.png", class: "img-fluid m-0 p-0", alt: "FoodTalk.org: #{t('welcome.title')}") %>',
+              layout: '2',
+              transitionIn: 'bounceInDown',
+              close: true,
+              closeOnClick: false,
         <% end %>
-        <% end %>
+            title: '<%= n['title'] %>',
+            timeout: <%= n['timeout'] %>
+          });
+      <% end %>
+    <% end %>
     });
 </script>

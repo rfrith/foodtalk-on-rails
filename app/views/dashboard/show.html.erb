@@ -1,4 +1,4 @@
-<div id="dashboard-content">
+<div id="dashboard-content" class="flex-fill">
 
   <nav>
     <div class="nav nav-tabs justify-content-end pt-1" id="dashboard-nav" role="tablist">
@@ -10,10 +10,6 @@
       <a id="nav-my-activity-tab" class="<%=  @current_user.is_eligible? ? "d-block" : "d-none" %> nav-item nav-link <%= "active" if !@current_user.is_admin? %>" data-toggle="tab" href="#nav-my-activity" role="tab" aria-controls="nav-my-activity" aria-selected="<%= !@current_user.is_admin? ? "true" : "false" %>"><%= t("dashboard.my_courses.label") %></a>
 
       <a id="nav-personal-info-tab" class="nav-item nav-link <%= "active" if(!@current_user.valid? || (!@current_user.is_admin? && !@current_user.is_eligible?))%>" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="false"><%= t("dashboard.my_info.label") %></a>
-
-    <% if(false && !@current_user.new_record?) %>
-      <a id="nav-mail-subscriptions-tab" class="nav-item nav-link" data-toggle="tab" href="#nav-mail-subscriptions" role="tab" aria-controls="nav-mail-subscriptions" aria-selected="false"><%= t("dashboard.newsletters.label") %></a>
-    <% end %>
 
     </div>
   </nav>

@@ -14,8 +14,7 @@
 
       <div class="flex-column">
         <% base_css = 'badge mb-1 ml-1 border' %>
-        <% #TODO: I18N ME!!!! "All Posts" %>
-        <%= link_to "All Posts", eval("#{index_path}"), class: base_css + (@all_posts ? ' badge-primary' : ' badge-light'), role: 'button' %>
+        <%= link_to t("posts.all_posts"), eval("#{index_path}"), class: base_css + (@all_posts ? ' badge-primary' : ' badge-light'), role: 'button' %>
 
         <% if slugs %>
           <% slugs.each do |s| %>

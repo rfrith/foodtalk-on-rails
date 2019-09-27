@@ -3,6 +3,9 @@ class BlogsController < ApplicationController
   include WordpressUtils, WordpressHelper
 
   def index
+
+    authorize(:site_access)
+
     begin
       get_posts
     rescue Exception => e
@@ -71,11 +74,6 @@ class BlogsController < ApplicationController
   private
 
   def get_posts
-
-
-
-
-
     recipes_slug = get_category_slug_id_by_name(RECIPES)
     @page = params[:page] ||= 1
     @posts_per_page = PER_PAGE

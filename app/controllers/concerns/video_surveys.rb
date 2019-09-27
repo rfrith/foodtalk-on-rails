@@ -6,7 +6,7 @@ module VideoSurveys
      {
          name: "Sweet Deceit",
          video_id: "nx5L4Tulv7Q",
-         survey_id: "SV_4O88nldEpeHIWVL",
+         survey_id: "SV_3qSvzKTq7cu3tul",
 
          survey_args:
              {
@@ -20,7 +20,7 @@ module VideoSurveys
      {
          name: "Better U Beachball Exercises",
          video_id: "KMS-YQ8iYcA",
-         survey_id: "SV_6sP9blf829Vh6C1",
+         survey_id: "SV_cFSSIbvyDqFM1Cd",
          survey_args:
              {
                  origin: "better-u-beach-ball-exercises",
@@ -33,7 +33,7 @@ module VideoSurveys
      {
          name: "Using a Better U Resistance Band",
          video_id: "2hCT7VmHtBA",
-         survey_id: "SV_6sP9blf829Vh6C1",
+         survey_id: "SV_cFSSIbvyDqFM1Cd",
          survey_args:
              {
                  origin: "using-a-better-u-resistance-band",
@@ -46,7 +46,7 @@ module VideoSurveys
      {
          name: "Better U Chair Exercises",
          video_id: "vp1livRmAG4",
-         survey_id: "SV_6sP9blf829Vh6C1",
+         survey_id: "SV_cFSSIbvyDqFM1Cd",
 
          survey_args:
              {
@@ -61,7 +61,7 @@ module VideoSurveys
      {
          name: "Using a Better U Pedometer",
          video_id: "WE-AFXUQuPU",
-         survey_id: "SV_6sP9blf829Vh6C1",
+         survey_id: "SV_cFSSIbvyDqFM1Cd",
 
          survey_args:
              {
@@ -75,7 +75,7 @@ module VideoSurveys
      {
          name: "How To Make Tuscan Pasta",
          video_id: "zcD-1YW2424",
-         survey_id: "SV_3Xg0Y1rmMkc5UEd",
+         survey_id: "SV_1HNq6kOZVXtIzuR",
 
          survey_args:
              {
@@ -89,7 +89,7 @@ module VideoSurveys
      {
          name: "Dirty Rice and Black Eyed Peas",
          video_id: "RrD4loMsVi4",
-         survey_id: "SV_3Xg0Y1rmMkc5UEd",
+         survey_id: "SV_1HNq6kOZVXtIzuR",
 
          survey_args:
              {
@@ -103,7 +103,7 @@ module VideoSurveys
      {
          name: "How To Make Greens with Beans",
          video_id: "cL_4djQ_HiM",
-         survey_id: "SV_3Xg0Y1rmMkc5UEd",
+         survey_id: "SV_1HNq6kOZVXtIzuR",
 
          survey_args:
              {
@@ -117,7 +117,7 @@ module VideoSurveys
      {
          name: "How to make Pueblo Chili ",
          video_id: "aHph1aQX6IA",
-         survey_id: "SV_3Xg0Y1rmMkc5UEd",
+         survey_id: "SV_1HNq6kOZVXtIzuR",
 
          survey_args:
              {

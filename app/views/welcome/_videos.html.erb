@@ -2,7 +2,7 @@
   <div id="featured-videos" class="content-section2">
     <% if !@videos["items"].blank? %>
       <%= render partial: "shared/videos_title_block", locals: {title: t("welcome.videos.title"), description: t("welcome.videos.description")} %>
-      <div class="d-flex justify-content-center grid">
+      <div class="mx-auto grid">
         <div class="d-flex mx-auto mt-4">
           <%= render partial: 'videos/video', collection: @videos["items"].last(3), cached: true %>
         </div>

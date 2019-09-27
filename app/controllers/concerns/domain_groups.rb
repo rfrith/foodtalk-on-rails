@@ -13,6 +13,10 @@ module DomainGroups
       {
           id: :cidc,
           group_name: "collaborative-impact-for-decatur-county"
+      },
+      {
+          id: :caresource,
+          group_name: "caresource"
       }
   ]
 
