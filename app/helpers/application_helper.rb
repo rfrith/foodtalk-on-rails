@@ -2,6 +2,7 @@ module ApplicationHelper
 
   def create_cache_key_prefix
     key = ""
+    key += I18n.locale.to_s
     key += request.host #needed for partner organizations
     key += request.original_fullpath.slice(0..-1) #needed for I18N (URL contains locale)
     key += user_signed_in?.to_s.slice(0)
