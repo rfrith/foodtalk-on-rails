@@ -46,6 +46,9 @@ class ApplicationController < ActionController::Base
           session[:locale] = locale
         end
       end
+    else
+      locale = I18n.default_locale
+      session[:locale] = nil
     end
     I18n.with_locale(locale, &action)
   end
