@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   include Secured, MailchimpHelper, DomainGroups, DateHelper, CurriculumHelper
 
+  #TODO: recall why this was necessary?
   protect_from_forgery except: :update
 
   before_action :initialize_date_range, only: [:find_by_eligibility, :find_by_eligibility_and_group, :find_by_group, :find_by_started_and_or_completed_curricula, :find_by_started_and_or_completed_curricula_by_group]

@@ -1,0 +1,58 @@
+<div id="create-nofitication" class="no-gutters p-2 pt-3 m-0 rounded">
+  <%= form_with id: "create-notification", url: create_notification_path, method: :post do |form| %>
+
+    <div class="form-row">
+      <div class="col-auto">
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :selected_locale, :en, checked: true %>
+          <%= form.label :type, "English", id: 'locale-input', class: 'ml-2' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :selected_locale, :es %>
+          <%= form.label :type, "Español", id: 'locale-input', class: 'ml-2' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-auto">
+        <% Notifications::VALID_NOTIFICATION_TYPES.each do |nt| %>
+          <div class="form-check form-check-inline">
+            <%= form.radio_button :type, nt, checked: (nt == :info) %>
+            <%= form.label :type, nt, id: 'type-input', class: 'ml-2' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label t("forms.notification.title"), class: "col-form-label-sm d-inline" %>
+        <%= form.text_field :title, id: 'title-input', class: 'form-control form-control-sm ml-2' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label t("forms.notification.message"), class: "col-form-label-sm d-inline" %>
+        <%= form.text_area :message, id: 'message-input', class: 'form-control form-control-sm ml-2' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label t("forms.notification.url"), class: "col-form-label-sm d-inline" %>
+        <%= form.text_field :url, id: 'url-input', class: 'form-control form-control-sm ml-2' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label t("forms.notification.timeout"), class: "col-form-label-sm d-inline" %>
+        <%= form.text_field :timeout, id: 'timeout-input', class: 'form-control form-control-sm ml-2' %>
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col-auto">
+        <%= form.button t("forms.submit"), type: :submit, class: "btn btn-sm btn-primary ml-2" %>
+      </div>
+    </div>
+  <% end %>
+</div>

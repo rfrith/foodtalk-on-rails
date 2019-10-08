@@ -38,7 +38,6 @@ en:
   social_media_prompt: "For recipes and more:"
   language_select_label: "Español"
   language_select_value: "es"
-  switch_language: "Español"
   eligibility_restriction: "The feature you have requested is restricted due to current SNAP-Ed eligibility requirements.  For more information please review the guidelines posted at <a href=\"https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf\" target=\"_blank\">https://snaped.fns.usda.gov/snap/Guidance/FY2019SNAPEdPlanGuidanceFULL.pdf</a>."
   TrueClass: "Yes"
   FalseClass: "No"
@@ -78,7 +77,16 @@ en:
   forms:
     name: "Name"
     email: "Email"
-    submit: "Update"
+    notification:
+      label: "Enter a new Notification"
+      type: "Type"
+      title: "Title"
+      message: "Message"
+      url: "URL"
+      timeout: "Timeout"
+
+    submit: "Submit"
+    update: "Update"
     generate: "Generate"
     search_terms: "Enter search terms..."
     search_submit: "Search"
@@ -166,10 +174,9 @@ en:
       stats: "Site Statistics"
       reports: "CSV Data Export"
       user_search: "User Search"
+      notifications: "System Notifications"
     my_courses:
       label: "My Courses"
-#      not_started: "You have not completed any Food eTalk or Better U lessons.  Why not"
-#      start_now: "start a lesson now"
       started:
         label: "All Modules"
         start_learning: "Start learning by clicking on the lesson's title or image."
@@ -198,6 +205,10 @@ en:
     http422:
       label: "The action you requested was rejected."
       description: "We are sorry, you requested something you didn't have access to."
+
+    http429:
+      label: "Too many requests."
+      description: "We are sorry, the number of connections that can be established has been exceeded.  Please try again shortly."
 
     http500:
       label: "Internal Server Error."

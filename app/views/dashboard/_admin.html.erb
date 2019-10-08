@@ -10,7 +10,10 @@
     <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#reports" aria-controls="reports" aria-selected="false"><%= t("dashboard.admin.reports") %></a>
     <% end %>
     <% if policy(:user).find_user_by_criteria? %>
-      <a id="reports-tab-link" class="nav-item nav-link" data-toggle="tab" href="#find-user" aria-controls="find-user" aria-selected="false"><%= t("dashboard.admin.user_search") %></a>
+      <a id="find-user-tab-link" class="nav-item nav-link" data-toggle="tab" href="#find-user" aria-controls="find-user" aria-selected="false"><%= t("dashboard.admin.user_search") %></a>
+    <% end %>
+    <% if policy(:notification).create? %>
+      <a id="create-notification-tab-link" class="nav-item nav-link" data-toggle="tab" href="#create-notification" aria-controls="find-user" aria-selected="false"><%= t("dashboard.admin.notifications") %></a>
     <% end %>
   </nav>
 
@@ -32,6 +35,14 @@
       </div>
     </div>
     <% end %>
+    <% if policy(:notification).create? %>
+      <div id="create-notification" class="tab-pane fade show" role="tabpanel" aria-labelledby="create-notification">
+        <div id="notification-content" class="rounded">
+          <%= render :partial => "notifications/form" %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 
   <% else %>

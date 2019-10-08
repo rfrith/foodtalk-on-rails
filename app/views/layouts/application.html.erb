@@ -8,6 +8,8 @@
 
     <%= render partial: "shared/google_analytics" %>
 
+    <%= action_cable_meta_tag %>
+
     <%= yield :js %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -40,7 +42,7 @@
     <header>
       <%= render partial: 'shared/top_nav' %>
     </header>
-    <div id="notifications" class="pl-1 pr-1"></div>
+    <div id="notifications" class="pl-1 pr-1" data-locale="<%= I18n.locale %>"></div>
     <%= yield %>
     <footer>
       <%= render 'shared/footer' %>

@@ -37,7 +37,7 @@ gem 'turbolinks', '~> 5.2'
 gem 'jbuilder', '~> 2.8'
 
 # Use Redis adapter to run Action Cable in production
-#gem 'redis', '~> 4.1'
+gem 'redis', '~> 4.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
@@ -77,6 +77,7 @@ gem 'groupdate', '~> 4.1', '>= 4.1.1'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'lol_dba', '~> 2.1', '>= 2.1.5'
 gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
+gem 'sidekiq'
 
 #TODO: decide on
 #gem 'foreman', '~> 0.85.0'

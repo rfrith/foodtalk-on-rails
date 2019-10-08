@@ -1,5 +1,7 @@
 class ErrorsController < ApplicationController
 
+  before_action :read_http_headers, only: :too_many_requests
+
   skip_before_action :current_user
 
   class ErrorPageMessage < Struct.new(:status, :title, :message)
@@ -35,6 +37,16 @@ class ErrorsController < ApplicationController
     end
   end
 
+  def too_many_requests
+    @error = Rails.cache.fetch("HTTP429", expires_in: 1.day) do
+      ErrorPageMessage.new(429, t("error_pages.http429.label"), t("error_pages.http429.description"))
+    end
+    respond_to do |format|
+      format.html { render :template => "errors/error" }
+      format.json { render json: { title: @error.title }, status: @error.status }
+    end
+  end
+
   def internal_error
     @error = Rails.cache.fetch("HTTP500", expires_in: 1.day) do
       ErrorPageMessage.new(500, t("error_pages.http500.label"), t("error_pages.http500.description"))
@@ -43,6 +55,12 @@ class ErrorsController < ApplicationController
       format.html { render :template => "errors/error" }
       format.json { render json: { title: @error.title }, status: @error.status }
     end
+  end
+
+  private
+
+  def read_http_headers
+    # response.headers[""]
   end
 
 end

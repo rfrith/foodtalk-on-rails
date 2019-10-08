@@ -1,0 +1,14 @@
+<%
+if(!notification['url'].blank?)
+  message = link_to(notification['message'].html_safe, "#{notification['url']}", id: "my-popup-link", target: :blank)
+else
+  message = notification['message'].html_safe
+end
+%>
+
+<div class="alert <%= get_notification_class(notification) %> alert-dismissible fade show m-1" role="alert">
+  <strong><%= notification['title'] %></strong> <%= message %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

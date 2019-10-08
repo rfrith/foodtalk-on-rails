@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "/400", to: "errors#bad_request"
     get "/404", to: "errors#not_found"
     get "/422", to: "errors#unacceptable"
+    get "/429", to: "errors#too_many_requests"
     get "/500", to: "errors#internal_error"
 
     #Auth0/user session
@@ -36,6 +37,11 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index, :show]
     resources :videos, only: [:index, :show]
     resources :users, only: [:show]
+
+
+
+    #post 'create_notification' => 'notifications#create'
+    post 'notification/create' => 'notifications#create', :as => :create_notification
 
     get 'dashboard' => 'dashboard#show', as: 'show_dashboard'
     get 'welcome/index'
@@ -128,6 +134,12 @@ Rails.application.routes.draw do
     end
 
   end
+
+  mount ActionCable.server => '/cable'
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
