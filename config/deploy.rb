@@ -14,6 +14,9 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :deploy_to, ENV['DEPLOY_TO']
 set :rvm_ruby_version, ENV['RVM_RUBY_VERSION']
 
+
+set :maintenance_template_path, File.expand_path("../../app/views/errors/maintenance.html.erb", __FILE__)
+
 set :loaderio_auth_files, ENV['LOADERIO_AUTH_FILES']
 
 

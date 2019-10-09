@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maintenance</title>
+  <style type="text/css">
+    body {
+      width: 400px;
+      margin: 100px auto;
+      font: 300 120% "OpenSans", "Helvetica Neue", "Helvetica", Arial, Verdana, sans-serif;
+    }
+
+    h3, img, p {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .centered {
+      display: block;
+      margin-left: auto;
+      margin-right: auto }
+
+  </style>
+</head>
+<body>
+
+<img src="/images/logo150x150.png" class="centered">
+<h3>Maintenance</h3>
+<p>The website is down for routine maintenance as of <%= Time.now.strftime("%F %H:%M %Z") %> and will be back up again shortly.</p>
+<br>
+<h3>Mantenimiento</h3>
+<p>El sitio web est&aacute; inactivo por mantenimiento de rutina a partir del <%= Time.now.strftime("%F %H:%M %Z") %> y volver&aacute; a estar disponible nuevamente en breve.</p>
+
+
+</body>
+</html>
