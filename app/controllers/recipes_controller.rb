@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
     begin
       @tags = get_all_categories_or_tags_as_json(:tags)
       @post = get_post_by_name_as_json(params[:name])[0]
-      get_post_details
+      get_post_details unless @post.nil?
     rescue Exception => e
       logger.error "An error occurred: #{e.inspect}"
     end
@@ -39,6 +39,8 @@ class RecipesController < ApplicationController
     begin
       @post = get_post_by_id_as_json(params[:id])
       get_post_details
+      @direct_url = "#{request.protocol}#{request.host}:#{request.port}/recipes/#{@post['slug']}" #show_recipe_url(params[:id])
+      @favorites_url = show_recipe_url(params[:id])
     rescue Exception => e
       logger.error "An error occurred: #{e.inspect}"
     end

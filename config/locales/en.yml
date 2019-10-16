@@ -84,7 +84,8 @@ en:
       message: "Message"
       url: "URL"
       timeout: "Timeout"
-
+    edit: "Edit"
+    delete: "Delete"
     submit: "Submit"
     update: "Update"
     generate: "Generate"
@@ -114,6 +115,7 @@ en:
     name: "Food Talk Blog"
     description: "Read Interesting & Informative Articles by Nutrition Experts!"
     error: "Error displaying Blog."
+    not_found: "Blog post not found."
     search:
       label: "Search Blog"
 
@@ -121,6 +123,7 @@ en:
     name: "Food Talk Recipes"
     description: "Check out our healthy, delicious, and affordable meal ideas!"
     error: "Error displaying recipes."
+    not_found: "Recipe not found."
     search:
       label: "Search Recipes"
 
@@ -131,6 +134,9 @@ en:
     name: "Food Talk Videos"
     description: "Watch to increase your knowledge of food & nutrition!"
     error: "Error displaying videos."
+
+  favorites:
+    click_to_add: "Click to add to your favorites."
 
   glossary:
     name: "Food Talk Glossary"
@@ -183,6 +189,9 @@ en:
         continue_learning: "Continue learning by clicking on a lesson's title or image."
       completed:
         label: "Completed"
+    my_playlists:
+      label: "My Favorites"
+      description: "Here is a list of items you have added as favorites."
     my_info:
       label: "My Info"
       description: "Welcome to FoodTalk.org! Please tell us a little about yourself."

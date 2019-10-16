@@ -22,6 +22,9 @@ class User < ApplicationRecord
   has_many :course_enrollments, dependent: :destroy
   has_many :users, through: :groups
 
+  has_many :playlists
+  has_many :playlist_items, through: :playlists
+
   #regular Foodtalk users; non-admins & no group affiliation
   scope :not_in_group, ->  {left_outer_joins(:groups).where(groups: {id: nil})}
   scope :in_group, -> (name) {left_outer_joins(:groups).where(groups: {name: name})}

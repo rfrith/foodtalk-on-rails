@@ -39,6 +39,9 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100 <% controller_name %> <% action_name %>">
+
+    <%= yield :body %>
+
     <header>
       <%= render partial: 'shared/top_nav' %>
     </header>

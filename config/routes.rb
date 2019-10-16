@@ -32,6 +32,14 @@ Rails.application.routes.draw do
     get '/fnv' => 'wordpress_pages#show', slug: 'fnv', show_nav: true
     get '/caresource' => 'wordpress_pages#show', slug: "caresource", show_nav: true
 
+
+    #favorites/playlist
+    get "playlist/check_item" => 'playlists#check_item_belongs_to_playlist', :as => 'check_item_belongs_to_playlist'
+    post 'playlist/add_item/:url/:name/:category' => 'playlists#add_item_to_playlist', :as => 'add_to_favorites'
+    delete 'playlist/remove_item/:id' => 'playlists#remove_item_from_playlist', :as => 'remove_from_favorites'
+
+
+
     #internal
     resources :users, only: [:create, :update]
     resources :recipes, only: [:index, :show]
@@ -39,8 +47,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show]
 
 
-
-    #post 'create_notification' => 'notifications#create'
     post 'notification/create' => 'notifications#create', :as => :create_notification
 
     get 'dashboard' => 'dashboard#show', as: 'show_dashboard'
@@ -110,7 +116,6 @@ Rails.application.routes.draw do
 
       post 'update_user_groups' => :update_user_groups
       post 'update_user_roles' => :update_user_roles
-      post 'update_recipe_favorites/:id' => :update_recipe_favorites, as: 'update_recipe_favorites'
     end
 
     controller :reports do

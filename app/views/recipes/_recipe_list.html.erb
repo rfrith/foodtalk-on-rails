@@ -1,6 +1,6 @@
 <% if collection %>
 
-  <%= render partial: 'shared/post', collection: collection, cached: true, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: slugs, post_slugs: "post['tags']"} %>
+  <%= render partial: 'shared/post', collection: collection, cached: false, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: slugs, post_slugs: "post['tags']"} %>
 
 <% else %>
   <div class="d-flex justify-content-center">

@@ -3,24 +3,33 @@
   video_survey = VideoSurveys.find_video_by_id(video_id)
   survey_name = video_survey ? video_survey[:survey_args][:origin] : ""
   survey_location = should_serve_survey?(survey_name, @current_user) ? show_survey_path(video_survey[:survey_args][:origin]) : ""
+  launch_path = video_path(video["contentDetails"]["videoId"])
 %>
 
 <div class="mb-4 video-card card grid-item">
 
-  <a href="#" onclick="return launchVideo('<%= video_path(video["contentDetails"]["videoId"]) %>', '<%= survey_location %>');" class="p-0">
+  <a href="#" onclick="return launchVideo('<%= launch_path %>', '<%= survey_location %>');" class="p-0">
     <%= image_tag "https://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top img-fluid', alt: 'Video Cap' %>
   </a>
 
   <div class="card-body p-2 m-0 d-none d-md-block">
-    <a href="#" onclick="return launchVideo('<%= video_path(video["contentDetails"]["videoId"]) %>', '<%= survey_location %>');" class="p-0">
+    <a href="#" onclick="return launchVideo('<%= launch_path %>', '<%= survey_location %>');" class="p-0">
       <div class="text-center d-none d-md-block"><%= fa_icon "youtube-play", class: 'faYoutubePlayIcon' %></div>
-      <h4 class="card-title text-center mt-0 d-none d-md-block"><%= video["snippet"]["title"] %></h4>
     </a>
+
+    <h4 class="card-title text-center mt-0 d-none d-md-block">
+      <%= video["snippet"]["title"].titleize %>
+
+      <% if user_signed_in? && policy(:site_access).view_favorites_link? %>
+        <%= link_to fa_icon("heart-o"), add_to_favorites_path(launch_path, video["snippet"]["title"], :video), method: :post, remote: true, id: "", title: "Click to add to your favorites.", rel: "tooltip", class: "is_fav", url: launch_path %>
+      <% end %>
+
+    </h4>
     <p class="card-text text-justify p-2 d-none d-md-block"><%= video["snippet"]["description"] %></p>
   </div>
 
   <div class="card-footer text-center p-2 d-block d-md-none">
-    <a href="#" onclick="return launchVideo('<%= video_path(video["contentDetails"]["videoId"]) %>', '<%= survey_location %>');" class="btn btn-sm btn-primary">
+    <a href="#" onclick="return launchVideo('<%= launch_path %>', '<%= survey_location %>');" class="btn btn-sm btn-primary">
       <%= video["snippet"]["title"] %>
     </a>
   </div>

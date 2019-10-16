@@ -1,3 +1,17 @@
+<% if @post %>
+  <%= render partial: "shared/add_facebook_meta_tags_for_post" %>
+  <%= render partial: "shared/add_facebook_share" %>
+  <%= render partial: "shared/add_pinterest_share" %>
+<% end %>
+
 <div id="recipe-post" class="content-section2 flex-fill">
-  <%= render :partial => "shared/post_details" %>
+  <% if @post %>
+    <%= render :partial => "shared/post_details" %>
+  <% else %>
+    <div class="d-flex justify-content-center">
+      <div class="media align-items-center mt-4 ml-5 mr-5">
+        <%= t("recipes.not_found")%>
+      </div>
+    </div>
+  <% end %>
 </div>

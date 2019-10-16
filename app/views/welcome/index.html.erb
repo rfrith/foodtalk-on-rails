@@ -1,5 +1,7 @@
 <%= render partial: 'shared/fancybox_bootstrap_fix' %>
 
+<%= render partial: 'shared/update_icon_add_remove_playlist'%>
+
 <% if policy(:site_access).view_default_index? %>
 
   <%= render 'welcome/header' %>

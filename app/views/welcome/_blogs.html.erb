@@ -2,7 +2,7 @@
   <div id="featured-blogs" class="content-section2">
     <%= render partial: "shared/post_title_block", locals: {inverse: false, icon: "blog-icon-med.png", title: t("welcome.blog.title"), description: t("welcome.blog.description")}%>
     <div class="mx-auto grid">
-      <%= render partial: 'shared/post', collection: @blogs.first(3), cached: true, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
+      <%= render partial: 'shared/post', collection: @blogs.first(3), cached: false, locals: {index_path: "blogs_index_path", show_path: "show_blog_path", slugs: @categories, post_slugs: "post['categories']"} %>
     </div>
     <div class="view-all-link text-center">
       <%= link_to t("navigation.view_all_blog_posts"), blogs_index_path %>

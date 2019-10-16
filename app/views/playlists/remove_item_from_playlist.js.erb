@@ -1,0 +1,14 @@
+<% if @playlist_item_id %>
+var timeout = 3000;
+
+<% #TODO: I18n ME! %>
+
+iziToast.success({
+    title: '<%= t("success") %>',
+    message: '<%= "Item removed from favorites." %>',
+    target: '#notifications',
+    timeout: timeout
+});
+
+$('tr#<%= @playlist_item_id %>').remove();
+<% end %>
