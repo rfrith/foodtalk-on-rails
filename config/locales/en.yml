@@ -192,7 +192,7 @@ en:
         label: "Completed"
     my_playlists:
       label: "My Favorites"
-      description: "Please click the <span class='ml-2 mr-2 text-primary'>%{icon}</span> icon on your favorite &nbsp; %{blogs_link}, &nbsp; %{recipes_link}, or &nbsp; %{videos_link} &nbsp; items to add them to this list."
+      description: "Please click the <span class='ml-1 mr-1 text-primary'>%{icon}</span> icon on your favorite %{blogs_link}, %{recipes_link}, or %{videos_link} items to add them to this list."
       empty: "You have not added any items to your favorites."
     my_info:
       label: "My Info"

@@ -63,6 +63,11 @@
 
   <div class="card-footer text-center d-block d-md-none">
     <%== link_to(post_title.html_safe, launch_link, data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+
+    <% if user_signed_in? && policy(:site_access).view_add_remove_favorites_link? %>
+      <%== link_to fa_icon("heart-o"), add_to_favorites_path(launch_link, post_title, show_path.include?("recipe") ? :recipe : :blog), method: :post, remote: true, title: t("favorites.click_to_add"), rel: "tooltip", class: "m-1 is_fav", style: "color: white;", url: launch_link %>
+    <% end %>
+
   </div>
 
   <div class="card-footer text-center d-none d-md-block">

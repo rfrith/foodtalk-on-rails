@@ -192,7 +192,7 @@ es:
         label: "Terminado"
     my_playlists:
       label: "Mis Favoritos"
-      description: "Haga clic en el <span class='ml-2 mr-2 text-primary'>%{icon}</span> ícono de sus artículos favoritos de &nbsp; %{blogs_link}, &nbsp; %{recipes_link}, o &nbsp; %{videos_link} &nbsp; para agregarlos a esta lista."
+      description: "Haga clic en el <span class='ml-1 mr-1 text-primary'>%{icon}</span> ícono de sus artículos favoritos de %{blogs_link}, %{recipes_link}, o %{videos_link} para agregarlos a esta lista."
       empty: "No ha agregado ningún artículo a sus favoritos."
     my_info:
       label: "Mi Información"

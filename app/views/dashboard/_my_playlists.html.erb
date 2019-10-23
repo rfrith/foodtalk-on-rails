@@ -1,6 +1,6 @@
 <% user_has_playlist_items = !@current_user.playlist_items.empty? %>
 <div id="playlists-content" class="tab-content p-2">
-  <div class="pb-4 d-flex justify-content-center lead">
+  <div class="pt-2 pb-2 lead text-center">
     <% if !user_has_playlist_items %>
       <%== t("dashboard.my_playlists.empty") %>
     <% end %>
