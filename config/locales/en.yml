@@ -191,7 +191,8 @@ en:
         label: "Completed"
     my_playlists:
       label: "My Favorites"
-      description: "Here is a list of items you have added as favorites."
+      description: "Please click the <span class='ml-2 mr-2 text-primary'>%{icon}</span> icon on your favorite &nbsp; %{blogs_link}, &nbsp; %{recipes_link}, or &nbsp; %{videos_link} &nbsp; items to add them to this list."
+      empty: "You have not added any items to your favorites."
     my_info:
       label: "My Info"
       description: "Welcome to FoodTalk.org! Please tell us a little about yourself."

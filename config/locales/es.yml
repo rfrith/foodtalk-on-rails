@@ -136,7 +136,7 @@ es:
     error: "Error al mostrar videos."
 
   favorites:
-    click_to_add: "Click to add to your favorites."
+    click_to_add: "Haga clic para agregar a sus favoritos."
 
   glossary:
     name: "Glosario de Food Talk"
@@ -191,7 +191,8 @@ es:
         label: "Terminado"
     my_playlists:
       label: "Mis Favoritos"
-      description: "Administra tus listas de reproducción."
+      description: "Haga clic en el <span class='ml-2 mr-2 text-primary'>%{icon}</span> ícono de sus artículos favoritos de &nbsp; %{blogs_link}, &nbsp; %{recipes_link}, o &nbsp; %{videos_link} &nbsp; para agregarlos a esta lista."
+      empty: "No ha agregado ningún artículo a sus favoritos."
     my_info:
       label: "Mi Información"
       description: "Bienvenido a FoodTalk.org! Por favor, cuéntenos un poco sobre usted."

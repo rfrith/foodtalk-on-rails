@@ -1,41 +1,43 @@
 <% content_for :head do %>
   <style>
-    .twitter-share-button {
-      vertical-align : bottom;
+    .dropdown-toggle::after {
+      display:none;
     }
   </style>
 <% end %>
+
 <div class="p-4">
   <div>
+
+    <div class="dropdown mt-1 mb-1 pull-right">
+      <button class="badge border badge-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= t("navigation.share") + " " + fa_icon("share-alt-square") %>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="dropdownMenuButton">
+        <%= render partial: "shared/social_media_share_buttons" %>
+      </div>
+    </div>
+
+    <br><br>
+
     <% if should_show_post_featured_image %>
       <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @post["title"]["rendered"]) %>
+      <br><br>
     <% end %>
 
     <% if should_show_post_title %>
       <span class="content-section-title align-middle"><%== @title %></span>
+      <br><br>
     <% end %>
-
-    <br>
 
     <% if false %>
     <span class="align-bottom">
-      <% if user_signed_in? && policy(:site_access).view_favorites_link? %>
+      <% if user_signed_in? && policy(:site_access).view_add_remove_favorites_link? %>
         <% path = request.original_fullpath %>
         <%= link_to fa_icon("heart-o") + " #{t('dashboard.my_playlists.label')}", add_to_favorites_path(path, @title, path.include?("recipe") ? :recipe : :blog), method: :post, remote: true, title: t("favorites.click_to_add"), rel: "tooltip", class: "badge badge-primary is_fav", url: path %>
       <% end %>
     </span>
     <% end %>
-
-
-    <span class="fb-share-button align-bottom" data-href="<%= @direct_url %>" data-layout="button"></span>
-
-    <span class="align-bottom">
-      <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
-    </span>
-
-    <span class="align-bottom">
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </span>
 
     <%== filter_content_for_display(@content) %>
 

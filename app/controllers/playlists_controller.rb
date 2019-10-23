@@ -4,22 +4,18 @@ class PlaylistsController < ApplicationController
     url = params[:url]
     belongs = @current_user.playlist_items.where(url: url).exists?
 
-
     render :json => belongs.to_json
-
   end
 
   def add_item_to_playlist
-
     url = params[:url]
     name = params[:name]
     category = PlaylistItem.categories[params[:category]]
-
     playlist = @current_user.playlists.where(category: category).first
 
     if(playlist.nil?)
-      #TODO: I18N ME
-      playlist = Playlist.new(name: "My Favorites", category: category)
+      category_name = PlaylistItem.categories.key(category).titleize.pluralize
+      playlist = Playlist.new(name: category_name, category: category)
       @current_user.playlists << playlist
     end
 
@@ -41,7 +37,6 @@ class PlaylistsController < ApplicationController
   end
 
   def remove_item_from_playlist
-
     pi = @current_user.playlist_items.find(params[:id])
 
     if(!pi.blank?)

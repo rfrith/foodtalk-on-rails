@@ -20,8 +20,8 @@
     <h4 class="card-title text-center mt-0 d-none d-md-block">
       <%= video["snippet"]["title"].titleize %>
 
-      <% if user_signed_in? && policy(:site_access).view_favorites_link? %>
-        <%= link_to fa_icon("heart-o"), add_to_favorites_path(launch_path, video["snippet"]["title"], :video), method: :post, remote: true, id: "", title: "Click to add to your favorites.", rel: "tooltip", class: "is_fav", url: launch_path %>
+      <% if user_signed_in? && policy(:site_access).view_add_remove_favorites_link? %>
+        <%= link_to fa_icon("heart-o"), add_to_favorites_path(launch_path, video["snippet"]["title"], :video), method: :post, remote: true, id: "", title: t("favorites.click_to_add"), rel: "tooltip", class: "is_fav", url: launch_path %>
       <% end %>
 
     </h4>

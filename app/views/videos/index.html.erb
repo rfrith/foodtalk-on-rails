@@ -1,6 +1,6 @@
 <%= render partial: 'shared/update_icon_add_remove_playlist'%>
 
-<% #cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.day do %>
+<% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.day do %>
   <div id="videos" class="content-section2 flex-fill">
   <div class="pb-0 bg-white">
     <%= render partial: "shared/videos_title_block", locals: {title: t("videos.name"), description: t("videos.description")} %>
@@ -49,6 +49,6 @@
     </div>
   <% end %>
 </div>
-<% #end %>
+<% end %>
 
 <%= render partial: 'videos/infinite_scroll', locals: {page_path: video_load_page_path(playlist_id: @playlist_id, page_token: @nextPageToken)} %>
