@@ -63,6 +63,7 @@ es:
     click_here: "presione aquí"
     to: "para"
     print: "imprima"
+    share: "Compartir"
 
   header:
     categories: "Las Categorías"
