@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h2>Food eTalk & Better U Completion Report for <%= @county_extension_office.name %></h2>
+
+<p>
+  During the period from <%= @start_date %> - <%= @end_date %>, the following number of people living in zip code
+  <%= @zip_code %>, who are assigned to this County Extension Office, have recently completed the Food eTalk and/or
+  Better U program(s):
+  <br><br>
+  Food eTalk: <%= @food_etalk_completed_by_zip %>
+  <br>
+  Better U: <%= @better_u_completed_by_zip %>
+</p>
+
+<p>
+  Please check your inventory to ensure you have enough supplies in stock to provide Educational Extenders to these individuals.
+  If you need additional supplies or require further assistance, please contact the UGA SNAP-Ed team.
+</p>
+
+<p>Thanks and have a great day!</p>
+<p>FoodTalk.org Website :)</p>
+</body>
+</html>
