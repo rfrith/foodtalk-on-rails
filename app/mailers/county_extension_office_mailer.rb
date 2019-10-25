@@ -14,7 +14,7 @@ class CountyExtensionOfficeMailer < ApplicationMailer
     @food_etalk_completed_by_zip = @completions.values[0][:food_etalk]
     @better_u_completed_by_zip = @completions.values[0][:better_u]
 
-    mail(to: "rfrith@uga.edu", subject: "Food eTalk & Better U Completion Report for #{@start_date} - #{@end_date}")
+    mail(to: @county_extension_office.email, subject: "Food eTalk & Better U Completion Report for #{@start_date} - #{@end_date}")
 
   end
 end
