@@ -54,9 +54,7 @@ namespace :notify do
         ceos.each do |ceo|
           #send email to each CountyExtensionOffice
           CountyExtensionOfficeMailer.with(completions: c, county_extension_office: ceo, zip_code: zip_code.zip, date_range: date_range).program_completions_email.deliver_now
-          break
         end
-        break
       end
     end
   end

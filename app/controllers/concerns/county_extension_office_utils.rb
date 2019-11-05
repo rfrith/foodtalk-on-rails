@@ -19,6 +19,7 @@ module CountyExtensionOfficeUtils
       users = User.where(zip_code: zip)
       get_curriculum_completion_in_date_range(users, date_range)
       completion = get_curriculum_completion_in_date_range(users, date_range)
+      #TODO: combine program completions so that there is only 1
       completions << {zip => completion} unless (completion[:food_etalk] == 0 && completion[:better_u] == 0)
     end
 
