@@ -76,11 +76,18 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
   end
 
   def view_add_remove_favorites_link?
-    user.valid? && determine_access_rights_by_host_name
+    #TODO: IMPLEMENT ME!
+    false #user.valid? && determine_access_rights_by_host_name
   end
 
   def view_playlists?
-    user.valid? && determine_access_rights_by_host_name
+    #TODO: IMPLEMENT ME!
+    false #user.valid? && determine_access_rights_by_host_name
+  end
+
+  def view_share_to_social_media_link?
+    #TODO: IMPLEMENT ME!
+    false
   end
 
 

@@ -9,6 +9,7 @@
 <div class="p-4">
   <div>
 
+    <% if policy(:site_access).view_share_to_social_media_link? %>
     <div class="dropdown mt-1 mb-1 pull-right">
       <button class="badge border badge-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= t("navigation.share") %> <%= fa_icon("share-alt-square") %>
@@ -17,6 +18,7 @@
         <%= render partial: "shared/social_media_share_buttons" %>
       </div>
     </div>
+    <% end %>
 
     <br><br>
 
