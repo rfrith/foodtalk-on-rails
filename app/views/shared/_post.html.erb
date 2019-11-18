@@ -20,8 +20,8 @@
   </div>
 
   <% if media_url %>
-    <%= link_to eval("#{show_path}"+"(#{post['id']})"), style: 'height: 100%;', data: {"fancybox": "", "type": 'iframe'} do %>
-      <%= image_tag(media_url, class: 'card-img-top', style: '', alt: post_title) %>
+    <%= link_to eval("#{show_path}"+"(#{post['id']})"), style: 'flex: 0 0 auto', data: {"fancybox": "", "type": 'iframe'} do %>
+      <%= image_tag(media_url, class: 'card-img-top img-fluid', style: '', alt: post_title) %>
     <% end %>
   <% end %>
 

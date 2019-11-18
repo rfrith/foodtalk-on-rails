@@ -6,11 +6,11 @@
   launch_path = video_path(video["contentDetails"]["videoId"])
 %>
 
-<div class="mb-4 video-card card grid-item">
+<div class="no-gutters mb-4 video-card card grid-item">
 
-  <a href="#" onclick="return launchVideo('<%= launch_path %>', '<%= survey_location %>');" class="p-0" style="height: 100%;">
-    <%= image_tag "https://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top img-fluid', alt: 'Video Cap' %>
-  </a>
+  <%= link_to "#", class: '', style: 'flex: 0 0 auto;', onclick: "return launchVideo('#{launch_path}', '#{survey_location}');" do %>
+    <%= image_tag "https://img.youtube.com/vi/#{video["contentDetails"]["videoId"]}/hqdefault.jpg", class: 'card-img-top img-fluid', style: "flex: 0 0 auto;", alt: 'Video Cap' %>
+  <% end %>
 
   <div class="card-body p-2 m-0 d-none d-md-block">
     <a href="#" onclick="return launchVideo('<%= launch_path %>', '<%= survey_location %>');" class="p-0">
@@ -28,7 +28,7 @@
     <p class="card-text text-justify p-2 d-none d-md-block"><%= video["snippet"]["description"] %></p>
   </div>
 
-  <div class="card-footer text-center p-2 d-block d-md-none">
+  <div class="card-footer text-center d-block d-md-none">
     <a href="#" onclick="return launchVideo('<%= launch_path %>', '<%= survey_location %>');" class="btn btn-sm btn-primary">
       <%= video["snippet"]["title"] %>
     </a>
