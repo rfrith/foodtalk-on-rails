@@ -1,10 +1,9 @@
 <%
-  #get slugs from rails created post object
+  #process wordpress data from rails created post object
   rendered_post_slugs = eval(post_slugs)
-
-  #launch link
   launch_link = eval(show_path+"(#{post['id']})")
   post_title = sanitize(post["title"]["rendered"])
+  media_url = get_media_url(post, :medium, true)
 %>
 
 <div class="no-gutters mb-4 card grid-item">
@@ -20,9 +19,10 @@
     </h4>
   </div>
 
-  <% media_url = get_media_url(post, :medium, true) %>
   <% if media_url %>
-    <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: post_title), eval("#{show_path}"+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'} %>
+    <%= link_to eval("#{show_path}"+"(#{post['id']})"), style: 'height: 100%;', data: {"fancybox": "", "type": 'iframe'} do %>
+      <%= image_tag(media_url, class: 'card-img-top', style: '', alt: post_title) %>
+    <% end %>
   <% end %>
 
   <div class="card-body p-2 m-0 d-none d-md-block">
