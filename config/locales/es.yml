@@ -161,7 +161,7 @@ es:
     start_learning_module: "¿Por qué no mejorar su conocimiento sobre salud y nutrición e iniciar un curso de Food eTalk o Better U de una de las siguientes opciones?"
     continue_learning_module: "¿Por qué no termina lo que comenzó?Complete todas las lecciones iniciadas haciendo clic en los enlaces a continuación y continúe mejorando su conocimiento de salud y nutrición."
     completed_html: "¡Excelente!Usted a completado %{curriculum}."
-    extenders_prompt: "%{href} para instructiones de como recibir su bolsa de artículos educativos gratuita"
+    extenders_prompt: "¡Felicitaciones por completar Food eTalk ( Hablemos de Comida en Línea) y Hablemos de Comida: Por Su Salud! %{href} para instructiones de como recibir su bolsa de artículos educativos gratuita"
     print_your_certificate: "Por favor imprima %{print_link} su confirmación de que ha completado %{additional_instructions}"
     extenders_directions: "y llevelo %{location_prompt} para obtener su bolsa gratuita de artículos educativos! Si no tiene una impresora puede presentar su certificado desde su teléfono o su aparato móvil."
     multiple_extension_offices: "una de estas oficinas de Extensión de su condado"

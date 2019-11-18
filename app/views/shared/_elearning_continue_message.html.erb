@@ -1,7 +1,6 @@
 <span class="pb-2 lead">
   <% if user_has_completed_curriculum?(@current_user, eval("LearningModules::#{curriculum}")) %>
     <%== t("learn_online.completed_html", curriculum: LearningModules.module_name(curriculum.to_sym).titleize) %>
-    <%== t("learn_online.extenders_prompt", href: link_to(t("navigation.click_here").capitalize, show_certificates_path, data: {"fancybox": "", "type": 'iframe'})) %>
   <% else %>
     <% if(!@current_user.course_enrollments.better_u.started.empty?) %>
       <%=t("dashboard.my_courses.started.continue_learning")%>
