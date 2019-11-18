@@ -349,52 +349,6 @@ class UsersController < ApplicationController
   end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  #TODO implement or remove me!
-  def update_recipe_favorites
-    respond_to do |format|
-      id = params[:id]
-      recipe = Recipe.find(id)
-      if(recipe)
-        if(@current_user.recipes.exists?(recipe.id))
-          @current_user.recipes.destroy(id)
-        else
-          @current_user.recipes << recipe
-        end
-      end
-      #TODO: IMPLEMENT RESPONSE!!!!!
-      #format.js
-      format.html {
-        if @current_user.recipes.any?
-          redirect_to recipes_path(favorites: true), notice: ''
-        else
-          redirect_to recipes_path, notice: ''
-        end
-      }
-      #format.json { render :show, status: :ok, location: @current_user }
-    end
-  end
-
-
-
-
-
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

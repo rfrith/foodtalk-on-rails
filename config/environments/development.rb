@@ -29,8 +29,21 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  #MAIL CONFIG
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      :port           => 587,
+      :address        => ENV['MAILER_ADDRESS'],
+      :domain         => ENV['MAILER_DOMAIN'],
+      :user_name      => ENV['MAILER_USERNAME'],
+      :password       => ENV['MAILER_PASSWORD'],
+      :authentication => :plain,
+      enable_starttls_auto: true
+  }
+
+
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 

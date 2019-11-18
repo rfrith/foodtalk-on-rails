@@ -1,81 +1,78 @@
 <% cache [create_cache_key_prefix, "header"], :expires_in => 1.day do %>
 <% partner_logo = DomainGroups::get_domain_group_logo(request.host) %>
 
-<div id="header" class="d-flex hero">
 
-  <div class="d-none d-md-block ml-4 mr-4">
-    <div class="text-center">
-      <% if (partner_logo && partner_logo.url) %>
-        <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
-      <% else %>
-        <%= image_tag 'logo-xl.png', class: 'img-fluid', alt: t("welcome.title") %>
-      <% end %>
-    </div>
+<div id="header" class="hero d-flex align-items-center">
+
+  <div class="d-none d-md-block flex-fill pl-4 pr-4">
+    <%= image_tag 'logo-lg.png', class: 'img-fluid', style: "width: 100%; max-width: 345px; min-width: 280px;", alt: t("welcome.title") %>
   </div>
 
-  <div class="hero-content">
-    <div class="d-block d-md-none float-left mr-2">
-      <% if (partner_logo && partner_logo.url)%>
-        <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
-      <% end %>
-    </div>
+  <div class="flex-fill">
 
+    <div class="hero-content">
 
-    <% #no partner logo defined in db %>
-    <div class="d-block d-md-none text-center">
-      <% if (!(partner_logo && partner_logo.url)) %>
-        <%= image_tag 'logo-md.png', class: 'logo float-left img-fluid mr-4', style: '', alt: t("welcome.title") %>
-      <% end %>
-    </div>
+      <% #TODO: FIX max-width for IE for partner logos %>
+      <div class="d-block d-md-none float-left mr-2">
+        <% if (partner_logo && partner_logo.url)%>
+          <% image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: 'width: 100%; max-width: 173px;', alt: 'Partner logo') %>
+        <% end %>
+      </div>
 
+      <% #no partner logo defined in db %>
+      <div class="d-block d-md-none text-center">
+        <% if (!(partner_logo && partner_logo.url)) %>
+          <%= image_tag 'logo-md.png', class: 'logo float-left img-fluid mr-4', style: 'width: 100%; max-width: 173px', alt: t("welcome.title") %>
+        <% end %>
+      </div>
 
-    <div class="hero-title align-bottom">
-      <%= t("welcome.title") %>
-    </div>
+      <div class="hero-title align-bottom">
+        <%= t("welcome.title") %>
+      </div>
 
-    <p class="hero-copy">
-      <%= t("welcome.description") %>
-    </p>
+      <p class="hero-copy">
+        <%= t("welcome.description") %>
+      </p>
 
-    <div>
-      <% form_with(url: '/search') do |f| %>
-        <% f.label(:q, "Search for:") %>
-        <% f.text_field(:q, id: :q) %>
-        <% f.submit("Search") %>
-      <% end %>
+      <div>
+        <% form_with(url: '/search') do |f| %>
+          <% f.label(:q, "Search for:") %>
+          <% f.text_field(:q, id: :q) %>
+          <% f.submit("Search") %>
+        <% end %>
 
-      <div class="mr-2">
+        <div class="mr-0">
 
-        <% if !user_signed_in? %>
-        <div class="">
-          <%= link_to signup_path do %>
+          <% if !user_signed_in? %>
+            <div class="">
+              <%= link_to signup_path do %>
             <span class="badge badge-secondary hero-subtitle">
             <%= fa_icon("user") %> <%= t("navigation.sign_up") %>
             </span>
-          <% end %>
+              <% end %>
 
-          <span class="hero-subtitle">/</span>
+              <span class="hero-subtitle">/</span>
 
-          <%= link_to login_path do %>
+              <%= link_to login_path do %>
             <span class="badge badge-secondary hero-subtitle">
             <%= fa_icon("sign-in") %> <%= t("navigation.login") %>
             </span>
-          <% end %>
-          <span class="hero-subtitle">
+              <% end %>
+              <span class="hero-subtitle">
             <%= t("welcome.sign_up") %>
           </span>
+            </div>
+          <% end %>
+
         </div>
-        <% end %>
 
       </div>
 
-    </div>
+      <div class="d-none d-md-block">
+        <%= render partial: "shared/scroll_down_for_more" %>
+      </div>
 
-    <div class="d-none d-md-block">
-      <%= render partial: "shared/scroll_down_for_more" %>
     </div>
-
   </div>
 </div>
-
 <% end %>

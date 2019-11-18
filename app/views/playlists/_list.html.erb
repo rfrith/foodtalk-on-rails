@@ -1,0 +1,23 @@
+<% @current_user.playlists.each do |playlist| %>
+  <div class="mb-5">
+    <table class="table table-sm table-responsive-smx table-hover" id="<%= playlist.category %>">
+      <thead class="thead-light">
+        <tr>
+          <th colspan="2"><%= playlist.category.titleize.pluralize %></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% playlist.playlist_items.each do |pi| %>
+        <tr id="<%= pi.id %>">
+          <td><%= link_to pi.name, "#{pi.url}", data: {"fancybox": "", "type": 'iframe'} %></td>
+          <td class="text-right">
+            <strong>
+              <%= link_to fa_icon('trash'), remove_from_favorites_path(pi.id), method: :delete, remote: true %>
+            </strong>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

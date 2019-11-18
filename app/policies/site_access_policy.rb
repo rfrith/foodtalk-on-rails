@@ -1,5 +1,7 @@
 class SiteAccessPolicy < Struct.new(:user, :site_access)
 
+  include SessionsHelper
+
   attr_reader :user
 
   def initialize(user, site_access)
@@ -71,6 +73,21 @@ class SiteAccessPolicy < Struct.new(:user, :site_access)
 
   def view_about_link?
     determine_access_rights_by_host_name
+  end
+
+  def view_add_remove_favorites_link?
+    #TODO: IMPLEMENT ME!
+    false #user.valid? && determine_access_rights_by_host_name
+  end
+
+  def view_playlists?
+    #TODO: IMPLEMENT ME!
+    false #user.valid? && determine_access_rights_by_host_name
+  end
+
+  def view_share_to_social_media_link?
+    #TODO: IMPLEMENT ME!
+    false
   end
 
 

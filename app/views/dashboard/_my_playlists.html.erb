@@ -1,0 +1,13 @@
+<% user_has_playlist_items = !@current_user.playlist_items.empty? %>
+<div id="playlists-content" class="tab-content p-2">
+  <div class="pt-2 pb-2 lead text-center">
+    <% if !user_has_playlist_items %>
+      <%== t("dashboard.my_playlists.empty") %>
+    <% end %>
+    <%== t("dashboard.my_playlists.description", icon: fa_icon("heart-o"), blogs_link: link_to(t("navigation.blog").singularize, blogs_index_path), recipes_link: link_to(t("navigation.recipes").singularize, recipes_path), videos_link: link_to(t("navigation.videos").singularize, videos_path) ) %>
+  </div>
+  <% if user_has_playlist_items %>
+    <%= render partial: "playlists/list" %>
+  <% end %>
+</div>
+

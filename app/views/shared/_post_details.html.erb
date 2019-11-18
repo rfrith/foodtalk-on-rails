@@ -1,15 +1,49 @@
+<% content_for :head do %>
+  <style>
+    .dropdown-toggle::after {
+      display:none;
+    }
+  </style>
+<% end %>
+
 <div class="p-4">
-  <div class="align-items-centerz">
+  <div>
+
+    <% if policy(:site_access).view_share_to_social_media_link? %>
+    <div class="dropdown mt-1 mb-1 pull-right">
+      <button class="badge border badge-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= t("navigation.share") %> <%= fa_icon("share-alt-square") %>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="dropdownMenuButton">
+        <%= render partial: "shared/social_media_share_buttons" %>
+      </div>
+    </div>
+    <% end %>
+
+    <br><br>
+
     <% if should_show_post_featured_image %>
       <%= image_tag(@featured_image, class: 'rounded img-fluid float-right ml-4', alt: @post["title"]["rendered"]) %>
+      <br><br>
     <% end %>
 
     <% if should_show_post_title %>
-      <span class="content-section-title"><%== @title %></span>
+      <span class="content-section-title align-middle"><%== @title %></span>
+      <br><br>
+    <% end %>
+
+    <% if false %>
+    <span class="align-bottom">
+      <% if user_signed_in? && policy(:site_access).view_add_remove_favorites_link? %>
+        <% path = request.original_fullpath %>
+        <%= link_to fa_icon("heart-o") + " #{t('dashboard.my_playlists.label')}", add_to_favorites_path(path, @title, path.include?("recipe") ? :recipe : :blog), method: :post, remote: true, title: t("favorites.click_to_add"), rel: "tooltip", class: "badge badge-primary is_fav", url: path %>
+      <% end %>
+    </span>
     <% end %>
 
     <%== filter_content_for_display(@content) %>
 
+    <br>
     <%= t("social_media_prompt") %>
     <br>
     <%= render partial: "shared/social_media_links", locals: { css: "", should_show_facebook: true, should_show_twitter: false, should_show_gplus: false, should_show_youtube: true, should_show_pinterest: false, should_show_instagram: true, should_show_email: false } %>

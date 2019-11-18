@@ -3,7 +3,7 @@
   <%= render partial: "shared/post_title_block", locals: {inverse: true, icon: "recipe-graphic-sm.png", title: t("welcome.recipes.title"), description: t("welcome.recipes.description")}%>
   <div class="mx-auto recipes-deck w-100">
     <div class="mx-auto grid">
-      <%= render partial: 'shared/post', collection: @recipes.first(3), cached: true, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
+      <%= render partial: 'shared/post', collection: @recipes.first(3), cached: false, locals: {index_path: "recipes_path", show_path: "show_recipe_path", slugs: @tags, post_slugs: "post['tags']"} %>
     </div>
   </div>
   <div class="view-all-link text-center">

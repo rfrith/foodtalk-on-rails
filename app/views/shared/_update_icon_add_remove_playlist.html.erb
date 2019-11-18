@@ -1,0 +1,32 @@
+
+<script language="JavaScript">
+    $(document).on("turbolinks:load", function() {
+        //update all is_fav icons after cached page is loaded
+        $(".is_fav").each(function() {
+            $.ajax({
+                url: "<%= check_item_belongs_to_playlist_path %>?url=" + $(this).attr("url"),
+                context: this
+            })
+                .done(function( data ) {
+                    if(data == true) {
+                        $(this).html('<i class="fa fa-heart"></i>');
+                    } else {
+                        $(this).html('<i class="fa fa-heart-o"></i>');
+                    }
+                });
+        });
+
+        (function() {
+            $(function() {
+                return $("a[data-remote]").on("ajax:success", function(event) {
+                    if(event.target.innerHTML == '<i class="fa fa-heart"></i>') {
+                        event.target.innerHTML = '<i class="fa fa-heart-o"></i>';
+                    } else {
+                        event.target.innerHTML = '<i class="fa fa-heart"></i>';
+                    }
+                    return;
+                });
+            });
+        }).call(this);
+    });
+</script>

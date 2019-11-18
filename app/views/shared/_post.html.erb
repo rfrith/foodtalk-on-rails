@@ -1,27 +1,28 @@
 <%
-  #get slugs from rails created post object
+  #process wordpress data from rails created post object
   rendered_post_slugs = eval(post_slugs)
+  launch_link = eval(show_path+"(#{post['id']})")
+  post_title = sanitize(post["title"]["rendered"])
+  media_url = get_media_url(post, :medium, true)
 %>
 
 <div class="no-gutters mb-4 card grid-item">
 
   <div class="card-header d-none d-md-block">
     <h4 class="card-title text-center mt-0">
-      <%== post["title"]["rendered"].html_safe %>
-      <span>
-        <% #TODO: FIX ME!!!!  %>
-        <% #if false #user_signed_in? %>
-        <% #TODO: AJAXIFY ME!!!!! & make update_post_favorites_path%>
-        <% #link_to fa_icon(fav ? "star" : "star-o"), update_recipe_favorites_path(0), method: :update, title: "Click to mark post as favorite.", rel: "tooltip" %>
-        <% #end %>
-        <a class="text-muted" href="#"><% fa_icon "share-alt" %></a>
+      <%== post_title.html_safe %>
+      <span class="align-top">
+        <% if user_signed_in? && policy(:site_access).view_add_remove_favorites_link? %>
+          <%= link_to fa_icon("heart-o"), add_to_favorites_path(launch_link, post_title, show_path.include?("recipe") ? :recipe : :blog), method: :post, remote: true, title: t("favorites.click_to_add"), rel: "tooltip", class: "is_fav", url: launch_link %>
+        <% end %>
       </span>
     </h4>
   </div>
 
-  <% media_url = get_media_url(post, :medium, true) %>
   <% if media_url %>
-    <%= link_to image_tag(media_url, class: 'card-img-top img-fluid', alt: post["title"]["rendered"]), eval("#{show_path}"+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'} %>
+    <%= link_to eval("#{show_path}"+"(#{post['id']})"), style: 'height: 100%;', data: {"fancybox": "", "type": 'iframe'} do %>
+      <%= image_tag(media_url, class: 'card-img-top', style: '', alt: post_title) %>
+    <% end %>
   <% end %>
 
   <div class="card-body p-2 m-0 d-none d-md-block">
@@ -32,9 +33,8 @@
 
     <div class="d-none d-md-block">
       <% if should_display_post_categories(rendered_post_slugs, slugs) %>
+
         <div class="card-title">Categories</div>
-
-
 
         <div class="card-text">
           <% rendered_post_slugs.each do |ps| %>
@@ -62,11 +62,16 @@
   </div>
 
   <div class="card-footer text-center d-block d-md-none">
-    <%== link_to(post["title"]["rendered"].html_safe, eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%== link_to(post_title.html_safe, launch_link, data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+
+    <% if user_signed_in? && policy(:site_access).view_add_remove_favorites_link? %>
+      <%== link_to fa_icon("heart-o"), add_to_favorites_path(launch_link, post_title, show_path.include?("recipe") ? :recipe : :blog), method: :post, remote: true, title: t("favorites.click_to_add"), rel: "tooltip", class: "m-1 is_fav", style: "color: white;", url: launch_link %>
+    <% end %>
+
   </div>
 
   <div class="card-footer text-center d-none d-md-block">
-    <%= link_to("Details", eval(show_path+"(#{post['id']})"), data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
+    <%= link_to("Details", launch_link, data: {"fancybox": "", "type": 'iframe'}, class: "btn btn-sm btn-primary") %>
   </div>
 
 </div>

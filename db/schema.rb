@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911190949) do
+ActiveRecord::Schema.define(version: 20191009180619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,25 @@ ActiveRecord::Schema.define(version: 20190911190949) do
     t.bigint "user_id", null: false
     t.index ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
     t.index ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
+  end
+
+  create_table "playlist_items", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.string "name"
+    t.string "url"
+    t.integer "category"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.integer "category"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "racial_identities", force: :cascade do |t|

@@ -23,14 +23,14 @@ nav.navbar, .navbar-collapse {
   //color: green;
 }
 
-.navbar ul.navbar-nav li.nav-item a.nav-link, #footer #footer-nav a.nav-item.nav-link {
+.navbar ul.navbar-nav li.nav-item a.nav-link, #footer #footer-nav a.nav-item.nav-link, .navbar a {
   color: $primary-font-inverse-color;
   font-family: $roboto-slab;
   @include media-breakpoint-only(xs) {
-    font-size: .75rem;
+    font-size: .85rem;
   }
   @include media-breakpoint-only(sm) {
-    font-size: .85rem;
+    font-size: .95rem;
   }
   @include media-breakpoint-only(md) {
     font-size: 1rem;

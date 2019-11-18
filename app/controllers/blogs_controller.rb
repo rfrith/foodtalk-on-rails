@@ -41,6 +41,7 @@ class BlogsController < ApplicationController
     begin
       @post = get_post_by_id_as_json(params[:id])
       get_post_details
+      @direct_url = "#{request.protocol}#{request.host}:#{request.port}/blog/#{@post['slug']}"
     rescue Exception => e
       logger.error "An error occurred: #{e.inspect}"
     end

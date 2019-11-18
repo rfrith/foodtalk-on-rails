@@ -1,3 +1,5 @@
+<%= render partial: 'shared/update_icon_add_remove_playlist'%>
+
 <% cache [create_cache_key_prefix, "videos-index-#{@playlist_id }"], :expires_in => 1.day do %>
   <div id="videos" class="content-section2 flex-fill">
   <div class="pb-0 bg-white">
@@ -30,7 +32,7 @@
 
   <% if !@videos.blank? && !@videos["items"].blank? %>
       <div id="videos-grid" class="mx-auto grid pt-3">
-        <%= render partial: 'videos/video', collection: @videos["items"], cached: true %>
+        <%= render partial: 'videos/video', collection: @videos["items"], cached: false %>
       </div>
 
       <% if @nextPageToken %>

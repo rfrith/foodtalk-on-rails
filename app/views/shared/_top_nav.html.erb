@@ -1,188 +1,208 @@
 <% icon = DomainGroups::get_domain_group_icon(request.host) %>
-<nav class="top-nav navbar navbar-expand-md navbar-light <%= local_assigns[:css] %>" role="navigation">
 
-  <%= link_to root_path, class: "navbar-brand d-none d-md-block", data: {turbolinks: false} do %>
-    <%= image_tag('logo-sm.png', class: 'm-0 p-0 ', alt: "FoodTalk.org: Helping Georgians Eat Healthy & Get Moving") %>
-    <% if (icon && icon.url) %>
-      <%= image_tag icon.url, class: 'img-fluid m-0 p-0', alt: 'Partner logo' %>
-    <% end %>
-  <% end %>
+<% #buttons for smaller screens %>
+<div class="d-block d-md-none pl-3 pr-3 pt-1 pb-1" style="background-color: #E24F2C;">
 
-  <div class="d-block d-md-none">
-    <div class="d-flex justify-content-center">
-      <div class="h4">
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("home", class: " align-middle") + " Home", root_path, class: "badge badge-secondary" %>
-        </span>
+  <div class="d-flex align-items-center justify-content-center pt-2">
 
-        <% if policy(:site_access).view_blog? %>
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("rss", class: "align-middle") + " #{t("navigation.blog")}", blogs_index_path, class: "badge badge-secondary" %>
-        </span>
+    <% #logo %>
+    <div class="flex-fill">
+      <%= link_to root_path, class: "", data: {turbolinks: false} do %>
+        <%= image_tag('logo-sm.png', class: 'img-fluid', style: 'width: 100%; max-width: 95px; max-height: auto;', alt: t("welcome.title")) %>
+      <% end %>
+    </div>
+
+    <% #group icon %>
+    <div class="ml-2">
+      <% if (icon && icon.url) %>
+        <%= link_to root_path, class: "", data: {turbolinks: false} do %>
+          <%= image_tag icon.url, class: 'img-fluid', alt: 'Partner logo' %>
         <% end %>
+      <% end %>
+    </div>
 
-        <% if policy(:site_access).view_recipes? %>
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("cutlery", class: "align-middle") + " #{t("navigation.recipes")}", recipes_path, class: "badge badge-secondary" %>
-        </span>
-        <% end %>
-
-        <% if policy(:site_access).view_videos? %>
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("play", class: "align-middle") + " #{t("navigation.videos")}", videos_path, class: "badge badge-secondary" %>
-        </span>
-        <% end %>
-
-        <% if policy(:site_access).view_attend_class? %>
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-secondary" %>
-        </span>
-        <% end %>
-
-        <% if policy(:site_access).view_food_glossary? %>
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("book", class: "align-middle") + " #{t("navigation.food_glossary")}", food_glossary_path, class: "badge badge-secondary" %>
-        </span>
-        <% end %>
-
-        <% if policy(:site_access).view_gis_resources? %>
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-secondary" %>
-        </span>
-        <% end %>
-
-        <span class="flex-fill mr-0">
-          <%= link_to fa_icon("graduation-cap", class: "align-middle") + " #{t("navigation.learn_online")}", learn_online_path, class: "badge badge-secondary" %>
-        </span>
-
-        <% if user_signed_in? %>
-          <span class="flex-fill mr-0">
-            <%= link_to fa_icon('user', class: "align-middle") + " #{t("navigation.my_dashboard")}", show_dashboard_path, class: "badge badge-secondary", data: {turbolinks: false} %>
-          </span>
-          <span class="flex-fill mr-0">
-            <%= link_to fa_icon("sign-out", class: "align-middle") + " #{t("navigation.logout")}", logout_path, class: "badge badge-secondary" %>
-          </span>
-        <% else %>
-          <span class="flex-fill mr-0">
-            <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.sign_up")}", signup_path, class: "badge badge-secondary" %>
-          </span>
-          <span class="flex-fill mr-0">
-            <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary" %>
-          </span>
-        <% end %>
-
-        <%
-        if(policy(:site_access).view_spanish_content?)
-          org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
-        %>
-        <span class="flex-fill">
-          <%= link_to fa_icon("language", class: "align-middle") + " #{t("language_select_label")}", "/#{t('language_select_value').to_sym}#{org_url}", class: "badge badge-secondary" %>
-        </span>
-        <% end %>
-
-      </div>
-
+    <% #extension logo %>
+    <div class="m-0 p-0 ml-0 flex-fill">
+      <%= image_tag('extension-logo-sm.png', class: 'img-fluid pull-right', style: 'width: 100%; max-width: 255px; max-height: auto;', alt: "UGA Extension") %>
     </div>
 
   </div>
 
-  <div class="d-none d-md-block">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to(t("navigation.learn_online"), learn_online_path, id: "learn-online-link", class: "nav-link ") %>
-      </li>
+  <div class="h4 pt-2 pb-2">
 
-      <% if policy(:site_access).view_blog? %>
-      <li class="nav-item">
-        <%= link_to(t("navigation.blog"), blogs_index_path, class: "nav-link") %>
-      </li>
-      <% end %>
+    <% if policy(:site_access).view_blog? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("rss", class: "align-middle") + " #{t("navigation.blog")}", blogs_index_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
 
-      <% if policy(:site_access).view_recipes? %>
-      <li class="nav-item">
-        <%= link_to(t("navigation.recipes"), recipes_path, class: "nav-link") %>
-      </li>
-      <% end %>
+    <% if policy(:site_access).view_recipes? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("cutlery", class: "align-middle") + " #{t("navigation.recipes")}", recipes_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
 
-      <% if policy(:site_access).view_videos? %>
-      <li class="nav-item">
-        <%= link_to(t("navigation.videos"), videos_path, class: "nav-link") %>
-      </li>
-      <% end %>
+    <% if policy(:site_access).view_videos? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("play", class: "align-middle") + " #{t("navigation.videos")}", videos_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
 
-      <% if policy(:site_access).view_food_glossary? %>
-      <li class="nav-item">
-        <%= link_to(t("navigation.food_glossary"), food_glossary_path, class: "nav-link") %>
-      </li>
-      <% end %>
+    <% if policy(:site_access).view_attend_class? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("calendar", class: "align-middle") + " #{t("navigation.attend_a_class")}", attend_class_index_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
 
-      <% if policy(:site_access).view_attend_class? || policy(:site_access).view_gis_resources? %>
-      <li class="nav-item dropdown">
-        <div class="btn-group">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=t("navigation.snap_ed_resources") %></a>
-          <% #TODO: remove hardcoding color %>
-          <div class="dropdown-menu dropdown-menu-rightzzz" style="background-color: #de4527">
-            <% if policy(:site_access).view_attend_class? %>
-            <%= link_to(t("navigation.attend_a_class"), attend_class_index_path, class: "nav-link drop-down-item") %>
-            <% end %>
-            <% if policy(:site_access).view_gis_resources? %>
-            <%= link_to(t("navigation.gis_resources"), maps_index_path, class: "nav-link drop-down-item") %>
-            <% end %>
-          </div>
-        </div>
-      </li>
-      <% end %>
+    <% if policy(:site_access).view_food_glossary? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("book", class: "align-middle") + " #{t("navigation.food_glossary")}", food_glossary_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
 
-      <%
+    <% if policy(:site_access).view_gis_resources? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("map", class: "align-middle") + " #{t("navigation.gis_resources")}", maps_index_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
+
+    <span class="flex-fill">
+        <%= link_to fa_icon("graduation-cap", class: "align-middle") + " #{t("navigation.learn_online")}", learn_online_path, class: "badge badge-secondary mb-1" %>
+      </span>
+
+    <% if user_signed_in? %>
+      <span class="flex-fill">
+        <%= link_to fa_icon('user', class: "align-middle") + " #{t("navigation.my_dashboard")}", show_dashboard_path, class: "badge badge-secondary mb-1", data: {turbolinks: false} %>
+      </span>
+      <span class="flex-fill">
+        <%= link_to fa_icon("sign-out", class: "align-middle") + " #{t("navigation.logout")}", logout_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% else %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("user", class: "align-middle") + " #{t("navigation.sign_up")}", signup_path, class: "badge badge-secondary mb-1" %>
+      </span>
+      <span class="flex-fill">
+        <%= link_to fa_icon("sign-in", class: "align-middle") + " #{t("navigation.login")}", login_path, class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
+
+    <%
       if(policy(:site_access).view_spanish_content?)
         org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
-      %>
-      <li class="nav-item">
-        <%= link_to( t('language_select_label'), "/#{t('language_select_value').to_sym}#{org_url}", class: "nav-link") %>
-      </li>
-      <% end %>
-
-      <% if user_signed_in? %>
-        <li class="nav-item <%= 'active' if params[:controller] == 'dashboard' %>">
-          <%= link_to( t("navigation.my_dashboard"), { controller: "dashboard", action: "show" }, class: "nav-link", data: {turbolinks: false}) %>
-        </li>
-        <li class="nav-item" data-turbolinks="false">
-          <%= link_to(t("navigation.logout"), logout_path, class: "nav-link mr-auto") %>
-        </li>
-      <% else %>
-        <li class="nav-item" data-turbolinks="false">
-          <%= link_to(t("navigation.sign_up"), signup_path, class: "nav-link mr-auto") %>
-        </li>
-        <li class="nav-item" data-turbolinks="false">
-          <%= link_to(t("navigation.login"), login_path, class: "nav-link mr-auto") %>
-        </li>
-      <% end %>
-
-      <%
-      site_search_enabled = false;
-      if site_search_enabled
-      %>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon 'search' %>
-        </a>
-        <div class="dropdown-menu search-box" aria-labelledby="navbarDropdownMenuLink">
-
-          <form class="form-inline">
-
-            <label class="sr-only" for="searchInput">Name</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="searchInput" placeholder="Search...">
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-          </form>
-        </div>
-      </li>
-
-      <% end %>
-
-    </ul>
+    %>
+      <span class="flex-fill">
+        <%= link_to fa_icon("language", class: "align-middle") + " #{t("language_select_label")}", "/#{t('language_select_value').to_sym}#{org_url}", class: "badge badge-secondary mb-1" %>
+      </span>
+    <% end %>
 
   </div>
 
-</nav>
+</div>
+
+<% #buttons for larger screens %>
+<div class="d-none d-md-block w-100">
+
+  <nav class="top-nav navbar navbar-expand-md navbar-light <%= local_assigns[:css] %> border-dark" role="navigation">
+
+    <div class="d-flex row pl-3 pr-3 pt-1 pb-1 flex-nowrap align-items-center">
+
+
+      <% #logo %>
+      <div class="flex-fill">
+        <%= link_to root_path, class: "", data: {turbolinks: false} do %>
+          <%= image_tag('logo-sm.png', class: 'img-fluid', alt: t("welcome.title")) %>
+        <% end %>
+      </div>
+
+      <% #group icon %>
+      <div class="ml-2">
+        <% if (icon && icon.url) %>
+          <%= link_to root_path, class: "", data: {turbolinks: false} do %>
+            <%= image_tag icon.url, class: 'img-fluid', alt: 'Partner logo' %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+      <% #text links %>
+      <div class="flex-fill ml-3 mr-3">
+        <% if policy(:site_access).view_blog? %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.blog"), blogs_index_path %>
+          </span>
+        <% end %>
+
+        <% if policy(:site_access).view_recipes? %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.recipes"), recipes_path %>
+          </span>
+        <% end %>
+
+        <% if policy(:site_access).view_videos? %>
+            <span class="flex-fill mr-1">
+            <%= link_to t("navigation.videos"), videos_path %>
+            </span>
+        <% end %>
+
+        <% if policy(:site_access).view_attend_class? %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.attend_a_class"), attend_class_index_path %>
+          </span>
+        <% end %>
+
+        <% if policy(:site_access).view_food_glossary? %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.food_glossary"), food_glossary_path %>
+          </span>
+        <% end %>
+
+        <% if policy(:site_access).view_gis_resources? %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.gis_resources"), maps_index_path %>
+          </span>
+        <% end %>
+
+        <span class="flex-fill mr-1">
+          <%= link_to t("navigation.learn_online"), learn_online_path %>
+          </span>
+
+        <% if user_signed_in? %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.my_dashboard"), show_dashboard_path, data: {turbolinks: false} %>
+          </span>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.logout"), logout_path %>
+          </span>
+        <% else %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.sign_up"), signup_path %>
+          </span>
+          <span class="flex-fill mr-1">
+            <%= link_to t("navigation.login"), login_path %>
+          </span>
+        <% end %>
+
+        <%
+          if(policy(:site_access).view_spanish_content?)
+            org_url = request.original_fullpath.gsub('/es', '').gsub('/en', '')
+        %>
+          <span class="flex-fill mr-1">
+            <%= link_to t("language_select_label"), "/#{t('language_select_value').to_sym}#{org_url}" %>
+          </span>
+        <% end %>
+      </div>
+
+      <% #extension logo %>
+      <div class="m-0 flex-shrink-1">
+        <%= image_tag('extension-logo-sm.png', class: 'img-fluid pull-rightz', style: 'width 100%;', alt: "UGA Extension") %>
+      </div>
+
+
+
+    </div>
+
+
+  </nav>
+
+
+</div>

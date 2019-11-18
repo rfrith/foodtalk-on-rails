@@ -39,6 +39,28 @@
         jqData.imagesLoaded( function() {
             $('.grid').append(jqData);
             $('.grid').masonry( 'appended', jqData );
+
+
+
+            <% #TODO: make this a function %>
+            $(".is_fav").each(function() {
+                $.ajax({
+                    url: "<%= check_item_belongs_to_playlist_path %>?url=" + $(this).attr("url"),
+                    context: this
+                })
+                    .done(function( data ) {
+                        if(data == true) {
+                            $(this).html('<i class="fa fa-heart"></i>');
+                        } else {
+                            $(this).html('<i class="fa fa-heart-o"></i>');
+                        }
+                    });
+            });
+
+
+
+
+
         });
     });
 
