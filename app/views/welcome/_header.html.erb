@@ -5,7 +5,13 @@
 <div id="header" class="hero d-flex align-items-center">
 
   <div class="d-none d-md-block flex-fill pl-4 pr-4">
-    <%= image_tag 'logo-lg.png', class: 'img-fluid', style: "width: 100%; max-width: 345px; min-width: 280px;", alt: t("welcome.title") %>
+    <div class="text-center">
+      <% if (partner_logo && partner_logo.url) %>
+        <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: '', alt: 'Partner logo') %>
+      <% else %>
+        <%= image_tag 'logo-lg.png', class: 'img-fluid', style: "width: 100%; max-width: 345px; min-width: 280px;", alt: t("welcome.title") %>
+      <% end %>
+    </div>
   </div>
 
   <div class="flex-fill">
