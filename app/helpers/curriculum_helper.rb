@@ -23,7 +23,13 @@ module CurriculumHelper
     return (count > 0)
   end
 
-
+  def user_has_completed_program?(user, curricula=nil, date_range=nil)
+    completed = []
+    curricula.each do |c|
+      completed << user_has_completed_curriculum?(user, c, date_range)
+    end
+    return completed.any? && completed.all?(true)
+  end
 
   def count_users_have_started_curriculum(users, curriculum, date_range=nil)
     count = 0
@@ -45,6 +51,14 @@ module CurriculumHelper
     return count
   end
 
+  #TODO: move into user.rb model scope?
+  def find_users_have_completed_program(users: User.all, curricula: [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], date_range: nil)
+    completed_users = []
+    users.each do |user|
+      completed_users << user if user_has_completed_program?(user, curricula, date_range)
+    end
+    return User.where(id: completed_users.map(&:id))
+  end
 
   def find_next_lesson(user, curriculum)
     curriculum.each do |c|
@@ -70,7 +84,6 @@ module CurriculumHelper
     return start_date ? start_date.strftime("%B %d, %Y") : "N/A"
   end
 
-
   def curriculum_completion_date(user, curriculum)
     completion_date = nil
     if user_has_completed_curriculum?(user, curriculum)
@@ -87,5 +100,26 @@ module CurriculumHelper
     end
     return completion_date ? completion_date.strftime("%B %d, %Y") : "N/A"
   end
+
+  def program_completion_date(user)
+    completion_date = nil
+    curricula = [LearningModules::FOOD_ETALK, LearningModules::BETTER_U]
+    if user_has_completed_program?(user, curricula, nil)
+      curricula.each do |curriculum|
+        curriculum.each do |c|
+          e = user.course_enrollments.by_name(c[:id]).last
+          if(!e.blank?)
+            date = e.updated_at
+            completion_date ||= date
+            if date > completion_date
+              completion_date = date
+            end
+          end
+        end
+      end
+    end
+    return completion_date ? completion_date.strftime("%B %d, %Y") : "N/A"
+  end
+
 
 end

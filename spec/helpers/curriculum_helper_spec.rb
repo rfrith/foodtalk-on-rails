@@ -73,6 +73,34 @@ describe CurriculumHelper, type: :helper do
     end
   end
 
+  describe "#user_has_completed_program? within date range" do
+    it "returns true when user has completed each curriculum in the provided 'curricula' (a.k.a 'program') within date range" do
+      range = Date.today..Date.today
+      past_range = (Date.today-3)..(Date.today-2)
+      future_range = (Date.today+1)..(Date.today+3)
+      expect(helper.user_has_completed_program?(user_has_completed_program, [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], range)).to be true
+      expect(helper.user_has_completed_program?(user_has_completed_program, [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], past_range)).to be false
+      expect(helper.user_has_completed_program?(user_has_completed_program, [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], future_range)).to be false
+      expect(helper.user_has_completed_program?(user_has_not_completed_program, [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], range)).to be false
+      expect(helper.user_has_completed_program?(user_has_not_completed_program, [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], past_range)).to be false
+      expect(helper.user_has_completed_program?(user_has_not_completed_program, [LearningModules::FOOD_ETALK, LearningModules::BETTER_U], future_range)).to be false
+    end
+  end
+
+  describe "#find_users_have_completed_program? within date range" do
+    it "returns a list of users who have completed each curriculum in the provided 'curricula' (a.k.a 'program') within date range" do
+      range = Date.today..Date.today
+      past_range = (Date.today-3)..(Date.today-2)
+      future_range = (Date.today+1)..(Date.today+3)
+      expect(helper.find_users_have_completed_program(users: [user_has_completed_program], date_range: range)).not_to be_empty
+      expect(helper.find_users_have_completed_program(users: [user_has_completed_program], date_range: past_range)).to be_empty
+      expect(helper.find_users_have_completed_program(users: [user_has_completed_program], date_range: future_range)).to be_empty
+      expect(helper.find_users_have_completed_program(users: [user_has_not_completed_program], date_range: range)).to be_empty
+      expect(helper.find_users_have_completed_program(users: [user_has_not_completed_program], date_range: past_range)).to be_empty
+      expect(helper.find_users_have_completed_program(users: [user_has_not_completed_program], date_range: future_range)).to be_empty
+    end
+  end
+
   describe "#find_next_lesson" do
     it "returns the id of the next lesson in the food etalk curricula or nil if the user is completed" do
       expect(helper.find_next_lesson(user, LearningModules::FOOD_ETALK)).to eq LearningModules::FOOD_ETALK[0][:id]
