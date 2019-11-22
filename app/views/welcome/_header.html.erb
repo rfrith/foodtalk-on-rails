@@ -18,17 +18,14 @@
 
     <div class="hero-content">
 
-      <% #TODO: FIX max-width for IE for partner logos %>
-      <div class="d-block d-md-none float-left mr-2">
-        <% if (partner_logo && partner_logo.url)%>
-          <%= image_tag(partner_logo.url, class: 'partner-logo img-fluid', style: 'width: 100%; max-width: 173px;', alt: 'Partner logo') %>
-        <% end %>
-      </div>
+
 
       <% #no partner logo defined in db %>
       <div class="d-block d-md-none text-center">
         <% if (!(partner_logo && partner_logo.url)) %>
           <%= image_tag 'logo-md.png', class: 'logo float-left img-fluid mr-4', style: 'width: 100%; max-width: 173px', alt: t("welcome.title") %>
+        <% else %>
+          <%= image_tag(partner_logo.url, class: 'partner-logo float-left img-fluid mr-3', style: 'width: 100%; max-width: 173px;', alt: 'Partner logo') %>
         <% end %>
       </div>
 
