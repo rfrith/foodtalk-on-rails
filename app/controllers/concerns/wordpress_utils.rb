@@ -36,9 +36,9 @@ module WordpressUtils
 
       case categories_or_tags
       when :categories
-        query = "categories/?_embed"
+        query = "categories/?_embed&per_page=100"
       when :tags
-        query = "tags/?_embed"
+        query = "tags/?_embed&per_page=100"
       end
 
       query += (excluded_slug ? "&exclude=#{excluded_slug}" : "")
