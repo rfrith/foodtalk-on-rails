@@ -118,6 +118,17 @@ FactoryBot.define do
     end
 
 
+    trait :has_completed_program do
+      has_completed_food_etalk
+      has_completed_better_u
+      zip_code {30601}
+    end
+
+    trait :has_not_completed_program do
+      has_completed_food_etalk
+      zip_code {30601}
+    end
+
     trait :has_completed_video_surveys do
       zip_code {30601}
       after(:create) do |user|
@@ -155,8 +166,6 @@ FactoryBot.define do
         FactoryBot.create(:survey_history, :sweet_deceit_completed, user: user)
       end
     end
-
-
 
   end
 end

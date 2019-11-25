@@ -27,6 +27,7 @@ Beyond normal configuration of the above dependencies, these ENV VARS must also 
     SECRET_KEY_BASE
     DB_HOST
     DB_NAME
+    DB_TEST_NAME
     DB_USERNAME 
     DB_PASSWORD
     AUTH0_CLIENT_ID
@@ -47,6 +48,9 @@ Beyond normal configuration of the above dependencies, these ENV VARS must also 
 
 **Database creation/Database initialization**  
 Load schema.rb & run db:seed
+
+bundle exec rake db:create RAILS_ENV=[test/devlopment/production]
+bundle exec rake db:schema:load RAILS_ENV=[test/devlopment/production]
 
 
 **Test Suite**  

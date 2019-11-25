@@ -4,7 +4,6 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :racial_identities
   has_and_belongs_to_many :federal_assistances
-  #has_and_belongs_to_many :recipes
   has_and_belongs_to_many :groups do
     def members
       group_members = []

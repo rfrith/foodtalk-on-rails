@@ -1,6 +1,13 @@
 <div id="my-activity-content" class="tab-content p-4 rounded">
   <% # Started Lessons %>
   <div id="started-courses" class="tab-pane fade show active" role="tabpanel" aria-labelledby="started-courses">
+    <% #TODO: improve me! %>
+    <% if user_has_completed_curriculum?(@current_user, LearningModules::FOOD_ETALK) && user_has_completed_curriculum?(@current_user, LearningModules::BETTER_U) %>
+    <p class="mt-2 mb-2 lead">
+      <%== t("learn_online.extenders_prompt", href: link_to(t("navigation.click_here").capitalize, show_certificates_path, data: {"fancybox": "", "type": 'iframe'})) %>
+    </p>
+    <% end %>
+
     <% # Better U Started Lessons %>
     <%= render :partial => "shared/better_u_in_progress" %>
     <br>
