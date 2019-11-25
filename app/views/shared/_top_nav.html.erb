@@ -13,10 +13,10 @@
     </div>
 
     <% #group icon %>
-    <div class="ml-2">
+    <div class="ml-2 mr-2 flex-fill">
       <% if (icon && icon.url) %>
         <%= link_to root_path, class: "", data: {turbolinks: false} do %>
-          <%= image_tag icon.url, class: 'img-fluid', alt: 'Partner logo' %>
+          <%= image_tag icon.url, class: 'img-fluid', style: 'width: 100%; min-width: 65px; max-height: auto;', alt: 'Partner logo' %>
         <% end %>
       <% end %>
     </div>
@@ -28,7 +28,7 @@
 
   </div>
 
-  <div class="h4 pt-2 pb-2">
+  <div class="h4 pt-3 pb-2 pl-2 pr-2">
 
     <% if policy(:site_access).view_blog? %>
       <span class="flex-fill">
