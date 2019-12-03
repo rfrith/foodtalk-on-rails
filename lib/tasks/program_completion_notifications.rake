@@ -1,10 +1,12 @@
-require "#{Rails.root}/app/controllers/concerns/county_extension_office_utils"
-include CountyExtensionOfficeUtils
+require 'rake'
 
 namespace :notify do
   namespace :county_extension_offices do
     desc "Send "
     task :program_complete, [:completion_date_range_start, :completion_date_range_end] => [:environment] do |task, args|
+
+      include CountyExtensionOfficeUtils
+
 
       #set default values
       args.with_defaults(completion_date_range_start: Date.new(Date.current.year).to_s, completion_date_range_end: Date.today.to_s)
@@ -38,7 +40,7 @@ namespace :notify do
 
         completions = get_curriculum_completion_in_date_range_by_zip_code(date_range, zip_codes)
 
-        puts "Processing #{completions.size} completions."
+        puts "Processing #{completions.size} completion(s)."
 
         completions.each do |c|
           zip_code = ZipCode.find_by(zip: c.keys[0])

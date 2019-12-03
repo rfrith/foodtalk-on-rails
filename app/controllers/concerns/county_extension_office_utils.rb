@@ -9,8 +9,14 @@ module CountyExtensionOfficeUtils
 
     zip_codes.each do |zip_code|
       zip = zip_code.zip
-      completed_users = find_users_have_completed_program(users: User.where(zip_code: zip), date_range: date_range)
-      completions << {zip => User.where(id: completed_users.map(&:id))} unless completed_users.empty?
+
+      users = User.where(zip_code: zip)
+
+      if(!users.empty?)
+        completed_users = find_users_have_completed_program(users: users, date_range: date_range)
+        completions << {zip => User.where(id: completed_users.map(&:id))} unless completed_users.empty?
+      end
+
     end
     return completions
   end
