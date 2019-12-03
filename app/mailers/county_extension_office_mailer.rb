@@ -11,7 +11,20 @@ class CountyExtensionOfficeMailer < ApplicationMailer
     @end_date = date_range.last.strftime(format)
 
     @users = params[:users]
-    mail(to: @county_extension_office.email, cc: "FOODTALK-NOTIFY@listserv.uga.edu", subject: "eLearning Program Completion Report for #{@county_extension_office.name} #{@start_date} - #{@end_date}")
+
+    listserv = Rails.application.secrets.ext_office_notify_listserv
+
+    if(Rails.application.secrets.ext_office_notify_test)
+      to = listserv
+      cc = nil
+    else
+      to = @county_extension_office.email
+      cc = listserv
+    end
+
+    subject = "eLearning Program Completion Report for #{@county_extension_office.name} #{@start_date} - #{@end_date}"
+
+    mail(to: to, cc: cc, subject: subject)
 
   end
 end

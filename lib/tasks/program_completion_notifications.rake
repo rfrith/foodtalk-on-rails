@@ -25,13 +25,21 @@ namespace :notify do
       begin
         date_range = completion_start..completion_end
 
-        zip_codes = ZipCode.all
+        puts "Processing completions for date range: #{date_range}"
 
-        #TODO: REMOVE AFTER PILOT TESTING!!!
-        zip_codes = ZipCode.where(zip: [30621, 30606])
+        env_zips = Rails.application.secrets.ext_office_notify_zip_codes
 
-        #TODO: put in limited zip code list for pilot testing email
+        if(env_zips)
+          puts "Using env_zips: #{env_zips}"
+          zip_codes = ZipCode.where(zip: env_zips.split(' ')) #using white spaces; Rails.application.secrets doesn't like commas for some odd reason
+        else
+          zip_codes = ZipCode.all
+        end
+
         completions = get_curriculum_completion_in_date_range_by_zip_code(date_range, zip_codes)
+
+        puts "Processing #{completions.size} completions."
+
         completions.each do |c|
           zip_code = ZipCode.find_by(zip: c.keys[0])
           users = c.values[0]

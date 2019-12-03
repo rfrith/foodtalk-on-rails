@@ -63,7 +63,7 @@ es:
     click_here: "presione aquí"
     to: "para"
     print: "imprima"
-    share: "Compartir"
+    share: "Comparta"
 
   header:
     categories: "Las Categorías"
@@ -79,14 +79,14 @@ es:
     name: "Nombre"
     email: "Correo Electrónico"
     notification:
-      label: "Enter a new Notification"
-      type: "Type"
-      title: "Title"
+      label: "Entre una nueva notificación"
+      type: "Escriba"
+      title: "Título"
       message: "Message"
       url: "URL"
-      timeout: "Timeout"
+      timeout: "Se terminó el tiempo"
     edit: "Editar"
-    delete: "Eliminar"
+    delete: "Borrar"
     submit: "Enviar"
     update: "Actualizar"
     generate: "Generar"
@@ -98,7 +98,7 @@ es:
 
   welcome:
     title: "¡Ayudando a los Georgianos a Comer Saludablemente y a Moverse!"
-    description: "¡FoodTalk.org ha sido creado especialmente para georgianos que desean ideas gratuitas sobre cómo mantener a sus familias sanas haciendo elecciones nutritivas de alimentos con un presupuesto ajustado!"
+    description: "¡FoodTalk.org ha sido creado especialmente para georgianos que desean ideas gratuitas sobre cómo mantener a sus familias saludables al escoger alternativas de alimentos nutritivos con un presupuesto ajustado!"
     sign_up: "ahora suscríbase a nuestro boletín electrónico Food Talk y descubra usted elegible para el aprendizaje en línea gratuito."
     read_more: "Lea Más"
 
@@ -152,7 +152,7 @@ es:
 
   gis_resources:
     name: "Recursos GIS"
-    description: "Proporcionado por SNAP-Ed de la Universidad de Georgia"
+    description: "Proporcionado por el Programa SNAP-Ed de la Universidad de Georgia"
     maps:
       eligibility_locator: "SNAP-Ed Localizador de Elegibilidad"
       snap_ed_resources: "SNAP-Ed Recursos"
@@ -162,14 +162,14 @@ es:
     continue_learning_module: "¿Por qué no termina lo que comenzó?Complete todas las lecciones iniciadas haciendo clic en los enlaces a continuación y continúe mejorando su conocimiento de salud y nutrición."
     completed_html: "¡Excelente!Usted a completado %{curriculum}."
     extenders_prompt: "¡Felicitaciones por completar Food eTalk ( Hablemos de Comida en Línea) y Hablemos de Comida: Por Su Salud! %{href} para instructiones de como recibir su bolsa de artículos educativos gratuita"
-    print_your_certificate: "Por favor imprima %{print_link} su confirmación de que ha completado %{additional_instructions}"
+    print_your_certificate: "Por favor imprima %{print_link} su certificado de que ha completado %{additional_instructions}"
     extenders_directions: "y llevelo %{location_prompt} para obtener su bolsa gratuita de artículos educativos! Si no tiene una impresora puede presentar su certificado desde su teléfono o su aparato móvil."
     multiple_extension_offices: "una de estas oficinas de Extensión de su condado"
     single_extension_office: "la siguiente oficina de Extensión de su condado"
     better_u:
       name: "Better U o Por Su Salud"
       tagline: "¡Aumente su conocimiento sobre los alimentos!"
-      description: "Food eTalk: Better U es una serie de sesiones interactivas destinadas a ayudarlo a identificar formas de hacer pequeños cambios en su estilo de vida que lo conduzcan a una mejor versión de usted mismo! Los participantes reciben artículos gratuitos que promueven una alimentación saludable y un estilo de vida activo. ¡Prepárese para divertirse y aprender!"
+      description: "Food eTalk: Better U (Hablemos de Comida: Por Su Salud) es una serie de sesiones interactivas destinadas a ayudarlo a identificar formas de hacer pequeños cambios en su estilo de vida que lo conduzcan a una mejor versión de usted mismo! Los participantes reciben artículos gratuitos que promueven una alimentación saludable y un estilo de vida activo. ¡Prepárese para divertirse y aprender!"
     food_etalk:
       name: "Food eTalk"
       tagline: "¡Elija alimentos más saludables!"
@@ -215,15 +215,15 @@ es:
 
     http422:
       label: "La acción que solicitó fue rechazada."
-      description: "Lo sentimos, solicitó algo a lo que no tuvo acceso."
+      description: "Lo sentimos, solicitó algo a lo que no tiene acceso."
 
     http429:
       label:  "Demasiadas Solicitudes."
-      description: "Lo sentimos, se ha excedido el número de conexiones que se pueden establecer. Por favor intente nuevamente en breve."
+      description: "Lo sentimos, se ha excedido el número de conexiones que se pueden establecer. Por favor intente nuevamente en unos minutos."
 
     http500:
       label: "Error del servidor de computadora interno."
-      description: "Lo sentimos, algo salió mal. Nuestro equipo técnico investigará el problema. Por favor intente nuevamente en breve."
+      description: "Lo sentimos, algo salió mal. Nuestro equipo técnico investigará el problema. Por favor intente nuevamente en unos minutos."
 
   general:
     please_log_in: "Debe iniciar la sesión para acceder a este contenido. Haga clic \"Registrarse\" o \"Iniciar sesión\" para continuar."
@@ -240,7 +240,7 @@ es:
         gender: "Sexo"
         age: "Edad"
         zip_code: "Código Postal"
-        is_hispanic_or_latino: "¿Se considera hispano/latino?"
+        is_hispanic_or_latino: "¿Se considera usted hispano/latino?"
         racial_identities: "¿Con qué raza se identifica?"
         racial_identity_ids: "¿Con qué raza se identifica? Marque todo lo que corresponda."
         federal_assistance_ids: "¿Alguna vez ha recibido usted o sus hijos alguna de las siguientes Programas de Asistencia Federales? Marque todo lo que corresponda."
@@ -270,7 +270,7 @@ es:
         title: "Llevar un control"
         description: "Una de las mejores maneras de controlar su peso y la salud nutricional es observar el tamaño de la porción de sus alimentos. Aprenda a medir correctamente diferentes alimentos y algunos consejos útiles para hacer un control de cuánto está comiendo y bebiendo."
       no_thanks_im_sweet_enough:
-        title: "¡No gracias, ya etoy bastante dulce!"
+        title: "¡No gracias, ya estoy bastante dulce!"
         description: "¿Sabía que disminuir la cantidad de azúcar que come y bebe podría ayudar a prevenir el aumento de peso no deseado? Vea esta breve lección para aprender cómo puede disminuir el azúcar en las comidas y refrigerios de toda su familia."
       small_changes_equal_big_results:
         title: "Pequeños Cambios = Grandes Resultados"
