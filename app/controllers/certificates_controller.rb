@@ -10,10 +10,8 @@ class CertificatesController < ApplicationController
 
     begin
       image_name = "CompletionCertificate_#{I18n.locale}.png"
-      food_etalk_completion_date = curriculum_completion_date(@current_user, LearningModules::FOOD_ETALK)
-      better_u_completion_date = curriculum_completion_date(@current_user, LearningModules::BETTER_U)
-      completion_date = food_etalk_completion_date >= better_u_completion_date ? food_etalk_completion_date : better_u_completion_date
-      @certificates = [create_certificate(image_name, completion_date)] #view expects array
+      program_completion_date = program_completion_date(@current_user)
+      @certificates = [create_certificate(image_name, program_completion_date)] #view expects array
     rescue => e
       logger.error "An error occurred: #{e.inspect}"
     end
