@@ -5,8 +5,8 @@ namespace :notify do
     desc "Send "
     task :program_complete, [:completion_date_range_start, :completion_date_range_end] => [:environment] do |task, args|
 
+      #include after environment is loaded
       include CountyExtensionOfficeUtils
-
 
       #set default values
       args.with_defaults(completion_date_range_start: Date.new(Date.current.year).to_s, completion_date_range_end: Date.today.to_s)
