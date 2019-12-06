@@ -22,9 +22,9 @@ class CountyExtensionOfficeMailer < ApplicationMailer
       cc = listserv
     end
 
-    subject = "SNAP-Ed eLearning Completion Report for #{@county_extension_office.name}/#{@zip_code} (#{@start_date} - #{@end_date})"
+    @subject = "SNAP-Ed eLearning Completion Report for #{@county_extension_office.name}/#{@zip_code} (#{@start_date} - #{@end_date})"
 
-    mail(to: to, cc: cc, subject: subject)
+    mail(to: to, cc: cc, subject: @subject)
 
   end
 end
