@@ -68,11 +68,15 @@
                 <%= ceo.city %>, <%= ceo.state %> <%= ceo.zip %>
               </a>
               <br>
+              <% if(ceo.phone) %>
               <a href="tel:<%= ceo.phone %>"><abbr title="Phone">P:</abbr> <%= ceo.phone %></a>
               <br>
+              <% end %>
+              <% if(ceo.email) %>
               <a href = "mailto:<%= ceo.email %>">
                 <abbr title="Email">E:</abbr> <%= ceo.email %>
               </a>
+              <% end %>
             </address>
 
           </div>

@@ -5,10 +5,10 @@
   </head>
   <body>
 
-    <h2>eLearning Program Completion Report for <%= @county_extension_office.name %></h2>
+    <h2><%= @subject %></h2>
 
     <p>
-      From <%= @start_date %> - <%= @end_date %>, <%= @users.size %> <%= "person".pluralize(@users.size) %> located in
+      From <%= @start_date %> - <%= @end_date %>, <b><%= @users.size %> <%= "person".pluralize(@users.size) %></b> located in
       zip code <%= @zip_code %> and assigned to the <%= @county_extension_office.name %> Extension Office recently
       completed both the Food eTalk and Better U programs:
     </p>
@@ -16,24 +16,25 @@
     <table>
       <thead>
         <th>Name</th>
-        <th>Email</th>
         <th>Completion Date</th>
       </thead>
       <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
+          <td><%= user.first_name %> <%= user.last_name.first %>.</td>
           <td><%= program_completion_date(user) %></td>
         </tr>
       <% end %>
+        <tr>
+          <td colspan="3"><h2>Total: <%=@users.size %></h2></td>
+        </tr>
       </tbody>
 
     </table>
 
     <p>
       Please check your inventory to ensure you have enough supplies in stock to provide Educational Extenders to the
-      above <%= "individual".pluralize(@users.size) %>.   If you need additional supplies or require further assistance,
+      above <%= "individual".pluralize(@users.size) %>.  If you need additional supplies or require further assistance,
       please contact the UGA SNAP-Ed team.
     </p>
 
@@ -41,7 +42,8 @@
 
     <p>
       UGA SNAP-Ed Team<br>
-      snap-ed@uga.edu
+      snap-ed@uga.edu<br>
+      706.542.6117
     </p>
 
   </body>

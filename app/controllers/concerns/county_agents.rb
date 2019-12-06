@@ -112,7 +112,7 @@ module CountyAgents
           city: "Valdosta",
           state: "GA",
           zip: "31601",
-          contact: {name: "Rachel Hubbard", organization: "Family & Consumer Sciences", position: "PROGRAM DEVELOPMENT COORDINATOR, FACS", phone: "(229) 386-3812",  email: "rubynell@uga.edu"}
+          contact: {name: "Lianet Perez", organization: "Family and Consumer Sciences", position: "SNAP Education Educator", phone: "(229) 333-5185",  email: "Lianet.Perez@uga.edu"}
       }
   }
 

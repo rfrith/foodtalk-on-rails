@@ -141,7 +141,7 @@ class User < ApplicationRecord
 
   def get_county_extension_offices
     zips = ZipCode.where(zip: zip_code)
-    return CountyExtensionOffice.includes(:zip_codes).where("zip_codes.id": zips.each{|zip| zip.id})
+    return CountyExtensionOffice.includes(:zip_codes).where("zip_codes.id": zips.each{|zip| zip.id}, active: true)
   end
 
 

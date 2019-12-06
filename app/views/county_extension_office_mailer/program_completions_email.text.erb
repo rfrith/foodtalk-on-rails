@@ -1,13 +1,16 @@
-eLearning Program Completion Report for <%= @county_extension_office.name %>
+<%= @subject %>
 ============================================================================
 
 From <%= @start_date %> - <%= @end_date %>, <%= @users.size %> <%= "person".pluralize(@users.size) %> located in zip code <%= @zip_code %> and assigned to the <%= @county_extension_office.name %> Extension Office recently completed both the Food eTalk and Better U programs:
 
 <% @users.each do |user| %>
-  Name: <%= user.name %>
-  Email: <%= user.email %>
+  Name: <%= user.first_name %> <%= user.last_name.first %>.
   Completion Date: <%= program_completion_date(user) %>
 <% end %>
+
+
+Total: <%=@users.size %>
+
 
 Please check your inventory to ensure you have enough supplies in stock to provide Educational Extenders to the above <%= "individual".pluralize(@users.size) %>.
 
@@ -17,3 +20,4 @@ Thanks and have a great day!
 
 UGA SNAP-Ed Team
 snap-ed@uga.edu
+706.542.6117

@@ -6,7 +6,7 @@ class CountyExtensionOfficeMailer < ApplicationMailer
     @zip_code = params[:zip_code]
     date_range = params[:date_range]
 
-    format = "%b %d, %Y"
+    format = "%m/%d/%y"
     @start_date = date_range.first.strftime(format)
     @end_date = date_range.last.strftime(format)
 
@@ -22,7 +22,7 @@ class CountyExtensionOfficeMailer < ApplicationMailer
       cc = listserv
     end
 
-    subject = "eLearning Program Completion Report for #{@county_extension_office.name} #{@start_date} - #{@end_date}"
+    subject = "SNAP-Ed eLearning Completion Report for #{@county_extension_office.name}/#{@zip_code} (#{@start_date} - #{@end_date})"
 
     mail(to: to, cc: cc, subject: subject)
 
