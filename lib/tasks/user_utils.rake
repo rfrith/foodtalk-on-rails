@@ -10,7 +10,7 @@ namespace :user_utils do
 
       all_users.each do |user|
         puts "user: : #{user.name} #{user.email}"
-        user.seed_eligibile!
+        user.seed_eligible!
         puts "user.eligible: #{user.eligible}"
         puts "user.is_eligible?: #{user.is_eligible?}"
         user.is_eligible? ? eligible_users << user : ineligible_users << user

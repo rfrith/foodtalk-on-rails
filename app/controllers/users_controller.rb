@@ -24,13 +24,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @new_user=true
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
       if @current_user.valid?
+        @new_user=true
         #add user to group based on domain
         add_user_to_domain_group(@current_user, criteria: :domain, value: request.host)
-        update_eligibility!
         update_mailchimp_subscriptions
       end
       format.js
@@ -42,7 +41,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       @current_user.update(user_params.except(:subscription_ids))
       if(@current_user.valid?)
-        update_eligibility!
         update_mailchimp_subscriptions
       end
       format.js
@@ -387,10 +385,5 @@ class UsersController < ApplicationController
       @current_user.errors.add(:base, :subscription_error, message: "#{t("error_occurred")}: #{e.to_s}")
     end
   end
-
-  def update_eligibility!
-    @current_user.update_eligibile!
-  end
-
 
 end

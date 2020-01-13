@@ -58,6 +58,9 @@ class User < ApplicationRecord
     end
   end
 
+  before_save :update_eligible, on: [:create, :update]
+
+
   def is_admin?
     return self.super_admin? || self.admin? || self.group_admin?
   end
@@ -74,12 +77,18 @@ class User < ApplicationRecord
     return !is_eligible?
   end
 
-  def seed_eligibile!
-    self.eligible ||= self.update_eligibile!
+  def seed_eligible!
+    self.eligible ||= self.update_eligible!
   end
 
-  def update_eligibile!
-    self.eligible = self.determine_eligibility
+  def update_eligible
+    if(!self.eligible) #if user was ever eligible, they will always remain eligible
+      self.eligible = self.determine_eligibility
+    end
+  end
+
+  def update_eligible!
+    update_eligible
     self.save!
   end
 

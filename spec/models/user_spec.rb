@@ -151,6 +151,26 @@ RSpec.describe  User,  type:  :model  do
     expect(ineligible_user.is_eligible?).to eq false
   end
 
+  it "retains_eligibility" do
+    expect(ineligible_user.is_eligible?).to eq false
+    ineligible_user.zip_code = 30601
+    ineligible_user.update_eligible
+    expect(ineligible_user.is_eligible?).to eq true
+    ineligible_user.zip_code = 11111
+    ineligible_user.update_eligible
+    expect(ineligible_user.is_eligible?).to eq true
+  end
+
+  it "retains_eligibility_on_save" do
+    expect(ineligible_user.is_eligible?).to eq false
+    ineligible_user.zip_code = 30601
+    ineligible_user.save!
+    expect(ineligible_user.is_eligible?).to eq true
+    ineligible_user.zip_code = 11111
+    ineligible_user.save!
+    expect(ineligible_user.is_eligible?).to eq true
+  end
+
   it "returns a list of eligible users" do
     eligible_user #lazy loaded
     expect(User.all_eligible).to include eligible_user
