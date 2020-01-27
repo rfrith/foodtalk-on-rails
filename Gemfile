@@ -73,7 +73,7 @@ gem 'rmagick', '~> 2.16.0'
 
 
 gem 'pundit', '~> 2.0', '>= 2.0.1'
-gem 'chartkick', '~> 3.0', '>= 3.0.2'
+gem 'chartkick', '~> 3.3'
 gem 'groupdate', '~> 4.1', '>= 4.1.1'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'lol_dba', '~> 2.1', '>= 2.1.5'
