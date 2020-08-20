@@ -2,7 +2,7 @@
   "name": "foodtalk_org",
   "private": true,
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "npm": "^5.7.1"
   }
 }
