@@ -54,7 +54,7 @@ gem 'fractional', '~> 1.2', '>= 1.2.1'
 gem 'aasm', '~> 5.0', '>= 5.0.2'
 gem 'faker', '~> 1.9', '>= 1.9.3'
 #for memcached integration
-gem 'dalli', '~> 2.7', '>= 2.7.10'
+gem 'dalli', '~> 3.2'
 gem 'connection_pool', '~> 2.2', '>= 2.2.2'
 gem 'api_cache', '~> 0.3.0'
 gem 'mobility', '~> 0.8.6'
